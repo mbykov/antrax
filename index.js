@@ -64,24 +64,45 @@ function query(sentence, current) {
   ==>> οἱ δ' οὖν ὡς ἕκαστοι Ἕλληνες κατὰ πόλεις τε ὅσοι ἀλλήλων ξυνίεσαν καὶ ξύμπαντες ὕστερον κληθέντες οὐδὲν πρὸ τῶν Τρωικῶν δι' ἀσθένειαν καὶ ἀμειξίαν ἀλλήλων ἁθρόοι ἔπραξαν.
   δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα. πρὸ γὰρ τῶν Τρωικῶν οὐδὲν φαίνεται πρότερον κοινῇ ἐργασαμένη ἡ Ἑλλάς. δοκεῖ δέ μοι, οὐδὲ τοὄνομα τοῦτο ξύμπασά πω εἶχεν, ἀλλὰ τὰ μὲν πρὸ Ἕλληνος τοῦ Δευκαλίωνος καὶ πάνυ οὐδὲ εἶναι ἡ ἐπίκλησις αὕτη.
 */
+
+// rows - это words, но несколько вариантов
+
 function main(current, rows, fls) {
-    log('q-TERMS', rows.length);
+    // log('q-TERMS', rows);
+    // return;
     log('q-FLs', fls.length);
     let cMorph = isTerm(current, rows);
     if (cMorph.length) {
         log('IS TERM', cMorph);
     } else {
-        // let cMorphs = selectMorphs(current, fls);
+        let cMorphs = selectMorphs(current, fls);
         // let chains = conform(rows, cMorphs);
         // log('CHAINS', chains);
+
         let queries = parseStems(rows, fls);
-        // log('ST', queries);
-        queryDicts(queries).then(function(res) {
-            log('DICTS:::', res);
+        // log('QS', queries);
+        // return;
+        queryDicts(queries).then(function(dicts) {
+            let founded = trueQueries(queries, dicts);
+            log('DICTS:::', founded);
         }).catch(function (err) {
             log('ERR DICTS', err);
         });
     }
+}
+
+function trueQueries(queries, dicts) {
+    let founded = [];
+    queries.forEach(function(q) {
+        dicts.forEach(function(d) {
+            if (q.query == d.dict && q.gend == d.gend) {
+                q.dict = d.dict;
+                q.trn = d.trn;
+                founded.push(q);
+            }
+        });
+    });
+    return founded;
 }
 
 function parseStems(rows, fls) {
@@ -89,37 +110,51 @@ function parseStems(rows, fls) {
     rows.forEach(function(row) {
         if (row.type == 'term') return;
         if (row.pos == 'verb') return;
+        row.queries = [];
         // log('ROW', row);
         // let rowMorphs = selectMorphs(row.form, fls);
         fls.forEach(function(flex) {
             if (flex.flex != row.form.slice(-flex.flex.length)) return;
             let stem = row.form.slice(0, -flex.flex.length);
-            flex.query = [stem, flex.dict].join('');
-            queries.push(flex);
+            let query = [stem, flex.dict].join('');
+            // row.queries.push(query);
+            // FIXME: здесь, для ясности, можно создать объект word
+            let word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, gend: flex.gend, numcase: flex.numcase, var: flex.var};
+            // { flex: 'ῶν',
+            //   gend: 'masc',
+            //   numcase: 'pl.gen',
+            //   descr: 'prima',
+            //   var: 'a-cont',
+            //   pos: 'noun',
+            //   dict: 'ᾶ',
+            //   size: 3,
+            //   type: 'greek-flex' },
+
+            queries.push(word);
         });
+        // row.stems = _.uniq(row.stems);
     });
     return queries;
+    // return _.compact(_.uniq(_.flatten(queries)));
 }
 
 function queryDicts(queries) {
-    let keys = queries.map(function(q) { return q.query; });
-    keys = _.uniq(keys);
+    let keys = _.uniq(queries.map(function(q) { return q.query; }));
+    // log('KEYS', keys);
     return new Promise(function(resolve, reject) {
-        db.query('terms/byDict', {
+        db.query('terms1/byDict', {
             keys: keys
             // include_docs: true
         }).then(function (res) {
-            log('RES', res);
+            // log('RES', res);
             if (!res || !res.rows || res.rows.length == 0) throw new Error('no dict result');
-            let dicts = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
+            let dicts = res.rows.map(function(row) {return Object.assign({}, {dict: row.key}, row.value);});
             resolve(dicts);
         }).catch(function (err) {
             reject(err);
         });
     });
 }
-
-
 
 
 function conform(rows, cMorphs) {
@@ -186,31 +221,30 @@ function getAllFlex() {
     });
 }
 
-
+// δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα. π
 function queryTerms(sentence) {
     let keys = sentence.split(' ');
     keys = _.uniq(keys);
     return new Promise(function(resolve, reject) {
-        db.query('terms/byForm', {
+        db.query('terms1/byForm', {
             keys: keys
             // include_docs: true
         }).then(function (res) {
             // log('RES', res);
             if (!res || !res.rows || res.rows.length == 0) throw new Error('no result');
+            let forms = [];
             let pos = keys.indexOf(current);
             let rows = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
             keys.forEach(function(key, idx) {
                 rows.forEach(function(word) {
                     if (word.form != key) return;
                     word.idx = idx;
+                    if (word.type == 'form') word = {type: 'form', form: key, idx: idx}; // это пустые формы
+                    forms.push(word);
                 });
             });
-
-            // let curs = _.select(words, function(w) { return w.type == 'term' && w.form == current;});
-            // log('WORDS', words);
-            resolve(rows);
-            // if (curs.length > 0) showTerm(curs);
-            // else getMorphs(current);
+            // log('ROWS', forms);
+            resolve(forms);
         }).catch(function (err) {
             reject(err);
         });
