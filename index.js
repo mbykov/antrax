@@ -1,36 +1,37 @@
 // antrax - query simple greek
 
 
-let word = process.argv.slice(2)[0] || false;
-let sentence = process.argv.slice(3)[0] || false;
-// if (!word) return log('what ?');
-let util = require('util');
+// let word = process.argv.slice(2)[0] || false;
+// let sentence = process.argv.slice(3)[0] || false;
 
-if (!sentence) {
-    log('param string?');
-    return;
-}
+// let util = require('util');
 
+// if (!sentence) {
+    // log('param string?');
+    // return;
+// }
 
 let _ = require('underscore');
 // let path = require('path');
 let fs = require('fs');
 let path = require('path');
 let orthos = require('../orthos');
-let PouchDB = require('pouchdb');
-let db = new PouchDB('../utils/pouchdb/terms');
-let db_flex = new PouchDB('../utils/pouchdb/flex');
+let PouchDB = require('pouchdb-browser');
+let db_term = new PouchDB('term')
+// PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/terms', 'term')
+let db_flex = new PouchDB('flex')
+// PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/flex', 'flex')
 
-sentence = sentence.replace(/\./, '');
-let current = orthos.toComb(word);
-sentence = orthos.toComb(sentence);
-
+// sentence = sentence.replace(/\./, '');
+// let current = orthos.toComb(word);
+// sentence = orthos.toComb(sentence);
+// return
 
 // current = 'ἀσθένειαν';
 
 console.time('_query');
 // queryTerms_old(sentence);
-query(sentence, current);
+// query(sentence, current);
 // getMorphs(current);
 console.timeEnd('_query');
 
@@ -44,33 +45,90 @@ console.timeEnd('_query');
   но можно и облегченный вариант - проверить только найденное соответствие данного morph
 */
 
-function query(sentence, current) {
+
+module.exports = antrax();
+
+function antrax() {
+    log('ANTRAX BODY')
+    if (!(this instanceof antrax)) return new antrax();
+}
+
+
+antrax.prototype.query = function(sentence, num, cb) {
+    let clean = sentence.replace(/\./, '')
+    let current = sentence.split(' ')[num];
+    let res = queryPromise(sentence, current, function(res) {
+        log('Q RES', res)
+        cb(res)
+    })
+}
+
+function queryPromise(sentence, current, cb) {
+    log('ANTRAX QUERY NUM', sentence, current)
     Promise.all([
         queryTerms(sentence),
-        getAllFlex()
+        // getAllFlex()
     ]).then(function (res) {
-        main(current, res[0], res[1]);
+        log('TERMS FORMS', res)
+        cb('kuku')
+        // main(current, res[0], res[1]);
+    // }).then(function (res) {
+        // log('KUKU-RES', res)
+        // return res
     }).catch(function (err) {
-        log('ERR', err);
+        log('ANT ERR', err);
     });
 }
+
+// δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα. π
+function queryTerms(sentence) {
+    let keys = sentence.split(' ');
+    keys = _.uniq(keys);
+    return new Promise(function(resolve, reject) {
+        db_term.query('terms1/byForm', {
+            keys: keys
+            // include_docs: true
+        }).then(function (res) {
+            // log('RES', res);
+            // return;
+            if (!res || !res.rows || res.rows.length == 0) throw new Error('no result');
+            let forms = [];
+            // let pos = keys.indexOf(current);
+            let rows = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
+            keys.forEach(function(key, idx) {
+                rows.forEach(function(word) {
+                    if (word.form != key) return;
+                    word.idx = idx;
+                    if (word.type == 'form') word = {type: 'form', form: key, idx: idx}; // это пустые формы
+                    // как то их можно прикрутить для тестов
+                    forms.push(word);
+                });
+            });
+            log('queryTERMS FORMS', forms);
+            resolve(forms);
+        }).catch(function (err) {
+            reject(err);
+        });
+    });
+}
+
 
 /*
   нужно: в словаре добавить dict и, главное, .var - как? по translit?
   и выбирать по gend, numcase, var
   ===> salita для греческого нужна
 */
-/*
-  ==>> οἱ δ' οὖν ὡς ἕκαστοι Ἕλληνες κατὰ πόλεις τε ὅσοι ἀλλήλων ξυνίεσαν καὶ ξύμπαντες ὕστερον κληθέντες οὐδὲν πρὸ τῶν Τρωικῶν δι' ἀσθένειαν καὶ ἀμειξίαν ἀλλήλων ἁθρόοι ἔπραξαν.
+/*  ==>> οἱ δ' οὖν ὡς ἕκαστοι Ἕλληνες κατὰ πόλεις τε ὅσοι ἀλλήλων ξυνίεσαν καὶ ξύμπαντες ὕστερον κληθέντες οὐδὲν πρὸ τῶν Τρωικῶν δι' ἀσθένειαν καὶ ἀμειξίαν ἀλλήλων ἁθρόοι ἔπραξαν.
   δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα. πρὸ γὰρ τῶν Τρωικῶν οὐδὲν φαίνεται πρότερον κοινῇ ἐργασαμένη ἡ Ἑλλάς. δοκεῖ δέ μοι, οὐδὲ τοὄνομα τοῦτο ξύμπασά πω εἶχεν, ἀλλὰ τὰ μὲν πρὸ Ἕλληνος τοῦ Δευκαλίωνος καὶ πάνυ οὐδὲ εἶναι ἡ ἐπίκλησις αὕτη.
 */
 
 // rows - это words, но несколько вариантов
-
-function main(current, rows, fls) {
-    // log('q-TERMS', rows);
-    // return;
+  function main(current, rows, fls) {
+    log('q-ROWS', rows.length);
+    return;
     log('q-FLs', fls.length);
+    return
+
     let cMorph = isTerm(current, rows);
     if (cMorph.length) {
         log('IS TERM', cMorph);
@@ -78,13 +136,20 @@ function main(current, rows, fls) {
         let cMorphs = selectMorphs(current, fls);
         // let chains = conform(rows, cMorphs);
         // log('CHAINS', chains);
+        // log('cMorphs', cMorphs);
+        // return;
 
         let queries = parseStems(rows, fls);
         // log('QS', queries);
         // return;
         queryDicts(queries).then(function(dicts) {
             let founded = trueQueries(queries, dicts);
-            log('DICTS:::', founded);
+            // log('DICTS:::', founded);
+            // return;
+            let words = rows.concat(founded);
+            let chains = conform(words, cMorphs);
+
+            log('DICTS:::', chains);
         }).catch(function (err) {
             log('ERR DICTS', err);
         });
@@ -96,6 +161,7 @@ function trueQueries(queries, dicts) {
     queries.forEach(function(q) {
         dicts.forEach(function(d) {
             if (q.query == d.dict && q.gend == d.gend) {
+                if (q.var == 'ah') return;
                 q.dict = d.dict;
                 q.trn = d.trn;
                 founded.push(q);
@@ -157,6 +223,7 @@ function queryDicts(queries) {
 }
 
 
+// δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα.
 function conform(rows, cMorphs) {
     // log('CONFORM words', words.slice(3,4));
     // log('CONFORM cMorphs', cMorphs[0]);
@@ -216,36 +283,6 @@ function getAllFlex() {
         }).catch(function (err) {
             // log('ERR', err);
             // showDict(err);
-            reject(err);
-        });
-    });
-}
-
-// δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα. π
-function queryTerms(sentence) {
-    let keys = sentence.split(' ');
-    keys = _.uniq(keys);
-    return new Promise(function(resolve, reject) {
-        db.query('terms1/byForm', {
-            keys: keys
-            // include_docs: true
-        }).then(function (res) {
-            // log('RES', res);
-            if (!res || !res.rows || res.rows.length == 0) throw new Error('no result');
-            let forms = [];
-            let pos = keys.indexOf(current);
-            let rows = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
-            keys.forEach(function(key, idx) {
-                rows.forEach(function(word) {
-                    if (word.form != key) return;
-                    word.idx = idx;
-                    if (word.type == 'form') word = {type: 'form', form: key, idx: idx}; // это пустые формы
-                    forms.push(word);
-                });
-            });
-            // log('ROWS', forms);
-            resolve(forms);
-        }).catch(function (err) {
             reject(err);
         });
     });
