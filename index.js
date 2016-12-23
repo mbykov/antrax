@@ -28,13 +28,11 @@ let db_flex = new PouchDB('flex')
 // return
 
 // current = 'ἀσθένειαν';
-
-console.time('_query');
-// queryTerms_old(sentence);
-// query(sentence, current);
-// getMorphs(current);
-console.timeEnd('_query');
-
+// console.time('_query')
+// queryTerms_old(sentence)
+// query(sentence, current)
+// getMorphs(current)
+// console.timeEnd('_query')
 
 /*
   взять terms, определить, cur is term?
@@ -49,7 +47,7 @@ console.timeEnd('_query');
 module.exports = antrax();
 
 function antrax() {
-    log('ANTRAX BODY')
+    // log('ANTRAX BODY')
     if (!(this instanceof antrax)) return new antrax();
 }
 
@@ -57,8 +55,11 @@ function antrax() {
 antrax.prototype.query = function(sentence, num, cb) {
     let clean = sentence.replace(/\./, '')
     let current = sentence.split(' ')[num];
-    let res = queryPromise(sentence, current, function(res) {
-        log('Q RES', res)
+    // log('num', num)
+    // log('clean', clean)
+    // log('current', current)
+    queryPromise(sentence, current, function(res) {
+        // log('Q RES', res)
         cb(res)
     })
 }
@@ -67,11 +68,13 @@ function queryPromise(sentence, current, cb) {
     log('ANTRAX QUERY NUM', sentence, current)
     Promise.all([
         queryTerms(sentence),
-        // getAllFlex()
+        getAllFlex()
     ]).then(function (res) {
-        log('TERMS FORMS', res)
-        cb('kuku')
-        // main(current, res[0], res[1]);
+        main(current, res[0], res[1], function(chains) {
+            log('CHAINS', chains)
+            cb(chains)
+        });
+
     // }).then(function (res) {
         // log('KUKU-RES', res)
         // return res
@@ -112,35 +115,26 @@ function queryTerms(sentence) {
     });
 }
 
-
-/*
-  нужно: в словаре добавить dict и, главное, .var - как? по translit?
-  и выбирать по gend, numcase, var
-  ===> salita для греческого нужна
-*/
-/*  ==>> οἱ δ' οὖν ὡς ἕκαστοι Ἕλληνες κατὰ πόλεις τε ὅσοι ἀλλήλων ξυνίεσαν καὶ ξύμπαντες ὕστερον κληθέντες οὐδὲν πρὸ τῶν Τρωικῶν δι' ἀσθένειαν καὶ ἀμειξίαν ἀλλήλων ἁθρόοι ἔπραξαν.
-  δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα. πρὸ γὰρ τῶν Τρωικῶν οὐδὲν φαίνεται πρότερον κοινῇ ἐργασαμένη ἡ Ἑλλάς. δοκεῖ δέ μοι, οὐδὲ τοὄνομα τοῦτο ξύμπασά πω εἶχεν, ἀλλὰ τὰ μὲν πρὸ Ἕλληνος τοῦ Δευκαλίωνος καὶ πάνυ οὐδὲ εἶναι ἡ ἐπίκλησις αὕτη.
-*/
-
-// rows - это words, но несколько вариантов
-  function main(current, rows, fls) {
+// rows - это words, но все morphs отдельно
+function main(current, rows, fls, cb) {
     log('q-ROWS', rows.length);
-    return;
+    // return rows;
     log('q-FLs', fls.length);
-    return
+    // return
+    log('q-curr', current);
 
     let cMorph = isTerm(current, rows);
     if (cMorph.length) {
-        log('IS TERM', cMorph);
+        log('IS TERM - cancel', cMorph);
     } else {
         let cMorphs = selectMorphs(current, fls);
         // let chains = conform(rows, cMorphs);
         // log('CHAINS', chains);
-        // log('cMorphs', cMorphs);
+        // log('cMorphs', current, cMorphs);
         // return;
 
         let queries = parseStems(rows, fls);
-        // log('QS', queries);
+        log('QS', queries);
         // return;
         queryDicts(queries).then(function(dicts) {
             let founded = trueQueries(queries, dicts);
@@ -149,7 +143,8 @@ function queryTerms(sentence) {
             let words = rows.concat(founded);
             let chains = conform(words, cMorphs);
 
-            log('DICTS:::', chains);
+            log('CHAINS:::', chains);
+            cb(chains)
         }).catch(function (err) {
             log('ERR DICTS', err);
         });
@@ -179,12 +174,12 @@ function parseStems(rows, fls) {
         row.queries = [];
         // log('ROW', row);
         // let rowMorphs = selectMorphs(row.form, fls);
+        if (!row.form) log('NO FORM', row)
         fls.forEach(function(flex) {
             if (flex.flex != row.form.slice(-flex.flex.length)) return;
             let stem = row.form.slice(0, -flex.flex.length);
             let query = [stem, flex.dict].join('');
             // row.queries.push(query);
-            // FIXME: здесь, для ясности, можно создать объект word
             let word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, gend: flex.gend, numcase: flex.numcase, var: flex.var};
             // { flex: 'ῶν',
             //   gend: 'masc',
@@ -201,14 +196,13 @@ function parseStems(rows, fls) {
         // row.stems = _.uniq(row.stems);
     });
     return queries;
-    // return _.compact(_.uniq(_.flatten(queries)));
 }
 
 function queryDicts(queries) {
     let keys = _.uniq(queries.map(function(q) { return q.query; }));
     // log('KEYS', keys);
     return new Promise(function(resolve, reject) {
-        db.query('terms1/byDict', {
+        db_term.query('terms1/byDict', {
             keys: keys
             // include_docs: true
         }).then(function (res) {
@@ -267,8 +261,6 @@ function selectMorphs(current, fls) {
 
 
 function getAllFlex() {
-    // let tails = [cur.slice(-1), cur.slice(-2), cur.slice(-3), cur.slice(-4)];
-    // log('CUR TAILS', cur, tails);
     return new Promise(function(resolve, reject) {
         db_flex.query('flex/byFlex', {
             // keys: tails
@@ -278,10 +270,10 @@ function getAllFlex() {
             let flexes = res.rows.map(function(row) {return Object.assign({}, {flex: row.key}, row.value);});
             // log('FLEXES', flexes.length);
             // let docs = res.rows.map(function(row) {return row.doc;});
-            // log('FLEXES', docs.length);
+            log('FLEXES', flexes.length);
             resolve(flexes);
         }).catch(function (err) {
-            // log('ERR', err);
+            log('ERR ALL FLEX', err);
             // showDict(err);
             reject(err);
         });
