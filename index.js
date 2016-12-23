@@ -83,38 +83,6 @@ function queryPromise(sentence, current, cb) {
     });
 }
 
-// δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα. π
-function queryTerms(sentence) {
-    let keys = sentence.split(' ');
-    keys = _.uniq(keys);
-    return new Promise(function(resolve, reject) {
-        db_term.query('terms1/byForm', {
-            keys: keys
-            // include_docs: true
-        }).then(function (res) {
-            // log('RES', res);
-            // return;
-            if (!res || !res.rows || res.rows.length == 0) throw new Error('no result');
-            let forms = [];
-            // let pos = keys.indexOf(current);
-            let rows = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
-            keys.forEach(function(key, idx) {
-                rows.forEach(function(word) {
-                    if (word.form != key) return;
-                    word.idx = idx;
-                    if (word.type == 'form') word = {type: 'form', form: key, idx: idx}; // это пустые формы
-                    // как то их можно прикрутить для тестов
-                    forms.push(word);
-                });
-            });
-            log('queryTERMS FORMS', forms);
-            resolve(forms);
-        }).catch(function (err) {
-            reject(err);
-        });
-    });
-}
-
 // rows - это words, но все morphs отдельно
 function main(current, rows, fls, cb) {
     log('q-ROWS', rows.length);
@@ -124,24 +92,23 @@ function main(current, rows, fls, cb) {
     log('q-curr', current);
 
     let cMorph = isTerm(current, rows);
-    if (cMorph.length) {
+    if (false) { // cMorph.length
         log('IS TERM - cancel', cMorph);
+        //
     } else {
-        let cMorphs = selectMorphs(current, fls);
-        // let chains = conform(rows, cMorphs);
-        // log('CHAINS', chains);
-        // log('cMorphs', current, cMorphs);
-        // return;
+        let currentFlexes = selectMorphs(current, fls);
+        log('currentFlexes', current, currentFlexes);
 
-        let queries = parseStems(rows, fls);
-        log('QS', queries);
+        let possibleForms = parsePossibleForms(rows, fls);
+        log('QS', possibleForms);
         // return;
-        queryDicts(queries).then(function(dicts) {
-            let founded = trueQueries(queries, dicts);
-            // log('DICTS:::', founded);
+        queryDicts(possibleForms).then(function(dicts) {
+            // выбрать из possibleForms найденные
+            let addedForms = trueQueries(possibleForms, dicts);
+            // log('DICTS:::', addedForms);
             // return;
-            let words = rows.concat(founded);
-            let chains = conform(words, cMorphs);
+            let words = rows.concat(addedForms);
+            let chains = conform(words, currentFlexes);
 
             log('CHAINS:::', chains);
             cb(chains)
@@ -151,29 +118,18 @@ function main(current, rows, fls, cb) {
     }
 }
 
-function trueQueries(queries, dicts) {
-    let founded = [];
-    queries.forEach(function(q) {
-        dicts.forEach(function(d) {
-            if (q.query == d.dict && q.gend == d.gend) {
-                if (q.var == 'ah') return;
-                q.dict = d.dict;
-                q.trn = d.trn;
-                founded.push(q);
-            }
-        });
-    });
-    return founded;
-}
+// δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα. π
 
-function parseStems(rows, fls) {
+function parsePossibleForms(rows, fls) {
     let queries = [];
     rows.forEach(function(row) {
-        if (row.type == 'term') return;
+        if (row.type == 'term') {
+            queries.push(row)
+            return;
+        }
         if (row.pos == 'verb') return;
-        row.queries = [];
+        // row.queries = [];
         // log('ROW', row);
-        // let rowMorphs = selectMorphs(row.form, fls);
         if (!row.form) log('NO FORM', row)
         fls.forEach(function(flex) {
             if (flex.flex != row.form.slice(-flex.flex.length)) return;
@@ -191,38 +147,53 @@ function parseStems(rows, fls) {
             //   size: 3,
             //   type: 'greek-flex' },
 
-            queries.push(word);
+            queries.push(word)
         });
         // row.stems = _.uniq(row.stems);
     });
     return queries;
 }
 
+function trueQueries(queries, dicts) {
+    let addedForms = [];
+    queries.forEach(function(q) {
+        dicts.forEach(function(d) {
+            if (q.query == d.dict && q.gend == d.gend) {
+                if (q.var == 'ah') return;
+                q.dict = d.dict;
+                q.trn = d.trn;
+                addedForms.push(q);
+            }
+        });
+    });
+    return addedForms;
+}
+
 function queryDicts(queries) {
-    let keys = _.uniq(queries.map(function(q) { return q.query; }));
-    // log('KEYS', keys);
+    let keys = _.uniq(queries.map(function(q) { return (q.type == 'term') ? q.form : q.query }))
+    log('DICT KEYS', keys)
     return new Promise(function(resolve, reject) {
         db_term.query('terms1/byDict', {
             keys: keys
             // include_docs: true
         }).then(function (res) {
-            // log('RES', res);
-            if (!res || !res.rows || res.rows.length == 0) throw new Error('no dict result');
-            let dicts = res.rows.map(function(row) {return Object.assign({}, {dict: row.key}, row.value);});
-            resolve(dicts);
+            // log('RES', res)
+            if (!res || !res.rows || res.rows.length == 0) throw new Error('no dict result')
+            let dicts = res.rows.map(function(row) {return Object.assign({}, {dict: row.key}, row.value) })
+            resolve(dicts)
         }).catch(function (err) {
-            reject(err);
+            reject(err)
         });
     });
 }
 
 
 // δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα.
-function conform(rows, cMorphs) {
+function conform(rows, currentFlexes) {
     // log('CONFORM words', words.slice(3,4));
-    // log('CONFORM cMorphs', cMorphs[0]);
+    // log('CONFORM currentFlexes', currentFlexes[0]);
     let chains = [];
-    cMorphs.forEach(function(cur) {
+    currentFlexes.forEach(function(cur) {
         if (!cur.gend) {
             chains.push(cur);
             return;
@@ -259,6 +230,37 @@ function selectMorphs(current, fls) {
     return _.select(fls, function(flex) { return flex.flex == current.slice(-flex.flex.length);});
 }
 
+
+function queryTerms(sentence) {
+    let keys = sentence.split(' ');
+    keys = _.uniq(keys);
+    return new Promise(function(resolve, reject) {
+        db_term.query('terms1/byForm', {
+            keys: keys
+            // include_docs: true
+        }).then(function (res) {
+            // log('RES', res);
+            // return;
+            if (!res || !res.rows || res.rows.length == 0) throw new Error('no result');
+            let forms = [];
+            // let pos = keys.indexOf(current);
+            let rows = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
+            keys.forEach(function(key, idx) {
+                rows.forEach(function(word) {
+                    if (word.form != key) return;
+                    word.idx = idx;
+                    if (word.type == 'form') word = {type: 'form', form: key, idx: idx}; // это пустые формы
+                    // как то их можно прикрутить для тестов
+                    forms.push(word);
+                });
+            });
+            log('queryTERMS FORMS', forms);
+            resolve(forms);
+        }).catch(function (err) {
+            reject(err);
+        });
+    });
+}
 
 function getAllFlex() {
     return new Promise(function(resolve, reject) {
