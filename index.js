@@ -18,9 +18,10 @@ let path = require('path');
 let orthos = require('../orthos');
 let PouchDB = require('pouchdb-browser');
 let db_term = new PouchDB('term')
-// PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/terms', 'term')
+// PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/term', 'term')
 let db_flex = new PouchDB('flex')
 // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/flex', 'flex')
+// return;
 
 // sentence = sentence.replace(/\./, '');
 // let current = orthos.toComb(word);
@@ -64,7 +65,7 @@ function queryPromise(sentence, current, cb) {
         queryTerms(sentence),
         getAllFlex()
     ]).then(function (res) {
-        main(current, res[0], res[1], function(words) {
+        main(res[0], res[1], function(words) {
             // log('words', words)
             cb(words)
         });
@@ -74,40 +75,35 @@ function queryPromise(sentence, current, cb) {
 }
 
 // rows - это words, но все morphs отдельно
-function main(sentence, rows, fls, cb) {
+function main(rows, fls, cb) {
     // log('q-ROWS', rows.length);
     // log('q-FLs', fls.length);
     // log('q-curr', current);
-    let keys = sentence.split(' ')
+    // let keys = sentence.split(' ')
 
     // let cMorph = isTerm(current, rows);
-    if (false) { // cMorph.length
-        // log('IS TERM - cancel', cMorph);
-        //
-    } else {
-        // let currentFlexes = selectMorphs(current, fls);
-        // log('currentFlexes', current, currentFlexes);
-        let possibleForms = parsePossibleForms(rows, fls);
-        // log('QS', possibleForms);
-        queryDicts(possibleForms).then(function(dicts) {
-            // выбрать из possibleForms найденные
-            let addedForms = trueQueries(possibleForms, dicts);
-            // log('addedForms:::', addedForms);
-            let words = rows.concat(addedForms);
-            let clause = {};
-            words.forEach(function(word) {
-                if (!clause[word.form]) clause[word.form] = [word]
-                else clause[word.form].push(word)
-            })
-            cb(clause)
+    // let currentFlexes = selectMorphs(current, fls);
+    // log('currentFlexes', current, currentFlexes);
+    let possibleForms = parsePossibleForms(rows, fls);
+    // log('QS', possibleForms);
+    queryDicts(possibleForms).then(function(dicts) {
+        // выбрать из possibleForms найденные
+        let addedForms = trueQueries(possibleForms, dicts);
+        // log('addedForms:::', addedForms);
+        let words = rows.concat(addedForms);
+        let clause = {};
+        words.forEach(function(word) {
+            if (!clause[word.form]) clause[word.form] = [word]
+            else clause[word.form].push(word)
+        })
+        cb(clause)
 
-            // let chains = conform(words, currentFlexes);
-            // log('CHAINS:::', chains);
-            // cb(chains)
-        }).catch(function (err) {
-            log('ERR DICTS', err);
-        });
-    }
+        // let chains = conform(words, currentFlexes);
+        // log('CHAINS:::', chains);
+        // cb(chains)
+    }).catch(function (err) {
+        log('ERR DICTS', err);
+    });
 }
 
 // δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα. π
@@ -115,19 +111,18 @@ function main(sentence, rows, fls, cb) {
 function parsePossibleForms(rows, fls) {
     let queries = [];
     rows.forEach(function(row) {
-        if (row.type == 'term') {
-            queries.push(row)
-            return;
-        }
+        if (row.type == 'term') return;
+        // if (row.type == 'term') {
+        //     queries.push(row)
+        //     return;
+        // }
         if (row.pos == 'verb') return;
-        // row.queries = [];
         // log('ROW', row);
         if (!row.form) log('NO FORM', row)
         fls.forEach(function(flex) {
             if (flex.flex != row.form.slice(-flex.flex.length)) return;
             let stem = row.form.slice(0, -flex.flex.length);
             let query = [stem, flex.dict].join('');
-            // row.queries.push(query);
             let word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, gend: flex.gend, numcase: flex.numcase, var: flex.var};
             // { flex: 'ῶν',
             //   gend: 'masc',
@@ -162,15 +157,17 @@ function trueQueries(queries, dicts) {
 }
 
 function queryDicts(queries) {
-    let keys = _.uniq(queries.map(function(q) { return (q.type == 'term') ? q.form : q.query }))
+    // let keys = _.uniq(queries.map(function(q) { return (q.type == 'term') ? q.form : q.query }))
+    // terms здесь не может быть
+    let keys = _.uniq(queries.map(function(q) { return q.query }))
     log('DICT KEYS', keys)
     return new Promise(function(resolve, reject) {
-        db_term.query('terms1/byDict', {
+        db_term.query('term/byDict', {
             keys: keys
             // include_docs: true
         }).then(function (res) {
             // log('RES', res)
-            if (!res || !res.rows || res.rows.length == 0) throw new Error('no dict result')
+            if (!res || !res.rows) throw new Error('no dict result')
             let dicts = res.rows.map(function(row) {return Object.assign({}, {dict: row.key}, row.value) })
             resolve(dicts)
         }).catch(function (err) {
@@ -227,7 +224,7 @@ function queryTerms(sentence) {
     let keys = sentence.split(' ')
     let ukeys = _.uniq(keys)
     return new Promise(function(resolve, reject) {
-        db_term.query('terms1/byForm', {
+        db_term.query('term/byForm', {
             keys: ukeys
             // include_docs: true
         }).then(function (res) {
@@ -290,57 +287,6 @@ function showTerm(curs) {
 // });
 
 
-function queryTerms_old(sentence) {
-    let keys = sentence.split(' ');
-    keys = _.uniq(keys);
-    db.query('terms/byForm', {
-        keys: keys
-        // include_docs: true
-    }).then(function (res) {
-        // log('RES', res);
-        let note = '';
-        if (!res || !res.rows || res.rows.length == 0) {
-            note = ['no result for', keys].join('\n');
-            showDict(note);
-            return;
-        }
-        let pos = keys.indexOf(current);
-        let words = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
-        keys.forEach(function(key, idx) {
-            words.forEach(function(word) {
-                if (word.form != key) return;
-                word.idx = idx;
-            });
-        });
-        let curs = _.select(words, function(w) { return w.form == current;});
-        // δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα.
-        // ἀλλὰ τὰ μὲν πρὸ Ἕλληνος τοῦ Δευκαλίωνος καὶ πάνυ οὐδὲ εἶναι ἡ ἐπίκλησις καὶ αὕτη.
-        let chains = [];
-        curs.forEach(function(cur) {
-            if (!cur.gend) {
-                chains.push(cur);
-                return;
-            }
-            // log('cur');
-            let chain = [];
-            words.forEach(function(word) {
-                if (word.idx < pos - 3 || word.idx > pos + 3) return;
-                if (cur.gend == word.gend && cur.numcase == word.numcase) {
-                    chain.push(word);
-                }
-            });
-            // if (chain.length < 2) return;
-            chains.push(chain);
-            let max = _.max(chains.map(function(ch) { return ch.length; }));
-            // log('MAX', max);
-            chains = _.select(chains, function(ch) { return ch.length == max; });
-        });
-        log('CHAINS', chains);
-
-    }).catch(function (err) {
-        log('ERR', err);
-    });
-}
 
 
 
@@ -352,8 +298,6 @@ function showDict(str) {
         if (stderr) log('EXEC', stderr);
     });
 }
-
-
 
 
 function log() { console.log.apply(console, arguments); }
