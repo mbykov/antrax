@@ -47,71 +47,63 @@ let db_flex = new PouchDB('flex')
 module.exports = antrax();
 
 function antrax() {
-    // log('ANTRAX BODY')
     if (!(this instanceof antrax)) return new antrax();
 }
 
-
-antrax.prototype.query = function(sentence, num, cb) {
-    let clean = sentence.replace(/\./, '')
-    let current = sentence.split(' ')[num];
-    // log('num', num)
-    // log('clean', clean)
-    // log('current', current)
-    queryPromise(sentence, current, function(res) {
+antrax.prototype.query = function(str, num, cb) {
+    let current = str.split(' ')[num];
+    queryPromise(str, current, function(res) {
         // log('Q RES', res)
         cb(res)
     })
 }
 
 function queryPromise(sentence, current, cb) {
-    log('ANTRAX QUERY NUM', sentence, current)
+    // log('ANTRAX QUERY NUM', sentence, current)
     Promise.all([
         queryTerms(sentence),
         getAllFlex()
     ]).then(function (res) {
-        main(current, res[0], res[1], function(chains) {
-            log('CHAINS', chains)
-            cb(chains)
+        main(current, res[0], res[1], function(words) {
+            // log('words', words)
+            cb(words)
         });
-
-    // }).then(function (res) {
-        // log('KUKU-RES', res)
-        // return res
     }).catch(function (err) {
         log('ANT ERR', err);
-    });
+    })
 }
 
 // rows - это words, но все morphs отдельно
-function main(current, rows, fls, cb) {
-    log('q-ROWS', rows.length);
-    // return rows;
-    log('q-FLs', fls.length);
-    // return
-    log('q-curr', current);
+function main(sentence, rows, fls, cb) {
+    // log('q-ROWS', rows.length);
+    // log('q-FLs', fls.length);
+    // log('q-curr', current);
+    let keys = sentence.split(' ')
 
-    let cMorph = isTerm(current, rows);
+    // let cMorph = isTerm(current, rows);
     if (false) { // cMorph.length
-        log('IS TERM - cancel', cMorph);
+        // log('IS TERM - cancel', cMorph);
         //
     } else {
-        let currentFlexes = selectMorphs(current, fls);
-        log('currentFlexes', current, currentFlexes);
-
+        // let currentFlexes = selectMorphs(current, fls);
+        // log('currentFlexes', current, currentFlexes);
         let possibleForms = parsePossibleForms(rows, fls);
-        log('QS', possibleForms);
-        // return;
+        // log('QS', possibleForms);
         queryDicts(possibleForms).then(function(dicts) {
             // выбрать из possibleForms найденные
             let addedForms = trueQueries(possibleForms, dicts);
-            // log('DICTS:::', addedForms);
-            // return;
+            // log('addedForms:::', addedForms);
             let words = rows.concat(addedForms);
-            let chains = conform(words, currentFlexes);
+            let clause = {};
+            words.forEach(function(word) {
+                if (!clause[word.form]) clause[word.form] = [word]
+                else clause[word.form].push(word)
+            })
+            cb(clause)
 
-            log('CHAINS:::', chains);
-            cb(chains)
+            // let chains = conform(words, currentFlexes);
+            // log('CHAINS:::', chains);
+            // cb(chains)
         }).catch(function (err) {
             log('ERR DICTS', err);
         });
@@ -232,17 +224,17 @@ function selectMorphs(current, fls) {
 
 
 function queryTerms(sentence) {
-    let keys = sentence.split(' ');
-    keys = _.uniq(keys);
+    let keys = sentence.split(' ')
+    let ukeys = _.uniq(keys)
     return new Promise(function(resolve, reject) {
         db_term.query('terms1/byForm', {
-            keys: keys
+            keys: ukeys
             // include_docs: true
         }).then(function (res) {
-            // log('RES', res);
-            // return;
-            if (!res || !res.rows || res.rows.length == 0) throw new Error('no result');
-            let forms = [];
+            // log('RES', res)
+            // return
+            if (!res || !res.rows || res.rows.length == 0) throw new Error('no result')
+            let forms = []
             // let pos = keys.indexOf(current);
             let rows = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
             keys.forEach(function(key, idx) {
@@ -254,7 +246,7 @@ function queryTerms(sentence) {
                     forms.push(word);
                 });
             });
-            log('queryTERMS FORMS', forms);
+            // log('queryTERMS FORMS', forms);
             resolve(forms);
         }).catch(function (err) {
             reject(err);
