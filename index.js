@@ -52,6 +52,8 @@ function antrax() {
 }
 
 antrax.prototype.query = function(str, num, cb) {
+    let clean = orthos.toComb(str);
+    log('ANT TMP STR', str, clean)
     let current = str.split(' ')[num];
     queryPromise(str, current, function(res) {
         // log('Q RES', res)
@@ -61,6 +63,7 @@ antrax.prototype.query = function(str, num, cb) {
 
 function queryPromise(sentence, current, cb) {
     // log('ANTRAX QUERY NUM', sentence, current)
+    // FIXME: bug - если одно слово и не найдено, то catch
     Promise.all([
         queryTerms(sentence),
         getAllFlex()
