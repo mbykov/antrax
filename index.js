@@ -15,7 +15,7 @@ let _ = require('underscore');
 // let path = require('path');
 let fs = require('fs');
 let path = require('path');
-let orthos = require('../orthos');
+// let orthos = require('../orthos');
 let PouchDB = require('pouchdb-browser');
 let db_term = new PouchDB('term')
 // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/term', 'term')
@@ -52,8 +52,8 @@ function antrax() {
 }
 
 antrax.prototype.query = function(str, num, cb) {
-    let clean = orthos.toComb(str);
-    log('ANT TMP STR', str, clean)
+    // let clean = orthos.toComb(str);
+    // log('ANT TMP STR', str, clean)
     let current = str.split(' ')[num];
     queryPromise(str, current, function(res) {
         // log('Q RES', res)
@@ -169,11 +169,12 @@ function queryDicts(queries) {
             keys: keys
             // include_docs: true
         }).then(function (res) {
-            // log('RES', res)
             if (!res || !res.rows) throw new Error('no dict result')
             let dicts = res.rows.map(function(row) {return Object.assign({}, {dict: row.key}, row.value) })
+            log('Q DICTS RES', dicts)
             resolve(dicts)
         }).catch(function (err) {
+            log('Q DICTS REJECT', err)
             reject(err)
         });
     });
