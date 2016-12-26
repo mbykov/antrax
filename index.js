@@ -87,19 +87,22 @@ function main(rows, fls, cb) {
     // let cMorph = isTerm(current, rows);
     // let currentFlexes = selectMorphs(current, fls);
     // log('currentFlexes', current, currentFlexes);
-    let possibleForms = parsePossibleForms(rows, fls);
+    let forms = _.select(rows, function(row) { return row.type == 'form' })
+    let terms = _.select(rows, function(row) { return row.type == 'term' })
+    let possibleForms = parsePossibleForms(forms, fls);
     // log('QS', possibleForms);
     queryDicts(possibleForms).then(function(dicts) {
         // выбрать из possibleForms найденные
         let addedForms = trueQueries(possibleForms, dicts);
-        // log('addedForms:::', addedForms);
-        let words = rows.concat(addedForms);
-        let clause = {};
-        words.forEach(function(word) {
-            if (!clause[word.form]) clause[word.form] = [word]
-            else clause[word.form].push(word)
-        })
-        cb(clause)
+        log('addedForms:::', addedForms);
+        let words = terms.concat(addedForms);
+        // let clause = {};
+        // words.forEach(function(word) {
+        //     if (!clause[word.form]) clause[word.form] = [word]
+        //     else clause[word.form].push(word)
+        // })
+        let idGroups = _.groupBy(words, 'idx' )
+        cb(idGroups)
 
         // let chains = conform(words, currentFlexes);
         // log('CHAINS:::', chains);
@@ -121,7 +124,7 @@ function parsePossibleForms(rows, fls) {
         // }
         if (row.pos == 'verb') return;
         // log('ROW', row);
-        if (!row.form) log('NO FORM', row)
+        // if (!row.form) log('NO FORM', row)
         fls.forEach(function(flex) {
             if (flex.flex != row.form.slice(-flex.flex.length)) return;
             let stem = row.form.slice(0, -flex.flex.length);
@@ -242,7 +245,7 @@ function queryTerms(sentence) {
                 rows.forEach(function(word) {
                     if (word.form != key) return;
                     word.idx = idx;
-                    if (word.type == 'form') word = {type: 'form', form: key, idx: idx}; // это пустые формы
+                    if (word.type == 'form') word = {type: 'form', form: key, idx: idx}; // это пустые empty формы
                     // как то их можно прикрутить для тестов
                     forms.push(word);
                 });
