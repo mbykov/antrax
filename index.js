@@ -15,34 +15,26 @@ let _ = require('underscore');
 // let path = require('path');
 let fs = require('fs');
 let path = require('path');
-// let orthos = require('../orthos');
+let orthos = require('../orthos');
+
 let PouchDB = require('pouchdb-browser');
 let db_term = new PouchDB('term')
 // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/term', 'term')
 let db_flex = new PouchDB('flex')
 // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/flex', 'flex')
+let db_dict = new PouchDB('lsdict')
+// ================================
+// db_dict.destroy().then(function (response) {
+//     // success
+//     log('DB DESTROYED', response);
+// }).catch(function (err) {
+//     console.log(err);
+// });
+
+// ================================
+// PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict')
+// log('ANTRAX START')
 // return;
-
-// sentence = sentence.replace(/\./, '');
-// let current = orthos.toComb(word);
-// sentence = orthos.toComb(sentence);
-// return
-
-// current = 'ἀσθένειαν';
-// console.time('_query')
-// queryTerms_old(sentence)
-// query(sentence, current)
-// getMorphs(current)
-// console.timeEnd('_query')
-
-/*
-  взять terms, определить, cur is term?
-  если нет, запросить flex - определить current-morphs
-  получается, при клике на art или pron, соседей не ищу
-  а если несколько words между cur и ближ. term?
-  нужно всем искать flex
-  но можно и облегченный вариант - проверить только найденное соответствие данного morph
-*/
 
 
 module.exports = antrax();
@@ -54,6 +46,10 @@ function antrax() {
 antrax.prototype.query = function(str, num, cb) {
     // let clean = orthos.toComb(str);
     // log('ANT TMP STR', str, clean)
+    // ======================================= REPL
+    // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict')
+    // return
+
     let current = str.split(' ')[num];
     queryPromise(str, current, function(res) {
         // log('Q RES', res)
@@ -63,13 +59,13 @@ antrax.prototype.query = function(str, num, cb) {
 
 function queryPromise(sentence, current, cb) {
     // log('ANTRAX QUERY NUM', sentence, current)
-    // FIXME: bug - если одно слово и не найдено, то catch
     Promise.all([
         queryTerms(sentence),
         getAllFlex()
     ]).then(function (res) {
+        log('main r1,r2', res[0])
         main(res[0], res[1], function(words) {
-            // log('words', words)
+            log('main words', words)
             cb(words)
         });
     }).catch(function (err) {
@@ -88,9 +84,10 @@ function main(rows, fls, cb) {
     // let currentFlexes = selectMorphs(current, fls);
     // log('currentFlexes', current, currentFlexes);
     let forms = _.select(rows, function(row) { return row.type == 'form' })
+    log('Empties', forms);
     let terms = _.select(rows, function(row) { return row.type == 'term' })
     let possibleForms = parsePossibleForms(forms, fls);
-    // log('QS', possibleForms);
+    log('P-Fs', possibleForms);
     queryDicts(possibleForms).then(function(dicts) {
         // выбрать из possibleForms найденные
         let addedForms = trueQueries(possibleForms, dicts);
@@ -117,11 +114,7 @@ function main(rows, fls, cb) {
 function parsePossibleForms(rows, fls) {
     let queries = [];
     rows.forEach(function(row) {
-        if (row.type == 'term') return;
-        // if (row.type == 'term') {
-        //     queries.push(row)
-        //     return;
-        // }
+        // if (row.type == 'term') return;
         if (row.pos == 'verb') return;
         // log('ROW', row);
         // if (!row.form) log('NO FORM', row)
@@ -151,29 +144,35 @@ function trueQueries(queries, dicts) {
     let addedForms = [];
     queries.forEach(function(q) {
         dicts.forEach(function(d) {
-            if (q.query == d.dict && q.gend == d.gend) {
-                if (q.var == 'ah') return;
-                q.dict = d.dict;
-                q.trn = d.trn;
-                addedForms.push(q);
-            }
-        });
+            if (q.query != d.dict) return //  && q.gend == d.gend
+            log('DD', d, 'Q', q.var)
+            if (q.var == 'ah') return
+            if (!d.var.split('--').includes(q.var)) return
+            q.dict = d.dict
+            q.trn = 'd.trn'
+            addedForms.push(q)
+        })
     });
-    return addedForms;
+    return addedForms
 }
 
+/*
+  неясно, искать отдельно os и os-ox - если нет -ox, то нужно восстановить место и вид ударения
+ */
 function queryDicts(queries) {
     // let keys = _.uniq(queries.map(function(q) { return (q.type == 'term') ? q.form : q.query }))
     // terms здесь не может быть
     let keys = _.uniq(queries.map(function(q) { return q.query }))
-    log('DICT KEYS', keys)
+    let plains = _.uniq(keys.map(function(key) { return orthos.plain(key)}))
+    log('DICT KEYS', keys, 'Plains:', plains)
     return new Promise(function(resolve, reject) {
-        db_term.query('term/byDict', {
-            keys: keys
-            // include_docs: true
+        db_dict.query('lsdict/byPlain', {
+            keys: plains,
+            include_docs: true
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no dict result')
-            let dicts = res.rows.map(function(row) {return Object.assign({}, {dict: row.key}, row.value) })
+            // let dicts = res.rows.map(function(row) {return Object.assign({}, {dict: row.key}, row.value) })
+            let dicts = res.rows.map(function(row) {return row.doc })
             log('Q DICTS RES', dicts)
             resolve(dicts)
         }).catch(function (err) {
@@ -230,6 +229,7 @@ function selectMorphs(current, fls) {
 function queryTerms(sentence) {
     let keys = sentence.split(' ')
     let ukeys = _.uniq(keys)
+    log('UKEYS', ukeys)
     return new Promise(function(resolve, reject) {
         db_term.query('term/byForm', {
             keys: ukeys
@@ -237,22 +237,25 @@ function queryTerms(sentence) {
         }).then(function (res) {
             // log('RES', res)
             // return
-            if (!res || !res.rows || res.rows.length == 0) throw new Error('no result')
+            if (!res || !res.rows) throw new Error('no term result') //  || res.rows.length == 0
             let forms = []
             // let pos = keys.indexOf(current);
-            let rows = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
+            let allterms = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
             keys.forEach(function(key, idx) {
-                rows.forEach(function(word) {
-                    if (word.form != key) return;
-                    word.idx = idx;
-                    if (word.type == 'form') word = {type: 'form', form: key, idx: idx}; // это пустые empty формы
-                    // как то их можно прикрутить для тестов
-                    forms.push(word);
-                });
+                let terms = _.select(allterms, function(term) { return term.type == 'term' && term.form == key})
+                terms.forEach(function(term) { term.idx = idx})
+                if (terms.length > 0) {
+                    forms.push(terms);
+                } else {
+                    let empty = {type: 'form', form: key, idx: idx, empty: true } // это пустые empty non-term формы
+                    forms.push(empty);
+                }
             });
-            // log('queryTERMS FORMS', forms);
+            log('queryTERMS FORMS', forms);
+            forms = _.flatten(forms)
             resolve(forms);
         }).catch(function (err) {
+            log('queryTERMS ERRS', err);
             reject(err);
         });
     });
