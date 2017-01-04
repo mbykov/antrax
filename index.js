@@ -137,7 +137,7 @@ function trueQueries(queries, dicts) {
             if (q.var == 'ah') return
             if (!d.var.split('--').includes(q.var)) return
             q.dict = d.dict
-            q.trn = 'd.trn'
+            q.trn = d.trn
             addedForms.push(q)
         })
     });
