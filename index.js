@@ -25,15 +25,19 @@ let db_flex = new PouchDB('flex')
 let db_dict = new PouchDB('lsdict')
 // ================================
 // db_dict.destroy().then(function (response) {
-//     // success
 //     log('DB DESTROYED', response);
 // }).catch(function (err) {
 //     console.log(err);
 // });
 
 // ================================
-// PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict')
-// log('ANTRAX START')
+// PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict').then(function (response) {
+//     log('DB REPLICATED', response);
+// }).catch(function (err) {
+//     console.log(err);
+// });
+
+// log('ANTRAX REPL')
 // return;
 
 
@@ -45,9 +49,13 @@ function antrax() {
 
 antrax.prototype.query = function(str, num, cb) {
     // let clean = orthos.toComb(str);
-    // log('ANT TMP STR', str, clean)
     // ======================================= REPL
-    // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict')
+    // log('REPLICATION START')
+    // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict').then(function (response) {
+    //     log('DB REPLICATED', response);
+    // }).catch(function (err) {
+    //     console.log('REPL ERR', err);
+    // });
     // return
 
     let current = str.split(' ')[num];
@@ -140,6 +148,7 @@ function parsePossibleForms(rows, fls) {
     return queries;
 }
 
+// gend - нужен
 function trueQueries(queries, dicts) {
     let addedForms = [];
     queries.forEach(function(q) {
@@ -267,23 +276,23 @@ function getAllFlex() {
             // keys: tails
             // include_docs: true
         }).then(function (res) {
-            if (!res || !res.rows || res.rows.length == 0) throw new Error('no result');
-            let flexes = res.rows.map(function(row) {return Object.assign({}, {flex: row.key}, row.value);});
-            // log('FLEXES', flexes.length);
-            // let docs = res.rows.map(function(row) {return row.doc;});
-            log('FLEXES', flexes.length);
-            resolve(flexes);
+            if (!res || !res.rows) throw new Error('no result') //  || res.rows.length == 0
+            let flexes = res.rows.map(function(row) {return Object.assign({}, {flex: row.key}, row.value) })
+            // log('FLEXES', flexes.length)
+            // let docs = res.rows.map(function(row) {return row.doc;})
+            log('FLEXES', flexes.length)
+            resolve(flexes)
         }).catch(function (err) {
-            log('ERR ALL FLEX', err);
-            // showDict(err);
-            reject(err);
+            log('ERR ALL FLEX', err)
+            // showDict(err)
+            reject(err)
         });
     });
 }
 
 
 function showTerm(curs) {
-    log('TERM', curs);
+    log('TERM', curs)
     return true;
 }
 
