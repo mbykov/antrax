@@ -23,23 +23,24 @@ let db_term = new PouchDB('term')
 let db_flex = new PouchDB('flex')
 // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/flex', 'flex')
 let db_dict = new PouchDB('lsdict')
-// ================================
-// db_dict.destroy().then(function (response) {
-//     log('DB DESTROYED', response);
-// }).catch(function (err) {
-//     console.log(err);
-// });
 
-// ================================
-// PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict').then(function (response) {
-//     log('DB REPLICATED', response);
-// }).catch(function (err) {
-//     console.log(err);
-// });
 
-// log('ANTRAX REPL')
-// return;
+function destroyDB() {
+    db_dict.destroy().then(function (response) {
+        log('DB DESTROYED', response);
+    }).catch(function (err) {
+        console.log(err);
+    });
+}
 
+function replicateDB() {
+    log('REPLICATION START')
+    PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict').then(function (response) {
+        log('DB REPLICATED', response);
+    }).catch(function (err) {
+        console.log('REPL ERR', err);
+    });
+}
 
 module.exports = antrax();
 
@@ -48,14 +49,8 @@ function antrax() {
 }
 
 antrax.prototype.query = function(str, num, cb) {
-    // let clean = orthos.toComb(str);
-    // ======================================= REPL
-    // log('REPLICATION START')
-    // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict').then(function (response) {
-    //     log('DB REPLICATED', response);
-    // }).catch(function (err) {
-    //     console.log('REPL ERR', err);
-    // });
+    // destroyDB()
+    // replicateDB()
     // return
 
     let current = str.split(' ')[num];
@@ -71,7 +66,7 @@ function queryPromise(sentence, current, cb) {
         queryTerms(sentence),
         getAllFlex()
     ]).then(function (res) {
-        log('main r1,r2', res[0])
+        log('main r0,r1', res[0])
         main(res[0], res[1], function(words) {
             log('main words', words)
             cb(words)
@@ -83,35 +78,19 @@ function queryPromise(sentence, current, cb) {
 
 // rows - это words, но все morphs отдельно
 function main(rows, fls, cb) {
-    // log('q-ROWS', rows.length);
-    // log('q-FLs', fls.length);
-    // log('q-curr', current);
-    // let keys = sentence.split(' ')
-
-    // let cMorph = isTerm(current, rows);
-    // let currentFlexes = selectMorphs(current, fls);
-    // log('currentFlexes', current, currentFlexes);
-    let forms = _.select(rows, function(row) { return row.type == 'form' })
-    log('Empties', forms);
+    let empties = _.select(rows, function(row) { return row.type == 'form' })
+    log('Empties', empties);
     let terms = _.select(rows, function(row) { return row.type == 'term' })
-    let possibleForms = parsePossibleForms(forms, fls);
-    log('P-Fs', possibleForms);
+    let possibleForms = parsePossibleForms(empties, fls);
+    // log('Poss-Forms', possibleForms);
     queryDicts(possibleForms).then(function(dicts) {
         // выбрать из possibleForms найденные
         let addedForms = trueQueries(possibleForms, dicts);
         log('addedForms:::', addedForms);
-        let words = terms.concat(addedForms);
-        // let clause = {};
-        // words.forEach(function(word) {
-        //     if (!clause[word.form]) clause[word.form] = [word]
-        //     else clause[word.form].push(word)
-        // })
-        let idGroups = _.groupBy(words, 'idx' )
-        cb(idGroups)
-
-        // let chains = conform(words, currentFlexes);
-        // log('CHAINS:::', chains);
-        // cb(chains)
+        let words = terms.concat(empties).concat(addedForms);
+        let clause = _.groupBy(words, 'idx' )
+        // log('antrax-clause:', clause)
+        cb(clause)
     }).catch(function (err) {
         log('ERR DICTS', err);
     });
@@ -173,7 +152,8 @@ function queryDicts(queries) {
     // terms здесь не может быть
     let keys = _.uniq(queries.map(function(q) { return q.query }))
     let plains = _.uniq(keys.map(function(key) { return orthos.plain(key)}))
-    log('DICT KEYS', keys, 'Plains:', plains)
+    // log('DICT KEYS', keys)
+    log('DICT Plains:', plains)
     return new Promise(function(resolve, reject) {
         db_dict.query('lsdict/byPlain', {
             keys: plains,
