@@ -24,6 +24,8 @@ let db_flex = new PouchDB('flex')
 // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/flex', 'flex')
 let db_dict = new PouchDB('lsdict')
 
+PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict', {live: true})
+PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/flex', 'flex', {live: true})
 
 function destroyDB() {
     db_dict.destroy().then(function (response) {
@@ -49,8 +51,6 @@ function antrax() {
 }
 
 antrax.prototype.query = function(str, num, cb) {
-    PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict', {live: true})
-    PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/flex', 'flex', {live: true})
 
     // destroyDB()
     // replicateDB()
@@ -85,7 +85,7 @@ function main(rows, fls, cb) {
     log('Empties', empties);
     let terms = _.select(rows, function(row) { return row.type == 'term' })
     let possibleForms = parsePossibleForms(empties, fls);
-    // log('Poss-Forms', possibleForms);
+    log('Poss-Form-queries', possibleForms);
     queryDicts(possibleForms).then(function(dicts) {
         // выбрать из possibleForms найденные
         let addedForms = trueQueries(possibleForms, dicts);
@@ -135,9 +135,12 @@ function trueQueries(queries, dicts) {
     let addedForms = [];
     queries.forEach(function(q) {
         dicts.forEach(function(d) {
-            if (q.query != d.dict) return //  && q.gend == d.gend
+            // FIXME: тут может меняться форма ударения в кос. падежах: πῆχυς-πήχεως
+            // и м.б. лишние решения. Найти и избавиться
+            // и то же с родом
+            if (orthos.plain(q.query) != orthos.plain(d.dict)) return //  && q.gend == d.gend
             log('DD', d, 'Q', q.var)
-            if (q.var == 'ah') return
+            // if (q.var == 'ah') return // это зачем?
             if (!d.var.split('--').includes(q.var)) return
             q.dict = d.dict
             q.trn = d.trn
