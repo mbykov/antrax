@@ -146,7 +146,8 @@ function trueQueries(queries, dicts) {
             if (q.query != d.dict) return //  && q.gend == d.gend
             // if (q.var == 'ah') return // это зачем?
             if (!d.var.split('--').includes(q.var)) return
-            if (!d.gend.includes(q.gend)) return
+            // log('DICT', d)
+            if (d.gend && !d.gend.includes(q.gend)) return
             log('DD', d, 'Q', q.var)
             // log('DDgend', d.gend, 'Q', q.gend)
             q.dict = d.dict
