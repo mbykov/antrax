@@ -49,6 +49,9 @@ function antrax() {
 }
 
 antrax.prototype.query = function(str, num, cb) {
+    PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict', {live: true})
+    PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/flex', 'flex', {live: true})
+
     // destroyDB()
     // replicateDB()
     // return
@@ -203,12 +206,6 @@ function conform(rows, currentFlexes) {
     return chains;
 }
 
-function isTerm(current, rows) {
-    let curs = _.select(rows, function(w) { return w.type == 'term' && w.form == current;});
-    // log('TERM CURS', curs);
-    return curs;
-}
-
 // morphs для current
 function selectMorphs(current, fls) {
     return _.select(fls, function(flex) { return flex.flex == current.slice(-flex.flex.length);});
@@ -264,17 +261,22 @@ function getAllFlex() {
             resolve(flexes)
         }).catch(function (err) {
             log('ERR ALL FLEX', err)
-            // showDict(err)
             reject(err)
         });
     });
 }
 
 
-function showTerm(curs) {
-    log('TERM', curs)
-    return true;
-}
+function log() { console.log.apply(console, arguments); }
+
+function p() { console.log(util.inspect(arguments, false, null)) }
+
+
+
+// function showTerm(curs) {
+//     log('TERM', curs)
+//     return true;
+// }
 
 
 
@@ -286,22 +288,23 @@ function showTerm(curs) {
 // });
 
 
+// function isTerm(current, rows) {
+//     let curs = _.select(rows, function(w) { return w.type == 'term' && w.form == current;});
+//     // log('TERM CURS', curs);
+//     return curs;
+// }
 
 
 
-function showDict(str) {
-    let exec = require('child_process').exec;
-    let cmd = 'notify-send "' + str + '"';
-    exec(cmd, function(error, stdout, stderr) {
-        // command output is in stdout
-        if (stderr) log('EXEC', stderr);
-    });
-}
 
-
-function log() { console.log.apply(console, arguments); }
-
-function p() { console.log(util.inspect(arguments, false, null)) }
+// function showDict(str) {
+//     let exec = require('child_process').exec;
+//     let cmd = 'notify-send "' + str + '"';
+//     exec(cmd, function(error, stdout, stderr) {
+//         // command output is in stdout
+//         if (stderr) log('EXEC', stderr);
+//     });
+// }
 
 
 
