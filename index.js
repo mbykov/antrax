@@ -138,10 +138,17 @@ function trueQueries(queries, dicts) {
             // FIXME: тут может меняться форма ударения в кос. падежах: πῆχυς-πήχεως
             // и м.б. лишние решения. Найти и избавиться
             // и то же с родом
-            if (orthos.plain(q.query) != orthos.plain(d.dict)) return //  && q.gend == d.gend
-            log('DD', d, 'Q', q.var)
+            // м.б. проверять с ударением, если ноль, еще раз по плоским
+            // ἰχθύς - ἰχθύος
+            // рыба дает множество лишних вариантов, если не проверять ударения и рода
+            //
+            // if (orthos.plain(q.query) != orthos.plain(d.dict)) return //  && q.gend == d.gend
+            if (q.query != d.dict) return //  && q.gend == d.gend
             // if (q.var == 'ah') return // это зачем?
             if (!d.var.split('--').includes(q.var)) return
+            if (!d.gend.includes(q.gend)) return
+            log('DD', d, 'Q', q.var)
+            // log('DDgend', d.gend, 'Q', q.gend)
             q.dict = d.dict
             q.trn = d.trn
             addedForms.push(q)
