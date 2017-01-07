@@ -104,15 +104,20 @@ function main(rows, fls, cb) {
 function parsePossibleForms(rows, fls) {
     let queries = [];
     rows.forEach(function(row) {
-        // if (row.type == 'term') return;
-        if (row.pos == 'verb') return;
         // log('ROW', row);
         // if (!row.form) log('NO FORM', row)
         fls.forEach(function(flex) {
             if (flex.flex != row.form.slice(-flex.flex.length)) return;
             let stem = row.form.slice(0, -flex.flex.length);
             let query = [stem, flex.dict].join('');
-            let word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, gend: flex.gend, numcase: flex.numcase, var: flex.var};
+            let word
+            if (flex.pos == 'verb') {
+                log('FLEX VERB', flex)
+                word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, numpers: flex.numpers, var: flex.var}
+            } else {
+                log('FLEX NAME', flex)
+                word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, gend: flex.gend, numcase: flex.numcase, var: flex.var}
+            }
             // { flex: 'ῶν',
             //   gend: 'masc',
             //   numcase: 'pl.gen',
@@ -145,11 +150,17 @@ function trueQueries(queries, dicts) {
             // if (orthos.plain(q.query) != orthos.plain(d.dict)) return //  && q.gend == d.gend
             if (q.query != d.dict) return //  && q.gend == d.gend
             // if (q.var == 'ah') return // это зачем?
-            if (!d.var.split('--').includes(q.var)) return
-            // log('DICT', d)
-            if (d.gend && !d.gend.includes(q.gend)) return
-            log('DD', d, 'Q', q.var)
-            // log('DDgend', d.gend, 'Q', q.gend)
+            if (q.pos == 'name' || q.pos == 'noun') {
+                if (!d.var.split('--').includes(q.var)) return
+                // log('DICT', d)
+                if (d.gend && !d.gend.includes(q.gend)) return
+                log('DD', d, 'Q', q.var)
+                // log('DDgend', d.gend, 'Q', q.gend)
+            } else if (q.pos == 'verb') {
+                // в глаголах нет var
+                log('DDverb', d, 'Q', q.dict)
+                //
+            }
             q.dict = d.dict
             q.trn = d.trn
             addedForms.push(q)
