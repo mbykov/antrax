@@ -24,20 +24,22 @@ let db_flex = new PouchDB('flex')
 // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/flex', 'flex')
 let db_dict = new PouchDB('lsdict')
 
-PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict', {live: true})
-PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/flex', 'flex', {live: true})
+// PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict', {live: true})
+// PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/flex', 'flex', {live: true})
+replicateDB('flex')
 
-function destroyDB() {
-    db_dict.destroy().then(function (response) {
+function destroyDB(db) {
+    db.destroy().then(function (response) {
         log('DB DESTROYED', response);
     }).catch(function (err) {
         console.log(err);
     });
 }
 
-function replicateDB() {
+function replicateDB(dbname) {
     log('REPLICATION START')
-    PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict').then(function (response) {
+    let url = ['http:\/\/admin:kjre4317@localhost:5984/', dbname].join('')
+    PouchDB.replicate(url, dbname).then(function (response) {
         log('DB REPLICATED', response);
     }).catch(function (err) {
         console.log('REPL ERR', err);
@@ -52,8 +54,8 @@ function antrax() {
 
 antrax.prototype.query = function(str, num, cb) {
 
-    // destroyDB()
-    // replicateDB()
+    // destroyDB(db_flex)
+    // replicateDB('flex')
     // return
 
     let current = str.split(' ')[num];
@@ -79,11 +81,13 @@ function queryPromise(sentence, current, cb) {
     })
 }
 
+
 // rows - это words, но все morphs отдельно
 function main(rows, fls, cb) {
     let empties = _.select(rows, function(row) { return row.type == 'form' })
     log('Empties', empties);
     let terms = _.select(rows, function(row) { return row.type == 'term' })
+    log('Comp TERMS', terms)
     let possibleForms = parsePossibleForms(empties, fls);
     log('Poss-Form-queries', possibleForms);
     queryDicts(possibleForms).then(function(dicts) {
@@ -92,7 +96,7 @@ function main(rows, fls, cb) {
         log('addedForms:::', addedForms);
         let words = terms.concat(empties).concat(addedForms);
         let clause = _.groupBy(words, 'idx' )
-        // log('antrax-clause:', clause)
+        log('antrax-clause:', clause)
         cb(clause)
     }).catch(function (err) {
         log('ERR DICTS', err);
@@ -101,21 +105,22 @@ function main(rows, fls, cb) {
 
 // δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα. π
 
-function parsePossibleForms(rows, fls) {
+function parsePossibleForms(empties, fls) {
     let queries = [];
-    rows.forEach(function(row) {
-        // log('ROW', row);
-        // if (!row.form) log('NO FORM', row)
+    log('PF ROWS SIZE', empties.length);
+    empties.forEach(function(row) {
+        log('PF EMPTY ROW', row);
         fls.forEach(function(flex) {
+            // log('PF', flex)
             if (flex.flex != row.form.slice(-flex.flex.length)) return;
             let stem = row.form.slice(0, -flex.flex.length);
             let query = [stem, flex.dict].join('');
             let word
             if (flex.pos == 'verb') {
-                log('FLEX VERB', flex)
+                // log('FLEX VERB', flex.pos, flex.var, flex.numpers)
                 word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, numpers: flex.numpers, var: flex.var}
             } else {
-                log('FLEX NAME', flex)
+                // log('FLEX NAME', flex.pos, flex.var, flex.numcase, flex.gend)
                 word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, gend: flex.gend, numcase: flex.numcase, var: flex.var}
             }
             // { flex: 'ῶν',
@@ -136,36 +141,68 @@ function parsePossibleForms(rows, fls) {
 }
 
 // gend - нужен
+// FIXME: тут может меняться форма ударения в кос. падежах: πῆχυς-πήχεως
+// и м.б. лишние решения. Найти и избавиться
+// и то же с родом
+// м.б. проверять с ударением, если ноль, еще раз по плоским
+// ἰχθύς - ἰχθύος
+// рыба дает множество лишних вариантов, если не проверять ударения и рода
+// if (q.var == 'ah') return // это зачем?
+
+
+// здесь плохо то, что dict-trn добавляется к каждой added-form, их м.б. много на результат
+// и строки здесь же будут из разных словарей
 function trueQueries(queries, dicts) {
     let addedForms = [];
-    queries.forEach(function(q) {
-        dicts.forEach(function(d) {
-            // FIXME: тут может меняться форма ударения в кос. падежах: πῆχυς-πήχεως
-            // и м.б. лишние решения. Найти и избавиться
-            // и то же с родом
-            // м.б. проверять с ударением, если ноль, еще раз по плоским
-            // ἰχθύς - ἰχθύος
-            // рыба дает множество лишних вариантов, если не проверять ударения и рода
-            //
-            // if (orthos.plain(q.query) != orthos.plain(d.dict)) return //  && q.gend == d.gend
-            if (q.query != d.dict) return //  && q.gend == d.gend
-            // if (q.var == 'ah') return // это зачем?
-            if (q.pos == 'name' || q.pos == 'noun') {
+    dicts.forEach(function(d) {
+        let query = {dict: d.dict, id: d._id, pos: d.pos}
+        queries.forEach(function(q) {
+            if (q.query != d.dict) return
+            if (q.pos == 'name') {
                 if (!d.var.split('--').includes(q.var)) return
-                // log('DICT', d)
                 if (d.gend && !d.gend.includes(q.gend)) return
-                log('DD', d, 'Q', q.var)
-                // log('DDgend', d.gend, 'Q', q.gend)
-            } else if (q.pos == 'verb') {
-                // в глаголах нет var
-                log('DDverb', d, 'Q', q.dict)
-                //
+                let morph = {gend: q.gend, numcase: q.numcase}
+                if (!query.morphs) query.morphs = [morph]
+                else query.morphs.push(morph)
+                query.idx = q.idx
+                query.ok = true
+                // log('DD', d.dict)
+            } else if (d.pos == 'verb') {
+                // в глаголах нет gend и var
+                log('DDverb==================', d, 'Q', q.dict)
+                let morph = {numpers: q.numpers}
+                if (!query.morphs) query.morphs = [morph]
+                else query.morphs.push(morph)
+                query.idx = q.idx
+                query.ok = true
+            } else {
+                throw new Error('NO MORPHS')
             }
-            q.dict = d.dict
-            q.trn = d.trn
-            addedForms.push(q)
+            // наверное, уж коли они группирутся, то вокруг idx тоже
         })
-    });
+        if (!query.ok) return
+        query.trn = 'd.trn'
+        addedForms.push(query)
+        // то же без ударения
+        // if (!addedForms.length) {
+        //     queries.forEach(function(q) {
+        //         if (orthos.plain(q.query) != orthos.plain(d.dict)) return //  && q.gend == d.gend
+        //         // if (q.query != d.dict) return //  && q.gend == d.gend
+        //         if (q.pos == 'name' || q.pos == 'noun') {
+        //             if (!d.var.split('--').includes(q.var)) return
+        //             if (d.gend && !d.gend.includes(q.gend)) return
+        //             log('DD', d, 'Q', q.var)
+        //         } else if (q.pos == 'verb') {
+        //             // в глаголах нет gend и var
+        //             log('DDverb', d, 'Q', q.dict)
+        //         }
+        //         q.dict = d.dict
+        //         q.trn = 'd.trn'
+        //         addedForms.push(q)
+        //     })
+        //     // log('ZERO')
+        // }
+    })
     return addedForms
 }
 
@@ -243,23 +280,32 @@ function queryTerms(sentence) {
             keys: ukeys
             // include_docs: true
         }).then(function (res) {
-            // log('RES', res)
+            log('RES-TERMS', res)
             // return
             if (!res || !res.rows) throw new Error('no term result') //  || res.rows.length == 0
             let forms = []
-            // let pos = keys.indexOf(current);
-            let allterms = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
+            let allterms = res.rows.map(function(row) {return Object.assign({}, {dict: row.key}, row.value);});
             keys.forEach(function(key, idx) {
-                let terms = _.select(allterms, function(term) { return term.type == 'term' && term.form == key})
-                terms.forEach(function(term) { term.idx = idx})
-                if (terms.length > 0) {
-                    forms.push(terms);
-                } else {
+                log('IDX, KEY', idx, key)
+                let terms = _.select(allterms, function(term) { return term.type == 'term' && term.dict == key})
+                if (terms.length == 0) {
                     let empty = {type: 'form', form: key, idx: idx, empty: true } // это пустые empty non-term формы
-                    forms.push(empty);
+                    forms.push([empty])
+                    return
                 }
-            });
-            log('queryTERMS FORMS', forms);
+                let query = {idx: idx, type: 'term', dict: terms[0].dict, pos: terms[0].pos, trn: terms[0].trn}
+                terms.forEach(function(term) {
+                    if (term.pos == 'pron' || term.pos == 'art') {
+                        let morph = {gend: term.gend, numcase: term.numcase}
+                        if (!query.morphs) query.morphs = [morph]
+                        else query.morphs.push(morph)
+                    } else {
+                        // terms другой
+                    }
+                })
+                forms.push([query]) // массив, будут много словарей
+            })
+            log('query TERMS===>', forms);
             forms = _.flatten(forms)
             resolve(forms);
         }).catch(function (err) {
@@ -295,38 +341,6 @@ function p() { console.log(util.inspect(arguments, false, null)) }
 
 
 
-// function showTerm(curs) {
-//     log('TERM', curs)
-//     return true;
-// }
-
-
-
-// let sentence = [];
-// keys.forEach(function(word, idx) {
-//     if (word != key) return;
-//     let doc = {idx: idx, word: word, keys: keys};
-//     sentence.push(doc);
-// });
-
-
-// function isTerm(current, rows) {
-//     let curs = _.select(rows, function(w) { return w.type == 'term' && w.form == current;});
-//     // log('TERM CURS', curs);
-//     return curs;
-// }
-
-
-
-
-// function showDict(str) {
-//     let exec = require('child_process').exec;
-//     let cmd = 'notify-send "' + str + '"';
-//     exec(cmd, function(error, stdout, stderr) {
-//         // command output is in stdout
-//         if (stderr) log('EXEC', stderr);
-//     });
-// }
 
 
 
