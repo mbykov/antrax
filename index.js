@@ -73,7 +73,7 @@ function queryPromise(sentence, current, cb) {
     ]).then(function (res) {
         log('main r0,r1', res[0])
         main(res[0], res[1], function(words) {
-            log('main words', words)
+            log('main clause', words)
             cb(words)
         });
     }).catch(function (err) {
@@ -96,7 +96,7 @@ function main(rows, fls, cb) {
         log('addedForms:::', addedForms);
         let words = terms.concat(empties).concat(addedForms);
         let clause = _.groupBy(words, 'idx' )
-        log('antrax-clause:', clause)
+        // log('antrax-clause:', clause)
         cb(clause)
     }).catch(function (err) {
         log('ERR DICTS', err);
@@ -165,6 +165,7 @@ function trueQueries(queries, dicts) {
                 if (!query.morphs) query.morphs = [morph]
                 else query.morphs.push(morph)
                 query.idx = q.idx
+                query.form = q.form
                 query.ok = true
                 // log('DD', d.dict)
             } else if (d.pos == 'verb') {
@@ -174,6 +175,7 @@ function trueQueries(queries, dicts) {
                 if (!query.morphs) query.morphs = [morph]
                 else query.morphs.push(morph)
                 query.idx = q.idx
+                query.form = q.query
                 query.ok = true
             } else {
                 throw new Error('NO MORPHS')
@@ -235,40 +237,40 @@ function queryDicts(queries) {
 
 
 // δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα.
-function conform(rows, currentFlexes) {
-    // log('CONFORM words', words.slice(3,4));
-    // log('CONFORM currentFlexes', currentFlexes[0]);
-    let chains = [];
-    currentFlexes.forEach(function(cur) {
-        if (!cur.gend) {
-            chains.push(cur);
-            return;
-        }
-        // log('cur-dict', cur.dict);
-        let chain = [];
-        // chain.push(cur);
-        rows.forEach(function(word, idx) {
-            // log('W', idx, word.form);
-            // if (word.idx < pos - 3 || word.idx > pos + 3) return; // <<<<== POS ?
-            if (cur.gend == word.gend && cur.numcase == word.numcase) {
-                // if (word.dict) log('W', word.dict, cur.dict, cur.dict.length, '=', word.dict.slice(-cur.dict.length));
-                if (word.dict && word.dict.slice(-cur.dict.length) != cur.dict) return;
-                chain.push(word);
-            }
-        });
-        // if (chain.length < 2) return;
-        chains.push(chain);
-        let max = _.max(chains.map(function(ch) { return ch.length; }));
-        // log('MAX', max);
-        chains = _.select(chains, function(ch) { return ch.length == max; });
-    });
-    return chains;
-}
+// function conform(rows, currentFlexes) {
+//     // log('CONFORM words', words.slice(3,4));
+//     // log('CONFORM currentFlexes', currentFlexes[0]);
+//     let chains = [];
+//     currentFlexes.forEach(function(cur) {
+//         if (!cur.gend) {
+//             chains.push(cur);
+//             return;
+//         }
+//         // log('cur-dict', cur.dict);
+//         let chain = [];
+//         // chain.push(cur);
+//         rows.forEach(function(word, idx) {
+//             // log('W', idx, word.form);
+//             // if (word.idx < pos - 3 || word.idx > pos + 3) return; // <<<<== POS ?
+//             if (cur.gend == word.gend && cur.numcase == word.numcase) {
+//                 // if (word.dict) log('W', word.dict, cur.dict, cur.dict.length, '=', word.dict.slice(-cur.dict.length));
+//                 if (word.dict && word.dict.slice(-cur.dict.length) != cur.dict) return;
+//                 chain.push(word);
+//             }
+//         });
+//         // if (chain.length < 2) return;
+//         chains.push(chain);
+//         let max = _.max(chains.map(function(ch) { return ch.length; }));
+//         // log('MAX', max);
+//         chains = _.select(chains, function(ch) { return ch.length == max; });
+//     });
+//     return chains;
+// }
 
-// morphs для current
-function selectMorphs(current, fls) {
-    return _.select(fls, function(flex) { return flex.flex == current.slice(-flex.flex.length);});
-}
+// // morphs для current
+// function selectMorphs(current, fls) {
+//     return _.select(fls, function(flex) { return flex.flex == current.slice(-flex.flex.length);});
+// }
 
 
 function queryTerms(sentence) {
@@ -284,16 +286,16 @@ function queryTerms(sentence) {
             // return
             if (!res || !res.rows) throw new Error('no term result') //  || res.rows.length == 0
             let forms = []
-            let allterms = res.rows.map(function(row) {return Object.assign({}, {dict: row.key}, row.value);});
+            let allterms = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
             keys.forEach(function(key, idx) {
                 log('IDX, KEY', idx, key)
-                let terms = _.select(allterms, function(term) { return term.type == 'term' && term.dict == key})
+                let terms = _.select(allterms, function(term) { return term.type == 'term' && term.form == key})
                 if (terms.length == 0) {
                     let empty = {type: 'form', form: key, idx: idx, empty: true } // это пустые empty non-term формы
                     forms.push([empty])
                     return
                 }
-                let query = {idx: idx, type: 'term', dict: terms[0].dict, pos: terms[0].pos, trn: terms[0].trn}
+                let query = {idx: idx, type: 'term', form: key, dict: terms[0].dict, pos: terms[0].pos, trn: terms[0].trn}
                 terms.forEach(function(term) {
                     if (term.pos == 'pron' || term.pos == 'art') {
                         let morph = {gend: term.gend, numcase: term.numcase}
