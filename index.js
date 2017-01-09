@@ -1,15 +1,19 @@
 // antrax - query simple greek
+/*
+  каждому слову нужен объект, имеющий morphs и dicts, показываю:
+  word-form
+  ....
+  dict: morph-string
+  dict-1: morph-string1
+  form: ff
+  ....
+  при клике на dict - разные словари
+  yals: tatata
+  bh: tatata
+  sm: tatata
 
+*/
 
-// let word = process.argv.slice(2)[0] || false;
-// let sentence = process.argv.slice(3)[0] || false;
-
-// let util = require('util');
-
-// if (!sentence) {
-    // log('param string?');
-    // return;
-// }
 
 let _ = require('underscore');
 // let path = require('path');
@@ -27,6 +31,7 @@ let db_dict = new PouchDB('lsdict')
 // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict', {live: true})
 // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/flex', 'flex', {live: true})
 replicateDB('flex')
+replicateDB('term')
 
 function destroyDB(db) {
     db.destroy().then(function (response) {
@@ -84,9 +89,10 @@ function queryPromise(sentence, current, cb) {
 
 // rows - это words, но все morphs отдельно
 function main(rows, fls, cb) {
-    let empties = _.select(rows, function(row) { return row.type == 'form' })
+    let empties = _.select(rows, function(row) { return row.empty })
     log('Empties', empties);
     let terms = _.select(rows, function(row) { return row.type == 'term' })
+    let ffs = _.select(rows, function(row) { return row.type == 'form' }) // FFS
     log('Comp TERMS', terms)
     let possibleForms = parsePossibleForms(empties, fls);
     log('Poss-Form-queries', possibleForms);
@@ -94,7 +100,7 @@ function main(rows, fls, cb) {
         // выбрать из possibleForms найденные
         let addedForms = trueQueries(possibleForms, dicts);
         log('addedForms:::', addedForms);
-        let words = terms.concat(empties).concat(addedForms);
+        let words = terms.concat(ffs).concat(empties).concat(addedForms);
         let clause = _.groupBy(words, 'idx' )
         // log('antrax-clause:', clause)
         cb(clause)
@@ -235,44 +241,6 @@ function queryDicts(queries) {
     });
 }
 
-
-// δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα.
-// function conform(rows, currentFlexes) {
-//     // log('CONFORM words', words.slice(3,4));
-//     // log('CONFORM currentFlexes', currentFlexes[0]);
-//     let chains = [];
-//     currentFlexes.forEach(function(cur) {
-//         if (!cur.gend) {
-//             chains.push(cur);
-//             return;
-//         }
-//         // log('cur-dict', cur.dict);
-//         let chain = [];
-//         // chain.push(cur);
-//         rows.forEach(function(word, idx) {
-//             // log('W', idx, word.form);
-//             // if (word.idx < pos - 3 || word.idx > pos + 3) return; // <<<<== POS ?
-//             if (cur.gend == word.gend && cur.numcase == word.numcase) {
-//                 // if (word.dict) log('W', word.dict, cur.dict, cur.dict.length, '=', word.dict.slice(-cur.dict.length));
-//                 if (word.dict && word.dict.slice(-cur.dict.length) != cur.dict) return;
-//                 chain.push(word);
-//             }
-//         });
-//         // if (chain.length < 2) return;
-//         chains.push(chain);
-//         let max = _.max(chains.map(function(ch) { return ch.length; }));
-//         // log('MAX', max);
-//         chains = _.select(chains, function(ch) { return ch.length == max; });
-//     });
-//     return chains;
-// }
-
-// // morphs для current
-// function selectMorphs(current, fls) {
-//     return _.select(fls, function(flex) { return flex.flex == current.slice(-flex.flex.length);});
-// }
-
-
 function queryTerms(sentence) {
     let keys = sentence.split(' ')
     let ukeys = _.uniq(keys)
@@ -289,23 +257,32 @@ function queryTerms(sentence) {
             let allterms = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
             keys.forEach(function(key, idx) {
                 log('IDX, KEY', idx, key)
+                let ffs = _.select(allterms, function(term) { return term.type == 'form' && term.form == key})
+                ffs.forEach(function(ff) { ff.idx = idx})
                 let terms = _.select(allterms, function(term) { return term.type == 'term' && term.form == key})
+                // term всегда один, конечных форм м.б. несколько
+                let term = terms[0]
+                let query
                 if (terms.length == 0) {
-                    let empty = {type: 'form', form: key, idx: idx, empty: true } // это пустые empty non-term формы
-                    forms.push([empty])
-                    return
+                    query = {idx: idx, form: key, empty: true } // это пустые empty non-term формы
+                } else {
+                    query = {idx: idx, type: 'term', form: key, dict: term.dict, pos: term.pos, trn: term.trn}
+                    terms.forEach(function(term) {
+                        if (term.pos == 'pron') {
+                            let morph = {gend: term.gend, numcase: term.numcase}
+                            if (!query.morphs) query.morphs = [morph]
+                            else query.morphs.push(morph)
+                        } else if (term.pos == 'art') {
+                            let morph = {gend: term.gend, numcase: term.numcase}
+                            if (!query.morphs) query.morphs = [morph]
+                            else query.morphs.push(morph)
+                        } else {
+                            // terms другой - просто загнать в forms
+                        }
+                    })
                 }
-                let query = {idx: idx, type: 'term', form: key, dict: terms[0].dict, pos: terms[0].pos, trn: terms[0].trn}
-                terms.forEach(function(term) {
-                    if (term.pos == 'pron' || term.pos == 'art') {
-                        let morph = {gend: term.gend, numcase: term.numcase}
-                        if (!query.morphs) query.morphs = [morph]
-                        else query.morphs.push(morph)
-                    } else {
-                        // terms другой
-                    }
-                })
-                forms.push([query]) // массив, будут много словарей
+                forms.push(query)
+                forms = forms.concat(ffs)
             })
             log('query TERMS===>', forms);
             forms = _.flatten(forms)
