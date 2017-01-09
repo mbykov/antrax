@@ -1,6 +1,7 @@
 // antrax - query simple greek
 /*
-  каждому слову нужен объект, имеющий morphs и dicts, показываю:
+  каждому слову есть массив terms, ffs, empties, added
+  результат:
   word-form
   ....
   dict: morph-string
@@ -259,6 +260,7 @@ function queryTerms(sentence) {
                 log('IDX, KEY', idx, key)
                 let ffs = _.select(allterms, function(term) { return term.type == 'form' && term.form == key})
                 ffs.forEach(function(ff) { ff.idx = idx})
+                ffs.forEach(function(ff) { ff.ffs = true})
                 let terms = _.select(allterms, function(term) { return term.type == 'term' && term.form == key})
                 // term всегда один, конечных форм м.б. несколько
                 let term = terms[0]
@@ -281,6 +283,7 @@ function queryTerms(sentence) {
                         }
                     })
                 }
+                log('FFS', ffs.length)
                 forms.push(query)
                 forms = forms.concat(ffs)
             })
