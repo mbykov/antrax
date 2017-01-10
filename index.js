@@ -190,7 +190,7 @@ function trueQueries(queries, dicts) {
             // наверное, уж коли они группирутся, то вокруг idx тоже
         })
         if (!query.ok) return
-        query.trn = 'd.trn'
+        query.trn = d.trn
         addedForms.push(query)
         // то же без ударения
         // if (!addedForms.length) {
