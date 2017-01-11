@@ -33,6 +33,7 @@ let db_dict = new PouchDB('lsdict')
 // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/flex', 'flex', {live: true})
 replicateDB('flex')
 replicateDB('term')
+replicateDB('lsdict')
 
 function destroyDB(db) {
     db.destroy().then(function (response) {
@@ -94,7 +95,7 @@ function main(rows, fls, cb) {
     log('Empties', empties);
     let terms = _.select(rows, function(row) { return row.type == 'term' })
     let ffs = _.select(rows, function(row) { return row.type == 'form' }) // FFS
-    log('Comp TERMS', terms)
+    log('main TERMS', terms)
     let possibleForms = parsePossibleForms(empties, fls);
     log('Poss-Form-queries', possibleForms);
     queryDicts(possibleForms).then(function(dicts) {
@@ -125,7 +126,7 @@ function parsePossibleForms(empties, fls) {
             let word
             if (flex.pos == 'verb') {
                 // log('FLEX VERB', flex.pos, flex.var, flex.numpers)
-                word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, numpers: flex.numpers, var: flex.var}
+                word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, numpers: flex.numpers, var: flex.var, descr: flex.descr}
             } else {
                 // log('FLEX NAME', flex.pos, flex.var, flex.numcase, flex.gend)
                 word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, gend: flex.gend, numcase: flex.numcase, var: flex.var}
@@ -162,7 +163,7 @@ function parsePossibleForms(empties, fls) {
 function trueQueries(queries, dicts) {
     let addedForms = [];
     dicts.forEach(function(d) {
-        let query = {dict: d.dict, id: d._id, pos: d.pos}
+        let query = {dict: d.dict, id: d._id, pos: d.pos, dtype: 'yals'}
         queries.forEach(function(q) {
             if (q.query != d.dict) return
             if (q.pos == 'name') {
@@ -183,6 +184,7 @@ function trueQueries(queries, dicts) {
                 else query.morphs.push(morph)
                 query.idx = q.idx
                 query.form = q.query
+                query.descr = q.descr
                 query.ok = true
             } else {
                 throw new Error('NO MORPHS')
@@ -261,6 +263,7 @@ function queryTerms(sentence) {
                 let ffs = _.select(allterms, function(term) { return term.type == 'form' && term.form == key})
                 ffs.forEach(function(ff) { ff.idx = idx})
                 ffs.forEach(function(ff) { ff.ffs = true})
+                // ffs.forEach(function(ff) { if (!ff.morphs) ff.morphs = []})
                 let terms = _.select(allterms, function(term) { return term.type == 'term' && term.form == key})
                 // term всегда один, конечных форм м.б. несколько
                 let term = terms[0]
@@ -268,7 +271,7 @@ function queryTerms(sentence) {
                 if (terms.length == 0) {
                     query = {idx: idx, form: key, empty: true } // это пустые empty non-term формы
                 } else {
-                    query = {idx: idx, type: 'term', form: key, dict: term.dict, pos: term.pos, trn: term.trn}
+                    query = {idx: idx, type: 'term', form: key, dict: term.dict, pos: term.pos, trn: term.trn, dtype: 'eds'}
                     terms.forEach(function(term) {
                         if (term.pos == 'pron') {
                             let morph = {gend: term.gend, numcase: term.numcase}
