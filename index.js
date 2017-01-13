@@ -131,18 +131,19 @@ function compact(keys, terms, ffs, afs) {
         let term = kmorphs[0] // only one always
         let forms = _.select(kterms, function(term) { return !['pron', 'art'].includes(term.pos) })
         let kffs = _.select(ffs, function(ff) { return ff.idx == idy })
-        let kffms = _.select(ffs, function(ff) { return ff.morphs }) // это на будущее, morphs из других источников, тесты
-        let kffns = _.select(ffs, function(ff) { return !ff.morphs }) // plain, no-Morphs finite forms
-        forms = forms.concat(kffns)
+        // let kffms = _.select(kffs, function(ff) { return ff.morphs }) // это на будущее, morphs из других ист., тесты
+        // let kffns = _.select(kffs, function(ff) { return !ff.morphs }) // plain, no-Morphs finite forms
+        forms = forms.concat(kffs)
         let kafs = _.select(afs, function(af) { return af.idx == idy })
-        let names = _.select(afs, function(af) { return af.pos == 'name' })
-        let verbs = _.select(afs, function(af) { return af.pos == 'verb' })
+        let names = _.select(kafs, function(af) { return af.pos == 'name' })
+        let verbs = _.select(kafs, function(af) { return af.pos == 'verb' })
+        // log('COMPACT names', names)
         let name = names[0]
         if (names.length > 1) throw new Error('MANY NAMES!!!!')
         let verb = verbs[0]
         if (verbs.length > 1) throw new Error('MANY VERBS!!!!')
         // log('COMPACT', afs)
-        clause[idy] = {}
+        clause[idy] = {key: key}
         // term имеет morphs, finite forms - не имеют
         if (term) clause[idy].term = term
         if (forms.length) clause[idy].forms = forms
