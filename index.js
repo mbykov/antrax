@@ -131,11 +131,18 @@ function compact(keys, terms, ffs, afs) {
         // let kffms = _.select(ffs, function(ff) { return ff.morphs }) // это на будущее, morphs из других источников, тесты
         // let kffns = _.select(ffs, function(ff) { return !ff.morphs }) // no Morphs in finite form
         let kafs = _.select(afs, function(af) { return af.idx == idy })
+        let names = _.select(afs, function(af) { return af.pos == 'name' })
+        let verbs = _.select(afs, function(af) { return af.pos == 'verb' })
+        let name = names[0]
+        if (names.length > 1) throw new Error('MANY NAMES!!!!')
+        let verb = verbs[0]
+        if (verbs.length > 1) throw new Error('MANY VERBS!!!!')
         // log('COMPACT', afs)
         clause[idy] = {}
         if (term) clause[idy].term = term
         if (kffs.length) clause[idy].ffs = kffs
-        if (kafs.length) clause[idy].forms = kafs
+        if (name) clause[idy].name = name
+        if (verb) clause[idy].verb = verb
         if (!_.keys(clause[idy]).length) clause[idy].empty = {idx: idy, form: key, empty: true }
     })
     return clause
