@@ -79,9 +79,9 @@ function queryPromise(sentence, current, cb) {
         getAllFlex()
     ]).then(function (res) {
         log('main r0,r1', res[0])
-        main(res[0], res[1], function(words) {
-            log('main clause', words)
-            cb(words)
+        main(sentence, res[0], res[1], function(clause) {
+            // log('main clause', clause)
+            cb(clause)
         });
     }).catch(function (err) {
         log('ANT ERR', err);
@@ -90,28 +90,56 @@ function queryPromise(sentence, current, cb) {
 
 
 // rows - это words, но все morphs отдельно
-function main(rows, fls, cb) {
+function main(sentence, rows, fls, cb) {
+    let keys = sentence.split(' ')
+    // let ukeys = _.uniq(keys)
+    // log('UKEYS', ukeys)
     let empties = _.select(rows, function(row) { return row.empty })
     log('Empties', empties);
     let terms = _.select(rows, function(row) { return row.type == 'term' })
     let ffs = _.select(rows, function(row) { return row.type == 'form' }) // FFS
     log('main TERMS', terms)
+    log('main FFS', ffs)
     let possibleForms = parsePossibleForms(empties, fls);
     log('Poss-Form-queries', possibleForms);
+    // XXX
     queryDicts(possibleForms).then(function(dicts) {
         // выбрать из possibleForms найденные
         let addedForms = trueQueries(possibleForms, dicts);
         log('addedForms:::', addedForms);
-        let words = terms.concat(ffs).concat(empties).concat(addedForms);
-        let clause = _.groupBy(words, 'idx' )
-        // log('antrax-clause:', clause)
+        let words = terms.concat(ffs).concat(addedForms); // concat(empties).
+        // log('antrax-words:', words)
+        let clause = compact(keys, terms, ffs, addedForms)
+        log('==antr-CLAUSE==', clause)
+        // let clause = _.groupBy(words, 'idx' )
         cb(clause)
     }).catch(function (err) {
         log('ERR DICTS', err);
     });
 }
+// δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα.
+// λέγω
+// ἐπιβάλλουσι
 
-// δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα. π
+function compact(keys, terms, ffs, afs) {
+    let clause = {}
+    keys.forEach(function(key, idy) {
+        // log('KEY FORM IDY', idy, key)
+        let kterms = _.select(terms, function(term) { return term.idx == idy })
+        let term = kterms[0] // only one always
+        let kffs = _.select(ffs, function(ff) { return ff.idx == idy })
+        // let kffms = _.select(ffs, function(ff) { return ff.morphs }) // это на будущее, morphs из других источников, тесты
+        // let kffns = _.select(ffs, function(ff) { return !ff.morphs }) // no Morphs in finite form
+        let kafs = _.select(afs, function(af) { return af.idx == idy })
+        // log('COMPACT', afs)
+        clause[idy] = {}
+        if (term) clause[idy].term = term
+        if (kffs.length) clause[idy].ffs = kffs
+        if (kafs.length) clause[idy].forms = kafs
+        if (!_.keys(clause[idy]).length) clause[idy].empty = {idx: idy, form: key, empty: true }
+    })
+    return clause
+}
 
 function parsePossibleForms(empties, fls) {
     let queries = [];
@@ -178,7 +206,7 @@ function trueQueries(queries, dicts) {
                 // log('DD', d.dict)
             } else if (d.pos == 'verb') {
                 // в глаголах нет gend и var
-                log('DDverb==================', d, 'Q', q.dict)
+                // log('DDverb==================', d, 'Q', q.dict)
                 let morph = {numpers: q.numpers}
                 if (!query.morphs) query.morphs = [morph]
                 else query.morphs.push(morph)
@@ -256,14 +284,16 @@ function queryTerms(sentence) {
             log('RES-TERMS', res)
             // return
             if (!res || !res.rows) throw new Error('no term result') //  || res.rows.length == 0
-            let forms = []
+            let forms = [] // FIXME:
             let allterms = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
             keys.forEach(function(key, idx) {
                 log('IDX, KEY', idx, key)
+                // ffs лежат в terms, не логично, но пусть.
+                // ffs двух типов - morphs и без
                 let ffs = _.select(allterms, function(term) { return term.type == 'form' && term.form == key})
                 ffs.forEach(function(ff) { ff.idx = idx})
                 ffs.forEach(function(ff) { ff.ffs = true})
-                // ffs.forEach(function(ff) { if (!ff.morphs) ff.morphs = []})
+
                 let terms = _.select(allterms, function(term) { return term.type == 'term' && term.form == key})
                 // term всегда один, конечных форм м.б. несколько
                 let term = terms[0]
@@ -271,7 +301,8 @@ function queryTerms(sentence) {
                 if (terms.length == 0) {
                     query = {idx: idx, form: key, empty: true } // это пустые empty non-term формы
                 } else {
-                    query = {idx: idx, type: 'term', form: key, dict: term.dict, pos: term.pos, trn: term.trn, dtype: 'eds'}
+                    // dict: term.dict ????
+                    query = {idx: idx, type: 'term', form: key, dict: key, pos: term.pos, trn: term.trn, dtype: 'eds'}
                     terms.forEach(function(term) {
                         if (term.pos == 'pron') {
                             let morph = {gend: term.gend, numcase: term.numcase}
@@ -281,7 +312,7 @@ function queryTerms(sentence) {
                             let morph = {gend: term.gend, numcase: term.numcase}
                             if (!query.morphs) query.morphs = [morph]
                             else query.morphs.push(morph)
-                        } else {
+                        // } else {
                             // terms другой - просто загнать в forms
                         }
                     })
