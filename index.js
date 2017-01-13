@@ -126,10 +126,14 @@ function compact(keys, terms, ffs, afs) {
     keys.forEach(function(key, idy) {
         // log('KEY FORM IDY', idy, key)
         let kterms = _.select(terms, function(term) { return term.idx == idy })
-        let term = kterms[0] // only one always
+        let kmorphs = _.select(kterms, function(term) { return ['pron', 'art'].includes(term.pos) })
+        if (kmorphs.length > 1) throw new Error('MANY TERMS!!!!')
+        let term = kmorphs[0] // only one always
+        let forms = _.select(kterms, function(term) { return !['pron', 'art'].includes(term.pos) })
         let kffs = _.select(ffs, function(ff) { return ff.idx == idy })
-        // let kffms = _.select(ffs, function(ff) { return ff.morphs }) // это на будущее, morphs из других источников, тесты
-        // let kffns = _.select(ffs, function(ff) { return !ff.morphs }) // no Morphs in finite form
+        let kffms = _.select(ffs, function(ff) { return ff.morphs }) // это на будущее, morphs из других источников, тесты
+        let kffns = _.select(ffs, function(ff) { return !ff.morphs }) // plain, no-Morphs finite forms
+        forms = forms.concat(kffns)
         let kafs = _.select(afs, function(af) { return af.idx == idy })
         let names = _.select(afs, function(af) { return af.pos == 'name' })
         let verbs = _.select(afs, function(af) { return af.pos == 'verb' })
@@ -139,8 +143,9 @@ function compact(keys, terms, ffs, afs) {
         if (verbs.length > 1) throw new Error('MANY VERBS!!!!')
         // log('COMPACT', afs)
         clause[idy] = {}
+        // term имеет morphs, finite forms - не имеют
         if (term) clause[idy].term = term
-        if (kffs.length) clause[idy].ffs = kffs
+        if (forms.length) clause[idy].forms = forms
         if (name) clause[idy].name = name
         if (verb) clause[idy].verb = verb
         if (!_.keys(clause[idy]).length) clause[idy].empty = {idx: idy, form: key, empty: true }
