@@ -101,8 +101,8 @@ function main(sentence, rows, fls, cb) {
     log('main TERMS', terms)
     log('main FFS', ffs)
     let possibleForms = parsePossibleForms(empties, fls);
-    log('Poss-Form-queries', possibleForms);
-    // XXX
+    // log('Poss-Form-queries', possibleForms);
+    //
     queryDicts(possibleForms).then(function(dicts) {
         // выбрать из possibleForms найденные
         let addedForms = trueQueries(possibleForms, dicts);
@@ -167,6 +167,10 @@ function parsePossibleForms(empties, fls) {
             let word
             if (flex.pos == 'verb') {
                 // log('FLEX VERB', flex.pos, flex.var, flex.numpers)
+                if (query.slice(0,2) == 'ἐ') {
+                    if (!/impf/.test(flex.descr)) return
+                    else query = query.slice(2)
+                }
                 word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, numpers: flex.numpers, var: flex.var, descr: flex.descr}
             } else {
                 // log('FLEX NAME', flex.pos, flex.var, flex.numcase, flex.gend)
@@ -199,14 +203,13 @@ function parsePossibleForms(empties, fls) {
 // if (q.var == 'ah') return // это зачем?
 
 
-// здесь плохо то, что dict-trn добавляется к каждой added-form, их м.б. много на результат
-// и строки здесь же будут из разных словарей
 function trueQueries(queries, dicts) {
     let addedForms = [];
     dicts.forEach(function(d) {
         let query = {dict: d.dict, id: d._id, pos: d.pos, dtype: 'yals'}
         queries.forEach(function(q) {
-            if (q.query != d.dict) return
+            // if (q.query != d.dict) return
+            if (orthos.plain(q.query) != orthos.plain(d.dict)) return
             if (q.pos == 'name') {
                 if (!d.var.split('--').includes(q.var)) return
                 if (d.gend && !d.gend.includes(q.gend)) return
@@ -218,7 +221,6 @@ function trueQueries(queries, dicts) {
                 query.ok = true
                 // log('DD', d.dict)
             } else if (d.pos == 'verb') {
-                // в глаголах нет gend и var
                 // log('DDverb==================', d, 'Q', q.dict)
                 let morph = {numpers: q.numpers}
                 if (!query.morphs) query.morphs = [morph]
