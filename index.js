@@ -138,17 +138,17 @@ function compact(keys, terms, ffs, afs) {
         let names = _.select(kafs, function(af) { return af.pos == 'name' })
         let verbs = _.select(kafs, function(af) { return af.pos == 'verb' })
         // log('COMPACT names', names)
-        let name = names[0]
-        if (names.length > 1) throw new Error('MANY NAMES!!!!')
-        let verb = verbs[0]
-        if (verbs.length > 1) throw new Error('MANY VERBS!!!!')
+        // let name = names[0]
+        // if (names.length > 1) throw new Error('MANY NAMES!!!!')
+        // let verb = verbs[0]
+        // if (verbs.length > 1) throw new Error('MANY VERBS!!!!')
         // log('COMPACT', afs)
         clause[idy] = {key: key}
         // term имеет morphs, finite forms - не имеют
         if (term) clause[idy].term = term
         if (forms.length) clause[idy].forms = forms
-        if (name) clause[idy].name = name
-        if (verb) clause[idy].verb = verb
+        if (names.length) clause[idy].names = names
+        if (verbs.length) clause[idy].verbs = verbs
         if (!_.keys(clause[idy]).length) clause[idy].empty = {idx: idy, form: key, empty: true }
     })
     return clause
@@ -167,9 +167,10 @@ function parsePossibleForms(empties, fls) {
             let word
             if (flex.pos == 'verb') {
                 // log('FLEX VERB', flex.pos, flex.var, flex.numpers)
-                if (query.slice(0,2) == 'ἐ') {
-                    if (!/impf/.test(flex.descr)) return
-                    else query = query.slice(2)
+                if (query.slice(0,2) == 'ἐ' && /impf/.test(flex.descr)) {
+                    query = query.slice(2)
+                } else if (/impf/.test(flex.descr)) {
+                    return
                 }
                 word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, numpers: flex.numpers, var: flex.var, descr: flex.descr}
             } else {
@@ -199,14 +200,14 @@ function parsePossibleForms(empties, fls) {
 // и то же с родом
 // м.б. проверять с ударением, если ноль, еще раз по плоским
 // ἰχθύς - ἰχθύος
-// рыба дает множество лишних вариантов, если не проверять ударения и рода
+// рыба дает множество лишних вариантов, если не проверять ударения и рода - не вижу лишних
 // if (q.var == 'ah') return // это зачем?
 
 
 function trueQueries(queries, dicts) {
     let addedForms = [];
     dicts.forEach(function(d) {
-        let query = {dict: d.dict, id: d._id, pos: d.pos, dtype: 'yals'}
+        let query = {dict: d.dict, id: d._id, pos: d.pos} // , dtype: 'yals'
         queries.forEach(function(q) {
             // if (q.query != d.dict) return
             if (orthos.plain(q.query) != orthos.plain(d.dict)) return
@@ -218,23 +219,28 @@ function trueQueries(queries, dicts) {
                 else query.morphs.push(morph)
                 query.idx = q.idx
                 query.form = q.form
-                query.ok = true
+                // query.ok = true
                 // log('DD', d.dict)
             } else if (d.pos == 'verb') {
-                // log('DDverb==================', d, 'Q', q.dict)
-                let morph = {numpers: q.numpers}
-                if (!query.morphs) query.morphs = [morph]
-                else query.morphs.push(morph)
+                let morph = {mod: q.descr, numpers: q.numpers}
+                if (!query.morphs) {
+                    query.morphs = {}
+                    query.morphs[q.descr] = [q.numpers]
+                }
+                else if (query.morphs[q.descr]) query.morphs[q.descr].push(q.numpers)
+                else if (!query.morphs[q.descr]) query.morphs[q.descr] = [q.numpers]
+                else throw new Error('VERB STRANGE MORPH')
                 query.idx = q.idx
                 query.form = q.query
                 query.descr = q.descr
-                query.ok = true
+                // query.ok = true
+                log('DDverb==================', query)
             } else {
                 throw new Error('NO MORPHS')
             }
             // наверное, уж коли они группирутся, то вокруг idx тоже
         })
-        if (!query.ok) return
+        if (!query.morphs) return
         query.trn = d.trn
         addedForms.push(query)
         // то же без ударения
@@ -260,9 +266,6 @@ function trueQueries(queries, dicts) {
     return addedForms
 }
 
-/*
-  неясно, искать отдельно os и os-ox - если нет -ox, то нужно восстановить место и вид ударения
- */
 function queryDicts(queries) {
     // let keys = _.uniq(queries.map(function(q) { return (q.type == 'term') ? q.form : q.query }))
     // terms здесь не может быть
