@@ -98,8 +98,8 @@ function main(sentence, rows, fls, cb) {
     log('Empties', empties);
     let terms = _.select(rows, function(row) { return row.type == 'term' })
     let ffs = _.select(rows, function(row) { return row.type == 'form' }) // FFS
-    log('main TERMS', terms)
-    log('main FFS', ffs)
+    // log('main TERMS', terms)
+    // log('main FFS', ffs)
     let possibleForms = parsePossibleForms(empties, fls);
     // log('Poss-Form-queries', possibleForms);
     //
@@ -126,14 +126,18 @@ function compact(keys, terms, ffs, afs) {
     keys.forEach(function(key, idy) {
         // log('KEY FORM IDY', idy, key)
         let kterms = _.select(terms, function(term) { return term.idx == idy })
-        let kmorphs = _.select(kterms, function(term) { return ['pron', 'art'].includes(term.pos) })
+        // let kmorphs = _.select(kterms, function(term) { return ['pron', 'art', 'verb'].includes(term.pos) })
+        let kmorphs = _.select(kterms, function(term) { return term.morphs })
         if (kmorphs.length > 1) throw new Error('MANY TERMS!!!!')
         let term = kmorphs[0] // only one always
-        let forms = _.select(kterms, function(term) { return !['pron', 'art'].includes(term.pos) })
+        // теперь forms здесь нет, они все в ffs
+        // let forms = _.select(kterms, function(term) { return !['pron', 'art', 'verb'].includes(term.pos) })
+        // let forms = _.select(kterms, function(term) { return !term.morphs })
         let kffs = _.select(ffs, function(ff) { return ff.idx == idy })
         // let kffms = _.select(kffs, function(ff) { return ff.morphs }) // это на будущее, morphs из других ист., тесты
         // let kffns = _.select(kffs, function(ff) { return !ff.morphs }) // plain, no-Morphs finite forms
-        forms = forms.concat(kffs)
+        // forms = forms.concat(kffs)
+        let forms = kffs
         let kafs = _.select(afs, function(af) { return af.idx == idy })
         let names = _.select(kafs, function(af) { return af.pos == 'name' })
         let verbs = _.select(kafs, function(af) { return af.pos == 'verb' })
@@ -156,7 +160,7 @@ function compact(keys, terms, ffs, afs) {
 
 function parsePossibleForms(empties, fls) {
     let queries = [];
-    log('PF ROWS SIZE', empties.length);
+    // log('PF ROWS SIZE', empties.length);
     empties.forEach(function(row) {
         log('PF EMPTY ROW', row);
         fls.forEach(function(flex) {
@@ -206,62 +210,105 @@ function parsePossibleForms(empties, fls) {
 
 function trueQueries(queries, dicts) {
     let addedForms = [];
+    let qnames = []
+    let qverbs = []
+    let qparts = []
+    queries.forEach(function(q) {
+        if (q.pos == 'name') qnames.push(q)
+        if (q.pos == 'part') qparts.push(q)
+        if (q.pos == 'verb') qverbs.push(q)
+    })
+    // λῡό-ντων <<<< ================================= либо part либо verb, нужно оба
     dicts.forEach(function(d) {
-        let query = {dict: d.dict, id: d._id, pos: d.pos} // , dtype: 'yals'
-        queries.forEach(function(q) {
+        let nquery = {dict: d.dict, id: d._id, pos: d.pos}
+        let vquery = {dict: d.dict, id: d._id, pos: d.pos}
+        qnames.forEach(function(q) {
             // if (q.query != d.dict) return
             if (orthos.plain(q.query) != orthos.plain(d.dict)) return
-            if (q.pos == 'name') {
-                if (!d.var.split('--').includes(q.var)) return
-                if (d.gend && !d.gend.includes(q.gend)) return
-                let morph = {gend: q.gend, numcase: q.numcase}
-                if (!query.morphs) query.morphs = [morph]
-                else query.morphs.push(morph)
-                query.idx = q.idx
-                query.form = q.form
-                // query.ok = true
-                // log('DD', d.dict)
-            } else if (d.pos == 'verb') {
-                let morph = {mod: q.descr, numpers: q.numpers}
-                if (!query.morphs) {
-                    query.morphs = {}
-                    query.morphs[q.descr] = [q.numpers]
-                }
-                else if (query.morphs[q.descr]) query.morphs[q.descr].push(q.numpers)
-                else if (!query.morphs[q.descr]) query.morphs[q.descr] = [q.numpers]
-                else throw new Error('VERB STRANGE MORPH')
-                query.idx = q.idx
-                query.form = q.query
-                query.descr = q.descr
-                // query.ok = true
-                log('DDverb==================', query)
-            } else {
-                throw new Error('NO MORPHS')
-            }
-            // наверное, уж коли они группирутся, то вокруг idx тоже
+            if (!d.var.split('--').includes(q.var)) return
+            if (d.gend && !d.gend.includes(q.gend)) return
+            let morph = {gend: q.gend, numcase: q.numcase}
+            if (!nquery.morphs) nquery.morphs = [morph]
+            else nquery.morphs.push(morph)
+            nquery.idx = q.idx
+            nquery.form = q.form
         })
-        if (!query.morphs) return
-        query.trn = d.trn
-        addedForms.push(query)
-        // то же без ударения
-        // if (!addedForms.length) {
-        //     queries.forEach(function(q) {
-        //         if (orthos.plain(q.query) != orthos.plain(d.dict)) return //  && q.gend == d.gend
-        //         // if (q.query != d.dict) return //  && q.gend == d.gend
-        //         if (q.pos == 'name' || q.pos == 'noun') {
-        //             if (!d.var.split('--').includes(q.var)) return
-        //             if (d.gend && !d.gend.includes(q.gend)) return
-        //             log('DD', d, 'Q', q.var)
-        //         } else if (q.pos == 'verb') {
-        //             // в глаголах нет gend и var
-        //             log('DDverb', d, 'Q', q.dict)
+        qparts.forEach(function(q) {
+            if (d.pos != 'verb') return
+            if (orthos.plain(q.query) != orthos.plain(d.dict)) return
+            let morph = {gend: q.gend, numcase: q.numcase}
+            if (!nquery.morphs) nquery.morphs = [morph]
+            else nquery.morphs.push(morph)
+            nquery.pos = 'name'
+            nquery.idx = q.idx
+            nquery.form = q.form
+        })
+        qverbs.forEach(function(q) {
+            if (d.pos != 'verb') return
+            if (orthos.plain(q.query) != orthos.plain(d.dict)) return
+            let morph = {mod: q.descr, numpers: q.numpers}
+            if (!vquery.morphs) {
+                vquery.morphs = {}
+                vquery.morphs[q.descr] = [q.numpers]
+            }
+            else if (vquery.morphs[q.descr]) vquery.morphs[q.descr].push(q.numpers)
+            else if (!vquery.morphs[q.descr]) vquery.morphs[q.descr] = [q.numpers]
+            else throw new Error('VERB STRANGE MORPH')
+            vquery.idx = q.idx
+            vquery.form = q.query
+            vquery.descr = q.descr
+        })
+        // queries.forEach(function(q) {
+        //     // if (q.query != d.dict) return
+        //     if (orthos.plain(q.query) != orthos.plain(d.dict)) return
+        //     if (q.pos == 'name') {
+        //         // query = {dict: d.dict, id: d._id, pos: d.pos}
+        //         if (!d.var.split('--').includes(q.var)) return
+        //         if (d.gend && !d.gend.includes(q.gend)) return
+        //         let morph = {gend: q.gend, numcase: q.numcase}
+        //         if (!query.morphs) query.morphs = [morph]
+        //         else query.morphs.push(morph)
+        //         query.idx = q.idx
+        //         query.form = q.form
+        //         // query.ok = true
+        //         // log('DD', d.dict)
+        //     } else if (d.pos == 'verb' && q.pos == 'part') {
+        //         // query = {dict: d.dict, id: d._id, pos: d.pos}
+        //         let morph = {gend: q.gend, numcase: q.numcase}
+        //         if (!query.morphs) query.morphs = [morph]
+        //         else query.morphs.push(morph)
+        //         query.pos = 'name'
+        //         query.idx = q.idx
+        //         query.form = q.form
+        //         log('PART query================', query)
+        //     } else if (q.pos == 'verb') {
+        //         // query = {dict: d.dict, id: d._id, pos: d.pos}
+        //         let morph = {mod: q.descr, numpers: q.numpers}
+        //         if (!query.morphs) {
+        //             query.morphs = {}
+        //             query.morphs[q.descr] = [q.numpers]
         //         }
-        //         q.dict = d.dict
-        //         q.trn = 'd.trn'
-        //         addedForms.push(q)
-        //     })
-        //     // log('ZERO')
-        // }
+        //         else if (query.morphs[q.descr]) query.morphs[q.descr].push(q.numpers)
+        //         else if (!query.morphs[q.descr]) query.morphs[q.descr] = [q.numpers]
+        //         else throw new Error('VERB STRANGE MORPH')
+        //         query.idx = q.idx
+        //         query.form = q.query
+        //         query.descr = q.descr
+        //         // query.ok = true
+        //         log('DDverb==================', query)
+        //     // } else {
+        //         // throw new Error('NO MORPHS')
+        //     }
+        //     // наверное, уж коли они группирутся, то вокруг idx тоже
+        // })
+        if (nquery.morphs) {
+            nquery.trn = d.trn
+            addedForms.push(nquery)
+        }
+        if (vquery.morphs) {
+            vquery.trn = d.trn
+            addedForms.push(vquery)
+        }
     })
     return addedForms
 }
@@ -307,20 +354,24 @@ function queryTerms(sentence) {
             keys.forEach(function(key, idx) {
                 log('IDX, KEY', idx, key)
                 // ffs лежат в terms, не логично, но пусть.
-                // ffs двух типов - morphs и без
+                // ffs не имеют morphs
+                // а если имеют, то они terms, i.e. irregular verbs
                 let ffs = _.select(allterms, function(term) { return term.type == 'form' && term.form == key})
                 ffs.forEach(function(ff) { ff.idx = idx})
                 ffs.forEach(function(ff) { ff.ffs = true})
 
+                log('FFS', ffs)
                 let terms = _.select(allterms, function(term) { return term.type == 'term' && term.form == key})
-                // term всегда один, конечных форм м.б. несколько
+                log('TTS', terms)
+                // let terms = _.select(allterms, function(term) { return term.gend || term.mod})
+                // term.form всегда одна, конечных форм м.б. несколько
                 let term = terms[0]
                 let query
                 if (terms.length == 0) {
                     query = {idx: idx, form: key, empty: true } // это пустые empty non-term формы
                 } else {
                     // dict: term.dict ????
-                    query = {idx: idx, type: 'term', form: key, dict: key, pos: term.pos, trn: term.trn, dtype: 'eds'}
+                    query = {idx: idx, type: 'term', form: key, dict: key, pos: term.pos, trn: term.trn} // , dtype: 'eds'
                     terms.forEach(function(term) {
                         if (term.pos == 'pron') {
                             let morph = {gend: term.gend, numcase: term.numcase}
@@ -330,12 +381,18 @@ function queryTerms(sentence) {
                             let morph = {gend: term.gend, numcase: term.numcase}
                             if (!query.morphs) query.morphs = [morph]
                             else query.morphs.push(morph)
+                        } else if (term.pos == 'verb') {
+                            log('TERM VERB <<<<<<<<<<<<<<<<<')
+                            let morph = {mod: term.mod, numpers: [term.numper]}
+                            if (!query.morphs) query.morphs = {}
+                            if (!query.morphs[term.mod]) query.morphs[term.mod] = [term.numper]
+                            else query.morphs[term.mod].push(term.numper)
                         // } else {
                             // terms другой - просто загнать в forms
                         }
                     })
                 }
-                log('FFS', ffs.length)
+                // log('FFS', ffs.length)
                 forms.push(query)
                 forms = forms.concat(ffs)
             })
