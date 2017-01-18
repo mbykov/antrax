@@ -128,8 +128,10 @@ function compact(keys, terms, ffs, afs) {
         let kterms = _.select(terms, function(term) { return term.idx == idy })
         // let kmorphs = _.select(kterms, function(term) { return ['pron', 'art', 'verb'].includes(term.pos) })
         let kmorphs = _.select(kterms, function(term) { return term.morphs })
+        let kplains = _.select(kterms, function(term) { return !term.morphs })
         if (kmorphs.length > 1) throw new Error('MANY TERMS!!!!')
         let term = kmorphs[0] // only one always
+        let plain = kplains[0] // only one always
         // теперь forms здесь нет, они все в ffs
         // let forms = _.select(kterms, function(term) { return !['pron', 'art', 'verb'].includes(term.pos) })
         // let forms = _.select(kterms, function(term) { return !term.morphs })
@@ -150,6 +152,7 @@ function compact(keys, terms, ffs, afs) {
         clause[idy] = {key: key}
         // term имеет morphs, finite forms - не имеют
         if (term) clause[idy].term = term
+        if (plain) clause[idy].plain = plain
         if (forms.length) clause[idy].forms = forms
         if (names.length) clause[idy].names = names
         if (verbs.length) clause[idy].verbs = verbs
@@ -225,8 +228,10 @@ function trueQueries(queries, dicts) {
         qnames.forEach(function(q) {
             // if (q.query != d.dict) return
             if (d.pos != 'name') return
+            log('HORSE', orthos.plain(q.query), '---', orthos.plain(d.dict))
             if (orthos.plain(q.query) != orthos.plain(d.dict)) return
-            if (!d.var.split('--').includes(q.var)) return
+            // if (!d.var.split('--').includes(q.var)) return
+            log('H G', d.gend, '---', q.gend)
             if (d.gend && !d.gend.includes(q.gend)) return
             let morph = {gend: q.gend, numcase: q.numcase}
             if (!nquery.morphs) nquery.morphs = [morph]
@@ -329,8 +334,8 @@ function queryTerms(sentence) {
                 if (terms.length == 0) {
                     query = {idx: idx, form: key, empty: true } // это пустые empty non-term формы
                 } else {
-                    // dict: term.dict ????
-                    if (!term.dict) throw new Error('NO TERM DICT!!!')
+                    // dict: term.dict ???? всякие частицы, проверить бы
+                    if (!term.dict) term.dict = key
                     query = {idx: idx, type: 'term', form: key, dict: term.dict, pos: term.pos, trn: term.trn} // , dtype: 'eds'
                     terms.forEach(function(term) {
                         if (term.pos == 'pron') {
