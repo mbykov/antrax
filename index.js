@@ -141,7 +141,7 @@ function compact(keys, terms, ffs, afs) {
         let kafs = _.select(afs, function(af) { return af.idx == idy })
         let names = _.select(kafs, function(af) { return af.pos == 'name' })
         let verbs = _.select(kafs, function(af) { return af.pos == 'verb' })
-        // log('COMPACT names', names)
+        log('COMPACT names', names)
         // let name = names[0]
         // if (names.length > 1) throw new Error('MANY NAMES!!!!')
         // let verb = verbs[0]
@@ -153,7 +153,7 @@ function compact(keys, terms, ffs, afs) {
         if (forms.length) clause[idy].forms = forms
         if (names.length) clause[idy].names = names
         if (verbs.length) clause[idy].verbs = verbs
-        if (!_.keys(clause[idy]).length) clause[idy].empty = {idx: idy, form: key, empty: true }
+        if (_.keys(clause[idy]).length == 1 ) clause[idy].empty = {idx: idy, form: key, empty: true }
     })
     return clause
 }
@@ -218,12 +218,13 @@ function trueQueries(queries, dicts) {
         if (q.pos == 'part') qparts.push(q)
         if (q.pos == 'verb') qverbs.push(q)
     })
-    // λῡό-ντων <<<< ================================= либо part либо verb, нужно оба
+    // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     dicts.forEach(function(d) {
         let nquery = {dict: d.dict, id: d._id, pos: d.pos}
         let vquery = {dict: d.dict, id: d._id, pos: d.pos}
         qnames.forEach(function(q) {
             // if (q.query != d.dict) return
+            if (d.pos != 'name') return
             if (orthos.plain(q.query) != orthos.plain(d.dict)) return
             if (!d.var.split('--').includes(q.var)) return
             if (d.gend && !d.gend.includes(q.gend)) return
@@ -240,6 +241,7 @@ function trueQueries(queries, dicts) {
             if (!nquery.morphs) nquery.morphs = [morph]
             else nquery.morphs.push(morph)
             nquery.pos = 'name'
+            nquery.part = true
             nquery.idx = q.idx
             nquery.form = q.form
         })
@@ -258,49 +260,6 @@ function trueQueries(queries, dicts) {
             vquery.form = q.query
             vquery.descr = q.descr
         })
-        // queries.forEach(function(q) {
-        //     // if (q.query != d.dict) return
-        //     if (orthos.plain(q.query) != orthos.plain(d.dict)) return
-        //     if (q.pos == 'name') {
-        //         // query = {dict: d.dict, id: d._id, pos: d.pos}
-        //         if (!d.var.split('--').includes(q.var)) return
-        //         if (d.gend && !d.gend.includes(q.gend)) return
-        //         let morph = {gend: q.gend, numcase: q.numcase}
-        //         if (!query.morphs) query.morphs = [morph]
-        //         else query.morphs.push(morph)
-        //         query.idx = q.idx
-        //         query.form = q.form
-        //         // query.ok = true
-        //         // log('DD', d.dict)
-        //     } else if (d.pos == 'verb' && q.pos == 'part') {
-        //         // query = {dict: d.dict, id: d._id, pos: d.pos}
-        //         let morph = {gend: q.gend, numcase: q.numcase}
-        //         if (!query.morphs) query.morphs = [morph]
-        //         else query.morphs.push(morph)
-        //         query.pos = 'name'
-        //         query.idx = q.idx
-        //         query.form = q.form
-        //         log('PART query================', query)
-        //     } else if (q.pos == 'verb') {
-        //         // query = {dict: d.dict, id: d._id, pos: d.pos}
-        //         let morph = {mod: q.descr, numpers: q.numpers}
-        //         if (!query.morphs) {
-        //             query.morphs = {}
-        //             query.morphs[q.descr] = [q.numpers]
-        //         }
-        //         else if (query.morphs[q.descr]) query.morphs[q.descr].push(q.numpers)
-        //         else if (!query.morphs[q.descr]) query.morphs[q.descr] = [q.numpers]
-        //         else throw new Error('VERB STRANGE MORPH')
-        //         query.idx = q.idx
-        //         query.form = q.query
-        //         query.descr = q.descr
-        //         // query.ok = true
-        //         log('DDverb==================', query)
-        //     // } else {
-        //         // throw new Error('NO MORPHS')
-        //     }
-        //     // наверное, уж коли они группирутся, то вокруг idx тоже
-        // })
         if (nquery.morphs) {
             nquery.trn = d.trn
             addedForms.push(nquery)
@@ -371,7 +330,8 @@ function queryTerms(sentence) {
                     query = {idx: idx, form: key, empty: true } // это пустые empty non-term формы
                 } else {
                     // dict: term.dict ????
-                    query = {idx: idx, type: 'term', form: key, dict: key, pos: term.pos, trn: term.trn} // , dtype: 'eds'
+                    if (!term.dict) throw new Error('NO TERM DICT!!!')
+                    query = {idx: idx, type: 'term', form: key, dict: term.dict, pos: term.pos, trn: term.trn} // , dtype: 'eds'
                     terms.forEach(function(term) {
                         if (term.pos == 'pron') {
                             let morph = {gend: term.gend, numcase: term.numcase}
