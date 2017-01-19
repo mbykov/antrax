@@ -239,11 +239,11 @@ function trueQueries(queries, dicts) {
         let qnstricts = _.select(qnames, function(q) { return q.query == d.dict })
         let names = (qnstricts.length) ? qnstricts : _.select(qnames, function(q) { return orthos.plain(q.query) == orthos.plain(d.dict) })
         names.forEach(function(q) {
-            // if (q.query != d.dict) return
             if (d.pos != 'name') return
-            // log('HORSE', orthos.plain(q.query), '---', orthos.plain(d.dict))
-            // if (orthos.plain(q.query) != orthos.plain(d.dict)) return
-            if (!d.var.split('--').includes(q.var)) return
+            // тут - παλαιῶν -либо добавить в lsdict, кроме 'os-a-on' еще и 'h', поскольку dict=os находится в h
+            // либо вообще var не сравнивать - это пока,
+            // либо как-то выкручиваться здесь
+            // if (!d.var.split('--').includes(q.var)) return
             // log('H G', d.gend, '---', q.gend)
             if (d.gend && !d.gend.includes(q.gend)) return
             let morph = {gend: q.gend, numcase: q.numcase} // , q: q
