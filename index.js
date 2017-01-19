@@ -44,7 +44,7 @@ function destroyDB(db) {
 }
 
 function replicateDB(dbname) {
-    log('REPLICATION START')
+    log('REPLICATION START', dbname)
     let url = ['http:\/\/admin:kjre4317@localhost:5984/', dbname].join('')
     PouchDB.replicate(url, dbname).then(function (response) {
         log('DB REPLICATED', response);
@@ -161,13 +161,20 @@ function compact(keys, terms, ffs, afs) {
     return clause
 }
 
+// { flex: 'ῶν',
+//   gend: 'masc',
+//   numcase: 'pl.gen',
+//   descr: 'prima',
+//   var: 'a-cont',
+//   pos: 'noun',
+//   dict: 'ᾶ',
+//   size: 3,
+//   type: 'greek-flex' },
+
 function parsePossibleForms(empties, fls) {
     let queries = [];
-    // log('PF ROWS SIZE', empties.length);
     empties.forEach(function(row) {
-        log('PF EMPTY ROW', row);
         fls.forEach(function(flex) {
-            // log('PF', flex)
             if (flex.flex != row.form.slice(-flex.flex.length)) return;
             let stem = row.form.slice(0, -flex.flex.length);
             let query = [stem, flex.dict].join('');
@@ -181,22 +188,11 @@ function parsePossibleForms(empties, fls) {
                 }
                 word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, numpers: flex.numpers, var: flex.var, descr: flex.descr}
             } else {
-                // log('FLEX NAME', flex.pos, flex.var, flex.numcase, flex.gend)
-                word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, gend: flex.gend, numcase: flex.numcase, var: flex.var}
+                // log('FLEX NAME', flex)
+                word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, gend: flex.gend, numcase: flex.numcase, var: flex.var} // , flex: flex
             }
-            // { flex: 'ῶν',
-            //   gend: 'masc',
-            //   numcase: 'pl.gen',
-            //   descr: 'prima',
-            //   var: 'a-cont',
-            //   pos: 'noun',
-            //   dict: 'ᾶ',
-            //   size: 3,
-            //   type: 'greek-flex' },
-
             queries.push(word)
         });
-        // row.stems = _.uniq(row.stems);
     });
     return queries;
 }
@@ -207,9 +203,24 @@ function parsePossibleForms(empties, fls) {
 // и то же с родом
 // м.б. проверять с ударением, если ноль, еще раз по плоским
 // ἰχθύς - ἰχθύος
-// рыба дает множество лишних вариантов, если не проверять ударения и рода - не вижу лишних
+// σκηνῇ дает три варианта, два лишних
 // if (q.var == 'ah') return // это зачем?
 
+function nQuery(d, q, exact = false) {
+    let nquery = {dict: d.dict, id: d._id, pos: d.pos}
+    if (d.pos != 'name') return
+    // log('HORSE', orthos.plain(q.query), '---', orthos.plain(d.dict))
+    if (orthos.plain(q.query) != orthos.plain(d.dict)) return
+    if (!d.var.split('--').includes(q.var)) return
+    // log('H G', d.gend, '---', q.gend)
+    if (d.gend && !d.gend.includes(q.gend)) return
+    let morph = {gend: q.gend, numcase: q.numcase} // , q: q
+    if (!nquery.morphs) nquery.morphs = [morph]
+    else nquery.morphs.push(morph)
+    nquery.idx = q.idx
+    nquery.form = q.form
+    nquery.trn = d.trn
+}
 
 function trueQueries(queries, dicts) {
     let addedForms = [];
@@ -225,20 +236,24 @@ function trueQueries(queries, dicts) {
     dicts.forEach(function(d) {
         let nquery = {dict: d.dict, id: d._id, pos: d.pos}
         let vquery = {dict: d.dict, id: d._id, pos: d.pos}
-        qnames.forEach(function(q) {
+        let qnstricts = _.select(qnames, function(q) { return q.query == d.dict })
+        let names = (qnstricts.length) ? qnstricts : _.select(qnames, function(q) { return orthos.plain(q.query) == orthos.plain(d.dict) })
+        names.forEach(function(q) {
             // if (q.query != d.dict) return
             if (d.pos != 'name') return
-            log('HORSE', orthos.plain(q.query), '---', orthos.plain(d.dict))
-            if (orthos.plain(q.query) != orthos.plain(d.dict)) return
-            // if (!d.var.split('--').includes(q.var)) return
-            log('H G', d.gend, '---', q.gend)
+            // log('HORSE', orthos.plain(q.query), '---', orthos.plain(d.dict))
+            // if (orthos.plain(q.query) != orthos.plain(d.dict)) return
+            if (!d.var.split('--').includes(q.var)) return
+            // log('H G', d.gend, '---', q.gend)
             if (d.gend && !d.gend.includes(q.gend)) return
-            let morph = {gend: q.gend, numcase: q.numcase}
+            let morph = {gend: q.gend, numcase: q.numcase} // , q: q
             if (!nquery.morphs) nquery.morphs = [morph]
             else nquery.morphs.push(morph)
             nquery.idx = q.idx
             nquery.form = q.form
+            nquery.trn = d.trn
         })
+        // XXX
         qparts.forEach(function(q) {
             if (d.pos != 'verb') return
             if (orthos.plain(q.query) != orthos.plain(d.dict)) return
@@ -274,6 +289,9 @@ function trueQueries(queries, dicts) {
             addedForms.push(vquery)
         }
     })
+    // if (addedForms.length > 1) {
+    //     let exactForms = _.select(addedForms, function(f) { return f.query == XXX})
+    // }
     return addedForms
 }
 
