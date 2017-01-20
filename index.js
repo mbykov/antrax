@@ -189,7 +189,7 @@ function parsePossibleForms(empties, fls) {
                 word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, numpers: flex.numpers, var: flex.var, descr: flex.descr}
             } else {
                 // log('FLEX NAME', flex)
-                word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, gend: flex.gend, numcase: flex.numcase, var: flex.var} // , flex: flex
+                word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, gend: flex.gend, numcase: flex.numcase, var: flex.var, flex: flex} // , flex: flex
             }
             queries.push(word)
         });
@@ -205,22 +205,6 @@ function parsePossibleForms(empties, fls) {
 // ἰχθύς - ἰχθύος
 // σκηνῇ дает три варианта, два лишних
 // if (q.var == 'ah') return // это зачем?
-
-function nQuery(d, q, exact = false) {
-    let nquery = {dict: d.dict, id: d._id, pos: d.pos}
-    if (d.pos != 'name') return
-    // log('HORSE', orthos.plain(q.query), '---', orthos.plain(d.dict))
-    if (orthos.plain(q.query) != orthos.plain(d.dict)) return
-    if (!d.var.split('--').includes(q.var)) return
-    // log('H G', d.gend, '---', q.gend)
-    if (d.gend && !d.gend.includes(q.gend)) return
-    let morph = {gend: q.gend, numcase: q.numcase} // , q: q
-    if (!nquery.morphs) nquery.morphs = [morph]
-    else nquery.morphs.push(morph)
-    nquery.idx = q.idx
-    nquery.form = q.form
-    nquery.trn = d.trn
-}
 
 function trueQueries(queries, dicts) {
     let addedForms = [];
@@ -241,12 +225,13 @@ function trueQueries(queries, dicts) {
         names.forEach(function(q) {
             if (d.pos != 'name') return
             // тут - παλαιῶν -либо добавить в lsdict, кроме 'os-a-on' еще и 'h', поскольку dict=os находится в h
-            // либо вообще var не сравнивать - это пока,
-            // либо как-то выкручиваться здесь
-            // if (!d.var.split('--').includes(q.var)) return
-            // log('H G', d.gend, '---', q.gend)
+            // либо вообще var не сравнивать - нельзя - ἀγαθός, etc - много лишнего из-за s-dos
+            // однако παλαιῶν проходит по -os-
+            // отвалится на прилагательном женского-среднего рода
+            if (!d.var.split('--').includes(q.var)) return
+
             if (d.gend && !d.gend.includes(q.gend)) return
-            let morph = {gend: q.gend, numcase: q.numcase} // , q: q
+            let morph = {gend: q.gend, numcase: q.numcase} // , flex: q.flex - это оставлять нельзя из-за conform - там строки
             if (!nquery.morphs) nquery.morphs = [morph]
             else nquery.morphs.push(morph)
             nquery.idx = q.idx
@@ -347,6 +332,7 @@ function queryTerms(sentence) {
                 log('TTS', terms)
                 // let terms = _.select(allterms, function(term) { return term.gend || term.mod})
                 // term.form всегда одна, конечных форм м.б. несколько
+                // ан, нет - τοῦ - артикль и int.pron - что делать?
                 let term = terms[0]
                 let query
                 if (terms.length == 0) {
