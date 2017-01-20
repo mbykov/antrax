@@ -228,9 +228,10 @@ function trueQueries(queries, dicts) {
             // либо вообще var не сравнивать - нельзя - ἀγαθός, etc - много лишнего из-за s-dos
             // однако παλαιῶν проходит по -os-
             // отвалится на прилагательном женского-среднего рода
+            // log('DVAR', d.var.split('--'), q.var, d.var.split('--').includes(q.var), q.flex)
             if (!d.var.split('--').includes(q.var)) return
-
             if (d.gend && !d.gend.includes(q.gend)) return
+
             let morph = {gend: q.gend, numcase: q.numcase} // , flex: q.flex - это оставлять нельзя из-за conform - там строки
             if (!nquery.morphs) nquery.morphs = [morph]
             else nquery.morphs.push(morph)
