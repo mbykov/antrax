@@ -232,7 +232,7 @@ function trueQueries(queries, dicts) {
             if (!d.var.split('--').includes(q.var)) return
             if (d.gend && !d.gend.includes(q.gend)) return
 
-            let morph = {gend: q.gend, numcase: q.numcase} // , flex: q.flex - это оставлять нельзя из-за conform - там строки
+            let morph = {gend: q.gend, numcase: q.numcase } // , flex: q.flex - это оставлять нельзя из-за conform - там строки !!!!
             if (!nquery.morphs) nquery.morphs = [morph]
             else nquery.morphs.push(morph)
             nquery.idx = q.idx
