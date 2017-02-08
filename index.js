@@ -11,12 +11,13 @@ let path = require('path');
 let orthos = require('../orthos');
 
 let PouchDB = require('pouchdb-browser');
-let db_term = new PouchDB('gr-terms')
+// let db_term = new PouchDB('gr-terms')
 let db_flex = new PouchDB('flex')
-let db_dict = new PouchDB('gr-dicts')
+// let db_dict = new PouchDB('gr-dicts')
+let db = new PouchDB('greek')
 
 // replicateDB('flex')
-// replicateDB('gr-terms')
+replicateDB('greek')
 // replicateDB('gr-dicts')
 
 // destroyDB(db_term)
@@ -55,15 +56,21 @@ function parseClause(str, num) {
     let keys = str.split(' ')
     let current = str.split(' ')[num];
     if (!current) current = 0
-    let plain, form
+    let plain, form, accents
     keys.forEach(function(key, idx) {
         form = orthos.toComb(key)
         plain = orthos.plain(form)
+        accents = form.length - plain.length
+        if (accents > 1) form = orthos.correctAccent(form)
         let word = {idx: idx, form: form, plain: plain, raw: key, dicts: []}
         if (idx == num) word.current = true
         words.push(word)
     })
     return words
+}
+
+function removeLastAccent(form) {
+    log('ACCENTS', orthos.accents.peris)
 }
 
 antrax.prototype.query = function(str, num, cb) {
@@ -81,6 +88,8 @@ function queryPromise(words, cb) {
         getAllFlex()
     ]).then(function (res) {
         log('main r1 CLAUSE', res[0])
+        if (res[0].length == 1) log('main r1 CLAUSE DICT', res[0][0].dicts)
+
         main(res[0], res[1], function(clause) {
             // log('main clause', clause)
             cb(clause)
@@ -93,32 +102,38 @@ function queryPromise(words, cb) {
 function main(clause, fls, cb) {
     // let keys = sentence.split(' ')
     // let ukeys = _.uniq(keys)
+    let indecls = _.select(clause, function(row) { return row.indecl })
     let empties = _.select(clause, function(row) { return !row.indecl })
     log('Empties', empties);
-    let possibleForms = parsePossibleForms(empties, fls);
-    log('Poss-Form-queries', possibleForms);
+    let possibleFlex = parsePossibleForms(empties, fls);
+    log('Poss-Form-queries', possibleFlex.length);
 
-    // δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα.
-    // λέγω
-    // ἐπιβάλλουσι
+    //  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
+    // τοιαύτη, τοιοῦτο, τοιοῦτον ;;; ὀνόματι
 
     // let terms = _.select(rows, function(row) { return row.type == 'term' })
     // let ffs = _.select(rows, function(row) { return row.type == 'form' }) // FFS
     // log('main TERMS', terms)
     // log('main FFS', ffs)
-    //
-    queryDicts(possibleForms).then(function(dicts) {
-        // <<< ======= теперь залить полученные dicts в word.dicts
-        let addedForms = trueQueries(possibleForms, dicts);
+    // let tqueries = _.uniq(indecls.map(function(indecl) { return indecl.form }))
+    let qqueries = _.uniq(possibleFlex.map(function(q) { return q.query }))
+    let plains = _.uniq(qqueries.map(function(key) { return orthos.plain(key)}))
+    // let keys = tqueries.concat(plains)
+    log('MAIN KEY-PLAINS', plains)
+
+    queryDicts(plains).then(function(dicts) {
+        log('DICTS:::', dicts);
+        let addedForms = trueQueries(possibleFlex, dicts);
         log('addedForms:::', addedForms);
         cb({})
         return
-        let words = terms.concat(ffs).concat(addedForms); // concat(empties).
+
+        // let words = terms.concat(ffs).concat(addedForms); // concat(empties).
         // log('antrax-words:', words)
-        let clause = compact(keys, terms, ffs, addedForms)
-        log('==antr-CLAUSE==', clause)
+        // let clause = compact(keys, terms, ffs, addedForms)
+        // log('==antr-CLAUSE==', clause)
         // let clause = _.groupBy(words, 'idx' )
-        cb(clause)
+        // cb(clause)
     }).catch(function (err) {
         log('ERR DICTS', err);
     });
@@ -134,12 +149,13 @@ function main_old(sentence, rows, fls, cb) {
     let ffs = _.select(rows, function(row) { return row.type == 'form' }) // FFS
     // log('main TERMS', terms)
     // log('main FFS', ffs)
-    let possibleForms = parsePossibleForms(empties, fls);
-    // log('Poss-Form-queries', possibleForms);
+    let possibleFlex = parsePossibleForms(empties, fls);
+    // log('Poss-Form-queries', possibleFlex);
     //
-    queryDicts(possibleForms).then(function(dicts) {
-        // выбрать из possibleForms найденные
-        let addedForms = trueQueries(possibleForms, dicts);
+
+    queryDicts(possibleFlex).then(function(dicts) {
+        // выбрать из possibleFlex найденные
+        let addedForms = trueQueries(possibleFlex, dicts);
         log('addedForms:::', addedForms);
         let words = terms.concat(ffs).concat(addedForms); // concat(empties).
         // log('antrax-words:', words)
@@ -312,7 +328,25 @@ function trueQueries(queries, dicts) {
     return addedForms
 }
 
-function queryDicts(queries) {
+function queryDicts(keys) {
+    // log('DICT KEYS', keys)
+    return new Promise(function(resolve, reject) {
+        db.query('term/byPlain', {
+            keys: keys,
+            include_docs: true
+        }).then(function (res) {
+            if (!res || !res.rows) throw new Error('no dict result')
+            let dicts = res.rows.map(function(row) {return row.doc })
+            log('Q DICTS RES', dicts)
+            resolve(dicts)
+        }).catch(function (err) {
+            log('Q DICTS REJECT', err)
+            reject(err)
+        })
+    })
+}
+
+function queryDicts_old(queries) {
     // let keys = _.uniq(queries.map(function(q) { return (q.type == 'term') ? q.form : q.query }))
     // terms здесь не может быть
     let keys = _.uniq(queries.map(function(q) { return q.query }))
@@ -342,9 +376,9 @@ function queryDicts(queries) {
 function queryTerms(words) {
     let keys = words.map(function(word) { return word.form})
     let ukeys = _.uniq(keys)
-    log('UKEYS', ukeys)
+    log('UKEYS', ukeys.toString())
     return new Promise(function(resolve, reject) {
-        db_term.query('term/byForm', {
+        db.query('term/byForm', {
             keys: ukeys
             // include_docs: true
         }).then(function (res) {
