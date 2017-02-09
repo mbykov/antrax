@@ -99,11 +99,12 @@ function queryPromise(words, cb) {
     })
 }
 
-function main(clause, fls, cb) {
+function main(words, fls, cb) {
     // let keys = sentence.split(' ')
     // let ukeys = _.uniq(keys)
-    let indecls = _.select(clause, function(row) { return row.indecl })
-    let empties = _.select(clause, function(row) { return !row.indecl })
+    // log('MAIN CLAUSE', words)
+    let indecls = _.select(words, function(row) { return row.indecl })
+    let empties = _.select(words, function(row) { return !row.indecl })
     log('Empties', empties);
     let possibleFlex = parsePossibleForms(empties, fls);
     log('Poss-Form-queries', possibleFlex.length);
@@ -115,15 +116,22 @@ function main(clause, fls, cb) {
     // let ffs = _.select(rows, function(row) { return row.type == 'form' }) // FFS
     // log('main TERMS', terms)
     // log('main FFS', ffs)
-    // let tqueries = _.uniq(indecls.map(function(indecl) { return indecl.form }))
+    let tqueries = []
+    indecls.forEach(function(ind) {
+        let dd = ind.dicts.map(function(d) { return d.dict})
+        tqueries = tqueries.concat(dd)
+        // log('DD', dd)
+    })
+    log('INDECLS', indecls)
+    // allkeys - для term, включая indecl, полная форма, для possible - plain
     let qqueries = _.uniq(possibleFlex.map(function(q) { return q.query }))
     let plains = _.uniq(qqueries.map(function(key) { return orthos.plain(key)}))
-    // let keys = tqueries.concat(plains)
-    log('MAIN KEY-PLAINS', plains)
+    let allkeys = tqueries.concat(plains)
+    log('MAIN KEY-PLAINS', tqueries, qqueries, plains, allkeys)
 
-    queryDicts(plains).then(function(dicts) {
+    queryDicts(allkeys).then(function(dicts) {
         log('DICTS:::', dicts);
-        let addedForms = trueQueries(possibleFlex, dicts);
+        let addedForms = parseAddedForms(possibleFlex, dicts);
         log('addedForms:::', addedForms);
         cb({})
         return
@@ -134,35 +142,6 @@ function main(clause, fls, cb) {
         // log('==antr-CLAUSE==', clause)
         // let clause = _.groupBy(words, 'idx' )
         // cb(clause)
-    }).catch(function (err) {
-        log('ERR DICTS', err);
-    });
-}
-
-function main_old(sentence, rows, fls, cb) {
-    let keys = sentence.split(' ')
-    // let ukeys = _.uniq(keys)
-    // log('UKEYS', ukeys)
-    let empties = _.select(rows, function(row) { return row.empty })
-    log('Empties', empties);
-    let terms = _.select(rows, function(row) { return row.type == 'term' })
-    let ffs = _.select(rows, function(row) { return row.type == 'form' }) // FFS
-    // log('main TERMS', terms)
-    // log('main FFS', ffs)
-    let possibleFlex = parsePossibleForms(empties, fls);
-    // log('Poss-Form-queries', possibleFlex);
-    //
-
-    queryDicts(possibleFlex).then(function(dicts) {
-        // выбрать из possibleFlex найденные
-        let addedForms = trueQueries(possibleFlex, dicts);
-        log('addedForms:::', addedForms);
-        let words = terms.concat(ffs).concat(addedForms); // concat(empties).
-        // log('antrax-words:', words)
-        let clause = compact(keys, terms, ffs, addedForms)
-        log('==antr-CLAUSE==', clause)
-        // let clause = _.groupBy(words, 'idx' )
-        cb(clause)
     }).catch(function (err) {
         log('ERR DICTS', err);
     });
@@ -253,7 +232,7 @@ function parsePossibleForms(empties, fls) {
 // σκηνῇ дает три варианта, два лишних
 // if (q.var == 'ah') return // это зачем?
 
-function trueQueries(queries, dicts) {
+function parseAddedForms(queries, dicts) {
     let addedForms = [];
     let qnames = []
     let qverbs = []
@@ -346,29 +325,29 @@ function queryDicts(keys) {
     })
 }
 
-function queryDicts_old(queries) {
-    // let keys = _.uniq(queries.map(function(q) { return (q.type == 'term') ? q.form : q.query }))
-    // terms здесь не может быть
-    let keys = _.uniq(queries.map(function(q) { return q.query }))
-    let plains = _.uniq(keys.map(function(key) { return orthos.plain(key)}))
-    // log('DICT KEYS', keys)
-    log('DICT Plains:', plains)
-    return new Promise(function(resolve, reject) {
-        db_dict.query('lsdict/byPlain', {
-            keys: plains,
-            include_docs: true
-        }).then(function (res) {
-            if (!res || !res.rows) throw new Error('no dict result')
-            // let dicts = res.rows.map(function(row) {return Object.assign({}, {dict: row.key}, row.value) })
-            let dicts = res.rows.map(function(row) {return row.doc })
-            log('Q DICTS RES', dicts)
-            resolve(dicts)
-        }).catch(function (err) {
-            log('Q DICTS REJECT', err)
-            reject(err)
-        });
-    });
-}
+// function queryDicts_old(queries) {
+//     // let keys = _.uniq(queries.map(function(q) { return (q.type == 'term') ? q.form : q.query }))
+//     // terms здесь не может быть
+//     let keys = _.uniq(queries.map(function(q) { return q.query }))
+//     let plains = _.uniq(keys.map(function(key) { return orthos.plain(key)}))
+//     // log('DICT KEYS', keys)
+//     log('DICT Plains:', plains)
+//     return new Promise(function(resolve, reject) {
+//         db_dict.query('lsdict/byPlain', {
+//             keys: plains,
+//             include_docs: true
+//         }).then(function (res) {
+//             if (!res || !res.rows) throw new Error('no dict result')
+//             // let dicts = res.rows.map(function(row) {return Object.assign({}, {dict: row.key}, row.value) })
+//             let dicts = res.rows.map(function(row) {return row.doc })
+//             log('Q DICTS RES', dicts)
+//             resolve(dicts)
+//         }).catch(function (err) {
+//             log('Q DICTS REJECT', err)
+//             reject(err)
+//         });
+//     });
+// }
 
 // δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα.
 // λέγω
@@ -378,25 +357,27 @@ function queryTerms(words) {
     let ukeys = _.uniq(keys)
     log('UKEYS', ukeys.toString())
     return new Promise(function(resolve, reject) {
-        db.query('term/byForm', {
+        db.query('term/byTerm', {
             keys: ukeys
-            // include_docs: true
+            // , include_docs: true
         }).then(function (res) {
             log('RES-TERMS', res)
             if (!res || !res.rows) throw new Error('no term result') //  || res.rows.length == 0
             let allterms = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
-            let clause = {}
+            // let clause = {}
             words.forEach(function(word, idx) {
-                let indecls = _.select(allterms, function(term) { return term.indecl && term.form == word.form})
-                let terms = _.select(allterms, function(term) { return !term.indecl && term.form == word.form})
-                let prons = _.select(allterms, function(term) { return !term.indecl && term.form == word.form && term.pos == 'pron'})
-                let arts = _.select(allterms, function(term) { return !term.indecl && term.form == word.form && term.pos == 'art'})
-                let verbs = _.select(allterms, function(term) { return !term.indecl && term.form == word.form && term.pos == 'verb'})
+                let onlyterms = _.select(allterms, function(term) { return term.form == word.form})
+                let indecls = _.select(onlyterms, function(term) { return term.indecl})
+                // compact terms by grouping morphs:
+                let terms = _.select(onlyterms, function(term) { return !term.indecl})
+                let prons = _.select(terms, function(term) { return term.pos == 'pron'})
+                let arts = _.select(terms, function(term) { return term.pos == 'art'})
+                let verbs = _.select(terms, function(term) { return term.pos == 'verb'})
                 let names // FIXME:
 
                 // word {idx, form, plain, clean, dicts=[], possible -либо- indecl}
                 // log('INDS', indecls)
-                // log('PRONS', prons)
+                log('PRONS', prons)
                 // log('ARTS', arts)
                 // let query = {idx: idx, type: 'term', form: word.form, dict: word.form, term: true}
 
@@ -404,6 +385,7 @@ function queryTerms(words) {
                     let qterm = {pos: 'pron', morphs: []}
                     prons.forEach(function(term) {
                         qterm.trn = term.trn
+                        qterm.dict = term.dict
                         let morph = {gend: term.gend, numcase: term.numcase}
                         qterm.morphs.push(morph)
                     })
@@ -413,6 +395,7 @@ function queryTerms(words) {
                     let qterm = {pos: 'art', morphs: []}
                     arts.forEach(function(term) {
                         qterm.trn = term.trn
+                        qterm.dict = term.dict
                         let morph = {gend: term.gend, numcase: term.numcase}
                         qterm.morphs.push(morph)
                     })
@@ -422,6 +405,8 @@ function queryTerms(words) {
                     let qterm = {pos: 'verb', morphs: {} }
                     verbs.forEach(function(term) {
                         qterm.trn = term.trn
+                        qterm.dict = term.dict
+                        // FIXME: WTF gend?:
                         let morph = {gend: term.gend, numcase: term.numcase}
                         if (!qterm.morphs[term.mod]) qterm.morphs[term.mod] = [term.numper]
                         else qterm.morphs[term.mod].push(term.numper)
