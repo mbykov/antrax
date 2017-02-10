@@ -89,7 +89,6 @@ function queryPromise(words, cb) {
     ]).then(function (res) {
         log('main r1 CLAUSE', res[0])
         if (res[0].length == 1) log('main r1 CLAUSE DICT', res[0][0].dicts)
-
         main(res[0], res[1], function(clause) {
             // log('main clause', clause)
             cb(clause)
@@ -99,18 +98,20 @@ function queryPromise(words, cb) {
     })
 }
 
+// ======================================================================
+//  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
+// τοιαύτη, τοιοῦτο, τοιοῦτον ;;; ὀνόματι
 function main(words, fls, cb) {
     // let keys = sentence.split(' ')
     // let ukeys = _.uniq(keys)
+    log('===============================')
     // log('MAIN CLAUSE', words)
     let indecls = _.select(words, function(row) { return row.indecl })
+    log('INDECLS', indecls)
     let empties = _.select(words, function(row) { return !row.indecl })
     log('Empties', empties);
     let possibleFlex = parsePossibleForms(empties, fls);
-    log('Poss-Form-queries', possibleFlex.length);
-
-    //  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
-    // τοιαύτη, τοιοῦτο, τοιοῦτον ;;; ὀνόματι
+    log('Poss-Form-queries', possibleFlex.length, possibleFlex[0]);
 
     // let terms = _.select(rows, function(row) { return row.type == 'term' })
     // let ffs = _.select(rows, function(row) { return row.type == 'form' }) // FFS
@@ -119,21 +120,26 @@ function main(words, fls, cb) {
     let tqueries = []
     indecls.forEach(function(ind) {
         let dd = ind.dicts.map(function(d) { return d.dict})
+        if (!dd.length) return // articles does not have dict
         tqueries = tqueries.concat(dd)
-        // log('DD', dd)
     })
-    log('INDECLS', indecls)
     // allkeys - для term, включая indecl, полная форма, для possible - plain
+    // решил, что пока не нужно - иначе выбирать из результата по gend
+    // но как же так, если косвенная форма, то значение из большого словаря не будет обнаружено.
     let qqueries = _.uniq(possibleFlex.map(function(q) { return q.query }))
     let plains = _.uniq(qqueries.map(function(key) { return orthos.plain(key)}))
-    let allkeys = tqueries.concat(plains)
-    log('MAIN KEY-PLAINS', tqueries, qqueries, plains, allkeys)
+    // let allkeys = tqueries.concat(plains)
+    // log('MAIN KEY-PLAINS', tqueries, qqueries, plains, allkeys)
+    log('MAIN KEY-PLAINS', plains)
 
-    queryDicts(allkeys).then(function(dicts) {
-        log('DICTS:::', dicts);
-        let addedForms = parseAddedForms(possibleFlex, dicts);
-        log('addedForms:::', addedForms);
-        cb({})
+    queryDicts(plains).then(function(dicts) {
+        // log('DICTS:::', dicts);
+        // log('FINAL WORDS', words)
+        dict4word(words, possibleFlex, dicts);
+        // log('addedForms:::', addedForms);
+        // <<<<<<<<<<<<<<<<<<<<<<<< HERE, вместе два словаря, и добавть utexas - indecls
+        // и вывести наружу
+        cb(words)
         return
 
         // let words = terms.concat(ffs).concat(addedForms); // concat(empties).
@@ -232,7 +238,8 @@ function parsePossibleForms(empties, fls) {
 // σκηνῇ дает три варианта, два лишних
 // if (q.var == 'ah') return // это зачем?
 
-function parseAddedForms(queries, dicts) {
+//  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
+function dict4word(words, queries, dicts) {
     let addedForms = [];
     let qnames = []
     let qverbs = []
@@ -254,8 +261,11 @@ function parseAddedForms(queries, dicts) {
             // либо вообще var не сравнивать - нельзя - ἀγαθός, etc - много лишнего из-за s-dos
             // однако παλαιῶν проходит по -os-
             // отвалится на прилагательном женского-среднего рода
+
             // log('DVAR', d.var.split('--'), q.var, d.var.split('--').includes(q.var), q.flex)
-            if (!d.var.split('--').includes(q.var)) return
+            // if (!d.var.split('--').includes(q.var)) return
+            // в Файере нет пока var <<<======= VAR !!!
+            // log('DQGEND', d.gend, q.gend)
             if (d.gend && !d.gend.includes(q.gend)) return
 
             let morph = {gend: q.gend, numcase: q.numcase } // , flex: q.flex - это оставлять нельзя из-за conform - там строки !!!!
@@ -291,14 +301,16 @@ function parseAddedForms(queries, dicts) {
             vquery.idx = q.idx
             vquery.form = q.query
             vquery.descr = q.descr
+            vquery.trn = d.trn
         })
+
         if (nquery.morphs) {
-            nquery.trn = d.trn
-            addedForms.push(nquery)
+            // nquery.trn = d.trn
+            words[nquery.idx].dicts.push(nquery)
         }
         if (vquery.morphs) {
-            vquery.trn = d.trn
-            addedForms.push(vquery)
+            // vquery.trn = d.trn
+            words[vquery.idx].dicts.push(vquery)
         }
     })
     // if (addedForms.length > 1) {
@@ -310,7 +322,7 @@ function parseAddedForms(queries, dicts) {
 function queryDicts(keys) {
     // log('DICT KEYS', keys)
     return new Promise(function(resolve, reject) {
-        db.query('term/byPlain', {
+        db.query('term/byDict', {
             keys: keys,
             include_docs: true
         }).then(function (res) {
@@ -325,33 +337,6 @@ function queryDicts(keys) {
     })
 }
 
-// function queryDicts_old(queries) {
-//     // let keys = _.uniq(queries.map(function(q) { return (q.type == 'term') ? q.form : q.query }))
-//     // terms здесь не может быть
-//     let keys = _.uniq(queries.map(function(q) { return q.query }))
-//     let plains = _.uniq(keys.map(function(key) { return orthos.plain(key)}))
-//     // log('DICT KEYS', keys)
-//     log('DICT Plains:', plains)
-//     return new Promise(function(resolve, reject) {
-//         db_dict.query('lsdict/byPlain', {
-//             keys: plains,
-//             include_docs: true
-//         }).then(function (res) {
-//             if (!res || !res.rows) throw new Error('no dict result')
-//             // let dicts = res.rows.map(function(row) {return Object.assign({}, {dict: row.key}, row.value) })
-//             let dicts = res.rows.map(function(row) {return row.doc })
-//             log('Q DICTS RES', dicts)
-//             resolve(dicts)
-//         }).catch(function (err) {
-//             log('Q DICTS REJECT', err)
-//             reject(err)
-//         });
-//     });
-// }
-
-// δηλοῖ δέ μοι καὶ τόδε τῶν παλαιῶν ἀσθένειαν οὐχ ἤκιστα.
-// λέγω
-// ἐπιβάλλουσι
 function queryTerms(words) {
     let keys = words.map(function(word) { return word.form})
     let ukeys = _.uniq(keys)
@@ -377,7 +362,7 @@ function queryTerms(words) {
 
                 // word {idx, form, plain, clean, dicts=[], possible -либо- indecl}
                 // log('INDS', indecls)
-                log('PRONS', prons)
+                // log('PRONS', prons)
                 // log('ARTS', arts)
                 // let query = {idx: idx, type: 'term', form: word.form, dict: word.form, term: true}
 
