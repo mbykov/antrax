@@ -3,7 +3,6 @@
 /*
 */
 
-
 let _ = require('underscore');
 // let path = require('path');
 let fs = require('fs');
@@ -69,10 +68,6 @@ function parseClause(str, num) {
     return words
 }
 
-function removeLastAccent(form) {
-    log('ACCENTS', orthos.accents.peris)
-}
-
 antrax.prototype.query = function(str, num, cb) {
     let words = parseClause(str, num)
     queryPromise(words, function(res) {
@@ -87,10 +82,9 @@ function queryPromise(words, cb) {
         queryTerms(words),
         getAllFlex()
     ]).then(function (res) {
-        log('main r1 CLAUSE', res[0])
-        if (res[0].length == 1) log('main r1 CLAUSE DICT', res[0][0].dicts)
+        // log('main r1 CLAUSE', res[0])
+        // if (res[0].length == 1) log('main r1 CLAUSE DICT', res[0][0].dicts)
         main(res[0], res[1], function(clause) {
-            // log('main clause', clause)
             cb(clause)
         });
     }).catch(function (err) {
@@ -136,61 +130,14 @@ function main(words, fls, cb) {
         // log('DICTS:::', dicts);
         // log('FINAL WORDS', words)
         dict4word(words, possibleFlex, dicts);
+        // expliciteMorphs(words)
         // log('addedForms:::', addedForms);
         // <<<<<<<<<<<<<<<<<<<<<<<< HERE, вместе два словаря, и добавть utexas - indecls
         // и вывести наружу
         cb(words)
-        return
-
-        // let words = terms.concat(ffs).concat(addedForms); // concat(empties).
-        // log('antrax-words:', words)
-        // let clause = compact(keys, terms, ffs, addedForms)
-        // log('==antr-CLAUSE==', clause)
-        // let clause = _.groupBy(words, 'idx' )
-        // cb(clause)
     }).catch(function (err) {
         log('ERR DICTS', err);
     });
-}
-
-function compact(keys, terms, ffs, afs) {
-    let clause = {}
-    keys.forEach(function(key, idy) {
-        // log('KEY FORM IDY', idy, key)
-        let kterms = _.select(terms, function(term) { return term.idx == idy })
-        // let kmorphs = _.select(kterms, function(term) { return ['pron', 'art', 'verb'].includes(term.pos) })
-        let kmorphs = _.select(kterms, function(term) { return term.morphs })
-        let kplains = _.select(kterms, function(term) { return !term.morphs })
-        if (kmorphs.length > 1) throw new Error('MANY TERMS!!!!')
-        let term = kmorphs[0] // only one always
-        let plain = kplains[0] // only one always
-        // теперь forms здесь нет, они все в ffs
-        // let forms = _.select(kterms, function(term) { return !['pron', 'art', 'verb'].includes(term.pos) })
-        // let forms = _.select(kterms, function(term) { return !term.morphs })
-        let kffs = _.select(ffs, function(ff) { return ff.idx == idy })
-        // let kffms = _.select(kffs, function(ff) { return ff.morphs }) // это на будущее, morphs из других ист., тесты
-        // let kffns = _.select(kffs, function(ff) { return !ff.morphs }) // plain, no-Morphs finite forms
-        // forms = forms.concat(kffs)
-        let forms = kffs
-        let kafs = _.select(afs, function(af) { return af.idx == idy })
-        let names = _.select(kafs, function(af) { return af.pos == 'name' })
-        let verbs = _.select(kafs, function(af) { return af.pos == 'verb' })
-        log('COMPACT names', names)
-        // let name = names[0]
-        // if (names.length > 1) throw new Error('MANY NAMES!!!!')
-        // let verb = verbs[0]
-        // if (verbs.length > 1) throw new Error('MANY VERBS!!!!')
-        // log('COMPACT', afs)
-        clause[idy] = {key: key}
-        // term имеет morphs, finite forms - не имеют
-        if (term) clause[idy].term = term
-        if (plain) clause[idy].plain = plain
-        if (forms.length) clause[idy].forms = forms
-        if (names.length) clause[idy].names = names
-        if (verbs.length) clause[idy].verbs = verbs
-        if (_.keys(clause[idy]).length == 1 ) clause[idy].empty = {idx: idy, form: key, empty: true }
-    })
-    return clause
 }
 
 // { flex: 'ῶν',
@@ -241,21 +188,23 @@ function parsePossibleForms(empties, fls) {
 //  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
 function dict4word(words, queries, dicts) {
     let addedForms = [];
-    let qnames = []
+    let qqnames = []
     let qverbs = []
     let qparts = []
     queries.forEach(function(q) {
-        if (q.pos == 'name') qnames.push(q)
+        if (q.pos == 'name') qqnames.push(q)
         if (q.pos == 'part') qparts.push(q)
         if (q.pos == 'verb') qverbs.push(q)
     })
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     dicts.forEach(function(d) {
-        let nquery = {dict: d.dict, id: d._id, pos: d.pos}
-        let vquery = {dict: d.dict, id: d._id, pos: d.pos}
-        let qnstricts = _.select(qnames, function(q) { return q.query == d.dict })
-        let names = (qnstricts.length) ? qnstricts : _.select(qnames, function(q) { return orthos.plain(q.query) == orthos.plain(d.dict) })
-        names.forEach(function(q) {
+        let nquery = {type: d.type, dict: d.dict, id: d._id, pos: d.pos} // FIXME: _id не нужен
+        let vquery = {type: d.type, dict: d.dict, id: d._id, pos: d.pos}
+
+        let qnstricts = _.select(qqnames, function(q) { return q.query == d.dict })
+        let qnames = (qnstricts.length) ? qnstricts : _.select(qqnames, function(q) { return orthos.plain(q.query) == orthos.plain(d.dict) })
+
+        qnames.forEach(function(q) {
             if (d.pos != 'name') return
             // тут - παλαιῶν -либо добавить в lsdict, кроме 'os-a-on' еще и 'h', поскольку dict=os находится в h
             // либо вообще var не сравнивать - нельзя - ἀγαθός, etc - много лишнего из-за s-dos
@@ -265,6 +214,7 @@ function dict4word(words, queries, dicts) {
             // log('DVAR', d.var.split('--'), q.var, d.var.split('--').includes(q.var), q.flex)
             // if (!d.var.split('--').includes(q.var)) return
             // в Файере нет пока var <<<======= VAR !!!
+            // =========================================== ИЩУ ПРИМЕР ЛИШНЕГО ЗНАЧЕНИЯ БЕЗ VAR
             // log('DQGEND', d.gend, q.gend)
             if (d.gend && !d.gend.includes(q.gend)) return
 
@@ -318,6 +268,18 @@ function dict4word(words, queries, dicts) {
     // }
     return addedForms
 }
+
+// так нельзя - м.б. один name, из LS - но два dict, adj и noun, или вообще name и verb
+//
+// function expliciteMorphs (words) {
+//     words.forEach(function(word) {
+//         if (word.indecl) return
+//         let lsdict = _.find(word.dicts, function(dict) { return dict.type == 'ls'})
+//         let morphs = (lsdict) ? lsdict.morphs : words.dicts[0].morphs
+//         word.morphs = morphs
+//     })
+// }
+
 
 function queryDicts(keys) {
     // log('DICT KEYS', keys)
