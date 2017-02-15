@@ -10,14 +10,14 @@ let path = require('path');
 let orthos = require('../orthos');
 
 let PouchDB = require('pouchdb-browser');
-let db_flex = new PouchDB('flex')
+let db_flex = new PouchDB('gr-flex')
 let db = new PouchDB('greek')
 
 // destroyDB(db)
 // destroyDB(db_flex)
 // return
 
-replicateDB('flex')
+replicateDB('gr-flex')
 replicateDB('greek')
 
 function destroyDB(db) {
