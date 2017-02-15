@@ -10,18 +10,15 @@ let path = require('path');
 let orthos = require('../orthos');
 
 let PouchDB = require('pouchdb-browser');
-// let db_term = new PouchDB('gr-terms')
 let db_flex = new PouchDB('flex')
-// let db_dict = new PouchDB('gr-dicts')
 let db = new PouchDB('greek')
 
-// replicateDB('flex')
-replicateDB('greek')
-// replicateDB('gr-dicts')
-
-// destroyDB(db_term)
-// destroyDB(db_dict)
+// destroyDB(db)
+// destroyDB(db_flex)
 // return
+
+replicateDB('flex')
+replicateDB('greek')
 
 function destroyDB(db) {
     db.destroy().then(function (response) {
@@ -156,6 +153,9 @@ function parsePossibleForms(empties, fls) {
         fls.forEach(function(flex) {
             if (flex.flex != row.form.slice(-flex.flex.length)) return;
             let stem = row.form.slice(0, -flex.flex.length);
+            let last = stem.slice(-1)
+            let last2 = stem.slice(-2)
+            if (['ε', 'ι', 'ρ']. includes(last) && flex.var == 'h') return
             let query = [stem, flex.dict].join('');
             let word
             if (flex.pos == 'verb') {
@@ -185,6 +185,17 @@ function parsePossibleForms(empties, fls) {
 // σκηνῇ дает три варианта, два лишних
 // if (q.var == 'ah') return // это зачем?
 
+function notInException(d, q) {
+    // но - тут подставляется gend из flex, т.е. masc - а в словаре fem. как быть?
+    let osEx = ['ὁδός', '']
+    if (q.var == 'os' && osEx.includes(d.dict)) {
+        q.gend = d.gend[0]
+        return false
+    }
+    else return true
+}
+
+
 //  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
 function dict4word(words, queries, dicts) {
     let addedForms = [];
@@ -212,13 +223,13 @@ function dict4word(words, queries, dicts) {
             // отвалится на прилагательном женского-среднего рода
 
             // log('DVAR', d.var.split('--'), q.var, d.var.split('--').includes(q.var), q.flex)
-            // if (!d.var.split('--').includes(q.var)) return
+            if (d.var && !d.var.split('--').includes(q.var)) return
             // в Файере нет пока var <<<======= VAR !!!
             // =========================================== ИЩУ ПРИМЕР ЛИШНЕГО ЗНАЧЕНИЯ БЕЗ VAR
             // log('DQGEND', d.gend, q.gend)
-            if (d.gend && !d.gend.includes(q.gend)) return
+            if (notInException(d, q) && d.gend && !d.gend.includes(q.gend)) return
 
-            let morph = {gend: q.gend, numcase: q.numcase } // , flex: q.flex - это оставлять нельзя из-за conform - там строки !!!!
+            let morph = {gend: q.gend, numcase: q.numcase, flex: q.flex } // , flex: q.flex - это оставлять нельзя из-за conform - там строки !!!!
             if (!nquery.morphs) nquery.morphs = [morph]
             else nquery.morphs.push(morph)
             nquery.idx = q.idx
@@ -284,7 +295,7 @@ function dict4word(words, queries, dicts) {
 function queryDicts(keys) {
     // log('DICT KEYS', keys)
     return new Promise(function(resolve, reject) {
-        db.query('term/byDict', {
+        db.query('greek/byDict', {
             keys: keys,
             include_docs: true
         }).then(function (res) {
@@ -304,7 +315,7 @@ function queryTerms(words) {
     let ukeys = _.uniq(keys)
     log('UKEYS', ukeys.toString())
     return new Promise(function(resolve, reject) {
-        db.query('term/byTerm', {
+        db.query('greek/byTerm', {
             keys: ukeys
             // , include_docs: true
         }).then(function (res) {
@@ -320,7 +331,7 @@ function queryTerms(words) {
                 let prons = _.select(terms, function(term) { return term.pos == 'pron'})
                 let arts = _.select(terms, function(term) { return term.pos == 'art'})
                 let verbs = _.select(terms, function(term) { return term.pos == 'verb'})
-                let names // FIXME:
+                let names = _.select(terms, function(term) { return term.pos == 'name'})
 
                 // word {idx, form, plain, clean, dicts=[], possible -либо- indecl}
                 // log('INDS', indecls)
@@ -331,6 +342,16 @@ function queryTerms(words) {
                 if (prons.length) {
                     let qterm = {pos: 'pron', morphs: []}
                     prons.forEach(function(term) {
+                        qterm.trn = term.trn
+                        qterm.dict = term.dict
+                        let morph = {gend: term.gend, numcase: term.numcase}
+                        qterm.morphs.push(morph)
+                    })
+                    word.dicts.push(qterm)
+                }
+                if (names.length) {
+                    let qterm = {pos: 'name', morphs: []}
+                    names.forEach(function(term) {
                         qterm.trn = term.trn
                         qterm.dict = term.dict
                         let morph = {gend: term.gend, numcase: term.numcase}
