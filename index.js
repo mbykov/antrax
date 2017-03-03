@@ -13,8 +13,8 @@ let PouchDB = require('pouchdb-browser');
 let db_flex = new PouchDB('gr-flex')
 let db = new PouchDB('greek')
 
-// destroyDB(db)
 // destroyDB(db_flex)
+// destroyDB(db)
 // return
 
 replicateDB('gr-flex')
@@ -55,6 +55,7 @@ function parseClause(str, num) {
     let plain, form, accents
     keys.forEach(function(key, idx) {
         form = orthos.toComb(key)
+        form = form.replace('ττ', 'σσ') // TALASSA
         plain = orthos.plain(form)
         accents = form.length - plain.length
         if (accents > 1) form = orthos.correctAccent(form)
@@ -93,14 +94,12 @@ function queryPromise(words, cb) {
 //  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
 // τοιαύτη, τοιοῦτο, τοιοῦτον ;;; ὀνόματι
 function main(words, fls, cb) {
-    // let keys = sentence.split(' ')
-    // let ukeys = _.uniq(keys)
-    log('===============================')
-    // log('MAIN CLAUSE', words)
+    // log('=============')
     let indecls = _.select(words, function(row) { return row.indecl })
     log('INDECLS', indecls)
     let empties = _.select(words, function(row) { return !row.indecl })
     log('Empties', empties);
+    // хорошо бы possFlex сразу раскладывать по words, кстати
     let possibleFlex = parsePossibleForms(empties, fls);
     log('Poss-Form-queries', possibleFlex.length, possibleFlex[0]);
 
@@ -146,34 +145,40 @@ function main(words, fls, cb) {
 //   dict: 'ᾶ',
 //   size: 3,
 //   type: 'greek-flex' },
+// =================================================
+// καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
+
 
 function parsePossibleForms(empties, fls) {
-    let queries = [];
+    let forms = [];
     empties.forEach(function(row) {
         fls.forEach(function(flex) {
-            if (flex.flex != row.form.slice(-flex.flex.length)) return;
-            let stem = row.form.slice(0, -flex.flex.length);
+            if (flex._id != row.form.slice(-flex._id.length)) return;
+            let stem = row.form.slice(0, -flex._id.length);
             let last = stem.slice(-1)
-            let last2 = stem.slice(-2)
-            if (['ε', 'ι', 'ρ']. includes(last) && flex.var == 'h') return
-            let query = [stem, flex.dict].join('');
-            let word
-            if (flex.pos == 'verb') {
-                // log('FLEX VERB', flex.pos, flex.var, flex.numpers)
-                if (query.slice(0,2) == 'ἐ' && /impf/.test(flex.descr)) {
-                    query = query.slice(2)
-                } else if (/impf/.test(flex.descr)) {
-                    return
+            // let last2 = stem.slice(-2)
+            flex.morphs.forEach(function(morph) {
+                let query = [stem, morph.dict].join('');
+                let form
+                if (morph.pos == 'verb') {
+                    // log('FLEX VERB', morph.pos, morph.var, morph.numpers)
+                    // if (query.slice(0,2) == 'ἐ' && /impf/.test(morph.descr)) {
+                    //     query = query.slice(2)
+                    // } else if (/impf/.test(morph.descr)) {
+                    //     return
+                    // }
+                    // form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, numpers: morph.numpers, var: morph.var, descr: morph.descr}
+                } else {
+                    // log('FLEX NAME', flex)
+                    // if (['ε', 'ι', 'ρ']. includes(last) && flex.var == 'h') return // TODO:
+                    form = {idx: row.idx, pos: 'name', query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, flex: flex} // , flex: flex
                 }
-                word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, numpers: flex.numpers, var: flex.var, descr: flex.descr}
-            } else {
-                // log('FLEX NAME', flex)
-                word = {idx: row.idx, pos: flex.pos, query: query, stem: stem, form: row.form, gend: flex.gend, numcase: flex.numcase, var: flex.var, flex: flex} // , flex: flex
-            }
-            queries.push(word)
-        });
-    });
-    return queries;
+                forms.push(form)
+
+            })
+        })
+    })
+    return forms;
 }
 
 // gend - нужен
@@ -185,15 +190,15 @@ function parsePossibleForms(empties, fls) {
 // σκηνῇ дает три варианта, два лишних
 // if (q.var == 'ah') return // это зачем?
 
-function notInException(d, q) {
-    // но - тут подставляется gend из flex, т.е. masc - а в словаре fem. как быть?
-    let osEx = ['ὁδός', '']
-    if (q.var == 'os' && osEx.includes(d.dict)) {
-        q.gend = d.gend[0]
-        return false
-    }
-    else return true
-}
+// function notInException(d, q) {
+//     // но - тут подставляется gend из flex, т.е. masc - а в словаре fem. как быть?
+//     let osEx = ['ὁδός', '']
+//     if (q.var == 'os' && osEx.includes(d.dict)) {
+//         q.gend = d.gend[0]
+//         return false
+//     }
+//     else return true
+// }
 
 
 //  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
@@ -209,32 +214,39 @@ function dict4word(words, queries, dicts) {
     })
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     dicts.forEach(function(d) {
-        let nquery = {type: d.type, dict: d.dict, id: d._id, pos: d.pos} // FIXME: _id не нужен
-        let vquery = {type: d.type, dict: d.dict, id: d._id, pos: d.pos}
+        let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []} // FIXME: _id не нужен - id: d._id,
+        let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []}
 
         let qnstricts = _.select(qqnames, function(q) { return q.query == d.dict })
         let qnames = (qnstricts.length) ? qnstricts : _.select(qqnames, function(q) { return orthos.plain(q.query) == orthos.plain(d.dict) })
 
+        // let word = {idx: idx, form: form, plain: plain, raw: key, dicts: []}
         qnames.forEach(function(q) {
-            if (d.pos != 'name') return
-            // тут - παλαιῶν -либо добавить в lsdict, кроме 'os-a-on' еще и 'h', поскольку dict=os находится в h
-            // либо вообще var не сравнивать - нельзя - ἀγαθός, etc - много лишнего из-за s-dos
-            // однако παλαιῶν проходит по -os-
-            // отвалится на прилагательном женского-среднего рода
+            // if (d.pos != 'name') return
+            log('DVAR', d.var, d.var.split('--'), 'QVAR', q.var, '??', d.var.split('--').includes(q.var)) // 'FLEX', q.flex
+            if (!d.var) throw new Error('NO NAME VAR')
+            // if (!d.var.split('--').includes(q.var)) return
+            if (d.var != q.var) return
+            if (d.gend) {
+                log('DGEND', d.gend, 'QGEND', q.gend)
+                // if (d.gend && !d.gend.includes(q.gend)) return
+                if (d.gend != q.gend) return // в dict проверить gend - это всегда д.б. массив
+            }
+            else {
+                // двух окончаний - fem не проходит:
+                if (d.term == 2 && q.gend == 'fem') return
+                // term=3 и простой var (ous) == здесь fem, если есть, пролез
+                let morph = {gend: q.gend, numcase: q.numcase} // , flex: q.flex - это оставлять нельзя из-за conform - там строки !!!!
+                nquery.morphs.push(morph)
+                if (d.term == 2 && q.gend == 'masc') {
+                    let femorph = {gend: 'fem', numcase: q.numcase}
+                    nquery.morphs.push(femorph)
+                }
+            }
 
-            // log('DVAR', d.var.split('--'), q.var, d.var.split('--').includes(q.var), q.flex)
-            if (d.var && !d.var.split('--').includes(q.var)) return
-            // в Файере нет пока var <<<======= VAR !!!
-            // =========================================== ИЩУ ПРИМЕР ЛИШНЕГО ЗНАЧЕНИЯ БЕЗ VAR
-            // log('DQGEND', d.gend, q.gend)
-            if (notInException(d, q) && d.gend && !d.gend.includes(q.gend)) return
-
-            let morph = {gend: q.gend, numcase: q.numcase, flex: q.flex } // , flex: q.flex - это оставлять нельзя из-за conform - там строки !!!!
-            if (!nquery.morphs) nquery.morphs = [morph]
-            else nquery.morphs.push(morph)
             nquery.idx = q.idx
-            nquery.form = q.form
-            nquery.trn = d.trn
+            nquery.form = q.form // это же просто word??
+            log('NQUERY:', nquery)
         })
 
         qparts.forEach(function(q) {
@@ -262,7 +274,6 @@ function dict4word(words, queries, dicts) {
             vquery.idx = q.idx
             vquery.form = q.query
             vquery.descr = q.descr
-            vquery.trn = d.trn
         })
 
         if (nquery.morphs) {
@@ -313,7 +324,7 @@ function queryDicts(keys) {
 function queryTerms(words) {
     let keys = words.map(function(word) { return word.form})
     let ukeys = _.uniq(keys)
-    log('UKEYS', ukeys.toString())
+    log('==UKEYS==', ukeys.toString())
     return new Promise(function(resolve, reject) {
         db.query('greek/byTerm', {
             keys: ukeys
@@ -395,15 +406,15 @@ function queryTerms(words) {
 
 function getAllFlex() {
     return new Promise(function(resolve, reject) {
-        db_flex.query('flex/byFlex', {
+        // db_flex.query('flex/byFlex', {
+        db_flex.allDocs({
             // keys: tails
-            // include_docs: true
+            include_docs: true
         }).then(function (res) {
-            if (!res || !res.rows) throw new Error('no result') //  || res.rows.length == 0
-            let flexes = res.rows.map(function(row) {return Object.assign({}, {flex: row.key}, row.value) })
+            if (!res || !res.rows) throw new Error('no result')
+            // let flexes = res.rows.map(function(row) {return Object.assign({}, {flex: row.key}, row.value) })
+            let flexes = res.rows.map(function(row) {return row.doc })
             // log('FLEXES', flexes.length)
-            // let docs = res.rows.map(function(row) {return row.doc;})
-            log('FLEXES', flexes.length)
             resolve(flexes)
         }).catch(function (err) {
             log('ERR ALL FLEX', err)
