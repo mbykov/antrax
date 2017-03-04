@@ -114,7 +114,7 @@ function main(words, fls, cb) {
         tqueries = tqueries.concat(dd)
     })
     // allkeys - для term, включая indecl, полная форма, для possible - plain
-    // решил, что пока не нужно - иначе выбирать из результата по gend
+    // решил, что пока не нужно - иначе выбирать из результата по gnd
     // но как же так, если косвенная форма, то значение из большого словаря не будет обнаружено.
     let qqueries = _.uniq(possibleFlex.map(function(q) { return q.query }))
     let plains = _.uniq(qqueries.map(function(key) { return orthos.plain(key)}))
@@ -137,7 +137,7 @@ function main(words, fls, cb) {
 }
 
 // { flex: 'ῶν',
-//   gend: 'masc',
+//   gnd: 'masc',
 //   numcase: 'pl.gen',
 //   descr: 'prima',
 //   var: 'a-cont',
@@ -169,9 +169,9 @@ function parsePossibleForms(empties, fls) {
                     // }
                     // form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, numpers: morph.numpers, var: morph.var, descr: morph.descr}
                 } else {
-                    // log('FLEX NAME', flex)
+                    log('pFLEX', flex)
                     // if (['ε', 'ι', 'ρ']. includes(last) && flex.var == 'h') return // TODO:
-                    form = {idx: row.idx, pos: 'name', query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, flex: flex} // , flex: flex
+                    form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, flex: flex} // , flex: flex
                 }
                 forms.push(form)
 
@@ -181,7 +181,7 @@ function parsePossibleForms(empties, fls) {
     return forms;
 }
 
-// gend - нужен
+// gnd - нужен
 // FIXME: тут может меняться форма ударения в кос. падежах: πῆχυς-πήχεως
 // и м.б. лишние решения. Найти и избавиться
 // и то же с родом
@@ -189,16 +189,6 @@ function parsePossibleForms(empties, fls) {
 // ἰχθύς - ἰχθύος
 // σκηνῇ дает три варианта, два лишних
 // if (q.var == 'ah') return // это зачем?
-
-// function notInException(d, q) {
-//     // но - тут подставляется gend из flex, т.е. masc - а в словаре fem. как быть?
-//     let osEx = ['ὁδός', '']
-//     if (q.var == 'os' && osEx.includes(d.dict)) {
-//         q.gend = d.gend[0]
-//         return false
-//     }
-//     else return true
-// }
 
 
 //  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
@@ -212,6 +202,7 @@ function dict4word(words, queries, dicts) {
         if (q.pos == 'part') qparts.push(q)
         if (q.pos == 'verb') qverbs.push(q)
     })
+    // log('QPARTS', qparts)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     dicts.forEach(function(d) {
         let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []} // FIXME: _id не нужен - id: d._id,
@@ -222,28 +213,35 @@ function dict4word(words, queries, dicts) {
 
         // let word = {idx: idx, form: form, plain: plain, raw: key, dicts: []}
         qnames.forEach(function(q) {
-            // if (d.pos != 'name') return
-            log('DVAR', d.var, d.var.split('--'), 'QVAR', q.var, '??', d.var.split('--').includes(q.var)) // 'FLEX', q.flex
-            if (!d.var) throw new Error('NO NAME VAR')
+            if (d.pos != 'name') return
+            if (!d.var) {
+                log('NNV', d)
+                throw new Error('NO NAME VAR')
+            }
+            log('DVAR', d.var, 'QVAR', q.var) // 'FLEX', q.flex
             // if (!d.var.split('--').includes(q.var)) return
-            if (d.var != q.var) return
+            let vr2 = q.var.split(/ |, /)
+            vr2.forEach(function(vr) {
+            if (d.var != vr) return
+            let morph = {gend: q.gend, numcase: q.numcase} // , flex: q.flex - это оставлять нельзя из-за conform - там строки !!!!
             if (d.gend) {
                 log('DGEND', d.gend, 'QGEND', q.gend)
                 // if (d.gend && !d.gend.includes(q.gend)) return
                 if (d.gend != q.gend) return // в dict проверить gend - это всегда д.б. массив
+                nquery.morphs.push(morph)
             }
             else {
+                // FIXME: здесь в fem, в ous, как всегда, pl.acc-sg.gen - убрать лишнее при ier
                 // двух окончаний - fem не проходит:
                 if (d.term == 2 && q.gend == 'fem') return
                 // term=3 и простой var (ous) == здесь fem, если есть, пролез
-                let morph = {gend: q.gend, numcase: q.numcase} // , flex: q.flex - это оставлять нельзя из-за conform - там строки !!!!
                 nquery.morphs.push(morph)
                 if (d.term == 2 && q.gend == 'masc') {
                     let femorph = {gend: 'fem', numcase: q.numcase}
                     nquery.morphs.push(femorph)
                 }
             }
-
+            })
             nquery.idx = q.idx
             nquery.form = q.form // это же просто word??
             log('NQUERY:', nquery)
@@ -251,6 +249,8 @@ function dict4word(words, queries, dicts) {
 
         qparts.forEach(function(q) {
             if (d.pos != 'verb') return
+            log('PART', d)
+            log('PART', q)
             if (orthos.plain(q.query) != orthos.plain(d.dict)) return
             let morph = {gend: q.gend, numcase: q.numcase}
             if (!nquery.morphs) nquery.morphs = [morph]
@@ -276,11 +276,11 @@ function dict4word(words, queries, dicts) {
             vquery.descr = q.descr
         })
 
-        if (nquery.morphs) {
+        if (nquery.morphs.length) {
             // nquery.trn = d.trn
             words[nquery.idx].dicts.push(nquery)
         }
-        if (vquery.morphs) {
+        if (vquery.morphs.length) {
             // vquery.trn = d.trn
             words[vquery.idx].dicts.push(vquery)
         }
@@ -301,6 +301,17 @@ function dict4word(words, queries, dicts) {
 //         word.morphs = morphs
 //     })
 // }
+
+// function notInException(d, q) {
+//     // но - тут подставляется gnd из flex, т.е. masc - а в словаре fem. как быть?
+//     let osEx = ['ὁδός', '']
+//     if (q.var == 'os' && osEx.includes(d.dict)) {
+//         q.gend = d.gend[0]
+//         return false
+//     }
+//     else return true
+// }
+
 
 
 function queryDicts(keys) {
