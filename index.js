@@ -1,6 +1,4 @@
-// antrax - query simple greek
-
-/*
+/* query greek
 */
 
 let _ = require('underscore');
@@ -157,6 +155,7 @@ function parsePossibleForms(empties, fls) {
             let stem = row.form.slice(0, -flex._id.length);
             let last = stem.slice(-1)
             // let last2 = stem.slice(-2)
+            log('FLEX', flex)
             flex.morphs.forEach(function(morph) {
                 let query = [stem, morph.dict].join('');
                 let form
@@ -169,9 +168,10 @@ function parsePossibleForms(empties, fls) {
                     // }
                     // form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, numpers: morph.numpers, var: morph.var, descr: morph.descr}
                 } else {
-                    log('pFLEX', flex)
-                    // if (['ε', 'ι', 'ρ']. includes(last) && flex.var == 'h') return // TODO:
-                    form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, flex: flex} // , flex: flex
+                    // в morph-part нет var!
+                    // log('pFLEX', 'last', last, 'MVAR', morph.var, '_ID', flex._id, 'POS', morph.pos)
+                    if (!['ε', 'ι', 'ρ']. includes(last) && ['sg.gen', 'sg.dat']. includes(morph.numcase) && ['ας']. includes(flex._id)) return
+                    form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, add: morph.add, flex: flex} // , flex: flex - убрать
                 }
                 forms.push(form)
 
@@ -219,32 +219,32 @@ function dict4word(words, queries, dicts) {
                 throw new Error('NO NAME VAR')
             }
             log('DVAR', d.var, 'QVAR', q.var) // 'FLEX', q.flex
-            // if (!d.var.split('--').includes(q.var)) return
             let vr2 = q.var.split(/ |, /)
             vr2.forEach(function(vr) {
-            if (d.var != vr) return
-            let morph = {gend: q.gend, numcase: q.numcase} // , flex: q.flex - это оставлять нельзя из-за conform - там строки !!!!
-            if (d.gend) {
-                log('DGEND', d.gend, 'QGEND', q.gend)
-                // if (d.gend && !d.gend.includes(q.gend)) return
-                if (d.gend != q.gend) return // в dict проверить gend - это всегда д.б. массив
-                nquery.morphs.push(morph)
-            }
-            else {
-                // FIXME: здесь в fem, в ous, как всегда, pl.acc-sg.gen - убрать лишнее при ier
-                // двух окончаний - fem не проходит:
-                if (d.term == 2 && q.gend == 'fem') return
-                // term=3 и простой var (ous) == здесь fem, если есть, пролез
-                nquery.morphs.push(morph)
-                if (d.term == 2 && q.gend == 'masc') {
-                    let femorph = {gend: 'fem', numcase: q.numcase}
-                    nquery.morphs.push(femorph)
+                if (d.var != vr) return
+                let morph = {gend: q.gend, numcase: q.numcase} // , flex: q.flex - это оставлять нельзя из-за conform - там строки !!!!
+                if (d.gend && !q.add) {
+                    log('DGEND', d.gend, 'QGEND', q)
+                    // if (d.gend && !d.gend.includes(q.gend)) return
+                    // if (d.gend != q.gend) return // в dict проверить gend - это всегда д.б. массив
+                    morph.gend = d.gend
+                    nquery.morphs.push(morph)
                 }
-            }
+                else if (!d.gend){
+                    // FIXME: здесь в fem, в ous, как всегда, pl.acc-sg.gen - убрать лишнее при ier
+                    // двух окончаний - fem не проходит:
+                if (d.term == 2 && q.gend == 'fem') return
+                    // term=3 и простой var (ous) == здесь fem, если есть, пролез
+                    nquery.morphs.push(morph)
+                    if (d.term == 2 && q.gend == 'masc') {
+                        let femorph = {gend: 'fem', numcase: q.numcase}
+                    nquery.morphs.push(femorph)
+                    }
+                }
             })
             nquery.idx = q.idx
             nquery.form = q.form // это же просто word??
-            log('NQUERY:', nquery)
+            // log('NQUERY:', nquery)
         })
 
         qparts.forEach(function(q) {
