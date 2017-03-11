@@ -122,7 +122,6 @@ function main(words, fls, cb) {
 
     queryDicts(plains).then(function(dicts) {
         // log('DICTS:::', dicts);
-        // log('FINAL WORDS', words)
         dict4word(words, possibleFlex, dicts);
         // expliciteMorphs(words)
         // log('addedForms:::', addedForms);
@@ -151,22 +150,24 @@ function parsePossibleForms(empties, fls) {
     let forms = [];
     empties.forEach(function(row) {
         fls.forEach(function(flex) {
+            // if (flex.flex == 'εις') log('=========>>>>FLEX', flex)
             if (flex._id != row.form.slice(-flex._id.length)) return;
             let stem = row.form.slice(0, -flex._id.length);
             let last = stem.slice(-1)
             // let last2 = stem.slice(-2)
-            log('FLEX', flex)
+            // log('FLEX', flex)
             flex.morphs.forEach(function(morph) {
+                // if (morph.pos == 'verb') log('=========>>>> MORPH', morph)
                 let query = [stem, morph.dict].join('');
                 let form
                 if (morph.pos == 'verb') {
-                    // log('FLEX VERB', morph.pos, morph.var, morph.numpers)
+                    log('FLEX VERB', morph)
                     // if (query.slice(0,2) == 'ἐ' && /impf/.test(morph.descr)) {
                     //     query = query.slice(2)
                     // } else if (/impf/.test(morph.descr)) {
                     //     return
                     // }
-                    // form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, numpers: morph.numpers, var: morph.var, descr: morph.descr}
+                    form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, numper: morph.numper, var: morph.var}
                 } else {
                     // в morph-part нет var!
                     // log('pFLEX', 'last', last, 'MVAR', morph.var, '_ID', flex._id, 'POS', morph.pos)
@@ -174,7 +175,6 @@ function parsePossibleForms(empties, fls) {
                     form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, add: morph.add, flex: flex} // , flex: flex - убрать
                 }
                 forms.push(form)
-
             })
         })
     })
@@ -202,11 +202,11 @@ function dict4word(words, queries, dicts) {
         if (q.pos == 'part') qparts.push(q)
         if (q.pos == 'verb') qverbs.push(q)
     })
-    // log('QPARTS', qparts)
+    // log('QVERBs', qverbs)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     dicts.forEach(function(d) {
         let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []} // FIXME: _id не нужен - id: d._id,
-        let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []}
+        let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}}
 
         let qnstricts = _.select(qqnames, function(q) { return q.query == d.dict })
         let qnames = (qnstricts.length) ? qnstricts : _.select(qqnames, function(q) { return orthos.plain(q.query) == orthos.plain(d.dict) })
@@ -260,17 +260,16 @@ function dict4word(words, queries, dicts) {
             nquery.idx = q.idx
             nquery.form = q.form
         })
+
         qverbs.forEach(function(q) {
             if (d.pos != 'verb') return
             if (orthos.plain(q.query) != orthos.plain(d.dict)) return
-            let morph = {mod: q.descr, numpers: q.numpers}
-            if (!vquery.morphs) {
-                vquery.morphs = {}
-                vquery.morphs[q.descr] = [q.numpers]
-            }
-            else if (vquery.morphs[q.descr]) vquery.morphs[q.descr].push(q.numpers)
-            else if (!vquery.morphs[q.descr]) vquery.morphs[q.descr] = [q.numpers]
-            else throw new Error('VERB STRANGE MORPH')
+            // log('VERB D', d)
+            // log('VERB Q', q)
+            let morph = {var: q.var, numper: q.numper}
+            if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
+            else vquery.morphs[q.var].push(q.numper)
+            // else throw new Error('VERB STRANGE MORPH')
             vquery.idx = q.idx
             vquery.form = q.query
             vquery.descr = q.descr
@@ -280,8 +279,9 @@ function dict4word(words, queries, dicts) {
             // nquery.trn = d.trn
             words[nquery.idx].dicts.push(nquery)
         }
-        if (vquery.morphs.length) {
+        if (_.keys(vquery.morphs).length) {
             // vquery.trn = d.trn
+            // log('>>> VQUERY', vquery)
             words[vquery.idx].dicts.push(vquery)
         }
     })
