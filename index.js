@@ -146,8 +146,28 @@ function main(words, fls, cb) {
 // καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
 
 
+                    // ИТОГО: искать в списке, если нет - строить простой dict - лексическую форму
+
+// 1. palmer = все формы {form: var, }
+                    // 2. здесь - query + squeries для опростых пока, потом модуль
+                    // 3. ddocs - выводить все формы - справа var
+                    // 4. в dicts - разделить indecls, names, vars, parts
+
+                    // let aug = stem.slice(0,2)
+                    // let augs = ['ἐ', 'ἔ', '']
+                    // log('augs===>', aug, augs.includes(aug))
+                    // if (augs.includes(aug) && (/impf/.test(morph.var) || /aor/.test(morph.var))) {
+                    //     log('AUG E', morph)
+                    //     query = query.slice(2)
+                    // } else if (/impf/.test(morph.var) || /aor/.test(morph.var)) {
+                    //     log('AUG OTHER', morph)
+                    //     return
+                    // }
+                    //
+
 function parsePossibleForms(empties, fls) {
     let forms = [];
+    let vforms = [];
     empties.forEach(function(row) {
         fls.forEach(function(flex) {
             // if (flex.flex == 'εις') log('=========>>>>FLEX', flex)
@@ -162,19 +182,29 @@ function parsePossibleForms(empties, fls) {
                 let form
                 if (morph.pos == 'verb') {
                     log('FLEX VERB', morph)
-                    // if (query.slice(0,2) == 'ἐ' && /impf/.test(morph.descr)) {
-                    //     query = query.slice(2)
-                    // } else if (/impf/.test(morph.descr)) {
-                    //     return
-                    // }
+
+
+                    // для сложной формы - включить во flex sg1, для simple - обычный dict
+
+                    // форма для запроса из списка форм в словаре:
                     form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, numper: morph.numper, var: morph.var}
+                    forms.push(form)
+                    // простых форм м.б. несколько - это будет module:
+                    // если act.aor.ind, то orig = λύω
+                    let simpleforms = []
+                    let simple = {idx: row.idx, pos: morph.pos, query: 'λύω', stem: stem, form: row.form, numper: morph.numper, var: morph.var, simple: true}
+                    simpleforms.push(simple)
+                    if (simpleforms.length) forms = forms.concat(simpleforms)
+                    // как их отличить? Если найдется aor ἔλυσα из списка, то найдется и λύω
+                    // и simple нужно сравнивать с dict
                 } else {
                     // в morph-part нет var!
                     // log('pFLEX', 'last', last, 'MVAR', morph.var, '_ID', flex._id, 'POS', morph.pos)
                     if (!['ε', 'ι', 'ρ']. includes(last) && ['sg.gen', 'sg.dat']. includes(morph.numcase) && ['ας']. includes(flex._id)) return
                     form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, add: morph.add, flex: flex} // , flex: flex - убрать
+                    forms.push(form)
                 }
-                forms.push(form)
+                // forms.push(form)
             })
         })
     })
@@ -202,7 +232,13 @@ function dict4word(words, queries, dicts) {
         if (q.pos == 'part') qparts.push(q)
         if (q.pos == 'verb') qverbs.push(q)
     })
-    // log('QVERBs', qverbs)
+
+    // FIXME: тут БАГА!!! dict-verb м.б. по query-name - ἔλῡσας
+
+    // "ἐλυσα" - есть "ἑλυσα"
+
+    log('4w - QVERBs', qverbs)
+    log('4w - dicts', dicts)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     dicts.forEach(function(d) {
         let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []} // FIXME: _id не нужен - id: d._id,
@@ -263,9 +299,17 @@ function dict4word(words, queries, dicts) {
 
         qverbs.forEach(function(q) {
             if (d.pos != 'verb') return
-            if (orthos.plain(q.query) != orthos.plain(d.dict)) return
-            // log('VERB D', d)
-            // log('VERB Q', q)
+            if (d.var != q.var) return
+            // тут затык в контрактных и прочих сложных <<<<<=======================
+            // dict находится по добавочной форме, по plain, но q.query строится по измененному стему
+            // поэтому анализ стемов все равно нужен
+            let qtest = orthos.plain(q.query)
+            if (q.var == 'act.aor.ind') qtest = qtest.replace(/^ἐ/, '') // .replace(/^ἐ/, '')
+            log('Q TEST', qtest, 'dict:', d.dict)
+
+            if (orthos.plain(qtest) != orthos.plain(d.dict)) return
+            log('VERB D', d)
+            log('VERB Q', q)
             let morph = {var: q.var, numper: q.numper}
             if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
             else vquery.morphs[q.var].push(q.numper)
