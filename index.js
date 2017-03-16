@@ -115,7 +115,13 @@ function main(words, fls, cb) {
     // решил, что пока не нужно - иначе выбирать из результата по gnd
     // но как же так, если косвенная форма, то значение из большого словаря не будет обнаружено.
     let qqueries = _.uniq(possibleFlex.map(function(q) { return q.query }))
-    let plains = _.uniq(qqueries.map(function(key) { return orthos.plain(key)}))
+    log('qqueries', qqueries)
+    let squeries = _.uniq(possibleFlex.map(function(q) { return q.squery }))
+    squeries = _.compact(squeries) // names have no squery
+    // log('squeries', squeries)
+    let allqs = qqueries.concat(squeries)
+    // log('aqueries', allqs)
+    let plains = _.uniq(allqs.map(function(key) { return orthos.plain(key)}))
     // let allkeys = tqueries.concat(plains)
     // log('MAIN KEY-PLAINS', tqueries, qqueries, plains, allkeys)
     log('MAIN KEY-PLAINS', plains)
@@ -179,21 +185,22 @@ function parsePossibleForms(empties, fls) {
             flex.morphs.forEach(function(morph) {
                 // if (morph.pos == 'verb') log('=========>>>> MORPH', morph)
                 let query = [stem, morph.dict].join('');
+                let squery = [stem, morph.sg1].join('');
                 let form
                 if (morph.pos == 'verb') {
-                    log('FLEX VERB', morph)
-
+                    log('FLEX V MORPH', morph)
 
                     // для сложной формы - включить во flex sg1, для simple - обычный dict
 
                     // форма для запроса из списка форм в словаре:
-                    form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, numper: morph.numper, var: morph.var}
+                    form = {idx: row.idx, pos: morph.pos, query: query, squery: squery, stem: stem, form: row.form, numper: morph.numper, var: morph.var}
+                    // log('P FORM QUERY', form)
                     forms.push(form)
                     // простых форм м.б. несколько - это будет module:
                     // если act.aor.ind, то orig = λύω
                     let simpleforms = []
-                    let simple = {idx: row.idx, pos: morph.pos, query: 'λύω', stem: stem, form: row.form, numper: morph.numper, var: morph.var, simple: true}
-                    simpleforms.push(simple)
+                    let simple = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, numper: morph.numper, var: morph.var, simple: true}
+                    // simpleforms.push(simple)
                     if (simpleforms.length) forms = forms.concat(simpleforms)
                     // как их отличить? Если найдется aor ἔλυσα из списка, то найдется и λύω
                     // и simple нужно сравнивать с dict
@@ -283,6 +290,31 @@ function dict4word(words, queries, dicts) {
             // log('NQUERY:', nquery)
         })
 
+        qverbs.forEach(function(q) {
+            if (d.pos != 'verb') return
+
+            let vr = q.var
+            // здесь нужно искать dict, но если нет - то full
+            let ok = false
+            if (orthos.plain(q.query) == orthos.plain(d.dict)) ok = true, vr = 'act.pres.ind'
+            if (orthos.plain(q.squery) == orthos.plain(d.full)) ok = true
+            if (!ok) return
+
+            // тем самым я пока что сравниваю с основой act.pres.ind. Но можно же выбирать основу для сконструированной query?
+            if (d.var != vr) return
+
+            log('VERB D', d)
+            log('VERB Q', q)
+
+            let morph = {var: q.var, numper: q.numper}
+            if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
+            else vquery.morphs[q.var].push(q.numper)
+            // else throw new Error('VERB STRANGE MORPH')
+            vquery.idx = q.idx
+            vquery.form = q.query
+            vquery.descr = q.descr
+        })
+
         qparts.forEach(function(q) {
             if (d.pos != 'verb') return
             log('PART', d)
@@ -295,28 +327,6 @@ function dict4word(words, queries, dicts) {
             nquery.part = true
             nquery.idx = q.idx
             nquery.form = q.form
-        })
-
-        qverbs.forEach(function(q) {
-            if (d.pos != 'verb') return
-            if (d.var != q.var) return
-            // тут затык в контрактных и прочих сложных <<<<<=======================
-            // dict находится по добавочной форме, по plain, но q.query строится по измененному стему
-            // поэтому анализ стемов все равно нужен
-            let qtest = orthos.plain(q.query)
-            if (q.var == 'act.aor.ind') qtest = qtest.replace(/^ἐ/, '') // .replace(/^ἐ/, '')
-            log('Q TEST', qtest, 'dict:', d.dict)
-
-            if (orthos.plain(qtest) != orthos.plain(d.dict)) return
-            log('VERB D', d)
-            log('VERB Q', q)
-            let morph = {var: q.var, numper: q.numper}
-            if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
-            else vquery.morphs[q.var].push(q.numper)
-            // else throw new Error('VERB STRANGE MORPH')
-            vquery.idx = q.idx
-            vquery.form = q.query
-            vquery.descr = q.descr
         })
 
         if (nquery.morphs.length) {
