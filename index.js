@@ -115,7 +115,7 @@ function main(words, fls, cb) {
     // решил, что пока не нужно - иначе выбирать из результата по gnd
     // но как же так, если косвенная форма, то значение из большого словаря не будет обнаружено.
     let qqueries = _.uniq(possibleFlex.map(function(q) { return q.query }))
-    log('qqueries', qqueries)
+    // log('qqueries', qqueries)
     let squeries = _.uniq(possibleFlex.map(function(q) { return q.squery }))
     squeries = _.compact(squeries) // names have no squery
     // log('squeries', squeries)
@@ -173,7 +173,7 @@ function main(words, fls, cb) {
 
 function parsePossibleForms(empties, fls) {
     let forms = [];
-    let vforms = [];
+    // let vforms = [];
     empties.forEach(function(row) {
         fls.forEach(function(flex) {
             // if (flex.flex == 'εις') log('=========>>>>FLEX', flex)
@@ -303,8 +303,8 @@ function dict4word(words, queries, dicts) {
             // тем самым я пока что сравниваю с основой act.pres.ind. Но можно же выбирать основу для сконструированной query?
             if (d.var != vr) return
 
-            log('VERB D', d)
-            log('VERB Q', q)
+            // log('VERB D', d)
+            // log('VERB Q', q)
 
             let morph = {var: q.var, numper: q.numper}
             if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
