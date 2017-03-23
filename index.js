@@ -114,14 +114,14 @@ function main(words, fls, cb) {
     // allkeys - для term, включая indecl, полная форма, для possible - plain
     // решил, что пока не нужно - иначе выбирать из результата по gnd
     // но как же так, если косвенная форма, то значение из большого словаря не будет обнаружено.
-    let qqueries = _.uniq(possibleFlex.map(function(q) { return q.query }))
+    let queries = _.uniq(possibleFlex.map(function(q) { return q.query }))
     // log('qqueries', qqueries)
-    let squeries = _.uniq(possibleFlex.map(function(q) { return q.squery }))
-    squeries = _.compact(squeries) // names have no squery
+    // let squeries = _.uniq(possibleFlex.map(function(q) { return q.squery }))
+    // squeries = _.compact(squeries) // names have no squery
     // log('squeries', squeries)
-    let allqs = qqueries.concat(squeries)
+    // let allqs = qqueries.concat(squeries)
     // log('aqueries', allqs)
-    let plains = _.uniq(allqs.map(function(key) { return orthos.plain(key)}))
+    let plains = _.uniq(queries.map(function(key) { return orthos.plain(key)}))
     // let allkeys = tqueries.concat(plains)
     // log('MAIN KEY-PLAINS', tqueries, qqueries, plains, allkeys)
     log('MAIN KEY-PLAINS', plains)
@@ -179,32 +179,24 @@ function parsePossibleForms(empties, fls) {
             // if (flex.flex == 'εις') log('=========>>>>FLEX', flex)
             if (flex._id != row.form.slice(-flex._id.length)) return;
             let stem = row.form.slice(0, -flex._id.length);
-            let last = stem.slice(-1)
             // let last2 = stem.slice(-2)
             // log('FLEX', flex)
             flex.morphs.forEach(function(morph) {
+                if (morph.pos == 'verb') log('=========>>>> flex._id:', flex._id, 'stem:', stem)
                 // if (morph.pos == 'verb') log('=========>>>> MORPH', morph)
                 let query = [stem, morph.dict].join('');
-                let squery = [stem, morph.sg1].join('');
                 let form
                 if (morph.pos == 'verb') {
-                    log('FLEX V MORPH', morph)
-
+                    // log('FLEX V MORPH', morph)
+                    // let squery = [stem, morph.sg1].join('');
+                    // if (morph.pos == 'verb') log('==>>>> squery', squery, morph.var)
                     // для сложной формы - включить во flex sg1, для simple - обычный dict
-
-                    // форма для запроса из списка форм в словаре:
-                    form = {idx: row.idx, pos: morph.pos, query: query, squery: squery, stem: stem, form: row.form, numper: morph.numper, var: morph.var}
+                    // form = {idx: row.idx, pos: morph.pos, query: query, squery: squery, stem: stem, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr}
+                    form = {idx: row.idx, pos: morph.pos, query: query, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr}
                     // log('P FORM QUERY', form)
                     forms.push(form)
-                    // простых форм м.б. несколько - это будет module:
-                    // если act.aor.ind, то orig = λύω
-                    let simpleforms = []
-                    let simple = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, numper: morph.numper, var: morph.var, simple: true}
-                    // simpleforms.push(simple)
-                    if (simpleforms.length) forms = forms.concat(simpleforms)
-                    // как их отличить? Если найдется aor ἔλυσα из списка, то найдется и λύω
-                    // и simple нужно сравнивать с dict
                 } else {
+                    let last = stem.slice(-1)
                     // в morph-part нет var!
                     // log('pFLEX', 'last', last, 'MVAR', morph.var, '_ID', flex._id, 'POS', morph.pos)
                     if (!['ε', 'ι', 'ρ']. includes(last) && ['sg.gen', 'sg.dat']. includes(morph.numcase) && ['ας']. includes(flex._id)) return
@@ -240,12 +232,8 @@ function dict4word(words, queries, dicts) {
         if (q.pos == 'verb') qverbs.push(q)
     })
 
-    // FIXME: тут БАГА!!! dict-verb м.б. по query-name - ἔλῡσας
-
-    // "ἐλυσα" - есть "ἑλυσα"
-
-    log('4w - QVERBs', qverbs)
-    log('4w - dicts', dicts)
+    log('4w-Qdicts', dicts)
+    log('4w-QVERBs', qverbs)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     dicts.forEach(function(d) {
         let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []} // FIXME: _id не нужен - id: d._id,
@@ -290,21 +278,23 @@ function dict4word(words, queries, dicts) {
             // log('NQUERY:', nquery)
         })
 
+        log('API d', d)
         qverbs.forEach(function(q) {
             if (d.pos != 'verb') return
+            if (d.descr && d.descr != q.descr) return // αἰτέω - проверить
 
-            let vr = q.var
-            // здесь нужно искать dict, но если нет - то full
-            let ok = false
-            if (orthos.plain(q.query) == orthos.plain(d.dict)) ok = true, vr = 'act.pres.ind'
-            if (orthos.plain(q.squery) == orthos.plain(d.full)) ok = true
-            if (!ok) return
+            // тут таблица соответствий, кого из чего выводить
+            let qvar = q.var.split('.').slice(0,2).join('.')
+            let dvar = d.var.split('.').slice(0,2).join('.')
+            if (qvar != dvar) return
 
-            // тем самым я пока что сравниваю с основой act.pres.ind. Но можно же выбирать основу для сконструированной query?
-            if (d.var != vr) return
+            log('API q', q)
+            if (d.var == 'act.pres.ind') {
+                if (_.values(d.vmorphs).includes(q.var)) return // - ищем по доп-форме, раз она есть
+            }
+            if (orthos.plain(q.query) != d.plain) return
 
-            // log('VERB D', d)
-            // log('VERB Q', q)
+            log('<------> here we are', d.plain)
 
             let morph = {var: q.var, numper: q.numper}
             if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
