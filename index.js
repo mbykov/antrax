@@ -190,7 +190,7 @@ function parsePossibleForms(empties, fls) {
                 let form
                 if (morph.pos == 'verb') {
                     form = {idx: row.idx, pos: morph.pos, query: query, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr}
-                    // log('FLEX V MORPH', morph)
+                    log('FLEX V MORPH', morph.var)
                     // log('P FORM QUERY', form)
                     // log('CONST', modCorr['act.pres.ind'])
                     if (modCorr['act.pres.ind'].includes(morph.var)) form.api = true
@@ -282,29 +282,22 @@ function dict4word(words, queries, dicts) {
         log('API d', d)
         qverbs.forEach(function(q) {
             if (d.pos != 'verb') return
+            log('DESCR', d.descr, 'q', q.descr)
             if (d.descr && d.descr != q.descr) return // αἰτέω - проверить
 
-            // тут таблица соответствий, кого из чего выводить
-            // let qvar = q.var.split('.').slice(0,2).join('.')
-            // let dvar = d.var.split('.').slice(0,2).join('.')
-            // if (qvar != dvar) return
-            let modCorr = {}
-            modCorr['act.fut.ind'] = ['act.fut.ind', 'act.fut.opt', 'mid.fut.ind', 'mid.fut.opt', 'pass.fut.ind', 'pass.fut.opt', 'act.fut.inf', 'mid.fut.inf']
-
-            // if (modCorr[d.var] && !modCorr[d.var].includes(q.var)) return
-
-            // vmorphs = ['act.fut.ind'], q.var = 'act.aor.ind'
             // query - либо api (простые и сконструированные), либо modCorr
             if (d.var == 'act.pres.ind') {
                 if (!q.api) return
                 // if (_.values(d.vmorphs).includes(q.var)) return // - ищем по доп-форме, раз она есть
             } else {
                 if (modCorr[d.var] && !modCorr[d.var].includes(q.var)) return
+                log('===========================================>', d.var, q.var)
             }
             if (orthos.plain(q.query) != d.plain) return
 
             log('API q', q)
-            log('<------> here we are', d.plain, d.var, q.var)
+            log('<------> here we are', d.plain, 'd:', d.var, 'q:', q.var)
+            log('<------> here we are d:', d.plain, q.query)
 
             let morph = {var: q.var, numper: q.numper}
             if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
