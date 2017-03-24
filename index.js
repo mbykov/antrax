@@ -6,6 +6,8 @@ let _ = require('underscore');
 let fs = require('fs');
 let path = require('path');
 let orthos = require('../orthos');
+let u = require('./lib/utils');
+let modCorr = u.modCorr
 
 let PouchDB = require('pouchdb-browser');
 let db_flex = new PouchDB('gr-flex')
@@ -187,13 +189,12 @@ function parsePossibleForms(empties, fls) {
                 let query = [stem, morph.dict].join('');
                 let form
                 if (morph.pos == 'verb') {
-                    // log('FLEX V MORPH', morph)
-                    // let squery = [stem, morph.sg1].join('');
-                    // if (morph.pos == 'verb') log('==>>>> squery', squery, morph.var)
-                    // для сложной формы - включить во flex sg1, для simple - обычный dict
-                    // form = {idx: row.idx, pos: morph.pos, query: query, squery: squery, stem: stem, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr}
                     form = {idx: row.idx, pos: morph.pos, query: query, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr}
+                    // log('FLEX V MORPH', morph)
                     // log('P FORM QUERY', form)
+                    // log('CONST', modCorr['act.pres.ind'])
+                    if (modCorr['act.pres.ind'].includes(morph.var)) form.api = true
+                    // if (morph.var == 'act.pres.ind') form.api = true
                     forms.push(form)
                 } else {
                     let last = stem.slice(-1)
@@ -284,17 +285,26 @@ function dict4word(words, queries, dicts) {
             if (d.descr && d.descr != q.descr) return // αἰτέω - проверить
 
             // тут таблица соответствий, кого из чего выводить
-            let qvar = q.var.split('.').slice(0,2).join('.')
-            let dvar = d.var.split('.').slice(0,2).join('.')
-            if (qvar != dvar) return
+            // let qvar = q.var.split('.').slice(0,2).join('.')
+            // let dvar = d.var.split('.').slice(0,2).join('.')
+            // if (qvar != dvar) return
+            let modCorr = {}
+            modCorr['act.fut.ind'] = ['act.fut.ind', 'act.fut.opt', 'mid.fut.ind', 'mid.fut.opt', 'pass.fut.ind', 'pass.fut.opt', 'act.fut.inf', 'mid.fut.inf']
 
-            log('API q', q)
+            // if (modCorr[d.var] && !modCorr[d.var].includes(q.var)) return
+
+            // vmorphs = ['act.fut.ind'], q.var = 'act.aor.ind'
+            // query - либо api (простые и сконструированные), либо modCorr
             if (d.var == 'act.pres.ind') {
-                if (_.values(d.vmorphs).includes(q.var)) return // - ищем по доп-форме, раз она есть
+                if (!q.api) return
+                // if (_.values(d.vmorphs).includes(q.var)) return // - ищем по доп-форме, раз она есть
+            } else {
+                if (modCorr[d.var] && !modCorr[d.var].includes(q.var)) return
             }
             if (orthos.plain(q.query) != d.plain) return
 
-            log('<------> here we are', d.plain)
+            log('API q', q)
+            log('<------> here we are', d.plain, d.var, q.var)
 
             let morph = {var: q.var, numper: q.numper}
             if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
