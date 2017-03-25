@@ -62,8 +62,8 @@ function getTmp(dpath) {
 function cleanRows(strs) {
     let rows  = []
     let titles
-    let a = []
-    let b = []
+    let a = {}
+    let b = {}
     strs.forEach(function(str) {
         if (!str) return
         if (str[0] == '#') return
@@ -81,12 +81,8 @@ function cleanRows(strs) {
         let morph = row[0]
         morph = strMorphs[morph]
         if (!morph) throw new Error('NO MORPH: ' + str)
-        let ra = {}
-        ra[morph] = row[1]
-        a.push(ra)
-        let rb = {}
-        rb[morph] = row[2]
-        b.push(rb)
+        a[row[1]] = morph
+        b[row[2]] = morph
     })
     let res1 = {}
     res1[titles[0]] = a

@@ -33,15 +33,32 @@ console.timeEnd('_gramm');
 function run() {
     let tests = getTests(dpath)
     // console.log(util.inspect(docs, showHidden=false, depth=null, colorize=true))
-    tests.forEach(function(test) {
-        log('TEST', test)
+    tests.forEach(function(json, idx) {
+        if (idx > 0) return
+        let test = JSON.parse(json)
+        // log('TEST', test)
+        for (let mod in test) {
+            let cases = test[mod]
+            for (let form in cases) {
+                let morph = cases[form]
+                antrax.query(form, 0, function(words) {
+                    log(1, mod, 2, morph, 3, form)
+                    log(words[0].raw)
+                    let res = words[0].dicts[0].morphs
+                    p(res)
+                })
+            }
+        }
+        // test.forEach(function(t, idx) {
+        //     log('TEST', t)
+        // })
     })
     let test = 'λύεις'
-    antrax.query(test, 0, function(words) {
-        log('RUN', words)
-
-    })
-
+    // antrax.query(test, 0, function(words) {
+    //     p(words)
+    //     let morph = words[0].dicts[0].morphs
+    //     console.timeEnd('_gramm');
+    // })
 }
 
 function getTests(dpath) {
@@ -61,3 +78,4 @@ function getTests(dpath) {
 
 
 function log() { console.log.apply(console, arguments); }
+function p(o) { console.log(util.inspect(o, showHidden=false, depth=null, colorize=true)) }

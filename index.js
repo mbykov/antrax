@@ -26,6 +26,8 @@ let db = new PouchDB('http:\/\/localhost:5984/greek');
 // destroyDB(db)
 // return
 
+let forTest = process.argv.slice(2)[0] || false;
+
 // replicateDB('gr-flex')
 // replicateDB('greek')
 // return
@@ -493,10 +495,11 @@ function getAllFlex() {
     });
 }
 
+    function log() { }
+    function p() { }
+    // function log() { console.log.apply(console, arguments); }
+    // function p() { console.log(util.inspect(arguments, false, null)) }
 
-function log() { console.log.apply(console, arguments); }
-
-function p() { console.log(util.inspect(arguments, false, null)) }
 
 
 
