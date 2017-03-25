@@ -32,33 +32,30 @@ console.timeEnd('_gramm');
 
 function run() {
     let tests = getTests(dpath)
-    // console.log(util.inspect(docs, showHidden=false, depth=null, colorize=true))
+    // console.log(util.inspect(tests, showHidden=false, depth=null, colorize=true))
     tests.forEach(function(json, idx) {
-        if (idx > 0) return
+        // if (idx > 0) return
         let test = JSON.parse(json)
         // log('TEST', test)
         for (let mod in test) {
+            // log('MOD', mod)
             let cases = test[mod]
             for (let form in cases) {
                 let morph = cases[form]
                 antrax.query(form, 0, function(words) {
-                    log(1, mod, 2, morph, 3, form)
-                    log(words[0].raw)
+                    // log(1, mod, 2, morph, 3, form)
+                    // log(2, mod, 2, words[0].raw, 2, words[0].dicts)
+                    if (!words[0].dicts.length) log('ERR', form + ' - ' + mod + ' - ' + morph)
                     let res = words[0].dicts[0].morphs
-                    p(res)
+                    // p(res)
+                    if (!res[mod]) throw new Error('no mod: ' + mod + ' morph: ' + morph + ' form: ' + form)
+                    let resmod = res[mod]
+                    if (!res[mod].includes(morph)) throw new Error('no mod: ' + mod + ' morph: ' + morph + ' form: ' + form)
+                    p(form + ' - ' + mod + ' - ' + morph)
                 })
             }
         }
-        // test.forEach(function(t, idx) {
-        //     log('TEST', t)
-        // })
     })
-    let test = 'λύεις'
-    // antrax.query(test, 0, function(words) {
-    //     p(words)
-    //     let morph = words[0].dicts[0].morphs
-    //     console.timeEnd('_gramm');
-    // })
 }
 
 function getTests(dpath) {

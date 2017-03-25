@@ -34,10 +34,14 @@ let strMorphs = {
     'Third Person Plural': 'pl.3'
 }
 
+
 let strMods = {
     'present active indicative': 'act.pres.ind',
     'imperfect active indicative': 'act.impf.ind',
-    '': ''
+    'present active middle and passive': 'mid-pass.pres.ind',
+    'imperfect active middle and passive': 'mid-pass.impf.ind',
+    '': '',
+    '': '',
 }
 
 console.time('_gramm');
@@ -47,7 +51,8 @@ console.timeEnd('_gramm');
 function run() {
     let docs = getTmp(dpath)
     console.log(util.inspect(docs, showHidden=false, depth=null, colorize=true))
-    appendTest(docs)
+    log('PUSH', push)
+    if (push) appendTest(docs)
 }
 
 function getTmp(dpath) {
@@ -72,7 +77,8 @@ function cleanRows(strs) {
             str = str.replace('*', '')
             titles = str.split('	')
             if (titles.length != 2) throw new Error('No titles' + str)
-            titles = titles.map(function(t) { return t.toLowerCase()})
+            titles = titles.map(function(t) { return t.toLowerCase().trim() })
+            log('titles: ', titles)
             titles = titles.map(function(t) { return strMods[t]})
             return
         }
@@ -84,6 +90,7 @@ function cleanRows(strs) {
         a[row[1]] = morph
         b[row[2]] = morph
     })
+    if (titles.length != 2) throw new Error('No titles at all')
     let res1 = {}
     res1[titles[0]] = a
     rows.push(res1)
