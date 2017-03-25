@@ -9,16 +9,26 @@ let orthos = require('../orthos');
 let u = require('./lib/utils');
 let modCorr = u.modCorr
 
-let PouchDB = require('pouchdb-browser');
-let db_flex = new PouchDB('gr-flex')
-let db = new PouchDB('greek')
+// let PouchDB = require('pouchdb-browser');
+// let db_flex = new PouchDB('gr-flex')
+// let db = new PouchDB('greek')
+
+let PouchDB = require('pouchdb');
+// let db = new PouchDB('my_db');
+// PouchDB.plugin(require('pouchdb-adapter-memory'));
+// let pouch = new PouchDB('myDB', {adapter: 'memory'});
+let db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
+let db = new PouchDB('http:\/\/localhost:5984/greek');
+// let db_flex = new PouchDB('localhost:5984/gr-flex', {adapter: 'memory'});
+// let db = new PouchDB('localhost:5984/greek', {adapter: 'memory'});
 
 // destroyDB(db_flex)
 // destroyDB(db)
 // return
 
-replicateDB('gr-flex')
-replicateDB('greek')
+// replicateDB('gr-flex')
+// replicateDB('greek')
+// return
 
 function destroyDB(db) {
     db.destroy().then(function (response) {
@@ -67,9 +77,12 @@ function parseClause(str, num) {
 }
 
 antrax.prototype.query = function(str, num, cb) {
+    log('ANTRAX-START')
+    // replicateDB('gr-flex')
+    // replicateDB('greek')
     let words = parseClause(str, num)
     queryPromise(words, function(res) {
-        // log('Q RES', res)
+        log('ANTRAX RES', res)
         cb(res)
     })
 }
@@ -464,7 +477,6 @@ function queryTerms(words) {
 
 function getAllFlex() {
     return new Promise(function(resolve, reject) {
-        // db_flex.query('flex/byFlex', {
         db_flex.allDocs({
             // keys: tails
             include_docs: true
