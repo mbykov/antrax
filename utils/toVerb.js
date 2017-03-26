@@ -40,6 +40,7 @@ let strMods = {
     'imperfect active indicative': 'act.impf.ind',
     'present active middle and passive': 'mid-pass.pres.ind',
     'imperfect active middle and passive': 'mid-pass.impf.ind',
+    'aorist active indicative': 'act.aor.ind',
     '': '',
     '': '',
 }

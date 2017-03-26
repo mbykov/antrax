@@ -10,21 +10,10 @@ let orthos = require('../orthos');
 var util = require('util');
 
 let push = process.argv.slice(2)[0] || false;
-let only
-if (push == 'true') push = true
-else if (push) {
-    only = push
-    push = false
-    // only = orthos.toComb(only);
-}
-
-let onlypush = process.argv.slice(3)[0] || false;
-if (onlypush == 'true') push = true
 
 const antrax = require('./index')
 
 let dpath = './test/verbs.txt';
-
 
 console.time('_gramm');
 run()
@@ -39,9 +28,12 @@ function run() {
         // log('TEST', test)
         for (let mod in test) {
             // log('MOD', mod)
+            let reonly = new RegExp(push)
+            if (push && !reonly.test(mod)) continue
             let cases = test[mod]
             for (let form in cases) {
                 let morph = cases[form]
+                form = orthos.toComb(form)
                 antrax.query(form, 0, function(words) {
                     // log(1, mod, 2, morph, 3, form)
                     // log(2, mod, 2, words[0].raw, 2, words[0].dicts)

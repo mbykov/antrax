@@ -10,12 +10,13 @@
 # Second Person Plural	λύε-τε	ἐ-λύε-τε
 # Third Person Plural	λύουσι	ἔ-λῡο-ν
 
-* PRESENT ACTIVE MIDDLE AND PASSIVE.	IMPERFECT ACTIVE MIDDLE AND PASSIVE
-First Person Singular	λύο-μαι	ἐ-λῡό-μην
-Second Person Singular	λύει	ἐ-λύου
-Third Person Singular	λύε-ται	ἐ-λύε-το
-Second Person Dual	λύε-σθον	ἐ-λύε-σθον
-Third Person Dual	λύε-σθον	ἐ-λῡέ-σθην
-First Person Plural	λῡό-μεθα	ἐ-λῡό-μεθα
-Second Person Plural	λύε-σθε	ἐ-λύε-σθε
-Third Person Plural	λύο-νται	ἐ-λύο-ντο
+*AORIST ACTIVE INDICATIVE.	IMPERFECT ACTIVE INDICATIVE
+First Person Singular	ἔπαυσα	x
+Second Person Singular	ἔπαυσας	x
+Third Person Singular	ἔπαυσε	x
+Third Person Singular	ἔπαυσεν	x
+Second Person Dual	ἔπαυσατον	x
+Third Person Dual	ἐπαυσάτην	x
+First Person Plural	ἐπαύσαμεν	x
+Second Person Plural	ἐπαύσατε	x
+Third Person Plural	ἔπαυσαν	x

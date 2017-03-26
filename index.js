@@ -10,13 +10,13 @@ let orthos = require('../orthos');
 let u = require('./lib/utils');
 let modCorr = u.modCorr
 
-let PouchDB = require('pouchdb-browser');
-let db_flex = new PouchDB('gr-flex')
-let db = new PouchDB('greek')
+// let PouchDB = require('pouchdb-browser');
+// let db_flex = new PouchDB('gr-flex')
+// let db = new PouchDB('greek')
 
-// let PouchDB = require('pouchdb');
-// let db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
-// let db = new PouchDB('http:\/\/localhost:5984/greek');
+let PouchDB = require('pouchdb');
+let db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
+let db = new PouchDB('http:\/\/localhost:5984/greek');
 
 // destroyDB(db_flex)
 // destroyDB(db)
@@ -192,7 +192,7 @@ function parsePossibleForms(empties, fls) {
                         let aug = stem.slice(0,2)
                         log('================== AUG', aug)
                         if (_.keys(u.augs).includes(aug)) {
-                            let aquery = query.slice(2)
+                            let aquery = [stem.slice(2), 'ω'].join('')
                             aquery = [u.augs[aug], aquery].join('')
                             log('================== AQUERY', aquery)
                             let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, api: true}
@@ -294,13 +294,13 @@ function dict4word(words, queries, dicts) {
                 // if (_.values(d.vmorphs).includes(q.var)) return // - ищем по доп-форме, раз она есть
             } else {
                 if (modCorr[d.var] && !modCorr[d.var].includes(q.var)) return
-                log('===========================================>', d.var, q.var)
+                // log('===========================================>', d.var, q.var)
             }
             if (orthos.plain(q.query) != d.plain) return
 
-            log('API q', q)
-            log('<------> here we are', d.plain, 'd:', d.var, 'q:', q.var)
-            log('<------> here we are d:', d.plain, q.query)
+            // log('API q', q)
+            // log('<------> here we are', d.plain, 'd:', d.var, 'q:', q.var)
+            // log('<------> here we are d:', d.plain, q.query)
 
             let morph = {var: q.var, numper: q.numper}
             if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
@@ -485,7 +485,7 @@ function getAllFlex() {
     });
 }
 
-    // function log() { }
-    // function p() { }
-    function log() { console.log.apply(console, arguments); }
-    function p() { console.log(util.inspect(arguments, false, null)) }
+    function log() { }
+    function p() { }
+    // function log() { console.log.apply(console, arguments); }
+    // function p() { console.log(util.inspect(arguments, false, null)) }
