@@ -4,23 +4,19 @@
 let _ = require('underscore');
 // let path = require('path');
 let fs = require('fs');
+let util = require('util');
 let path = require('path');
 let orthos = require('../orthos');
 let u = require('./lib/utils');
 let modCorr = u.modCorr
 
-// let PouchDB = require('pouchdb-browser');
-// let db_flex = new PouchDB('gr-flex')
-// let db = new PouchDB('greek')
+let PouchDB = require('pouchdb-browser');
+let db_flex = new PouchDB('gr-flex')
+let db = new PouchDB('greek')
 
-let PouchDB = require('pouchdb');
-// let db = new PouchDB('my_db');
-// PouchDB.plugin(require('pouchdb-adapter-memory'));
-// let pouch = new PouchDB('myDB', {adapter: 'memory'});
-let db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
-let db = new PouchDB('http:\/\/localhost:5984/greek');
-// let db_flex = new PouchDB('localhost:5984/gr-flex', {adapter: 'memory'});
-// let db = new PouchDB('localhost:5984/greek', {adapter: 'memory'});
+// let PouchDB = require('pouchdb');
+// let db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
+// let db = new PouchDB('http:\/\/localhost:5984/greek');
 
 // destroyDB(db_flex)
 // destroyDB(db)
@@ -28,8 +24,8 @@ let db = new PouchDB('http:\/\/localhost:5984/greek');
 
 let forTest = process.argv.slice(2)[0] || false;
 
-// replicateDB('gr-flex')
-// replicateDB('greek')
+replicateDB('gr-flex')
+replicateDB('greek')
 // return
 
 function destroyDB(db) {
@@ -41,8 +37,6 @@ function destroyDB(db) {
 }
 
 function replicateDB(dbname) {
-    // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/lsdict', 'lsdict', {live: true})
-    // PouchDB.replicate('http:\/\/admin:kjre4317@localhost:5984/flex', 'flex', {live: true})
     log('REPLICATION START', dbname)
     let url = ['http:\/\/admin:kjre4317@localhost:5984/', dbname].join('')
     PouchDB.replicate(url, dbname).then(function (response) {
@@ -176,47 +170,39 @@ function main(words, fls, cb) {
                     // 3. ddocs - выводить все формы - справа var
                     // 4. в dicts - разделить indecls, names, vars, parts
 
-                    // let aug = stem.slice(0,2)
-                    // let augs = ['ἐ', 'ἔ', '']
-                    // log('augs===>', aug, augs.includes(aug))
-                    // if (augs.includes(aug) && (/impf/.test(morph.var) || /aor/.test(morph.var))) {
-                    //     log('AUG E', morph)
-                    //     query = query.slice(2)
-                    // } else if (/impf/.test(morph.var) || /aor/.test(morph.var)) {
-                    //     log('AUG OTHER', morph)
-                    //     return
-                    // }
-                    //
 
 function parsePossibleForms(empties, fls) {
     let forms = [];
     // let vforms = [];
     empties.forEach(function(row) {
         fls.forEach(function(flex) {
-            // if (flex.flex == 'εις') log('=========>>>>FLEX', flex)
             if (flex._id != row.form.slice(-flex._id.length)) return;
             let stem = row.form.slice(0, -flex._id.length);
-            // let last2 = stem.slice(-2)
-            // log('FLEX', flex)
             flex.morphs.forEach(function(morph) {
-                if (morph.pos == 'verb') log('=========>>>> flex._id:', flex._id, 'stem:', stem)
-                // if (morph.pos == 'verb') log('=========>>>> MORPH', morph)
+                // if (morph.pos == 'verb') log('=========>>>> flex._id:', flex._id, 'morph:', morph)
                 let query = [stem, morph.dict].join('');
                 let form
                 if (morph.pos == 'verb') {
                     form = {idx: row.idx, pos: morph.pos, query: query, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr}
                     log('FLEX V MORPH', morph.var)
-                    // log('P FORM QUERY', form)
-                    // log('CONST', modCorr['act.pres.ind'])
                     if (modCorr['act.pres.ind'].includes(morph.var)) form.api = true
-                    // if (morph.var == 'act.pres.ind') form.api = true
                     forms.push(form)
+
+                    // создание дополнительных api-форм:
+                    if (u.augmods.includes(morph.var)) {
+                        let aug = stem.slice(0,2)
+                        if (u.augs.includes(aug)) {
+                            let aquery = query.slice(2)
+                            form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, api: true}
+                            forms.push(form)
+                        }
+                    }
                 } else {
                     let last = stem.slice(-1)
                     // в morph-part нет var!
                     // log('pFLEX', 'last', last, 'MVAR', morph.var, '_ID', flex._id, 'POS', morph.pos)
                     if (!['ε', 'ι', 'ρ']. includes(last) && ['sg.gen', 'sg.dat']. includes(morph.numcase) && ['ας']. includes(flex._id)) return
-                    form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, add: morph.add, flex: flex} // , flex: flex - убрать
+                    form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, add: morph.add } // , flex: flex - убрать
                     forms.push(form)
                 }
                 // forms.push(form)
@@ -495,28 +481,7 @@ function getAllFlex() {
     });
 }
 
-    function log() { }
-    function p() { }
-    // function log() { console.log.apply(console, arguments); }
-    // function p() { console.log(util.inspect(arguments, false, null)) }
-
-
-
-
-
-
-
-// 758. DEFINITE ARTICLE.
-//     MASCULINE	FEMININE	NEUTER
-// Nominative Singular	ὁ	ἡ	τό
-// Genitive Singular	τοῦ	τῆς	τοῦ
-// Dative Singular	τῷ	τῇ	τῷ
-// Accusative Singular	τόν	τήν	τό
-// Nominative and Accusative Dual	τώ	τώ	τώ
-// Genitive and Dative Dual	τοῖν	τοῖν	τοῖν
-// Nominative Plural	οἱ	αἱ	τά
-// Genitive Plural	τῶν	τῶν	τῶν
-// Dative Plural	τοῖς	ταῖς	τοῖς
-// Accusative Plural	τούς	τάς	τά
-
-// ταῖς
+    // function log() { }
+    // function p() { }
+    function log() { console.log.apply(console, arguments); }
+    function p() { console.log(util.inspect(arguments, false, null)) }
