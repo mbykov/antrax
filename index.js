@@ -181,9 +181,8 @@ function parsePossibleForms(empties, fls) {
             flex.morphs.forEach(function(morph) {
                 // if (morph.pos == 'verb') log('=========>>>> flex._id:', flex._id, 'morph:', morph)
                 let query = [stem, morph.dict].join('');
-                let form
                 if (morph.pos == 'verb') {
-                    form = {idx: row.idx, pos: morph.pos, query: query, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr}
+                    let form = {idx: row.idx, pos: morph.pos, query: query, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr}
                     log('FLEX V MORPH', morph.var)
                     if (modCorr['act.pres.ind'].includes(morph.var)) form.api = true
                     forms.push(form)
@@ -191,9 +190,12 @@ function parsePossibleForms(empties, fls) {
                     // создание дополнительных api-форм:
                     if (u.augmods.includes(morph.var)) {
                         let aug = stem.slice(0,2)
-                        if (u.augs.includes(aug)) {
+                        log('================== AUG', aug)
+                        if (_.keys(u.augs).includes(aug)) {
                             let aquery = query.slice(2)
-                            form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, api: true}
+                            aquery = [u.augs[aug], aquery].join('')
+                            log('================== AQUERY', aquery)
+                            let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, api: true}
                             forms.push(form)
                         }
                     }
@@ -202,7 +204,7 @@ function parsePossibleForms(empties, fls) {
                     // в morph-part нет var!
                     // log('pFLEX', 'last', last, 'MVAR', morph.var, '_ID', flex._id, 'POS', morph.pos)
                     if (!['ε', 'ι', 'ρ']. includes(last) && ['sg.gen', 'sg.dat']. includes(morph.numcase) && ['ας']. includes(flex._id)) return
-                    form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, add: morph.add } // , flex: flex - убрать
+                    let form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, add: morph.add } // , flex: flex - убрать
                     forms.push(form)
                 }
                 // forms.push(form)
@@ -405,7 +407,7 @@ function queryTerms(words) {
 
                 // word {idx, form, plain, clean, dicts=[], possible -либо- indecl}
                 // log('INDS', indecls)
-                // log('PRONS', prons)
+                log('PRONS', prons)
                 // log('ARTS', arts)
                 // let query = {idx: idx, type: 'term', form: word.form, dict: word.form, term: true}
 
@@ -417,6 +419,8 @@ function queryTerms(words) {
                         let morph = {gend: term.gend, numcase: term.numcase}
                         qterm.morphs.push(morph)
                     })
+                    log('P W', word)
+                    log('P D', qterm)
                     word.dicts.push(qterm)
                 }
                 if (names.length) {
@@ -452,7 +456,7 @@ function queryTerms(words) {
                     word.dicts.push(qterm)
                 }
                 if (terms.length || indecls.length) word.indecl = true
-                if (indecls.length) word.dicts = indecls
+                if (indecls.length) word.dicts = word.dicts.concat(indecls)
             })
             log('TERM CLAUSE', words)
             resolve(words)
