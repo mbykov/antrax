@@ -2,7 +2,6 @@
 
 */
 
-
 let _ = require('underscore');
 let path = require('path');
 let fs = require('fs');
@@ -16,10 +15,14 @@ const antrax = require('./index')
 let dpath = './test/verbs.txt';
 
 console.time('_gramm');
-run()
+let tfacts = run()
+let res = sequentialize(tfacts)
+log('T', res)
+
 console.timeEnd('_gramm');
 
 function run() {
+    let factories = []
     let tests = getTests(dpath)
     // console.log(util.inspect(tests, showHidden=false, depth=null, colorize=true))
     tests.forEach(function(json, idx) {
@@ -34,21 +37,44 @@ function run() {
             for (let form in cases) {
                 let morph = cases[form]
                 form = orthos.toComb(form)
-                antrax.query(form, 0, function(words) {
-                    // log(1, mod, 2, morph, 3, form)
-                    // log(2, mod, 2, words[0].raw, 2, words[0].dicts)
-                    if (!words[0].dicts.length) log('ERR', form + ' - ' + mod + ' - ' + morph)
-                    let res = words[0].dicts[0].morphs
-                    // p(res)
-                    if (!res[mod]) throw new Error('no mod: ' + mod + ' morph: ' + morph + ' form: ' + form)
-                    let resmod = res[mod]
-                    if (!res[mod].includes(morph)) throw new Error('no mod: ' + mod + ' morph: ' + morph + ' form: ' + form)
-                    p(form + ' - ' + mod + ' - ' + morph)
-                })
+                factories.push(factory(form, mod, morph))
             }
         }
     })
+    return factories
 }
+
+function factory(form, mod, morph) {
+    return new Promise(function (resolve, reject) {
+        antrax.query(form, 0, function(words, err) {
+            if (err) {
+                reject(err)
+            } else {
+                // log(1, mod, 2, morph, 3, form)
+                // log(2, mod, 2, words[0].raw, 2, words[0].dicts)
+                if (!words[0].dicts.length) log('ERR', form + ' - ' + mod + ' - ' + morph)
+                let res = words[0].dicts[0].morphs
+                // p(res)
+                if (!res[mod]) throw new Error('no mod: ' + mod + ' morph: ' + morph + ' form: ' + form)
+                let resmod = res[mod]
+                if (!res[mod].includes(morph)) throw new Error('no mod: ' + mod + ' morph: ' + morph + ' form: ' + form)
+                p(form + ' - ' + mod + ' - ' + morph)
+                // resolve(form, mod, morph, words);
+                resolve(true);
+            }
+        })
+    })
+}
+
+function sequentialize(promiseFactories) {
+    var chain = Promise.resolve();
+    promiseFactories.forEach(function (promiseFactory) {
+        chain = chain.then(promiseFactory);
+    });
+    return chain;
+}
+
+
 
 function getTests(dpath) {
     let fpath = path.join(__dirname, dpath);
