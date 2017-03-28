@@ -164,13 +164,16 @@ function parsePossibleForms(empties, fls) {
     empties.forEach(function(row) {
         fls.forEach(function(flex) {
             if (flex._id != row.form.slice(-flex._id.length)) return;
+            let term = flex._id
             let stem = row.form.slice(0, -flex._id.length);
+            log('===> FORM', row.form, 'ST', stem, 'TRM', term, row.form == [stem, term].join(''))
             flex.morphs.forEach(function(morph) {
                 let query = [stem, morph.dict].join('');
                 if (morph.pos == 'verb') {
                     // тут только full-формы, включая act.pres.ind:
-                    let sform = {idx: row.idx, pos: morph.pos, query: query, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, woapi: true}
+                    let sform = {idx: row.idx, pos: morph.pos, query: query, form: row.form, stem: stem, dict: morph.dict, term: term, numper: morph.numper, var: morph.var, descr: morph.descr, woapi: true}
                     forms.push(sform)
+                    log('SFORM', sform)
 
                     // создание дополнительных api-форм:
                     if (u.augmods.includes(morph.var)) {
@@ -180,12 +183,12 @@ function parsePossibleForms(empties, fls) {
                             let aquery = [stem.slice(2), 'ω'].join('')
                             aquery = [u.augs[aug], aquery].join('')
                             // log('================== AQUERY', aquery)
-                            let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, api: true}
+                            let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, aug: aug, stem: stem, term: term, api: true}
                             forms.push(form)
                         }
                     } else if (modCorr['act.fut.ind'].includes(morph.var)) {
                         let aquery = [stem, 'ω'].join('')
-                        let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, api: true}
+                        let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, stem: stem, term: term, api: true}
                         forms.push(form)
                     }
 
@@ -249,10 +252,31 @@ function dict4word(words, queries, dicts) {
             else if (d.var == 'act.pres.ind' && q.api) ok = true
             if (d.var != 'act.pres.ind' && q.woapi) ok = true
             if (!ok) return
-            // if (d.var == 'act.pres.ind' && !q.api) return // << сконструированные и api
-            // if (modCorr[d.var] && !modCorr[d.var].includes(q.var)) return
 
             if (orthos.plain(q.query) != d.plain) return
+
+            // если d-full, то либо форма строится из d-full-stem
+            // либо api восстанавливает к d-full, а не d-api форме
+
+            // if (q.api) return
+            let dstem
+            dstem = orthos.plain(d.dict).replace(/ω$/, '')
+            log('Q-form', q.form, 'dstem', dstem, 'qt', q.term, 'qvar', q.var)
+
+            let qform = orthos.plain(q.form)
+            let qterm = orthos.plain(q.term)
+            // if (u.augmods.includes(q.var)) log('AUG MOD', q.aug)
+            if (u.augmods.includes(q.var)) {
+                if (!q.aug) log('q - NO AUG', q)
+                let qaug = orthos.plain(q.aug)
+                let reaug = new RegExp('^' + qaug)
+                qform = qform.replace(reaug, '')
+                if (qaug) log('q - AUG', qaug, qform)
+            }
+
+            log('BEFORE MAIN CHECK', qform, 'dst', dstem, 'qt', qterm, 'joined=', [dstem, qterm].join(''))
+            if (qform != [dstem, qterm].join('')) return
+            // "λύω"  "λύσω" "ἔλυον"
 
             console.log('API', d.plain, d.var, q)
 
