@@ -172,8 +172,8 @@ function parsePossibleForms(empties, fls) {
                 if (morph.pos == 'verb') {
                     // тут только full-формы, включая act.pres.ind:
                     let sform = {idx: row.idx, pos: morph.pos, query: query, form: row.form, stem: stem, dict: morph.dict, term: term, numper: morph.numper, var: morph.var, descr: morph.descr, woapi: true}
-                    forms.push(sform)
-                    log('SFORM', sform)
+                    // forms.push(sform)
+                    // log('SFORM', sform)
 
                     // создание дополнительных api-форм:
                     if (u.augmods.includes(morph.var)) {
@@ -185,11 +185,15 @@ function parsePossibleForms(empties, fls) {
                             // log('================== AQUERY', aquery)
                             let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, aug: aug, stem: stem, term: term, api: true}
                             forms.push(form)
+                            forms.push(sform)
                         }
                     } else if (modCorr['act.fut.ind'].includes(morph.var)) {
                         let aquery = [stem, 'ω'].join('')
                         let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, stem: stem, term: term, api: true}
                         forms.push(form)
+                        forms.push(sform)
+                    } else {
+                        forms.push(sform)
                     }
 
                 } else {
@@ -228,7 +232,7 @@ function dict4word(words, queries, dicts) {
         if (q.pos == 'verb') qverbs.push(q)
     })
 
-    log('4w-Qdicts', dicts)
+    log('4w-Qdicts', dicts.verbs)
     log('4w-QVERBs', qverbs)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     dicts.names.forEach(function(d) {
@@ -265,9 +269,6 @@ function dict4word(words, queries, dicts) {
             // а удалять - fut: sw, aor: sa, etc
             // именно так, ибо изменение стема: ἐρωτάω - ἐρωτήσω
 
-            // modCorr['act.pres.ind'] = ['act.pres.ind', 'act.pres.opt', 'act.pres.sub', 'act.pres.imp', 'mid-pass.pres.ind', 'mid-pass.pres.opt', 'mid-pass.pres.sub', 'mid-pass.pres.imp', 'act.impf.ind', 'mid-pass.impf.ind', 'act.pres.inf', 'mid.pres.inf']
-            // modCorr['act.fut.ind'] = ['act.fut.ind', 'act.fut.opt', 'mid.fut.ind', 'mid.fut.opt', 'pass.fut.ind', 'pass.fut.opt', 'act.fut.inf', 'mid.fut.inf']
-
             let dstem
             if (modCorr['act.pres.ind'].includes(q.var)) dstem = d.plain.replace(/ω$/, '')
             else if (modCorr['act.fut.ind'].includes(q.var)) dstem = d.plain.replace(/σω$/, '')
@@ -279,18 +280,18 @@ function dict4word(words, queries, dicts) {
 
             let qform = orthos.plain(q.form)
             let qterm = orthos.plain(q.term)
-            if (!q.aug) log('q - NO AUG', q)
+            // if (!q.aug) log('q - NO AUG', q)
             // а нельзя-ли тут всегда slice(2) сделать?
             if (q.aug && u.augmods.includes(q.var)) { // no-aug = q.woapi
                 let qaug = orthos.plain(q.aug)
                 let reaug = new RegExp('^' + qaug)
                 qform = qform.replace(reaug, '')
                 if (qaug) log('q - AUG', qaug, qform)
-            } else if (u.augmods.includes(q.var)) {
-                qform = qform.slice(2)
+            // } else if (u.augmods.includes(q.var)) { // q.api &&  для api - imperfect, etc
+                // qform = qform.slice(2)
             }
 
-            log('BEFORE MAIN CHECK', qform, 'dst', dstem, 'qt', qterm, 'joined=', [dstem, qterm].join(''))
+            log('BEFORE MAIN qform:', qform, 'dst:', dstem, 'qterm:', qterm, 'joined=', [dstem, qterm].join(''))
             if (qform != [dstem, qterm].join('')) return
             // "λύω"  "λύσω" "ἔλυον"
 
