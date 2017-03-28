@@ -259,6 +259,8 @@ function dict4word(words, queries, dicts) {
             if (d.var != 'act.pres.ind' && q.woapi) ok = true
             if (!ok) return
 
+            if (!modCorr[d.var].includes(q.var)) return
+
             if (orthos.plain(q.query) != d.plain) return
 
             // если d-full, то либо форма строится из d-full-stem
@@ -268,6 +270,14 @@ function dict4word(words, queries, dicts) {
             // но, тут нужно всегда брать d.plain - добавочную форму
             // а удалять - fut: sw, aor: sa, etc
             // именно так, ибо изменение стема: ἐρωτάω - ἐρωτήσω
+            //
+            // ==========================================
+            //
+            // нужно оставлять оба dicts, а здесь выбирать нужный, в зависимости от , 'act.aor.opt', 'act.aor.sub', 'mid-pass.aor.opt', etc
+            // ох - а здесь оба правильных же?
+            // поменять местами d и q и select из dicts?
+            // ==========================================
+            // fut я могу? взять из full, но aor.sub я должен вычислять полностью из api
 
             let dstem
             if (modCorr['act.pres.ind'].includes(q.var)) dstem = d.plain.replace(/ω$/, '')
