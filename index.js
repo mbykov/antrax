@@ -10,19 +10,23 @@ let orthos = require('../orthos');
 let u = require('./lib/utils');
 let modCorr = u.modCorr
 
-// let PouchDB = require('pouchdb-browser');
-// let db_flex = new PouchDB('gr-flex')
-// let db = new PouchDB('greek')
+let forTest = process.argv.slice(2)[0] || false;
+// console.log('FOR TEST', forTest, forTest == '--no-sandbox')
 
-let PouchDB = require('pouchdb');
-let db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
-let db = new PouchDB('http:\/\/localhost:5984/greek');
+let PouchDB, db_flex, db
+if (forTest == '--no-sandbox') {
+    PouchDB = require('pouchdb-browser');
+    db_flex = new PouchDB('gr-flex')
+    db = new PouchDB('greek')
+} else {
+    PouchDB = require('pouchdb');
+    db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
+    db = new PouchDB('http:\/\/localhost:5984/greek');
+}
 
 // destroyDB(db_flex)
 // destroyDB(db)
 // return
-
-let forTest = process.argv.slice(2)[0] || false;
 
 replicateDB('gr-flex')
 replicateDB('greek')
@@ -61,7 +65,7 @@ function parseClause(str, num) {
     let plain, form, accents
     keys.forEach(function(key, idx) {
         form = orthos.toComb(key)
-        form = form.replace('ττ', 'σσ') // TALASSA
+        // form = form.replace('ττ', 'σσ') // TALASSA
         plain = orthos.plain(form)
         accents = form.length - plain.length
         if (accents > 1) form = orthos.correctAccent(form)
@@ -73,12 +77,12 @@ function parseClause(str, num) {
 }
 
 antrax.prototype.query = function(str, num, cb) {
-    log('ANTRAX-START')
+    // log('ANTRAX-START')
     // replicateDB('gr-flex')
     // replicateDB('greek')
     let words = parseClause(str, num)
     queryPromise(words, function(res) {
-        log('ANTRAX RES', res)
+        // log('ANTRAX RES', res)
         cb(res)
     })
 }
@@ -95,7 +99,7 @@ function queryPromise(words, cb) {
             cb(clause)
         });
     }).catch(function (err) {
-        log('ANT ERR', err);
+        log('ANTRAX ERR', err);
     })
 }
 
@@ -150,25 +154,8 @@ function main(words, fls, cb) {
     });
 }
 
-// { flex: 'ῶν',
-//   gnd: 'masc',
-//   numcase: 'pl.gen',
-//   descr: 'prima',
-//   var: 'a-cont',
-//   pos: 'noun',
-//   dict: 'ᾶ',
-//   size: 3,
-//   type: 'greek-flex' },
 // =================================================
 // καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
-
-
-                    // ИТОГО: искать в списке, если нет - строить простой dict - лексическую форму
-
-// 1. palmer = все формы {form: var, }
-                    // 2. здесь - query + squeries для опростых пока, потом модуль
-                    // 3. ddocs - выводить все формы - справа var
-                    // 4. в dicts - разделить indecls, names, vars, parts
 
 
 function parsePossibleForms(empties, fls) {
@@ -179,26 +166,29 @@ function parsePossibleForms(empties, fls) {
             if (flex._id != row.form.slice(-flex._id.length)) return;
             let stem = row.form.slice(0, -flex._id.length);
             flex.morphs.forEach(function(morph) {
-                // if (morph.pos == 'verb') log('=========>>>> flex._id:', flex._id, 'morph:', morph)
                 let query = [stem, morph.dict].join('');
                 if (morph.pos == 'verb') {
-                    let form = {idx: row.idx, pos: morph.pos, query: query, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr}
-                    log('FLEX V MORPH', morph.var)
-                    if (modCorr['act.pres.ind'].includes(morph.var)) form.api = true
-                    forms.push(form)
+                    // тут только full-формы, включая act.pres.ind:
+                    let sform = {idx: row.idx, pos: morph.pos, query: query, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, woapi: true}
+                    forms.push(sform)
 
                     // создание дополнительных api-форм:
                     if (u.augmods.includes(morph.var)) {
                         let aug = stem.slice(0,2)
-                        log('================== AUG', aug)
+                        // log('================== AUG', aug)
                         if (_.keys(u.augs).includes(aug)) {
                             let aquery = [stem.slice(2), 'ω'].join('')
                             aquery = [u.augs[aug], aquery].join('')
-                            log('================== AQUERY', aquery)
+                            // log('================== AQUERY', aquery)
                             let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, api: true}
                             forms.push(form)
                         }
+                    } else if (modCorr['act.fut.ind'].includes(morph.var)) {
+                        let aquery = [stem, 'ω'].join('')
+                        let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, api: true}
+                        forms.push(form)
                     }
+
                 } else {
                     let last = stem.slice(-1)
                     // в morph-part нет var!
@@ -207,7 +197,6 @@ function parsePossibleForms(empties, fls) {
                     let form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, add: morph.add } // , flex: flex - убрать
                     forms.push(form)
                 }
-                // forms.push(form)
             })
         })
     })
@@ -226,7 +215,7 @@ function parsePossibleForms(empties, fls) {
 
 //  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
 function dict4word(words, queries, dicts) {
-    let addedForms = [];
+    // let addedForms = [];
     let qqnames = []
     let qverbs = []
     let qparts = []
@@ -239,7 +228,51 @@ function dict4word(words, queries, dicts) {
     log('4w-Qdicts', dicts)
     log('4w-QVERBs', qverbs)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
-    dicts.forEach(function(d) {
+    dicts.names.forEach(function(d) {
+        let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []}
+        let qnstricts = _.select(qqnames, function(q) { return q.query == d.dict })
+        let qnames = (qnstricts.length) ? qnstricts : _.select(qqnames, function(q) { return orthos.plain(q.query) == d.plain})
+    })
+    dicts.verbs.forEach(function(d) {
+        let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}}
+        qverbs.forEach(function(q) {
+            if (d.pos != 'verb') return
+            // log('DESCR', d.descr, 'q', q.descr)
+            if (!d.descr) throw new Error('dict wo descr!')
+            if (d.descr != q.descr) return // αἰτέω - проверить
+
+            // d.api + q.present - норм
+            // d.api + q.api = норм
+            // d.non + q.woapi - норм
+            let ok = false
+            if (d.var == 'act.pres.ind' && q.woapi && u.pres.includes(q.var)) ok = true
+            else if (d.var == 'act.pres.ind' && q.api) ok = true
+            if (d.var != 'act.pres.ind' && q.woapi) ok = true
+            if (!ok) return
+            // if (d.var == 'act.pres.ind' && !q.api) return // << сконструированные и api
+            // if (modCorr[d.var] && !modCorr[d.var].includes(q.var)) return
+
+            if (orthos.plain(q.query) != d.plain) return
+
+            console.log('API', d.plain, d.var, q)
+
+            let morph = {var: q.var, numper: q.numper}
+            if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
+            else vquery.morphs[q.var].push(q.numper)
+
+            vquery.idx = q.idx
+            vquery.form = q.query
+            // vquery.descr = q.descr
+        })
+        if (_.keys(vquery.morphs).length) {
+            words[vquery.idx].dicts.push(vquery)
+        }
+})
+
+
+
+    let tmp = [] // was dicts
+    tmp.forEach(function(d) {
         let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []} // FIXME: _id не нужен - id: d._id,
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}}
 
@@ -282,33 +315,47 @@ function dict4word(words, queries, dicts) {
             // log('NQUERY:', nquery)
         })
 
-        log('API d', d)
+
+        // ========================= VERB ====================
+        // log('API d', d)
         qverbs.forEach(function(q) {
             if (d.pos != 'verb') return
-            log('DESCR', d.descr, 'q', q.descr)
-            if (d.descr && d.descr != q.descr) return // αἰτέω - проверить
+            // log('DESCR', d.descr, 'q', q.descr)
+            if (!d.descr) throw new Error('dict wo descr!')
+            if (d.descr != q.descr) return // αἰτέω - проверить
 
-            // query - либо api (простые и сконструированные), либо modCorr
-            if (d.var == 'act.pres.ind') {
-                if (!q.api) return
-                // if (_.values(d.vmorphs).includes(q.var)) return // - ищем по доп-форме, раз она есть
-            } else {
-                if (modCorr[d.var] && !modCorr[d.var].includes(q.var)) return
-                // log('===========================================>', d.var, q.var)
-            }
+            // d.api + q.present - норм
+            // d.api + q.api = норм
+            // d.non + q.woapi - норм
+            let ok = false
+            if (d.var == 'act.pres.ind' && q.woapi && u.pres.includes(q.var)) ok = true
+            else if (d.var == 'act.pres.ind' && q.api) ok = true
+            if (d.var != 'act.pres.ind' && q.woapi) ok = true
+            if (!ok) return
+
+
+
+            // здесь нельзя отбросить лишний dict, они оба правильные
+            // можно заранее выбрать d-names, d-verbs, d-parts и d-indecls
+            // и в каждом выбрать один - нет, опять LS
+            // один для каждого типа? блядство
+
+
+
+            // if (d.var == 'act.pres.ind' && !q.api) return // << сконструированные и api
+            // if (modCorr[d.var] && !modCorr[d.var].includes(q.var)) return
+
             if (orthos.plain(q.query) != d.plain) return
 
-            // log('API q', q)
-            // log('<------> here we are', d.plain, 'd:', d.var, 'q:', q.var)
-            // log('<------> here we are d:', d.plain, q.query)
+            console.log('API', d.plain, d.var, q)
 
             let morph = {var: q.var, numper: q.numper}
             if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
             else vquery.morphs[q.var].push(q.numper)
-            // else throw new Error('VERB STRANGE MORPH')
+
             vquery.idx = q.idx
             vquery.form = q.query
-            vquery.descr = q.descr
+            // vquery.descr = q.descr
         })
 
         qparts.forEach(function(q) {
@@ -333,12 +380,14 @@ function dict4word(words, queries, dicts) {
             // vquery.trn = d.trn
             // log('>>> VQUERY', vquery)
             words[vquery.idx].dicts.push(vquery)
+            // if (words[vquery.idx].dicts.length > 1) throw new Error('verb: dict shoud be only one!') // FIXME: это до LS
+            // черт побери, тут м.б. бы выбрать просто один, но я добавлю LS, и сломается
         }
     })
     // if (addedForms.length > 1) {
     //     let exactForms = _.select(addedForms, function(f) { return f.query == ZZZ})
     // }
-    return addedForms
+    return
 }
 
 // так нельзя - м.б. один name, из LS - но два dict, adj и noun, или вообще name и verb
@@ -372,7 +421,20 @@ function queryDicts(keys) {
             include_docs: true
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no dict result')
-            let dicts = res.rows.map(function(row) {return row.doc })
+            let rdicts = res.rows.map(function(row) {return row.doc })
+            log('Q RDICTS RES', rdicts)
+            let groups = _.groupBy(rdicts, function(dict){ return [dict.pos, dict.dtype].join('-') })
+            // log('GROUPS', groups)
+            let names = [], verbs = [], parts = []
+            for (let key in groups) {
+                let arr = groups[key]
+                log('ARR', arr)
+                if (arr.length > 1) arr = _.select(arr, function(dict) { return !dict.vmorphs})
+                names = names.concat(_.select(arr, function(dict) { return dict.pos == 'name' }))
+                verbs = verbs.concat(_.select(arr, function(dict) { return dict.pos == 'verb' }))
+                parts = parts.concat(_.select(arr, function(dict) { return dict.pos == 'part' }))
+            }
+            let dicts = {names: names, verbs: verbs, parts: parts}
             log('Q DICTS RES', dicts)
             resolve(dicts)
         }).catch(function (err) {
@@ -485,7 +547,7 @@ function getAllFlex() {
     });
 }
 
-    function log() { }
-    function p() { }
-    // function log() { console.log.apply(console, arguments); }
-    // function p() { console.log(util.inspect(arguments, false, null)) }
+    // function log() { }
+    // function p() { }
+    function log() { console.log.apply(console, arguments); }
+    function p() { console.log(util.inspect(arguments, false, null)) }

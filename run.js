@@ -15,22 +15,16 @@ const antrax = require('./index')
 let dpath = './test/verbs.txt';
 
 console.time('_gramm');
-let tfacts = run()
+let tfacts = getFactories()
 let res = sequentialize(tfacts)
-log('T', res)
-
 console.timeEnd('_gramm');
 
-function run() {
+function getFactories() {
     let factories = []
     let tests = getTests(dpath)
-    // console.log(util.inspect(tests, showHidden=false, depth=null, colorize=true))
     tests.forEach(function(json, idx) {
-        // if (idx > 0) return
         let test = JSON.parse(json)
-        // log('TEST', test)
         for (let mod in test) {
-            // log('MOD', mod)
             let reonly = new RegExp(push)
             if (push && !reonly.test(mod)) continue
             let cases = test[mod]
@@ -50,9 +44,7 @@ function factory(form, mod, morph) {
             if (err) {
                 reject(err)
             } else {
-                // log(1, mod, 2, morph, 3, form)
-                // log(2, mod, 2, words[0].raw, 2, words[0].dicts)
-                if (!words[0].dicts.length) log('ERR', form + ' - ' + mod + ' - ' + morph)
+                if (!words[0].dicts.length) log('T-ERR-dicts', form + ' - ' + mod + ' - ' + morph)
                 let res = words[0].dicts[0].morphs
                 // p(res)
                 if (!res[mod]) throw new Error('no mod: ' + mod + ' morph: ' + morph + ' form: ' + form)
@@ -60,7 +52,7 @@ function factory(form, mod, morph) {
                 if (!res[mod].includes(morph)) throw new Error('no mod: ' + mod + ' morph: ' + morph + ' form: ' + form)
                 p(form + ' - ' + mod + ' - ' + morph)
                 // resolve(form, mod, morph, words);
-                resolve(true);
+                resolve(words);
             }
         })
     })
@@ -80,16 +72,9 @@ function getTests(dpath) {
     let fpath = path.join(__dirname, dpath);
     let text = fs.readFileSync(fpath,'utf8').trim();
     let tests = text.split('\n');
-    // let rows = cleanRows(strs)
-    // rows = _.compact(rows);
+    // p(tests)
     return tests
 }
-
-// rows = rows.slice(0, 1000);
-// let arr, dict;
-// let docs = []
-// rows.forEach(function(row, idx) {
-// })
 
 
 function log() { console.log.apply(console, arguments); }
