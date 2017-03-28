@@ -240,9 +240,11 @@ function dict4word(words, queries, dicts) {
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}}
         qverbs.forEach(function(q) {
             if (d.pos != 'verb') return
-            // log('DESCR', d.descr, 'q', q.descr)
+            log('DESCR', d.descr, 'q', q.descr)
             if (!d.descr) throw new Error('dict wo descr!')
             if (d.descr != q.descr) return // αἰτέω - проверить
+            // plain: 'φανω'
+            // CHECK αἰσχυνω dst αἰσχυν qt νω joined= 'αἰσχυνω' == 'αἰσχυννω'
 
             // d.api + q.present - норм
             // d.api + q.api = норм
@@ -259,19 +261,33 @@ function dict4word(words, queries, dicts) {
             // либо api восстанавливает к d-full, а не d-api форме
 
             // if (q.api) return
+            // но, тут нужно всегда брать d.plain - добавочную форму
+            // а удалять - fut: sw, aor: sa, etc
+            // именно так, ибо изменение стема: ἐρωτάω - ἐρωτήσω
+
+            // modCorr['act.pres.ind'] = ['act.pres.ind', 'act.pres.opt', 'act.pres.sub', 'act.pres.imp', 'mid-pass.pres.ind', 'mid-pass.pres.opt', 'mid-pass.pres.sub', 'mid-pass.pres.imp', 'act.impf.ind', 'mid-pass.impf.ind', 'act.pres.inf', 'mid.pres.inf']
+            // modCorr['act.fut.ind'] = ['act.fut.ind', 'act.fut.opt', 'mid.fut.ind', 'mid.fut.opt', 'pass.fut.ind', 'pass.fut.opt', 'act.fut.inf', 'mid.fut.inf']
+
             let dstem
-            dstem = orthos.plain(d.dict).replace(/ω$/, '')
+            if (modCorr['act.pres.ind'].includes(q.var)) dstem = d.plain.replace(/ω$/, '')
+            else if (modCorr['act.fut.ind'].includes(q.var)) dstem = d.plain.replace(/σω$/, '')
+            else if (modCorr['act.aor.ind'].includes(q.var)) dstem = d.plain.replace(/σα$/, '')
+            // dstem = orthos.plain(d.dict).replace(/ω$/, '')
+
+            // dstem = orthos.plain(d.dict).replace(/νω$/, '') // -nw - для liquid-n
             log('Q-form', q.form, 'dstem', dstem, 'qt', q.term, 'qvar', q.var)
 
             let qform = orthos.plain(q.form)
             let qterm = orthos.plain(q.term)
-            // if (u.augmods.includes(q.var)) log('AUG MOD', q.aug)
-            if (u.augmods.includes(q.var)) {
-                if (!q.aug) log('q - NO AUG', q)
+            if (!q.aug) log('q - NO AUG', q)
+            // а нельзя-ли тут всегда slice(2) сделать?
+            if (q.aug && u.augmods.includes(q.var)) { // no-aug = q.woapi
                 let qaug = orthos.plain(q.aug)
                 let reaug = new RegExp('^' + qaug)
                 qform = qform.replace(reaug, '')
                 if (qaug) log('q - AUG', qaug, qform)
+            } else if (u.augmods.includes(q.var)) {
+                qform = qform.slice(2)
             }
 
             log('BEFORE MAIN CHECK', qform, 'dst', dstem, 'qt', qterm, 'joined=', [dstem, qterm].join(''))
