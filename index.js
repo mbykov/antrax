@@ -34,7 +34,7 @@ replicateDB('greek')
 
 function destroyDB(db) {
     db.destroy().then(function (response) {
-        log('DB DESTROYED', response);
+        console.log('DB DESTROYED', response);
     }).catch(function (err) {
         console.log(err);
     });
@@ -245,7 +245,7 @@ function dict4word(words, queries, dicts) {
         qverbs.forEach(function(q) {
             if (!filterDescr(d, q)) return
 
-            // log('============================== API', d.pos, d.var == 'act.pres.ind')
+            // log('============================== API ?', d.pos, d.var == 'act.pres.ind')
             let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterWOapi(d, q)
             // let filter = filterAPI(d, q)
             if (!filter) return
@@ -299,8 +299,8 @@ function filterWOapi(d, q) {
 }
 
 function filterAPI(d, q) {
-    if (!q.api && q.var != 'act.pres.ind') return
-    // if (!modCorr[d.var].includes(q.var)) return
+    // if (!q.api && q.var != 'act.pres.ind') return
+    if (!q.api && !modCorr['act.pres.ind'].includes(q.var)) return
     log('modCorr ok', q.query, '=', d.plain)
 
     // if (orthos.plain(q.query) != d.plain) return
