@@ -11,7 +11,7 @@ let u = require('./lib/utils');
 let modCorr = u.modCorr
 
 let forTest = process.argv.slice(2)[0] || false;
-// console.log('FOR TEST', forTest, forTest == '--no-sandbox')
+console.log('FOR TEST', forTest, forTest == '--no-sandbox')
 
 let PouchDB, db_flex, db
 if (forTest == '--no-sandbox') {
@@ -233,7 +233,7 @@ function dict4word(words, queries, dicts) {
     })
 
     log('4w-Qdicts', dicts.verbs)
-    log('4w-QVERBs', qverbs)
+    log('4w-QVqs', qverbs)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     dicts.names.forEach(function(d) {
         let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []}
@@ -243,224 +243,100 @@ function dict4word(words, queries, dicts) {
     dicts.verbs.forEach(function(d) {
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}}
         qverbs.forEach(function(q) {
-            if (d.pos != 'verb') return
-            log('DESCR', d.descr, 'q', q.descr)
-            if (!d.descr) throw new Error('dict wo descr!')
-            if (d.descr != q.descr) return // αἰτέω - проверить
-            // plain: 'φανω'
-            // CHECK αἰσχυνω dst αἰσχυν qt νω joined= 'αἰσχυνω' == 'αἰσχυννω'
+            if (!filterDescr(d, q)) return
 
-            // d.api + q.present - норм
-            // d.api + q.api = норм
-            // d.non + q.woapi - норм
-            let ok = false
-            if (d.var == 'act.pres.ind' && q.woapi && u.pres.includes(q.var)) ok = true
-            else if (d.var == 'act.pres.ind' && q.api) ok = true
-            if (d.var != 'act.pres.ind' && q.woapi) ok = true
-            if (!ok) return
-
-            if (!modCorr[d.var].includes(q.var)) return
-
-            if (orthos.plain(q.query) != d.plain) return
-
-            // если d-full, то либо форма строится из d-full-stem
-            // либо api восстанавливает к d-full, а не d-api форме
-
-            // if (q.api) return
-            // но, тут нужно всегда брать d.plain - добавочную форму
-            // а удалять - fut: sw, aor: sa, etc
-            // именно так, ибо изменение стема: ἐρωτάω - ἐρωτήσω
-            //
-            // ==========================================
-            //
-            // нужно оставлять оба dicts, а здесь выбирать нужный, в зависимости от , 'act.aor.opt', 'act.aor.sub', 'mid-pass.aor.opt', etc
-            // ох - а здесь оба правильных же?
-            // поменять местами d и q и select из dicts?
-            // ==========================================
-            // fut я могу? взять из full, но aor.sub я должен вычислять полностью из api
-
-            let dstem
-            if (modCorr['act.pres.ind'].includes(q.var)) dstem = d.plain.replace(/ω$/, '')
-            else if (modCorr['act.fut.ind'].includes(q.var)) dstem = d.plain.replace(/σω$/, '')
-            else if (modCorr['act.aor.ind'].includes(q.var)) dstem = d.plain.replace(/σα$/, '')
-            // dstem = orthos.plain(d.dict).replace(/ω$/, '')
-
-            // dstem = orthos.plain(d.dict).replace(/νω$/, '') // -nw - для liquid-n
-            log('Q-form', q.form, 'dstem', dstem, 'qt', q.term, 'qvar', q.var)
-
-            let qform = orthos.plain(q.form)
-            let qterm = orthos.plain(q.term)
-            // if (!q.aug) log('q - NO AUG', q)
-            // а нельзя-ли тут всегда slice(2) сделать?
-            if (q.aug && u.augmods.includes(q.var)) { // no-aug = q.woapi
-                let qaug = orthos.plain(q.aug)
-                let reaug = new RegExp('^' + qaug)
-                qform = qform.replace(reaug, '')
-                if (qaug) log('q - AUG', qaug, qform)
-            // } else if (u.augmods.includes(q.var)) { // q.api &&  для api - imperfect, etc
-                // qform = qform.slice(2)
-            }
-
-            log('BEFORE MAIN qform:', qform, 'dst:', dstem, 'qterm:', qterm, 'joined=', [dstem, qterm].join(''))
-            if (qform != [dstem, qterm].join('')) return
-            // "λύω"  "λύσω" "ἔλυον"
-
-            console.log('API', d.plain, d.var, q)
+            // log('============================== API', d.pos, d.var == 'act.pres.ind')
+            let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterWOapi(d, q)
+            // let filter = filterAPI(d, q)
+            if (!filter) return
 
             let morph = {var: q.var, numper: q.numper}
             if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
             else vquery.morphs[q.var].push(q.numper)
-
             vquery.idx = q.idx
             vquery.form = q.query
             // vquery.descr = q.descr
         })
         if (_.keys(vquery.morphs).length) {
             words[vquery.idx].dicts.push(vquery)
-        }
-})
-
-
-
-    let tmp = [] // was dicts
-    tmp.forEach(function(d) {
-        let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []} // FIXME: _id не нужен - id: d._id,
-        let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}}
-
-        let qnstricts = _.select(qqnames, function(q) { return q.query == d.dict })
-        let qnames = (qnstricts.length) ? qnstricts : _.select(qqnames, function(q) { return orthos.plain(q.query) == orthos.plain(d.dict) })
-
-        // let word = {idx: idx, form: form, plain: plain, raw: key, dicts: []}
-        qnames.forEach(function(q) {
-            if (d.pos != 'name') return
-            if (!d.var) {
-                log('NNV', d)
-                throw new Error('NO NAME VAR')
-            }
-            log('DVAR', d.var, 'QVAR', q.var) // 'FLEX', q.flex
-            let vr2 = q.var.split(/ |, /)
-            vr2.forEach(function(vr) {
-                if (d.var != vr) return
-                let morph = {gend: q.gend, numcase: q.numcase} // , flex: q.flex - это оставлять нельзя из-за conform - там строки !!!!
-                if (d.gend && !q.add) {
-                    log('DGEND', d.gend, 'QGEND', q)
-                    // if (d.gend && !d.gend.includes(q.gend)) return
-                    // if (d.gend != q.gend) return // в dict проверить gend - это всегда д.б. массив
-                    morph.gend = d.gend
-                    nquery.morphs.push(morph)
-                }
-                else if (!d.gend){
-                    // FIXME: здесь в fem, в ous, как всегда, pl.acc-sg.gen - убрать лишнее при ier
-                    // двух окончаний - fem не проходит:
-                if (d.term == 2 && q.gend == 'fem') return
-                    // term=3 и простой var (ous) == здесь fem, если есть, пролез
-                    nquery.morphs.push(morph)
-                    if (d.term == 2 && q.gend == 'masc') {
-                        let femorph = {gend: 'fem', numcase: q.numcase}
-                    nquery.morphs.push(femorph)
-                    }
-                }
-            })
-            nquery.idx = q.idx
-            nquery.form = q.form // это же просто word??
-            // log('NQUERY:', nquery)
-        })
-
-
-        // ========================= VERB ====================
-        // log('API d', d)
-        qverbs.forEach(function(q) {
-            if (d.pos != 'verb') return
-            // log('DESCR', d.descr, 'q', q.descr)
-            if (!d.descr) throw new Error('dict wo descr!')
-            if (d.descr != q.descr) return // αἰτέω - проверить
-
-            // d.api + q.present - норм
-            // d.api + q.api = норм
-            // d.non + q.woapi - норм
-            let ok = false
-            if (d.var == 'act.pres.ind' && q.woapi && u.pres.includes(q.var)) ok = true
-            else if (d.var == 'act.pres.ind' && q.api) ok = true
-            if (d.var != 'act.pres.ind' && q.woapi) ok = true
-            if (!ok) return
-
-
-
-            // здесь нельзя отбросить лишний dict, они оба правильные
-            // можно заранее выбрать d-names, d-verbs, d-parts и d-indecls
-            // и в каждом выбрать один - нет, опять LS
-            // один для каждого типа? блядство
-
-
-
-            // if (d.var == 'act.pres.ind' && !q.api) return // << сконструированные и api
-            // if (modCorr[d.var] && !modCorr[d.var].includes(q.var)) return
-
-            if (orthos.plain(q.query) != d.plain) return
-
-            console.log('API', d.plain, d.var, q)
-
-            let morph = {var: q.var, numper: q.numper}
-            if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
-            else vquery.morphs[q.var].push(q.numper)
-
-            vquery.idx = q.idx
-            vquery.form = q.query
-            // vquery.descr = q.descr
-        })
-
-        qparts.forEach(function(q) {
-            if (d.pos != 'verb') return
-            log('PART', d)
-            log('PART', q)
-            if (orthos.plain(q.query) != orthos.plain(d.dict)) return
-            let morph = {gend: q.gend, numcase: q.numcase}
-            if (!nquery.morphs) nquery.morphs = [morph]
-            else nquery.morphs.push(morph)
-            nquery.pos = 'name'
-            nquery.part = true
-            nquery.idx = q.idx
-            nquery.form = q.form
-        })
-
-        if (nquery.morphs.length) {
-            // nquery.trn = d.trn
-            words[nquery.idx].dicts.push(nquery)
-        }
-        if (_.keys(vquery.morphs).length) {
-            // vquery.trn = d.trn
-            // log('>>> VQUERY', vquery)
-            words[vquery.idx].dicts.push(vquery)
-            // if (words[vquery.idx].dicts.length > 1) throw new Error('verb: dict shoud be only one!') // FIXME: это до LS
-            // черт побери, тут м.б. бы выбрать просто один, но я добавлю LS, и сломается
         }
     })
-    // if (addedForms.length > 1) {
-    //     let exactForms = _.select(addedForms, function(f) { return f.query == ZZZ})
-    // }
-    return
 }
 
-// так нельзя - м.б. один name, из LS - но два dict, adj и noun, или вообще name и verb
-//
-// function expliciteMorphs (words) {
-//     words.forEach(function(word) {
-//         if (word.indecl) return
-//         let lsdict = _.find(word.dicts, function(dict) { return dict.type == 'ls'})
-//         let morphs = (lsdict) ? lsdict.morphs : words.dicts[0].morphs
-//         word.morphs = morphs
-//     })
-// }
+// additional full verb-form: fut, aor, etc
+function filterWOapi(d, q) {
+    if (!modCorr[d.var].includes(q.var)) return
+    // log('modCorr ok', q.query, '=', d.plain)
+    if (orthos.plain(q.query) != d.plain) return
+    // log('plain ok, q.var:', q.var)
 
-// function notInException(d, q) {
-//     // но - тут подставляется gnd из flex, т.е. masc - а в словаре fem. как быть?
-//     let osEx = ['ὁδός', '']
-//     if (q.var == 'os' && osEx.includes(d.dict)) {
-//         q.gend = d.gend[0]
-//         return false
-//     }
-//     else return true
-// }
+    let dstem
+    if (modCorr['act.pres.ind'].includes(q.var)) dstem = d.plain.replace(/ω$/, '')
+    if (modCorr['act.fut.ind'].includes(q.var)) dstem = d.plain.replace(/σω$/, '')
+    else if (modCorr['act.aor.ind'].includes(q.var)) dstem = d.plain.replace(/σα$/, '')
+    // dstem = orthos.plain(d.dict).replace(/νω$/, '') // -nw - для liquid-n
+    // log('Q-form', q.form, 'dstem', dstem, 'qt', q.term, 'qvar', q.var)
+
+    let qform = orthos.plain(q.form)
+    let qterm = orthos.plain(q.term)
+    // if (!q.aug) log('q - NO AUG', q)
+    // а нельзя-ли тут всегда slice(2) сделать?
+    if (q.aug && u.augmods.includes(q.var)) { // no-aug = q.woapi
+        let qaug = orthos.plain(q.aug)
+        let reaug = new RegExp('^' + qaug)
+        qform = qform.replace(reaug, '')
+        if (qaug) log('q - AUG', qaug, qform)
+        // } else if (u.augmods.includes(q.var)) { // q.api &&  для api - imperfect, etc
+        // qform = qform.slice(2)
+    }
+
+    // "λύω"  "λύσω" "ἔλυον"
+    log('NAPI-BEFORE-MAIN qform:', qform, 'dst:', dstem, 'qterm:', qterm, 'joined=', [dstem, qterm].join(''))
+    if (qform != [dstem, qterm].join('')) return
+    log('API', d.plain, d.var, q)
+
+    return true
+}
+
+function filterAPI(d, q) {
+    if (!q.api && q.var != 'act.pres.ind') return
+    // if (!modCorr[d.var].includes(q.var)) return
+    log('modCorr ok', q.query, '=', d.plain)
+
+    // if (orthos.plain(q.query) != d.plain) return
+    // log('plain ok')
+
+    let dstem = d.plain.replace(/ω$/, '')
+
+    // dstem = orthos.plain(d.dict).replace(/νω$/, '') // -nw - для liquid-n
+    log('Q-form', q.form, 'dstem', dstem, 'qt', q.term, 'qvar', q.var)
+
+    let qform = orthos.plain(q.form)
+    let qterm = orthos.plain(q.term)
+    // if (!q.aug) log('q - NO AUG', q)
+    // а нельзя-ли тут всегда slice(2) сделать?
+    if (q.aug && u.augmods.includes(q.var)) { // no-aug = q.woapi
+        let qaug = orthos.plain(q.aug)
+        let reaug = new RegExp('^' + qaug)
+        qform = qform.replace(reaug, '')
+        if (qaug) log('q - AUG', qaug, qform)
+        // } else if (u.augmods.includes(q.var)) { // q.api &&  для api - imperfect, etc
+        // qform = qform.slice(2)
+    }
+
+    // "λύω"  "λύσω" "ἔλυον"
+    log('API-BEFORE-MAIN qform:', qform, 'dst:', dstem, 'qterm:', qterm, 'joined=', [dstem, qterm].join(''))
+    if (qform != [dstem, qterm].join('')) return
+    log('API', d.plain, d.var, q)
+    return true
+}
+
+function filterDescr(d, q) {
+    if (!d.descr) throw new Error('dict wo descr!')
+    if (d.descr != q.descr) log('BADDESCRS', d.descr, 'q', q.descr)
+    if (d.descr != q.descr) return false // αἰτέω - проверить
+    return true
+}
 
 
 
@@ -598,7 +474,15 @@ function getAllFlex() {
     });
 }
 
-    // function log() { }
-    // function p() { }
+
+function log() { }
+function p() { }
+
+if (forTest == '--no-sandbox') {
     function log() { console.log.apply(console, arguments); }
     function p() { console.log(util.inspect(arguments, false, null)) }
+}
+// else {
+//     function log() { }
+//     function p() { }
+// }
