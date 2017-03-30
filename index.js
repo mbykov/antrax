@@ -276,6 +276,7 @@ function filterWOapi(d, q) {
     if (orthos.plain(q.query) != d.plain) return
     // log('plain ok, q.var:', q.var)
 
+
     let dstem
     if (modCorr['act.pres.ind'].includes(q.var)) dstem = d.plain.replace(/ω$/, '')
     if (modCorr['act.fut.ind'].includes(q.var)) dstem = d.plain.replace(/σω$/, '')
