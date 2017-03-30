@@ -161,19 +161,20 @@ function main(words, fls, cb) {
 function parsePossibleForms(empties, fls) {
     let forms = [];
     // let vforms = [];
-    empties.forEach(function(row) {
-        fls.forEach(function(flex) {
+    empties.forEach(function(row, idx) {
+        fls.forEach(function(flex, idy) {
             if (flex._id != row.form.slice(-flex._id.length)) return;
             let term = flex._id
-            let stem = row.form.slice(0, -flex._id.length);
-            log('===> FORM', row.form, 'ST', stem, 'TRM', term, row.form == [stem, term].join(''))
+            // let stem = row.form.slice(0, -flex._id.length);
             flex.morphs.forEach(function(morph) {
-                let query = [stem, morph.dict].join('');
                 if (morph.pos == 'verb') {
+                    let stem = row.form.slice(0, -flex._id.length);
+                    let query = [stem, morph.dict].join('');
+                    // log('m:====>>> stem', stem, 'morph', morph)
                     // тут только full-формы, включая act.pres.ind:
-                    let sform = {idx: row.idx, pos: morph.pos, query: query, form: row.form, stem: stem, dict: morph.dict, term: term, numper: morph.numper, var: morph.var, descr: morph.descr, woapi: true}
-                    // forms.push(sform)
-                    // log('SFORM', sform)
+                    let sform = {idx: row.idx, pos: morph.pos, query: query, form: row.form, stem: stem, dict: morph.dict, term: term, numper: morph.numper, var: morph.var, descr: morph.descr, woapi: true, flex: flex} // , morph: morph
+                    // log('SFORM==>', sform)
+                    forms.push(sform)
 
                     // создание дополнительных api-форм:
                     if (u.augmods.includes(morph.var)) {
@@ -185,18 +186,17 @@ function parsePossibleForms(empties, fls) {
                             // log('================== AQUERY', aquery)
                             let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, aug: aug, stem: stem, term: term, api: true}
                             forms.push(form)
-                            forms.push(sform)
                         }
                     } else if (modCorr['act.fut.ind'].includes(morph.var)) {
                         let aquery = [stem, 'ω'].join('')
                         let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, stem: stem, term: term, api: true}
                         forms.push(form)
-                        forms.push(sform)
-                    } else {
-                        forms.push(sform)
                     }
 
                 } else {
+                    let stem = row.form.slice(0, -flex._id.length);
+                    let query = [stem, morph.dict].join('');
+                    // log('====>>> stem', stem, 'morph', morph)
                     let last = stem.slice(-1)
                     // в morph-part нет var!
                     // log('pFLEX', 'last', last, 'MVAR', morph.var, '_ID', flex._id, 'POS', morph.pos)
@@ -228,8 +228,8 @@ function dict4word(words, queries, dicts) {
     let qparts = []
     queries.forEach(function(q) {
         if (q.pos == 'name') qqnames.push(q)
-        if (q.pos == 'part') qparts.push(q)
-        if (q.pos == 'verb') qverbs.push(q)
+        else if (q.pos == 'part') qparts.push(q)
+        else if (q.pos == 'verb') qverbs.push(q)
     })
 
     log('4w-Qdicts', dicts.verbs)
@@ -265,8 +265,14 @@ function dict4word(words, queries, dicts) {
 
 // additional full verb-form: fut, aor, etc
 function filterWOapi(d, q) {
+    // log('filterWO', q)
+    if (q.api) return // - тут дополнительных не нужно
+
+    // log('filterWO 1')
     if (!modCorr[d.var].includes(q.var)) return
     // log('modCorr ok', q.query, '=', d.plain)
+    // log('filterWO 2')
+
     if (orthos.plain(q.query) != d.plain) return
     // log('plain ok, q.var:', q.var)
 
@@ -279,7 +285,7 @@ function filterWOapi(d, q) {
 
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
-    // if (!q.aug) log('q - NO AUG', q)
+    // если aug, то отбросить, ибо в словаре и в форме ... нет, тут не нужно отбрасывать?????  <<=====
     // а нельзя-ли тут всегда slice(2) сделать?
     if (q.aug && u.augmods.includes(q.var)) { // no-aug = q.woapi
         let qaug = orthos.plain(q.aug)
@@ -293,18 +299,19 @@ function filterWOapi(d, q) {
     // "λύω"  "λύσω" "ἔλυον"
     log('NAPI-BEFORE-MAIN qform:', qform, 'dst:', dstem, 'qterm:', qterm, 'joined=', [dstem, qterm].join(''))
     if (qform != [dstem, qterm].join('')) return
-    log('API', d.plain, d.var, q)
+    log('NAPI', d.plain, d.var, q)
 
     return true
 }
 
+// q - д.б. либо наст.вр, либо любой с пометкой .api
+//
 function filterAPI(d, q) {
-    // if (!q.api && q.var != 'act.pres.ind') return
-    if (!q.api && !modCorr['act.pres.ind'].includes(q.var)) return
-    log('modCorr ok', q.query, '=', d.plain)
+    log('filter API')
+    if (q.woapi && !u.pres.includes(q.var)) return
+    log('WOAPI ok', q.query, '=', d.plain, 'q', q)
 
-    // if (orthos.plain(q.query) != d.plain) return
-    // log('plain ok')
+    // здесь d.plain = plain(d.dict)
 
     let dstem = d.plain.replace(/ω$/, '')
 
@@ -349,13 +356,13 @@ function queryDicts(keys) {
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no dict result')
             let rdicts = res.rows.map(function(row) {return row.doc })
-            log('Q RDICTS RES', rdicts)
+            // log('Q RDICTS RES', rdicts)
             let groups = _.groupBy(rdicts, function(dict){ return [dict.pos, dict.dtype].join('-') })
             // log('GROUPS', groups)
             let names = [], verbs = [], parts = []
             for (let key in groups) {
                 let arr = groups[key]
-                log('ARR', arr)
+                // log('ARR', arr)
                 if (arr.length > 1) arr = _.select(arr, function(dict) { return !dict.vmorphs})
                 names = names.concat(_.select(arr, function(dict) { return dict.pos == 'name' }))
                 verbs = verbs.concat(_.select(arr, function(dict) { return dict.pos == 'verb' }))

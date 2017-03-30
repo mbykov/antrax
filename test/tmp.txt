@@ -22,11 +22,11 @@
 # Third Person Plural	ἔπαυσαν	x
 
 * FUTURE ACTIVE INDICATIVE	FUTURE MIDDLE AND PASSIVE INDICATIVE
-First Person Singular	παύσω	παύσο-μαι
+First Person Singular	παύσω	παύσομαι
 Second Person Singular	παύσεις	παύσει
-Third Person Singular	παύσει	παύσε-ται
-Second Person Dual	παύσε-τον	παύσε-σθον
-Third Person Dual	παύσε-τον	παύσε-σθον
-First Person Plural	παυσό-μεν	παυσό-μεθα
-Second Person Plural	παύσε-τε	παύσε-σθε
-Third Person Plural	παύσουσι	παύσο-νται
+Third Person Singular	παύσει	παύσεται
+Second Person Dual	παύσετον	παύσεσθον
+Third Person Dual	παύσετον	παύσεσθον
+First Person Plural	παυσόμεν	παυσόμεθα
+Second Person Plural	παύσετε	παύσεσθε
+Third Person Plural	παύσουσι	παύσονται
