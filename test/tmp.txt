@@ -30,3 +30,5 @@ Third Person Dual	παύσετον	παύσεσθον
 First Person Plural	παυσόμεν	παυσόμεθα
 Second Person Plural	παύσετε	παύσεσθε
 Third Person Plural	παύσουσι	παύσονται
+
+s

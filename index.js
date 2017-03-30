@@ -263,12 +263,12 @@ function dict4word(words, queries, dicts) {
     })
 }
 
-// additional full verb-form: fut, aor, etc
+// additional full verb-form: fut, aor, etc - кроме act.pres.ind
 function filterWOapi(d, q) {
-    // log('filterWO', q)
+    log('filter NAPI')
     if (q.api) return // - тут дополнительных не нужно
+    log('q', q)
 
-    // log('filterWO 1')
     if (!modCorr[d.var].includes(q.var)) return
     // log('modCorr ok', q.query, '=', d.plain)
     // log('filterWO 2')
@@ -278,11 +278,18 @@ function filterWOapi(d, q) {
 
 
     let dstem
-    if (modCorr['act.pres.ind'].includes(q.var)) dstem = d.plain.replace(/ω$/, '')
-    if (modCorr['act.fut.ind'].includes(q.var)) dstem = d.plain.replace(/σω$/, '')
-    else if (modCorr['act.aor.ind'].includes(q.var)) dstem = d.plain.replace(/σα$/, '')
-    // dstem = orthos.plain(d.dict).replace(/νω$/, '') // -nw - для liquid-n
+    // if (modCorr['act.pres.ind'].includes(q.var)) dstem = d.plain.replace(/ω$/, '')
+    // if (modCorr['act.fut.ind'].includes(q.var)) dstem = d.plain.replace(/σω$/, '')
+    // else if (modCorr['act.aor.ind'].includes(q.var)) dstem = d.plain.replace(/σα$/, '')
+    // // dstem = orthos.plain(d.dict).replace(/νω$/, '') // -nw - для liquid-n
     // log('Q-form', q.form, 'dstem', dstem, 'qt', q.term, 'qvar', q.var)
+
+    let vterm = u.vterms[q.descr][q.var]
+    log('napi:--------------------------> q.descr, q.var, vterm', q.descr, q.var, vterm)
+    let revterm = new RegExp(vterm + '$')
+    dstem = d.plain.replace(revterm, '')
+    log('napi--------------------------> d.plain, dstem', d.plain, dstem)
+
 
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
@@ -310,14 +317,19 @@ function filterWOapi(d, q) {
 function filterAPI(d, q) {
     log('filter API')
     if (q.woapi && !u.pres.includes(q.var)) return
-    log('WOAPI ok', q.query, '=', d.plain, 'q', q)
+    log('q', q)
 
     // здесь d.plain = plain(d.dict)
 
     let dstem = d.plain.replace(/ω$/, '')
 
+    let vterm = u.vterms[q.descr][q.var]
+    log('napi:--------------------------> q.descr, q.var, vterm', q.descr, q.var, vterm)
+    let revterm = new RegExp(vterm + '$')
+    dstem = d.plain.replace(revterm, '')
+    log('napi--------------------------> d.plain, dstem', d.plain, dstem)
     // dstem = orthos.plain(d.dict).replace(/νω$/, '') // -nw - для liquid-n
-    log('Q-form', q.form, 'dstem', dstem, 'qt', q.term, 'qvar', q.var)
+    // log('Q-form', q.form, 'dstem', dstem, 'qt', q.term, 'qvar', q.var)
 
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
