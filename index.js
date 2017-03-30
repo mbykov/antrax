@@ -273,7 +273,7 @@ function filterWOapi(d, q) {
     if (orthos.plain(q.query) != d.plain) return
     // log('plain ok, q.var:', q.var)
 
-    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ησα$/, '').replace(/σα$/, '').replace(/σω$/, '').replace(/ω$/, '')
+    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ησα$/, '').replace(/σα$/, '').replace(/ψα$/, '').replace(/σω$/, '').replace(/ψω$/, '').replace(/ω$/, '')
 
 
 
@@ -303,7 +303,7 @@ function filterAPI(d, q) {
     log('filter API')
     if (q.woapi && !u.pres.includes(q.var)) return
     log('q', q)
-    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ω$/, '')
+    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/βω$/, '').replace(/πω$/, '').replace(/φω$/, '').replace(/ω$/, '')
 
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
