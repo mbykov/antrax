@@ -268,47 +268,32 @@ function filterWOapi(d, q) {
     log('filter NAPI')
     if (q.api) return // - тут дополнительных не нужно
     log('q', q)
-
     if (!modCorr[d.var].includes(q.var)) return
-    // log('modCorr ok', q.query, '=', d.plain)
-    // log('filterWO 2')
 
     if (orthos.plain(q.query) != d.plain) return
     // log('plain ok, q.var:', q.var)
 
+    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ησα$/, '').replace(/σα$/, '').replace(/σω$/, '').replace(/ω$/, '')
 
-    let dstem
-    // if (modCorr['act.pres.ind'].includes(q.var)) dstem = d.plain.replace(/ω$/, '')
-    // if (modCorr['act.fut.ind'].includes(q.var)) dstem = d.plain.replace(/σω$/, '')
-    // else if (modCorr['act.aor.ind'].includes(q.var)) dstem = d.plain.replace(/σα$/, '')
-    // // dstem = orthos.plain(d.dict).replace(/νω$/, '') // -nw - для liquid-n
-    // log('Q-form', q.form, 'dstem', dstem, 'qt', q.term, 'qvar', q.var)
-
-    let vterm = u.vterms[q.descr][q.var]
-    log('napi:--------------------------> q.descr, q.var, vterm', q.descr, q.var, vterm)
-    let revterm = new RegExp(vterm + '$')
-    dstem = d.plain.replace(revterm, '')
-    log('napi--------------------------> d.plain, dstem', d.plain, dstem)
 
 
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
     // если aug, то отбросить, ибо в словаре и в форме ... нет, тут не нужно отбрасывать?????  <<=====
     // а нельзя-ли тут всегда slice(2) сделать?
-    if (q.aug && u.augmods.includes(q.var)) { // no-aug = q.woapi
-        let qaug = orthos.plain(q.aug)
-        let reaug = new RegExp('^' + qaug)
-        qform = qform.replace(reaug, '')
-        if (qaug) log('q - AUG', qaug, qform)
-        // } else if (u.augmods.includes(q.var)) { // q.api &&  для api - imperfect, etc
-        // qform = qform.slice(2)
-    }
+    // if (q.aug && u.augmods.includes(q.var)) { // no-aug = q.woapi
+    //     let qaug = orthos.plain(q.aug)
+    //     let reaug = new RegExp('^' + qaug)
+    //     qform = qform.replace(reaug, '')
+    //     if (qaug) log('q - AUG', qaug, qform)
+    //     // } else if (u.augmods.includes(q.var)) { // q.api &&  для api - imperfect, etc
+    //     // qform = qform.slice(2)
+    // }
 
     // "λύω"  "λύσω" "ἔλυον"
     log('NAPI-BEFORE-MAIN qform:', qform, 'dst:', dstem, 'qterm:', qterm, 'joined=', [dstem, qterm].join(''))
     if (qform != [dstem, qterm].join('')) return
     log('NAPI', d.plain, d.var, q)
-
     return true
 }
 
@@ -318,34 +303,16 @@ function filterAPI(d, q) {
     log('filter API')
     if (q.woapi && !u.pres.includes(q.var)) return
     log('q', q)
-
-    // здесь d.plain = plain(d.dict)
-
-    let dstem = d.plain.replace(/ω$/, '')
-
-    let vterm = u.vterms[q.descr][q.var]
-    log('napi:--------------------------> q.descr, q.var, vterm', q.descr, q.var, vterm)
-    let revterm = new RegExp(vterm + '$')
-    dstem = d.plain.replace(revterm, '')
-    log('napi--------------------------> d.plain, dstem', d.plain, dstem)
-    // dstem = orthos.plain(d.dict).replace(/νω$/, '') // -nw - для liquid-n
-    // log('Q-form', q.form, 'dstem', dstem, 'qt', q.term, 'qvar', q.var)
+    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ω$/, '')
 
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
-    // if (!q.aug) log('q - NO AUG', q)
-    // а нельзя-ли тут всегда slice(2) сделать?
-    if (q.aug && u.augmods.includes(q.var)) { // no-aug = q.woapi
-        let qaug = orthos.plain(q.aug)
-        let reaug = new RegExp('^' + qaug)
-        qform = qform.replace(reaug, '')
-        if (qaug) log('q - AUG', qaug, qform)
-        // } else if (u.augmods.includes(q.var)) { // q.api &&  для api - imperfect, etc
-        // qform = qform.slice(2)
+    if (q.aug && u.augmods.includes(q.var)) {
+        qform = qform.slice(2)
     }
 
     // "λύω"  "λύσω" "ἔλυον"
-    log('API-BEFORE-MAIN qform:', qform, 'dst:', dstem, 'qterm:', qterm, 'joined=', [dstem, qterm].join(''))
+    log('API-BEFORE-MAIN qform:', qform, 'dst:', dstem, 'qterm:', q.term, 'joined=', [dstem, q.term].join(''))
     if (qform != [dstem, qterm].join('')) return
     log('API', d.plain, d.var, q)
     return true
