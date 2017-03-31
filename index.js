@@ -163,8 +163,8 @@ function parsePossibleForms(empties, fls) {
     // let vforms = [];
     empties.forEach(function(row, idx) {
         fls.forEach(function(flex, idy) {
-            if (flex._id != row.form.slice(-flex._id.length)) return;
             let term = flex._id
+            if (flex._id != row.form.slice(-flex._id.length)) return;
             // let stem = row.form.slice(0, -flex._id.length);
             flex.morphs.forEach(function(morph) {
                 if (morph.pos == 'verb') {
@@ -195,8 +195,10 @@ function parsePossibleForms(empties, fls) {
                 } else if (morph.pos == 'inf') {
                     // здесь нужно конструировать только api-dict для разных mods, а в 4w их ловить - в словаре full-форм нет
                     let stem = row.form.slice(0, -flex._id.length);
+                    if (row.form != [stem, term].join('')) return
                     let query = [stem, morph.dict].join('');
-                    let form = {idx: row.idx, pos: 'inf', query: query, form: row.form, var: morph.var, descr: morph.descr, stem: stem, term: term}
+                    let vvar = [morph.var, 'inf'].join('.')
+                    let form = {idx: row.idx, pos: 'inf', query: query, form: row.form, var: vvar, descr: morph.descr, stem: stem, term: term}
                     forms.push(form)
                 } else {
                     let stem = row.form.slice(0, -flex._id.length);
@@ -227,11 +229,6 @@ function parsePossibleForms(empties, fls) {
 
 //  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
 function dict4word(words, queries, dicts) {
-    // let addedForms = [];
-    // let qqnames = []
-    // let qverbs = []
-    // let infs = []
-    // let qparts = []
     let qqnames = [], qverbs = [], qinfs = [], qparts = []
     queries.forEach(function(q) {
         if (q.pos == 'name') qqnames.push(q)
@@ -252,13 +249,19 @@ function dict4word(words, queries, dicts) {
         let iquery
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}}
         qinfs.forEach(function(q) {
+            if (d.var != 'act.pres.ind') return
             if (!filterDescr(d, q)) return
-            log('======== INF', q)
-            let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterWOapi(d, q)
+            let qform = orthos.plain(q.form)
+            let qterm = orthos.plain(q.term)
+            let stem = d.plain.replace(/ω$/, '')
+            if (qform != [stem, qterm].join('')) return
+            // пока нет perfect:
+            if (/pf/.test(q.var)) return
+            log('======== INF', d, q)
+            // let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterWOapi(d, q)
             // let filter = filterAPI(d, q)
-            // а вот здесь мне нужен dict-api, а я его отбросил - или пойти в NAPI
-            // filter API работает ok, NAPI нужно модифицировать:
             // if (!filter) return
+
             log('INF AFTER FILTER')
             iquery = {idx: q.idx, form: q.form, type: d.type, dict: d.dict, pos: 'inf', trn: d.trn, var: q.var } // всегда один результат
         })
@@ -321,7 +324,8 @@ function filterWOapi(d, q) {
 //
 function filterAPI(d, q) {
     log('filter API')
-    if (q.woapi && !u.pres.includes(q.var)) return
+    if (q.pos != 'inf' && d.nonuniq) return // dict.api, но к нему есть vforms, но для inf пропустить
+    if (q.woapi && !u.pres.includes(q.var)) return // пропускаются только те q, которые м.б. постоены из d.api
     log('q', q)
     let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/βω$/, '').replace(/πω$/, '').replace(/φω$/, '').replace(/ω$/, '')
     let qform = orthos.plain(q.form)
@@ -362,10 +366,15 @@ function queryDicts(keys) {
             for (let key in groups) {
                 let arr = groups[key]
                 // log('ARR', arr)
-                if (arr.length > 1) arr = _.select(arr, function(dict) { return !dict.vmorphs})
+                // if (arr.length > 1) arr = _.select(arr, function(dict) { return !dict.vmorphs})
                 names = names.concat(_.select(arr, function(dict) { return dict.pos == 'name' }))
                 verbs = verbs.concat(_.select(arr, function(dict) { return dict.pos == 'verb' }))
                 parts = parts.concat(_.select(arr, function(dict) { return dict.pos == 'part' }))
+                if (verbs.length > 1) {
+                    verbs.forEach(function(verb) {
+                        if (verb.vmorphs) verb.nonuniq = true
+                    })
+                }
             }
             let dicts = {names: names, verbs: verbs, parts: parts}
             log('Q DICTS RES', dicts)
