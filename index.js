@@ -192,7 +192,12 @@ function parsePossibleForms(empties, fls) {
                         let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, stem: stem, term: term, api: true}
                         forms.push(form)
                     }
-
+                } else if (morph.pos == 'inf') {
+                    // здесь нужно конструировать только api-dict для разных mods, а в 4w их ловить - в словаре full-форм нет
+                    let stem = row.form.slice(0, -flex._id.length);
+                    let query = [stem, morph.dict].join('');
+                    let form = {idx: row.idx, pos: 'inf', query: query, form: row.form, var: morph.var, descr: morph.descr, stem: stem, term: term}
+                    forms.push(form)
                 } else {
                     let stem = row.form.slice(0, -flex._id.length);
                     let query = [stem, morph.dict].join('');
@@ -223,13 +228,16 @@ function parsePossibleForms(empties, fls) {
 //  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
 function dict4word(words, queries, dicts) {
     // let addedForms = [];
-    let qqnames = []
-    let qverbs = []
-    let qparts = []
+    // let qqnames = []
+    // let qverbs = []
+    // let infs = []
+    // let qparts = []
+    let qqnames = [], qverbs = [], qinfs = [], qparts = []
     queries.forEach(function(q) {
         if (q.pos == 'name') qqnames.push(q)
         else if (q.pos == 'part') qparts.push(q)
         else if (q.pos == 'verb') qverbs.push(q)
+        else if (q.pos == 'inf') qinfs.push(q)
     })
 
     log('4w-Qdicts', dicts.verbs)
@@ -241,13 +249,24 @@ function dict4word(words, queries, dicts) {
         let qnames = (qnstricts.length) ? qnstricts : _.select(qqnames, function(q) { return orthos.plain(q.query) == d.plain})
     })
     dicts.verbs.forEach(function(d) {
+        let iquery
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}}
+        qinfs.forEach(function(q) {
+            if (!filterDescr(d, q)) return
+            log('======== INF', q)
+            let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterWOapi(d, q)
+            // let filter = filterAPI(d, q)
+            // а вот здесь мне нужен dict-api, а я его отбросил - или пойти в NAPI
+            // filter API работает ok, NAPI нужно модифицировать:
+            // if (!filter) return
+            log('INF AFTER FILTER')
+            iquery = {idx: q.idx, form: q.form, type: d.type, dict: d.dict, pos: 'inf', trn: d.trn, var: q.var } // всегда один результат
+        })
         qverbs.forEach(function(q) {
             if (!filterDescr(d, q)) return
 
             // log('============================== API ?', d.pos, d.var == 'act.pres.ind')
             let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterWOapi(d, q)
-            // let filter = filterAPI(d, q)
             if (!filter) return
 
             let morph = {var: q.var, numper: q.numper}
@@ -257,6 +276,9 @@ function dict4word(words, queries, dicts) {
             vquery.form = q.query
             // vquery.descr = q.descr
         })
+        if (iquery) {
+            words[iquery.idx].dicts.push(iquery)
+        }
         if (_.keys(vquery.morphs).length) {
             words[vquery.idx].dicts.push(vquery)
         }
@@ -271,11 +293,9 @@ function filterWOapi(d, q) {
     if (!modCorr[d.var].includes(q.var)) return
 
     if (orthos.plain(q.query) != d.plain) return
-    // log('plain ok, q.var:', q.var)
+    log('plain ok, q.var:', q.var)
 
     let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ησα$/, '').replace(/σα$/, '').replace(/ψα$/, '').replace(/σω$/, '').replace(/ψω$/, '').replace(/ω$/, '')
-
-
 
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
@@ -304,7 +324,6 @@ function filterAPI(d, q) {
     if (q.woapi && !u.pres.includes(q.var)) return
     log('q', q)
     let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/βω$/, '').replace(/πω$/, '').replace(/φω$/, '').replace(/ω$/, '')
-
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
     if (q.aug && u.augmods.includes(q.var)) {
