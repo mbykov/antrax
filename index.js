@@ -237,34 +237,73 @@ function dict4word(words, queries, dicts) {
         else if (q.pos == 'inf') qinfs.push(q)
     })
 
-    log('4w-Qdicts', dicts.verbs)
+    log('4w-Qdicts', dicts.names)
     log('4w-QVqs', qverbs)
+    log('4w-QInfs', qinfs)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     dicts.names.forEach(function(d) {
         let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []}
         let qnstricts = _.select(qqnames, function(q) { return q.query == d.dict })
         let qnames = (qnstricts.length) ? qnstricts : _.select(qqnames, function(q) { return orthos.plain(q.query) == d.plain})
+        log('4w-QVqs', qnames)
+        qnames.forEach(function(q) {
+            // if (d.pos != 'name') return
+            if (!d.var) {
+                log('NNV', d)
+                throw new Error('NO NAME VAR')
+            }
+            log('DVAR', d.var, 'QVAR', q.var) // 'FLEX', q.flex
+            let vr2 = q.var.split(/ |, /)
+            vr2.forEach(function(vr) {
+                if (d.var != vr) return
+                let morph = {gend: q.gend, numcase: q.numcase} // , flex: q.flex - это оставлять нельзя из-за conform - там строки !!!!
+                if (d.gend && !q.add) {
+                    log('DGEND', d.gend, 'QGEND', q)
+                    // if (d.gend && !d.gend.includes(q.gend)) return
+                    // if (d.gend != q.gend) return // в dict проверить gend - это всегда д.б. массив
+                    morph.gend = d.gend
+                    nquery.morphs.push(morph)
+                }
+                else if (!d.gend){
+                    // FIXME: здесь в fem, в ous, как всегда, pl.acc-sg.gen - убрать лишнее при ier
+                    // двух окончаний - fem не проходит:
+                if (d.term == 2 && q.gend == 'fem') return
+                    // term=3 и простой var (ous) == здесь fem, если есть, пролез
+                    nquery.morphs.push(morph)
+                    if (d.term == 2 && q.gend == 'masc') {
+                        let femorph = {gend: 'fem', numcase: q.numcase}
+                    nquery.morphs.push(femorph)
+                    }
+                }
+            })
+            nquery.idx = q.idx
+            nquery.form = q.form // это же просто word??
+            // log('NQUERY:', nquery)
+        })
+        if (nquery.morphs.length) {
+            // nquery.trn = d.trn
+            words[nquery.idx].dicts.push(nquery)
+        }
     })
+    // VERBS
     dicts.verbs.forEach(function(d) {
         let iquery
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}}
+
         qinfs.forEach(function(q) {
             if (d.var != 'act.pres.ind') return
             if (!filterDescr(d, q)) return
             let qform = orthos.plain(q.form)
             let qterm = orthos.plain(q.term)
-            let stem = d.plain.replace(/ω$/, '')
+            let stem = d.plain.replace(/λω$/, '').replace(/ρω$/, '').replace(/νω$/, '').replace(/ω$/, '')
             if (qform != [stem, qterm].join('')) return
             // пока нет perfect:
             if (/pf/.test(q.var)) return
             log('======== INF', d, q)
-            // let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterWOapi(d, q)
-            // let filter = filterAPI(d, q)
-            // if (!filter) return
-
             log('INF AFTER FILTER')
             iquery = {idx: q.idx, form: q.form, type: d.type, dict: d.dict, pos: 'inf', trn: d.trn, var: q.var } // всегда один результат
         })
+
         qverbs.forEach(function(q) {
             if (!filterDescr(d, q)) return
 
@@ -283,6 +322,7 @@ function dict4word(words, queries, dicts) {
             words[iquery.idx].dicts.push(iquery)
         }
         if (_.keys(vquery.morphs).length) {
+            log('>>>> VQU', vquery)
             words[vquery.idx].dicts.push(vquery)
         }
     })
@@ -298,6 +338,7 @@ function filterWOapi(d, q) {
     if (orthos.plain(q.query) != d.plain) return
     log('plain ok, q.var:', q.var)
 
+    // вычитаю все подряд, лучше разбить по descriptions:
     let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ησα$/, '').replace(/σα$/, '').replace(/ψα$/, '').replace(/σω$/, '').replace(/ψω$/, '').replace(/ω$/, '')
 
     let qform = orthos.plain(q.form)
@@ -314,7 +355,7 @@ function filterWOapi(d, q) {
     // }
 
     // "λύω"  "λύσω" "ἔλυον"
-    log('NAPI-BEFORE-MAIN qform:', qform, 'dst:', dstem, 'qterm:', qterm, 'joined=', [dstem, qterm].join(''))
+    log('NAPI-BEFORE qform:', qform, 'dst:', dstem, 'qterm:', qterm, 'joined=', [dstem, qterm].join(''), 'qvar', q.var)
     if (qform != [dstem, qterm].join('')) return
     log('NAPI', d.plain, d.var, q)
     return true
@@ -324,10 +365,9 @@ function filterWOapi(d, q) {
 //
 function filterAPI(d, q) {
     log('filter API')
-    if (q.pos != 'inf' && d.nonuniq) return // dict.api, но к нему есть vforms, но для inf пропустить
     if (q.woapi && !u.pres.includes(q.var)) return // пропускаются только те q, которые м.б. постоены из d.api
     log('q', q)
-    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/βω$/, '').replace(/πω$/, '').replace(/φω$/, '').replace(/ω$/, '')
+    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/βω$/, '').replace(/πω$/, '').replace(/φω$/, '').replace(/λω$/, '').replace(/ω$/, '')
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
     if (q.aug && u.augmods.includes(q.var)) {
@@ -335,7 +375,7 @@ function filterAPI(d, q) {
     }
 
     // "λύω"  "λύσω" "ἔλυον"
-    log('API-BEFORE-MAIN qform:', qform, 'dst:', dstem, 'qterm:', q.term, 'joined=', [dstem, q.term].join(''))
+    log('API-BEFORE qform:', qform, 'dst:', dstem, 'qterm:', q.term, 'joined=', [dstem, q.term].join(''))
     if (qform != [dstem, qterm].join('')) return
     log('API', d.plain, d.var, q)
     return true
@@ -343,7 +383,7 @@ function filterAPI(d, q) {
 
 function filterDescr(d, q) {
     if (!d.descr) throw new Error('dict wo descr!')
-    if (d.descr != q.descr) log('BADDESCRS', d.descr, 'q', q.descr)
+    if (d.descr == q.descr) log('DESCR OK', d.descr, 'q', q.descr, 'qvar', q.var)
     if (d.descr != q.descr) return false // αἰτέω - проверить
     return true
 }
