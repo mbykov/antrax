@@ -56,6 +56,7 @@ function antrax() {
     if (!(this instanceof antrax)) return new antrax();
 }
 
+// punctuation \u002E\u002C\u0021\u003B\u00B7\u0020\u0027 - ... middle dot, space, apostrophe
 // clause {idx, form, plain, clean, idx, dicts, possible -либо- indecl}
 function parseClause(str, num) {
     let words = []
@@ -64,8 +65,11 @@ function parseClause(str, num) {
     if (!current) current = 0
     let plain, form, accents
     keys.forEach(function(key, idx) {
-        form = orthos.toComb(key)
-        // form = form.replace('ττ', 'σσ') // TALASSA
+        // FIXME: здесь бы и то и то нужно, обе формы
+        if (idx == 0) form = orthos.dc(key)
+        else form = key
+        form = form.replace(/[\u002E\u002C\u0021\u003B\u00B7\u0020\u0027]/, '') // или нужен punct?
+        form = orthos.toComb(form)
         plain = orthos.plain(form)
         accents = form.length - plain.length
         if (accents > 1) form = orthos.correctAccent(form)
@@ -104,7 +108,7 @@ function queryPromise(words, cb) {
 }
 
 // ======================================================================
-//  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
+//  καὶ ὃς ἐὰν δέξηται παιδίον. τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
 // τοιαύτη, τοιοῦτο, τοιοῦτον ;;; ὀνόματι
 function main(words, fls, cb) {
     // log('=============')
@@ -237,9 +241,9 @@ function dict4word(words, queries, dicts) {
         else if (q.pos == 'inf') qinfs.push(q)
     })
 
-    log('4w-Qdicts', dicts.names)
-    log('4w-QVqs', qverbs)
+    // log('4w-Qdicts', dicts.names)
     log('4w-QInfs', qinfs)
+    log('4w-QVqs', qverbs)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     dicts.names.forEach(function(d) {
         let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []}
@@ -286,6 +290,7 @@ function dict4word(words, queries, dicts) {
         }
     })
     // VERBS
+    log('4w-Dverbs', dicts.verbs)
     dicts.verbs.forEach(function(d) {
         let iquery
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}}
@@ -293,13 +298,13 @@ function dict4word(words, queries, dicts) {
         qinfs.forEach(function(q) {
             if (d.var != 'act.pres.ind') return
             if (!filterDescr(d, q)) return
+            log('======== INF', d, q)
             let qform = orthos.plain(q.form)
             let qterm = orthos.plain(q.term)
             let stem = d.plain.replace(/λω$/, '').replace(/ρω$/, '').replace(/νω$/, '').replace(/ω$/, '')
             if (qform != [stem, qterm].join('')) return
             // пока нет perfect:
             if (/pf/.test(q.var)) return
-            log('======== INF', d, q)
             log('INF AFTER FILTER')
             iquery = {idx: q.idx, form: q.form, type: d.type, dict: d.dict, pos: 'inf', trn: d.trn, var: q.var } // всегда один результат
         })
@@ -307,8 +312,8 @@ function dict4word(words, queries, dicts) {
         qverbs.forEach(function(q) {
             if (!filterDescr(d, q)) return
 
-            // log('============================== API ?', d.pos, d.var == 'act.pres.ind')
-            let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterWOapi(d, q)
+            log('============== API ?', d.plain, d.var == 'act.pres.ind')
+            let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterNapi(d, q)
             if (!filter) return
 
             let morph = {var: q.var, numper: q.numper}
@@ -322,21 +327,24 @@ function dict4word(words, queries, dicts) {
             words[iquery.idx].dicts.push(iquery)
         }
         if (_.keys(vquery.morphs).length) {
-            log('>>>> VQU', vquery)
+            // log('>>>> VQUery', vquery)
             words[vquery.idx].dicts.push(vquery)
         }
     })
 }
 
 // additional full verb-form: fut, aor, etc - кроме act.pres.ind
-function filterWOapi(d, q) {
+function filterNapi(d, q) {
     log('filter NAPI')
     if (q.api) return // - тут дополнительных не нужно
-    log('q', q)
-    if (!modCorr[d.var].includes(q.var)) return
+    // log('q', q)
+    // νομίσητε - pres.imperat
+    // if (!modCorr[d.var].includes(q.var)) return
+    // log('modCorr ok', q)
 
-    if (orthos.plain(q.query) != d.plain) return
-    log('plain ok, q.var:', q.var)
+    // log('plain before:', q.query, d.plain, q.var)
+    // if (orthos.plain(q.query) != d.plain) return
+    // log('plain ok, q.var:', q.var)
 
     // вычитаю все подряд, лучше разбить по descriptions:
     let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ησα$/, '').replace(/σα$/, '').replace(/ψα$/, '').replace(/σω$/, '').replace(/ψω$/, '').replace(/ω$/, '')
@@ -364,9 +372,11 @@ function filterWOapi(d, q) {
 // q - д.б. либо наст.вр, либо любой с пометкой .api
 //
 function filterAPI(d, q) {
+    // nonuniq - те api, которые имеют full-варианты; иначе luso - по два dict
+    if (d.nonuniq) return
     log('filter API')
     if (q.woapi && !u.pres.includes(q.var)) return // пропускаются только те q, которые м.б. постоены из d.api
-    log('q', q)
+    // log('q', q)
     let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/βω$/, '').replace(/πω$/, '').replace(/φω$/, '').replace(/λω$/, '').replace(/ω$/, '')
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
@@ -382,8 +392,10 @@ function filterAPI(d, q) {
 }
 
 function filterDescr(d, q) {
+    if (!d.descr) log('NO DESCR', d)
     if (!d.descr) throw new Error('dict wo descr!')
-    if (d.descr == q.descr) log('DESCR OK', d.descr, 'q', q.descr, 'qvar', q.var)
+    // if (d.descr != q.descr) log('BAD DESCR', d.descr, 'q', q.descr, 'qvar', q.var)
+    // if (d.descr == q.descr) log('DESCR OK', d.descr, 'q', q.descr, 'qvar', q.var)
     if (d.descr != q.descr) return false // αἰτέω - проверить
     return true
 }
@@ -400,21 +412,24 @@ function queryDicts(keys) {
             if (!res || !res.rows) throw new Error('no dict result')
             let rdicts = res.rows.map(function(row) {return row.doc })
             // log('Q RDICTS RES', rdicts)
-            let groups = _.groupBy(rdicts, function(dict){ return [dict.pos, dict.dtype].join('-') })
+            let groups = _.groupBy(rdicts, function(dict){ return [dict.pos, dict.plain, dict.dtype].join('-') })
             // log('GROUPS', groups)
             let names = [], verbs = [], parts = []
+            let cnames = [], cverbs = [], cparts = []
             for (let key in groups) {
                 let arr = groups[key]
                 // log('ARR', arr)
-                // if (arr.length > 1) arr = _.select(arr, function(dict) { return !dict.vmorphs})
-                names = names.concat(_.select(arr, function(dict) { return dict.pos == 'name' }))
-                verbs = verbs.concat(_.select(arr, function(dict) { return dict.pos == 'verb' }))
-                parts = parts.concat(_.select(arr, function(dict) { return dict.pos == 'part' }))
-                if (verbs.length > 1) {
-                    verbs.forEach(function(verb) {
+                cnames = _.select(arr, function(dict) { return dict.pos == 'name' })
+                cverbs = _.select(arr, function(dict) { return dict.pos == 'verb' })
+                cparts = _.select(arr, function(dict) { return dict.pos == 'part' })
+                if (cverbs.length > 1) {
+                    cverbs.forEach(function(verb) {
                         if (verb.vmorphs) verb.nonuniq = true
                     })
                 }
+                names = names.concat(cnames)
+                verbs = verbs.concat(cverbs)
+                parts = parts.concat(cparts)
             }
             let dicts = {names: names, verbs: verbs, parts: parts}
             log('Q DICTS RES', dicts)
