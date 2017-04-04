@@ -301,7 +301,7 @@ function dict4word(words, queries, dicts) {
             log('======== INF', d, q)
             let qform = orthos.plain(q.form)
             let qterm = orthos.plain(q.term)
-            let stem = d.plain.replace(/λω$/, '').replace(/ρω$/, '').replace(/νω$/, '').replace(/ω$/, '')
+            let stem = d.plain.replace(/λω$/, '').replace(/φω$/, '').replace(/ρω$/, '').replace(/νω$/, '').replace(/εω$/, '').replace(/αω$/, '').replace(/οω$/, '').replace(/ω$/, '')
             if (qform != [stem, qterm].join('')) return
             // пока нет perfect:
             if (/pf/.test(q.var)) return
@@ -347,7 +347,11 @@ function filterNapi(d, q) {
     // log('plain ok, q.var:', q.var)
 
     // вычитаю все подряд, лучше разбить по descriptions:
-    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ησα$/, '').replace(/σα$/, '').replace(/ψα$/, '').replace(/σω$/, '').replace(/ψω$/, '').replace(/ω$/, '')
+    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ησα$/, '').replace(/σα$/, '').replace(/ξα$/, '').replace(/ψα$/, '').replace(/σω$/, '').replace(/ψω$/, '').replace(/ω$/, '')
+
+    if (d.descr == 'omai-verb') {
+        dstem = dstem.replace(/θον$/, '').replace(/σάμην$/, '').replace(/σομαι$/, '').replace(/θην$/, '').replace(/θήσομαι$/, '').replace(/ομαι$/, '')
+    }
 
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
@@ -377,7 +381,7 @@ function filterAPI(d, q) {
     log('filter API')
     if (q.woapi && !u.pres.includes(q.var)) return // пропускаются только те q, которые м.б. постоены из d.api
     // log('q', q)
-    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/βω$/, '').replace(/πω$/, '').replace(/φω$/, '').replace(/λω$/, '').replace(/ω$/, '')
+    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/βω$/, '').replace(/πω$/, '').replace(/φω$/, '').replace(/λω$/, '').replace(/ω$/, '').replace(/ομαι$/, '')
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
     if (q.aug && u.augmods.includes(q.var)) {
