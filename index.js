@@ -24,8 +24,8 @@ if (forTest == '--no-sandbox') {
     db = new PouchDB('http:\/\/localhost:5984/greek');
 }
 
-// destroyDB(db_flex)
 // destroyDB(db)
+// destroyDB(db_flex)
 // return
 
 replicateDB('gr-flex')
@@ -312,7 +312,7 @@ function dict4word(words, queries, dicts) {
         qverbs.forEach(function(q) {
             if (!filterDescr(d, q)) return
 
-            log('============== API ?', d.plain, d.var == 'act.pres.ind')
+            // log('============== API ?', d.plain, d.var == 'act.pres.ind')
             let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterNapi(d, q)
             if (!filter) return
 
@@ -347,7 +347,8 @@ function filterNapi(d, q) {
     // log('plain ok, q.var:', q.var)
 
     // вычитаю все подряд, лучше разбить по descriptions:
-    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ησα$/, '').replace(/σα$/, '').replace(/ξα$/, '').replace(/ψα$/, '').replace(/σω$/, '').replace(/ψω$/, '').replace(/ω$/, '')
+    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ησα$/, '').replace(/σα$/, '').replace(/ξα$/, '').replace(/ψα$/, '').replace(/σω$/, '').replace(/ψω$/, '').replace(/ω$/, '').replace(/ωκα$/, '').replace(/ηκα$/, '')
+
 
     if (d.descr == 'omai-verb') {
         dstem = dstem.replace(/θον$/, '').replace(/σάμην$/, '').replace(/σομαι$/, '').replace(/θην$/, '').replace(/θήσομαι$/, '').replace(/ομαι$/, '')
@@ -381,7 +382,8 @@ function filterAPI(d, q) {
     log('filter API')
     if (q.woapi && !u.pres.includes(q.var)) return // пропускаются только те q, которые м.б. постоены из d.api
     // log('q', q)
-    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/βω$/, '').replace(/πω$/, '').replace(/φω$/, '').replace(/λω$/, '').replace(/ω$/, '').replace(/ομαι$/, '')
+    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/βω$/, '').replace(/πω$/, '').replace(/φω$/, '').replace(/λω$/, '').replace(/ω$/, '').replace(/ομαι$/, '').replace(/ωμι$/, '').replace(/ημι$/, '').replace(/υμι$/, '')
+
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
     if (q.aug && u.augmods.includes(q.var)) {
@@ -400,6 +402,8 @@ function filterDescr(d, q) {
     if (!d.descr) throw new Error('dict wo descr!')
     // if (d.descr != q.descr) log('BAD DESCR', d.descr, 'q', q.descr, 'qvar', q.var)
     // if (d.descr == q.descr) log('DESCR OK', d.descr, 'q', q.descr, 'qvar', q.var)
+    // mi-verb futurum
+    // if (/mi-/.test(d.descr) && q.descr == 'w-verb' && /fut/.test(q.var)) return true
     if (d.descr != q.descr) return false // αἰτέω - проверить
     return true
 }
