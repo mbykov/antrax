@@ -416,7 +416,7 @@ function queryDicts(keys) {
             if (!res || !res.rows) throw new Error('no dict result')
             let rdicts = res.rows.map(function(row) {return row.doc })
             // log('Q RDICTS RES', rdicts)
-            let groups = _.groupBy(rdicts, function(dict){ return [dict.pos, dict.plain, dict.dtype].join('-') })
+            let groups = _.groupBy(rdicts, function(dict){ return [dict.pos, dict.dict, dict.dtype].join('-') })
             // log('GROUPS', groups)
             let names = [], verbs = [], parts = []
             let cnames = [], cverbs = [], cparts = []
