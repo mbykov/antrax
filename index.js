@@ -181,14 +181,16 @@ function parsePossibleForms(empties, fls) {
                     // log('SFORM==>', sform)
                     forms.push(sform)
 
-                    // создание дополнительных api-форм:
+                    // API: создание дополнительных api-форм:
                     if (u.augmods.includes(morph.var)) {
                         let aug = stem.slice(0,2)
-                        log('================== AUG', aug, row)
+                        // εἴχετε - ἔχω - не работает, надо подумать FIXME: // ἀγορᾷ
+                        // if (stem.slice(0,4) == 'εἴ') aug = 'εἴ'
+                        // log('================== AUG', aug)
                         if (_.keys(u.augs).includes(aug)) {
                             let aquery = [stem.slice(2), 'ω'].join('')
                             aquery = [u.augs[aug], aquery].join('')
-                            log('================== AQUERY', aquery)
+                            // log('================== AQUERY', aquery)
                             let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, aug: aug, stem: stem, term: term, api: true}
                             forms.push(form)
                         }
@@ -298,7 +300,7 @@ function dict4word(words, queries, dicts) {
 
         qinfs.forEach(function(q) {
             if (d.var != 'act.pres.ind') return
-            if (!filterDescr(d, q)) return
+            // if (!filterDescr(d, q)) return
             log('======== INF', d, q)
             let qform = orthos.plain(q.form)
             let qterm = orthos.plain(q.term)
@@ -311,9 +313,8 @@ function dict4word(words, queries, dicts) {
         })
 
         qverbs.forEach(function(q) {
-            // if (!filterDescr(d, q)) return
-
-            // log('=== API ????', d.plain, d.var == 'act.pres.ind')
+            // log('=== API ????', d.plain, d.var)
+            if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
             let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterNapi(d, q)
             if (!filter) return
 
@@ -338,6 +339,7 @@ function dict4word(words, queries, dicts) {
 function filterNapi(d, q) {
     log('filter NAPI')
     if (q.api) return // - тут дополнительных не нужно
+
     let dstem
     if (d.var == 'act.pres.ind') {
         dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ω$/, '')
@@ -346,7 +348,7 @@ function filterNapi(d, q) {
         dstem = d.plain.replace(/σω$/, '').replace(/ψω$/, '')
     }
     else if (d.var == 'act.aor.ind') {
-        dstem = d.plain.replace(/ρα$/, '').replace(/ησα$/, '').replace(/ωσα$/, '').replace(/εσα$/, '').replace(/σα$/, '').replace(/ξα$/, '').replace(/ψα$/, '').replace(/να$/, '')
+        dstem = d.plain.replace(/ρα$/, '').replace(/ησα$/, '').replace(/ωσα$/, '').replace(/εσα$/, '').replace(/ξα$/, '').replace(/ψα$/, '').replace(/να$/, '').replace(/σα$/, '').replace(/ον$/, '')
     }
 
     if (d.descr == 'omai-verb') {
@@ -382,16 +384,18 @@ function filterAPI(d, q) {
     // let impf_mute = 'βον$|πον$|φον$' - это точно не нужно, dict на ω
 
     if (q.descr == 'w-verb') dstem = dstem.replace(/ω$/, '')
+    else if (q.descr == 'omai-verb') dstem = dstem.replace(/ομαι$/, '')
+    else if (q.descr == 'mi-verb') dstem = dstem.replace(/ωμι$/, '').replace(/ημι$/, '').replace(/υμι$/, '')
 
 
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
     if (q.aug && u.augmods.includes(q.var)) {
         qform = qform.slice(2)
-        dstem = dstem.slice(2)
+        if ([orthos.ac.psili, orthos.ac.dasia].includes(dstem[1])) dstem = dstem.slice(2)
     }
 
-    // "λύω"  "λύσω" "ἔλυον"
+    // "λύω"  "λύσω" "ἔλυον" // ἦγον
     log('API-BEFORE qform:', qform, 'dst:', dstem, 'qterm:', q.term, 'joined=', [dstem, q.term].join(''))
     if (qform != [dstem, qterm].join('')) return
     log('API', d.plain, d.var, q)
@@ -409,16 +413,16 @@ function filterAPI(d, q) {
 //     // qform = qform.slice(2)
 // }
 
-function filterDescr(d, q) {
-    if (!d.descr) log('NO DESCR', d)
-    if (!d.descr) throw new Error('dict wo descr!')
-    // if (d.descr != q.descr) log('BAD DESCR', d.descr, 'q', q.descr, 'qvar', q.var)
-    // if (d.descr == q.descr) log('DESCR OK', d.descr, 'q', q.descr, 'qvar', q.var)
-    // mi-verb futurum
-    // if (/mi-/.test(d.descr) && q.descr == 'w-verb' && /fut/.test(q.var)) return true
-    if (d.descr != q.descr) return false // αἰτέω - проверить
-    return true
-}
+// function filterDescr(d, q) {
+//     if (!d.descr) log('NO DESCR', d)
+//     if (!d.descr) throw new Error('dict wo descr!')
+//     // if (d.descr != q.descr) log('BAD DESCR', d.descr, 'q', q.descr, 'qvar', q.var)
+//     // if (d.descr == q.descr) log('DESCR OK', d.descr, 'q', q.descr, 'qvar', q.var)
+//     // mi-verb futurum
+//     // if (/mi-/.test(d.descr) && q.descr == 'w-verb' && /fut/.test(q.var)) return true
+//     if (d.descr != q.descr) return false // αἰτέω - проверить
+//     return true
+// }
 
 
 
