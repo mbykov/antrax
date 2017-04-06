@@ -160,6 +160,7 @@ function main(words, fls, cb) {
 
 // =================================================
 // καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
+// "ἥρπαζον"
 
 
 function parsePossibleForms(empties, fls) {
@@ -183,11 +184,11 @@ function parsePossibleForms(empties, fls) {
                     // создание дополнительных api-форм:
                     if (u.augmods.includes(morph.var)) {
                         let aug = stem.slice(0,2)
-                        // log('================== AUG', aug)
+                        log('================== AUG', aug, row)
                         if (_.keys(u.augs).includes(aug)) {
                             let aquery = [stem.slice(2), 'ω'].join('')
                             aquery = [u.augs[aug], aquery].join('')
-                            // log('================== AQUERY', aquery)
+                            log('================== AQUERY', aquery)
                             let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, aug: aug, stem: stem, term: term, api: true}
                             forms.push(form)
                         }
@@ -241,15 +242,15 @@ function dict4word(words, queries, dicts) {
         else if (q.pos == 'inf') qinfs.push(q)
     })
 
-    // log('4w-Qdicts', dicts.names)
+    log('4w-QNames', dicts.names)
     log('4w-QInfs', qinfs)
-    log('4w-QVqs', qverbs)
+    log('4w-QVerbs', qverbs)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     dicts.names.forEach(function(d) {
         let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []}
         let qnstricts = _.select(qqnames, function(q) { return q.query == d.dict })
         let qnames = (qnstricts.length) ? qnstricts : _.select(qqnames, function(q) { return orthos.plain(q.query) == d.plain})
-        log('4w-QVqs', qnames)
+        log('4w-QNs', qnames)
         qnames.forEach(function(q) {
             // if (d.pos != 'name') return
             if (!d.var) {
@@ -310,9 +311,9 @@ function dict4word(words, queries, dicts) {
         })
 
         qverbs.forEach(function(q) {
-            if (!filterDescr(d, q)) return
+            // if (!filterDescr(d, q)) return
 
-            // log('============== API ?', d.plain, d.var == 'act.pres.ind')
+            // log('=== API ????', d.plain, d.var == 'act.pres.ind')
             let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterNapi(d, q)
             if (!filter) return
 
@@ -337,35 +338,26 @@ function dict4word(words, queries, dicts) {
 function filterNapi(d, q) {
     log('filter NAPI')
     if (q.api) return // - тут дополнительных не нужно
-    // log('q', q)
-    // νομίσητε - pres.imperat
-    // if (!modCorr[d.var].includes(q.var)) return
-    // log('modCorr ok', q)
-
-    // log('plain before:', q.query, d.plain, q.var)
-    // if (orthos.plain(q.query) != d.plain) return
-    // log('plain ok, q.var:', q.var)
-
-    // вычитаю все подряд, лучше разбить по descriptions:
-    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ησα$/, '').replace(/σα$/, '').replace(/ξα$/, '').replace(/ψα$/, '').replace(/σω$/, '').replace(/ψω$/, '').replace(/ω$/, '').replace(/ωκα$/, '').replace(/ηκα$/, '')
-
+    let dstem
+    if (d.var == 'act.pres.ind') {
+        dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ω$/, '')
+    }
+    else if (d.var == 'act.fut.ind') {
+        dstem = d.plain.replace(/σω$/, '').replace(/ψω$/, '')
+    }
+    else if (d.var == 'act.aor.ind') {
+        dstem = d.plain.replace(/ρα$/, '').replace(/ησα$/, '').replace(/ωσα$/, '').replace(/εσα$/, '').replace(/σα$/, '').replace(/ξα$/, '').replace(/ψα$/, '').replace(/να$/, '')
+    }
 
     if (d.descr == 'omai-verb') {
-        dstem = dstem.replace(/θον$/, '').replace(/σάμην$/, '').replace(/σομαι$/, '').replace(/θην$/, '').replace(/θήσομαι$/, '').replace(/ομαι$/, '')
+        dstem = d.plain.replace(/θον$/, '').replace(/σάμην$/, '').replace(/σομαι$/, '').replace(/θην$/, '').replace(/θήσομαι$/, '').replace(/ομαι$/, '')
+    }
+    else if (d.descr == 'mi-verb') {
+        dstem = dstem.replace(/ωκα$/, '').replace(/ηκα$/, '')
     }
 
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
-    // если aug, то отбросить, ибо в словаре и в форме ... нет, тут не нужно отбрасывать?????  <<=====
-    // а нельзя-ли тут всегда slice(2) сделать?
-    // if (q.aug && u.augmods.includes(q.var)) { // no-aug = q.woapi
-    //     let qaug = orthos.plain(q.aug)
-    //     let reaug = new RegExp('^' + qaug)
-    //     qform = qform.replace(reaug, '')
-    //     if (qaug) log('q - AUG', qaug, qform)
-    //     // } else if (u.augmods.includes(q.var)) { // q.api &&  для api - imperfect, etc
-    //     // qform = qform.slice(2)
-    // }
 
     // "λύω"  "λύσω" "ἔλυον"
     log('NAPI-BEFORE qform:', qform, 'dst:', dstem, 'qterm:', qterm, 'joined=', [dstem, qterm].join(''), 'qvar', q.var)
@@ -374,20 +366,29 @@ function filterNapi(d, q) {
     return true
 }
 
-// q - д.б. либо наст.вр, либо любой с пометкой .api
+
+// q - д.б. либо наст.вр, либо любой с пометкой .api, если nonuniq - то только dict - act.pres.ind
 //
 function filterAPI(d, q) {
     // nonuniq - те api, которые имеют full-варианты; иначе luso - по два dict
-    if (d.nonuniq) return
+    if (d.nonuniq && q.var != 'act.pres.ind') return
     log('filter API')
     if (q.woapi && !u.pres.includes(q.var)) return // пропускаются только те q, которые м.б. постоены из d.api
     // log('q', q)
-    let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/βω$/, '').replace(/πω$/, '').replace(/φω$/, '').replace(/λω$/, '').replace(/ω$/, '').replace(/ομαι$/, '').replace(/ωμι$/, '').replace(/ημι$/, '').replace(/υμι$/, '')
+    // let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/οω$/, '').replace(/βω$/, '').replace(/πω$/, '').replace(/φω$/, '').replace(/λω$/, '').replace(/ω$/, '').replace(/ομαι$/, '').replace(/ωμι$/, '').replace(/ημι$/, '').replace(/υμι$/, '')
+
+    let dstem = d.plain
+    // let pres_mute = 'βω$|πω$|φω$'
+    // let impf_mute = 'βον$|πον$|φον$' - это точно не нужно, dict на ω
+
+    if (q.descr == 'w-verb') dstem = dstem.replace(/ω$/, '')
+
 
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)
     if (q.aug && u.augmods.includes(q.var)) {
         qform = qform.slice(2)
+        dstem = dstem.slice(2)
     }
 
     // "λύω"  "λύσω" "ἔλυον"
@@ -396,6 +397,17 @@ function filterAPI(d, q) {
     log('API', d.plain, d.var, q)
     return true
 }
+
+// если aug, то отбросить, ибо в словаре и в форме ... нет, тут не нужно отбрасывать?????  <<=====
+// а нельзя-ли тут всегда slice(2) сделать?
+// if (q.aug && u.augmods.includes(q.var)) { // no-aug = q.woapi
+//     let qaug = orthos.plain(q.aug)
+//     let reaug = new RegExp('^' + qaug)
+//     qform = qform.replace(reaug, '')
+//     if (qaug) log('q - AUG', qaug, qform)
+//     // } else if (u.augmods.includes(q.var)) { // q.api &&  для api - imperfect, etc
+//     // qform = qform.slice(2)
+// }
 
 function filterDescr(d, q) {
     if (!d.descr) log('NO DESCR', d)
@@ -428,8 +440,8 @@ function queryDicts(keys) {
                 let arr = groups[key]
                 // log('ARR', arr)
                 cnames = _.select(arr, function(dict) { return dict.pos == 'name' })
-                cverbs = _.select(arr, function(dict) { return dict.pos == 'verb' })
                 cparts = _.select(arr, function(dict) { return dict.pos == 'part' })
+                cverbs = _.select(arr, function(dict) { return dict.pos == 'verb' })
                 if (cverbs.length > 1) {
                     cverbs.forEach(function(verb) {
                         if (verb.vmorphs) verb.nonuniq = true
