@@ -314,7 +314,8 @@ function dict4word(words, queries, dicts) {
 
         qverbs.forEach(function(q) {
             // log('=== API ????', d.plain, d.var)
-            if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
+            // if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
+            // здесь соответсвие плохо в ἔπαυσα - нужно найти aor по api стему
             let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterNapi(d, q)
             if (!filter) return
 
@@ -339,24 +340,29 @@ function dict4word(words, queries, dicts) {
 function filterNapi(d, q) {
     log('filter NAPI')
     if (q.api) return // - тут дополнительных не нужно
+    if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
 
     let dstem
-    if (d.var == 'act.pres.ind') {
-        dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ω$/, '')
-    }
-    else if (d.var == 'act.fut.ind') {
-        dstem = d.plain.replace(/σω$/, '').replace(/ψω$/, '')
-    }
-    else if (d.var == 'act.aor.ind') {
-        dstem = d.plain.replace(/ρα$/, '').replace(/ησα$/, '').replace(/ωσα$/, '').replace(/εσα$/, '').replace(/ξα$/, '').replace(/ψα$/, '').replace(/να$/, '').replace(/σα$/, '').replace(/ον$/, '')
-    }
-
-    if (d.descr == 'omai-verb') {
+    if (d.descr == 'w-verb') {
+        if (q.descr != 'w-verb') return
+        if (d.var == 'act.pres.ind') {
+            dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ω$/, '')
+        }
+        else if (d.var == 'act.fut.ind') {
+            dstem = d.plain.replace(/σω$/, '').replace(/ψω$/, '').replace(/νω$/, '').replace(/λω$/, '')
+        }
+        else if (d.var == 'act.aor.ind') {
+            dstem = d.plain.replace(/ρα$/, '').replace(/ησα$/, '').replace(/ωσα$/, '').replace(/εσα$/, '').replace(/ξα$/, '').replace(/ψα$/, '').replace(/να$/, '').replace(/σα$/, '').replace(/ον$/, '')
+        }
+    } else if (d.descr == 'omai-verb') {
+        if (q.descr != 'omai-verb') return
         dstem = d.plain.replace(/θον$/, '').replace(/σάμην$/, '').replace(/σομαι$/, '').replace(/θην$/, '').replace(/θήσομαι$/, '').replace(/ομαι$/, '')
+    } else if (d.descr == 'mi-verb') {
+        if (q.descr != 'mi-verb') return
+        dstem = d.plain.replace(/ωκα$/, '').replace(/ηκα$/, '')
     }
-    else if (d.descr == 'mi-verb') {
-        dstem = dstem.replace(/ωκα$/, '').replace(/ηκα$/, '')
-    }
+    log('FILTER d.plain', d.plain, 'dstem', dstem, 'd.var', d.var)
+    if (dstem == d.plain) return
 
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)

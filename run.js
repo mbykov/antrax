@@ -8,7 +8,7 @@ let fs = require('fs');
 let orthos = require('../orthos');
 var util = require('util');
 
-let push = process.argv.slice(2)[0] || false;
+let only = process.argv.slice(2)[0] || false;
 
 const antrax = require('./index')
 
@@ -22,11 +22,13 @@ console.timeEnd('_gramm');
 function getFactories() {
     let factories = []
     let tests = getTests(dpath)
+    let limit = tests.length - 2
     tests.forEach(function(json, idx) {
+        if (!only && idx < limit) return
         let test = JSON.parse(json)
         for (let mod in test) {
-            let reonly = new RegExp(push)
-            if (push && !reonly.test(mod)) continue
+            let reonly = new RegExp(only)
+            if (only && !reonly.test(mod)) continue
             let cases = test[mod]
             for (let form in cases) {
                 let morph = cases[form]

@@ -10,25 +10,21 @@
 # Second Person Plural	λύε-τε	ἐ-λύε-τε
 # Third Person Plural	λύουσι	ἔ-λῡο-ν
 
-# *AORIST ACTIVE INDICATIVE.	IMPERFECT ACTIVE INDICATIVE
-# First Person Singular	ἔπαυσα	x
-# Second Person Singular	ἔπαυσας	x
-# Third Person Singular	ἔπαυσε	x
-# Third Person Singular	ἔπαυσεν	x
-# Second Person Dual	ἔπαυσατον	x
-# Third Person Dual	ἐπαυσάτην	x
-# First Person Plural	ἐπαύσαμεν	x
-# Second Person Plural	ἐπαύσατε	x
-# Third Person Plural	ἔπαυσαν	x
+# * FUTURE ACTIVE INDICATIVE	FUTURE MIDDLE AND PASSIVE INDICATIVE
+# *PRESENT ACTIVE INDICATIVE
+# First Person Singular
+# Second Person Singular
+# Third Person Singular
+# Second Person Dual
+# Third Person Dual
+# First Person Plural
+# Second Person Plural
+# Third Person Plural
 
-* FUTURE ACTIVE INDICATIVE	FUTURE MIDDLE AND PASSIVE INDICATIVE
-First Person Singular	παύσω	παύσομαι
-Second Person Singular	παύσεις	παύσει
-Third Person Singular	παύσει	παύσεται
-Second Person Dual	παύσετον	παύσεσθον
-Third Person Dual	παύσετον	παύσεσθον
-First Person Plural	παυσόμεν	παυσόμεθα
-Second Person Plural	παύσετε	παύσεσθε
-Third Person Plural	παύσουσι	παύσονται
-
-s
+* act.pres.ind
+ἐπάγω
+ἐπάγεις
+ἐπάγει
+ἐπάγομεν
+ἐπάγετε
+ἐπάγουσι / ἐπάγουσιν

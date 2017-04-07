@@ -23,19 +23,71 @@ if (onlypush == 'true') push = true
 
 let dpath = '../test/tmp.txt';
 
-let strMorphs = {
-    'First Person Singular': 'sg.1',
-    'Second Person Singular': 'sg.2',
-    'Third Person Singular': 'sg.3',
-    'Second Person Dual': 'du.2',
-    'Third Person Dual': 'du.3',
-    'First Person Plural': 'pl.1',
-    'Second Person Plural': 'pl.2',
-    'Third Person Plural': 'pl.3'
+const morphs = ['title', 'sg.1', 'sg.2', 'sg.3', 'pl.1', 'pl.2', 'pl.3', '', '', '', ]
+
+console.time('_gramm');
+run()
+console.timeEnd('_gramm');
+
+function run() {
+    let doc = getTmp(dpath)
+    console.log(util.inspect(doc, showHidden=false, depth=null, colorize=true))
+    log('PUSH', push)
+    if (push) appendTest(doc)
 }
 
+function getTmp(dpath) {
+    let fpath = path.join(__dirname, dpath);
+    let text = fs.readFileSync(fpath,'utf8').trim();
+    let strs = text.split('\n');
+    let doc = cleanRows(strs)
+    return doc
+}
 
-let strMods = {
+function cleanRows(strs) {
+    let doc = {}
+    let start = 0
+    let title
+    strs.forEach(function(str, idx) {
+        if (!str) return
+        if (str[0] == '#') return
+        str = str.replace(/-/g, '')
+        if (str[0] == '*') {
+            title = str.replace('*', '').trim()
+            start = idx
+            return
+        }
+        if (!title) throw new Error('NO TITLE')
+        let forms = str.split('/')
+        forms.forEach(function(form) {
+            // let test = {}
+            let key = morphs[idx-start]
+            // test[key] = form.trim()
+            form = form.trim()
+            if (!doc[title]) doc[title] = {}
+            doc[title][form] = key
+        })
+    })
+    return doc
+}
+
+function appendTest(doc) {
+    let tpath = '../test/verbs.txt'
+    tpath = path.join(__dirname, tpath);
+    let text = fs.readFileSync(tpath,'utf8').trim();
+    let strs = text.split('\n');
+    log('OLD', strs.length)
+    let json = JSON.stringify(doc)
+    log('NEW TEST:', json)
+    strs.push(json)
+    let news = strs.join('\n')
+    fs.writeFile(tpath, news, function(err) {
+        if(err) return log(err)
+        log("The file was saved, ", strs.length)
+    })
+}
+
+let mods = {
     'present active indicative': 'act.pres.ind',
     'imperfect active indicative': 'act.impf.ind',
     'present active middle and passive': 'mid-pass.pres.ind',
@@ -47,80 +99,6 @@ let strMods = {
     '': '',
 }
 
-console.time('_gramm');
-run()
-console.timeEnd('_gramm');
-
-function run() {
-    let docs = getTmp(dpath)
-    console.log(util.inspect(docs, showHidden=false, depth=null, colorize=true))
-    log('PUSH', push)
-    if (push) appendTest(docs)
-}
-
-function getTmp(dpath) {
-    let fpath = path.join(__dirname, dpath);
-    let text = fs.readFileSync(fpath,'utf8').trim();
-    let strs = text.split('\n');
-    let rows = cleanRows(strs)
-    // rows = _.compact(rows);
-    return rows
-}
-
-function cleanRows(strs) {
-    let rows  = []
-    let titles
-    let a = {}
-    let b = {}
-    strs.forEach(function(str) {
-        if (!str) return
-        if (str[0] == '#') return
-        str = str.replace(/-/g, '').replace('.', '')
-        if (str[0] == '*') {
-            str = str.replace('*', '')
-            titles = str.split('	')
-            if (titles.length != 2) throw new Error('No titles' + str)
-            titles = titles.map(function(t) { return t.toLowerCase().trim() })
-            log('titles: ', titles)
-            titles = titles.map(function(t) { return strMods[t]})
-            return
-        }
-        let row = str.split('	')
-        if (row.length != 3) throw new Error('NO TEST: ' + str)
-        let morph = row[0]
-        morph = strMorphs[morph]
-        if (!morph) throw new Error('NO MORPH: ' + str)
-        a[row[1]] = morph
-        b[row[2]] = morph
-    })
-    if (titles.length != 2) throw new Error('No titles at all')
-    let res1 = {}
-    res1[titles[0]] = a
-    rows.push(res1)
-    let res2 = {}
-    res2[titles[1]] = b
-    rows.push(res2)
-    return rows
-}
-
-function appendTest(docs) {
-    log(docs)
-    let tpath = '../test/verbs.txt'
-    tpath = path.join(__dirname, tpath);
-    let text = fs.readFileSync(tpath,'utf8').trim();
-    let strs = text.split('\n');
-    log('OLD', strs.length)
-    docs.forEach(function(doc) {
-        let str = JSON.stringify(doc)
-        // log('DOC', str)
-        strs.push(str)
-    })
-    let news = strs.join('\n')
-    fs.writeFile(tpath, news, function(err) {
-        if(err) return log(err)
-        log("The file was saved, ", strs.length)
-    })
-}
 
 
 // rows = rows.slice(0, 1000);
