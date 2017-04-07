@@ -1,30 +1,16 @@
-#
+# * act.pres.ind
+# ἐπάγω
+# ἐπάγεις
+# ἐπάγει
+# ἐπάγομεν
+# ἐπάγετε
+# ἐπάγουσι / ἐπάγουσιν
 
-# *PRESENT ACTIVE INDICATIVE.	IMPERFECT ACTIVE INDICATIVE
-# First Person Singular	λύω	ἔ-λῡο-ν
-# Second Person Singular	λύεις	ἔ-λῡε-ς
-# Third Person Singular	λύει	ἔ-λῡε
-# Second Person Dual	λύε-τον	ἐ-λύε-τον
-# Third Person Dual	λύε-τον	ἐ-λῡέ-την
-# First Person Plural	λύο-μεν	ἐ-λύο-μεν
-# Second Person Plural	λύε-τε	ἐ-λύε-τε
-# Third Person Plural	λύουσι	ἔ-λῡο-ν
 
-# * FUTURE ACTIVE INDICATIVE	FUTURE MIDDLE AND PASSIVE INDICATIVE
-# *PRESENT ACTIVE INDICATIVE
-# First Person Singular
-# Second Person Singular
-# Third Person Singular
-# Second Person Dual
-# Third Person Dual
-# First Person Plural
-# Second Person Plural
-# Third Person Plural
-
-* act.pres.ind
-ἐπάγω
-ἐπάγεις
-ἐπάγει
-ἐπάγομεν
-ἐπάγετε
-ἐπάγουσι / ἐπάγουσιν
+* act.aor.ind
+εἶπον
+εἶπες
+εἶπε / εἶπεν
+εἴπομεν
+εἴπετε
+εἶπον

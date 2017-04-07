@@ -22,9 +22,8 @@ console.timeEnd('_gramm');
 function getFactories() {
     let factories = []
     let tests = getTests(dpath)
-    let limit = tests.length - 2
+    log('TESTS SIZE', tests.length)
     tests.forEach(function(json, idx) {
-        if (!only && idx < limit) return
         let test = JSON.parse(json)
         for (let mod in test) {
             let reonly = new RegExp(only)
@@ -74,7 +73,10 @@ function getTests(dpath) {
     let fpath = path.join(__dirname, dpath);
     let text = fs.readFileSync(fpath,'utf8').trim();
     let tests = text.split('\n');
-    // p(tests)
+    // let limit = tests.length - 2
+    log('ONLY', only, tests.length)
+    if (!only) tests = tests.slice(-2)
+    p(tests)
     return tests
 }
 

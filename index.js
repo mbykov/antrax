@@ -332,10 +332,14 @@ function dict4word(words, queries, dicts) {
             if (d.var == 'act.pres.ind') {
                 // if (q.var == 'act.pres.ind') filter = filterSimple(d, q) // только прямые q.pres, q.impf, d.api //  && u.pres.includes(q.var)
                 if (q.api) filter = filterApi(d, q) // искусственные формы, pres тут нет
-                else if (q.woapi) filter = filterSimple(d, q)
+                else if (q.woapi) filter = filterSimple(d, q) // полный презенс, независимо от наличия полных форм
                 else throw new Error('NO API FILTER')
-            } else if (q.woapi) filter = filterNapi(d, q) // полные формы, кроме pres
-            else throw new Error('NO API MAIN FILTER')
+            }
+            else if (q.woapi) filter = filterNapi(d, q) // полные формы, кроме pres
+            else {
+                // log('NO API MAIN', d, q)
+                // throw new Error('NO API MAIN FILTER')
+            }
 
             // if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
             // здесь соответсвие плохо в ἔπαυσα - нужно найти aor по api стему
@@ -375,6 +379,7 @@ function compare(form, aug, stem, term, d, q) {
     return true
 }
 
+// ἐπάγω
 function filterSimple(d, q) {
     log('SIMPLE OK')
     if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
@@ -413,25 +418,10 @@ function filterNapi(d, q) {
     // log('FILTER d.plain', d.plain, 'dstem', dstem, 'd.var', d.var)
     if (dstem == d.plain) return
 
-    return compare(q.form, q.aug, dstem, q.term, d, q)
-
-    // let qform = orthos.plain(q.form)
-    // let qterm = orthos.plain(q.term)
-
-    // // "λύω"  "λύσω" "ἔλυον"
-    // log('NAPI-BEFORE qform:', qform, 'dst:', dstem, 'qterm:', qterm, 'joined=', [dstem, qterm].join(''), 'qvar', q.var)
-    // if (qform != [dstem, qterm].join('')) return
-    // log('NAPI d.plain', d.plain, 'd.var', d.var, q)
-    // return true
+    return compare(q.form, null, dstem, q.term, d, q)
 }
 
 
-// q - д.б. либо наст.вр, либо любой с пометкой .api, если nonuniq - то только dict - act.pres.ind - почему? напр., act.pres.opt?
-// нужно:
-// 1. либо d.woapi + q: act.pres.any - прямые формы
-// 2. либо d.api + q.api
-//
-// если не pres.any, то обычно имперфект
 function filterApi(d, q) {
     // nonuniq - те api, которые имеют full-варианты; иначе λύσω - по два dict
     // if (d.nonuniq && q.var != 'act.pres.ind') return
