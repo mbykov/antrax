@@ -179,9 +179,20 @@ function parsePossibleForms(empties, fls) {
                     // тут только full-формы, включая act.pres.ind:
                     let sform = {idx: row.idx, pos: morph.pos, query: query, form: row.form, stem: stem, dict: morph.dict, term: term, numper: morph.numper, var: morph.var, descr: morph.descr, woapi: true, flex: flex} // , morph: morph
                     // log('SFORM==>', sform)
-                    forms.push(sform)
 
-                    // API: создание дополнительных api-форм:
+                    // проверка q.woapi на augment, добавляет aug, и отбрасывает impf без aug
+                    if (u.augmods.includes(morph.var)) {
+                        let aug = stem.slice(0,2)
+                        if (_.keys(u.augs).includes(aug)) {
+                            sform.aug = aug
+                            forms.push(sform)
+                        }
+                     // } else if (doubledX?){ проверка на perfect?
+                    } else {
+                        forms.push(sform)
+                    }
+
+                    // API: создание дополнительных api-форм для поиска по api-stem
                     if (u.augmods.includes(morph.var)) {
                         let aug = stem.slice(0,2)
                         // εἴχετε - ἔχω - не работает, надо подумать FIXME: // ἀγορᾷ
@@ -314,10 +325,24 @@ function dict4word(words, queries, dicts) {
 
         qverbs.forEach(function(q) {
             // log('=== API ????', d.plain, d.var)
+
+
+            // ================== FILTER ==================
+            let filter
+            if (d.var == 'act.pres.ind') {
+                // if (q.var == 'act.pres.ind') filter = filterSimple(d, q) // только прямые q.pres, q.impf, d.api //  && u.pres.includes(q.var)
+                if (q.api) filter = filterApi(d, q) // искусственные формы, pres тут нет
+                else if (q.woapi) filter = filterSimple(d, q)
+                else throw new Error('NO API FILTER')
+            } else if (q.woapi) filter = filterNapi(d, q) // полные формы, кроме pres
+            else throw new Error('NO API MAIN FILTER')
+
             // if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
             // здесь соответсвие плохо в ἔπαυσα - нужно найти aor по api стему
-            let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterNapi(d, q)
+            // let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterNapi(d, q)
+            // filter = (q.woapi) ? filterNapi(d, q) : filterAPI(d, q)
             if (!filter) return
+
 
             let morph = {var: q.var, numper: q.numper}
             if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
@@ -336,10 +361,34 @@ function dict4word(words, queries, dicts) {
     })
 }
 
-// additional full verb-form: fut, aor, etc - кроме act.pres.ind
+function compare(form, aug, stem, term, d, q) {
+    let qform = orthos.plain(form)
+    let qterm = orthos.plain(term)
+    if (aug) {
+        qform = qform.slice(2)
+        if ([orthos.ac.psili, orthos.ac.dasia].includes(stem[1])) stem = stem.slice(2)
+    }
+    // "λύω"  "λύσω" "ἔλυον" // ἦγον
+    log('COMPARE qform:', qform, 'd.stem:', stem, 'qterm:', qterm, 'joined=', [stem, qterm].join(''))
+    if (qform != [stem, qterm].join('')) return
+    log('AFTER', d.var, q)
+    return true
+}
+
+function filterSimple(d, q) {
+    log('SIMPLE OK')
+    if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
+    let dstem = d.plain
+    if (q.descr == 'w-verb') dstem = dstem.replace(/ω$/, '')
+    else if (q.descr == 'omai-verb') dstem = dstem.replace(/ομαι$/, '')
+    else if (q.descr == 'mi-verb') dstem = dstem.replace(/ωμι$/, '').replace(/ημι$/, '').replace(/υμι$/, '')
+    return compare(q.form, q.aug, dstem, q.term, d, q)
+}
+
+// vforms -  full verb-form: fut, aor, etc
 function filterNapi(d, q) {
     log('filter NAPI')
-    if (q.api) return // - тут дополнительных не нужно
+    // if (q.api) return // - тут дополнительных не нужно
     if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
 
     let dstem
@@ -361,30 +410,44 @@ function filterNapi(d, q) {
         if (q.descr != 'mi-verb') return
         dstem = d.plain.replace(/ωκα$/, '').replace(/ηκα$/, '')
     }
-    log('FILTER d.plain', d.plain, 'dstem', dstem, 'd.var', d.var)
+    // log('FILTER d.plain', d.plain, 'dstem', dstem, 'd.var', d.var)
     if (dstem == d.plain) return
 
-    let qform = orthos.plain(q.form)
-    let qterm = orthos.plain(q.term)
+    return compare(q.form, q.aug, dstem, q.term, d, q)
 
-    // "λύω"  "λύσω" "ἔλυον"
-    log('NAPI-BEFORE qform:', qform, 'dst:', dstem, 'qterm:', qterm, 'joined=', [dstem, qterm].join(''), 'qvar', q.var)
-    if (qform != [dstem, qterm].join('')) return
-    log('NAPI', d.plain, d.var, q)
-    return true
+    // let qform = orthos.plain(q.form)
+    // let qterm = orthos.plain(q.term)
+
+    // // "λύω"  "λύσω" "ἔλυον"
+    // log('NAPI-BEFORE qform:', qform, 'dst:', dstem, 'qterm:', qterm, 'joined=', [dstem, qterm].join(''), 'qvar', q.var)
+    // if (qform != [dstem, qterm].join('')) return
+    // log('NAPI d.plain', d.plain, 'd.var', d.var, q)
+    // return true
 }
 
 
-// q - д.б. либо наст.вр, либо любой с пометкой .api, если nonuniq - то только dict - act.pres.ind
+// q - д.б. либо наст.вр, либо любой с пометкой .api, если nonuniq - то только dict - act.pres.ind - почему? напр., act.pres.opt?
+// нужно:
+// 1. либо d.woapi + q: act.pres.any - прямые формы
+// 2. либо d.api + q.api
 //
-function filterAPI(d, q) {
-    // nonuniq - те api, которые имеют full-варианты; иначе luso - по два dict
-    if (d.nonuniq && q.var != 'act.pres.ind') return
+// если не pres.any, то обычно имперфект
+function filterApi(d, q) {
+    // nonuniq - те api, которые имеют full-варианты; иначе λύσω - по два dict
+    // if (d.nonuniq && q.var != 'act.pres.ind') return
     log('filter API')
+    return
+    // без q.api - только формы наст. вр.:
     if (q.woapi && !u.pres.includes(q.var)) return // пропускаются только те q, которые м.б. постоены из d.api
     // log('q', q)
-    // let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/οω$/, '').replace(/βω$/, '').replace(/πω$/, '').replace(/φω$/, '').replace(/λω$/, '').replace(/ω$/, '').replace(/ομαι$/, '').replace(/ωμι$/, '').replace(/ημι$/, '').replace(/υμι$/, '')
+    if (q.api) {
+        if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
+        // но! здесь соответствие плохо в ἔπαυσα - нужно найти aor по api стему
+        // ἐπίστευσα - ἐπίστευον - нужно различить, нельзя взять api-стем для поиска aor, возьмет stem из api, и найдет impf
+        // противоречие
+    }
 
+    // let dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/οω$/, '').replace(/βω$/, '').replace(/πω$/, '').replace(/φω$/, '').replace(/λω$/, '').replace(/ω$/, '').replace(/ομαι$/, '').replace(/ωμι$/, '').replace(/ημι$/, '').replace(/υμι$/, '')
     let dstem = d.plain
     // let pres_mute = 'βω$|πω$|φω$'
     // let impf_mute = 'βον$|πον$|φον$' - это точно не нужно, dict на ω
@@ -407,6 +470,11 @@ function filterAPI(d, q) {
     log('API', d.plain, d.var, q)
     return true
 }
+
+// if (q.api) filter = filterApi(d, q) // искусственные q-формы, pres тут нет
+// else if (q.woapi && u.pres.includes(q.var) && d.var == 'act.pres.ind') filter = filterMain(d, q) // только прямые d для q.pres
+// else if (q.woapi) filter = filterNapi(d, q) // полные формы, кроме pres
+// else throw new Error('NO API FILTER')
 
 // если aug, то отбросить, ибо в словаре и в форме ... нет, тут не нужно отбрасывать?????  <<=====
 // а нельзя-ли тут всегда slice(2) сделать?
@@ -446,9 +514,11 @@ function queryDicts(keys) {
             // log('GROUPS', groups)
             let names = [], verbs = [], parts = []
             let cnames = [], cverbs = [], cparts = []
+            // FIXME: ошибка - если неск. verb-групп, то последняя затрет verbs, etc
             for (let key in groups) {
                 let arr = groups[key]
                 // log('ARR', arr)
+                // похоже, nonuniq и vmorphs - синонимы, группа по d.dict, а dict во всех verb-формах тот же самый? - нет, они разные
                 cnames = _.select(arr, function(dict) { return dict.pos == 'name' })
                 cparts = _.select(arr, function(dict) { return dict.pos == 'part' })
                 cverbs = _.select(arr, function(dict) { return dict.pos == 'verb' })
