@@ -177,7 +177,7 @@ function parsePossibleForms(empties, fls) {
                     let query = [stem, morph.dict].join('');
                     // log('m:====>>> stem', stem, 'morph', morph)
                     // тут только full-формы, включая act.pres.ind:
-                    let sform = {idx: row.idx, pos: morph.pos, query: query, form: row.form, stem: stem, dict: morph.dict, term: term, numper: morph.numper, var: morph.var, descr: morph.descr, woapi: true, flex: flex} // , morph: morph
+                    let sform = {idx: row.idx, pos: morph.pos, query: query, form: row.form, stem: stem, dict: morph.dict, term: term, numper: morph.numper, var: morph.var, descr: morph.descr, woapi: true} // , morph: morph , flex: flex
                     // log('SFORM==>', sform)
 
                     // проверка q.woapi на augment, добавляет aug, и отбрасывает impf без aug
@@ -202,12 +202,12 @@ function parsePossibleForms(empties, fls) {
                             let aquery = [stem.slice(2), 'ω'].join('')
                             aquery = [u.augs[aug], aquery].join('')
                             // log('================== AQUERY', aquery)
-                            let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, aug: aug, stem: stem, term: term, api: true}
+                            let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, aug: aug, stem: stem, term: term, dict: morph.dict, api: true}
                             forms.push(form)
                         }
                     } else if (modCorr['act.fut.ind'].includes(morph.var)) {
                         let aquery = [stem, 'ω'].join('')
-                        let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, stem: stem, term: term, api: true}
+                        let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, stem: stem, term: term, dict: morph.dict, api: true}
                         forms.push(form)
                     }
                 } else if (morph.pos == 'inf') {
@@ -216,7 +216,7 @@ function parsePossibleForms(empties, fls) {
                     if (row.form != [stem, term].join('')) return
                     let query = [stem, morph.dict].join('');
                     let vvar = [morph.var, 'inf'].join('.')
-                    let form = {idx: row.idx, pos: 'inf', query: query, form: row.form, var: vvar, descr: morph.descr, stem: stem, term: term}
+                    let form = {idx: row.idx, pos: 'inf', query: query, form: row.form, var: vvar, descr: morph.descr, stem: stem, dict: morph.dict, term: term}
                     forms.push(form)
                 } else {
                     let stem = row.form.slice(0, -flex._id.length);
@@ -226,7 +226,7 @@ function parsePossibleForms(empties, fls) {
                     // в morph-part нет var!
                     // log('pFLEX', 'last', last, 'MVAR', morph.var, '_ID', flex._id, 'POS', morph.pos)
                     if (!['ε', 'ι', 'ρ']. includes(last) && ['sg.gen', 'sg.dat']. includes(morph.numcase) && ['ας']. includes(flex._id)) return
-                    let form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, add: morph.add } // , flex: flex - убрать
+                    let form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, dict: morph.dict, add: morph.add } // , flex: flex - убрать
                     forms.push(form)
                 }
             })
@@ -327,10 +327,11 @@ function dict4word(words, queries, dicts) {
             // log('=== API ????', d.plain, d.var)
 
 
+            // здесь imperfect должен строиться уже из api - ἐπάγω - ἐπῆγον
+            // но пока я его не строю, пропускаю все modCorr
             // ================== FILTER ==================
             let filter
             if (d.var == 'act.pres.ind') {
-                // if (q.var == 'act.pres.ind') filter = filterSimple(d, q) // только прямые q.pres, q.impf, d.api //  && u.pres.includes(q.var)
                 if (q.api) filter = filterApi(d, q) // искусственные формы, pres тут нет
                 else if (q.woapi) filter = filterSimple(d, q) // полный презенс, независимо от наличия полных форм
                 else throw new Error('NO API FILTER')
@@ -379,14 +380,24 @@ function compare(form, aug, stem, term, d, q) {
     return true
 }
 
-// ἐπάγω
+// ἐπάγω θέλω
 function filterSimple(d, q) {
-    log('SIMPLE OK')
+  log('SIMPLE OK')
     if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
-    let dstem = d.plain
-    if (q.descr == 'w-verb') dstem = dstem.replace(/ω$/, '')
-    else if (q.descr == 'omai-verb') dstem = dstem.replace(/ομαι$/, '')
-    else if (q.descr == 'mi-verb') dstem = dstem.replace(/ωμι$/, '').replace(/ημι$/, '').replace(/υμι$/, '')
+    // let dstem = d.plain
+    // if (q.descr == 'w-verb') dstem = dstem.replace(/ω$/, '')
+    // // XXX else if (q.descr == 'ew-verb') dstem = dstem.replace(/ω$/, '')
+    // else if (q.descr == 'omai-verb') dstem = dstem.replace(/ομαι$/, '')
+    // else if (q.descr == 'mi-verb') dstem = dstem.replace(/ωμι$/, '').replace(/ημι$/, '').replace(/υμι$/, '')
+
+    // здесь imperfect должен строиться уже из api - ἐπάγω - ἐπῆγον
+    // но пока я его не строю, пропускаю все modCorr
+
+    let re = new RegExp(q.dict + '$')
+    let dstem = d.form.replace(re, '')
+    if (dstem == d.form) return
+    dstem = orthos.plain(dstem)
+
     return compare(q.form, q.aug, dstem, q.term, d, q)
 }
 
@@ -396,27 +407,10 @@ function filterNapi(d, q) {
     // if (q.api) return // - тут дополнительных не нужно
     if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
 
-    let dstem
-    if (d.descr == 'w-verb') {
-        if (q.descr != 'w-verb') return
-        if (d.var == 'act.pres.ind') {
-            dstem = d.plain.replace(/εω$/, '').replace(/αω$/, '').replace(/ω$/, '')
-        }
-        else if (d.var == 'act.fut.ind') {
-            dstem = d.plain.replace(/σω$/, '').replace(/ψω$/, '').replace(/νω$/, '').replace(/λω$/, '')
-        }
-        else if (d.var == 'act.aor.ind') {
-            dstem = d.plain.replace(/ρα$/, '').replace(/ησα$/, '').replace(/ωσα$/, '').replace(/εσα$/, '').replace(/ξα$/, '').replace(/ψα$/, '').replace(/να$/, '').replace(/σα$/, '').replace(/ον$/, '')
-        }
-    } else if (d.descr == 'omai-verb') {
-        if (q.descr != 'omai-verb') return
-        dstem = d.plain.replace(/θον$/, '').replace(/σάμην$/, '').replace(/σομαι$/, '').replace(/θην$/, '').replace(/θήσομαι$/, '').replace(/ομαι$/, '')
-    } else if (d.descr == 'mi-verb') {
-        if (q.descr != 'mi-verb') return
-        dstem = d.plain.replace(/ωκα$/, '').replace(/ηκα$/, '')
-    }
-    // log('FILTER d.plain', d.plain, 'dstem', dstem, 'd.var', d.var)
-    if (dstem == d.plain) return
+    let re = new RegExp(q.dict + '$')
+    let dstem = d.form.replace(re, '')
+    if (dstem == d.form) return
+    dstem = orthos.plain(dstem)
 
     return compare(q.form, null, dstem, q.term, d, q)
 }
@@ -442,10 +436,9 @@ function filterApi(d, q) {
     // let pres_mute = 'βω$|πω$|φω$'
     // let impf_mute = 'βον$|πον$|φον$' - это точно не нужно, dict на ω
 
-    if (q.descr == 'w-verb') dstem = dstem.replace(/ω$/, '')
-    else if (q.descr == 'omai-verb') dstem = dstem.replace(/ομαι$/, '')
+    if (q.descr == 'omai-verb') dstem = dstem.replace(/ομαι$/, '')
     else if (q.descr == 'mi-verb') dstem = dstem.replace(/ωμι$/, '').replace(/ημι$/, '').replace(/υμι$/, '')
-
+    else dstem = dstem.replace(/ω$/, '')
 
     let qform = orthos.plain(q.form)
     let qterm = orthos.plain(q.term)

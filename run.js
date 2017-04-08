@@ -74,9 +74,9 @@ function getTests(dpath) {
     let text = fs.readFileSync(fpath,'utf8').trim();
     let tests = text.split('\n');
     // let limit = tests.length - 2
-    log('ONLY', only, tests.length)
+    log('ONLY', only)
     if (!only) tests = tests.slice(-2)
-    p(tests)
+    // p(tests)
     return tests
 }
 
