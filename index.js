@@ -119,18 +119,20 @@ function main(words, fls, cb) {
     let possibleFlex = parsePossibleForms(empties, fls);
     log('Poss-Form-queries', possibleFlex.length, possibleFlex[0]);
 
-    // let terms = _.select(rows, function(row) { return row.type == 'term' })
-    // let ffs = _.select(rows, function(row) { return row.type == 'form' }) // FFS
-    // log('main TERMS', terms)
-    // log('main FFS', ffs)
-    let prons = _.select(indecls, function(row) { return row.pos == 'pron' })
-    let prdicts = _.map(prons, function(pron) { return pron.dicts[0].dict })
-    log('PR-DICTS', prdicts)
+    // let indicts = _.map(indecls, function(pron) { return pron.dicts[0].dict })
+    let indicts = []
+    indecls.forEach(function(word) {
+        // log('-- word', word)
+        let terms = _.select(word.dicts, function(d) { return d.term })
+        let wdicts = _.map(terms, function(d) { return d.dict })
+        indicts = indicts.concat(wdicts)
+    })
+    log('IN-DICTS', indicts)
 
     let queries = _.uniq(possibleFlex.map(function(q) { return q.query }))
     let plains = _.uniq(queries.map(function(key) { return orthos.plain(key)}))
     log('MAIN KEY-PLAINS', plains)
-    let allqs = plains.concat(prdicts)
+    let allqs = plains.concat(indicts)
     log('MAIN KEY-ALL', allqs)
 
     queryDicts(allqs).then(function(dicts) {
@@ -230,6 +232,26 @@ function parsePossibleForms(empties, fls) {
 
 //  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
 function dict4word(words, queries, dicts) {
+    let mutables = []
+    // let names = [], verbs = [], parts = []
+    dicts.forEach(function(d) {
+        words.forEach(function(word) {
+            if (word.dicts) {
+                let wdicts = word.dicts.map(function(d) { return d.dict})
+                if (!wdicts.includes(d.dict)) return
+                d.weight = 10
+                word.dicts.push(d)
+            } else {
+                mutables.push(d)
+            }
+        })
+    })
+
+    let names = _.select(mutables, function(d) { return d.pos == 'name'} )
+    let verbs = _.select(mutables, function(d) { return d.pos == 'verb'} )
+    let infs = _.select(mutables, function(d) { return d.pos == 'inf'} )
+    let parts = _.select(mutables, function(d) { return d.pos == 'part'} )
+
     log('4w-ALL QUERIES', queries)
     let qqnames = [], qverbs = [], qinfs = [], qparts = []
     queries.forEach(function(q) {
@@ -239,22 +261,11 @@ function dict4word(words, queries, dicts) {
         else if (q.pos == 'inf') qinfs.push(q)
     })
 
-    dicts.terms.forEach(function(d) {
-        words.forEach(function(word) {
-            log('WWWWORD', word)
-            if (!word.dicts) return
-            let wdicts = word.dicts.map(function(d) { return d.dict})
-            if (!wdicts.includes(d.dict)) return
-            d.weight = 10
-            word.dicts.push(d)
-        })
-    })
-
     // log('4w-QNames', dicts.names)
     // log('4w-QInfs', qinfs)
     // log('4w-QVerbs', qverbs)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
-    dicts.names.forEach(function(d) {
+    names.forEach(function(d) {
         let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []}
         let qnstricts = _.select(qqnames, function(q) { return q.query == d.dict })
         let qnames = (qnstricts.length) ? qnstricts : _.select(qqnames, function(q) { return orthos.plain(q.query) == d.plain})
@@ -299,8 +310,8 @@ function dict4word(words, queries, dicts) {
         }
     })
     // VERBS
-    log('4w-Dverbs', dicts.verbs)
-    dicts.verbs.forEach(function(d) {
+    log('4w-Dverbs', verbs)
+    verbs.forEach(function(d) {
         let iquery
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}}
 
@@ -317,11 +328,11 @@ function dict4word(words, queries, dicts) {
             log('INF AFTER FILTER')
             iquery = {idx: q.idx, form: q.form, type: d.type, dict: d.dict, pos: 'inf', trn: d.trn, var: q.var } // всегда один результат
         })
+        if (iquery) {
+            words[iquery.idx].dicts.push(iquery)
+        }
 
         qverbs.forEach(function(q) {
-            // log('=== API ????', d.plain, d.var)
-
-
             // здесь imperfect должен строиться уже из api - ἐπάγω - ἐπῆγον
             // но пока я его не строю, пропускаю все modCorr
             // ================== FILTER ==================
@@ -351,9 +362,6 @@ function dict4word(words, queries, dicts) {
             vquery.form = q.query
             // vquery.descr = q.descr
         })
-        if (iquery) {
-            words[iquery.idx].dicts.push(iquery)
-        }
         if (_.keys(vquery.morphs).length) {
             words[vquery.idx].dicts.push(vquery)
         }
@@ -456,35 +464,37 @@ function queryDicts(keys) {
             include_docs: true
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no dict result')
-            let rdicts = res.rows.map(function(row) {return row.doc })
-            log('RDICTS RES', rdicts)
-            let terms = _.select(rdicts, function(d) { return d.term })
-            let mutables = _.select(rdicts, function(d) { return !d.term })
-            let groups = _.groupBy(mutables, function(dict){ return [dict.pos, dict.dict, dict.dtype].join('-') })
-            // log('GROUPS', groups)
-            let names = [], verbs = [], parts = []
-            let cnames = [], cverbs = [], cparts = []
-            // группирую, чтобы определить, есть-ли добавочные формы глагола к форме api в результатах
-            // FIXME: ошибка - если неск. verb-групп, то последняя затрет verbs, etc
-            for (let key in groups) {
-                let arr = groups[key]
-                // log('ARR', arr)
-                // похоже, nonuniq и vmorphs - синонимы, группа по d.dict, а dict во всех verb-формах тот же самый? - нет, они разные
-                cnames = _.select(arr, function(dict) { return dict.pos == 'name' })
-                cparts = _.select(arr, function(dict) { return dict.pos == 'part' })
-                cverbs = _.select(arr, function(dict) { return dict.pos == 'verb' })
-                if (cverbs.length > 1) {
-                    cverbs.forEach(function(verb) {
-                        if (verb.vmorphs) verb.nonuniq = true
-                    })
-                }
-                names = names.concat(cnames)
-                verbs = verbs.concat(cverbs)
-                parts = parts.concat(cparts)
-            }
-            let dicts = {names: names, verbs: verbs, parts: parts, terms: terms}
-            log('Q DICTS RES', dicts)
-            resolve(dicts)
+            let rdocs = res.rows.map(function(row) {return row.doc })
+            log('RDICTS RES', rdocs)
+            resolve(rdocs)
+            // return
+            // let terms = _.select(rdocs, function(d) { return d.term })
+            // let mutables = _.select(rdocs, function(d) { return !d.term })
+            // let groups = _.groupBy(mutables, function(dict){ return [dict.pos, dict.dict, dict.dtype].join('-') })
+            // // log('GROUPS', groups)
+            // let names = [], verbs = [], parts = []
+            // let cnames = [], cverbs = [], cparts = []
+            // // группирую, чтобы определить, есть-ли добавочные формы глагола к форме api в результатах
+            // // FIXME: ошибка - если неск. verb-групп, то последняя затрет verbs, etc
+            // for (let key in groups) {
+            //     let arr = groups[key]
+            //     // log('ARR', arr)
+            //     // похоже, nonuniq и vmorphs - синонимы, группа по d.dict, а dict во всех verb-формах тот же самый? - нет, они разные
+            //     cnames = _.select(arr, function(dict) { return dict.pos == 'name' })
+            //     cparts = _.select(arr, function(dict) { return dict.pos == 'part' })
+            //     cverbs = _.select(arr, function(dict) { return dict.pos == 'verb' })
+            //     if (cverbs.length > 1) {
+            //         cverbs.forEach(function(verb) {
+            //             if (verb.vmorphs) verb.nonuniq = true
+            //         })
+            //     }
+            //     names = names.concat(cnames)
+            //     verbs = verbs.concat(cverbs)
+            //     parts = parts.concat(cparts)
+            // }
+            // let dicts = {names: names, verbs: verbs, parts: parts, terms: terms}
+            // log('Q DICTS RES', dicts)
+            // resolve(dicts)
         }).catch(function (err) {
             log('Q DICTS REJECT', err)
             reject(err)
