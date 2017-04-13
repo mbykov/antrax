@@ -232,27 +232,31 @@ function parsePossibleForms(empties, fls) {
 
 //  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
 function dict4word(words, queries, dicts) {
-    let mutables = []
+    // let mutables = []
     // let names = [], verbs = [], parts = []
     dicts.forEach(function(d) {
         words.forEach(function(word) {
-            if (word.dicts) {
+            // log('W->', word)
+            if (word.dicts.length) {
                 let wdicts = word.dicts.map(function(d) { return d.dict})
-                if (!wdicts.includes(d.dict)) return
-                d.weight = 10
-                word.dicts.push(d)
-            } else {
-                mutables.push(d)
+                if (wdicts.includes(d.dict)) {
+                    d.weight = 5
+                    word.dicts.push(d)
+                }
+            // } else {
+                // mutables.push(d)
             }
         })
     })
+    let mutables = _.select(dicts, function(d) { return d.weight != 5})
+    log('4w-Muts', mutables)
 
     let names = _.select(mutables, function(d) { return d.pos == 'name'} )
     let verbs = _.select(mutables, function(d) { return d.pos == 'verb'} )
     let infs = _.select(mutables, function(d) { return d.pos == 'inf'} )
     let parts = _.select(mutables, function(d) { return d.pos == 'part'} )
 
-    log('4w-ALL QUERIES', queries)
+    log('4w-ALL QUERIES', queries.length)
     let qqnames = [], qverbs = [], qinfs = [], qparts = []
     queries.forEach(function(q) {
         if (q.pos == 'name') qqnames.push(q)
@@ -261,7 +265,7 @@ function dict4word(words, queries, dicts) {
         else if (q.pos == 'inf') qinfs.push(q)
     })
 
-    // log('4w-QNames', dicts.names)
+    log('4w-QNames', names)
     // log('4w-QInfs', qinfs)
     // log('4w-QVerbs', qverbs)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
@@ -509,13 +513,18 @@ function queryTerms(words) {
     log('==UKEYS==', ukeys.toString())
     return new Promise(function(resolve, reject) {
         db.query('greek/byTerm', {
-            keys: ukeys
+            keys: ukeys,
+            include_docs: true
         }).then(function (res) {
             log('RES-TERMS', res)
             if (!res || !res.rows) throw new Error('no term result') //  || res.rows.length == 0
-            let allterms = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value);});
+            let allterms = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value) })
+            let docs = res.rows.map(function(row) { return row.doc})
+            log('TDOCS', docs)
             words.forEach(function(word, idx) {
-                let indecls = _.select(allterms, function(term) { return term.form == word.form})
+                // let indecls = _.select(allterms, function(term) { return term.form == word.form})
+                // term.dict - из словарей, не имеют .form;
+                let indecls = _.select(docs, function(term) { return term.dict == word.form || term.form == word.form})
                 if (!indecls.length) return
                 let indecl = indecls[0] // always only one, its are groupped
                 word.dicts = indecls
