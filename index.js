@@ -24,8 +24,8 @@ if (forTest == '--no-sandbox') {
     db = new PouchDB('http:\/\/localhost:5984/greek');
 }
 
-// destroyDB(db_flex)
 // destroyDB(db)
+// destroyDB(db_flex)
 // return
 
 replicateDB('gr-flex')
@@ -168,14 +168,10 @@ function parsePossibleForms(empties, fls) {
                     // проверка q.woapi на augment, добавляет aug, и отбрасывает impf без aug
                     if (u.augmods.includes(morph.var)) {
                         let aug = stem.slice(0,2)
-                        if (_.keys(u.augs).includes(aug)) {
-                            sform.aug = aug
-                            forms.push(sform)
-                        }
-                     // } else if (doubledX?){ проверка на perfect?
-                    } else {
-                        forms.push(sform)
+                        if (_.keys(u.augs).includes(aug)) sform.aug = aug
                     }
+                    forms.push(sform)
+                    // if (term == 'ον' && morph.pos == 'verb') log('SFORM', morph.pos == 'verb', morph)
 
                     // API: создание дополнительных api-форм для поиска по api-stem
                     if (u.augmods.includes(morph.var)) {
@@ -217,6 +213,8 @@ function parsePossibleForms(empties, fls) {
             })
         })
     })
+    let vvs = _.select(forms, function(f) { return f.pos == 'verb'})
+    log('VVS', vvs.length)
     return forms;
 }
 
@@ -256,7 +254,7 @@ function dict4word(words, queries, dicts) {
     let infs = _.select(mutables, function(d) { return d.pos == 'inf'} )
     let parts = _.select(mutables, function(d) { return d.pos == 'part'} )
 
-    log('4w-ALL QUERIES', queries.length)
+    // log('4w-ALL QUERIES', queries.length)
     let qqnames = [], qverbs = [], qinfs = [], qparts = []
     queries.forEach(function(q) {
         if (q.pos == 'name') qqnames.push(q)
@@ -267,7 +265,7 @@ function dict4word(words, queries, dicts) {
 
     log('4w-QNames', names)
     // log('4w-QInfs', qinfs)
-    // log('4w-QVerbs', qverbs)
+    log('4w-QVerbs', qverbs)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     names.forEach(function(d) {
         let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []}
@@ -340,6 +338,7 @@ function dict4word(words, queries, dicts) {
             // здесь imperfect должен строиться уже из api - ἐπάγω - ἐπῆγον
             // но пока я его не строю, пропускаю все modCorr
             // ================== FILTER ==================
+            log('Q', q)
             let filter
             if (d.var == 'act.pres.ind') {
                 if (q.api) filter = filterApi(d, q) // искусственные формы, pres тут нет
@@ -348,19 +347,16 @@ function dict4word(words, queries, dicts) {
             }
             else if (q.woapi) filter = filterNapi(d, q) // полные формы, кроме pres
             else {
-                // log('NO API MAIN', d, q)
+                log('NO FILTER MAIN', d, q)
                 // throw new Error('NO API MAIN FILTER')
             }
-
-            // if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
-            // здесь соответсвие плохо в ἔπαυσα - нужно найти aor по api стему
-            // let filter = (d.var == 'act.pres.ind') ? filterAPI(d, q) : filterNapi(d, q)
-            // filter = (q.woapi) ? filterNapi(d, q) : filterAPI(d, q)
             if (!filter) return
 
+            // засада с фильтрами, что если два dict - а их будет много! то повторяются morphs - sg.1, sg.1
+            // они проходят для каждого dict и накапливаются
 
-            // let morph = {var: q.var, numper: q.numper}
             if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
+            else if (vquery.morphs[q.var].includes(q.numper)) return // это уберет неоднозначность, и можно отказаться от descr
             else vquery.morphs[q.var].push(q.numper)
             vquery.idx = q.idx
             vquery.form = q.query
@@ -375,26 +371,23 @@ function dict4word(words, queries, dicts) {
 function compare(form, aug, stem, term, d, q) {
     let qform = orthos.plain(form)
     let qterm = orthos.plain(term)
+    let dstem = orthos.plain(stem)
     if (aug) {
         qform = qform.slice(2)
         if ([orthos.ac.psili, orthos.ac.dasia].includes(stem[1])) stem = stem.slice(2)
     }
-    // "λύω"  "λύσω" "ἔλυον" // ἦγον
-    log('COMPARE qform:', qform, 'd.stem:', stem, 'qterm:', qterm, 'joined=', [stem, qterm].join(''))
-    if (qform != [stem, qterm].join('')) return
+    log('COMPARE qform:', qform, 'd.stem:', dstem, 'qterm:', qterm, 'joined=', [stem, qterm].join(''))
+    if (qform != [dstem, qterm].join('')) return
     log('AFTER', d.var, q)
     return true
 }
 
 // ἐπάγω θέλω
+// "λύω"  "λύσω" "ἔλυον" // ἦγον
 function filterSimple(d, q) {
   log('SIMPLE OK')
     if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
-    // let dstem = d.plain
-    // if (q.descr == 'w-verb') dstem = dstem.replace(/ω$/, '')
-    // // XXX else if (q.descr == 'ew-verb') dstem = dstem.replace(/ω$/, '')
-    // else if (q.descr == 'omai-verb') dstem = dstem.replace(/ομαι$/, '')
-    // else if (q.descr == 'mi-verb') dstem = dstem.replace(/ωμι$/, '').replace(/ημι$/, '').replace(/υμι$/, '')
+    if (q.descr != d.descr) return // for contracted verbs
 
     // здесь imperfect должен строиться уже из api - ἐπάγω - ἐπῆγον
     // но пока я его не строю, пропускаю все modCorr
@@ -402,21 +395,21 @@ function filterSimple(d, q) {
     let re = new RegExp(q.dict + '$')
     let dstem = d.form.replace(re, '')
     if (dstem == d.form) return
-    dstem = orthos.plain(dstem)
 
     return compare(q.form, q.aug, dstem, q.term, d, q)
 }
 
+
+
 // vforms -  full verb-form: fut, aor, etc
 function filterNapi(d, q) {
-    log('filter NAPI')
-    // if (q.api) return // - тут дополнительных не нужно
+    log('filter NAPI', q.var, q.descr)
+    // if (q.descr != d.descr) return // for contracted verbs
     if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
 
     let re = new RegExp(q.dict + '$')
     let dstem = d.form.replace(re, '')
     if (dstem == d.form) return
-    dstem = orthos.plain(dstem)
 
     return compare(q.form, null, dstem, q.term, d, q)
 }
@@ -426,7 +419,8 @@ function filterApi(d, q) {
     // nonuniq - те api, которые имеют full-варианты; иначе λύσω - по два dict
     // if (d.nonuniq && q.var != 'act.pres.ind') return
     log('filter API')
-    return
+    if (q.descr != d.descr) return
+    // return
     // без q.api - только формы наст. вр.:
     if (q.woapi && !u.pres.includes(q.var)) return // пропускаются только те q, которые м.б. постоены из d.api
     // log('q', q)
