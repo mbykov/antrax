@@ -14,15 +14,18 @@ const antrax = require('./index')
 
 let dpath = './test/verbs.txt';
 
+
 console.time('_gramm');
 let tfacts = getFactories()
+if (only) log('tests:', tfacts.length)
 let res = sequentialize(tfacts)
+log('============= res', res)
 console.timeEnd('_gramm');
+
 
 function getFactories() {
     let factories = []
     let tests = getTests(dpath)
-    log('TESTS SIZE', tests.length)
     tests.forEach(function(json, idx) {
         let test = JSON.parse(json)
         for (let mod in test) {
@@ -45,26 +48,52 @@ function factory(form, mod, morph) {
             if (err) {
                 reject(err)
             } else {
-                if (!words[0].dicts.length) log('T-ERR-dicts', form + ' - ' + mod + ' - ' + morph)
-                let res = words[0].dicts[0].morphs
-                // p(res)
-                if (!res[mod]) throw new Error('no mod: ' + mod + ' morph: ' + morph + ' form: ' + form)
-                let resmod = res[mod]
-                if (!res[mod].includes(morph)) throw new Error('no mod: ' + mod + ' morph: ' + morph + ' form: ' + form)
-                p(form + ' - ' + mod + ' - ' + morph)
-                // resolve(form, mod, morph, words);
-                resolve(words);
+                // if (!words[0].dicts.length) log('T-ERR-dicts', form + ' - ' + mod + ' - ' + morph)
+                // let res = words[0].dicts[0].morphs
+                // p(words)
+                // // if (!res[mod]) throw new Error('no mod: ' + mod + ' morph: ' + morph + ' form: ' + form)
+                // if (!res[mod]) log('T-ERR-mods', form + ' - ' + mod + ' - ' + morph)
+                // let resmod = res[mod]
+                // if (!res[mod].includes(morph)) throw new Error('no mod: ' + mod + ' morph: ' + morph + ' form: ' + form)
+                // p(form + ' - ' + mod + ' - ' + morph)
+                // // resolve(form, mod, morph, words);
+                // p('W', form, mod, morph, words)
+                let res = {form: form, mod: mod, morph: morph, words: words}
+                resolve(res);
             }
         })
     })
 }
 
 function sequentialize(promiseFactories) {
-    var chain = Promise.resolve();
-    promiseFactories.forEach(function (promiseFactory) {
-        chain = chain.then(promiseFactory);
+    // let chain = Promise.resolve();
+    promiseFactories.forEach(function (factory) {
+        // chain = chain.then(promiseFactory)
+        Promise.resolve().then(function() { return Promise.resolve(factory)}).then(function(res) {
+            // p(res)
+            // let oks = []
+            // let errs = []
+            let formok = false
+            let modok = false
+            let morphok = false
+            res.words.forEach(function(word) {
+                if (res.form == word.form) formok = true
+                word.dicts.forEach(function(dict) {
+                    if (_.keys(dict.morphs).includes(res.mod)) modok = true
+                    if (/inf/.test(res.mod) && dict.var == res.mod) modok = true
+                    if (/inf/.test(res.mod)) morphok = true
+                    else if (_.flatten(_.values(dict.morphs)).includes(res.morph)) morphok = true
+                })
+            })
+            // log(formok, modok, morphok)
+            // if (formok && modok && morphok) oks.push(res)
+            // else errs.push(res)
+            if (formok && modok && morphok) log('ok:', res.form, res.mod, res.morph)
+            else p('err', res)
+        })
+
     });
-    return chain;
+    // return {ok: oks, errs: errs};
 }
 
 
@@ -74,7 +103,6 @@ function getTests(dpath) {
     let text = fs.readFileSync(fpath,'utf8').trim();
     let tests = text.split('\n');
     // let limit = tests.length - 2
-    log('ONLY', only)
     if (!only) tests = tests.slice(-2)
     // p(tests)
     return tests
@@ -82,4 +110,5 @@ function getTests(dpath) {
 
 
 function log() { console.log.apply(console, arguments); }
-function p(o) { console.log(util.inspect(o, showHidden=false, depth=null, colorize=true)) }
+// function p(o) { console.log(util.inspect(o, showHidden=false, depth=null, colorize=true)) }
+function p() { console.log(util.inspect(arguments, false, null, colorize=true)) }
