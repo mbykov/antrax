@@ -192,7 +192,8 @@ function parsePossibleForms(empties, fls) {
                         forms.push(form)
                     }
                 } else if (morph.pos == 'inf') {
-                    // здесь нужно конструировать только api-dict для разных mods, а в 4w их ловить - в словаре full-форм нет
+                    // здесь нужно конструировать aug для aor2 - inf определяется только по словарю, но там aor имеет aug
+                    // FIXME: aug для aor - λαμβάνω, aor ἔλαβον, inf λαβεῖν
                     log('morph-inf=============', morph)
                     let stem = row.form.slice(0, -flex._id.length);
                     if (row.form != [stem, term].join('')) return // это откуда может взяться, непонятно?
@@ -320,14 +321,14 @@ function dict4word(words, queries, dicts) {
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}}
 
         qinfs.forEach(function(q) {
-            if (d.var != 'act.pres.ind') return
+            // if (d.var != 'act.pres.ind') return
             // if (!filterDescr(d, q)) return
             log('==INF', d, q)
             let qform = orthos.plain(q.form)
             let qterm = orthos.plain(q.term)
             // inf - stem всегда api
             // let stem = d.plain.replace(/λω$/, '').replace(/φω$/, '').replace(/ρω$/, '').replace(/νω$/, '').replace(/εω$/, '').replace(/αω$/, '').replace(/οω$/, '').replace(/ω$/, '')
-            let qdict = (q.api) ? q.api : q.dict
+            let qdict = (q.api && d.var == 'act.pres.ind') ? q.api : q.dict
             qdict = orthos.plain(qdict)
             let re = new RegExp(qdict + '$')
             let stem = d.plain.replace(re, '')
@@ -346,7 +347,7 @@ function dict4word(words, queries, dicts) {
             // здесь imperfect должен строиться уже из api - ἐπάγω - ἐπῆγον
             // но пока я его не строю, пропускаю все modCorr
             // ================== FILTER ==================
-            log('Q', q)
+            // log('Q', q)
             let filter
             if (d.var == 'act.pres.ind') {
                 if (q.api) filter = filterApi(d, q) // искусственные формы, pres тут нет
@@ -355,7 +356,8 @@ function dict4word(words, queries, dicts) {
             }
             else if (q.woapi) filter = filterNapi(d, q) // полные формы, кроме pres
             else {
-                log('NO FILTER MAIN', d, q)
+                // log('NO FILTER MAIN', d.var, q.var)
+                // d - не api, а q -api
                 // throw new Error('NO API MAIN FILTER')
             }
             if (!filter) return
@@ -411,10 +413,10 @@ function filterSimple(d, q) {
 
 // vforms -  full verb-form: fut, aor, etc
 function filterNapi(d, q) {
-    log('filter NAPI', q.var, q.descr)
+    log('filter NAPI', q.var, q.var)
     // if (q.descr != d.descr) return // for contracted verbs
     if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
-
+    log('after mod', 'q.dict', q.dict, 'd.form', d.form)
     let re = new RegExp(q.dict + '$')
     let dstem = d.form.replace(re, '')
     if (dstem == d.form) return
