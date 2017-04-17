@@ -57,7 +57,7 @@ function antrax() {
 }
 
 // punctuation \u002E\u002C\u0021\u003B\u00B7\u0020\u0027 - ... middle dot, space, apostrophe
-// clause {idx, form, plain, clean, idx, dicts, possible -либо- indecl}
+// clause {idx, form, plain, clean, idx, dicts, pssible -либо- indecl}
 function parseClause(str, num) {
     let words = []
     let keys = str.split(' ')
@@ -193,11 +193,13 @@ function parsePossibleForms(empties, fls) {
                     }
                 } else if (morph.pos == 'inf') {
                     // здесь нужно конструировать только api-dict для разных mods, а в 4w их ловить - в словаре full-форм нет
+                    log('morph-inf=============', morph)
                     let stem = row.form.slice(0, -flex._id.length);
-                    if (row.form != [stem, term].join('')) return
-                    let query = [stem, morph.dict].join('');
-                    let vvar = [morph.var, 'inf'].join('.')
-                    let form = {idx: row.idx, pos: 'inf', query: query, form: row.form, var: vvar, descr: morph.descr, stem: stem, dict: morph.dict, term: term}
+                    if (row.form != [stem, term].join('')) return // это откуда может взяться, непонятно?
+                    let mdict = (morph.api) ? morph.api : morph.dict
+                    let query = [stem, mdict].join('');
+                    let form = {idx: row.idx, pos: 'inf', query: query, form: row.form, var: morph.var, descr: morph.descr, stem: stem, dict: morph.dict, term: term, api: morph.api}
+                    log('form-inf=============', form)
                     forms.push(form)
                 } else {
                     let stem = row.form.slice(0, -flex._id.length);
@@ -320,10 +322,16 @@ function dict4word(words, queries, dicts) {
         qinfs.forEach(function(q) {
             if (d.var != 'act.pres.ind') return
             // if (!filterDescr(d, q)) return
-            log('======== INF', d, q)
+            log('==INF', d, q)
             let qform = orthos.plain(q.form)
             let qterm = orthos.plain(q.term)
-            let stem = d.plain.replace(/λω$/, '').replace(/φω$/, '').replace(/ρω$/, '').replace(/νω$/, '').replace(/εω$/, '').replace(/αω$/, '').replace(/οω$/, '').replace(/ω$/, '')
+            // inf - stem всегда api
+            // let stem = d.plain.replace(/λω$/, '').replace(/φω$/, '').replace(/ρω$/, '').replace(/νω$/, '').replace(/εω$/, '').replace(/αω$/, '').replace(/οω$/, '').replace(/ω$/, '')
+            let qdict = (q.api) ? q.api : q.dict
+            qdict = orthos.plain(qdict)
+            let re = new RegExp(qdict + '$')
+            let stem = d.plain.replace(re, '')
+            log('== qform', qform, 'stem', stem, 'qterm', qterm)
             if (qform != [stem, qterm].join('')) return
             // пока нет perfect:
             if (/pf/.test(q.var)) return
@@ -500,7 +508,7 @@ function queryDicts(keys) {
     })
 }
 
-// ἄλλος
+// ἄλλος εἶναι comb: εἶναι
 function queryTerms(words) {
     let keys = words.map(function(word) { return word.form})
     let ukeys = _.uniq(keys)
