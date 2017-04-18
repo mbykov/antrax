@@ -11,7 +11,7 @@ let u = require('./lib/utils');
 let modCorr = u.modCorr
 
 let forTest = process.argv.slice(2)[0] || false;
-console.log('FOR TEST', forTest, forTest == '--no-sandbox')
+// console.log('FOR TEST', forTest, forTest == '--no-sandbox')
 
 let PouchDB, db_flex, db
 if (forTest == '--no-sandbox') {
@@ -65,7 +65,7 @@ function parseClause(str, num) {
     if (!current) current = 0
     let plain, form, accents
     keys.forEach(function(key, idx) {
-        // FIXME: здесь бы и то и то нужно, обе формы
+        // FIXME: здесь бы и то и то нужно, обе формы, если имя собственное:
         if (idx == 0) form = orthos.dc(key)
         else form = key
         form = form.replace(/[\u002E\u002C\u0021\u003B\u00B7\u0020\u0027]/, '') // или нужен punct?
@@ -281,7 +281,7 @@ function dict4word(words, queries, dicts) {
                 log('NNV', d)
                 throw new Error('NO NAME VAR')
             }
-            log('DVAR', d.var, 'QVAR', q.var) // 'FLEX', q.flex
+            // log('DVAR', d.var, 'QVAR', q.var) // 'FLEX', q.flex
             let vr2 = q.var.split(/ |, /)
             vr2.forEach(function(vr) {
                 if (d.var != vr) return
