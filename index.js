@@ -206,9 +206,12 @@ function parsePossibleForms(empties, fls) {
                     let query = [stem, morph.dict].join('');
                     // log('====>>> stem', stem, 'morph', morph)
                     let last = stem.slice(-1)
+                    let last2 = stem.slice(-2)
                     // в morph-part нет var!
                     // log('pFLEX', 'last', last, 'MVAR', morph.var, '_ID', flex._id, 'POS', morph.pos)
-                    if (!['ε', 'ι', 'ρ']. includes(last) && ['sg.gen', 'sg.dat']. includes(morph.numcase) && ['ας']. includes(flex._id)) return
+                    // ἀξίας - sg.gen - проходит, если закомментировать:
+                    // if (!['ε', 'ι', 'ρ']. includes(last) && ['sg.gen', 'sg.dat']. includes(morph.numcase) && ['ας']. includes(flex._id)) return
+                    if (last2 == 'σσ' && ['sg.gen', 'sg.dat']. includes(morph.numcase) && 'ας' == flex._id ) return
                     let form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, dict: morph.dict, add: morph.add } // , flex: flex - убрать
                     forms.push(form)
                 }
@@ -216,7 +219,7 @@ function parsePossibleForms(empties, fls) {
         })
     })
     let vvs = _.select(forms, function(f) { return f.pos == 'verb'})
-    log('VVS', vvs.length)
+    // log('VVS', vvs.length)
     return forms;
 }
 
@@ -265,9 +268,7 @@ function dict4word(words, queries, dicts) {
         else if (q.pos == 'inf') qinfs.push(q)
     })
 
-    log('4w-QNames', names)
-    // log('4w-QInfs', qinfs)
-    log('4w-QVerbs', qverbs)
+    if (names.length) log('4w-QNames', names)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     names.forEach(function(d) {
         let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []}
@@ -275,15 +276,12 @@ function dict4word(words, queries, dicts) {
         let qnames = (qnstricts.length) ? qnstricts : _.select(qqnames, function(q) { return orthos.plain(q.query) == d.plain})
         log('4w-QNs', qnames)
         qnames.forEach(function(q) {
-            // if (d.pos != 'name') return
-            if (!d.var) {
-                log('NNV', d)
-                throw new Error('NO NAME VAR')
-            }
+            // TODO: здесь можно убрать дубликаты morph, но сложно проверять наличие объекта в morphs
+            if (!d.var) return // FIXME: убрать, все d.name правильные
             // log('DVAR', d.var, 'QVAR', q.var) // 'FLEX', q.flex
-            let vr2 = q.var.split(/ |, /)
-            vr2.forEach(function(vr) {
-                if (d.var != vr) return
+            let qvar2 = q.var.split(/ |, /)
+            qvar2.forEach(function(qvar) {
+                if (d.var != qvar) return
                 let morph = {gend: q.gend, numcase: q.numcase} // , flex: q.flex - это оставлять нельзя из-за conform - там строки !!!!
                 if (d.gend && !q.add) {
                     log('DGEND', d.gend, 'QGEND', q)
@@ -295,7 +293,7 @@ function dict4word(words, queries, dicts) {
                 else if (!d.gend){
                     // FIXME: здесь в fem, в ous, как всегда, pl.acc-sg.gen - убрать лишнее при ier
                     // двух окончаний - fem не проходит:
-                if (d.term == 2 && q.gend == 'fem') return
+                    if (d.term == 2 && q.gend == 'fem') return
                     // term=3 и простой var (ous) == здесь fem, если есть, пролез
                     nquery.morphs.push(morph)
                     if (d.term == 2 && q.gend == 'masc') {

@@ -58,7 +58,6 @@ function sequentialize(promiseFactories) {
         // chain = chain.then(promiseFactory)
         Promise.resolve().then(function() { return Promise.resolve(factory)}).then(function(res) {
             // p(res)
-            // let formok = false
             let ok = false
             res.words.forEach(function(word) {
                 word.dicts.forEach(function(dict) {

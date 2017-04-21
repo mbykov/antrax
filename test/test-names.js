@@ -47,7 +47,7 @@ function cleanRows(strs) {
         str = str.replace(/-/g, '')
         str = str.replace(/[\(\)]/g, '')
         str = str.replace(/\s+/g, ' ')
-        log('STR', str)
+        // log('STR', str)
         let items = str.split(' ')
         if (items.length <  10) return
         let gkey = items[0]
