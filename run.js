@@ -48,16 +48,6 @@ function factory(form, mod, morph) {
             if (err) {
                 reject(err)
             } else {
-                // if (!words[0].dicts.length) log('T-ERR-dicts', form + ' - ' + mod + ' - ' + morph)
-                // let res = words[0].dicts[0].morphs
-                // p(words)
-                // // if (!res[mod]) throw new Error('no mod: ' + mod + ' morph: ' + morph + ' form: ' + form)
-                // if (!res[mod]) log('T-ERR-mods', form + ' - ' + mod + ' - ' + morph)
-                // let resmod = res[mod]
-                // if (!res[mod].includes(morph)) throw new Error('no mod: ' + mod + ' morph: ' + morph + ' form: ' + form)
-                // p(form + ' - ' + mod + ' - ' + morph)
-                // // resolve(form, mod, morph, words);
-                // p('W', form, mod, morph, words)
                 let res = {form: form, mod: mod, morph: morph, words: words}
                 resolve(res);
             }

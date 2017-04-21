@@ -65,7 +65,6 @@ function parseClause(str, num) {
     if (!current) current = 0
     let plain, form, accents
     keys.forEach(function(key, idx) {
-        // FIXME: здесь бы и то и то нужно, обе формы, если имя собственное:
         if (idx == 0) form = orthos.dc(key)
         else form = key
         form = form.replace(/[\u002E\u002C\u0021\u003B\u00B7\u0020\u0027]/, '') // или нужен punct?
@@ -311,6 +310,7 @@ function dict4word(words, queries, dicts) {
         })
         if (nquery.morphs.length) {
             // nquery.trn = d.trn
+            log('4w-nquery', nquery)
             words[nquery.idx].dicts.push(nquery)
         }
     })
@@ -413,7 +413,7 @@ function filterSimple(d, q) {
 
 // vforms -  full verb-form: fut, aor, etc
 function filterNapi(d, q) {
-    log('filter NAPI', q.var, q.var)
+    log('filter NAPI', d.var, q.var)
     // if (q.descr != d.descr) return // for contracted verbs
     if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
     log('after mod', 'q.dict', q.dict, 'd.form', d.form)
