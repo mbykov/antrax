@@ -21,7 +21,7 @@ function pushseq() {
 console.time('_names');
 
 pushseq.prototype.run = function(tests, cb) {
-    log('======TT', tests.length)
+    log('======TTs', tests.length)
     let fctrs = getFactories(tests)
     log('FCTS', fctrs.length)
     sequentialize(fctrs)
@@ -62,6 +62,7 @@ function sequentialize(promiseFactories) {
             let ok = false
             res.words.forEach(function(word) {
                 word.dicts.forEach(function(dict) {
+                    if (dict.pos != 'name') return
                     dict.morphs.forEach(function(morph) {
                         if (res.test.gend == morph.gend && res.test.numcase == morph.numcase) ok = true
                     })
