@@ -71,9 +71,9 @@ function cleanRows(strs) {
             for (let art in gend) {
                 if(item != art) continue
                 let morphs = gend[art].split(' ')
-                let morph = (morphs.length < 2) ? morphs[0] : (idx > 5) ? morphs[1]  : morphs[0]
+                let morph = (morphs.length < 2) ? morphs[0] : (idx > 10) ? morphs[1]  : morphs[0]
                 // log(art, items[idx+1], gname, morph)
-                let test = {form: items[idx+1], gend: gname, morph: morph}
+                let test = {form: items[idx+1], gend: gname, numcase: morph}
                 let tstr = JSON.stringify(test)
                 let reonly = new RegExp(only)
                 // log(reonly, tstr, reonly.test(tstr))
@@ -87,7 +87,7 @@ function cleanRows(strs) {
 
 function run() {
     let tests = getTmp(dpath)
-    log('HERE', tests.length)
+    log('HERE', tests)
     log('PUSH', push)
     pseq.run(tests)
 }
