@@ -28,6 +28,8 @@ if (forTest == '--no-sandbox') {
 // destroyDB(db_flex)
 // return
 
+// ἀτύχημα <<== проверить LS
+
 replicateDB('gr-flex')
 replicateDB('greek')
 // return
@@ -271,7 +273,7 @@ function dict4word(words, queries, dicts) {
     if (names.length) log('4w-QNames', names)
     // λῡόντων <<<< ================================= либо part либо verb, нужно оба
     names.forEach(function(d) {
-        let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: []}
+        let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: [], weight: d.weight }
         let qnstricts = _.select(qqnames, function(q) { return q.query == d.dict })
         let qnames = (qnstricts.length) ? qnstricts : _.select(qqnames, function(q) { return orthos.plain(q.query) == d.plain})
         log('4w-QNs', qnames)
@@ -284,7 +286,7 @@ function dict4word(words, queries, dicts) {
                 if (d.var != qvar) return
                 let morph = {gend: q.gend, numcase: q.numcase} // , flex: q.flex - это оставлять нельзя из-за conform - там строки !!!!
                 if (d.gend && !q.add) {
-                    log('DGEND', d.gend, 'QGEND', q)
+                    // log('DGEND', d.gend, 'QGEND', q)
                     // if (d.gend && !d.gend.includes(q.gend)) return
                     // if (d.gend != q.gend) return // в dict проверить gend - это всегда д.б. массив
                     morph.gend = d.gend
@@ -293,7 +295,7 @@ function dict4word(words, queries, dicts) {
                 else if (!d.gend){
                     // FIXME: здесь в fem, в ous, как всегда, pl.acc-sg.gen - убрать лишнее при ier
                     // двух окончаний - fem не проходит:
-                    if (d.term == 2 && q.gend == 'fem') return
+                    if (d.adj == 2 && q.gend == 'fem') return
                     // term=3 и простой var (ous) == здесь fem, если есть, пролез
                     nquery.morphs.push(morph)
                     if (d.term == 2 && q.gend == 'masc') {
@@ -316,7 +318,7 @@ function dict4word(words, queries, dicts) {
     log('4w-Dverbs', verbs)
     verbs.forEach(function(d) {
         let iquery
-        let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}}
+        let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}, weight: d.weight}
 
         qinfs.forEach(function(q) {
             // if (d.var != 'act.pres.ind') return
@@ -399,6 +401,7 @@ function filterSimple(d, q) {
 
     // здесь imperfect должен строиться уже из api - ἐπάγω - ἐπῆγον
     // но пока я его не строю, пропускаю все modCorr
+    if (!d.form) d.form = d.dict // это убрать, пока нет form для api
 
     let re = new RegExp(q.dict + '$')
     let dstem = d.form.replace(re, '')

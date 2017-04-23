@@ -72,6 +72,7 @@ function cleanRows(strs) {
             }
         })
     })
+    if (!only) tests = tests.slice(-20)
     return tests
 }
 
