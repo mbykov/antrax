@@ -120,20 +120,19 @@ function main(words, fls, cb) {
     let possibleFlex = parsePossibleForms(empties, fls);
     log('Poss-Form-queries', possibleFlex.length, possibleFlex[0]);
 
-    // let indicts = _.map(indecls, function(pron) { return pron.dicts[0].dict })
-    let indicts = []
+    // dicts for terms: (other indecl already are dicts)
+    let termdicts = []
     indecls.forEach(function(word) {
-        // log('-- word', word)
         let terms = _.select(word.dicts, function(d) { return d.term })
         let wdicts = _.map(terms, function(d) { return d.dict })
-        indicts = indicts.concat(wdicts)
+        termdicts = termdicts.concat(wdicts)
     })
-    log('IN-DICTS', indicts)
+    log('IN-DICTS for terms:', termdicts)
 
     let queries = _.uniq(possibleFlex.map(function(q) { return q.query }))
     let plains = _.uniq(queries.map(function(key) { return orthos.plain(key)}))
-    log('MAIN KEY-PLAINS', plains)
-    let allqs = plains.concat(indicts)
+    // log('MAIN KEY-PLAINS', plains)
+    let allqs = plains.concat(termdicts)
     log('MAIN KEY-ALL', allqs)
 
     queryDicts(allqs).then(function(dicts) {
@@ -152,8 +151,8 @@ function main(words, fls, cb) {
 function parsePossibleForms(empties, fls) {
     let forms = [];
     // let vforms = [];
-    empties.forEach(function(row, idx) {
-        fls.forEach(function(flex, idy) {
+    empties.forEach(function(row) { // , idx
+        fls.forEach(function(flex) {
             let term = flex._id
             if (flex._id != row.form.slice(-flex._id.length)) return;
             // let stem = row.form.slice(0, -flex._id.length);
@@ -214,7 +213,7 @@ function parsePossibleForms(empties, fls) {
                     // ἀξίας - sg.gen - проходит, если закомментировать:
                     // if (!['ε', 'ι', 'ρ']. includes(last) && ['sg.gen', 'sg.dat']. includes(morph.numcase) && ['ας']. includes(flex._id)) return
                     if (last2 == 'σσ' && ['sg.gen', 'sg.dat']. includes(morph.numcase) && 'ας' == flex._id ) return
-                    let form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, dict: morph.dict, add: morph.add } // , flex: flex - убрать
+                    let form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, dict: morph.dict, add: morph.add, term: term} // , flex: flex - убрать
                     forms.push(form)
                 }
             })
@@ -319,15 +318,31 @@ function dict4word(words, queries, dicts) {
     verbs.forEach(function(d) {
         let iquery
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}, weight: d.weight}
+        let pquery = {type: d.type, dict: d.dict, pos: 'part', trn: d.trn, morphs: [], weight: d.weight }
+
+        qparts.forEach(function(q) {
+            log('==PART', d, q)
+            let qform = orthos.plain(q.form)
+            let qterm = orthos.plain(q.term)
+
+            let morph = {gend: q.gend, numcase: q.numcase}
+            pquery.morphs.push(morph)
+
+            pquery.idx = q.idx
+            pquery.form = q.form // это же просто word??
+            log('PART AFTER FILTER')
+        })
+        if (pquery.morphs.length) {
+            // nquery.trn = d.trn
+            log('4w-pquery', pquery)
+            words[pquery.idx].dicts.push(pquery)
+        }
 
         qinfs.forEach(function(q) {
-            // if (d.var != 'act.pres.ind') return
-            // if (!filterDescr(d, q)) return
             log('==INF', d, q)
             let qform = orthos.plain(q.form)
             let qterm = orthos.plain(q.term)
-            // inf - stem всегда api
-            // let stem = d.plain.replace(/λω$/, '').replace(/φω$/, '').replace(/ρω$/, '').replace(/νω$/, '').replace(/εω$/, '').replace(/αω$/, '').replace(/οω$/, '').replace(/ω$/, '')
+            // inf - stem всегда api - ?
             let qdict = (q.api && d.var == 'act.pres.ind') ? q.api : q.dict
             qdict = orthos.plain(qdict)
             let re = new RegExp(qdict + '$')
@@ -523,7 +538,7 @@ function queryTerms(words) {
         }).then(function (res) {
             log('RES-TERMS', res)
             if (!res || !res.rows) throw new Error('no term result') //  || res.rows.length == 0
-            let allterms = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value) })
+            // let allterms = res.rows.map(function(row) {return Object.assign({}, {form: row.key}, row.value) })
             let docs = res.rows.map(function(row) { return row.doc})
             log('TDOCS', docs)
             words.forEach(function(word, idx) {
