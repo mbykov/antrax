@@ -320,17 +320,29 @@ function dict4word(words, queries, dicts) {
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}, weight: d.weight}
         let pquery = {type: d.type, dict: d.dict, pos: 'part', trn: d.trn, morphs: [], weight: d.weight }
 
+        log('4s-qps', qparts)
         qparts.forEach(function(q) {
-            log('==PART', d, q)
+            // log('==PART', d, q)
+            if (d.var != 'act.pres.ind') return
+
             let qform = orthos.plain(q.form)
             let qterm = orthos.plain(q.term)
+            let qdict = orthos.plain(q.dict)
+            // log('q', qform, qterm, qdict, q.var)
+            let reterm = new RegExp(qterm + '$')
+            let qstem = qform.replace(reterm, '')
+            let qplain = [qstem, qdict].join('')
+            // log('p', qstem, qterm, qplain, 'd', d.plain, q.var, d.plain == qplain)
+
+            if (qplain != d.plain) return
 
             let morph = {gend: q.gend, numcase: q.numcase}
             pquery.morphs.push(morph)
 
             pquery.idx = q.idx
             pquery.form = q.form // это же просто word??
-            log('PART AFTER FILTER')
+            pquery.var = q.var // здесь значение затирается, считаю, что все morph - принадлежат одному var
+            // log('PART AFTER FILTER')
         })
         if (pquery.morphs.length) {
             // nquery.trn = d.trn
@@ -339,7 +351,7 @@ function dict4word(words, queries, dicts) {
         }
 
         qinfs.forEach(function(q) {
-            log('==INF', d, q)
+            // log('==INF', d, q)
             let qform = orthos.plain(q.form)
             let qterm = orthos.plain(q.term)
             // inf - stem всегда api - ?
@@ -347,11 +359,11 @@ function dict4word(words, queries, dicts) {
             qdict = orthos.plain(qdict)
             let re = new RegExp(qdict + '$')
             let stem = d.plain.replace(re, '')
-            log('== qform', qform, 'stem', stem, 'qterm', qterm)
+            // log('== qform', qform, 'stem', stem, 'qterm', qterm)
             if (qform != [stem, qterm].join('')) return
             // пока нет perfect:
             if (/pf/.test(q.var)) return
-            log('INF AFTER FILTER')
+            // log('INF AFTER FILTER')
             iquery = {idx: q.idx, form: q.form, type: d.type, dict: d.dict, pos: 'inf', trn: d.trn, var: q.var } // всегда один результат
         })
         if (iquery) {
