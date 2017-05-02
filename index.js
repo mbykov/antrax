@@ -92,7 +92,7 @@ function queryPromise(words, cb) {
         queryTerms(words),
         getAllFlex()
     ]).then(function (res) {
-        main(res[0], res[1], function(clause) {
+        main(words, res[0], res[1], function(clause) {
             cb(clause)
         });
     }).catch(function (err) {
@@ -103,30 +103,48 @@ function queryPromise(words, cb) {
 // ======================================================================
 //  καὶ ὃς ἐὰν δέξηται παιδίον. τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
 // τοιαύτη, τοιοῦτο, τοιοῦτον ;;; ὀνόματι
-function main(words, fls, cb) {
-    let indecls = _.select(words, function(row) { return row.indecl })
-    log('INDECLS', indecls)
+function main(words, tires, fls, cb) {
+    // выбираю только indecls:
+    words.forEach(function(word, idx) {
+        let word_indecls = _.select(tires.indecls, function(doc) { return doc.dict == word.form })
+        let word_terms = _.select(tires.terms, function(doc) { return doc.form == word.form })
+        if (word_indecls.length) word.dicts = word_indecls, word.indecl = true
+        if (word_terms.length) word.dicts = word_terms, word.term = true
+    })
+    log('Ws', words)
+
+    let terms = _.select(words, function(row) { return row.term })
+    // log('INDECLS', indecls)
     let empties = _.select(words, function(row) { return !row.indecl })
     log('Empties', empties);
     let possibleFlex = parsePossibleForms(empties, fls);
     log('Poss-Form-queries', possibleFlex.length, possibleFlex[0]);
 
     // dicts for terms: (other indecl already are dicts)
-    let termdicts = []
-    indecls.forEach(function(word) {
-        let terms = _.select(word.dicts, function(d) { return d.term })
-        let wdicts = _.map(terms, function(d) { return d.dict })
-        termdicts = termdicts.concat(wdicts)
-    })
-    log('IN-DICTS for terms:', termdicts)
+
+    let termdicts = _.map(tires.terms, function(doc) { return doc.dict })
 
     let queries = _.uniq(possibleFlex.map(function(q) { return q.query }))
     let plains = _.uniq(queries.map(function(key) { return orthos.plain(key)}))
+    log('plains', plains)
+    // let tplains = _.uniq(termdicts.map(function(key) { return orthos.plain(key)}))
+    log('tdicts', termdicts)
     let allqs = plains.concat(termdicts)
     log('MAIN KEY-ALL', allqs)
 
-    queryDicts(allqs).then(function(dicts) {
-        dict4word(words, possibleFlex, dicts);
+    queryDicts(allqs).then(function(dpres) {
+        words.forEach(function(word) {
+            if (!word.term) return
+            termdicts.forEach(function(tdict) {
+                let thisdicts = _.select(word.dicts, function(d) { return d.dict == tdict})
+                if (!thisdicts.length) return
+                let expos = _.select(dpres.dicts, function(d) { return d.dict == tdict })
+                // log('EXPOS', expos)
+                if (expos.length) word.dicts = word.dicts.concat(expos)
+            })
+        })
+
+        dict4word(words, possibleFlex, dpres.plains);
         cb(words)
     }).catch(function (err) {
         log('ERR DICTS', err);
@@ -231,6 +249,7 @@ function selectNames(word, names, qqnames) {
 }
 
 function selectVerb(word, verbs, qverbs) {
+    log('4w-qverbs', qverbs)
     verbs.forEach(function(d) {
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}, weight: d.weight}
 
@@ -300,16 +319,43 @@ function selectPart(word, verbs, qparts) {
     })
 }
 
+function selectInf(word, verbs, qinfs) {
+    log('INFS, qinfs:', qinfs)
+    verbs.forEach(function(d) {
+        let iquery
+        qinfs.forEach(function(q) {
+            let qform = orthos.plain(q.form)
+            let qterm = orthos.plain(q.term)
+            // inf - stem всегда api - ?
+            let qdict = (q.api && d.var == 'act.pres.ind') ? q.api : q.dict
+            qdict = orthos.plain(qdict)
+            let re = new RegExp(qdict + '$')
+            let stem = d.plain.replace(re, '')
+
+            if (qform != [stem, qterm].join('')) return
+            // still no perfect:
+            if (/pf/.test(q.var)) return
+            log('INF AFTER FILTER')
+            iquery = {idx: q.idx, form: q.form, type: d.type, dict: d.dict, pos: 'inf', trn: d.trn, var: q.var } // всегда один результат
+        })
+        if (!iquery) return
+        word.dicts.push(iquery)
+    })
+}
+
+
 //  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
 function dict4word(words, queries, dicts) {
-    let terms = _.select(dicts, function(d) { return d.term})
+    // let terms = _.select(dicts, function(d) { return d.term})
     let mutables = _.select(dicts, function(d) { return !d.term})
     log('4w-Muts', mutables)
+    log('4w-queries', queries)
 
     let names = _.select(mutables, function(d) { return d.pos == 'name'} )
     let verbs = _.select(mutables, function(d) { return d.pos == 'verb'} )
     // let infs = _.select(mutables, function(d) { return d.pos == 'inf'} )
     // let parts = _.select(mutables, function(d) { return d.pos == 'part'} )
+    log('4w-Verbs', verbs)
 
     words.forEach(function(word) {
         let qqnames = [], qverbs = [], qinfs = [], qparts = []
@@ -321,19 +367,23 @@ function dict4word(words, queries, dicts) {
             else if (q.pos == 'verb') qverbs.push(q)
             else if (q.pos == 'inf') qinfs.push(q)
         })
+        log('4w-qv', qverbs)
+        log('4w-qi', qinfs)
         if (names.length && qqnames.length) selectNames(word, names, qqnames)
         if (verbs.length && qverbs.length) selectVerb(word, verbs, qverbs)
         if (verbs.length && qparts.length) selectPart(word, verbs, qparts)
+        if (verbs.length && qinfs.length) selectInf(word, verbs, qinfs)
     })
-    return
+}
+    // return
 
-    let qqnames = [], qverbs = [], qinfs = [], qparts = []
-    queries.forEach(function(q) {
-        if (q.pos == 'name') qqnames.push(q)
-        else if (q.pos == 'part') qparts.push(q)
-        else if (q.pos == 'verb') qverbs.push(q)
-        else if (q.pos == 'inf') qinfs.push(q)
-    })
+    // let qqnames = [], qverbs = [], qinfs = [], qparts = []
+    // queries.forEach(function(q) {
+    //     if (q.pos == 'name') qqnames.push(q)
+    //     else if (q.pos == 'part') qparts.push(q)
+    //     else if (q.pos == 'verb') qverbs.push(q)
+    //     else if (q.pos == 'inf') qinfs.push(q)
+    // })
 
     // if (names.length) log('4w-QNames', names)
     // names.forEach(function(d) {
@@ -378,89 +428,90 @@ function dict4word(words, queries, dicts) {
     // })
 
     // VERBS
-    log('4w-Dverbs', verbs)
-    verbs.forEach(function(d) {
-        let iquery
-        let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}, weight: d.weight}
-        let pquery = {type: d.type, dict: d.dict, pos: 'part', trn: d.trn, morphs: [], weight: d.weight }
+    // log('4w-Dverbs', verbs)
+    // verbs.forEach(function(d) {
+    //     let iquery
+    //     let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}, weight: d.weight}
+    //     let pquery = {type: d.type, dict: d.dict, pos: 'part', trn: d.trn, morphs: [], weight: d.weight }
 
-        log('4s-qps', qparts)
-        qparts.forEach(function(q) {
-            // log('==PART', d, q)
-            if (d.var != 'act.pres.ind') return
+    //     log('4s-qps', qparts)
+    //     qparts.forEach(function(q) {
+    //         // log('==PART', d, q)
+    //         if (d.var != 'act.pres.ind') return
 
-            let qform = orthos.plain(q.form)
-            let qterm = orthos.plain(q.term)
-            let qdict = orthos.plain(q.dict)
+    //         let qform = orthos.plain(q.form)
+    //         let qterm = orthos.plain(q.term)
+    //         let qdict = orthos.plain(q.dict)
 
-            let reterm = new RegExp(qterm + '$')
-            let qstem = qform.replace(reterm, '')
-            let qplain = [qstem, qdict].join('')
+    //         let reterm = new RegExp(qterm + '$')
+    //         let qstem = qform.replace(reterm, '')
+    //         let qplain = [qstem, qdict].join('')
 
-            if (qplain != d.plain) return
+    //         if (qplain != d.plain) return
 
-            let morph = {gend: q.gend, numcase: q.numcase}
-            pquery.morphs.push(morph)
+    //         let morph = {gend: q.gend, numcase: q.numcase}
+    //         pquery.morphs.push(morph)
 
-            pquery.idx = q.idx
-            pquery.form = q.form // это же просто word??
-            pquery.var = q.var // здесь значение затирается, считаю, что все morph - принадлежат одному var
-            // log('PART AFTER FILTER')
-        })
-        if (pquery.morphs.length) {
-            log('4w-pquery', pquery)
-            words[pquery.idx].dicts.push(pquery)
-        }
+    //         pquery.idx = q.idx
+    //         pquery.form = q.form // это же просто word??
+    //         pquery.var = q.var // здесь значение затирается, считаю, что все morph - принадлежат одному var
+    //         // log('PART AFTER FILTER')
+    //     })
+    //     if (pquery.morphs.length) {
+    //         log('4w-pquery', pquery)
+    //         words[pquery.idx].dicts.push(pquery)
+    //     }
 
-        qinfs.forEach(function(q) {
-            let qform = orthos.plain(q.form)
-            let qterm = orthos.plain(q.term)
-            // inf - stem всегда api - ?
-            let qdict = (q.api && d.var == 'act.pres.ind') ? q.api : q.dict
-            qdict = orthos.plain(qdict)
-            let re = new RegExp(qdict + '$')
-            let stem = d.plain.replace(re, '')
+        // qinfs.forEach(function(q) {
+        //     let qform = orthos.plain(q.form)
+        //     let qterm = orthos.plain(q.term)
+        //     // inf - stem всегда api - ?
+        //     let qdict = (q.api && d.var == 'act.pres.ind') ? q.api : q.dict
+        //     qdict = orthos.plain(qdict)
+        //     let re = new RegExp(qdict + '$')
+        //     let stem = d.plain.replace(re, '')
 
-            if (qform != [stem, qterm].join('')) return
-            // пока нет perfect:
-            if (/pf/.test(q.var)) return
-            // log('INF AFTER FILTER')
-            iquery = {idx: q.idx, form: q.form, type: d.type, dict: d.dict, pos: 'inf', trn: d.trn, var: q.var } // всегда один результат
-        })
-        if (iquery) {
-            words[iquery.idx].dicts.push(iquery)
-        }
+        //     if (qform != [stem, qterm].join('')) return
+        //     // пока нет perfect:
+        //     if (/pf/.test(q.var)) return
+        //     // log('INF AFTER FILTER')
+        //     iquery = {idx: q.idx, form: q.form, type: d.type, dict: d.dict, pos: 'inf', trn: d.trn, var: q.var } // всегда один результат
+        // })
+        // if (iquery) {
+        //     words[iquery.idx].dicts.push(iquery)
+        // }
 
-        qverbs.forEach(function(q) {
-            // здесь imperfect должен строиться уже из api - ἐπάγω - ἐπῆγον
-            // но пока я его не строю, пропускаю все modCorr
-            // ================== FILTER ==================
-            let filter
-            if (d.var == 'act.pres.ind') {
-                if (q.api) filter = filterApi(d, q) // искусственные формы, pres тут нет
-                else if (q.woapi) filter = filterSimple(d, q) // полный презенс, независимо от наличия полных форм
-                else return
-                // else throw new Error('NO API FILTER')
-            }
-            else if (q.woapi) filter = filterNapi(d, q) // полные формы, кроме pres
-            else {
-                // log('NO FILTER MAIN', d.var, q.var)
-                // d - не api, а q -api
-                // throw new Error('NO API MAIN FILTER')
-            }
-            if (!filter) return
+    //     qverbs.forEach(function(q) {
+    //         // здесь imperfect должен строиться уже из api - ἐπάγω - ἐπῆγον
+    //         // но пока я его не строю, пропускаю все modCorr
+    //         // ================== FILTER ==================
+    //         let filter
+    //         if (d.var == 'act.pres.ind') {
+    //             if (q.api) filter = filterApi(d, q) // искусственные формы, pres тут нет
+    //             else if (q.woapi) filter = filterSimple(d, q) // полный презенс, независимо от наличия полных форм
+    //             else return
+    //             // else throw new Error('NO API FILTER')
+    //         }
+    //         else if (q.woapi) filter = filterNapi(d, q) // полные формы, кроме pres
+    //         else {
+    //             // log('NO FILTER MAIN', d.var, q.var)
+    //             // d - не api, а q -api
+    //             // throw new Error('NO API MAIN FILTER')
+    //         }
+    //         if (!filter) return
 
-            if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
-            else if (vquery.morphs[q.var].includes(q.numper)) return // это уберет неоднозначность, и можно отказаться от descr
-            else vquery.morphs[q.var].push(q.numper)
-            vquery.idx = q.idx
-            vquery.form = q.query
-        })
-        if (_.keys(vquery.morphs).length) {
-            words[vquery.idx].dicts.push(vquery)
-        }
-    })
-}
+    //         if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
+    //         else if (vquery.morphs[q.var].includes(q.numper)) return // это уберет неоднозначность, и можно отказаться от descr
+    //         else vquery.morphs[q.var].push(q.numper)
+    //         vquery.idx = q.idx
+    //         vquery.form = q.query
+    //     })
+    //     if (_.keys(vquery.morphs).length) {
+    //         words[vquery.idx].dicts.push(vquery)
+    //     }
+    // })
+
+// }
 
 function compare(form, aug, stem, term, d, q) {
     let qform = orthos.plain(form)
@@ -470,14 +521,14 @@ function compare(form, aug, stem, term, d, q) {
         qform = qform.slice(2)
         if ([orthos.ac.psili, orthos.ac.dasia].includes(stem[1])) stem = stem.slice(2)
     }
-    // log('COMPARE qform:', qform, 'd.stem:', dstem, 'qterm:', qterm, 'joined=', [stem, qterm].join(''))
+    log('COMPARE qform:', qform, 'd.stem:', dstem, 'qterm:', qterm, 'joined=', [stem, qterm].join(''))
     if (qform != [dstem, qterm].join('')) return
-    // log('AFTER', d.var, q)
+    log('AFTER', d.var, q)
     return true
 }
 
 function filterSimple(d, q) {
-  // log('SIMPLE OK')
+    log('SIMPLE OK')
     if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
     if (q.descr != d.descr) return // for contracted verbs
 
@@ -546,9 +597,17 @@ function queryDicts(keys) {
             include_docs: true
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no dict result')
-            let rdocs = res.rows.map(function(row) {return row.doc })
-            log('RDICTS RES', rdocs.length)
-            resolve(rdocs)
+            log('DICT-ROWS', res.rows)
+            let dicts = _.select(res.rows, function(row) { return row.value == 'dict' })
+            let plains = _.select(res.rows, function(row) { return row.value == 'plain' })
+            dicts = dicts.map(function(row) { return row.doc})
+            plains = plains.map(function(row) { return row.doc})
+            let result = {dicts: dicts, plains: plains}
+            log('D-RESULT', result)
+            resolve(result)
+            // let rdocs = res.rows.map(function(row) {return row.doc })
+            // log('RDICTS RES', rdocs)
+            // resolve(rdocs)
         }).catch(function (err) {
             log('Q DICTS REJECT', err)
             reject(err)
@@ -556,7 +615,8 @@ function queryDicts(keys) {
     })
 }
 
-// ἄλλος εἶναι comb: εἶναι
+// ищу irregulars, prons и indecls - к terms нужно дополнительно получить разъяснение - dict потом, в queryDict
+//
 function queryTerms(words) {
     let keys = words.map(function(word) { return word.form})
     let ukeys = _.uniq(keys)
@@ -566,22 +626,29 @@ function queryTerms(words) {
             keys: ukeys,
             include_docs: true
         }).then(function (res) {
-            log('RES-TERMS', res.length)
             if (!res || !res.rows) throw new Error('no term result')
-            let docs = res.rows.map(function(row) { return row.doc})
-            log('TDOCS', docs)
-            words.forEach(function(word, idx) {
-                // let indecls = _.select(allterms, function(term) { return term.form == word.form})
-                // term.dict - из словарей, не имеют .form;
-                let indecls = _.select(docs, function(term) { return term.dict == word.form || term.form == word.form})
-                if (!indecls.length) return
-                let indecl = indecls[0] // always only one, its are groupped
-                word.dicts = indecls
-                word.indecl = true
-                word.pos = indecl.pos
-            })
-            // log('TERM CLAUSE', words)
-            resolve(words)
+            log('TERM-ROWS', res.rows)
+            let terms = _.select(res.rows, function(row) { return row.value == 'term' })
+            let indecls = _.select(res.rows, function(row) { return row.value == 'indecl' })
+            terms = terms.map(function(row) { return row.doc})
+            indecls = indecls.map(function(row) { return row.doc})
+            let result = {terms: terms, indecls: indecls}
+            log('T-RESULT', result)
+            resolve(result)
+
+            // let docs = res.rows.map(function(row) { return row.doc})
+            // log('TDOCS', docs)
+            // words.forEach(function(word, idx) {
+            //     // и после этого я не могу этот word исследовать на possible
+            //     let indecls = _.select(docs, function(doc) { return doc.dict == word.form || doc.form == word.form})
+            //     if (!indecls.length) return
+            //     let indecl = indecls[0] // always only one, its are groupped
+            //     word.dicts = indecls
+            //     word.indecl = true
+            //     word.pos = indecl.pos
+            // })
+            // // log('TERM CLAUSE', words)
+            // resolve(words)
         }).catch(function (err) {
             log('queryTERMS ERRS', err);
             reject(err);
