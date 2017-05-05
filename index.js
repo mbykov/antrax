@@ -158,6 +158,7 @@ function parsePossibleForms(empties, fls) {
             flex.morphs.forEach(function(morph) {
                 if (morph.pos == 'verb') {
                     let stem = row.form.slice(0, -flex._id.length);
+                    stem = orthos.plain(stem)
 
                     let aug
                     if (u.augmods.includes(morph.var)) {
@@ -172,39 +173,14 @@ function parsePossibleForms(empties, fls) {
 
                     let dform = {idx: row.idx, pos: morph.pos, query: dquery, form: row.form, stem: stem, dict: morph.dict, term: term, numper: morph.numper, var: morph.var, descr: morph.descr, napi: true} // , morph: morph , flex: flex
                     let wform = {idx: row.idx, pos: morph.pos, query: wquery, form: row.form, stem: stem, dict: morph.dict, term: term, numper: morph.numper, var: morph.var, descr: morph.descr, api: true}
+
                     if (aug) dform.aug = aug, wform.aug = aug
+                    if (morph.second) wform.second = true
+                    if (morph.second) log('==========================', morph)
 
                     forms.push(dform)
                     forms.push(wform)
 
-                    // return
-                    // let query = [stem, morph.dict].join('');
-                    // // тут только full-формы, включая act.pres.ind:
-                    // let sform = {idx: row.idx, pos: morph.pos, query: query, form: row.form, stem: stem, dict: morph.dict, term: term, numper: morph.numper, var: morph.var, descr: morph.descr, woapi: true} // , morph: morph , flex: flex
-
-                    // // проверка q.woapi на augment, добавляет aug, и отбрасывает impf без aug
-                    // if (u.augmods.includes(morph.var)) {
-                    //     let aug = stem.slice(0,2)
-                    //     if (_.keys(u.augs).includes(aug)) sform.aug = aug, forms.push(sform)
-                    // }
-                    // else forms.push(sform)
-
-                    // // API: создание дополнительных api-форм для поиска по api-stem
-                    // // εἴχετε - ἔχω - не работает, надо подумать FIXME: // ἀγορᾷ
-                    // if (u.augmods.includes(morph.var)) {
-                    //     let aug = stem.slice(0,2)
-                    //     if (_.keys(u.augs).includes(aug)) {
-                    //         let aquery = [stem.slice(2), 'ω'].join('')
-                    //         // aquery = [u.augs[aug], aquery].join('')
-                    //         let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, aug: aug, stem: stem, term: term, dict: morph.dict, api: true}
-                    //         forms.push(form)
-                    //     }
-                    // // } else if (modCorr['act.fut.ind'].includes(morph.var)) {
-                    // } else {
-                    //     let aquery = [stem, 'ω'].join('')
-                    //     let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, stem: stem, term: term, dict: morph.dict, api: true}
-                    //     forms.push(form)
-                    // }
                 } else if (morph.pos == 'inf') {
                     // здесь нужно конструировать aug для aor2 - inf определяется только по словарю, но там aor имеет aug
                     // FIXME: aug для aor - λαμβάνω, aor ἔλαβον, inf λαβεῖν
@@ -274,7 +250,7 @@ function selectPart(word, verbs, qparts) {
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}, weight: d.weight}
         let pquery = {type: d.type, dict: d.dict, pos: 'part', trn: d.trn, morphs: [], weight: d.weight }
 
-        log('4s-qps', qparts)
+        // log('4w-qparts', qparts)
         qparts.forEach(function(q) {
             // log('==PART', d, q)
             if (d.var != 'act.pres.ind') return
@@ -381,8 +357,8 @@ function selectVerb(word, verbs, qverbs) {
             if (q.descr != d.descr) return
             let filter
             if (d.var == 'act.pres.ind') {
-                if (q.api) filter = filterApi(d, q) // искусственные формы всех времен, pres тут нет
-                // else if (q.woapi) filter = filterSimple(d, q) // все формы презенса
+                if (q.api) filter = filterApi(d, q) // все времена от w-формы, без презенса
+                // else if (q.napi) filter = filterSimple(d, q)
             }
             else if (q.napi) filter = filterNapi(d, q) // полные формы, кроме pres
             else {
@@ -425,81 +401,78 @@ function filterNapi(d, q) {
     // return compare(q.form, null, dstem, q.term, d, q)
 }
 
+// все формы от -w, кроме pres
 function filterApi(d, q) {
-    log('filter API')
-    if (!modCorr['act.pres.ind'].includes(q.var)) return
+    log('filter API', q)
+    // if (!modCorr['act.pres.ind'].includes(q.var)) return
     log('mod ok, q', q)
+    if (q.second) return
 
-    // строим plain dict.form
+    // строим plain dict.form - q.dict
     let re = new RegExp(q.term + '$')
     let qstem = q.form.replace(re, '')
-    let form = [qstem, q.dict].join('')
+    if (q.form == qstem) return
+    log('===', q.form, qstem, q.form == qstem)
+    // let form = [qstem, q.dict].join('')
+    let form = [qstem, 'ω'].join('')
 
     let pform = orthos.plain(form)
     if (q.aug && u.augmods.includes(q.var)) {
         pform = pform.slice(2)
-        // if ([orthos.ac.psili, orthos.ac.dasia].includes(dstem[1])) dstem = dstem.slice(2)
     }
 
-    // log('aug ok, form', form, 'd.plain', d.plain)
+    log('aug ok, pform', pform, 'd.plain', d.plain)
 
     if (d.plain != pform) return
-
-    return true
-
-    // let dstem = d.plain
-
-    // if (q.descr == 'omai-verb') dstem = dstem.replace(/ομαι$/, '')
-    // else if (q.descr == 'mi-verb') dstem = dstem.replace(/ωμι$/, '').replace(/ημι$/, '').replace(/υμι$/, '')
-    // else dstem = dstem.replace(/ω$/, '')
-
-    // let qform = orthos.plain(q.form)
-    // let qterm = orthos.plain(q.term)
-    // if (q.aug && u.augmods.includes(q.var)) {
-    //     qform = qform.slice(2)
-    //     if ([orthos.ac.psili, orthos.ac.dasia].includes(dstem[1])) dstem = dstem.slice(2)
-    // }
-
-    // // "λύω"  "λύσω" "ἔλυον" // ἦγον
-    // // log('API-BEFORE qform:', qform, 'dst:', dstem, 'qterm:', q.term, 'joined=', [dstem, q.term].join(''))
-    // if (qform != [dstem, qterm].join('')) return
-    // // log('API', d.plain, d.var, q)
-    // return true
-}
-
-function compare(form, aug, stem, term, d, q) {
-    let qform = orthos.plain(form)
-    let qterm = orthos.plain(term)
-    let dstem = orthos.plain(stem)
-    if (aug) {
-        qform = qform.slice(2)
-        if ([orthos.ac.psili, orthos.ac.dasia].includes(stem[1])) stem = stem.slice(2)
-    }
-    log('COMPARE qform:', qform, 'd.stem:', dstem, 'qterm:', qterm, 'joined=', [stem, qterm].join(''))
-    if (qform != [dstem, qterm].join('')) return
-    log('AFTER d', d, 'q', q)
     return true
 }
 
-
-
-
+// чушь, выкинуть
 function filterSimple(d, q) {
-    log('SIMPLE OK')
+    log('SIMPLE OK', q)
     if (d.var != 'act.pres.ind') return
-    if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
+    // if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
+    if (!u.pres.includes(q.var)) return
+
     if (q.descr != d.descr) return // for contracted verbs
 
     // здесь imperfect должен строиться уже из api - ἐπάγω - ἐπῆγον
     // но пока я его не строю, пропускаю все modCorr
-    if (!d.form) d.form = d.dict // это убрать, пока нет form для api
+    // if (!d.form) d.form = d.dict // это убрать, пока нет form для api
+    log('mod ok', d, q)
 
-    let re = new RegExp(q.dict + '$')
-    let dstem = d.form.replace(re, '')
-    if (dstem == d.form) return
+    // строим plain dict.form - w!
+    let re = new RegExp(q.term + '$')
+    let qstem = q.form.replace(re, '')
+    let form = [qstem, 'ω'].join('')
 
-    return compare(q.form, q.aug, dstem, q.term, d, q)
+    // aug я тупо пока скопировал, нужно проверить
+    let pform = orthos.plain(form)
+    if (q.aug && u.augmods.includes(q.var)) {
+        pform = pform.slice(2)
+    }
+
+    log('aug ok, pform', pform, 'd.plain', d.plain)
+
+    if (d.plain != pform) return
+    return true
 }
+
+// function compare(form, aug, stem, term, d, q) {
+//     let qform = orthos.plain(form)
+//     let qterm = orthos.plain(term)
+//     let dstem = orthos.plain(stem)
+//     if (aug) {
+//         qform = qform.slice(2)
+//         if ([orthos.ac.psili, orthos.ac.dasia].includes(stem[1])) stem = stem.slice(2)
+//     }
+//     log('COMPARE qform:', qform, 'd.stem:', dstem, 'qterm:', qterm, 'joined=', [stem, qterm].join(''))
+//     if (qform != [dstem, qterm].join('')) return
+//     log('AFTER d', d, 'q', q)
+//     return true
+// }
+
+
 
 function queryDicts(keys) {
     return new Promise(function(resolve, reject) {
