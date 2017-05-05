@@ -306,12 +306,12 @@ function selectPart(word, verbs, qparts) {
 function selectInf(word, verbs, qinfs) {
     log('INFS, qinfs:', qinfs)
     verbs.forEach(function(d) {
-        let dvar = d.var.replace('.ind', '')
+        let dtense = d.var.replace('.ind', '').replace('act.', '').replace('pass.', '').replace('mid.', '').replace('mp.', '')
         let iquery
         qinfs.forEach(function(q) {
 
-            let qvar = q.var.replace('.inf', '')
-            if (dvar != qvar) return
+            let qtense = q.var.replace('.inf', '').replace('act.', '').replace('pass.', '').replace('mid.', '').replace('mp.', '')
+            if (dtense != qtense) return
 
             let qform = orthos.plain(q.form)
             let qterm = orthos.plain(q.term)
