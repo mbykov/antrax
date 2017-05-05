@@ -28,8 +28,6 @@ if (forTest == '--no-sandbox') {
 // destroyDB(db_flex)
 // return
 
-// ἀτύχημα <<== проверить LS
-
 replicateDB('gr-flex')
 replicateDB('greek')
 // return
@@ -160,33 +158,53 @@ function parsePossibleForms(empties, fls) {
             flex.morphs.forEach(function(morph) {
                 if (morph.pos == 'verb') {
                     let stem = row.form.slice(0, -flex._id.length);
-                    let query = [stem, morph.dict].join('');
-                    // тут только full-формы, включая act.pres.ind:
-                    let sform = {idx: row.idx, pos: morph.pos, query: query, form: row.form, stem: stem, dict: morph.dict, term: term, numper: morph.numper, var: morph.var, descr: morph.descr, woapi: true} // , morph: morph , flex: flex
 
-                    // проверка q.woapi на augment, добавляет aug, и отбрасывает impf без aug
+                    let aug
                     if (u.augmods.includes(morph.var)) {
-                        let aug = stem.slice(0,2)
-                        if (_.keys(u.augs).includes(aug)) sform.aug = aug, forms.push(sform)
-                    }
-                    else forms.push(sform)
-
-                    // API: создание дополнительных api-форм для поиска по api-stem
-                    // εἴχετε - ἔχω - не работает, надо подумать FIXME: // ἀγορᾷ
-                    if (u.augmods.includes(morph.var)) {
-                        let aug = stem.slice(0,2)
+                        aug = stem.slice(0,2)
                         if (_.keys(u.augs).includes(aug)) {
-                            let aquery = [stem.slice(2), 'ω'].join('')
-                            aquery = [u.augs[aug], aquery].join('')
-                            let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, aug: aug, stem: stem, term: term, dict: morph.dict, api: true}
-                            forms.push(form)
+                            stem = stem.slice(2)
                         }
-                    // } else if (modCorr['act.fut.ind'].includes(morph.var)) {
-                    } else {
-                        let aquery = [stem, 'ω'].join('')
-                        let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, stem: stem, term: term, dict: morph.dict, api: true}
-                        forms.push(form)
                     }
+
+                    let dquery = [stem, morph.dict].join('');
+                    let wquery = [stem, 'ω'].join('')
+
+                    let dform = {idx: row.idx, pos: morph.pos, query: dquery, form: row.form, stem: stem, dict: morph.dict, term: term, numper: morph.numper, var: morph.var, descr: morph.descr, napi: true} // , morph: morph , flex: flex
+                    let wform = {idx: row.idx, pos: morph.pos, query: wquery, form: row.form, stem: stem, dict: morph.dict, term: term, numper: morph.numper, var: morph.var, descr: morph.descr, api: true}
+                    if (aug) dform.aug = aug, wform.aug = aug
+
+                    forms.push(dform)
+                    forms.push(wform)
+
+                    // return
+                    // let query = [stem, morph.dict].join('');
+                    // // тут только full-формы, включая act.pres.ind:
+                    // let sform = {idx: row.idx, pos: morph.pos, query: query, form: row.form, stem: stem, dict: morph.dict, term: term, numper: morph.numper, var: morph.var, descr: morph.descr, woapi: true} // , morph: morph , flex: flex
+
+                    // // проверка q.woapi на augment, добавляет aug, и отбрасывает impf без aug
+                    // if (u.augmods.includes(morph.var)) {
+                    //     let aug = stem.slice(0,2)
+                    //     if (_.keys(u.augs).includes(aug)) sform.aug = aug, forms.push(sform)
+                    // }
+                    // else forms.push(sform)
+
+                    // // API: создание дополнительных api-форм для поиска по api-stem
+                    // // εἴχετε - ἔχω - не работает, надо подумать FIXME: // ἀγορᾷ
+                    // if (u.augmods.includes(morph.var)) {
+                    //     let aug = stem.slice(0,2)
+                    //     if (_.keys(u.augs).includes(aug)) {
+                    //         let aquery = [stem.slice(2), 'ω'].join('')
+                    //         // aquery = [u.augs[aug], aquery].join('')
+                    //         let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, aug: aug, stem: stem, term: term, dict: morph.dict, api: true}
+                    //         forms.push(form)
+                    //     }
+                    // // } else if (modCorr['act.fut.ind'].includes(morph.var)) {
+                    // } else {
+                    //     let aquery = [stem, 'ω'].join('')
+                    //     let form = {idx: row.idx, pos: morph.pos, query: aquery, form: row.form, numper: morph.numper, var: morph.var, descr: morph.descr, stem: stem, term: term, dict: morph.dict, api: true}
+                    //     forms.push(form)
+                    // }
                 } else if (morph.pos == 'inf') {
                     // здесь нужно конструировать aug для aor2 - inf определяется только по словарю, но там aor имеет aug
                     // FIXME: aug для aor - λαμβάνω, aor ἔλαβον, inf λαβεῖν
@@ -288,8 +306,13 @@ function selectPart(word, verbs, qparts) {
 function selectInf(word, verbs, qinfs) {
     log('INFS, qinfs:', qinfs)
     verbs.forEach(function(d) {
+        let dvar = d.var.replace('.ind', '')
         let iquery
         qinfs.forEach(function(q) {
+
+            let qvar = q.var.replace('.inf', '')
+            if (dvar != qvar) return
+
             let qform = orthos.plain(q.form)
             let qterm = orthos.plain(q.term)
             // inf - stem всегда api - ?
@@ -361,7 +384,7 @@ function selectVerb(word, verbs, qverbs) {
                 if (q.api) filter = filterApi(d, q) // искусственные формы всех времен, pres тут нет
                 // else if (q.woapi) filter = filterSimple(d, q) // все формы презенса
             }
-            else if (q.woapi) filter = filterNapi(d, q) // полные формы, кроме pres
+            else if (q.napi) filter = filterNapi(d, q) // полные формы, кроме pres
             else {
                 // log('NO FILTER MAIN', d.var, q.var)
                 // d - не api, а q -api
@@ -385,24 +408,23 @@ function filterNapi(d, q) {
     log('filter NAPI', d.var, q.var)
     if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
 
-    log('mod ok')
+    log('mod ok, q', q)
+
     // строим plain dict.form
     let re = new RegExp(q.term + '$')
     let qstem = q.form.replace(re, '')
     let form = [qstem, q.dict].join('')
+
     let pform = orthos.plain(form)
+    if (q.aug && u.augmods.includes(q.var)) {
+        pform = pform.slice(2)
+    }
     if (d.plain != pform) return
 
     return true
     // return compare(q.form, null, dstem, q.term, d, q)
 }
 
-// if (q.woapi) return
-// if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
-// но! здесь соответствие плохо в ἔπαυσα - нужно найти aor по api стему
-// ἐπίστευσα - ἐπίστευον - нужно различить, нельзя взять api-стем для поиска aor, возьмет stem из api, и найдет impf
-// противоречие
-// if (q.descr != d.descr) return
 function filterApi(d, q) {
     log('filter API')
     if (!modCorr['act.pres.ind'].includes(q.var)) return
@@ -413,14 +435,14 @@ function filterApi(d, q) {
     let qstem = q.form.replace(re, '')
     let form = [qstem, q.dict].join('')
 
+    let pform = orthos.plain(form)
     if (q.aug && u.augmods.includes(q.var)) {
-        form = form.slice(2)
+        pform = pform.slice(2)
         // if ([orthos.ac.psili, orthos.ac.dasia].includes(dstem[1])) dstem = dstem.slice(2)
     }
 
     // log('aug ok, form', form, 'd.plain', d.plain)
 
-    let pform = orthos.plain(form)
     if (d.plain != pform) return
 
     return true
