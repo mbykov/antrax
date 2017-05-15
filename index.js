@@ -13,23 +13,43 @@ let modCorr = u.modCorr
 let forTest = process.argv.slice(2)[0] || false;
 // console.log('FOR TEST', forTest, forTest == '--no-sandbox')
 
-let PouchDB, db_flex, db
-if (forTest == '--no-sandbox') {
-    PouchDB = require('pouchdb-browser');
-    db_flex = new PouchDB('gr-flex')
-    db = new PouchDB('greek')
-} else {
-    PouchDB = require('pouchdb');
-    db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
-    db = new PouchDB('http:\/\/localhost:5984/greek');
-}
+// let PouchDB, db_flex, db
+// if (forTest == '--no-sandbox') {
+//     PouchDB = require('pouchdb-browser');
+//     db_flex = new PouchDB('gr-flex')
+//     db = new PouchDB('greek')
+// } else {
+//     PouchDB = require('pouchdb');
+//     db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
+//     db = new PouchDB('http:\/\/localhost:5984/greek');
+// }
+
+const PouchDB = require('pouchdb-node');
+// const db = new PouchDB('./pouchdb/greek');
+// const db_flex = new PouchDB('./pouchdb/flex');
+const db = new PouchDB('../../greek/antrax/pouchdb/greek'); // , {adapter : 'leveldb'}
+const db_flex = new PouchDB('../../greek/antrax/pouchdb/flex', {adapter : 'leveldb'}); // , {adapter : 'leveldb'}
+// const db = new PouchDB(`file://${__dirname}/pouchdb/greek`);
+// const db_flex = new PouchDB(`file://${__dirname}/pouchdb/flex`);
+
+
+
+
+db_flex.info().then(function (result) {
+    // handle result
+    console.log('INFO', result)
+}).catch(function (err) {
+    console.log(err);
+});
+
+
 
 // destroyDB(db)
 // destroyDB(db_flex)
 // return
 
-replicateDB('gr-flex')
-replicateDB('greek')
+// replicateDB('gr-flex')
+// replicateDB('greek')
 // return
 
 function destroyDB(db) {
@@ -102,7 +122,7 @@ function queryPromise(words, cb) {
 //  καὶ ὃς ἐὰν δέξηται παιδίον. τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
 // τοιαύτη, τοιοῦτο, τοιοῦτον ;;; ὀνόματι
 function main(words, tires, fls, cb) {
-    // выбираю только indecls:
+
     words.forEach(function(word, idx) {
         let word_indecls = _.select(tires.indecls, function(doc) { return doc.dict == word.form })
         let word_terms = _.select(tires.terms, function(doc) { return doc.form == word.form })
@@ -405,7 +425,7 @@ function filterNapi(d, q) {
 function filterApi(d, q) {
     log('filter API', q)
     // if (!modCorr['act.pres.ind'].includes(q.var)) return
-    log('mod ok, q', q)
+    log('mod ok, q', q.var)
     if (q.second) return
 
     // строим plain dict.form - q.dict
@@ -543,10 +563,15 @@ function queryTerms(words) {
 function getAllFlex() {
     return new Promise(function(resolve, reject) {
         db_flex.allDocs({
-            include_docs: true
+            include_docs: true,
+            skip: 10,
+            startkey : 'α',
+            endkey : 'ZZZ'
         }).then(function (res) {
+            console.log('==>> res', res.rows.length)
             if (!res || !res.rows) throw new Error('no result')
             let flexes = res.rows.map(function(row) {return row.doc })
+            console.log('==>> FLEX.SIZE', flexes)
             resolve(flexes)
         }).catch(function (err) {
             log('ERR ALL FLEX', err)
