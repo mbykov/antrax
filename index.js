@@ -10,65 +10,12 @@ let orthos = require('../orthos');
 let u = require('./lib/utils');
 let modCorr = u.modCorr
 
-let forTest = process.argv.slice(2)[0] || false;
-// console.log('FOR TEST', forTest, forTest == '--no-sandbox')
-
-// let PouchDB, db_flex, db
-// if (forTest == '--no-sandbox') {
-//     PouchDB = require('pouchdb-browser');
-//     db_flex = new PouchDB('gr-flex')
-//     db = new PouchDB('greek')
-// } else {
-//     PouchDB = require('pouchdb');
-//     db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
-//     db = new PouchDB('http:\/\/localhost:5984/greek');
-// }
+// db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
+// db = new PouchDB('http:\/\/localhost:5984/greek');
 
 const PouchDB = require('pouchdb-node');
-// const db = new PouchDB('./pouchdb/greek');
-// const db_flex = new PouchDB('./pouchdb/flex');
 const db = new PouchDB('../../greek/antrax/pouchdb/greek'); // , {adapter : 'leveldb'}
-const db_flex = new PouchDB('../../greek/antrax/pouchdb/flex', {adapter : 'leveldb'}); // , {adapter : 'leveldb'}
-// const db = new PouchDB(`file://${__dirname}/pouchdb/greek`);
-// const db_flex = new PouchDB(`file://${__dirname}/pouchdb/flex`);
-
-
-
-
-db_flex.info().then(function (result) {
-    // handle result
-    console.log('INFO', result)
-}).catch(function (err) {
-    console.log(err);
-});
-
-
-
-// destroyDB(db)
-// destroyDB(db_flex)
-// return
-
-// replicateDB('gr-flex')
-// replicateDB('greek')
-// return
-
-function destroyDB(db) {
-    db.destroy().then(function (response) {
-        console.log('DB DESTROYED', response);
-    }).catch(function (err) {
-        console.log(err);
-    });
-}
-
-function replicateDB(dbname) {
-    log('REPLICATION START', dbname)
-    let url = ['http:\/\/admin:kjre4317@localhost:5984/', dbname].join('')
-    PouchDB.replicate(url, dbname).then(function (response) {
-        log('DB REPLICATED', dbname, response);
-    }).catch(function (err) {
-        console.log('REPL ERR', err);
-    });
-}
+const db_flex = new PouchDB('../../greek/antrax/pouchdb/flex'); // , {adapter : 'leveldb'}
 
 module.exports = antrax();
 
@@ -114,41 +61,30 @@ function queryPromise(words, cb) {
             cb(clause)
         });
     }).catch(function (err) {
-        log('ANTRAX ERR', err);
+        // log('ANTRAX ERR', err);
     })
 }
 
-// ======================================================================
-//  καὶ ὃς ἐὰν δέξηται παιδίον. τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
-// τοιαύτη, τοιοῦτο, τοιοῦτον ;;; ὀνόματι
 function main(words, tires, fls, cb) {
-
     words.forEach(function(word, idx) {
         let word_indecls = _.select(tires.indecls, function(doc) { return doc.dict == word.form })
         let word_terms = _.select(tires.terms, function(doc) { return doc.form == word.form })
         if (word_indecls.length) word.dicts = word_indecls, word.indecl = true
         if (word_terms.length) word.dicts = word_terms, word.term = true
     })
-    log('Ws', words)
 
     let terms = _.select(words, function(row) { return row.term })
-    // log('INDECLS', indecls)
     let empties = _.select(words, function(row) { return !row.indecl })
-    log('Empties', empties);
     let possibleFlex = parsePossibleForms(empties, fls);
-    log('Poss-Form-queries', possibleFlex.length, possibleFlex[0]);
+    // log('Poss-Form-queries', possibleFlex.length, possibleFlex[0]);
 
     // dicts for terms: (other indecl already are dicts)
-
     let termdicts = _.map(tires.terms, function(doc) { return doc.dict })
 
     let queries = _.uniq(possibleFlex.map(function(q) { return q.query }))
     let plains = _.uniq(queries.map(function(key) { return orthos.plain(key)}))
-    log('plains', plains)
-    // let tplains = _.uniq(termdicts.map(function(key) { return orthos.plain(key)}))
-    log('tdicts', termdicts)
     let allqs = plains.concat(termdicts)
-    log('MAIN KEY-ALL', allqs)
+    // log('all q keys', allqs)
 
     queryDicts(allqs).then(function(dpres) {
         words.forEach(function(word) {
@@ -157,7 +93,6 @@ function main(words, tires, fls, cb) {
                 let thisdicts = _.select(word.dicts, function(d) { return d.dict == tdict})
                 if (!thisdicts.length) return
                 let expos = _.select(dpres.dicts, function(d) { return d.dict == tdict })
-                // log('EXPOS', expos)
                 if (expos.length) word.dicts = word.dicts.concat(expos)
             })
         })
@@ -165,13 +100,13 @@ function main(words, tires, fls, cb) {
         dict4word(words, possibleFlex, dpres.plains);
         cb(words)
     }).catch(function (err) {
-        log('ERR DICTS', err);
+        // log('ERR DICTS', err);
     });
 }
 
 function parsePossibleForms(empties, fls) {
     let forms = [];
-    empties.forEach(function(row) { // , idx
+    empties.forEach(function(row) {
         fls.forEach(function(flex) {
             let term = flex._id
             if (flex._id != row.form.slice(-flex._id.length)) return;
@@ -196,7 +131,6 @@ function parsePossibleForms(empties, fls) {
 
                     if (aug) dform.aug = aug, wform.aug = aug
                     if (morph.second) wform.second = true
-                    if (morph.second) log('==========================', morph)
 
                     forms.push(dform)
                     forms.push(wform)
@@ -219,7 +153,7 @@ function parsePossibleForms(empties, fls) {
                     // ἀξίας - sg.gen - проходит, если закомментировать:
                     // if (!['ε', 'ι', 'ρ']. includes(last) && ['sg.gen', 'sg.dat']. includes(morph.numcase) && ['ας']. includes(flex._id)) return
                     if (last2 == 'σσ' && ['sg.gen', 'sg.dat']. includes(morph.numcase) && 'ας' == flex._id ) return
-                    let form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, dict: morph.dict, add: morph.add, term: term} // , flex: flex - убрать
+                    let form = {idx: row.idx, pos: morph.pos, query: query, stem: stem, form: row.form, gend: morph.gend, numcase: morph.numcase, var: morph.var, dict: morph.dict, add: morph.add, term: term} // , flex: flex
                     forms.push(form)
                 }
             })
@@ -233,7 +167,7 @@ function selectNames(word, names, qqnames) {
         let nquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: [], weight: d.weight }
         let qnstricts = _.select(qqnames, function(q) { return q.query == d.dict })
         let qnames = (qnstricts.length) ? qnstricts : _.select(qqnames, function(q) { return orthos.plain(q.query) == d.plain})
-        log('4w-QNs', qnames)
+
         qnames.forEach(function(q) {
             // TODO: здесь можно убрать дубликаты morph, но сложно проверять наличие объекта в morphs
             if (!d.var) return
@@ -242,7 +176,6 @@ function selectNames(word, names, qqnames) {
                 if (d.var != qvar) return
                 let morph = {gend: q.gend, numcase: q.numcase, flex: q.flex} // , flex: q.flex
                 if (d.gend && !q.add) {
-                    // log('DGEND', d.gend, 'QGEND', q)
                     morph.gend = d.gend
                     nquery.morphs.push(morph)
                 }
@@ -270,9 +203,7 @@ function selectPart(word, verbs, qparts) {
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}, weight: d.weight}
         let pquery = {type: d.type, dict: d.dict, pos: 'part', trn: d.trn, morphs: [], weight: d.weight }
 
-        // log('4w-qparts', qparts)
         qparts.forEach(function(q) {
-            // log('==PART', d, q)
             if (d.var != 'act.pres.ind') return
 
             let qform = orthos.plain(q.form)
@@ -291,16 +222,13 @@ function selectPart(word, verbs, qparts) {
             pquery.idx = q.idx
             pquery.form = q.form // это же просто word??
             pquery.var = q.var // здесь значение затирается, считаю, что все morph - принадлежат одному var
-            // log('PART AFTER FILTER')
         })
         if (!pquery.morphs.length) return
-        // log('4w-pquery', pquery)
         word.dicts.push(pquery)
     })
 }
 
 function selectInf(word, verbs, qinfs) {
-    log('INFS, qinfs:', qinfs)
     verbs.forEach(function(d) {
         let dtense = d.var.replace('.ind', '').replace('act.', '').replace('pass.', '').replace('mid.', '').replace('mp.', '')
         let iquery
@@ -311,7 +239,7 @@ function selectInf(word, verbs, qinfs) {
 
             let qform = orthos.plain(q.form)
             let qterm = orthos.plain(q.term)
-            // inf - stem всегда api - ?
+
             let qdict = (q.api && d.var == 'act.pres.ind') ? q.api : q.dict
             qdict = orthos.plain(qdict)
             let re = new RegExp(qdict + '$')
@@ -320,7 +248,7 @@ function selectInf(word, verbs, qinfs) {
             if (qform != [stem, qterm].join('')) return
             // still no perfect:
             if (/pf/.test(q.var)) return
-            log('INF AFTER FILTER')
+
             iquery = {idx: q.idx, form: q.form, type: d.type, dict: d.dict, pos: 'inf', trn: d.trn, var: q.var } // всегда один результат
         })
         if (!iquery) return
@@ -328,19 +256,11 @@ function selectInf(word, verbs, qinfs) {
     })
 }
 
-
-//  καὶ ὃς ἐὰν δέξηται παιδίον τοιοῦτον ἓν ἐπὶ τῷ ὀνόματί μου, ἐμὲ δέχεται· // TXT
 function dict4word(words, queries, dicts) {
-    // let terms = _.select(dicts, function(d) { return d.term})
     let mutables = _.select(dicts, function(d) { return !d.term})
-    log('4w-Muts', mutables)
-    log('4w-queries', queries)
 
     let names = _.select(mutables, function(d) { return d.pos == 'name'} )
     let verbs = _.select(mutables, function(d) { return d.pos == 'verb'} )
-    // let infs = _.select(mutables, function(d) { return d.pos == 'inf'} )
-    // let parts = _.select(mutables, function(d) { return d.pos == 'part'} )
-    log('4w-Verbs', verbs)
 
     words.forEach(function(word) {
         let qqnames = [], qverbs = [], qinfs = [], qparts = []
@@ -352,8 +272,6 @@ function dict4word(words, queries, dicts) {
             else if (q.pos == 'verb') qverbs.push(q)
             else if (q.pos == 'inf') qinfs.push(q)
         })
-        log('4w-qv', qverbs)
-        log('4w-qi', qinfs)
         if (names.length && qqnames.length) selectNames(word, names, qqnames)
         if (verbs.length && qverbs.length) selectVerb(word, verbs, qverbs)
         if (verbs.length && qparts.length) selectPart(word, verbs, qparts)
@@ -362,10 +280,8 @@ function dict4word(words, queries, dicts) {
 }
 
 function selectVerb(word, verbs, qverbs) {
-    log('4w-qverbs', qverbs)
     let napis = _.select(verbs, function(verb) {return verb.var != 'act.pres.ind'})
     if (napis.length) verbs = napis
-    log('4w-napis', verbs)
 
     verbs.forEach(function(d) {
         let vquery = {type: d.type, dict: d.dict, pos: d.pos, trn: d.trn, morphs: {}, weight: d.weight}
@@ -377,15 +293,10 @@ function selectVerb(word, verbs, qverbs) {
             if (q.descr != d.descr) return
             let filter
             if (d.var == 'act.pres.ind') {
-                if (q.api) filter = filterApi(d, q) // все времена от w-формы, без презенса
+                if (q.api) filter = filterApi(d, q)
                 // else if (q.napi) filter = filterSimple(d, q)
             }
             else if (q.napi) filter = filterNapi(d, q) // полные формы, кроме pres
-            else {
-                // log('NO FILTER MAIN', d.var, q.var)
-                // d - не api, а q -api
-                // throw new Error('NO API MAIN FILTER')
-            }
             if (!filter) return
 
             if (!vquery.morphs[q.var]) vquery.morphs[q.var] = [q.numper]
@@ -401,12 +312,8 @@ function selectVerb(word, verbs, qverbs) {
 
 // vforms -  full verb-form: fut, aor, etc
 function filterNapi(d, q) {
-    log('filter NAPI', d.var, q.var)
     if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
 
-    log('mod ok, q', q)
-
-    // строим plain dict.form
     let re = new RegExp(q.term + '$')
     let qstem = q.form.replace(re, '')
     let form = [qstem, q.dict].join('')
@@ -418,21 +325,14 @@ function filterNapi(d, q) {
     if (d.plain != pform) return
 
     return true
-    // return compare(q.form, null, dstem, q.term, d, q)
 }
 
-// все формы от -w, кроме pres
 function filterApi(d, q) {
-    log('filter API', q)
-    // if (!modCorr['act.pres.ind'].includes(q.var)) return
-    log('mod ok, q', q.var)
     if (q.second) return
 
-    // строим plain dict.form - q.dict
     let re = new RegExp(q.term + '$')
     let qstem = q.form.replace(re, '')
     if (q.form == qstem) return
-    log('===', q.form, qstem, q.form == qstem)
     // let form = [qstem, q.dict].join('')
     let form = [qstem, 'ω'].join('')
 
@@ -441,58 +341,9 @@ function filterApi(d, q) {
         pform = pform.slice(2)
     }
 
-    log('aug ok, pform', pform, 'd.plain', d.plain)
-
     if (d.plain != pform) return
     return true
 }
-
-// чушь, выкинуть
-function filterSimple(d, q) {
-    log('SIMPLE OK', q)
-    if (d.var != 'act.pres.ind') return
-    // if (!modCorr[d.var] || !modCorr[d.var].includes(q.var)) return // иначе возьмет stem из aor, а найдет imperfect - λέγω, ἔλεγον, εἶπον
-    if (!u.pres.includes(q.var)) return
-
-    if (q.descr != d.descr) return // for contracted verbs
-
-    // здесь imperfect должен строиться уже из api - ἐπάγω - ἐπῆγον
-    // но пока я его не строю, пропускаю все modCorr
-    // if (!d.form) d.form = d.dict // это убрать, пока нет form для api
-    log('mod ok', d, q)
-
-    // строим plain dict.form - w!
-    let re = new RegExp(q.term + '$')
-    let qstem = q.form.replace(re, '')
-    let form = [qstem, 'ω'].join('')
-
-    // aug я тупо пока скопировал, нужно проверить
-    let pform = orthos.plain(form)
-    if (q.aug && u.augmods.includes(q.var)) {
-        pform = pform.slice(2)
-    }
-
-    log('aug ok, pform', pform, 'd.plain', d.plain)
-
-    if (d.plain != pform) return
-    return true
-}
-
-// function compare(form, aug, stem, term, d, q) {
-//     let qform = orthos.plain(form)
-//     let qterm = orthos.plain(term)
-//     let dstem = orthos.plain(stem)
-//     if (aug) {
-//         qform = qform.slice(2)
-//         if ([orthos.ac.psili, orthos.ac.dasia].includes(stem[1])) stem = stem.slice(2)
-//     }
-//     log('COMPARE qform:', qform, 'd.stem:', dstem, 'qterm:', qterm, 'joined=', [stem, qterm].join(''))
-//     if (qform != [dstem, qterm].join('')) return
-//     log('AFTER d', d, 'q', q)
-//     return true
-// }
-
-
 
 function queryDicts(keys) {
     return new Promise(function(resolve, reject) {
@@ -501,19 +352,14 @@ function queryDicts(keys) {
             include_docs: true
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no dict result')
-            log('DICT-ROWS', res.rows)
             let dicts = _.select(res.rows, function(row) { return row.value == 'dict' })
             let plains = _.select(res.rows, function(row) { return row.value == 'plain' })
             dicts = dicts.map(function(row) { return row.doc})
             plains = plains.map(function(row) { return row.doc})
             let result = {dicts: dicts, plains: plains}
-            log('D-RESULT', result)
             resolve(result)
-            // let rdocs = res.rows.map(function(row) {return row.doc })
-            // log('RDICTS RES', rdocs)
-            // resolve(rdocs)
         }).catch(function (err) {
-            log('Q DICTS REJECT', err)
+            // log('Q DICTS REJECT', err)
             reject(err)
         })
     })
@@ -524,37 +370,21 @@ function queryDicts(keys) {
 function queryTerms(words) {
     let keys = words.map(function(word) { return word.form})
     let ukeys = _.uniq(keys)
-    log('==UKEYS==', ukeys.toString())
+    // log('==UKEYS==', ukeys.toString())
     return new Promise(function(resolve, reject) {
         db.query('greek/byTerm', {
             keys: ukeys,
             include_docs: true
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no term result')
-            log('TERM-ROWS', res.rows)
             let terms = _.select(res.rows, function(row) { return row.value == 'term' })
             let indecls = _.select(res.rows, function(row) { return row.value == 'indecl' })
             terms = terms.map(function(row) { return row.doc})
             indecls = indecls.map(function(row) { return row.doc})
             let result = {terms: terms, indecls: indecls}
-            log('T-RESULT', result)
             resolve(result)
-
-            // let docs = res.rows.map(function(row) { return row.doc})
-            // log('TDOCS', docs)
-            // words.forEach(function(word, idx) {
-            //     // и после этого я не могу этот word исследовать на possible
-            //     let indecls = _.select(docs, function(doc) { return doc.dict == word.form || doc.form == word.form})
-            //     if (!indecls.length) return
-            //     let indecl = indecls[0] // always only one, its are groupped
-            //     word.dicts = indecls
-            //     word.indecl = true
-            //     word.pos = indecl.pos
-            // })
-            // // log('TERM CLAUSE', words)
-            // resolve(words)
         }).catch(function (err) {
-            log('queryTERMS ERRS', err);
+            // log('queryTERMS ERRS', err);
             reject(err);
         })
     })
@@ -562,19 +392,15 @@ function queryTerms(words) {
 
 function getAllFlex() {
     return new Promise(function(resolve, reject) {
-        db_flex.allDocs({
-            include_docs: true,
-            skip: 10,
-            startkey : 'α',
-            endkey : 'ZZZ'
+        db_flex.query('flex/byFlex', { // BUG in pouch, pouchdb-node: allDocs returns only 15 rows
+        // db_flex.allDocs({
+            include_docs: true
         }).then(function (res) {
-            console.log('==>> res', res.rows.length)
             if (!res || !res.rows) throw new Error('no result')
             let flexes = res.rows.map(function(row) {return row.doc })
-            console.log('==>> FLEX.SIZE', flexes)
             resolve(flexes)
         }).catch(function (err) {
-            log('ERR ALL FLEX', err)
+            // log('ERR ALL FLEX', err)
             reject(err)
         });
     });
@@ -584,7 +410,5 @@ function getAllFlex() {
 function log() { }
 function p() { }
 
-if (forTest == '--no-sandbox') {
-    function log() { console.log.apply(console, arguments); }
-    function p() { console.log(util.inspect(arguments, false, null)) }
-}
+// function log() { console.log.apply(console, arguments); }
+// function p() { console.log(util.inspect(arguments, false, null)) }
