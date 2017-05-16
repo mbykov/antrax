@@ -83,8 +83,8 @@ function main(words, tires, fls, cb) {
 
     let queries = _.uniq(possibleFlex.map(function(q) { return q.query }))
     let plains = _.uniq(queries.map(function(key) { return orthos.plain(key)}))
-    let allqs = plains.concat(termdicts)
-    // log('all q keys', allqs)
+    let allqs = _.uniq(plains.concat(termdicts))
+    log('all q keys', allqs)
 
     queryDicts(allqs).then(function(dpres) {
         words.forEach(function(word) {
@@ -407,8 +407,8 @@ function getAllFlex() {
 }
 
 
-function log() { }
-function p() { }
+// function log() { }
+// function p() { }
 
-// function log() { console.log.apply(console, arguments); }
-// function p() { console.log(util.inspect(arguments, false, null)) }
+function log() { console.log.apply(console, arguments); }
+function p() { console.log(util.inspect(arguments, false, null)) }
