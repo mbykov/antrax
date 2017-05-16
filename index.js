@@ -79,7 +79,7 @@ function main(words, tires, fls, cb) {
     // log('Poss-Form-queries', possibleFlex.length, possibleFlex[0]);
 
     // dicts for terms: (other indecl already are dicts)
-    let termdicts = _.map(tires.terms, function(doc) { return doc.dict })
+    let termdicts = _.uniq(_.map(tires.terms, function(doc) { return doc.dict }))
 
     let queries = _.uniq(possibleFlex.map(function(q) { return q.query }))
     let plains = _.uniq(queries.map(function(key) { return orthos.plain(key)}))
@@ -89,7 +89,7 @@ function main(words, tires, fls, cb) {
     queryDicts(allqs).then(function(dpres) {
         words.forEach(function(word) {
             if (!word.term) return
-            termdicts.forEach(function(tdict) {
+            termdicts.forEach(function(tdict, idy) {
                 let thisdicts = _.select(word.dicts, function(d) { return d.dict == tdict})
                 if (!thisdicts.length) return
                 let expos = _.select(dpres.dicts, function(d) { return d.dict == tdict })
@@ -308,6 +308,8 @@ function selectVerb(word, verbs, qverbs) {
         if (!_.keys(vquery.morphs).length) return
         word.dicts.push(vquery)
     })
+    log('W=', word)
+
 }
 
 // vforms -  full verb-form: fut, aor, etc
