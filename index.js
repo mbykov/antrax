@@ -70,7 +70,6 @@ function queryPromise(words, cb) {
 }
 
 function main(words, tires, fls, cb) {
-    log('W', words, tires, fls.length)
     words.forEach(function(word, idx) {
         let word_indecls = _.select(tires.indecls, function(doc) { return doc.dict == word.form })
         let word_terms = _.select(tires.terms, function(doc) { return doc.form == word.form })
@@ -89,7 +88,7 @@ function main(words, tires, fls, cb) {
     let queries = _.uniq(possibleFlex.map(function(q) { return q.query }))
     let plains = _.uniq(queries.map(function(key) { return orthos.plain(key)}))
     let allqs = _.uniq(plains.concat(termdicts))
-    log('all q keys', allqs)
+    // log('all q keys', allqs)
 
     queryDicts(allqs).then(function(dpres) {
         words.forEach(function(word) {
@@ -105,7 +104,7 @@ function main(words, tires, fls, cb) {
         dict4word(words, possibleFlex, dpres.plains);
         cb(words)
     }).catch(function (err) {
-        // log('ERR DICTS', err);
+        log('ERR DICTS', err);
     });
 }
 
@@ -313,8 +312,6 @@ function selectVerb(word, verbs, qverbs) {
         if (!_.keys(vquery.morphs).length) return
         word.dicts.push(vquery)
     })
-    log('W=', word)
-
 }
 
 // vforms -  full verb-form: fut, aor, etc
@@ -366,7 +363,7 @@ function queryDicts(keys) {
             let result = {dicts: dicts, plains: plains}
             resolve(result)
         }).catch(function (err) {
-            // log('Q DICTS REJECT', err)
+            log('Q DICTS REJECT', err)
             reject(err)
         })
     })
@@ -391,7 +388,7 @@ function queryTerms(words) {
             let result = {terms: terms, indecls: indecls}
             resolve(result)
         }).catch(function (err) {
-            // log('queryTERMS ERRS', err);
+            log('queryTERMS ERRS', err);
             reject(err);
         })
     })
@@ -407,7 +404,7 @@ function getAllFlex() {
             let flexes = res.rows.map(function(row) {return row.doc })
             resolve(flexes)
         }).catch(function (err) {
-            // log('ERR ALL FLEX', err)
+            log('ERR ALL FLEX', err)
             reject(err)
         });
     });
