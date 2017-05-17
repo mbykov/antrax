@@ -14,14 +14,17 @@ const modCorr = u.modCorr
 // db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
 // db = new PouchDB('http:\/\/localhost:5984/greek');
 
-const PouchDB = require('pouchdb-node');
-const db = new PouchDB('../../greek/antrax/pouchdb/greek'); // , {adapter : 'leveldb'}
-const db_flex = new PouchDB('../../greek/antrax/pouchdb/flex'); // , {adapter : 'leveldb'}
+let db_path = path.join(__dirname, '../antrax/pouchdb/greek')
+let db_flex_path = path.join(__dirname, '../antrax/pouchdb/flex')
 
-module.exports = antrax();
+const PouchDB = require('pouchdb-node')
+const db = new PouchDB(db_path) // , {adapter : 'leveldb'}
+const db_flex = new PouchDB(db_flex_path)
+
+module.exports = antrax()
 
 function antrax() {
-    if (!(this instanceof antrax)) return new antrax();
+    if (!(this instanceof antrax)) return new antrax()
 }
 
 // punctuation \u002E\u002C\u0021\u003B\u00B7\u0020\u0027 - ... middle dot, space, apostrophe
