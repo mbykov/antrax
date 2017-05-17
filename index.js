@@ -43,12 +43,10 @@ function parseClause(str, num) {
         if (idx == num) word.current = true
         words.push(word)
     })
-    log('W', words)
     return words
 }
 
 antrax.prototype.query = function(str, num, cb) {
-    console.log('=========================', str)
     let words = parseClause(str, num)
     queryPromise(words, function(res) {
         cb(res)
@@ -64,11 +62,12 @@ function queryPromise(words, cb) {
             cb(clause)
         });
     }).catch(function (err) {
-        // log('ANTRAX ERR', err);
+        log('ANTRAX ERR', err);
     })
 }
 
 function main(words, tires, fls, cb) {
+    log('W', words, tires, fls.length)
     words.forEach(function(word, idx) {
         let word_indecls = _.select(tires.indecls, function(doc) { return doc.dict == word.form })
         let word_terms = _.select(tires.terms, function(doc) { return doc.form == word.form })
