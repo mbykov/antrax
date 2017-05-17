@@ -48,6 +48,7 @@ function parseClause(str, num) {
 }
 
 antrax.prototype.query = function(str, num, cb) {
+    console.log('=========================', str)
     let words = parseClause(str, num)
     queryPromise(words, function(res) {
         cb(res)
