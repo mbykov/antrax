@@ -1,0 +1,5 @@
+2017/05/17-14:50:36.268567 7fbe8fc9e700 Recovering log #84
+2017/05/17-14:50:36.268863 7fbe8fc9e700 Level-0 table #86: started
+2017/05/17-14:50:36.310812 7fbe8fc9e700 Level-0 table #86: 237 bytes OK
+2017/05/17-14:50:36.424888 7fbe8fc9e700 Delete type=0 #84
+2017/05/17-14:50:36.425097 7fbe8fc9e700 Delete type=3 #82

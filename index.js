@@ -1,14 +1,15 @@
 /* query greek
 */
 
-let _ = require('underscore');
-// let path = require('path');
-let fs = require('fs');
-let util = require('util');
-let path = require('path');
-let orthos = require('../orthos');
-let u = require('./lib/utils');
-let modCorr = u.modCorr
+'use strict'
+
+const _ = require('underscore');
+const fs = require('fs');
+const util = require('util');
+const path = require('path');
+const orthos = require('orthos');
+const u = require('./lib/utils');
+const modCorr = u.modCorr
 
 // db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
 // db = new PouchDB('http:\/\/localhost:5984/greek');

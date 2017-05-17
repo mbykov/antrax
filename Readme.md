@@ -8,7 +8,7 @@ simple practical ancient greek morph analizer for morpheus-greek
 ## API
 
 ````javascript
-    var antrax = require('./antrax');
+    var antrax = require('antrax');
 ````
 
 
