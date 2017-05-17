@@ -43,6 +43,7 @@ function parseClause(str, num) {
         if (idx == num) word.current = true
         words.push(word)
     })
+    log('W', words)
     return words
 }
 
