@@ -25,7 +25,6 @@
     "dependencies": {
         "orthos": "^0.2.1",
         "underscore": "^1.8.3",
-        "pouchdb": "^6.2.0",
-        "pouchdb-adapter-node-websql": "^6.2.0"
+        "pouchdb": "^6.2.0"
     }
 }
