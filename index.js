@@ -60,6 +60,7 @@ antrax.prototype.query = function(str, num, cb) {
 }
 
 function queryPromise(words, cb) {
+    log('before get terms')
     Promise.all([
         queryTerms(words),
         getAllFlex()
@@ -73,6 +74,7 @@ function queryPromise(words, cb) {
 }
 
 function main(words, tires, fls, cb) {
+    log('MAIN', words, tires, fls)
     words.forEach(function(word, idx) {
         let word_indecls = _.select(tires.indecls, function(doc) { return doc.dict == word.form })
         let word_terms = _.select(tires.terms, function(doc) { return doc.form == word.form })
@@ -377,13 +379,14 @@ function queryDicts(keys) {
 function queryTerms(words) {
     let keys = words.map(function(word) { return word.form})
     let ukeys = _.uniq(keys)
-    // log('==UKEYS==', ukeys.toString())
+    log('==UKEYS==', ukeys.toString())
     return new Promise(function(resolve, reject) {
         db.query('greek/byTerm', {
             keys: ukeys,
             include_docs: true
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no term result')
+            log('Terms res', res)
             let terms = _.select(res.rows, function(row) { return row.value == 'term' })
             let indecls = _.select(res.rows, function(row) { return row.value == 'indecl' })
             terms = terms.map(function(row) { return row.doc})
@@ -405,6 +408,7 @@ function getAllFlex() {
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no result')
             let flexes = res.rows.map(function(row) {return row.doc })
+            log('FLEX', flexes.length)
             resolve(flexes)
         }).catch(function (err) {
             log('ERR ALL FLEX', err)
