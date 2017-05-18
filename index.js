@@ -14,8 +14,10 @@ const modCorr = u.modCorr
 // db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
 // db = new PouchDB('http:\/\/localhost:5984/greek');
 
-let db_path = path.join(__dirname, '../antrax/pouchdb/greek')
-let db_flex_path = path.join(__dirname, '../antrax/pouchdb/flex')
+let db_path = path.join(__dirname, './pouchdb/greek')
+let db_flex_path = path.join(__dirname, './pouchdb/flex')
+
+log('DB PATH', db_path)
 
 const PouchDB = require('pouchdb')
 // PouchDB.plugin(require('pouchdb-adapter-node-websql'));
