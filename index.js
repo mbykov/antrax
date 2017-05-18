@@ -17,10 +17,10 @@ const modCorr = u.modCorr
 let db_path = path.join(__dirname, '../antrax/pouchdb/greek')
 let db_flex_path = path.join(__dirname, '../antrax/pouchdb/flex')
 
-const PouchDB = require('pouchdb')
-PouchDB.plugin(require('pouchdb-adapter-node-websql'));
-const db = new PouchDB(db_path, {adapter: 'websql'}) // , {adapter : 'leveldb'}
-const db_flex = new PouchDB(db_flex_path, {adapter: 'websql'})
+const PouchDB = require('pouchdb-browser')
+// PouchDB.plugin(require('pouchdb-adapter-node-websql'));
+const db = new PouchDB(db_path) // , {adapter : 'leveldb'}
+const db_flex = new PouchDB(db_flex_path)
 
 module.exports = antrax()
 
