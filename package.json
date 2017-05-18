@@ -4,7 +4,7 @@
     "description": "simple practical ancient greek morph analizer for morpheus-greek",
     "main": "main.js",
     "scripts": {
-        "postinstall": "electron-rebuild",
+        "_postinstall": "electron-rebuild",
         "start": "electron ."
     },
     "repository": "https://github.com/mbykov/antrax",
@@ -25,6 +25,6 @@
     "dependencies": {
         "orthos": "^0.2.1",
         "underscore": "^1.8.3",
-        "pouchdb-browser": "^6.2.0"
+        "pouchdb": "^6.2.0"
     }
 }
