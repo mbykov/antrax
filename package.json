@@ -1,10 +1,9 @@
 {
     "name": "antrax",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "description": "simple practical ancient greek morph analizer for morpheus-greek",
     "main": "main.js",
     "scripts": {
-        "postinstall": "electron-rebuild",
         "start": "electron ."
     },
     "repository": "https://github.com/mbykov/antrax",
