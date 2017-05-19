@@ -18,33 +18,49 @@ PouchDB.plugin(require('pouchdb-load'))
 // db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
 // db = new PouchDB('http:\/\/localhost:5984/greek');
 
-let db_path = path.join(__dirname, './pouchdb/greek')
+let greek_path = path.join(__dirname, './pouchdb/greek')
 let flex_path = path.join(__dirname, './pouchdb/flex')
-
-let db, db_flex
+let db_greek, db_flex
 
 log('DB DIR', __dirname)
-log('DB PATH', db_path)
+log('DB GR PATH', greek_path)
+log('DB GR PATH', flex_path)
 
 if (!jetpack.exists('pouchdb')) {
     let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
+    let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
     log('DB DUMP', dump_flex_path)
     let fdump = jetpack.read(dump_flex_path)
-    console.log('=dump=', fdump.length);
+    let gdump = jetpack.read(dump_greek_path)
+    console.log('=g dump=', gdump.length);
+    console.log('=f dump=', fdump.length);
     jetpack.dir('pouchdb')
     db_flex = new PouchDB(flex_path)
+    db_greek = new PouchDB(greek_path)
+    db_greek.load(gdump, {
+        proxy: 'http://localhost:5984/greek'
+    }).then(function() {
+        console.log('gr dump ok');
+        return db_greek.replicate.from('http:\/\/localhost:5984/greek');
+    }).catch(function (err) {
+        log('DUMP GR ERR', err)
+    });
     db_flex.load(fdump, {
         proxy: 'http://localhost:5984/gr-flex'
-    }).then(function (fdump) {
-        console.log('dump ok', fdump.length);
+    }).then(function() {
+        console.log('fl dump ok')
         // done loading! handoff to regular replication
-        return db_flex.replicate.from('http://localhost:5984/gr-flex');
+        return db_flex.replicate.from('http:\/\/localhost:5984/gr-flex');
     }).catch(function (err) {
-        log('DUMP ERR', err)
+        log('DUMP FL ERR', err)
     });
 } else {
+    db_greek = new PouchDB(greek_path)
+    db_greek.replicate.from('http:\/\/localhost:5984/greek')
     db_flex = new PouchDB(flex_path)
-    db_flex.replicate.from('http://localhost:5984/gr-flex')
+    db_flex.replicate.from('http:\/\/localhost:5984/gr-flex')
+    log('ALREADY EXISTS', greek_path)
+    log('ALREADY EXISTS', flex_path)
 }
 
 // const db = new PouchDB(db_path) // , {adapter : 'leveldb'} // , {adapter: 'websql'}
@@ -52,29 +68,6 @@ if (!jetpack.exists('pouchdb')) {
 // const remote_greek = new PouchDB('http:\/\/localhost:5984/greek');
 // const remote_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
 
-
-
-
-
-// let replicated_greek = null
-// let replicated_flex = null
-
-// function repl() {
-//     let replica_greek = db.sync(remote_greek, {
-//         live: true,
-//         retry: true
-//     }).on('change', function (change) {
-//         // yo, something changed!
-//     }).on('paused', function (info) {
-//         // replication was paused, usually because of a lost connection
-//     }).on('active', function (info) {
-//         // replication was resumed
-//     }).on('error', function (err) {
-//         // totally unhandled error (shouldn't happen)
-//     }).on('complete', function (info) {
-//         // totally unhandled error (shouldn't happen)
-//     })
-// }
 
 module.exports = antrax()
 
@@ -88,6 +81,11 @@ antrax.prototype.query = function(str, num, cb) {
         cb(res)
     })
 }
+
+antrax.prototype.query('ὄρους', 1, function(res) {
+    log('===============', res)
+})
+
 
 function queryPromise(words, cb) {
     log('before get terms')
@@ -408,7 +406,7 @@ function filterApi(d, q) {
 
 function queryDicts(keys) {
     return new Promise(function(resolve, reject) {
-        db.query('greek/byDict', {
+        db_greek.query('greek/byDict', {
             keys: keys,
             include_docs: true
         }).then(function (res) {
@@ -433,7 +431,7 @@ function queryTerms(words) {
     let ukeys = _.uniq(keys)
     log('==UKEYS==', ukeys.toString())
     return new Promise(function(resolve, reject) {
-        db.query('greek/byTerm', {
+        db_greek.query('greek/byTerm', {
             keys: ukeys,
             include_docs: true
         }).then(function (res) {

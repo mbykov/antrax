@@ -3,6 +3,8 @@ build
 .todo.org
 todo.org
 node_modules
+pouchdb
+pouchdb-for-dump
 log
 Junk
 TMP
