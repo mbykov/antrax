@@ -14,38 +14,36 @@ const modCorr = u.modCorr
 // db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
 // db = new PouchDB('http:\/\/localhost:5984/greek');
 
-let db_path = path.join(__dirname, './pouchdb/greek')
-let db_flex_path = path.join(__dirname, './pouchdb/flex')
+let db_path = path.join(__dirname, '../../pouchdb/greek')
+let db_flex_path = path.join(__dirname, '../../pouchdb/flex')
 
 log('DB PATH', db_path)
 
 const PouchDB = require('pouchdb')
-// PouchDB.plugin(require('pouchdb-adapter-node-websql'));
 const db = new PouchDB(db_path) // , {adapter : 'leveldb'} // , {adapter: 'websql'}
 const db_flex = new PouchDB(db_flex_path)
-const remote_greek = new PouchDB('http:\/\/localhost:5984/greek');
-const remote__flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
+// const remote_greek = new PouchDB('http:\/\/localhost:5984/greek');
+// const remote_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
 
+// let replicated_greek = null
+// let replicated_flex = null
 
-let replicated_greek = null
-let replicated_flex = null
-
-function repl() {
-    let replica_greek = db.sync(remote_greek, {
-        live: true,
-        retry: true
-    }).on('change', function (change) {
-        // yo, something changed!
-    }).on('paused', function (info) {
-        // replication was paused, usually because of a lost connection
-    }).on('active', function (info) {
-        // replication was resumed
-    }).on('error', function (err) {
-        // totally unhandled error (shouldn't happen)
-    }).on('complete', function (info) {
-        // totally unhandled error (shouldn't happen)
-    })
-}
+// function repl() {
+//     let replica_greek = db.sync(remote_greek, {
+//         live: true,
+//         retry: true
+//     }).on('change', function (change) {
+//         // yo, something changed!
+//     }).on('paused', function (info) {
+//         // replication was paused, usually because of a lost connection
+//     }).on('active', function (info) {
+//         // replication was resumed
+//     }).on('error', function (err) {
+//         // totally unhandled error (shouldn't happen)
+//     }).on('complete', function (info) {
+//         // totally unhandled error (shouldn't happen)
+//     })
+// }
 
 module.exports = antrax()
 
