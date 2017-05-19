@@ -23,11 +23,55 @@ const PouchDB = require('pouchdb')
 // PouchDB.plugin(require('pouchdb-adapter-node-websql'));
 const db = new PouchDB(db_path) // , {adapter : 'leveldb'} // , {adapter: 'websql'}
 const db_flex = new PouchDB(db_flex_path)
+const remote_greek = new PouchDB('http:\/\/localhost:5984/greek');
+const remote__flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
+
+
+let replicated_greek = null
+let replicated_flex = null
+
+function repl() {
+    let replica_greek = db.sync(remote_greek, {
+        live: true,
+        retry: true
+    }).on('change', function (change) {
+        // yo, something changed!
+    }).on('paused', function (info) {
+        // replication was paused, usually because of a lost connection
+    }).on('active', function (info) {
+        // replication was resumed
+    }).on('error', function (err) {
+        // totally unhandled error (shouldn't happen)
+    }).on('complete', function (info) {
+        // totally unhandled error (shouldn't happen)
+    })
+}
 
 module.exports = antrax()
 
 function antrax() {
     if (!(this instanceof antrax)) return new antrax();
+}
+
+antrax.prototype.query = function(str, num, cb) {
+    let words = parseClause(str, num)
+    queryPromise(words, function(res) {
+        cb(res)
+    })
+}
+
+function queryPromise(words, cb) {
+    log('before get terms')
+    Promise.all([
+        queryTerms(words),
+        getAllFlex()
+    ]).then(function (res) {
+        main(words, res[0], res[1], function(clause) {
+            cb(clause)
+        });
+    }).catch(function (err) {
+        log('ANTRAX ERR', err);
+    })
 }
 
 // punctuation \u002E\u002C\u0021\u003B\u00B7\u0020\u0027 - ... middle dot, space, apostrophe
@@ -50,27 +94,6 @@ function parseClause(str, num) {
         words.push(word)
     })
     return words
-}
-
-antrax.prototype.query = function(str, num, cb) {
-    let words = parseClause(str, num)
-    queryPromise(words, function(res) {
-        cb(res)
-    })
-}
-
-function queryPromise(words, cb) {
-    log('before get terms')
-    Promise.all([
-        queryTerms(words),
-        getAllFlex()
-    ]).then(function (res) {
-        main(words, res[0], res[1], function(clause) {
-            cb(clause)
-        });
-    }).catch(function (err) {
-        log('ANTRAX ERR', err);
-    })
 }
 
 function main(words, tires, fls, cb) {
