@@ -1,6 +1,6 @@
 {
   "name": "antrax",
-  "version": "0.1.15",
+  "version": "0.1.22",
   "description": "simple practical ancient greek morph analizer for morpheus-greek",
   "main": "main.js",
   "scripts": {
@@ -22,8 +22,10 @@
     "electron-rebuild": "^1.5.11"
   },
   "dependencies": {
+    "fs-jetpack": "^1.0.0",
     "orthos": "^0.2.1",
     "pouchdb": "^6.2.0",
+    "pouchdb-load": "^1.4.6",
     "pouchdb-dump-cli": "^2.0.6",
     "underscore": "^1.8.3"
   }

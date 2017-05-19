@@ -10,20 +10,51 @@ const path = require('path');
 const orthos = require('orthos');
 const u = require('./lib/utils');
 const modCorr = u.modCorr
+const jetpack = require('fs-jetpack')
+
+const PouchDB = require('pouchdb')
+PouchDB.plugin(require('pouchdb-load'))
 
 // db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
 // db = new PouchDB('http:\/\/localhost:5984/greek');
 
-let db_path = path.join(__dirname, '../../pouchdb/greek')
-let db_flex_path = path.join(__dirname, '../../pouchdb/flex')
+let db_path = path.join(__dirname, './pouchdb/greek')
+let flex_path = path.join(__dirname, './pouchdb/flex')
 
+let db, db_flex
+
+log('DB DIR', __dirname)
 log('DB PATH', db_path)
 
-const PouchDB = require('pouchdb')
-const db = new PouchDB(db_path) // , {adapter : 'leveldb'} // , {adapter: 'websql'}
-const db_flex = new PouchDB(db_flex_path)
+if (!jetpack.exists('pouchdb')) {
+    let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
+    log('DB DUMP', dump_flex_path)
+    let fdump = jetpack.read(dump_flex_path)
+    console.log('=dump=', fdump.length);
+    jetpack.dir('pouchdb')
+    db_flex = new PouchDB(flex_path)
+    db_flex.load(fdump, {
+        proxy: 'http://localhost:5984/gr-flex'
+    }).then(function (fdump) {
+        console.log('dump ok', fdump.length);
+        // done loading! handoff to regular replication
+        return db_flex.replicate.from('http://localhost:5984/gr-flex');
+    }).catch(function (err) {
+        log('DUMP ERR', err)
+    });
+} else {
+    db_flex = new PouchDB(flex_path)
+    db_flex.replicate.from('http://localhost:5984/gr-flex')
+}
+
+// const db = new PouchDB(db_path) // , {adapter : 'leveldb'} // , {adapter: 'websql'}
+// const db_flex = new PouchDB(db_flex_path)
 // const remote_greek = new PouchDB('http:\/\/localhost:5984/greek');
 // const remote_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
+
+
+
+
 
 // let replicated_greek = null
 // let replicated_flex = null
