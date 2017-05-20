@@ -39,12 +39,13 @@ function antrax() {
     if (!(this instanceof antrax)) return new antrax();
 }
 
-let inited = false
+let allfls
+let populated = false
 
 antrax.prototype.query = function(str, num, cb) {
     log('__ Query STR', str)
     let words = parseClause(str, num)
-    if (inited) {
+    if (populated) {
         queryPromise(words, function(res) {
             cb(res)
         })
@@ -61,25 +62,30 @@ antrax.prototype.query = function(str, num, cb) {
             let fdump = jetpack.read(dump_flex_path)
             db_flex.load(fdump).then(function () {
                 log('before pushing f-local')
-                //return db_flex.put({_id: '_local/preloaded'});
+                // ================== FLS
+                db_flex.query('flex/byFlex', {
+                    // db_flex.allDocs({
+                    include_docs: true
+                }).then(function (res) {
+                    if (!res || !res.rows) throw new Error('no result')
+                    allfls = res.rows.map(function(row) {return row.doc })
+                    log('=ALL=FLEX=', allfls.length)
+                }).catch(function (err) {
+                    log('ERR ALL FLEX', err)
+                });
             });
             return db_greek.load(gdump).then(function () {
                 log('before pushing g-local')
                 return db_greek.put({_id: '_local/preloaded'});
             });
         }).then(function () {
-            inited = true
+            populated = true
             queryPromise(words, function(res) {
                 cb(res)
             })
         }).catch(console.log.bind(console));
     }
 }
-
-// antrax.prototype.query('ὄρους', 1, function(res) {
-//     log('=============== RESULT', res)
-// })
-
 
 function queryPromise(words, cb) {
     Promise.all([
