@@ -42,11 +42,11 @@ if (!jetpack.exists(greek_path)) {
     db_greek = new PouchDB(greek_path)
 
     db_greek.load(gdump, {
-        proxy: 'http://localhost:5984/greek'
+        // proxy: 'http://localhost:5984/greek'
     }).then(function() {
         console.log('gr dump ok');
         // return db_greek.replicate.from('http:\/\/localhost:5984/greek');
-        db_greek.replicate.from('http:\/\/localhost:5984/greek');
+        // db_greek.replicate.from('http:\/\/localhost:5984/greek');
     }).catch(function (err) {
         log('DUMP GR ERR', err)
     });
@@ -56,16 +56,16 @@ if (!jetpack.exists(greek_path)) {
     }).then(function() {
         console.log('fl dump ok')
         // done loading! handoff to regular replication
-        return db_flex.replicate.from('http:\/\/localhost:5984/gr-flex');
+        // return db_flex.replicate.from('http:\/\/localhost:5984/gr-flex');
     }).catch(function (err) {
         log('DUMP FL ERR', err)
     });
 
 } else {
     db_greek = new PouchDB(greek_path)
-    db_greek.replicate.from('http:\/\/localhost:5984/greek')
+    // db_greek.replicate.from('http:\/\/localhost:5984/greek')
     db_flex = new PouchDB(flex_path)
-    db_flex.replicate.from('http:\/\/localhost:5984/gr-flex')
+    // db_flex.replicate.from('http:\/\/localhost:5984/gr-flex')
     log('ALREADY EXISTS', greek_path)
     log('ALREADY EXISTS', flex_path)
 }
