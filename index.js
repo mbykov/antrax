@@ -33,106 +33,47 @@ log('POUCH DIR', pouch_path)
 log('DB GR PATH', greek_path)
 log('DB FL PATH', flex_path)
 
-
-antrax.prototype.init = function(cb) {
-    log('INIT START')
-    db_flex.get('_local/preloaded').then(function (doc) {
-    }).catch(function (err) {
-        if (err.name !== 'not_found')  throw err;
-        // we got a 404, so the local docuent doesn't exist. so let's preload!
-        let dump_flex_path = path.join(__dirname, 'dumps/greek_dump.txt')
-        log('DB DUMP', dump_flex_path)
-        let gdump = jetpack.read(dump_flex_path)
-        return db_flex.load(gdump).then(function () {
-            // create the local document to note that we've preloaded
-            return db_flex.put({_id: '_local/preloaded'});
-        });
-    }).then(function () {
-        return db_flex.allDocs();
-    }).then(function (res) {
-        // cb(true)
-    }).catch(console.log.bind(console));
-
-    db_greek.get('_local/preloaded').then(function (doc) {
-    }).catch(function (err) {
-        if (err.name !== 'not_found')  throw err;
-        // we got a 404, so the local docuent doesn't exist. so let's preload!
-        let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
-        log('DB DUMP', dump_flex_path)
-        let gdump = jetpack.read(dump_greek_path)
-        return db_greek.load(gdump).then(function () {
-            // create the local document to note that we've preloaded
-            log('before pushing g-local')
-            return db_greek.put({_id: '_local/preloaded'});
-        });
-    }).then(function () {
-        log('ALL DOCS', db_greek.allDocs().length)
-        return db_greek.allDocs();
-    }).then(function (res) {
-        log('== REPLICATED')
-        cb(true)
-    }).catch(console.log.bind(console));
-}
-
-
-// ===
-
-// if (!jetpack.exists(greek_path)) {
-//     log('== NODBS ==')
-//     let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
-//     let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
-//     log('DB DUMP', dump_flex_path)
-//     let fdump = jetpack.read(dump_flex_path)
-//     let gdump = jetpack.read(dump_greek_path)
-//     console.log('=g dump=', gdump.length);
-//     console.log('=f dump=', fdump.length);
-//     // jetpack.dir(pouch_path)
-
-//     db_greek.load(gdump, {
-//         // proxy: 'http://localhost:5984/greek'
-//     }).then(function() {
-//         console.log('gr dump ok');
-//         // return db_greek.replicate.from('http:\/\/localhost:5984/greek');
-//         // db_greek.replicate.from('http:\/\/localhost:5984/greek');
-//     }).catch(function (err) {
-//         log('DUMP GR ERR', err)
-//     });
-
-//     db_flex.load(fdump, {
-//         // proxy: 'http://localhost:5984/gr-flex'
-//     }).then(function() {
-//         console.log('fl dump ok')
-//         // done loading! handoff to regular replication
-//         // return db_flex.replicate.from('http:\/\/localhost:5984/gr-flex');
-//     }).catch(function (err) {
-//         log('DUMP FL ERR', err)
-//     });
-
-// } else {
-//     // db_greek = new PouchDB(greek_path)
-//     // db_greek.replicate.from('http:\/\/localhost:5984/greek')
-//     // db_flex = new PouchDB(flex_path)
-//     // db_flex.replicate.from('http:\/\/localhost:5984/gr-flex')
-//     log('ALREADY EXISTS', greek_path)
-//     log('ALREADY EXISTS', flex_path)
-// }
-// const db = new PouchDB(db_path) // , {adapter : 'leveldb'} // , {adapter: 'websql'}
-// const db_flex = new PouchDB(db_flex_path)
-// const remote_greek = new PouchDB('http:\/\/localhost:5984/greek');
-// const remote_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
-
 module.exports = antrax()
 
 function antrax() {
     if (!(this instanceof antrax)) return new antrax();
 }
 
+let inited = false
+
 antrax.prototype.query = function(str, num, cb) {
-    log('Query STR', str)
+    log('__ Query STR', str)
     let words = parseClause(str, num)
-    queryPromise(words, function(res) {
-        cb(res)
-    })
+    if (inited) {
+        queryPromise(words, function(res) {
+            cb(res)
+        })
+    } else {
+        log('INIT START')
+        db_greek.get('_local/preloaded').then(function (doc) {
+        }).catch(function (err) {
+            if (err.name !== 'not_found')  throw err;
+            // we got a 404, so the local docuent doesn't exist. so let's preload!
+            let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
+            let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
+            log('DB DUMP', dump_flex_path)
+            let gdump = jetpack.read(dump_greek_path)
+            let fdump = jetpack.read(dump_flex_path)
+            db_flex.load(fdump).then(function () {
+                log('before pushing f-local')
+                //return db_flex.put({_id: '_local/preloaded'});
+            });
+            return db_greek.load(gdump).then(function () {
+                log('before pushing g-local')
+                return db_greek.put({_id: '_local/preloaded'});
+            });
+        }).then(function () {
+            inited = true
+            queryPromise(words, function(res) {
+                cb(res)
+            })
+        }).catch(console.log.bind(console));
+    }
 }
 
 // antrax.prototype.query('ὄρους', 1, function(res) {
@@ -197,7 +138,7 @@ function main(words, tires, fls, cb) {
     // log('all q keys', allqs)
 
     queryDicts(allqs).then(function(dpres) {
-        log('dpres bef d4w')
+        console.log('dpres bef d4w')
         words.forEach(function(word) {
             if (!word.term) return
             termdicts.forEach(function(tdict, idy) {
@@ -211,7 +152,7 @@ function main(words, tires, fls, cb) {
         dict4word(words, possibleFlex, dpres.plains);
         cb(words)
     }).catch(function (err) {
-        log('ERR DICTS', err);
+        console.log('ERR DICTS', err);
     });
 }
 
@@ -491,9 +432,8 @@ function queryTerms(words) {
             keys: ukeys,
             include_docs: true
         }).then(function (res) {
-            log('Terms res')
             if (!res || !res.rows) throw new Error('no term result')
-            log('Terms res', res.rows.length)
+            log('Terms res rows', res.rows.length)
             let terms = _.select(res.rows, function(row) { return row.value == 'term' })
             let indecls = _.select(res.rows, function(row) { return row.value == 'indecl' })
             terms = terms.map(function(row) { return row.doc})
