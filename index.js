@@ -47,9 +47,8 @@ if (!jetpack.exists(greek_path)) {
         console.log('gr dump ok');
         // return db_greek.replicate.from('http:\/\/localhost:5984/greek');
         db_greek.replicate.from('http:\/\/localhost:5984/greek');
-        cb(true)
     }).catch(function (err) {
-        // log('DUMP GR ERR', err)
+        log('DUMP GR ERR', err)
     });
 
     db_flex.load(fdump, {
@@ -59,7 +58,7 @@ if (!jetpack.exists(greek_path)) {
         // done loading! handoff to regular replication
         return db_flex.replicate.from('http:\/\/localhost:5984/gr-flex');
     }).catch(function (err) {
-        // log('DUMP FL ERR', err)
+        log('DUMP FL ERR', err)
     });
 
 } else {
