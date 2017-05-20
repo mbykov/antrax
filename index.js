@@ -18,15 +18,17 @@ PouchDB.plugin(require('pouchdb-load'))
 // db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
 // db = new PouchDB('http:\/\/localhost:5984/greek');
 
-let greek_path = path.join(__dirname, './pouchdb/greek')
-let flex_path = path.join(__dirname, './pouchdb/flex')
 let db_greek, db_flex
 
-log('DB DIR', __dirname)
-log('DB GR PATH', greek_path)
-log('DB GR PATH', flex_path)
+let pouch_path = path.join(__dirname, 'pouchdb')
+let greek_path = path.join(__dirname, 'pouchdb/greek')
+let flex_path = path.join(__dirname, 'pouchdb/flex')
 
-if (!jetpack.exists('pouchdb')) {
+log('POUCH DIR', pouch_path)
+log('DB GR PATH', greek_path)
+log('DB FL PATH', flex_path)
+
+if (!jetpack.exists(greek_path)) {
     let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
     let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
     log('DB DUMP', dump_flex_path)
@@ -34,17 +36,22 @@ if (!jetpack.exists('pouchdb')) {
     let gdump = jetpack.read(dump_greek_path)
     console.log('=g dump=', gdump.length);
     console.log('=f dump=', fdump.length);
-    jetpack.dir('pouchdb')
+    // jetpack.dir(pouch_path)
+
     db_flex = new PouchDB(flex_path)
     db_greek = new PouchDB(greek_path)
+
     db_greek.load(gdump, {
         proxy: 'http://localhost:5984/greek'
     }).then(function() {
         console.log('gr dump ok');
-        return db_greek.replicate.from('http:\/\/localhost:5984/greek');
+        // return db_greek.replicate.from('http:\/\/localhost:5984/greek');
+        db_greek.replicate.from('http:\/\/localhost:5984/greek');
+        cb(true)
     }).catch(function (err) {
-        log('DUMP GR ERR', err)
+        // log('DUMP GR ERR', err)
     });
+
     db_flex.load(fdump, {
         proxy: 'http://localhost:5984/gr-flex'
     }).then(function() {
@@ -52,8 +59,9 @@ if (!jetpack.exists('pouchdb')) {
         // done loading! handoff to regular replication
         return db_flex.replicate.from('http:\/\/localhost:5984/gr-flex');
     }).catch(function (err) {
-        log('DUMP FL ERR', err)
+        // log('DUMP FL ERR', err)
     });
+
 } else {
     db_greek = new PouchDB(greek_path)
     db_greek.replicate.from('http:\/\/localhost:5984/greek')
@@ -62,12 +70,10 @@ if (!jetpack.exists('pouchdb')) {
     log('ALREADY EXISTS', greek_path)
     log('ALREADY EXISTS', flex_path)
 }
-
 // const db = new PouchDB(db_path) // , {adapter : 'leveldb'} // , {adapter: 'websql'}
 // const db_flex = new PouchDB(db_flex_path)
 // const remote_greek = new PouchDB('http:\/\/localhost:5984/greek');
 // const remote_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
-
 
 module.exports = antrax()
 
@@ -82,13 +88,12 @@ antrax.prototype.query = function(str, num, cb) {
     })
 }
 
-antrax.prototype.query('ὄρους', 1, function(res) {
-    log('===============', res)
-})
+// antrax.prototype.query('ὄρους', 1, function(res) {
+//     log('=============== RESULT', res)
+// })
 
 
 function queryPromise(words, cb) {
-    log('before get terms')
     Promise.all([
         queryTerms(words),
         getAllFlex()
@@ -124,7 +129,6 @@ function parseClause(str, num) {
 }
 
 function main(words, tires, fls, cb) {
-    log('MAIN', words, tires, fls)
     words.forEach(function(word, idx) {
         let word_indecls = _.select(tires.indecls, function(doc) { return doc.dict == word.form })
         let word_terms = _.select(tires.terms, function(doc) { return doc.form == word.form })
@@ -436,7 +440,7 @@ function queryTerms(words) {
             include_docs: true
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no term result')
-            log('Terms res', res)
+            log('Terms res', res.length)
             let terms = _.select(res.rows, function(row) { return row.value == 'term' })
             let indecls = _.select(res.rows, function(row) { return row.value == 'indecl' })
             terms = terms.map(function(row) { return row.doc})
@@ -458,7 +462,7 @@ function getAllFlex() {
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no result')
             let flexes = res.rows.map(function(row) {return row.doc })
-            log('FLEX', flexes.length)
+            // log('FLEX', flexes.length)
             resolve(flexes)
         }).catch(function (err) {
             log('ERR ALL FLEX', err)

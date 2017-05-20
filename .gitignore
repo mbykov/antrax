@@ -3,7 +3,9 @@ build
 .todo.org
 todo.org
 node_modules
-pouchdb
+pouchdb/flex
+pouchdb/gr-flex
+pouchdb/greek
 pouchdb-for-dump
 log
 Junk
