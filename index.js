@@ -46,14 +46,14 @@ antrax.prototype.init = function(cb) {
         // we got a 404, so the local docuent doesn't exist. so let's preload!
         let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
         let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
-        console.log('DB DUMP', dump_flex_path)
+        // console.log('DB DUMP', dump_flex_path)
         let gdump = jetpack.read(dump_greek_path)
         let fdump = jetpack.read(dump_flex_path)
         db_flex.load(fdump).then(function () {
-            console.log('flex loaded')
+            // console.log('flex loaded')
         });
         return db_greek.load(gdump).then(function () {
-            console.log('greek loaded')
+            // console.log('greek loaded')
             return db_greek.put({_id: '_local/preloaded'});
         });
     }).then(function () {
@@ -452,8 +452,8 @@ function getAllFlex() {
 }
 
 
-// function log() { }
-// function p() { }
+function log() { }
+function p() { }
 
-function log() { console.log.apply(console, arguments); }
-function p() { console.log(util.inspect(arguments, false, null)) }
+// function log() { console.log.apply(console, arguments); }
+// function p() { console.log(util.inspect(arguments, false, null)) }
