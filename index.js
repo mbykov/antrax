@@ -29,10 +29,6 @@ let flex_path = path.join(__dirname, 'pouchdb/flex')
 db_flex = new PouchDB(flex_path)
 db_greek = new PouchDB(greek_path)
 
-log('POUCH DIR', pouch_path)
-log('DB GR PATH', greek_path)
-log('DB FL PATH', flex_path)
-
 module.exports = antrax()
 
 function antrax() {
@@ -42,49 +38,38 @@ function antrax() {
 let allfls
 let populated = false
 
-antrax.prototype.query = function(str, num, cb) {
-    log('__ Query STR', str)
-    let words = parseClause(str, num)
-    if (populated) {
-        queryPromise(words, function(res) {
-            cb(res)
+antrax.prototype.init = function(cb) {
+    log('A: init start')
+    db_greek.get('_local/preloaded').then(function (doc) {
+    }).catch(function (err) {
+        if (err.name !== 'not_found') throw err;
+        // we got a 404, so the local docuent doesn't exist. so let's preload!
+        let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
+        let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
+        console.log('DB DUMP', dump_flex_path)
+        let gdump = jetpack.read(dump_greek_path)
+        let fdump = jetpack.read(dump_flex_path)
+        db_flex.load(fdump).then(function () {
+            console.log('flex loaded')
+        });
+        return db_greek.load(gdump).then(function () {
+            console.log('greek loaded')
+            return db_greek.put({_id: '_local/preloaded'});
+        });
+    }).then(function () {
+        let test = parseClause('τέλος')
+        queryPromise(test, function(res) {
+            cb(true)
         })
-    } else {
-        log('INIT START')
-        db_greek.get('_local/preloaded').then(function (doc) {
-        }).catch(function (err) {
-            if (err.name !== 'not_found')  throw err;
-            // we got a 404, so the local docuent doesn't exist. so let's preload!
-            let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
-            let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
-            log('DB DUMP', dump_flex_path)
-            let gdump = jetpack.read(dump_greek_path)
-            let fdump = jetpack.read(dump_flex_path)
-            db_flex.load(fdump).then(function () {
-                log('before pushing f-local')
-                // ================== FLS
-                db_flex.query('flex/byFlex', {
-                    // db_flex.allDocs({
-                    include_docs: true
-                }).then(function (res) {
-                    if (!res || !res.rows) throw new Error('no result')
-                    allfls = res.rows.map(function(row) {return row.doc })
-                    log('=ALL=FLEX=', allfls.length)
-                }).catch(function (err) {
-                    log('ERR ALL FLEX', err)
-                });
-            });
-            return db_greek.load(gdump).then(function () {
-                log('before pushing g-local')
-                return db_greek.put({_id: '_local/preloaded'});
-            });
-        }).then(function () {
-            populated = true
-            queryPromise(words, function(res) {
-                cb(res)
-            })
-        }).catch(console.log.bind(console));
-    }
+    }).catch(console.log.bind(console));
+}
+
+antrax.prototype.query = function(str, num, cb) {
+    log('A: Query STR', str)
+    let words = parseClause(str, num)
+    queryPromise(words, function(res) {
+        cb(res)
+    })
 }
 
 function queryPromise(words, cb) {
@@ -144,7 +129,6 @@ function main(words, tires, fls, cb) {
     // log('all q keys', allqs)
 
     queryDicts(allqs).then(function(dpres) {
-        console.log('dpres bef d4w')
         words.forEach(function(word) {
             if (!word.term) return
             termdicts.forEach(function(tdict, idy) {
@@ -405,14 +389,11 @@ function filterApi(d, q) {
 
 function queryDicts(keys) {
     return new Promise(function(resolve, reject) {
-        log('b.q. dicts', keys)
         db_greek.query('greek/byDict', {
             keys: keys,
             include_docs: true
         }).then(function (res) {
-            log('a. dicts res', res)
             if (!res || !res.rows) throw new Error('no dict result')
-            log('a. dicts', res.rows)
             let dicts = _.select(res.rows, function(row) { return row.value == 'dict' })
             let plains = _.select(res.rows, function(row) { return row.value == 'plain' })
             dicts = dicts.map(function(row) { return row.doc})
@@ -455,12 +436,10 @@ function queryTerms(words) {
 
 function getAllFlex() {
     return new Promise(function(resolve, reject) {
-        log('b all-flex')
         db_flex.query('flex/byFlex', { // BUG in pouch, pouchdb-node: allDocs returns only 15 rows
         // db_flex.allDocs({
             include_docs: true
         }).then(function (res) {
-            log('AFLEX-RES', res)
             if (!res || !res.rows) throw new Error('no result')
             let flexes = res.rows.map(function(row) {return row.doc })
             log('a FLEX', flexes.length)
