@@ -1,6 +1,6 @@
 {
   "name": "antrax",
-  "version": "0.1.51",
+  "version": "0.1.58",
   "description": "simple practical ancient greek morph analizer for morpheus-greek",
   "main": "main.js",
   "scripts": {
@@ -18,15 +18,13 @@
   "author": "m.bykov@gmail.com",
   "license": "GPL-3.0",
   "devDependencies": {
-    "electron": "^1.6.6",
-    "electron-rebuild": "^1.5.11"
+    "pouchdb-dump-cli": "^2.0.6"
   },
   "dependencies": {
     "fs-jetpack": "^1.0.0",
     "orthos": "^0.2.1",
     "pouchdb": "^6.2.0",
     "pouchdb-load": "^1.4.6",
-    "pouchdb-dump-cli": "^2.0.6",
     "underscore": "^1.8.3"
   }
 }

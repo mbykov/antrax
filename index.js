@@ -24,8 +24,8 @@ let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
 let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
 
 let pouch_path = path.join(__dirname, 'pouchdb')
-let greek_path = path.join(__dirname, 'pouchdb/greek')
-let flex_path = path.join(__dirname, 'pouchdb/flex')
+let greek_path = path.join(__dirname, '../../../app.asar.unpacked/pouchdb/greek')
+let flex_path = path.join(__dirname, '../../../app.asar.unpacked/pouchdb/flex')
 db_flex = new PouchDB(flex_path)
 db_greek = new PouchDB(greek_path)
 
