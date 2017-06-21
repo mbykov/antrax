@@ -26,6 +26,8 @@ let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
 let pouch_path = path.join(__dirname, 'pouchdb')
 let greek_path = path.join(__dirname, '../../../app.asar.unpacked/pouchdb/greek')
 let flex_path = path.join(__dirname, '../../../app.asar.unpacked/pouchdb/flex')
+// let greek_path = path.join(__dirname, 'pouchdb/greek')
+// let flex_path = path.join(__dirname, 'pouchdb/flex')
 db_flex = new PouchDB(flex_path)
 db_greek = new PouchDB(greek_path)
 
@@ -51,12 +53,24 @@ antrax.prototype.init = function(cb) {
         let fdump = jetpack.read(dump_flex_path)
         db_flex.load(fdump).then(function () {
             // console.log('flex loaded')
-        });
+        })
+            // .then(function () {
+            //     // done loading! handoff to regular replication
+            //     return db_flex.replicate.from(remote_flex);
+            // });
         return db_greek.load(gdump).then(function () {
             // console.log('greek loaded')
             return db_greek.put({_id: '_local/preloaded'});
-        });
+        })
+            // .then(function () {
+            //     // done loading! handoff to regular replication
+            //     return db_greek.replicate.from(remote_greek);
+            // });
     }).then(function () {
+        // let remote_greek = 'http:\/\/localhost:5984/greek'
+        // let remote_flex = 'http:\/\/localhost:5984/gr-flex'
+        // db_flex.replicate.from(remote_flex);
+        // db_greek.replicate.from(remote_greek);
         let test = parseClause('τέλος')
         queryPromise(test, function(res) {
             cb(true)
@@ -65,7 +79,6 @@ antrax.prototype.init = function(cb) {
 }
 
 antrax.prototype.query = function(str, num, cb) {
-    log('A: Query STR', str)
     let words = parseClause(str, num)
     queryPromise(words, function(res) {
         cb(res)
