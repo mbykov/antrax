@@ -18,6 +18,7 @@
   "author": "m.bykov@gmail.com",
   "license": "GPL-3.0",
   "devDependencies": {
+    "electron-prebuilt": "^1.4.13",
     "pouchdb-dump-cli": "^2.0.6"
   },
   "dependencies": {
