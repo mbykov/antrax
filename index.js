@@ -69,8 +69,6 @@ antrax.prototype.populate = function(cb) {
         let telos = 'τέλος'
         let test = parseClause(telos)
         queryPromise(test, function(res) {
-            // log('R', res)
-            // log('telos', res[0].form)
             if (res[0].form == telos) cb('dumped')
             else cb(res)
         })
@@ -139,7 +137,6 @@ function main(words, tires, fls, cb) {
     let queries = _.uniq(possibleFlex.map(function(q) { return q.query }))
     let plains = _.uniq(queries.map(function(key) { return orthos.plain(key)}))
     let allqs = _.uniq(plains.concat(termdicts))
-    // log('all q keys', allqs)
 
     queryDicts(allqs).then(function(dpres) {
         words.forEach(function(word) {
@@ -423,17 +420,15 @@ function queryDicts(keys) {
 // ищу irregulars, prons и indecls - к terms нужно дополнительно получить разъяснение - dict потом, в queryDict
 //
 function queryTerms(words) {
-    // log('b.q. terms')
     let keys = words.map(function(word) { return word.form})
     let ukeys = _.uniq(keys)
-    log('==UKEYS==', ukeys.toString())
+    // log('==UKEYS==', ukeys.toString())
     return new Promise(function(resolve, reject) {
         db_greek.query('greek/byTerm', {
             keys: ukeys,
             include_docs: true
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no term result')
-            // log('Terms res rows', res.rows.length)
             let terms = _.select(res.rows, function(row) { return row.value == 'term' })
             let indecls = _.select(res.rows, function(row) { return row.value == 'indecl' })
             terms = terms.map(function(row) { return row.doc})
@@ -455,7 +450,6 @@ function getAllFlex() {
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no result')
             let flexes = res.rows.map(function(row) {return row.doc })
-            // log('a FLEX', flexes.length)
             resolve(flexes)
         }).catch(function (err) {
             log('ERR ALL FLEX', err)
@@ -465,8 +459,8 @@ function getAllFlex() {
 }
 
 
-// function log() { }
+function log() { }
 function p() { }
 
-function log() { console.log.apply(console, arguments); }
+// function log() { console.log.apply(console, arguments); }
 // function p() { console.log(util.inspect(arguments, false, null)) }
