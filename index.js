@@ -12,24 +12,24 @@ const u = require('./lib/utils');
 const modCorr = u.modCorr
 const jetpack = require('fs-jetpack')
 
+jetpack.dir(path.join(__dirname, 'pouchdb'))
+
 const PouchDB = require('pouchdb')
 PouchDB.plugin(require('pouchdb-load'))
-
-// db_flex = new PouchDB('http:\/\/localhost:5984/gr-flex');
-// db = new PouchDB('http:\/\/localhost:5984/greek');
 
 let db_greek, db_flex
 
 let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
 let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
 
-// let pouch_name = path.join(__dirname, 'pouchdb')
 // let greek_path = path.join(__dirname, '../../../app.asar.unpacked/pouchdb/greek')
 // let flex_path = path.join(__dirname, '../../../app.asar.unpacked/pouchdb/flex')
 let greek_path = path.join(__dirname, 'pouchdb/greek')
 let flex_path = path.join(__dirname, 'pouchdb/flex')
+
 db_flex = new PouchDB(flex_path)
 db_greek = new PouchDB(greek_path)
+
 
 module.exports = antrax()
 
@@ -37,45 +37,44 @@ function antrax() {
     if (!(this instanceof antrax)) return new antrax();
 }
 
-let allfls
-let populated = false
-
 antrax.prototype.init = function(cb) {
-    log('A: init start')
     db_greek.get('_local/preloaded').then(function (doc) {
+        cb('ready')
     }).catch(function (err) {
         if (err.name !== 'not_found') throw err;
-        // we got a 404, so the local docuent doesn't exist. so let's preload!
-        let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
-        let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
-        // console.log('DB DUMP', dump_flex_path)
-        let gdump = jetpack.read(dump_greek_path)
-        let fdump = jetpack.read(dump_flex_path)
-        db_flex.load(fdump).then(function () {
-            // console.log('flex loaded')
-        })
-            // .then(function () {
-            //     // done loading! handoff to regular replication
-            //     return db_flex.replicate.from(remote_flex);
-            // });
-        return db_greek.load(gdump).then(function () {
-            // console.log('greek loaded')
-            return db_greek.put({_id: '_local/preloaded'});
-        })
-            // .then(function () {
-            //     // done loading! handoff to regular replication
-            //     return db_greek.replicate.from(remote_greek);
-            // });
-    }).then(function () {
-        // let remote_greek = 'http:\/\/localhost:5984/greek'
-        // let remote_flex = 'http:\/\/localhost:5984/gr-flex'
-        // db_flex.replicate.from(remote_flex);
-        // db_greek.replicate.from(remote_greek);
-        let test = parseClause('τέλος')
+        // we got a 404, so the local document doesn't exist. so let's preload!
+        cb('loading dumps')
+    })
+}
+
+antrax.prototype.sync = function(cb) {
+    db_greek.sync('http://localhost:5984/greek').on('error', function (err) {})
+    db_flex.sync('http://localhost:5984/gr-flex').on('error', function (err) {})
+    cb (true)
+}
+
+antrax.prototype.populate = function(cb) {
+    let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
+    let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
+    let gdump = jetpack.read(dump_greek_path)
+    let fdump = jetpack.read(dump_flex_path)
+    db_flex.load(fdump).then(function () {
+        // log('flex loaded')
+    })
+    return db_greek.load(gdump).then(function () {
+        // log('greek loaded')
+        return db_greek.put({_id: '_local/preloaded'});
+    }).then(function (res) {
+        if (!res) return cb('ready')
+        let telos = 'τέλος'
+        let test = parseClause(telos)
         queryPromise(test, function(res) {
-            cb(true)
+            // log('R', res)
+            // log('telos', res[0].form)
+            if (res[0].form == telos) cb('dumped')
+            else cb(res)
         })
-    }).catch(console.log.bind(console));
+    })
 }
 
 antrax.prototype.query = function(str, num, cb) {
@@ -95,6 +94,7 @@ function queryPromise(words, cb) {
         });
     }).catch(function (err) {
         log('ANTRAX ERR', err);
+        cb(err)
     })
 }
 
@@ -423,7 +423,7 @@ function queryDicts(keys) {
 // ищу irregulars, prons и indecls - к terms нужно дополнительно получить разъяснение - dict потом, в queryDict
 //
 function queryTerms(words) {
-    log('b.q. terms')
+    // log('b.q. terms')
     let keys = words.map(function(word) { return word.form})
     let ukeys = _.uniq(keys)
     log('==UKEYS==', ukeys.toString())
@@ -433,7 +433,7 @@ function queryTerms(words) {
             include_docs: true
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no term result')
-            log('Terms res rows', res.rows.length)
+            // log('Terms res rows', res.rows.length)
             let terms = _.select(res.rows, function(row) { return row.value == 'term' })
             let indecls = _.select(res.rows, function(row) { return row.value == 'indecl' })
             terms = terms.map(function(row) { return row.doc})
@@ -455,7 +455,7 @@ function getAllFlex() {
         }).then(function (res) {
             if (!res || !res.rows) throw new Error('no result')
             let flexes = res.rows.map(function(row) {return row.doc })
-            log('a FLEX', flexes.length)
+            // log('a FLEX', flexes.length)
             resolve(flexes)
         }).catch(function (err) {
             log('ERR ALL FLEX', err)
@@ -465,8 +465,8 @@ function getAllFlex() {
 }
 
 
-function log() { }
+// function log() { }
 function p() { }
 
-// function log() { console.log.apply(console, arguments); }
+function log() { console.log.apply(console, arguments); }
 // function p() { console.log(util.inspect(arguments, false, null)) }
