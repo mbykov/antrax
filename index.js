@@ -56,6 +56,8 @@ antrax.prototype.sync = function(cb) {
 antrax.prototype.populate = function(cb) {
     let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
     let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
+    // let dump_greek_path = path.join(__dirname, '../../../app.asar.unpacked/dumps/greek_dump.txt')
+    // let dump_flex_path = path.join(__dirname, '../../../app.asar.unpacked/dumps/flex_dump.txt')
     let gdump = jetpack.read(dump_greek_path)
     let fdump = jetpack.read(dump_flex_path)
     db_flex.load(fdump).then(function () {
