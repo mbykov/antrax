@@ -12,18 +12,19 @@ const u = require('./lib/utils');
 const modCorr = u.modCorr
 const jetpack = require('fs-jetpack')
 
-jetpack.dir(path.join(__dirname, 'pouchdb'))
 
 const PouchDB = require('pouchdb')
 PouchDB.plugin(require('pouchdb-load'))
 
 let db_greek, db_flex
 
-let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
-let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
+// let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
+// let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
 
+jetpack.dir(path.join(__dirname, '../../../app.asar.unpacked/pouchdb'))
 let greek_path = path.join(__dirname, '../../../app.asar.unpacked/pouchdb/greek')
 let flex_path = path.join(__dirname, '../../../app.asar.unpacked/pouchdb/flex')
+// jetpack.dir(path.join(__dirname, 'pouchdb'))
 // let greek_path = path.join(__dirname, 'pouchdb/greek')
 // let flex_path = path.join(__dirname, 'pouchdb/flex')
 
