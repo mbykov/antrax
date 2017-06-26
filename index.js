@@ -21,15 +21,16 @@ let db_greek, db_flex
 // let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
 // let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
 
-jetpack.dir(path.join(__dirname, '../../../app.asar.unpacked/pouchdb'))
-let greek_path = path.join(__dirname, '../../../app.asar.unpacked/pouchdb/greek')
-let flex_path = path.join(__dirname, '../../../app.asar.unpacked/pouchdb/flex')
+// jetpack.dir(path.join(__dirname, '../../../app.asar.unpacked/pouchdb'))
+// let greek_path = path.join(__dirname, '../../../app.asar.unpacked/pouchdb/greek')
+// let flex_path = path.join(__dirname, '../../../app.asar.unpacked/pouchdb/flex')
+
 // jetpack.dir(path.join(__dirname, 'pouchdb'))
 // let greek_path = path.join(__dirname, 'pouchdb/greek')
 // let flex_path = path.join(__dirname, 'pouchdb/flex')
 
-db_flex = new PouchDB(flex_path)
-db_greek = new PouchDB(greek_path)
+// db_flex = new PouchDB(flex_path)
+// db_greek = new PouchDB(greek_path)
 
 
 module.exports = antrax()
@@ -38,7 +39,27 @@ function antrax() {
     if (!(this instanceof antrax)) return new antrax();
 }
 
-antrax.prototype.init = function(cb) {
+function setDBs(dpath) {
+    let greek_path = path.join(dpath, 'pouchdb/greek')
+    let flex_path = path.join(dpath, 'pouchdb/flex')
+
+    db_greek = new PouchDB(greek_path)
+    db_flex = new PouchDB(flex_path)
+}
+
+antrax.prototype.init = function(dpath, cb) {
+    jetpack.dir(path.join(dpath, 'pouchdb'))
+    let greek_path = path.join(dpath, 'pouchdb/greek')
+    let flex_path = path.join(dpath, 'pouchdb/flex')
+    db_greek = new PouchDB(greek_path)
+    db_flex = new PouchDB(flex_path)
+
+    // db_greek.info().then(function (info) {
+    //     // log('GP_I:', info)
+    // }).catch(function (err) {
+    //     console.log('I', err);
+    // });
+
     db_greek.get('_local/preloaded').then(function (doc) {
         cb('ready')
     }).catch(function (err) {
@@ -49,43 +70,64 @@ antrax.prototype.init = function(cb) {
 }
 
 antrax.prototype.sync = function(cb) {
-    db_greek.sync('http://localhost:5984/greek').on('error', function (err) {})
-    db_flex.sync('http://localhost:5984/gr-flex').on('error', function (err) {})
+    // db_greek.sync('http://localhost:5984/greek').on('error', function (err) {})
+    // db_flex.sync('http://localhost:5984/gr-flex').on('error', function (err) {})
     cb (true)
 }
 
-antrax.prototype.populate = function(cb) {
+antrax.prototype.populate = function(dpath, cb) {
+    let greek_path = path.join(dpath, 'pouchdb/greek')
+    let flex_path = path.join(dpath, 'pouchdb/flex')
+    db_greek = new PouchDB(greek_path)
+    db_flex = new PouchDB(flex_path)
+
     let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
     let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
+
+    // let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
+    // let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
     // let dump_greek_path = path.join(__dirname, '../../../app.asar.unpacked/dumps/greek_dump.txt')
     // let dump_flex_path = path.join(__dirname, '../../../app.asar.unpacked/dumps/flex_dump.txt')
     let gdump = jetpack.read(dump_greek_path)
     let fdump = jetpack.read(dump_flex_path)
-    db_flex.load(fdump).then(function () {
-        // log('flex loaded')
-    })
-    return db_greek.load(gdump).then(function () {
-        // log('greek loaded')
-        return db_greek.put({_id: '_local/preloaded'});
-    }).then(function (res) {
-        if (!res) return cb('ready')
-        let telos = 'τέλος'
-        let test = parseClause(telos)
-        queryPromise(test, function(res) {
-            if (res[0].form == telos) cb('dumped')
-            else cb(res)
+
+    db_greek.load(gdump).then(function(res) {
+        db_flex.load(fdump).then(function(res) {
+            let telos = 'τέλος'
+            db_greek.query('greek/byDict', {
+                keys: [telos]
+            }).then(function (res) {
+                if (!res || !res.rows) log('no telos result')
+                cb(true)
+            })
+
+            // let test = parseClause(telos)
+            // log('TEST', test)
+            // queryPromise(test, function(res) {
+            //     if (res[0].form == telos) cb('dumped')
+            //     else cb(res)
+            // })
         })
     })
 }
 
-antrax.prototype.query = function(str, num, cb) {
-    let words = parseClause(str, num)
-    queryPromise(words, function(res) {
+antrax.prototype.query = function(obj, cb) {
+    // setDBs(obj.dpath)
+
+    let greek_path = path.join(obj.dpath, 'pouchdb/greek')
+    let flex_path = path.join(obj.dpath, 'pouchdb/flex')
+
+    db_greek = new PouchDB(greek_path)
+    db_flex = new PouchDB(flex_path)
+
+    let words = parseClause(obj.sentence, obj.num)
+    queryPromise(obj.dpath, words, function(res) {
         cb(res)
     })
+
 }
 
-function queryPromise(words, cb) {
+function queryPromise(dpath, words, cb) {
     Promise.all([
         queryTerms(words),
         getAllFlex()
@@ -425,12 +467,18 @@ function queryDicts(keys) {
 function queryTerms(words) {
     let keys = words.map(function(word) { return word.form})
     let ukeys = _.uniq(keys)
-    // log('==UKEYS==', ukeys.toString())
+    log('==UKEYS==', ukeys.toString())
+    // db_greek.info().then(function (info) {
+    //     log('INFO_T:', info)
+    // }).catch(function (err) {
+    //     console.log('I', err);
+    // });
     return new Promise(function(resolve, reject) {
         db_greek.query('greek/byTerm', {
             keys: ukeys,
             include_docs: true
         }).then(function (res) {
+            // log('QTERM', res)
             if (!res || !res.rows) throw new Error('no term result')
             let terms = _.select(res.rows, function(row) { return row.value == 'term' })
             let indecls = _.select(res.rows, function(row) { return row.value == 'indecl' })
@@ -462,8 +510,8 @@ function getAllFlex() {
 }
 
 
-function log() { }
+// function log() { }
 // function p() { }
 
-// function log() { console.log.apply(console, arguments); }
+function log() { console.log.apply(console, arguments); }
 // function p() { console.log(util.inspect(arguments, false, null)) }
