@@ -21,16 +21,17 @@ PouchDB.plugin(require('pouchdb-load'))
 let db_greek = new PouchDB('http://diglossa.org:5984/greek', {
     ajax: {
         cache: false,
-        timeout: 10000
+        timeout: 60000
     }
 })
 
 let db_flex = new PouchDB('http://diglossa.org:5984/gr-flex', {
     ajax: {
         cache: false,
-        timeout: 10000
+        timeout: 60000
     }
 })
+
 
 // let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
 // let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
@@ -142,10 +143,12 @@ antrax.prototype.query = function(obj, cb) {
     // db_greek = new PouchDB(greek_path)
     // db_flex = new PouchDB(flex_path)
 
-    if (!db_greek || !db_flex) {
+    db_greek.info().then(function (info) {
+    }).catch(function (err) {
         cb(false)
         return
-    }
+    });
+
 
     let words = parseClause(obj.sentence, obj.num)
     queryPromise(obj.dpath, words, function(res) {
@@ -495,11 +498,11 @@ function queryTerms(words) {
     let keys = words.map(function(word) { return word.form})
     let ukeys = _.uniq(keys)
     log('==UKEYS==', ukeys.toString())
-    db_greek.info().then(function (info) {
-        log('INFO_T:', info)
-    }).catch(function (err) {
-        console.log('INFO_T', err);
-    });
+    // db_greek.info().then(function (info) {
+    //     log('INFO_T:', info)
+    // }).catch(function (err) {
+    //     console.log('INFO_T', err);
+    // });
     return new Promise(function(resolve, reject) {
         db_greek.query('greek/byTerm', {
             keys: ukeys,
