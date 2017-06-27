@@ -54,19 +54,30 @@ antrax.prototype.init = function(dpath, cb) {
     db_greek = new PouchDB(greek_path)
     db_flex = new PouchDB(flex_path)
 
+
+    log('SYNCING...')
+    db_greek.sync('http://diglossa.org:5984/greek').on('complete', function (info) {
+        // handle complete
+        log('SYNC DONE')
+        cb('sync')
+    }).on('error', function (err) {
+        log('SYNC ERR', err)
+    });
+    db_flex.sync('http://diglossa.org:5984/gr-flex')
+
     // db_greek.info().then(function (info) {
     //     // log('GP_I:', info)
     // }).catch(function (err) {
     //     console.log('I', err);
     // });
 
-    db_greek.get('_local/preloaded').then(function (doc) {
-        cb('ready')
-    }).catch(function (err) {
-        if (err.name !== 'not_found') throw err;
-        // we got a 404, so the local document doesn't exist. so let's preload!
-        cb('loading dumps')
-    })
+    // db_greek.get('_local/preloaded').then(function (doc) {
+    //     cb('ready')
+    // }).catch(function (err) {
+    //     if (err.name !== 'not_found') throw err;
+    //     // we got a 404, so the local document doesn't exist. so let's preload!
+    //     cb('loading dumps')
+    // })
 }
 
 antrax.prototype.sync = function(cb) {
@@ -97,16 +108,12 @@ antrax.prototype.populate = function(dpath, cb) {
             db_greek.query('greek/byDict', {
                 keys: [telos]
             }).then(function (res) {
-                if (!res || !res.rows) log('no telos result')
-                cb(true)
+                if (!res || !res.rows) {
+                    throw new Error()
+                    cb(false)
+                }
+                else cb(true)
             })
-
-            // let test = parseClause(telos)
-            // log('TEST', test)
-            // queryPromise(test, function(res) {
-            //     if (res[0].form == telos) cb('dumped')
-            //     else cb(res)
-            // })
         })
     })
 }
@@ -468,17 +475,17 @@ function queryTerms(words) {
     let keys = words.map(function(word) { return word.form})
     let ukeys = _.uniq(keys)
     log('==UKEYS==', ukeys.toString())
-    // db_greek.info().then(function (info) {
-    //     log('INFO_T:', info)
-    // }).catch(function (err) {
-    //     console.log('I', err);
-    // });
+    db_greek.info().then(function (info) {
+        log('INFO_T:', info)
+    }).catch(function (err) {
+        console.log('INFO_T', err);
+    });
     return new Promise(function(resolve, reject) {
         db_greek.query('greek/byTerm', {
             keys: ukeys,
             include_docs: true
         }).then(function (res) {
-            // log('QTERM', res)
+            log('QTERM', res)
             if (!res || !res.rows) throw new Error('no term result')
             let terms = _.select(res.rows, function(row) { return row.value == 'term' })
             let indecls = _.select(res.rows, function(row) { return row.value == 'indecl' })
