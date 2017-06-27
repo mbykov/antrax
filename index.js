@@ -22,14 +22,15 @@ let db_greek = new PouchDB('http://diglossa.org:5984/greek', {
     ajax: {
         cache: false,
         timeout: 10000
-    },
-});
+    }
+})
+
 let db_flex = new PouchDB('http://diglossa.org:5984/gr-flex', {
     ajax: {
         cache: false,
-        timeout: 10000,
-    },
-});
+        timeout: 10000
+    }
+})
 
 // let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
 // let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
@@ -141,6 +142,10 @@ antrax.prototype.query = function(obj, cb) {
     // db_greek = new PouchDB(greek_path)
     // db_flex = new PouchDB(flex_path)
 
+    if (!db_greek || !db_flex) {
+        cb(false)
+        return
+    }
 
     let words = parseClause(obj.sentence, obj.num)
     queryPromise(obj.dpath, words, function(res) {
