@@ -55,7 +55,7 @@ antrax.prototype.init = function(dpath, cb) {
     db_flex = new PouchDB(flex_path)
 
 
-    log('SYNCING...')
+    log('SYNCING...', greek_path)
     db_greek.sync('http://diglossa.org:5984/greek').on('complete', function (info) {
         // handle complete
         log('SYNC DONE')
@@ -121,8 +121,11 @@ antrax.prototype.populate = function(dpath, cb) {
 antrax.prototype.query = function(obj, cb) {
     // setDBs(obj.dpath)
 
-    let greek_path = path.join(obj.dpath, 'pouchdb/greek')
-    let flex_path = path.join(obj.dpath, 'pouchdb/flex')
+    // let greek_path = path.join(obj.dpath, 'pouchdb/greek')
+    // let flex_path = path.join(obj.dpath, 'pouchdb/flex')
+    let greek_path = 'http://diglossa.org:5984/greek'
+    let flex_path = 'http://diglossa.org:5984/gr-flex'
+
 
     db_greek = new PouchDB(greek_path)
     db_flex = new PouchDB(flex_path)
