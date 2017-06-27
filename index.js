@@ -16,7 +16,20 @@ const jetpack = require('fs-jetpack')
 const PouchDB = require('pouchdb')
 PouchDB.plugin(require('pouchdb-load'))
 
-let db_greek, db_flex
+// let db_greek, db_flex
+
+let db_greek = new PouchDB('http://diglossa.org:5984/greek', {
+    ajax: {
+        cache: false,
+        timeout: 10000
+    },
+});
+let db_flex = new PouchDB('http://diglossa.org:5984/gr-flex', {
+    ajax: {
+        cache: false,
+        timeout: 10000,
+    },
+});
 
 // let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
 // let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
@@ -47,88 +60,87 @@ function setDBs(dpath) {
     db_flex = new PouchDB(flex_path)
 }
 
-antrax.prototype.init = function(dpath, cb) {
-    jetpack.dir(path.join(dpath, 'pouchdb'))
-    let greek_path = path.join(dpath, 'pouchdb/greek')
-    let flex_path = path.join(dpath, 'pouchdb/flex')
-    db_greek = new PouchDB(greek_path)
-    db_flex = new PouchDB(flex_path)
+// antrax.prototype.init = function(dpath, cb) {
+//     jetpack.dir(path.join(dpath, 'pouchdb'))
+//     // let greek_path = path.join(dpath, 'pouchdb/greek')
+//     // let flex_path = path.join(dpath, 'pouchdb/flex')
+//     // db_greek = new PouchDB(greek_path)
+//     // db_flex = new PouchDB(flex_path)
 
 
-    log('SYNCING...', greek_path)
-    db_greek.sync('http://diglossa.org:5984/greek').on('complete', function (info) {
-        // handle complete
-        log('SYNC DONE')
-        cb('sync')
-    }).on('error', function (err) {
-        log('SYNC ERR', err)
-    });
-    db_flex.sync('http://diglossa.org:5984/gr-flex')
+//     log('SYNCING...')
+//     db_greek.sync('http://diglossa.org:5984/greek').on('complete', function (info) {
+//         // handle complete
+//         log('SYNC DONE')
+//         cb('sync')
+//     }).on('error', function (err) {
+//         log('SYNC ERR', err)
+//     });
+//     db_flex.sync('http://diglossa.org:5984/gr-flex')
 
-    // db_greek.info().then(function (info) {
-    //     // log('GP_I:', info)
-    // }).catch(function (err) {
-    //     console.log('I', err);
-    // });
+//     // db_greek.info().then(function (info) {
+//     //     // log('GP_I:', info)
+//     // }).catch(function (err) {
+//     //     console.log('I', err);
+//     // });
 
-    // db_greek.get('_local/preloaded').then(function (doc) {
-    //     cb('ready')
-    // }).catch(function (err) {
-    //     if (err.name !== 'not_found') throw err;
-    //     // we got a 404, so the local document doesn't exist. so let's preload!
-    //     cb('loading dumps')
-    // })
-}
+//     // db_greek.get('_local/preloaded').then(function (doc) {
+//     //     cb('ready')
+//     // }).catch(function (err) {
+//     //     if (err.name !== 'not_found') throw err;
+//     //     // we got a 404, so the local document doesn't exist. so let's preload!
+//     //     cb('loading dumps')
+//     // })
+// }
 
-antrax.prototype.sync = function(cb) {
-    // db_greek.sync('http://localhost:5984/greek').on('error', function (err) {})
-    // db_flex.sync('http://localhost:5984/gr-flex').on('error', function (err) {})
-    cb (true)
-}
+// antrax.prototype.sync = function(cb) {
+//     // db_greek.sync('http://localhost:5984/greek').on('error', function (err) {})
+//     // db_flex.sync('http://localhost:5984/gr-flex').on('error', function (err) {})
+//     cb (true)
+// }
 
-antrax.prototype.populate = function(dpath, cb) {
-    let greek_path = path.join(dpath, 'pouchdb/greek')
-    let flex_path = path.join(dpath, 'pouchdb/flex')
-    db_greek = new PouchDB(greek_path)
-    db_flex = new PouchDB(flex_path)
+// antrax.prototype.populate = function(dpath, cb) {
+//     let greek_path = path.join(dpath, 'pouchdb/greek')
+//     let flex_path = path.join(dpath, 'pouchdb/flex')
+//     db_greek = new PouchDB(greek_path)
+//     db_flex = new PouchDB(flex_path)
 
-    let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
-    let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
+//     let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
+//     let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
 
-    // let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
-    // let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
-    // let dump_greek_path = path.join(__dirname, '../../../app.asar.unpacked/dumps/greek_dump.txt')
-    // let dump_flex_path = path.join(__dirname, '../../../app.asar.unpacked/dumps/flex_dump.txt')
-    let gdump = jetpack.read(dump_greek_path)
-    let fdump = jetpack.read(dump_flex_path)
+//     // let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
+//     // let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
+//     // let dump_greek_path = path.join(__dirname, '../../../app.asar.unpacked/dumps/greek_dump.txt')
+//     // let dump_flex_path = path.join(__dirname, '../../../app.asar.unpacked/dumps/flex_dump.txt')
+//     let gdump = jetpack.read(dump_greek_path)
+//     let fdump = jetpack.read(dump_flex_path)
 
-    db_greek.load(gdump).then(function(res) {
-        db_flex.load(fdump).then(function(res) {
-            let telos = 'τέλος'
-            db_greek.query('greek/byDict', {
-                keys: [telos]
-            }).then(function (res) {
-                if (!res || !res.rows) {
-                    throw new Error()
-                    cb(false)
-                }
-                else cb(true)
-            })
-        })
-    })
-}
+//     db_greek.load(gdump).then(function(res) {
+//         db_flex.load(fdump).then(function(res) {
+//             let telos = 'τέλος'
+//             db_greek.query('greek/byDict', {
+//                 keys: [telos]
+//             }).then(function (res) {
+//                 if (!res || !res.rows) {
+//                     throw new Error()
+//                     cb(false)
+//                 }
+//                 else cb(true)
+//             })
+//         })
+//     })
+// }
 
 antrax.prototype.query = function(obj, cb) {
     // setDBs(obj.dpath)
 
     // let greek_path = path.join(obj.dpath, 'pouchdb/greek')
     // let flex_path = path.join(obj.dpath, 'pouchdb/flex')
-    let greek_path = 'http://diglossa.org:5984/greek'
-    let flex_path = 'http://diglossa.org:5984/gr-flex'
+    // let greek_path = 'http://diglossa.org:5984/greek'
+    // let flex_path = 'http://diglossa.org:5984/gr-flex'
+    // db_greek = new PouchDB(greek_path)
+    // db_flex = new PouchDB(flex_path)
 
-
-    db_greek = new PouchDB(greek_path)
-    db_flex = new PouchDB(flex_path)
 
     let words = parseClause(obj.sentence, obj.num)
     queryPromise(obj.dpath, words, function(res) {
