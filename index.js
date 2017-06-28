@@ -39,11 +39,11 @@ function antrax() {
 
 
 antrax.prototype.init = function(cb) {
-    db_greek.info().then(function (info) {
-    }).catch(function (err) {
-        cb(false)
-        return
-    });
+    // db_greek.info().then(function (info) {
+    // }).catch(function (err) {
+    //     cb(false)
+    //     return
+    // });
 
     db_flex.query('flex/byFlex', { // BUG in pouch, pouchdb-node: allDocs returns only 15 rows
         // db_flex.allDocs({
@@ -53,8 +53,8 @@ antrax.prototype.init = function(cb) {
         let flexes = res.rows.map(function(row) {return row.doc })
         cb(flexes)
     }).catch(function (err) {
-        log('ERR ALL FLEX', err)
-        cb(err)
+        // log('ERR ALL FLEX', err)
+        cb(false)
     })
 }
 
@@ -80,7 +80,7 @@ antrax.prototype.query = function(obj, flexes, cb) {
         });
     }).catch(function (err) {
         log('queryTERMS ERRS', err);
-        cb(err)
+        cb(false)
     })
 }
 
@@ -119,6 +119,7 @@ function main(words, tires, fls, cb) {
         cb(words)
     }).catch(function (err) {
         console.log('ERR DICTS', err);
+        cb(false)
     });
 }
 
