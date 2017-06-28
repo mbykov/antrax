@@ -1,6 +1,6 @@
 {
   "name": "antrax",
-  "version": "0.1.74",
+  "version": "0.1.75",
   "description": "simple practical ancient greek morph analizer for morpheus-greek",
   "main": "main.js",
   "scripts": {

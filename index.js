@@ -12,7 +12,6 @@ const u = require('./lib/utils');
 const modCorr = u.modCorr
 const jetpack = require('fs-jetpack')
 
-
 const PouchDB = require('pouchdb')
 PouchDB.plugin(require('pouchdb-load'))
 
@@ -32,165 +31,57 @@ let db_flex = new PouchDB('http://diglossa.org:5984/gr-flex', {
     }
 })
 
-
-// let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
-// let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
-
-// jetpack.dir(path.join(__dirname, '../../../app.asar.unpacked/pouchdb'))
-// let greek_path = path.join(__dirname, '../../../app.asar.unpacked/pouchdb/greek')
-// let flex_path = path.join(__dirname, '../../../app.asar.unpacked/pouchdb/flex')
-
-// jetpack.dir(path.join(__dirname, 'pouchdb'))
-// let greek_path = path.join(__dirname, 'pouchdb/greek')
-// let flex_path = path.join(__dirname, 'pouchdb/flex')
-
-// db_flex = new PouchDB(flex_path)
-// db_greek = new PouchDB(greek_path)
-
-
 module.exports = antrax()
 
 function antrax() {
     if (!(this instanceof antrax)) return new antrax();
 }
 
-function setDBs(dpath) {
-    let greek_path = path.join(dpath, 'pouchdb/greek')
-    let flex_path = path.join(dpath, 'pouchdb/flex')
 
-    db_greek = new PouchDB(greek_path)
-    db_flex = new PouchDB(flex_path)
-}
-
-// antrax.prototype.init = function(dpath, cb) {
-//     jetpack.dir(path.join(dpath, 'pouchdb'))
-//     // let greek_path = path.join(dpath, 'pouchdb/greek')
-//     // let flex_path = path.join(dpath, 'pouchdb/flex')
-//     // db_greek = new PouchDB(greek_path)
-//     // db_flex = new PouchDB(flex_path)
-
-
-//     log('SYNCING...')
-//     db_greek.sync('http://diglossa.org:5984/greek').on('complete', function (info) {
-//         // handle complete
-//         log('SYNC DONE')
-//         cb('sync')
-//     }).on('error', function (err) {
-//         log('SYNC ERR', err)
-//     });
-//     db_flex.sync('http://diglossa.org:5984/gr-flex')
-
-//     // db_greek.info().then(function (info) {
-//     //     // log('GP_I:', info)
-//     // }).catch(function (err) {
-//     //     console.log('I', err);
-//     // });
-
-//     // db_greek.get('_local/preloaded').then(function (doc) {
-//     //     cb('ready')
-//     // }).catch(function (err) {
-//     //     if (err.name !== 'not_found') throw err;
-//     //     // we got a 404, so the local document doesn't exist. so let's preload!
-//     //     cb('loading dumps')
-//     // })
-// }
-
-// antrax.prototype.sync = function(cb) {
-//     // db_greek.sync('http://localhost:5984/greek').on('error', function (err) {})
-//     // db_flex.sync('http://localhost:5984/gr-flex').on('error', function (err) {})
-//     cb (true)
-// }
-
-// antrax.prototype.populate = function(dpath, cb) {
-//     let greek_path = path.join(dpath, 'pouchdb/greek')
-//     let flex_path = path.join(dpath, 'pouchdb/flex')
-//     db_greek = new PouchDB(greek_path)
-//     db_flex = new PouchDB(flex_path)
-
-//     let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
-//     let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
-
-//     // let dump_greek_path = path.join(__dirname, 'dumps/greek_dump.txt')
-//     // let dump_flex_path = path.join(__dirname, 'dumps/flex_dump.txt')
-//     // let dump_greek_path = path.join(__dirname, '../../../app.asar.unpacked/dumps/greek_dump.txt')
-//     // let dump_flex_path = path.join(__dirname, '../../../app.asar.unpacked/dumps/flex_dump.txt')
-//     let gdump = jetpack.read(dump_greek_path)
-//     let fdump = jetpack.read(dump_flex_path)
-
-//     db_greek.load(gdump).then(function(res) {
-//         db_flex.load(fdump).then(function(res) {
-//             let telos = 'τέλος'
-//             db_greek.query('greek/byDict', {
-//                 keys: [telos]
-//             }).then(function (res) {
-//                 if (!res || !res.rows) {
-//                     throw new Error()
-//                     cb(false)
-//                 }
-//                 else cb(true)
-//             })
-//         })
-//     })
-// }
-
-antrax.prototype.query = function(obj, cb) {
-    // setDBs(obj.dpath)
-
-    // let greek_path = path.join(obj.dpath, 'pouchdb/greek')
-    // let flex_path = path.join(obj.dpath, 'pouchdb/flex')
-    // let greek_path = 'http://diglossa.org:5984/greek'
-    // let flex_path = 'http://diglossa.org:5984/gr-flex'
-    // db_greek = new PouchDB(greek_path)
-    // db_flex = new PouchDB(flex_path)
-
+antrax.prototype.init = function(cb) {
     db_greek.info().then(function (info) {
     }).catch(function (err) {
         cb(false)
         return
     });
 
-
-    let words = parseClause(obj.sentence, obj.num)
-    queryPromise(obj.dpath, words, function(res) {
-        cb(res)
-    })
-
-}
-
-function queryPromise(dpath, words, cb) {
-    Promise.all([
-        queryTerms(words),
-        getAllFlex()
-    ]).then(function (res) {
-        main(words, res[0], res[1], function(clause) {
-            cb(clause)
-        });
+    db_flex.query('flex/byFlex', { // BUG in pouch, pouchdb-node: allDocs returns only 15 rows
+        // db_flex.allDocs({
+        include_docs: true
+    }).then(function (res) {
+        if (!res || !res.rows) throw new Error('no result')
+        let flexes = res.rows.map(function(row) {return row.doc })
+        cb(flexes)
     }).catch(function (err) {
-        log('ANTRAX ERR', err);
+        log('ERR ALL FLEX', err)
         cb(err)
     })
 }
 
-// punctuation \u002E\u002C\u0021\u003B\u00B7\u0020\u0027 - ... middle dot, space, apostrophe
-function parseClause(str, num) {
-    let words = []
-    let keys = str.split(' ')
-    let current = str.split(' ')[num];
-    if (!current) current = 0
-    let plain, form, accents
-    keys.forEach(function(key, idx) {
-        if (idx == 0) form = orthos.dc(key) // downcase
-        else form = key
-        form = form.replace(/[\u002E\u002C\u0021\u003B\u00B7\u0020\u0027]/, '') // punctuation ?
-        form = orthos.toComb(form)
-        plain = orthos.plain(form)
-        accents = form.length - plain.length
-        if (accents > 1) form = orthos.correctAccent(form)
-        let word = {idx: idx, form: form, plain: plain, raw: key, dicts: []}
-        if (idx == num) word.current = true
-        words.push(word)
+antrax.prototype.query = function(obj, flexes, cb) {
+    let words = parseClause(obj.sentence, obj.num)
+    let keys = words.map(function(word) { return word.form})
+    let ukeys = _.uniq(keys)
+    // log('==UKEYS==', ukeys.toString())
+
+    db_greek.query('greek/byTerm', {
+        keys: ukeys,
+        include_docs: true
+    }).then(function (res) {
+        if (!res || !res.rows) throw new Error('no term result')
+        let terms = _.select(res.rows, function(row) { return row.value == 'term' })
+        let indecls = _.select(res.rows, function(row) { return row.value == 'indecl' })
+        terms = terms.map(function(row) { return row.doc})
+        indecls = indecls.map(function(row) { return row.doc})
+        let result = {terms: terms, indecls: indecls}
+
+        main(words, result, flexes, function(clause) {
+            cb(clause)
+        });
+    }).catch(function (err) {
+        log('queryTERMS ERRS', err);
+        cb(err)
     })
-    return words
 }
 
 function main(words, tires, fls, cb) {
@@ -492,52 +383,28 @@ function queryDicts(keys) {
     })
 }
 
-// ищу irregulars, prons и indecls - к terms нужно дополнительно получить разъяснение - dict потом, в queryDict
-//
-function queryTerms(words) {
-    let keys = words.map(function(word) { return word.form})
-    let ukeys = _.uniq(keys)
-    log('==UKEYS==', ukeys.toString())
-    // db_greek.info().then(function (info) {
-    //     log('INFO_T:', info)
-    // }).catch(function (err) {
-    //     console.log('INFO_T', err);
-    // });
-    return new Promise(function(resolve, reject) {
-        db_greek.query('greek/byTerm', {
-            keys: ukeys,
-            include_docs: true
-        }).then(function (res) {
-            log('QTERM', res)
-            if (!res || !res.rows) throw new Error('no term result')
-            let terms = _.select(res.rows, function(row) { return row.value == 'term' })
-            let indecls = _.select(res.rows, function(row) { return row.value == 'indecl' })
-            terms = terms.map(function(row) { return row.doc})
-            indecls = indecls.map(function(row) { return row.doc})
-            let result = {terms: terms, indecls: indecls}
-            resolve(result)
-        }).catch(function (err) {
-            log('queryTERMS ERRS', err);
-            reject(err);
-        })
+// punctuation \u002E\u002C\u0021\u003B\u00B7\u0020\u0027 - ... middle dot, space, apostrophe
+function parseClause(str, num) {
+    let words = []
+    let keys = str.split(' ')
+    let current = str.split(' ')[num];
+    if (!current) current = 0
+    let plain, form, accents
+    keys.forEach(function(key, idx) {
+        if (idx == 0) form = orthos.dc(key) // downcase
+        else form = key
+        form = form.replace(/[\u002E\u002C\u0021\u003B\u00B7\u0020\u0027]/, '') // punctuation ?
+        form = orthos.toComb(form)
+        plain = orthos.plain(form)
+        accents = form.length - plain.length
+        if (accents > 1) form = orthos.correctAccent(form)
+        let word = {idx: idx, form: form, plain: plain, raw: key, dicts: []}
+        if (idx == num) word.current = true
+        words.push(word)
     })
+    return words
 }
 
-function getAllFlex() {
-    return new Promise(function(resolve, reject) {
-        db_flex.query('flex/byFlex', { // BUG in pouch, pouchdb-node: allDocs returns only 15 rows
-        // db_flex.allDocs({
-            include_docs: true
-        }).then(function (res) {
-            if (!res || !res.rows) throw new Error('no result')
-            let flexes = res.rows.map(function(row) {return row.doc })
-            resolve(flexes)
-        }).catch(function (err) {
-            log('ERR ALL FLEX', err)
-            reject(err)
-        });
-    });
-}
 
 
 // function log() { }
