@@ -18,6 +18,7 @@ PouchDB.plugin(require('pouchdb-load'))
 // let db_greek, db_flex
 
 let db_greek = new PouchDB('http://diglossa.org:5984/greek', {
+// let db_greek = new PouchDB('http://localhost:5984/greek', {
     ajax: {
         cache: false,
         timeout: 60000
@@ -352,8 +353,8 @@ function filterApi(d, q) {
     let re = new RegExp(q.term + '$')
     let qstem = q.form.replace(re, '')
     if (q.form == qstem) return
-    // let form = [qstem, q.dict].join('')
-    let form = [qstem, 'ω'].join('')
+    let form = [qstem, q.dict].join('')
+    // let form = [qstem, 'ω'].join('')
 
     let pform = orthos.plain(form)
     if (q.aug && u.augmods.includes(q.var)) {
@@ -408,8 +409,8 @@ function parseClause(str, num) {
 
 
 
-// function log() { }
+function log() { }
 // function p() { }
 
-function log() { console.log.apply(console, arguments); }
+// function log() { console.log.apply(console, arguments); }
 // function p() { console.log(util.inspect(arguments, false, null)) }
