@@ -1,0 +1,16 @@
+root: true
+
+env:
+  es6: true
+  node: true
+  mocha: true
+
+"parser": "babel-eslint"
+
+extends:
+  ""
+
+rules:
+  quotes: 0
+  func-names: 0
+  "semi": ["error", "never"]

@@ -1,31 +1,66 @@
 {
   "name": "antrax",
-  "version": "0.1.78",
+  "author": "Michael Bykov",
+  "version": "0.8.0",
   "description": "simple practical ancient greek morph analizer for morpheus-greek",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "repository": "https://github.com/mbykov/antrax",
+  "main": "./dist/index.js",
   "keywords": [
-    "ancient",
-    "greek",
-    "morphology",
-    "syntax",
-    "node.js",
-    "electron.js"
+    "es6",
+    "babel",
+    "eslint",
+    "npm package"
   ],
-  "author": "m.bykov@gmail.com",
-  "license": "GPL-3.0",
-  "devDependencies": {
-    "electron-prebuilt": "^1.4.13",
-    "pouchdb-dump-cli": "^2.0.6"
+  "scripts": {
+    "minimum:": "yarn add --dev shx cross-env mocha mocha-each babel-register babel-preset-es2015 chai nodemon babel-cli babel-plugin-add-module-exports orthos fs-extra pouchdb",
+    "start": "npm run build && node dist",
+    "prebuild": "npm run clean",
+    "build": "cross-env NODE_ENV=production babel -s true src -d dist",
+    "clean": "rm -rf dist",
+    "test": "cross-env NODE_ENV=test mocha -g $FILTER -c -R dot -b --timeout 5000 'test/**/*.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
+    "wktverb": "cross-env NODE_ENV=test mocha -g $FILTER -c -R dot -b --timeout 5000 'test/wkt_verb.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
+    "comp": "cross-env NODE_ENV=test mocha -g $FILTER -c -R dot -b 'test/**/verb_compound.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
+    "name_": "cross-env NODE_ENV=test mocha -c -R dot -b 'test/name_ucb.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
+    "adj_": "cross-env NODE_ENV=test mocha -c -R dot -b 'test/name_ad_fgb.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
+    "wktname": "cross-env NODE_ENV=test mocha -c -R dot -b --timeout 5000 'test/wkt_name.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
+    "wktad": "cross-env NODE_ENV=test mocha -c -R dot -b --timeout 5000 'test/wkt_ad.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
+    "wktadv": "cross-env NODE_ENV=test mocha -c -R dot -b --timeout 5000 'test/wkt_adv.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
+    "wktpart_": "cross-env NODE_ENV=test mocha -c -R dot -b --timeout 5000 'test/wkt_part.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
+    "test_": "cross-env NODE_ENV=test mocha -c -S -R spec 'test/**/*.test.js' --compilers js:babel-register --check-leaks",
+    "lint": "eslint src test"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
-    "fs-jetpack": "^1.1.0",
+    "fs-jetpack": "^1.3.0",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-minify": "^0.2.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "cross-env": "^5.1.3",
+    "eslint": "^4.15.0",
+    "fs-extra": "^5.0.0",
+    "mocha": "^4.1.0",
+    "mocha-each": "^1.1.0",
+    "nodemon": "^1.14.11",
     "orthos": "^0.2.1",
-    "pouchdb": "^6.2.0",
-    "pouchdb-load": "^1.4.6",
-    "underscore": "^1.8.3"
-  }
+    "pouchdb": "^6.4.1",
+    "shx": "^0.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camsong/babel-npm-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/camsong/babel-npm-boilerplate/issues"
+  },
+  "homepage": "https://github.com/camsong/babel-npm-boilerplate#readme",
+  "license": "MIT"
 }
