@@ -3,6 +3,8 @@
   "author": "Michael Bykov",
   "version": "0.8.0",
   "description": "simple practical ancient greek morph analizer for morpheus-greek",
+  "license": "GPL-3.0",
+  "homepage": "http://diglossa.org/greek",
   "main": "./dist/index.js",
   "keywords": [
    "ancient",
@@ -58,11 +60,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/camsong/babel-npm-boilerplate.git"
+    "url": "git+https://github.com/mbykov/antrax.git"
   },
   "bugs": {
-    "url": "https://github.com/camsong/babel-npm-boilerplate/issues"
-  },
-  "homepage": "https://github.com/camsong/babel-npm-boilerplate#readme",
-  "license": "GPL-3.0"
+    "url": "https://github.com/mbykov/antrax/issues"
+  }
  }
