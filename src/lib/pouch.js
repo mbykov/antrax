@@ -12,24 +12,41 @@ let dbs
 let db_flex
 let db_terms
 
-/*
-  enable -  для консоли
-*/
-
-// убрать cfg, здесь cfg всегда должно уже быть :
-
-export function dnames () {
-  if (!dbs) return
-  let dbnames = dbs.map(db => { return db.dname })
-  return dbnames
+function initDBs(upath, apath) {
+  if (!apath) apath = path.resolve(__dirname, '../../../egreek')
+  let src = path.resolve(apath, 'pouch')
+  let dest = path.resolve(upath, 'pouch')
+  try {
+    let jetData = jetpack.cwd(upath)
+    jetData.copy(src, dest, { matching: '**\/*' })
+    createZeroCfg(upath)
+  } catch (err) {
+    log('ERR copying default DBs', err)
+  }
 }
 
-export function enableDBs (upath) {
+function createZeroCfg(upath) {
+  let jetData = jetpack.cwd(upath)
+  let cfg = []
+  let fns = jetData.list('pouch')
+  fns.forEach((dn, idx) => {
+    let dpath = ['pouch/', dn].join('')
+    if (jetData.exists(dpath) !== 'dir') return
+    let cf = {name: dn, active: true, idx: idx}
+    cfg.push(cf)
+  })
+  jetData.write('pouch/cfg.json', cfg)
+}
+
+export function enableDBs (upath, apath) {
   const jetData = jetpack.cwd(upath)
   let cfg = jetData.read('pouch/cfg.json', 'json')
+  if (!cfg) {
+    initDBs(upath, apath)
+    cfg = jetData.read('pouch/cfg.json', 'json')
+  }
   cfg = _.sortBy(cfg, ['idx'])
   let dbnames = _.compact(cfg.map(cf => { return (cf.active) ? cf.name : null }))
-  // log('ACT-DBNs:', dbnames)
   dbs = []
   dbnames.forEach((dn, idx) => {
     let dpath = path.resolve(upath, 'pouch', dn)
@@ -38,7 +55,6 @@ export function enableDBs (upath) {
     pouch.weight = idx
     dbs.push(pouch)
   })
-  // log('DBS', dbs.length)
   let flexpath = path.resolve(upath, 'pouch', 'flex')
   db_flex = new PouchDB(flexpath)
   let termpath = path.resolve(upath, 'pouch', 'terms')
@@ -75,7 +91,6 @@ export function getFlex (keys) {
           result.push(morph)
         })
       })
-      // log('FLS', result)
       return result
     })
 }
@@ -91,7 +106,6 @@ export function getTerms (keys) {
         if (!terms[doc.term]) terms[doc.term] = []
         terms[doc.term].push(doc)
       })
-      // log('A-TERMS', terms)
       return terms
     })
 }

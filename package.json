@@ -5,11 +5,13 @@
   "description": "simple practical ancient greek morph analizer for morpheus-greek",
   "main": "./dist/index.js",
   "keywords": [
-    "es6",
-    "babel",
-    "eslint",
-    "npm package"
-  ],
+   "ancient",
+    "greek",
+    "morphology",
+    "syntax",
+    "node.js",
+    "electron.js"
+   ],
   "scripts": {
     "minimum:": "yarn add --dev shx cross-env mocha mocha-each babel-register babel-preset-es2015 chai nodemon babel-cli babel-plugin-add-module-exports orthos fs-extra pouchdb",
     "start": "npm run build && node dist",
@@ -62,5 +64,5 @@
     "url": "https://github.com/camsong/babel-npm-boilerplate/issues"
   },
   "homepage": "https://github.com/camsong/babel-npm-boilerplate#readme",
-  "license": "MIT"
-}
+  "license": "GPL-3.0"
+ }

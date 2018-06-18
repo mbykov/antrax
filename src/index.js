@@ -25,7 +25,8 @@ function runner(query) {
   // NB - прочитать в конфиге :
   // прочитать cfg?
   let upath = path.resolve(__dirname, '../../')
-  enableDBs(upath)
+  let apath = path.resolve(__dirname, '../../egreek')
+  enableDBs(upath, apath)
 
   let wfs = query.split(' ')
   if (wfs.length > 1) {
