@@ -6,7 +6,8 @@ import { segmenter } from './lib/segmenter'
 import { accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs } from './lib/utils'
 
 const path = require('path')
-const orthos = require('../../orthos') // publish - поправить версию
+// const orthos = require('../../orthos')
+const orthos = require('orthos')
 
 let clog = console.log
 
@@ -325,7 +326,7 @@ function filterDictFlex (comb, chains) {
           // if (!uverb.trns) uverb.trns = '== no trn =='
           let uvkey = [uverb.rdict, uverb.trns.toString()].join('')
           if (uvkeys[uvkey]) return
-          let udict = {verb: true, rdict: uverb.rdict, dname: uverb.dname, trns: uverb.trns}
+          let udict = {verb: true, rdict: uverb.rdict, dname: uverb.dname, trns: uverb.trns, weight: uverb.weight}
           udicts.push(udict)
           uvkeys[uvkey] = true
         })

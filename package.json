@@ -1,19 +1,20 @@
 {
   "name": "antrax",
-  "author": "Michael Bykov",
-  "version": "0.8.0",
   "description": "simple practical ancient greek morph analizer for morpheus-greek",
+  "version": "0.8.1",
+  "author": "Michael Bykov <m.bykov@gmail.com>",
+  "copyright": "© 2018, Michael Bykov",
   "license": "GPL-3.0",
   "homepage": "http://diglossa.org/greek",
   "main": "./dist/index.js",
   "keywords": [
-   "ancient",
+    "ancient",
     "greek",
     "morphology",
     "syntax",
     "node.js",
     "electron.js"
-   ],
+  ],
   "scripts": {
     "minimum:": "yarn add --dev shx cross-env mocha mocha-each babel-register babel-preset-es2015 chai nodemon babel-cli babel-plugin-add-module-exports orthos fs-extra pouchdb",
     "start": "npm run build && node dist",
@@ -54,7 +55,7 @@
     "mocha": "^4.1.0",
     "mocha-each": "^1.1.0",
     "nodemon": "^1.14.11",
-    "orthos": "^0.2.1",
+    "orthos": "^0.3.0",
     "pouchdb": "^6.4.1",
     "shx": "^0.2.2"
   },
@@ -65,4 +66,4 @@
   "bugs": {
     "url": "https://github.com/mbykov/antrax/issues"
   }
- }
+}
