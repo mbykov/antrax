@@ -16,8 +16,11 @@ function initDBs(upath, apath) {
   if (!apath) apath = path.resolve(__dirname, '../../../egreek')
   let src = path.resolve(apath, 'pouch')
   let dest = path.resolve(upath, 'pouch')
+  log('INIT-upath', upath)
+  log('INIT-apath', apath)
   try {
     let jetData = jetpack.cwd(upath)
+    jetData.dir('pouch', { empty: true, mode: '755' });
     jetData.copy(src, dest, { matching: '**\/*' })
     createZeroCfg(upath)
   } catch (err) {
