@@ -43,7 +43,7 @@ function createZeroCfg(upath) {
   jetData.write('pouch/cfg.json', cfg)
 }
 
-export function enableDBs (upath, apath) {
+export function setDBs (upath, apath) {
   const jetData = jetpack.cwd(upath)
   let cfg = jetData.read('pouch/cfg.json', 'json')
   if (!cfg) {
