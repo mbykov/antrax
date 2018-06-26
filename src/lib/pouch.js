@@ -14,14 +14,16 @@ let db_terms
 
 function initDBs(upath, apath) {
   if (!apath) apath = path.resolve(__dirname, '../../../egreek')
-  let src = path.resolve(apath, 'pouch')
-  let dest = path.resolve(upath, 'pouch')
-  log('INIT-upath', upath)
-  log('INIT-apath', apath)
+  let srcpath = path.resolve(apath, 'pouch')
+  let destpath = path.resolve(upath, 'pouch')
+
+  let src = jetpack.cwd(srcpath)
+  const dest = jetpack.dir(destpath, { empty: true, mode: '755' });
   try {
-    let jetData = jetpack.cwd(upath)
-    jetData.dir('pouch', { empty: true, mode: '755' });
-    jetData.copy(src, dest, { matching: '**\/*' })
+    src.copy('.', dest.path(), {
+      matching: ['*/**'],
+      overwrite: true
+    })
     createZeroCfg(upath)
   } catch (err) {
     log('ERR copying default DBs', err)
