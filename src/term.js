@@ -15,17 +15,16 @@ let log = console.log
 let wordform = process.argv.slice(2)[0] // || 'ἀργυρῷ' // false;
 let env = process.env.NODE_ENV
 
-// simple runner for src/antrax
+// simple runner for terms
 
 console.time("queryTime");
 
 let upath = path.resolve(__dirname, '../../')
 enableDBs(upath)
 
-antrax(wordform).then(chains => {
-  // if (env !== 'test') chains.forEach(chain => { log('C:', chain) , log('F:', chain[chain.length-1].flexes) })
-  if (env !== 'test') chains.forEach(chain => { log('C:', chain) , log('D:', chain[chain.length-2].dicts), log('F:', chain[chain.length-1].flexes) })
-  console.timeEnd("queryTime");
-}).catch(function (err) {
-  console.log('ANTRAX-ERR', err)
-})
+let wfs = [wordform]
+clause(wfs)
+  .then(terms => {
+    log('ANTRAX-TERMS:', terms)
+    console.timeEnd("queryTime");
+  })

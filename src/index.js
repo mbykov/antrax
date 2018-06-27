@@ -19,27 +19,18 @@ export function enableDBs (upath, apath) {
   setDBs(upath, apath)
 }
 
-// TERMS:
-// ἡ αὐτή τοῦ ταὐτοῦ
 export function clause (wfs) {
-  // clog('WFs', wfs, wfs.length)
   let keys = wfs.map(wf => orthos.toComb(wf))
   return getTerms(keys)
 }
 
 export function antrax (wordform) {
-  // TODO: это отсюда вынести:
-  // console.log('WF', wordform)
   if (!wordform) return new Promise(function() {})
-  // if (wordform) wordform = wordform.trim()
 
   let clstr = cleanStr(wordform)
   let comb = orthos.toComb(clstr)
-  log('COMB', comb)
   let sgms = segmenter(comb)
-  log('SGMs:', sgms.length)
   let clean = orthos.plain(comb)
-  log('CLEAN', clean)
 
   // segments for flexes:
   let lasts = _.uniq(sgms.map(sgm =>  { return sgm[sgm.length-1] }))
@@ -53,28 +44,16 @@ export function antrax (wordform) {
   log('NONlast:', pnonlasts.toString())
 
   let added = addedStems(pnonlasts)
-  // let padded = _.uniq(_.compact(added.map(ad => { return orthos.plain(ad) }) ))
   log('Added:', added.toString())
-  // let doubled = _.intersection(plainsegs, added)
-  // log('Doubled:', doubled.toString())
-  // let diffs = _.difference(plainsegs, added)
-  // log('Diff:', diffs.toString())
 
   let plainsegs = (added.length) ? _.uniq(pnonlasts.concat(added)) : pnonlasts
-  // if (added.length) plainsegs =  _.uniq(plainsegs.concat(added))
   log('Psegs:', plainsegs.toString())
 
   return getFlex(lasts)
     .then(fls => {
-      // log('PSEGS', plainsegs)
-      // let irregSegs = addIrregSegs(fls)
-      // log('IR-SEGS', irregSegs)
-      // if (irregSegs) plainsegs = plainsegs.concat(irregSegs)
       return queryDBs(plainsegs)
         .then(rdocs => {
-          // clog('rowsDBs', rdocs)
           let dicts = _.flatten(rdocs)
-          // if (irregSegs) return processIrreg(comb, dicts, fls)
           return main(comb, plainsegs, sgms, pnonlasts, fls, dicts)
         })
     })
@@ -88,8 +67,6 @@ function addedStems(wforms) {
     first = _.first(wf)
     last = _.last(wf)
     plain = orthos.plain(wf)
-    // let idxhi = plain.indexOf(ac.ypo)
-    // let aug = (idxhi > -1) ? plain.slice(0,idxhi+1) : first
     let firsts = _.uniq([plain.slice(0,1), plain.slice(0,2), plain.slice(0,3), plain.slice(0,4), plain.slice(0,5)]) // aor. ind from aor others
     firsts = _.filter(firsts, first => { return first != plain })
     firsts.forEach(first => {
@@ -109,23 +86,13 @@ function addedStems(wforms) {
 }
 
 function main(comb, plainsegs, sgms, pnonlasts, flexes, dicts) {
-  // let clean = orthos.plain(comb)
   dicts = _.filter(dicts, dict => { return !dict.indecl })
   log('dicts--->', dicts.length)
-  // let kdicts = _.filter(dicts, dict => { return dict.plain == 'εβ' })
-  // clog('kdicts--->', kdicts)
 
   let segdicts = distributeDicts(plainsegs, dicts)
-  // log('SEGDs--->', segdicts['χωρ'])
   let chains = makeChains(sgms, segdicts, flexes)
-  // log('chains--->', chains)
-  // пока убрал addDict, чтобы посмотреть, в каких случаях tenses ? или names ? оно нужно - понятно, например aor.sub без aug
-  // то есть addDicts нужно даже до поиска по регулярным формам
 
   addDicts(chains, pnonlasts, segdicts)
-
-  let irChains = processIrreg(comb, dicts, flexes)
-  if (irChains.length) chains = chains.concat(irChains)
 
 
   let fulls = fullChains(chains)
@@ -187,10 +154,6 @@ function makeChains (sgms, segdicts, flexes) {
 }
 
 // ADDED
-// добавляю к сегментам dicts, зависящие от положения сегмента
-// как это будет работать с приставками, при изменении в середине слова???????????
-// сейчас imperfect - в базе. Нужно попробовать решить стандартные без базы
-//
 function addDicts(chains, pnonlasts, segdicts) {
   chains.forEach(segs => {
     let stem, idxhi, aug, weak
@@ -198,7 +161,6 @@ function addDicts(chains, pnonlasts, segdicts) {
     let seg = penult.seg
     seg = orthos.plain(seg)
     let first = _.first(seg)
-    // if (seg.length < 2) return // временно, чтобы не загораживало // <============================ FIXME: (δοίην - уже не проходит, seg = δ)
     let sdicts = penult.dicts
     let firsts = _.uniq([seg.slice(0,1), seg.slice(0,2), seg.slice(0,3), seg.slice(0,4), seg.slice(0,5)])
     firsts = _.filter(firsts, first => { return first != seg })
@@ -207,7 +169,6 @@ function addDicts(chains, pnonlasts, segdicts) {
       weaks[first].forEach(weak => {
         let added = [weak, seg.slice(first.length)].join('')
         let adicts = segdicts[added]
-        // clog('----------', seg, weak, added, adicts)
         adicts.forEach(adict => {
           if (!pnonlasts.includes(adict.plain)) adict.weak = true
         })
@@ -218,9 +179,7 @@ function addDicts(chains, pnonlasts, segdicts) {
     // ADDED
     if (!vowels.includes(first)) {
       let added = ['ε', seg].join('') // aor.sub, opt, impf from ind
-      // if (!doubled.includes(added)) return
       let adicts = segdicts[added]
-      // if (seg == 'βαιν') clog('--->', seg, added, adicts)
       adicts.forEach(adict => {
         if (!pnonlasts.includes(adict.plain)) adict.added = true
       })
@@ -229,7 +188,6 @@ function addDicts(chains, pnonlasts, segdicts) {
       if (seg.length < 2) return
       let added = seg.slice(1)
       let adicts = segdicts[added]
-      // clog('----------', seg, added, adicts)
       adicts.forEach(adict => {
         if (!pnonlasts.includes(adict.plain)) adict.sliced = true
       })
@@ -256,7 +214,6 @@ function filterDictFlex (comb, chains) {
   let clean = orthos.plain(comb)
   let cleans = []
   chains.forEach(segs => {
-    // clog('chain--->', segs)
     let lastseg = _.last(segs)
     let flexes = lastseg.flexes
     let nameflexes = _.filter(flexes, flex => { return flex.name })
@@ -273,10 +230,6 @@ function filterDictFlex (comb, chains) {
     let lastverbs = _.filter(last.dicts, dict => { return dict.verb })
     // let lastparts = _.filter(last.dicts, dict => { return dict.part })
     let lastadvs = _.filter(last.dicts, dict => { return dict.adv })
-    // TMP ============================================================= TMP =========================
-    // lastnames = []
-
-    // clog('lastverbs', lastverbs, segs)
 
     // MAIN
     // VERB
@@ -295,7 +248,6 @@ function filterDictFlex (comb, chains) {
           // if (dict.reg)
           // if (!dict.reg) return filterVerb(dict, flex, first)
           return filterVerb(dict, flex)
-          // return false
         })
         let pfls = _.filter(partflexes, flex => {
           if (dict.plain == 'αγαθοποι' && flex.tense == 'act.pres.part') log('NC-f =========================', flex)
@@ -309,11 +261,7 @@ function filterDictFlex (comb, chains) {
           partdicts.push(dict)
           partfls = partfls.concat(pfls)
         }
-        // if (dict.plain == 'αγγελλ') log('P-DS ------------------------->>>', partdicts)
-        // if (dict.plain == 'αγγελλ') log('P-FLS ------------------------->>>', partfls)
       })
-      // if (grverb == 'ἀγαθοποιέω') log('P-DS ===========================>>>', partdicts)
-      // if (grverb == 'ἀγαθοποιέω') log('P-FLS ===========================>>>', partfls)
 
       // существуют verbs из разных rform (pres, fut, etc). Они дают корректные fls, но dicts должны дать один результат. А разные DNs - разные результаты
       // uniq-verbs
@@ -323,8 +271,6 @@ function filterDictFlex (comb, chains) {
         let uverbs = ugrdbn[dname]
         let uvkeys = {}
         uverbs.forEach(uverb => {
-          // if (!uverb.trns) clog('NO TRNS', uverb)
-          // if (!uverb.trns) uverb.trns = '== no trn =='
           let uvkey = [uverb.rdict, uverb.trns.toString()].join('')
           if (uvkeys[uvkey]) return
           let udict = {verb: true, rdict: uverb.rdict, dname: uverb.dname, trns: uverb.trns, weight: uverb.weight}
@@ -337,7 +283,6 @@ function filterDictFlex (comb, chains) {
       // r-dict νάω, νέομαι, νέω - могут иметь одинаковые формы - νέωμαι, νέομεν
       // объединяю vdicts в одно значение :
       if (vdicts.length && vfls.length) {
-        // clog('VDs', vdicts)
         let vflseg = _.uniq(vfls.map(flex => { return flex.flex }))
         if (vflseg.length > 1) throw new Error('VERB: FL LENGTH > 1')
         // HERE - просто lastseg !
@@ -351,12 +296,9 @@ function filterDictFlex (comb, chains) {
 
       // participles уже всегда уникальны, dict.pres имеет окончания только flex.pres, т.е. udicts для parts не нужны
       if (partdicts.length && partfls.length) {
-        // log('HERE')
-        // ===================== сгруппировать в tense, morphs
         let cleanfls = partfls.map(flex => { return {tense: flex.tense, numcase: flex.numcase, gend: flex.gend } })
         let flsobj = {seg: lastseg.seg, flexes: cleanfls}
         let nchain = cloneChain(segs, partdicts, null, flsobj)
-        // if (grverb == 'ἀγαθοποιέω') log('FLSOBJ ===========================>>>', flsobj)
         cleans.push(nchain)
       }
     } // end for-group
@@ -395,15 +337,12 @@ function filterDictFlex (comb, chains) {
 
           if (flex.a && !dict.a) return false
           if (flex.h && !dict.h) return false
-          // delete flex.dicts, delete flex.flex, delete flex.a, delete flex.h, delete flex.rgend
-          // let cflex = _.clone(flex)
           fls.push(flex)
         })
 
         if (!fls.length) return
         ndicts.push(dict)
-        // nfls = nfls.concat(fls)
-        nfls = fls // в names не так, как в глаголах - здесь разные db - интресно, что будет с глаголами в разных db
+        nfls = fls // в names не так, как в глаголах - здесь разные db
       })
 
       if (ndicts.length && nfls.length) {
@@ -421,7 +360,6 @@ function filterDictFlex (comb, chains) {
         if (dict.plain == 'ακ') log('ADV-f =========================', flex)
 
         let dint =_.intersection(dict.dicts, flex.dicts)
-        // if (dict.plain == 'αβουλι') log('ds ====', dict.dicts, 'fs', flex.dicts, 'dint', dint)
         if (!dint.length) return false
 
         // delete flex.dicts, delete flex.flex, delete flex.a, delete flex.h, delete flex.rgend
@@ -446,9 +384,6 @@ function filterPart(dict, flex) {
 }
 function filterVerb(dict, flex) {
   if (dict.aor) {
-    // if (tense(flex.tense) != 'aor') return false
-    // if (dict.mid && voice(flex.tense) != 'mid') return false
-    // else if (dict.pas && voice(flex.tense) != 'pas') return false
     if (!flex.aor) return false
     if (dict.added && mood(flex.tense) != 'ind') return false
 
@@ -520,26 +455,6 @@ function filterVerb(dict, flex) {
     if (dict.act && flex.acts && !flex.acts.includes(dict.act)) return false
     if (dict.mp && flex.mps && !flex.mps.includes(dict.mp)) return false
 
-    // ПРОВЕРИТЬ PRES СНОВА - М.Б. это ужас имеет смысл :
-    // // непонятно, как сквозь этот фильтр проходит aor ? γείνῃ ?
-    // if (dict.voice == 'mp' && dict.voice != voice(flex.tense)) return false
-
-    // if (dict.act) {
-    //   if (!flex.acts) return false
-    //   if ( !flex.acts.includes(dict.act)) return false
-    //   // if (dict.mp && flex.mps && !flex.mps) return false
-    //   if (dict.mp && flex.mps && !flex.mps.includes(dict.mp)) return false
-    // }
-
-    // if (dict.mp) {
-    //   if (!flex.mps) return false
-    //   if ( !flex.mps.includes(dict.mp)) return false
-    //   if (!voice(flex.tense) == 'mp') return false
-    //   if (dict.act && !flex.acts) return false
-    //   if (dict.act && !flex.acts.includes(dict.act)) return false
-    //   if (!dict.act && flex.acts && flex.acts.includes('ωμι')) return false // dict - only mp=ομαι ;  can be ω-ομαι (true) and ωμι-ομαι (false)
-    // }
-    // clog('-----------------------------------------', dict.rdict, dict.act)
     return true
   } else {
     return false
@@ -563,48 +478,15 @@ function selectLongest(chains) {
   let shortests = _.filter(chains, chain => { return chain.length == min })
   let max = _.max(shortests.map(chain => {  return _.sum(chain.map(segment => { return segment.seg.length }))/chain.length } ) )
   log('MAX', max)
-  // >>>>>>>>>>>>>>>> вот это я не понимаю, нужен пример
   let lngsts = _.filter(shortests, chain => { return _.sum(chain.map(segment => { return segment.seg.length }))/chain.length >= max -1 })
   lngsts = _.sortBy(lngsts, chain => { return _.sum(chain.map(segment => { return segment.seg.length }))/chain.length }).reverse()
-  // return chains
   return lngsts
 }
 
 function cleanStr(row) {
   let clean = row.trim()
-  // clean = clean.replace(/\.$/, '')
   clean = clean.replace(/ᾰ/gi, 'α').replace(/ᾱ/gi, 'α').replace(/ῑ/gi, 'ι').replace(/ῐ/gi, 'ι').replace(/ῠ/gi, 'υ').replace(/ῡ/gi, 'υ')
   clean = clean.replace(/Ῐ/gi, 'Ι').replace(/Ῑ/gi, 'Ι')
   clean = clean.replace(/̆/gi, '')
   return clean
-}
-
-
-
-
-// ========================================= OLD ==============================
-
-
-// OLD VERSION
-
-function addIrregSegs(fls) {
-  let iFlexes = _.filter(fls, flex => { return flex.irreg })
-  if (!iFlexes.length) return
-  let irDSegs = _.uniq(iFlexes.map(flex => { return flex.dict }))
-  // log('IrDSeg', irDSegs)
-  return irDSegs
-}
-
-function processIrreg(comb, dicts, fls) {
-  let irChains = []
-  let irDicts = _.filter(dicts, dict => { return dict.irreg })
-  log('IrDicts', irDicts.length)
-  let iFlexes = _.filter(fls, flex => { return flex.irreg })
-
-  irDicts.forEach(irDict => {
-    let irFls = _.filter(iFlexes, flex => { return irDict.plain == flex.dict}) // в irregs - dict.plain (поиск-то по plain - не plain, а comb)
-    let irChain = [{seg: comb, dicts: [irDict] }, {seg: null, flexes: irFls, type: 'irreg'}]
-    irChains.push(irChain)
-  })
-  return irChains
 }
