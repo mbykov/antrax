@@ -242,15 +242,15 @@ function filterDictFlex (comb, chains) {
       let partdicts = []
       let partfls = []
       vgroup.forEach(dict => {
-        if (dict.plain == 'αγαθοποι') log('NC-d ===========================>>>', dict)
+        if (dict.plain == 'εγεν') log('NC-d ===========================>>>', dict)
         let fls = _.filter(verbflexes, flex => {
-          if (dict.plain == 'αγγελλ' && flex.tense == 'act.pres.ind') log('NC-f =========================', flex)
+          if (dict.plain == 'εγεν' && flex.tense == 'mid.aor.sub') log('NC-f =========================', flex)
           // if (dict.reg)
           // if (!dict.reg) return filterVerb(dict, flex, first)
           return filterVerb(dict, flex)
         })
         let pfls = _.filter(partflexes, flex => {
-          if (dict.plain == 'αγαθοποι' && flex.tense == 'act.pres.part') log('NC-f =========================', flex)
+          if (dict.plain == 'γεν' && flex.tense == 'act.pres.part') log('NC-f =========================', flex)
           return filterVerb(dict, flex)
         })
         if (fls.length) {
@@ -385,7 +385,7 @@ function filterPart(dict, flex) {
 function filterVerb(dict, flex) {
   if (dict.aor) {
     if (!flex.aor) return false
-    if (dict.added && mood(flex.tense) != 'ind') return false
+    if (dict.added && mood(flex.tense) == 'ind') return false
 
     if (dict.voice == 'act' && voice(flex.tense) == 'mid') {}
     else if (dict.voice != voice(flex.tense)) return false
