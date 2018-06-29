@@ -3,7 +3,7 @@
 // import {log} from '../src/lib/utils'
 import {augs, vowels, tense} from '../src/lib/utils'
 let log = console.log
-import { antrax } from '../dist/antrax'
+import { antrax } from '../dist'
 import _ from 'lodash'
 // import { property } from 'jsverify'
 const orthos = require('orthos')

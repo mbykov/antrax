@@ -3,11 +3,11 @@
 // import {log} from '../src/lib/utils'
 import {augs, vowels, tense} from '../src/lib/utils'
 let log = console.log
-import { antrax } from '../dist'
+import { clause, antrax, enableDBs } from '../dist/index'
 import _ from 'lodash'
 // import { property } from 'jsverify'
-// const orthos = require('orthos')
-let orthos = require('../../orthos');
+const orthos = require('orthos')
+// let orthos = require('../../orthos');
 const assert = require('assert')
 const forEach = require('mocha-each')
 const fse = require('fs-extra')
@@ -36,6 +36,9 @@ let skip = true
 
 let cases = ['nom', 'gen', 'dat', 'acc', 'voc']
 let nums // = ['sg', 'du', 'pl']
+
+let upath = path.resolve(__dirname, '../../')
+enableDBs(upath)
 
 let rtests = []
 let tdoc
@@ -119,30 +122,32 @@ tests = _.compact(tests)
 // tests = []
 
 forEach(tests)
-  .it('name %s %s %s %s ', (dict, arg, gend, numcase, done) => {
-    // log('->', arg, exp)
+  .it('name %s %s %s %s ', (rdict, arg, gend, numcase, done) => {
+    // log('->', rdict, arg, gend, numcase)
     antrax(arg)
       .then(chains => {
         if (!chains.length) log('NO RESULT'), assert.equal(false, true)
         chains.forEach(chain => {
-          // log('CH.length', chain.length)
+          // log('CH.length', chain)
           if (chain.length > 2) log('CH.length'), assert.equal(false, true)
           let penult = chain[chain.length-2]
-          if (!penult.dict.name) return // глаголы
-          if (!penult.dict.gend) return // прилагательные
+          penult.dicts.forEach(dict => {
+            if (!dict.name) return // глаголы
+            if (!dict.gend) return // прилагательные
 
-          if (penult.dict.gend != gend) return // лишние сущ. не того рода αἴθων αἶθος, ἀδελφή - ἀδελφός
-          // лишние решения, Γαλάτας - Γαλάτης
-          if (orthos.toComb(penult.dict.rdict) != orthos.toComb(dict)) return
+            if (dict.gend != gend) return // лишние сущ. не того рода αἴθων αἶθος, ἀδελφή - ἀδελφός
+            // лишние решения, Γαλάτας - Γαλάτης
+            if (orthos.toComb(dict.rdict) != orthos.toComb(rdict)) return
 
-          let fls = _.last(chain).flexes
+            let fls = _.last(chain).flexes
 
-          // let exps = fls.map(flex => { return [flex.gend, flex.numcase].join('.') })
-          // пока тест на уникальность не проходит -is-idos, -is-eos имеют -is в sg.nom: ἄγρωστις
-          // assert.equal(exps.length, _.uniq(exps).length) // результаты fls не повторяются
+            // let exps = fls.map(flex => { return [flex.gend, flex.numcase].join('.') })
+            // пока тест на уникальность не проходит -is-idos, -is-eos имеют -is в sg.nom: ἄγρωστις
+            // assert.equal(exps.length, _.uniq(exps).length) // результаты fls не повторяются
 
-          let numcases = fls.map(flex => { return flex.numcase })
-          assert.equal(numcases.includes(numcase), true)
+            let numcases = fls.map(flex => { return flex.numcase })
+            assert.equal(numcases.includes(numcase), true)
+          })
         })
       })
       .then(done)
