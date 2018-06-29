@@ -19,8 +19,11 @@ let env = process.env.NODE_ENV
 
 console.time("queryTime");
 
-let upath = path.resolve(__dirname, '../../')
-enableDBs(upath)
+// let upath = path.resolve(__dirname, '../../')
+let upath = path.resolve(__dirname, '../../egreek')
+let apath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
+log('APATH', apath)
+enableDBs(upath, apath)
 
 antrax(wordform).then(chains => {
   // if (env !== 'test') chains.forEach(chain => { log('C:', chain) , log('F:', chain[chain.length-1].flexes) })

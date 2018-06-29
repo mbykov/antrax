@@ -12,26 +12,8 @@ let dbs
 let db_flex
 let db_terms
 
-function initDBs(upath, apath) {
-  if (!apath) apath = path.resolve(__dirname, '../../../egreek')
-  let srcpath = path.resolve(apath, 'pouch')
-  let destpath = path.resolve(upath, 'pouch')
-
-  let src = jetpack.cwd(srcpath)
-  const dest = jetpack.dir(destpath, { empty: true, mode: '755' });
-  try {
-    src.copy('.', dest.path(), {
-      matching: ['*/**'],
-      overwrite: true
-    })
-    createZeroCfg(upath)
-  } catch (err) {
-    log('ERR copying default DBs', err)
-  }
-}
-
-function createZeroCfg(upath) {
-  let jetData = jetpack.cwd(upath)
+function createZeroCfg(apath, aversion) {
+  let jetData = jetpack.cwd(apath)
   let cfg = []
   let fns = jetData.list('pouch')
   fns.forEach((dn, idx) => {
@@ -40,18 +22,54 @@ function createZeroCfg(upath) {
     let cf = {name: dn, active: true, idx: idx}
     cfg.push(cf)
   })
+  cfg = _.sortBy(cfg, ['idx'])
   jetData.write('pouch/cfg.json', cfg)
+  let version = {version: aversion}
+  jetData.write('version.json', version)
+  return cfg
+}
+
+function initDBs(upath, apath, aversion) {
+  let srcpath = path.resolve(upath, 'pouch')
+  let destpath = path.resolve(apath, 'pouch')
+  const dest = jetpack.dir(destpath, { empty: true, mode: '755' });
+  log('SRC_upath', srcpath)
+  log('DEST_apath', dest.path())
+
+  let dbnames = ['specs', 'terms', 'flex', 'wktname', 'wktverb' ]
+  dbnames.forEach(dn => {
+    const srcpath = path.resolve(upath, 'pouch', dn)
+    const src = jetpack.cwd(srcpath)
+    const destpath = path.resolve(apath, 'pouch', dn)
+    const dest = jetpack.dir(destpath, { empty: true, mode: '755' });
+    try {
+      src.copy('.', dest.path(), {
+        matching: ['*/**'],
+        overwrite: true
+      })
+    } catch (err) {
+      log('ERR copying default DBs', err)
+    }
+  })
+  let cfg = createZeroCfg(apath, aversion)
+  return cfg
 }
 
 export function setDBs (upath, apath) {
-  const jetData = jetpack.cwd(upath)
+  const jetData = jetpack.cwd(apath)
+  let pckg = require('../../package.json')
+  let aversion = pckg.version
+  let rewrite = false
+
+  let oldver = jetData.read('version.json', 'json')
+  if (!oldver) rewrite = true
+  else if (oldver.version != aversion) rewrite = true
   let cfg = jetData.read('pouch/cfg.json', 'json')
-  if (!cfg) {
-    initDBs(upath, apath)
-    cfg = jetData.read('pouch/cfg.json', 'json')
-  }
-  cfg = _.sortBy(cfg, ['idx'])
+  if (!cfg) rewrite = true
+  if (rewrite) cfg = initDBs(upath, apath, aversion)
+
   let dbnames = _.compact(cfg.map(cf => { return (cf.active) ? cf.name : null }))
+
   dbs = []
   dbnames.forEach((dn, idx) => {
     let dpath = path.resolve(upath, 'pouch', dn)
