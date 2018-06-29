@@ -88,6 +88,8 @@ function addedStems(wforms) {
 function main(comb, plainsegs, sgms, pnonlasts, flexes, dicts) {
   dicts = _.filter(dicts, dict => { return !dict.indecl })
   log('dicts--->', dicts.length)
+  // let kdicts = _.filter(dicts, dict => { return dict.plain == 'οικι'})
+  // log('kdicts--->', kdicts)
 
   let segdicts = distributeDicts(plainsegs, dicts)
   let chains = makeChains(sgms, segdicts, flexes)
@@ -229,6 +231,9 @@ function filterDictFlex (comb, chains) {
     let lastnames = _.filter(last.dicts, dict => { return dict.name })
     let lastverbs = _.filter(last.dicts, dict => { return dict.verb })
 
+    // let klast = _.filter(lastnames, dict => { return dict.plain == 'οικι'})
+    // log('LAST', klast)
+
     // MAIN
     // VERB
     // verbs строятся по разным stems, т.е. один verb может порождать один chain по разным stems :
@@ -310,10 +315,10 @@ function filterDictFlex (comb, chains) {
       let ndicts = []
       let nfls = []
       ngroup.forEach(dict => {
-        if (dict.plain == 'πατ') log('NC-d ===========================>>>', dict)
+        if (dict.plain == 'οικι') log('NC-d ===========================>>>', dict)
         let fls = []
         nameflexes.forEach(flex => {
-          if (dict.plain == 'πατ' && flex.numcase == 'sg.nom') log('NAME-f =========================', flex)
+          if (dict.plain == 'οικι' && flex.numcase == 'sg.nom') log('NAME-f =========================', flex)
 
           let gend, fdicts
           for (let rgend in flex.rgend) {
