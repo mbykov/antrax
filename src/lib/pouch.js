@@ -3,6 +3,7 @@
 import _ from 'lodash'
 import jetpack from "fs-jetpack"
 
+const fse = require('fs-extra')
 const path = require('path')
 const PouchDB = require('pouchdb')
 
@@ -12,8 +13,8 @@ let dbs
 let db_flex
 let db_terms
 
-function createZeroCfg(apath, aversion) {
-  let jetData = jetpack.cwd(apath)
+function createZeroCfg(upath, aversion) {
+  let jetData = jetpack.cwd(upath)
   let cfg = []
   let fns = jetData.list('pouch')
   fns.forEach((dn, idx) => {
@@ -30,37 +31,31 @@ function createZeroCfg(apath, aversion) {
 }
 
 function initDBs(upath, apath, aversion) {
-  let srcpath = path.resolve(upath, 'pouch')
-  let destpath = path.resolve(apath, 'pouch')
-  const dest = jetpack.dir(destpath, { empty: true, mode: '755' });
-  log('SRC_upath', srcpath)
-  log('DEST_apath', dest.path())
+  let srcpath = path.resolve(apath, 'pouch')
+  let destpath = path.resolve(upath, 'pouch')
+  // const dest = jetpack.dir(destpath, { empty: true, mode: '755' });
 
   let dbnames = ['specs', 'terms', 'flex', 'wktname', 'wktverb' ]
   dbnames.forEach(dn => {
-    const srcpath = path.resolve(upath, 'pouch', dn)
-    const src = jetpack.cwd(srcpath)
-    const destpath = path.resolve(apath, 'pouch', dn)
-    const dest = jetpack.dir(destpath, { empty: true, mode: '755' });
+    let srcpath = path.resolve(apath, 'pouch', dn)
+    let destpath = path.resolve(upath, 'pouch', dn)
     try {
-      src.copy('.', dest.path(), {
-        matching: ['*/**'],
+      fse.copySync(srcpath, destpath, {
         overwrite: true
       })
     } catch (err) {
       log('ERR copying default DBs', err)
     }
   })
-  let cfg = createZeroCfg(apath, aversion)
+  let cfg = createZeroCfg(upath, aversion)
   return cfg
 }
 
 export function setDBs (upath, apath) {
-  const jetData = jetpack.cwd(apath)
+  const jetData = jetpack.cwd(upath)
   let pckg = require('../../package.json')
   let aversion = pckg.version
   let rewrite = false
-
   let oldver = jetData.read('version.json', 'json')
   if (!oldver) rewrite = true
   else if (oldver.version != aversion) rewrite = true
