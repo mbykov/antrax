@@ -3,7 +3,7 @@
 // import {log} from '../src/lib/utils'
 import {augs, vowels, tense} from '../src/lib/utils'
 let log = console.log
-import { antrax } from '../dist'
+import { clause, antrax, enableDBs } from '../dist'
 import _ from 'lodash'
 // import { property } from 'jsverify'
 const orthos = require('orthos')
@@ -28,6 +28,9 @@ process.prependListener("exit", (code) => {
   }
 })
 
+let upath = path.resolve(__dirname, '../../')
+enableDBs(upath)
+
 const testpath = path.resolve(__dirname, 'wkt_verb.txt')
 const text = fse.readFileSync(testpath,'utf8')
 
@@ -43,7 +46,7 @@ text.split('\n').forEach((row, idx) => {
   if (/MA/.test(row)) skip = false
   if (skip) return
   if (!row || row[0] == '#' || row[0] == ' ') return
-  if (idx > 200) return
+  // if (idx > 200) return
   // log(row)
 
   let descr = row.split(':')[0].trim()
@@ -91,19 +94,19 @@ text.split('\n').forEach((row, idx) => {
         // let plain = orthos.toComb(stest)
         // let first = _.first(plain)
         let test = ['verb', dict, stest, descr, numper]
-        // tests.push(test)
+        tests.push(test)
       })
     })
   }
 })
 
-// tests = tests.slice(30, 35)
-console.log('T', tests)
-tests = []
+// tests = tests.slice(0, 20)
+// console.log('T', tests)
+// tests = []
 
 // describe('add()', () => {
 forEach(tests)
-  .it(' %s %s %s %s %s ', (title, dict, arg, tense, morph, done) => {
+  .it(' %s %s %s %s %s ', (title, rdict, arg, tense, morph, done) => {
     // log('C', title, dict, arg, tense, morph)
     antrax(arg)
       .then(chains => {
@@ -112,26 +115,28 @@ forEach(tests)
         chains.forEach(chain => {
           if (chain.length > 2) log('CH.length'), assert.equal(false, true)
           let penult = chain[chain.length-2]
-          if (!penult.dict.verb) return // не-глаголы
-          if (penult.dict.rdict != dict) return //  лишние глаголы
+          penult.dicts.forEach(dict => {
+            if (!dict.verb) return // не-глаголы
+            if (orthos.toComb(dict.rdict) != orthos.toComb(rdict)) return  //  лишние глаголы
 
-          let fls = _.last(chain).flexes
-          // log('FLS', fls)
-          let tenses = fls.map(flex => { return flex.tense })
-          tenses = _.uniq(tenses)
-          if (morph) {
-            if (!tenses.includes(tense)) { // chain has correct verb, but verb has other tense :
-              assert.equal(true, true)
-              return
+            let fls = _.last(chain).flexes
+            // log('FLS', fls)
+            let tenses = fls.map(flex => { return flex.tense })
+            tenses = _.uniq(tenses)
+            if (morph) {
+              if (!tenses.includes(tense)) { // chain has correct verb, but verb has other tense :
+                assert.equal(true, true)
+                return
+              }
+              let morphs = fls.map(flex => { return flex.numper })
+              morphs = _.uniq(morphs)
+              // log('M', morphs)
+              assert.equal(morphs.includes(morph), true)
+            } else {
+              assert.equal(true, true) // can be act.fut.inf where act.pres.inf is tested - ἀλέξειν
+              // assert.equal(tenses.includes(tense), true)
             }
-            let morphs = fls.map(flex => { return flex.numper })
-            morphs = _.uniq(morphs)
-            // log('M', morphs)
-            assert.equal(morphs.includes(morph), true)
-          } else {
-            assert.equal(true, true) // can be act.fut.inf where act.pres.inf is tested - ἀλέξειν
-            // assert.equal(tenses.includes(tense), true)
-          }
+          })
         })
       })
       .then(done)

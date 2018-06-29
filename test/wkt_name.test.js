@@ -3,7 +3,7 @@
 // import {log} from '../src/lib/utils'
 import {augs, vowels, tense} from '../src/lib/utils'
 let log = console.log
-import { clause, antrax, enableDBs } from '../dist/index'
+import { clause, antrax, enableDBs } from '../dist'
 import _ from 'lodash'
 // import { property } from 'jsverify'
 const orthos = require('orthos')
@@ -27,6 +27,9 @@ process.prependListener("exit", (code) => {
   }
 })
 
+let upath = path.resolve(__dirname, '../../')
+enableDBs(upath)
+
 const testpath = path.resolve(__dirname, 'wkt_name.txt')
 const text = fse.readFileSync(testpath,'utf8')
 
@@ -36,9 +39,6 @@ let skip = true
 
 let cases = ['nom', 'gen', 'dat', 'acc', 'voc']
 let nums // = ['sg', 'du', 'pl']
-
-let upath = path.resolve(__dirname, '../../')
-enableDBs(upath)
 
 let rtests = []
 let tdoc

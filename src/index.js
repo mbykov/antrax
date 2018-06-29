@@ -228,8 +228,6 @@ function filterDictFlex (comb, chains) {
 
     let lastnames = _.filter(last.dicts, dict => { return dict.name })
     let lastverbs = _.filter(last.dicts, dict => { return dict.verb })
-    // let lastparts = _.filter(last.dicts, dict => { return dict.part })
-    let lastadvs = _.filter(last.dicts, dict => { return dict.adv })
 
     // MAIN
     // VERB
@@ -242,7 +240,7 @@ function filterDictFlex (comb, chains) {
       let partdicts = []
       let partfls = []
       vgroup.forEach(dict => {
-        if (dict.plain == 'εγεν') log('NC-d ===========================>>>', dict)
+        if (dict.plain == 'αγαθοποι') log('NC-d ===========================>>>', dict)
         let fls = _.filter(verbflexes, flex => {
           if (dict.plain == 'εγεν' && flex.tense == 'mid.aor.sub') log('NC-f =========================', flex)
           // if (dict.reg)
@@ -250,7 +248,7 @@ function filterDictFlex (comb, chains) {
           return filterVerb(dict, flex)
         })
         let pfls = _.filter(partflexes, flex => {
-          if (dict.plain == 'γεν' && flex.tense == 'act.pres.part') log('NC-f =========================', flex)
+          if (dict.plain == 'αγαθοποι' && flex.tense == 'act.pres.part') log('NC-p =========================', flex)
           return filterVerb(dict, flex)
         })
         if (fls.length) {
@@ -353,11 +351,11 @@ function filterDictFlex (comb, chains) {
     }
 
     // ADVERBS
-    lastadvs.forEach(dict => {
+    lastnames.forEach(dict => {
       let fls = []
-      if (dict.plain == 'ακ') log('ADV-d ===========================>>>', dict)
+      if (dict.plain == 'ααατ') log('ADV-d ===========================>>>', dict)
       advflexes.forEach(flex => {
-        if (dict.plain == 'ακ') log('ADV-f =========================', flex)
+        if (dict.plain == 'ααατ') log('ADV-f =========================', flex)
 
         let dint =_.intersection(dict.dicts, flex.dicts)
         if (!dint.length) return false
@@ -370,7 +368,7 @@ function filterDictFlex (comb, chains) {
       if (!fls.length) return
 
       let flsobj = {seg: lastseg.seg, flexes: fls}
-      let nchain = cloneChain(segs, dict, null, flsobj)
+      let nchain = cloneChain(segs, [dict], null, flsobj)
       // _.last(nchain).flexes.forEach(flex => { delete flex.dicts, delete flex.flex }) // DELETES - изменяет flexes ! нельзя !
       cleans.push(nchain)
     }) // adv
@@ -385,7 +383,7 @@ function filterPart(dict, flex) {
 function filterVerb(dict, flex) {
   if (dict.aor) {
     if (!flex.aor) return false
-    if (dict.added && mood(flex.tense) == 'ind') return false
+    // if (dict.added && mood(flex.tense) == 'ind') return false
 
     if (dict.voice == 'act' && voice(flex.tense) == 'mid') {}
     else if (dict.voice != voice(flex.tense)) return false

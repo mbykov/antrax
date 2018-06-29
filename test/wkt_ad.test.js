@@ -3,11 +3,10 @@
 // import {log} from '../src/lib/utils'
 import {augs, vowels, tense} from '../src/lib/utils'
 let log = console.log
-import { antrax } from '../dist'
+import { clause, antrax, enableDBs } from '../dist'
 import _ from 'lodash'
-// import { property } from 'jsverify'
-// const orthos = require('orthos')
-let orthos = require('../../orthos');
+const orthos = require('orthos')
+// let orthos = require('../../orthos');
 const assert = require('assert')
 const forEach = require('mocha-each')
 const fse = require('fs-extra')
@@ -26,6 +25,9 @@ process.prependListener("exit", (code) => {
     process.exit(unhandledRejectionExitCode)
   }
 })
+
+let upath = path.resolve(__dirname, '../../')
+enableDBs(upath)
 
 const testpath = path.resolve(__dirname, 'wkt_ad-2.txt')
 const text = fse.readFileSync(testpath,'utf8')
@@ -108,30 +110,30 @@ console.log('T', tests.length)
 // tests = []
 
 forEach(tests)
-  .it('adj %s %s %s %s ', (dict, arg, morph, kase, done) => {
-    // log('->', arg, exp)
+  .it('adj %s %s %s %s ', (rdict, arg, morph, kase, done) => {
+    // log('->', dict, arg, morph, kase)
     antrax(arg)
       .then(chains => {
         if (!chains.length) log('NO RESULT'), assert.equal(false, true)
         chains.forEach(chain => {
-          // log('CH.length', chain.length)
+          // log('CH.length', chain)
           if (chain.length > 2) log('CH.length'), assert.equal(false, true)
           let penult = chain[chain.length-2]
-          if (!penult.dict.name) return // глаголы
-          if (penult.dict.gend) return // не-прилагательные
-          if (orthos.toComb(penult.dict.rdict) != orthos.toComb(dict)) return
+          penult.dicts.forEach(dict => {
+            if (!dict.name) return // глаголы
+            if (dict.gend) return // не-прилагательные
+            if (orthos.toComb(dict.rdict) != orthos.toComb(rdict)) return
 
-          // let fls = _.flatten(chains.map(chain => { return _.last(chain).flexes }))
-          let fls = _.last(chain).flexes
-          let exps = fls.map(flex => { return [flex.gend, flex.numcase].join('.') })
+            let fls = _.last(chain).flexes
+            let exps = fls.map(flex => { return [flex.gend, flex.numcase].join('.') })
 
-          if (exps.length != _.uniq(exps).length) log('EXPS', exps)
-          assert.equal(exps.length, _.uniq(exps).length) // результаты fls не повторяются
+            if (exps.length != _.uniq(exps).length) log('EXPS', exps)
+            assert.equal(exps.length, _.uniq(exps).length) // результаты fls не повторяются
 
-          let act = [morph, kase].join('.')
-          // log('act:', act, 'exp:', exps)
-          assert.equal(exps.includes(act), true)
-          // assert.equal(true, true)
+            let act = [morph, kase].join('.')
+            // log('act:', act, 'exp:', exps)
+            assert.equal(exps.includes(act), true)
+          })
         })
       })
       .then(done)
