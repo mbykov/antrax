@@ -1,7 +1,7 @@
 {
   "name": "antrax",
   "description": "simple practical ancient greek morph analizer for morpheus-greek",
-  "version": "0.8.276",
+  "version": "0.8.277",
   "author": "Michael Bykov <m.bykov@gmail.com>",
   "copyright": "© 2018, Michael Bykov",
   "license": "GPL-3.0",
