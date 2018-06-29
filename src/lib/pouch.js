@@ -3,7 +3,10 @@
 import _ from 'lodash'
 import jetpack from "fs-jetpack"
 
-const fse = require('fs-extra')
+// let fs = require('fs');
+let fse = require('fs-extra')
+
+let copydir = require('copy-dir')
 const path = require('path')
 const PouchDB = require('pouchdb')
 
@@ -33,20 +36,30 @@ function createZeroCfg(upath, aversion) {
 function initDBs(upath, apath, aversion) {
   let srcpath = path.resolve(apath, 'pouch')
   let destpath = path.resolve(upath, 'pouch')
-  // const dest = jetpack.dir(destpath, { empty: true, mode: '755' });
+  const dest = jetpack.dir(destpath, { empty: true, mode: '755' });
 
-  let dbnames = ['specs', 'terms', 'flex', 'wktname', 'wktverb' ]
-  dbnames.forEach(dn => {
-    let srcpath = path.resolve(apath, 'pouch', dn)
-    let destpath = path.resolve(upath, 'pouch', dn)
-    try {
-      fse.copySync(srcpath, destpath, {
-        overwrite: true
-      })
-    } catch (err) {
-      log('ERR copying default DBs', err)
-    }
-  })
+  try {
+    jetpack.copy(srcpath, destpath, {
+      matching: ['*/**'],
+      overwrite: true
+    })
+  } catch (err) {
+    log('ERR copying default DBs', err)
+  }
+  // let dbnames = ['specs', 'terms', 'flex', 'wktname', 'wktverb' ]
+  // dbnames.forEach(dn => {
+  //   let srcpath = path.resolve(apath, 'pouch', dn)
+  //   let destpath = path.resolve(upath, 'pouch', dn)
+  //   try {
+  //     const src = jetpack.cwd(srcpath)
+  //     src.copy('.', destpath, {
+  //       matching: ['*/**'],
+  //       overwrite: true
+  //     })
+  //   } catch (err) {
+  //     log('ERR copying default DBs', err)
+  //   }
+  // })
   let cfg = createZeroCfg(upath, aversion)
   return cfg
 }
@@ -127,3 +140,41 @@ export function getTerms (keys) {
       return terms
     })
 }
+
+
+// function copyFileSync( source, target ) {
+
+//   var targetFile = target;
+
+//   //if target is a directory a new file with the same name will be created
+//   if ( fs.existsSync( target ) ) {
+//     if ( fs.lstatSync( target ).isDirectory() ) {
+//       targetFile = path.join( target, path.basename( source ) );
+//     }
+//   }
+
+//   fs.writeFileSync(targetFile, fs.readFileSync(source));
+// }
+
+// function copyFolderRecursiveSync( source, target ) {
+//   var files = [];
+
+//   //check if folder needs to be created or integrated
+//   var targetFolder = path.join( target, path.basename( source ) );
+//   if ( !fs.existsSync( targetFolder ) ) {
+//     fs.mkdirSync( targetFolder );
+//   }
+
+//   //copy
+//   if ( fs.lstatSync( source ).isDirectory() ) {
+//     files = fs.readdirSync( source );
+//     files.forEach( function ( file ) {
+//       var curSource = path.join( source, file );
+//       if ( fs.lstatSync( curSource ).isDirectory() ) {
+//         copyFolderRecursiveSync( curSource, targetFolder );
+//       } else {
+//         copyFileSync( curSource, targetFolder );
+//       }
+//     } );
+//   }
+// }
