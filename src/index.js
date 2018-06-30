@@ -7,8 +7,8 @@ import { accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, aug
 
 process.EventEmitter = require('events').EventEmitter
 const path = require('path')
-// const orthos = require('../../orthos')
-const orthos = require('orthos')
+const orthos = require('../../orthos')
+// const orthos = require('orthos')
 
 let clog = console.log
 
@@ -21,7 +21,8 @@ export function enableDBs (upath, apath) {
 
 export function clause (wfs) {
   let keys = wfs.map(wf => orthos.toComb(wf))
-  return getTerms(keys)
+  let dkeys = keys.map(key => { return orthos.downcase(key) })
+  return getTerms(dkeys)
 }
 
 export function antrax (wordform) {
@@ -29,8 +30,10 @@ export function antrax (wordform) {
 
   let clstr = cleanStr(wordform)
   let comb = orthos.toComb(clstr)
+  comb = orthos.downcase(comb)
   let sgms = segmenter(comb)
   let clean = orthos.plain(comb)
+  // Οἰκοδεσπότην
 
   // segments for flexes:
   let lasts = _.uniq(sgms.map(sgm =>  { return sgm[sgm.length-1] }))
@@ -107,10 +110,11 @@ function main(comb, plainsegs, sgms, pnonlasts, flexes, dicts) {
   let bests = selectLongest(cleans)
   log('main =>', fulls.length)
 
-  let compounds = bests.forEach(segs => {
+  //compounds
+  bests.forEach(segs => {
     if (segs.length == 4) {
       segs.forEach(segment => {
-        if (segment.seg == 'ο') segment.dicts = [{name: true, rdict: 'ο', trns: ['o-connector'] }]
+        if (segment.seg == 'ο') segment.dicts = [{spec: true, rdict: 'ο', trns: ['o-connector'] }]
       })
     }
   })
