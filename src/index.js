@@ -107,6 +107,14 @@ function main(comb, plainsegs, sgms, pnonlasts, flexes, dicts) {
   let bests = selectLongest(cleans)
   log('main =>', fulls.length)
 
+  let compounds = bests.forEach(segs => {
+    if (segs.length == 4) {
+      segs.forEach(segment => {
+        if (segment.seg == 'ο') segment.dicts = [{name: true, rdict: 'ο', trns: ['o-connector'] }]
+      })
+    }
+  })
+
   bests.forEach(best => {
     // пока отключил для печати
     _.last(best).flexes.forEach(flex => { delete flex.dicts, delete flex.flex, delete flex.a, delete flex.h, delete flex.rgend, delete flex.rdicts }) // DELETES - здесь проходит
