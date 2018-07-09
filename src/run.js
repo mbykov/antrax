@@ -7,7 +7,7 @@ import { segmenter } from './lib/segmenter'
 import {accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs} from './lib/utils'
 
 const path = require('path')
-const orthos = require('../../orthos') // publish - поправить версию
+// const orthos = require('../../orthos') // publish - поправить версию
 
 let log = console.log
 // let all = {startkey: 'α', endkey: 'ῳ'}

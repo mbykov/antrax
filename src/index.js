@@ -91,8 +91,9 @@ function addedStems(wforms) {
 function main(comb, plainsegs, sgms, pnonlasts, flexes, dicts) {
   dicts = _.filter(dicts, dict => { return !dict.indecl })
   log('dicts--->', dicts.length)
-  // let kdicts = _.filter(dicts, dict => { return dict.plain == 'οικι'})
-  // log('kdicts--->', kdicts)
+  let kdicts = _.filter(dicts, dict => { return dict.plain == 'κοσι'})
+  // XXX XXX
+  log('kdicts---->', kdicts)
 
   let segdicts = distributeDicts(plainsegs, dicts)
   let chains = makeChains(sgms, segdicts, flexes)
@@ -327,10 +328,10 @@ function filterDictFlex (comb, chains) {
       let ndicts = []
       let nfls = []
       ngroup.forEach(dict => {
-        if (dict.plain == 'οικι') log('NC-d ===========================>>>', dict)
+        if (dict.plain == 'κοσι') log('NC-d ===========================>>>', dict)
         let fls = []
         nameflexes.forEach(flex => {
-          if (dict.plain == 'οικι' && flex.numcase == 'sg.nom') log('NAME-f =========================', flex)
+          if (dict.plain == 'κοσι' && flex.numcase == 'pl.nom') log('NAME-f =========================', flex)
 
           let gend, fdicts
           for (let rgend in flex.rgend) {
