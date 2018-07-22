@@ -157,15 +157,14 @@ dict: αἱρέω
     αἱρετίζω (hairetízō)
     αἱρετικός (hairetikós)
     αὐθαίρετος (authaíretos)
+
     ἀφαιρέω (aphairéō)
     διαιρέω (diairéō)
     ἐναιρέω (enairéō)
     ἐξαιρέω (exairéō)
-
     ἐφαιρέω (ephairéō)
     καθαιρέω (kathairéō)
     μεθαιρέω (methairéō)
-    νεαίρετος (neaíretos)
     παραιρέω (parairéō)
     περιαιρέω (periairéō)
     προαιρέω (proairéō)
