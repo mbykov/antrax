@@ -28,8 +28,9 @@ process.prependListener("exit", (code) => {
   }
 })
 
-let upath = path.resolve(__dirname, '../../')
-enableDBs(upath)
+let upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
+let apath = path.resolve(__dirname, '../../egreek')
+enableDBs(upath, apath)
 
 const testpath = path.resolve(__dirname, 'wkt_verb.txt')
 const text = fse.readFileSync(testpath,'utf8')
@@ -100,14 +101,14 @@ text.split('\n').forEach((row, idx) => {
   }
 })
 
-// tests = tests.slice(0, 20)
+// tests = tests.slice(0, 100)
 // console.log('T', tests)
 // tests = []
 
 // describe('add()', () => {
 forEach(tests)
   .it(' %s %s %s %s %s ', (title, rdict, arg, tense, morph, done) => {
-    // log('C', title, dict, arg, tense, morph)
+    // log('C', title, rdict, arg, tense, morph)
     antrax(arg)
       .then(chains => {
         // log('C', chains)
@@ -128,9 +129,10 @@ forEach(tests)
                 assert.equal(true, true)
                 return
               }
-              let morphs = fls.map(flex => { return flex.numper })
+              // verb or participle:
+              let morphs = fls.map(flex => { return flex.numper || [flex.gend, flex.numcase].join('.') })
               morphs = _.uniq(morphs)
-              // log('M', morphs)
+              // log('M', morph, morphs)
               assert.equal(morphs.includes(morph), true)
             } else {
               assert.equal(true, true) // can be act.fut.inf where act.pres.inf is tested - ἀλέξειν
