@@ -31,7 +31,7 @@ export function parseVerb (seg, segs, flexes) {
     })
     let pfls = _.filter(partflexes, flex => {
       if (dict.plain == 'λυ' && flex.tense == 'act.fut.part') log('NC-p =========================', flex)
-      return filterVerb(dict, flex)
+      return filterPart(dict, flex)
     })
     if (fls.length) {
       vdicts.push(dict)
@@ -160,6 +160,10 @@ function uniqDict(dicts) {
 
 
 function filterPart(dict, flex) {
+  if (dict.act && flex.acts && !flex.acts.includes(dict.act)) return false
+  if (dict.mp && flex.mps && !flex.mps.includes(dict.mp)) return false
+
+  return true
 }
 
 function filterVerb(dict, flex) {

@@ -8,6 +8,7 @@ import {accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs
 
 const path = require('path')
 // const orthos = require('../../orthos') // publish - поправить версию
+let only = process.argv.slice(3)[0] || false;
 
 let log = console.log
 // let all = {startkey: 'α', endkey: 'ῳ'}
@@ -15,6 +16,7 @@ let log = console.log
 let wordform = process.argv.slice(2)[0] // || 'ἀργυρῷ' // false;
 let env = process.env.NODE_ENV
 
+log('ENV', env)
 // simple runner for src/antrax
 
 console.time("queryTime");
@@ -25,8 +27,8 @@ let apath = path.resolve(__dirname, '../../egreek')
 enableDBs(upath, apath)
 
 antrax(wordform).then(chains => {
-  if (env !== 'test') chains.forEach(chain => { log('C:', chain) , log('F:', chain[chain.length-1].flexes) })
-  // if (env !== 'test') chains.forEach(chain => { log('C:', chain) , log('D:', chain[chain.length-2].dicts), log('F:', chain[chain.length-1].flexes) })
+  if (only && only == 'log') chains.forEach(chain => { log('C:', chain) , log('D:', chain[chain.length-2].dicts), log('F:', chain[chain.length-1].flexes) })
+  else chains.forEach(chain => { log('C:', chain) , log('F:', chain[chain.length-1].flexes) })
   console.timeEnd("queryTime");
 }).catch(function (err) {
   console.log('ANTRAX-ERR', err)
