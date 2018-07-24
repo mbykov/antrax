@@ -20,7 +20,7 @@ export function segmenter (str) {
         pdchs.push(_.clone(pdch))
         pdch.pop()
       }
-      if (pdch.length < 5) rec(flake.tail, pdch) // three parts for now ! // 5 is four parts, i.e affix, stem, suffix, flex ================== NB: ===================
+      if (pdch.length < 3) rec(flake.tail, pdch) // three parts for now ! // 5 is four parts, i.e affix, stem, suffix, flex ========= NB: ============
       // rec(flake.tail, pdch)
       pdch.pop()
     })
