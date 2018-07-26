@@ -57,7 +57,8 @@ export function parseVerb (seg, segs, flexes) {
   }
 
   if (partdicts.length && partfls.length) {
-    let cleanfls = partfls.map(flex => { return {tense: flex.tense, numcase: flex.numcase, gend: flex.gend } })
+    let cleanfls = partfls.map(flex => { return {tense: flex.tense, numcase: flex.numcase, gend: flex.gend } }) // , reg: flex.reg
+    // let cleanfls = partfls.map(flex => { return flex })
     let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
     cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
     let flsobj = {seg: seg, flexes: cleanfls}
@@ -152,6 +153,8 @@ function uniqDict(dicts) {
     let uvkey = [dict.rdict, dict.dbname, dict.trns.toString()].join('')
     if (uvkeys[uvkey]) return
     let udict = {verb: true, rdict: dict.rdict, dname: dict.dname, trns: dict.trns, weight: dict.weight}
+    // let udict = dict
+    if (dict.reg) udict.reg = true
     udicts.push(udict)
     uvkeys[uvkey] = true
   })
@@ -160,6 +163,8 @@ function uniqDict(dicts) {
 
 
 function filterPart(dict, flex) {
+  if (dict.reg && !flex.reg) return false
+  if (flex.reg && !dict.reg) return false
   if (dict.act && flex.acts && !flex.acts.includes(dict.act)) return false
   if (dict.mp && flex.mps && !flex.mps.includes(dict.mp)) return false
 

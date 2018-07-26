@@ -48,7 +48,6 @@ text.split('\n').forEach((row, idx) => {
   if (skip) return
   if (!row || row[0] == '#' || row[0] == ' ') return
   // if (idx > 200) return
-  // log(row)
 
   let descr = row.split(':')[0].trim()
   if (descr == 'dict') {
@@ -64,6 +63,7 @@ text.split('\n').forEach((row, idx) => {
     if (!stest) return
     let test = ['inf', dict, stest, descr, null]
     // tests.push(test)
+    // aor.part-masc: ἀάσας, ἀασάμενος, ἀασθείς
   } else if (/part/.test(descr)) {
     // if (!row.split(':')[1]) log('RRR', row)
     if (!row.split(':')[1]) return
@@ -78,7 +78,19 @@ text.split('\n').forEach((row, idx) => {
       tests.push(test)
     } else  if (stests.length == 2) {
       stests.forEach((stest, idx) => {
+        if (!stest) return
         let voice = (idx) ? 'mp' : 'act'
+        let vfull = [voice, vdescr].join('.')
+        let test = ['part', dict, stest, vfull, ndescr]
+        tests.push(test)
+      })
+    } else  if (stests.length == 3) {
+      stests.forEach((stest, idx) => {
+        if (!stest) return
+        let voice
+        if (idx == 1) voice = 'mid'
+        else if (idx == 2) voice = 'pas'
+        else voice = 'act'
         let vfull = [voice, vdescr].join('.')
         let test = ['part', dict, stest, vfull, ndescr]
         tests.push(test)
@@ -95,13 +107,13 @@ text.split('\n').forEach((row, idx) => {
         // let plain = orthos.toComb(stest)
         // let first = _.first(plain)
         let test = ['verb', dict, stest, descr, numper]
-        tests.push(test)
+        // tests.push(test)
       })
     })
   }
 })
 
-// tests = tests.slice(0, 100)
+// tests = tests.slice(0, 50)
 // console.log('T', tests)
 // tests = []
 
