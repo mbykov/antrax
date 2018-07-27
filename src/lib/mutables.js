@@ -22,7 +22,7 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'λυ') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'ηγαπη') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
       if (dict.plain == 'εγεν' && flex.tense == 'mid.aor.sub') log('NC-f =========================', flex)
       // if (dict.reg)
@@ -30,7 +30,7 @@ export function parseVerb (seg, segs, flexes) {
       return filterVerb(dict, flex)
     })
     let pfls = _.filter(partflexes, flex => {
-      if (dict.plain == 'λυ' && flex.tense == 'act.fut.part') log('NC-p =========================', flex)
+      if (dict.plain == 'ηγαπη' && flex.tense == 'act.pf.part') log('NC-p =========================', flex)
       return filterPart(dict, flex)
     })
     if (fls.length) {
@@ -163,8 +163,8 @@ function uniqDict(dicts) {
 
 
 function filterPart(dict, flex) {
-  if (dict.reg && !flex.reg) return false
-  if (flex.reg && !dict.reg) return false
+  // pf is always irregular, even if dict is reg
+  if (!dict.pf && dict.reg != flex.reg) return false
   if (dict.act && flex.acts && !flex.acts.includes(dict.act)) return false
   if (dict.mp && flex.mps && !flex.mps.includes(dict.mp)) return false
 

@@ -1,4 +1,5 @@
-// import sum from './sum'
+// simple runner for src/antrax
+
 import _ from 'lodash'
 import { clause, antrax, enableDBs } from './index'
 // import { getFlex, getDict, createDBs, queryDBs } from './lib/pouch'
@@ -15,9 +16,6 @@ let log = console.log
 
 let wordform = process.argv.slice(2)[0] // || 'ἀργυρῷ' // false;
 let env = process.env.NODE_ENV
-
-log('ENV', env)
-// simple runner for src/antrax
 
 console.time("queryTime");
 
