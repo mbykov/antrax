@@ -87,6 +87,7 @@ text.split('\n').forEach((row, idx) => {
     } else  if (stests.length == 3) {
       stests.forEach((stest, idx) => {
         if (!stest) return
+        if (stest == 'x') return
         let voice
         if (idx == 1) voice = 'mid'
         else if (idx == 2) voice = 'pas'
