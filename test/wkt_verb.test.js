@@ -79,7 +79,10 @@ text.split('\n').forEach((row, idx) => {
     } else  if (stests.length == 2) {
       stests.forEach((stest, idx) => {
         if (!stest) return
-        let voice = (idx) ? 'mp' : 'act'
+        let mid
+        if (vdescr == 'aor.part' || vdescr == 'fut.part') mid = 'mid'
+        else mid = 'mp'
+        let voice = (idx) ? mid : 'act'
         let vfull = [voice, vdescr].join('.')
         let test = ['part', dict, stest, vfull, ndescr]
         tests.push(test)
@@ -121,7 +124,7 @@ text.split('\n').forEach((row, idx) => {
 // describe('add()', () => {
 forEach(tests)
   .it(' %s %s %s %s %s ', (title, rdict, arg, tense, morph, done) => {
-    // log('C', title, rdict, arg, tense, morph)
+    // log('C:=>', title, rdict, arg, tense, morph)
     antrax(arg)
       .then(chains => {
         // log('C', chains)
