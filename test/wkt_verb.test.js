@@ -74,30 +74,37 @@ text.split('\n').forEach((row, idx) => {
     let ndescr = [descr.split('-')[1], 'sg.nom'].join('.')
     let stests = stest2.split(', ')
     if (stests.length == 1) {
-      let test = ['part', dict, stests[0], vdescr, ndescr]
-      tests.push(test)
-    } else  if (stests.length == 2) {
-      stests.forEach((stest, idx) => {
-        if (!stest) return
-        let mid
-        if (vdescr == 'aor.part' || vdescr == 'fut.part') mid = 'mid'
-        else mid = 'mp'
-        let voice = (idx) ? mid : 'act'
-        let vfull = [voice, vdescr].join('.')
-        let test = ['part', dict, stest, vfull, ndescr]
+      stests[0].split('-').forEach(stest => {
+        let test = ['part', dict, stest, vdescr, ndescr]
         tests.push(test)
       })
+    } else  if (stests.length == 2) {
+      stests.forEach((stest2a, idx) => {
+        stest2a.split('-').forEach(stest => {
+          if (!stest) return
+          if (stest == 'x') return
+          let mid
+          if (vdescr == 'aor.part' || vdescr == 'fut.part') mid = 'mid'
+          else mid = 'mp'
+          let voice = (idx) ? mid : 'act'
+          let vfull = [voice, vdescr].join('.')
+          let test = ['part', dict, stest, vfull, ndescr]
+          tests.push(test)
+        })
+      })
     } else  if (stests.length == 3) {
-      stests.forEach((stest, idx) => {
-        if (!stest) return
-        if (stest == 'x') return
-        let voice
-        if (idx == 1) voice = 'mid'
-        else if (idx == 2) voice = 'pas'
-        else voice = 'act'
-        let vfull = [voice, vdescr].join('.')
-        let test = ['part', dict, stest, vfull, ndescr]
-        tests.push(test)
+      stests.forEach((stest2a, idx) => {
+        stest2a.split('-').forEach(stest => {
+          if (!stest) return
+          if (stest == 'x') return
+          let voice
+          if (idx == 1) voice = 'mid'
+          else if (idx == 2) voice = 'pas'
+          else voice = 'act'
+          let vfull = [voice, vdescr].join('.')
+          let test = ['part', dict, stest, vfull, ndescr]
+          tests.push(test)
+        })
       })
     }
   } else  if (/act\./.test(descr) || /mp\./.test(descr) || /pas\./.test(descr)) {

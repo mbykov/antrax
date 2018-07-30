@@ -6,6 +6,7 @@ import { segmenter } from './lib/segmenter'
 import { parseVerb, parseName } from './lib/mutables'
 // import { accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs } from './lib/utils'
 import { vowels, weaks, voice } from './lib/utils'
+import util from 'util'
 
 // process.EventEmitter = require('events').EventEmitter
 const path = require('path')
@@ -89,6 +90,7 @@ function addedStems(wforms) {
 
 function main(comb, plainsegs, sgms, pnonlasts, flexes, dicts) {
   dicts = _.filter(dicts, dict => { return !dict.indecl })
+  dicts = _.filter(dicts, dict => { return dict.rdict })
   log('dicts--->', dicts.length)
   // let kdicts = _.filter(dicts, dict => { return dict.plain == 'κοσι'})
   // log('kdicts---->', kdicts)
@@ -129,9 +131,9 @@ function main(comb, plainsegs, sgms, pnonlasts, flexes, dicts) {
 // предварительно распределяю dicts по всем plain-сегментам, включая добавочные :
 function distributeDicts (plainsegs, dicts) {
   let segdicts = {}
-  plainsegs.forEach((seg, idx) => {
-    let sdicts = _.filter(dicts, dict => { return seg === dict.plain })
-    segdicts[seg] = sdicts
+  plainsegs.forEach(pseg => {
+    let sdicts = _.filter(dicts, dict => { return pseg === dict.plain })
+    segdicts[pseg] = sdicts
   })
   return segdicts
 }
@@ -173,7 +175,7 @@ function addDicts(chains, pnonlasts, segdicts) {
     let seg = penult.seg
     seg = orthos.plain(seg)
     let first = _.first(seg)
-    let sdicts = penult.dicts
+    let sdicts = _.clone(penult.dicts)
     let firsts = _.uniq([seg.slice(0,1), seg.slice(0,2), seg.slice(0,3), seg.slice(0,4), seg.slice(0,5)])
     firsts = _.filter(firsts, first => { return first != seg })
     firsts.forEach(first => {
@@ -199,11 +201,13 @@ function addDicts(chains, pnonlasts, segdicts) {
     } else if (first == 'ε') { // pas.aor.sub - βλέπω  - ἔβλεψα - ἐβλεφθῶ - dict plain βλε
       if (seg.length < 2) return
       let added = seg.slice(1)
-      let adicts = segdicts[added]
-      adicts.forEach(adict => {
+      let asdicts = segdicts[added]
+      // clog(added, adicts)
+      // adicts = _.filter(adicts, dict => { return dict.rdict })
+      asdicts.forEach(adict => {
         if (!pnonlasts.includes(adict.plain)) adict.sliced = true
       })
-      if (adicts.length) sdicts.push(adicts)
+      if (asdicts.length) sdicts.push(asdicts)
     }
     penult.dicts = _.uniq(_.compact(_.flatten(sdicts)))
   })
@@ -227,7 +231,7 @@ function fullChains(chains) {
 function filterDictFlex (rchains) {
   let chains = []
   rchains.forEach(rchain => {
-    if (rchain.length > 2) return
+    if (rchain.length > 2) return // ============================================== убрать
     let lastseg = _.last(rchain)
     let seg = lastseg.seg
     let flexes = lastseg.flexes
@@ -235,7 +239,10 @@ function filterDictFlex (rchains) {
     if (!segs.length) return
 
     let last = _.last(segs)
-    last.dicts.forEach(dict => { dict.dict = orthos.toComb(dict.rdict) } )
+    // BUG: жуткий баг, неизвестно откуда  - circulars, вместо обычных dict => npm start ἐμεόμενος
+    // last.dicts = _.filter(last.dicts, dict => { return dict.rdict })
+
+    // last.dicts.forEach(dict => { dict.dict = orthos.toComb(dict.rdict) } )
 
     let vchains = parseVerb(seg, segs, flexes)
     chains.push(vchains)
