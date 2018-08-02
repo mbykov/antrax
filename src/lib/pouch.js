@@ -36,6 +36,8 @@ function createZeroCfg(upath, aversion) {
 function initDBs(upath, apath, aversion) {
   let srcpath = path.resolve(apath, 'pouch')
   let destpath = path.resolve(upath, 'pouch')
+  log('SRC', srcpath)
+  log('DEST', destpath)
   const dest = jetpack.dir(destpath, { empty: true, mode: '755' });
 
   try {

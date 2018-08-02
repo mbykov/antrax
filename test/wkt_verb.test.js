@@ -65,6 +65,7 @@ text.split('\n').forEach((row, idx) => {
     // tests.push(test)
     // aor.part-masc: ἀάσας, ἀασάμενος, ἀασθείς
   } else if (/part/.test(descr)) {
+    return
     // if (!row.split(':')[1]) log('RRR', row)
     if (!row.split(':')[1]) return
     // log('R', row)
@@ -118,7 +119,7 @@ text.split('\n').forEach((row, idx) => {
         // let plain = orthos.toComb(stest)
         // let first = _.first(plain)
         let test = ['verb', dict, stest, descr, numper]
-        // tests.push(test)
+        tests.push(test)
       })
     })
   }

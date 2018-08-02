@@ -22,9 +22,9 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'ηγαπη') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'α') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      if (dict.plain == 'εγεν' && flex.tense == 'mid.aor.sub') log('NC-f =========================', flex)
+      if (dict.plain == 'α' && flex.tense == 'act.pres.ind') log('NC-f =========================', flex)
       // if (dict.reg)
       // if (!dict.reg) return filterVerb(dict, flex, first)
       return filterVerb(dict, flex)
@@ -150,6 +150,7 @@ function uniqDict(dicts) {
   let udicts = []
   let uvkeys = {}
   dicts.forEach(dict => {
+    // NB: нужна санитанизация dict - иначе если нет trns, будет ошибка
     let uvkey = [dict.rdict, dict.dbname, dict.trns.toString()].join('')
     if (uvkeys[uvkey]) return
     let udict = {verb: true, rdict: dict.rdict, dname: dict.dname, trns: dict.trns, weight: dict.weight}
@@ -190,10 +191,15 @@ function filterVerb(dict, flex) {
     if (dict.added) return false
     if (dict.passive && voice(flex.tense) != 'pas') return false
 
-    if (dict.act && flex.acts && !flex.acts.includes(dict.act)) return false
-    if (dict.mid && flex.mids && !flex.mids.includes(dict.mid)) return false
-    if (dict.pas && flex.pass && !flex.pass.includes(dict.pas)) return false
+    // if (dict.act && flex.acts && !flex.acts.includes(dict.act)) return false
+    // if (dict.mid && flex.mids && !flex.mids.includes(dict.mid)) return false
+    // if (dict.pas && flex.pass && !flex.pass.includes(dict.pas)) return false
 
+    if (dict.act && dict.act != flex.act) return false
+    if (dict.mid && dict.mid != flex.mid) return false
+    if (dict.pas && dict.pas != flex.pas) return false
+
+    // NB: это проверить теперь, с авто-генерацией dict-flex
     if (dict.passive && !dict.act && !dict.mid && flex.acts && !flex.acts.includes('ω')) return false
     // δεδήσομαι - и все на ήσομαι - проходят. Тут либо все разбивать на мелкие группы, либо...
     // группа ω выбрана произвольно
@@ -241,8 +247,10 @@ function filterVerb(dict, flex) {
     if (dict.weak) return false
     if (dict.added) return false
 
-    if (dict.act && flex.acts && !flex.acts.includes(dict.act)) return false
-    if (dict.mp && flex.mps && !flex.mps.includes(dict.mp)) return false
+    // if (dict.act && flex.acts && !flex.acts.includes(dict.act)) return false
+    // if (dict.mp && flex.mps && !flex.mps.includes(dict.mp)) return false
+    if (dict.act && dict.act != flex.act) return false
+    if (dict.mp && dict.mp != flex.mp) return false
 
     return true
   } else {
@@ -255,7 +263,6 @@ function cloneChain(segs, dicts, pdict, fls) {
   let nchain = _.cloneDeep(segs)
   let nlast = _.last(nchain)
   nlast.dicts = dicts
-  // nlast.d = dict.rform || dict.rdict // rdict для names - все это только для отладки, потом убрать
   nchain.push(fls)
   return nchain
 }
