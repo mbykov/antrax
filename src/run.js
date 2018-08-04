@@ -7,6 +7,8 @@ import { clause, antrax, enableDBs } from './index'
 import { segmenter } from './lib/segmenter'
 import {accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs} from './lib/utils'
 
+let util = require('util');
+
 const path = require('path')
 // const orthos = require('../../orthos') // publish - поправить версию
 let only = process.argv.slice(3)[0] || false;
@@ -25,9 +27,14 @@ let apath = path.resolve(__dirname, '../../egreek')
 enableDBs(upath, apath)
 
 antrax(wordform).then(chains => {
-  if (only && only == 'log') chains.forEach(chain => { log('C:', chain) , log('D:', chain[chain.length-2].dicts), log('F:', chain[chain.length-1].flexes) })
+  // if (only && only == 'log') chains.forEach(chain => { log('C:', chain) , log('D:', chain[chain.length-2].dicts), log('F:', chain[chain.length-1].flexes) })
+  if (only && only == 'log') chains.forEach(chain => { log('Chain:'), insp(chain)  })
   else chains.forEach(chain => { log('C:', chain) , log('F:', chain[chain.length-1].flexes) })
   console.timeEnd("queryTime");
 }).catch(function (err) {
   console.log('ANTRAX-ERR', err)
 })
+
+function insp (o) {
+  console.log(util.inspect(o, false, null, true));
+}

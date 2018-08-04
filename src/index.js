@@ -94,6 +94,7 @@ function main(comb, plainsegs, sgms, pnonlasts, flexes, dicts) {
   log('dicts--->', dicts.length)
   // let kdicts = _.filter(dicts, dict => { return dict.plain == 'κοσι'})
   // log('kdicts---->', kdicts)
+  log('flexes--->', flexes.length)
 
   let segdicts = distributeDicts(plainsegs, dicts)
   let chains = makeChains(sgms, segdicts, flexes)

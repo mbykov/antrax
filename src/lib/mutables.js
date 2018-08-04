@@ -16,15 +16,16 @@ export function parseVerb (seg, segs, flexes) {
   let verbflexes = _.filter(flexes, flex => { return flex.verb })
   // let advflexes = _.filter(flexes, flex => { return flex.adv })
   let partflexes = _.filter(flexes, flex => { return flex.part })
+  // clog('FL', verbflexes)
 
   let vdicts = []
   let vfls = []
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'α') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'αγαθοποι') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      if (dict.plain == 'α' && flex.tense == 'act.pres.ind') log('NC-f =========================', flex)
+      if (dict.plain == 'αγαθοποι' && flex.tense == 'act.fut.ind') log('NC-f =========================', flex)
       // if (dict.reg)
       // if (!dict.reg) return filterVerb(dict, flex, first)
       return filterVerb(dict, flex)
@@ -151,6 +152,7 @@ function uniqDict(dicts) {
   let uvkeys = {}
   dicts.forEach(dict => {
     // NB: нужна санитанизация dict - иначе если нет trns, будет ошибка
+    if (!dict.trns) dict.trns = 'no trns:' + dict.rdict
     let uvkey = [dict.rdict, dict.dbname, dict.trns.toString()].join('')
     if (uvkeys[uvkey]) return
     let udict = {verb: true, rdict: dict.rdict, dname: dict.dname, trns: dict.trns, weight: dict.weight}
@@ -189,15 +191,14 @@ function filterVerb(dict, flex) {
     if (!flex.fut) return false
     if (dict.weak) return false
     if (dict.added) return false
-    if (dict.passive && voice(flex.tense) != 'pas') return false
+    // if (dict.passive && voice(flex.tense) != 'pas') return false // NB: проверить
 
-    // if (dict.act && flex.acts && !flex.acts.includes(dict.act)) return false
-    // if (dict.mid && flex.mids && !flex.mids.includes(dict.mid)) return false
-    // if (dict.pas && flex.pass && !flex.pass.includes(dict.pas)) return false
+    if (dict.acts && flex.acts && _.intersection(dict.acts, flex.acts).length) return true
+    if (dict.mids && flex.mids && _.intersection(dict.mids, flex.mids).length) return true
+    if (dict.pas && flex.pas && _.intersection(dict.pas, flex.pas).length) return true
 
-    if (dict.act && dict.act != flex.act) return false
-    if (dict.mid && dict.mid != flex.mid) return false
-    if (dict.pas && dict.pas != flex.pas) return false
+    return false
+
 
     // NB: это проверить теперь, с авто-генерацией dict-flex
     if (dict.passive && !dict.act && !dict.mid && flex.acts && !flex.acts.includes('ω')) return false
@@ -243,16 +244,22 @@ function filterVerb(dict, flex) {
     if (dict.mp && flex.mps && !flex.mps.includes(dict.mp)) return false
 
   } else if (dict.pres) {
-    if (!flex.pres) return false
     if (dict.weak) return false
     if (dict.added) return false
 
-    // if (dict.act && flex.acts && !flex.acts.includes(dict.act)) return false
-    // if (dict.mp && flex.mps && !flex.mps.includes(dict.mp)) return false
-    if (dict.act && dict.act != flex.act) return false
-    if (dict.mp && dict.mp != flex.mp) return false
+    if (flex.pres) {
+      if (dict.acts && flex.acts && _.intersection(dict.acts, flex.acts).length) return true
+      if (dict.mps && flex.mps && _.intersection(dict.mps, flex.mps).length) return true
+    }
+    // REG FUT,
+    else if (dict.reg && flex.reg) {
+      if (dict.plain == 'αγαθοποι') log('>>>>>>>>>>>>>>>>>>>>>>', dict.acts, flex.pacts, _.intersection(dict.acts, flex.pacts))
+      if (dict.acts && flex.pacts && _.intersection(dict.acts, flex.pacts).length) return true
+      if (dict.mps && flex.pmps && _.intersection(dict.mps, flex.pmps).length) return true
+    }
 
-    return true
+
+    return false
   } else {
     return false
   }

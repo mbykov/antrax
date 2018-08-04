@@ -119,9 +119,9 @@ export function getFlex (keys) {
       let rdocs = _.compact(res.rows.map(row => { return row.doc }))
       let result = []
       rdocs.forEach(fl => {
-        fl.morphs.forEach(morph => {
-          morph.flex = fl._id
-          result.push(morph)
+        fl.docs.forEach(doc => {
+          doc.flex = fl._id
+          result.push(doc)
         })
       })
       return result
