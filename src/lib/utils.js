@@ -112,7 +112,7 @@ export const weaks = {
 }
 
 
-export const strongs = {'η': 'α', 'ω': 'ο', 'ᾐ': 'αι', '': '', 'α': 'η', '': ''}
+export const strongs = {'η': 'α', 'ω': 'ο', 'ᾐ': 'αι', '': '', '': '', '': ''}
 
 export const affixes = {
   'διε': 'δια',

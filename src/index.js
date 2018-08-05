@@ -5,7 +5,7 @@ import { getTerms, getFlex, queryDBs, setDBs } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import { parseVerb, parseName } from './lib/mutables'
 // import { accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs } from './lib/utils'
-import { vowels, weaks, voice } from './lib/utils'
+import { vowels, weaks, strongs, voice } from './lib/utils'
 import util from 'util'
 
 // process.EventEmitter = require('events').EventEmitter
@@ -65,10 +65,9 @@ export function antrax (wordform) {
 
 // ADDED
 function addedStems(wforms) {
-  let plain, first, last, last2, added = []
+  let plain, first, added = []
   wforms.forEach(wf => {
     first = _.first(wf)
-    last = _.last(wf)
     plain = orthos.plain(wf)
     let firsts = _.uniq([plain.slice(0,1), plain.slice(0,2), plain.slice(0,3), plain.slice(0,4), plain.slice(0,5)]) // aor. ind from aor others
     firsts = _.filter(firsts, first => { return first != plain })
@@ -76,12 +75,16 @@ function addedStems(wforms) {
       if (!weaks[first]) return
       weaks[first].forEach(weak => {
         let add = [weak, plain.slice(first.length)].join('')
-        added.push(add)
+        // added.push(add)
       })
     })
 
     if (!vowels.includes(first)) {
       let add = ['ε', plain].join('') // aor.sub, opt, impf for consonants
+      added.push(add)
+    } else if (strongs[first]) {
+      // это неверное, длинные aug:
+      let add = [strongs[first], wf.slice(1)].join('') // IMPF
       added.push(add)
     }
   })
@@ -171,7 +174,7 @@ function makeChains (sgms, segdicts, flexes) {
 // ADDED
 function addDicts(chains, pnonlasts, segdicts) {
   chains.forEach(segs => {
-    let stem, idxhi, aug, weak
+    // let stem, weak
     let penult = segs[segs.length-2]
     let seg = penult.seg
     seg = orthos.plain(seg)
@@ -184,10 +187,11 @@ function addDicts(chains, pnonlasts, segdicts) {
       weaks[first].forEach(weak => {
         let added = [weak, seg.slice(first.length)].join('')
         let adicts = segdicts[added]
-        adicts.forEach(adict => {
-          if (!pnonlasts.includes(adict.plain)) adict.weak = true
-        })
-        if (adicts.length) sdicts.push(adicts)
+        addDictCarefully(pnonlasts, sdicts, adicts, 'weak')
+        // adicts.forEach(adict => {
+        //   if (!pnonlasts.includes(adict.plain)) adict.weak = true
+        // })
+        // if (adicts.length) sdicts.push(adicts)
       })
     })
 
@@ -195,23 +199,44 @@ function addDicts(chains, pnonlasts, segdicts) {
     if (!vowels.includes(first)) {
       let added = ['ε', seg].join('') // aor.sub, opt, impf from ind
       let adicts = segdicts[added]
-      adicts.forEach(adict => {
-        if (!pnonlasts.includes(adict.plain)) adict.added = true
-      })
-      if (adicts.length) sdicts.push(adicts)
+      // adicts.forEach(adict => {
+      //   if (!pnonlasts.includes(adict.plain)) adict.added = true
+      // })
+      // if (adicts.length) sdicts.push(adicts)
+      addDictCarefully(pnonlasts, sdicts, adicts, 'added')
     } else if (first == 'ε') { // pas.aor.sub - βλέπω  - ἔβλεψα - ἐβλεφθῶ - dict plain βλε
       if (seg.length < 2) return
       let added = seg.slice(1)
-      let asdicts = segdicts[added]
+      let adicts = segdicts[added]
       // clog(added, adicts)
       // adicts = _.filter(adicts, dict => { return dict.rdict })
-      asdicts.forEach(adict => {
-        if (!pnonlasts.includes(adict.plain)) adict.sliced = true
+      // adicts.forEach(adict => {
+      //   if (!pnonlasts.includes(adict.plain)) adict.sliced = true
+      // })
+      // if (adicts.length) sdicts.push(adicts)
+      addDictCarefully(pnonlasts, sdicts, adicts, 'sliced')
+    } else if (_.intersection(firsts, _.values(strongs))) {
+      //  strongs = {'η': 'α', 'ω': 'ο', 'ᾐ': 'αι', '': '', '': '', '': ''}
+      firsts.forEach(first => {
+        for (let strong in strongs) {
+          if (strong != first) continue
+          let stem = seg.slice(strong.length)
+          let added = [strongs[strong], stem].join('')
+          let adicts = segdicts[added]
+          addDictCarefully(pnonlasts, sdicts, adicts, 'sliced')
+        }
       })
-      if (asdicts.length) sdicts.push(asdicts)
     }
     penult.dicts = _.uniq(_.compact(_.flatten(sdicts)))
   })
+}
+
+function addDictCarefully(pnonlasts, sdicts, adicts, mark) {
+  if (!adicts || !adicts.length) return
+  adicts.forEach(adict => {
+    if (!pnonlasts.includes(adict.plain)) adict[mark] = true
+  })
+  sdicts.push(adicts)
 }
 
 function fullChains(chains) {
