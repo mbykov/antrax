@@ -234,26 +234,33 @@ function filterVerb(dict, flex) {
     if (dict.mp && flex.mps && !flex.mps.includes(dict.mp)) return false
 
   } else if (dict.impf) {
-    if (!flex.impf) return false
+    // if (!flex.impf) return false
     if (dict.weak) return false
     if (dict.added) return false
     // == IMPF ==
 
-    if (!flex.dicts.includes(dict.dict)) return false
-    if (dict.act && flex.acts && !flex.acts.includes(dict.act)) return false
-    if (dict.mp && flex.mps && !flex.mps.includes(dict.mp)) return false
+    let reg = {}
+    reg['ουν'] = ['έω', 'ῶ']
+    reg['εον'] = ['έω', 'ῶ']
+
+    if (flex.reg) {
+      if (dict.acts && flex.act && _.intersection(dict.acts, reg[flex.act] ).length ) return true
+      if (dict.mps && flex.mp && dict.mps.includes(flex.mp)) return true
+    }
+
+    return false
 
   } else if (dict.pres) {
     if (dict.weak) return false
     if (dict.added) return false
 
     if (flex.pres) {
-      if (dict.acts && flex.acts && _.intersection(dict.acts, flex.acts).length) return true
-      if (dict.mps && flex.mps && _.intersection(dict.mps, flex.mps).length) return true
+      if (dict.acts && flex.act && dict.acts.includes(flex.act)) return true
+      if (dict.mps && flex.mp && dict.mps.includes(flex.mp)) return true
     }
     // REG FUT,
     else if (dict.reg && flex.reg) {
-      if (dict.plain == 'αγαθοποι') log('>>>>>>>>>>>>>>>>>>>>>>', dict.acts, flex.pacts, _.intersection(dict.acts, flex.pacts))
+      // if (dict.plain == 'αγαθοποι') log('>>>>>>>>>>>>>>>>>>>>>>', dict.acts, flex.pacts, _.intersection(dict.acts, flex.pacts))
       if (dict.acts && flex.pacts && _.intersection(dict.acts, flex.pacts).length) return true
       if (dict.mps && flex.pmps && _.intersection(dict.mps, flex.pmps).length) return true
     }
