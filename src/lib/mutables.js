@@ -197,6 +197,7 @@ function filterVerb(dict, flex) {
     if (dict.mids && flex.mids && _.intersection(dict.mids, flex.mids).length) return true
     if (dict.pas && flex.pas && _.intersection(dict.pas, flex.pas).length) return true
 
+
     return false
 
 
@@ -239,9 +240,12 @@ function filterVerb(dict, flex) {
     if (dict.added) return false
     // == IMPF ==
 
-    let reg = {}
-    reg['ουν'] = ['έω', 'ῶ']
-    reg['εον'] = ['έω', 'ῶ']
+    let reg = {fut: {}, impf: {}, aor: {}}
+    reg.fut['ήσω'] = ['έω', 'ῶ']
+    reg.fut['ήσομαι'] = ['έω', 'ῶ']
+    reg.fut['ηθήσομαι'] = ['έω', 'ῶ']
+    reg.impf['ουν'] = ['έω', 'ῶ']
+    // reg.impf['εον'] = ['έω', 'ῶ']
 
     if (flex.reg) {
       if (dict.acts && flex.act && _.intersection(dict.acts, reg[flex.act] ).length ) return true
@@ -254,15 +258,22 @@ function filterVerb(dict, flex) {
     if (dict.weak) return false
     if (dict.added) return false
 
+    let reg = {}
+    reg['ήσω'] = ['έω', 'ῶ'] // fut
+    reg['ήσομαι'] = ['έω', 'ῶ']
+    reg['ηθήσομαι'] = ['έω', 'ῶ']
+    reg['ουν'] = ['έω', 'ῶ'] // impf
+    // reg.impf['εον'] = ['έω', 'ῶ']
+
     if (flex.pres) {
       if (dict.acts && flex.act && dict.acts.includes(flex.act)) return true
       if (dict.mps && flex.mp && dict.mps.includes(flex.mp)) return true
     }
     // REG FUT,
-    else if (dict.reg && flex.reg) {
-      // if (dict.plain == 'αγαθοποι') log('>>>>>>>>>>>>>>>>>>>>>>', dict.acts, flex.pacts, _.intersection(dict.acts, flex.pacts))
-      if (dict.acts && flex.pacts && _.intersection(dict.acts, flex.pacts).length) return true
-      if (dict.mps && flex.pmps && _.intersection(dict.mps, flex.pmps).length) return true
+    else if (flex.reg) {
+      if (dict.plain == 'αγαθοποι') log('>>>>>>>>>>>>>>>>>>>>>>', dict.acts, flex.act, _.intersection(dict.acts, reg[flex.act] ))
+      if (dict.acts && flex.act && _.intersection(dict.acts, reg[flex.act] ).length) return true
+      if (dict.mps && flex.mp && _.intersection(dict.mps, reg[flex.mp] ).length) return true
     }
 
 
