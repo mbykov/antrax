@@ -23,9 +23,9 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'αγαθοποι') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'αγγελλ') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      if (dict.plain == 'αγαθοποι' && flex.tense == 'act.fut.ind') log('NC-f =========================', flex)
+      if (dict.plain == 'αγγελλ' && flex.tense == 'act.pres.ind') log('NC-f =========================', flex)
       // if (dict.reg)
       // if (!dict.reg) return filterVerb(dict, flex, first)
       return filterVerb(dict, flex)
@@ -155,7 +155,7 @@ function uniqDict(dicts) {
     if (!dict.trns) dict.trns = 'no trns:' + dict.rdict
     let uvkey = [dict.rdict, dict.dbname, dict.trns.toString()].join('')
     if (uvkeys[uvkey]) return
-    let udict = {verb: true, rdict: dict.rdict, dname: dict.dname, trns: dict.trns, weight: dict.weight}
+    let udict = {verb: true, rdict: dict.rdict, dname: dict.dname, trns: dict.trns, weight: dict.weight, keys: dict.keys}
     // let udict = dict
     if (dict.reg) udict.reg = true
     udicts.push(udict)
@@ -191,18 +191,21 @@ function filterVerb(dict, flex) {
     if (!flex.fut) return false
     if (dict.weak) return false
     if (dict.added) return false
+    if (dict.sliced) return false
     // if (dict.passive && voice(flex.tense) != 'pas') return false // NB: проверить
 
-    if (dict.acts && flex.acts && _.intersection(dict.acts, flex.acts).length) return true
-    if (dict.mids && flex.mids && _.intersection(dict.mids, flex.mids).length) return true
-    if (dict.pas && flex.pas && _.intersection(dict.pas, flex.pas).length) return true
+    // if (dict.acts && flex.acts && _.intersection(dict.acts, flex.acts).length) return true
+    // if (dict.mids && flex.mids && _.intersection(dict.mids, flex.mids).length) return true
+    // if (dict.pas && flex.pas && _.intersection(dict.pas, flex.pas).length) return true
 
+    // if (dict.acts && flex.act && dict.acts.includes(flex.act)) return true
+    // if (dict.mps && flex.mp && dict.mps.includes(flex.mp)) return true
+    if (dict.keys.includes(flex.key)) return true
 
     return false
 
-
     // NB: это проверить теперь, с авто-генерацией dict-flex
-    if (dict.passive && !dict.act && !dict.mid && flex.acts && !flex.acts.includes('ω')) return false
+    // if (dict.passive && !dict.act && !dict.mid && flex.acts && !flex.acts.includes('ω')) return false
     // δεδήσομαι - и все на ήσομαι - проходят. Тут либо все разбивать на мелкие группы, либо...
     // группа ω выбрана произвольно
 
@@ -240,16 +243,9 @@ function filterVerb(dict, flex) {
     if (dict.added) return false
     // == IMPF ==
 
-    let reg = {fut: {}, impf: {}, aor: {}}
-    reg.fut['ήσω'] = ['έω', 'ῶ']
-    reg.fut['ήσομαι'] = ['έω', 'ῶ']
-    reg.fut['ηθήσομαι'] = ['έω', 'ῶ']
-    reg.impf['ουν'] = ['έω', 'ῶ']
-    // reg.impf['εον'] = ['έω', 'ῶ']
-
     if (flex.reg) {
-      if (dict.acts && flex.act && _.intersection(dict.acts, reg[flex.act] ).length ) return true
-      if (dict.mps && flex.mp && dict.mps.includes(flex.mp)) return true
+      // if (dict.acts && flex.act && _.intersection(dict.acts, reg[flex.act] ).length ) return true
+      // if (dict.mps && flex.mp && dict.mps.includes(flex.mp)) return true
     }
 
     return false
@@ -257,25 +253,17 @@ function filterVerb(dict, flex) {
   } else if (dict.pres) {
     if (dict.weak) return false
     if (dict.added) return false
+    // if (dict.sliced) return false
 
-    let reg = {}
-    reg['ήσω'] = ['έω', 'ῶ'] // fut
-    reg['ήσομαι'] = ['έω', 'ῶ']
-    reg['ηθήσομαι'] = ['έω', 'ῶ']
-    reg['ουν'] = ['έω', 'ῶ'] // impf
-    // reg.impf['εον'] = ['έω', 'ῶ']
 
-    if (flex.pres) {
-      if (dict.acts && flex.act && dict.acts.includes(flex.act)) return true
-      if (dict.mps && flex.mp && dict.mps.includes(flex.mp)) return true
+    if (flex.key && flex.pres) {
+      if (dict.sliced) return false // ἠγαθοποιοῦ - не должен найтись pres от ἀγαθο...
+      if (dict.keys.includes(flex.key)) return true
     }
-    // REG FUT,
-    else if (flex.reg) {
-      if (dict.plain == 'αγαθοποι') log('>>>>>>>>>>>>>>>>>>>>>>', dict.acts, flex.act, _.intersection(dict.acts, reg[flex.act] ))
-      if (dict.acts && flex.act && _.intersection(dict.acts, reg[flex.act] ).length) return true
-      if (dict.mps && flex.mp && _.intersection(dict.mps, reg[flex.mp] ).length) return true
+    else if (flex.pkeys) { // REG FUT,
+      if (_.intersection(dict.keys, flex.pkeys ).length) return true
+      // if (dict.keys.includes(flex.key)) return true
     }
-
 
     return false
   } else {
