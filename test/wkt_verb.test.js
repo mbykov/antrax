@@ -140,7 +140,9 @@ forEach(tests)
       .then(chains => {
         // log('C', chains)
         if (!chains.length) log('NO RESULT'), assert.equal(false, true)
-        chains.forEach(chain => {
+        let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return dict.rdict}).includes(rdict) })
+        if (!corrchs.length) log('no correct chains'), assert.equal(false, true)
+        corrchs.forEach(chain => {
           if (chain.length > 2) log('CH.length'), assert.equal(false, true)
           let penult = chain[chain.length-2]
           let verbs = _.filter(penult.dicts, dict => { return dict.verb })
