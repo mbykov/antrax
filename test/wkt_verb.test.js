@@ -38,6 +38,8 @@ const text = fse.readFileSync(testpath,'utf8')
 let param = process.argv.slice(2)[1]
 log('FILTER', param)
 
+let irregs = [ 'δράω', 'εἰμί', 'εἶμι', 'εἰσέρχομαι', 'ἔρχομαι', 'θάπτω',  'θύω', 'τίθημι', 'τρέφω', 'φημί' ]
+
 let skip = true
 
 let tests = []
@@ -119,6 +121,7 @@ text.split('\n').forEach((row, idx) => {
         // let plain = orthos.toComb(stest)
         // let first = _.first(plain)
         let test = ['verb', dict, stest, descr, numper]
+        if (irregs.includes(dict)) return
         tests.push(test)
       })
     })
@@ -140,10 +143,11 @@ forEach(tests)
         chains.forEach(chain => {
           if (chain.length > 2) log('CH.length'), assert.equal(false, true)
           let penult = chain[chain.length-2]
-          penult.dicts.forEach(dict => {
-            if (!dict.verb) return // не-глаголы
-            if (orthos.toComb(dict.rdict) != orthos.toComb(rdict)) return  //  лишние глаголы
-
+          let verbs = _.filter(penult.dicts, dict => { return dict.verb })
+          if (!verbs.length) log('no verb'), assert.equal(false, true)
+          let cverbs = _.filter(verbs, dict => { return orthos.toComb(dict.rdict) == orthos.toComb(rdict) })
+          if (!cverbs.length) log('no correct verb'), assert.equal(false, true)
+          cverbs.forEach(dict => {
             let fls = _.last(chain).flexes
             // log('FLS', fls)
             let tenses = fls.map(flex => { return flex.tense })

@@ -5,7 +5,8 @@ import { getTerms, getFlex, queryDBs, setDBs } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import { parseVerb, parseName } from './lib/mutables'
 // import { accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs } from './lib/utils'
-import { vowels, weaks, strongs, voice } from './lib/utils'
+import { vowels, strongs, voice } from './lib/utils'
+import { strong } from './lib/augments'
 import util from 'util'
 
 // process.EventEmitter = require('events').EventEmitter
@@ -39,7 +40,7 @@ export function antrax (wordform) {
 
   // segments for flexes:
   let lasts = _.uniq(sgms.map(sgm =>  { return sgm[sgm.length-1] }))
-  lasts.push(comb)
+  // lasts.push(comb) // это, наверное, будет не нужно при поиске terms регулярно
   log('lasts', lasts)
 
   // segments for dicts:
@@ -63,29 +64,33 @@ export function antrax (wordform) {
     })
 } // export antrax
 
+
 // ADDED
 function addedStems(wforms) {
   let plain, first, added = []
   wforms.forEach(wf => {
     first = _.first(wf)
     plain = orthos.plain(wf)
-    let firsts = _.uniq([plain.slice(0,1), plain.slice(0,2), plain.slice(0,3), plain.slice(0,4), plain.slice(0,5)]) // aor. ind from aor others
-    firsts = _.filter(firsts, first => { return first != plain })
-    firsts.forEach(first => {
-      if (!weaks[first]) return
-      weaks[first].forEach(weak => {
-        let add = [weak, plain.slice(first.length)].join('')
-        // added.push(add)
-      })
-    })
+    // let firsts = _.uniq([plain.slice(0,1), plain.slice(0,2), plain.slice(0,3), plain.slice(0,4), plain.slice(0,5)]) // aor. ind from aor others
+    // // firsts = _.filter(firsts, first => { return first != plain })
+    // firsts.forEach(first => {
+    //   for (let dict in weaks) {
+    //     let reals = weaks[dict]
+    //     if (!reals.includes(first)) continue
+    //     let add = [dict, plain.slice(first.length)].join('')
+    //     // added.push(add)
+    //   }
+    // })
 
+    let weaks = strong[first]
     if (!vowels.includes(first)) {
       let add = ['ε', plain].join('') // aor.sub, opt, impf for consonants
       added.push(add)
-    } else if (strongs[first]) {
-      // это неверное, длинные aug:
-      let add = [strongs[first], wf.slice(1)].join('') // IMPF
-      added.push(add)
+    } else if (weaks) {
+      weaks.forEach(weak => {
+        let add = [weak, wf.slice(1)].join('') // impfs
+        added.push(add)
+      })
     }
   })
   return _.uniq(added)
@@ -95,9 +100,11 @@ function main(comb, plainsegs, sgms, pnonlasts, flexes, dicts) {
   dicts = _.filter(dicts, dict => { return !dict.indecl })
   dicts = _.filter(dicts, dict => { return dict.rdict })
   log('dicts--->', dicts.length)
-  let kdicts = _.filter(dicts, dict => { return dict.plain == 'αγαθοποι'})
-  log('kdicts---->', kdicts)
+  let kdicts = _.filter(dicts, dict => { return dict.plain == 'ων'})
+  log('kdicts---->', kdicts.length)
   log('flexes--->', flexes.length)
+  let kflexes = _.filter(flexes, fl => { return fl.flex == 'ον'})
+  log('kflexes--->', kflexes.length)
 
   let segdicts = distributeDicts(plainsegs, dicts)
   let chains = makeChains(sgms, segdicts, flexes)
@@ -174,57 +181,40 @@ function makeChains (sgms, segdicts, flexes) {
 // ADDED
 function addDicts(chains, pnonlasts, segdicts) {
   chains.forEach(segs => {
-    // let stem, weak
     let penult = segs[segs.length-2]
     let seg = penult.seg
     seg = orthos.plain(seg)
     let first = _.first(seg)
     let sdicts = _.clone(penult.dicts)
     let firsts = _.uniq([seg.slice(0,1), seg.slice(0,2), seg.slice(0,3), seg.slice(0,4), seg.slice(0,5)])
-    firsts = _.filter(firsts, first => { return first != seg })
-    firsts.forEach(first => {
-      if (!weaks[first]) return
-      weaks[first].forEach(weak => {
-        let added = [weak, seg.slice(first.length)].join('')
-        let adicts = segdicts[added]
-        addDictCarefully(pnonlasts, sdicts, adicts, 'weak')
-        // adicts.forEach(adict => {
-        //   if (!pnonlasts.includes(adict.plain)) adict.weak = true
-        // })
-        // if (adicts.length) sdicts.push(adicts)
-      })
-    })
+    // firsts = _.filter(firsts, first => { return first != seg })
+    // firsts.forEach(first => {
+    //   if (first != 'ῳ') return
+    //   for (let dict in weaks) {
+    //     let reals = weaks[dict]
+    //     if (!reals.includes(first)) continue
+    //     let added = [dict, seg.slice(first.length)].join('')
+    //     let adicts = segdicts[added]
+    //     addDictCarefully(pnonlasts, sdicts, adicts, 'weak')
+    //   }
+    // })
 
-    // ADDED
+    let weaks = strong[first]
     if (!vowels.includes(first)) {
       let added = ['ε', seg].join('') // aor.sub, opt, impf from ind
       let adicts = segdicts[added]
-      // adicts.forEach(adict => {
-      //   if (!pnonlasts.includes(adict.plain)) adict.added = true
-      // })
-      // if (adicts.length) sdicts.push(adicts)
       addDictCarefully(pnonlasts, sdicts, adicts, 'added')
     } else if (first == 'ε') { // pas.aor.sub - βλέπω  - ἔβλεψα - ἐβλεφθῶ - dict plain βλε
       if (seg.length < 2) return
       let added = seg.slice(1)
       let adicts = segdicts[added]
-      // clog(added, adicts)
-      // adicts = _.filter(adicts, dict => { return dict.rdict })
-      // adicts.forEach(adict => {
-      //   if (!pnonlasts.includes(adict.plain)) adict.sliced = true
-      // })
-      // if (adicts.length) sdicts.push(adicts)
       addDictCarefully(pnonlasts, sdicts, adicts, 'sliced')
-    } else if (_.intersection(firsts, _.values(strongs))) {
-      //  strongs = {'η': 'α', 'ω': 'ο', 'ᾐ': 'αι', '': '', '': '', '': ''}
-      firsts.forEach(first => {
-        for (let strong in strongs) {
-          if (strong != first) continue
-          let stem = seg.slice(strong.length)
-          let added = [strongs[strong], stem].join('')
-          let adicts = segdicts[added]
-          addDictCarefully(pnonlasts, sdicts, adicts, 'sliced')
-        }
+    } else if (weaks) {
+      weaks.forEach(weak => {
+        let stem = seg.slice(1)
+        let added = [weak, stem].join('')
+        let adicts = segdicts[added]
+        addDictCarefully(pnonlasts, sdicts, adicts, 'sliced')
       })
     }
     penult.dicts = _.uniq(_.compact(_.flatten(sdicts)))

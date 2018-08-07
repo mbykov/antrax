@@ -23,9 +23,9 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'αγγελλ') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'ων') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      if (dict.plain == 'αγγελλ' && flex.tense == 'act.pres.ind') log('NC-f =========================', flex)
+      if (dict.plain == 'ων' && flex.tense == 'mid.fut.ind') log('NC-f =========================', flex)
       // if (dict.reg)
       // if (!dict.reg) return filterVerb(dict, flex, first)
       return filterVerb(dict, flex)
@@ -238,25 +238,23 @@ function filterVerb(dict, flex) {
     if (dict.mp && flex.mps && !flex.mps.includes(dict.mp)) return false
 
   } else if (dict.impf) {
-    // if (!flex.impf) return false
-    if (dict.weak) return false
-    if (dict.added) return false
+    if (!flex.impf) return false
+    // if (dict.weak) return false
+    // if (dict.added) return false //
     // == IMPF ==
 
-    if (flex.reg) {
-      // if (dict.acts && flex.act && _.intersection(dict.acts, reg[flex.act] ).length ) return true
-      // if (dict.mps && flex.mp && dict.mps.includes(flex.mp)) return true
-    }
-
+    if (dict.keys.includes(flex.key)) return true
     return false
 
   } else if (dict.pres) {
-    if (dict.weak) return false
-    if (dict.added) return false
+    // if (dict.weak) return false
+    // if (dict.added) return false
     // if (dict.sliced) return false
 
+    // weak - συγγράφω - impf: συνέγραφον - д.б. добавлено, пропускать нельзя
 
-    if (flex.key && flex.pres) {
+
+    if (flex.pres) {
       if (dict.sliced) return false // ἠγαθοποιοῦ - не должен найтись pres от ἀγαθο...
       if (dict.keys.includes(flex.key)) return true
     }
