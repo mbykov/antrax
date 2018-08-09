@@ -4310,7 +4310,7 @@ dict: ἀρήν • (arḗn) m f (genitive ἀρνός); third declension
     a sheep, whether ram or ewe
     (in the plural) shunted ears of wheat
 
-The nominative is only found in early inscriptions, the inflected forms being used in later Greek for ἀμνός (amnós).
+ The nominative is only found in early inscriptions, the inflected forms being used in later Greek for ἀμνός (amnós).
 
 # correct, but test ἀρνέ fails with ἀρνός
 # nom: ἀρήν, ἀρνέ, ἀρνές
@@ -6398,7 +6398,7 @@ dict: βότρυς • (bótrus) m (genitive βότρυος); third declension
     Jerusalem oak (Dysphania botrys (Chenopodium Botrys))
     the Pleiades
 
-βότρυς also appears with a heteroclitic neuter plural in Euphorion 149, probably from the related βότρυον (bótruon):
+    βότρυς also appears with a heteroclitic neuter plural in Euphorion 149, probably from the related βότρυον (bótruon):
 
 nom: βότρυς, βότρυε, βότρυες
 gen: βότρυος, βοτρύοιν, βοτρύων
@@ -7533,7 +7533,7 @@ dict: γλεῦκος • (gleûkos) n (genitive γλεύκους or γλεύκ�
     grape juice
     sweetness
 
-There also exists a Doric genitive singular in γλεύκιος.
+    There also exists a Doric genitive singular in γλεύκιος.
 
 nom: γλεῦκος, γλεύκει, γλεύκη
 gen: γλεύκους, γλευκοῖν, γλευκῶν
