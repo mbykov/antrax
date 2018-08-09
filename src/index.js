@@ -100,7 +100,7 @@ function main(comb, plainsegs, sgms, pnonlasts, flexes, dicts) {
   dicts = _.filter(dicts, dict => { return !dict.indecl })
   dicts = _.filter(dicts, dict => { return dict.rdict })
   log('dicts--->', dicts.length)
-  let kdicts = _.filter(dicts, dict => { return dict.plain == 'ων'})
+  let kdicts = _.filter(dicts, dict => { return dict.plain == 'αγαθοποι'})
   log('kdicts---->', kdicts.length)
   log('flexes--->', flexes.length)
   let kflexes = _.filter(flexes, fl => { return fl.flex == 'ον'})

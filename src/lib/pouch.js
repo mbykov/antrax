@@ -48,20 +48,6 @@ function initDBs(upath, apath, aversion) {
   } catch (err) {
     log('ERR copying default DBs', err)
   }
-  // let dbnames = ['specs', 'terms', 'flex', 'wktname', 'wktverb' ]
-  // dbnames.forEach(dn => {
-  //   let srcpath = path.resolve(apath, 'pouch', dn)
-  //   let destpath = path.resolve(upath, 'pouch', dn)
-  //   try {
-  //     const src = jetpack.cwd(srcpath)
-  //     src.copy('.', destpath, {
-  //       matching: ['*/**'],
-  //       overwrite: true
-  //     })
-  //   } catch (err) {
-  //     log('ERR copying default DBs', err)
-  //   }
-  // })
   let cfg = createZeroCfg(upath, aversion)
   return cfg
 }
@@ -120,6 +106,7 @@ export function getFlex (keys) {
       let result = []
       rdocs.forEach(fl => {
         fl.docs.forEach(doc => {
+        // fl.morphs.forEach(doc => {
           doc.flex = fl._id
           result.push(doc)
         })
