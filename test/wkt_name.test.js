@@ -46,7 +46,7 @@ let tdoc
 let rows = text.split('\n')
 
 let dict
-let formstr
+let formstr, restrict
 let store = []
 
 rows.forEach((row, idx) => {
@@ -59,6 +59,7 @@ rows.forEach((row, idx) => {
 
   if (descr == 'dict') {
     let res =  {dict: dict, formstr: formstr, data: store} // ,
+    if (restrict) res.restrict = restrict
     parseGend(res)
     // if (!/genitive /.test(formstr)) return
     if (dict) rtests.push(res)
@@ -70,6 +71,8 @@ rows.forEach((row, idx) => {
     formstr = txt.split('•')[1].trim()
     if (!/genitive /.test(formstr)) dict = null
     store = []
+  } else if (descr == 'restrict') {
+    restrict =  row.split(':')[1].trim()
   } else if (['nom', 'gen', 'dat', 'acc', 'voc'].includes(descr)) {
     let str = row.split(':')[1]
     if (!str) return
@@ -89,6 +92,7 @@ rtests.forEach(doc => {
         if (!form) return
         let number = numbers[idx]
         if (doc.pl) number = 'pl'
+        if (doc.restrict) number = doc.restrict.split(' ')[idx]
         let numcase = [number, kase].join('.')
         let test = [doc.dict, form, doc.gend, numcase]
         tests.push(test)
