@@ -71,6 +71,7 @@ rows.forEach((row, idx) => {
     formstr = txt.split('•')[1].trim()
     if (!/genitive /.test(formstr)) dict = null
     store = []
+    restrict = null
   } else if (descr == 'restrict') {
     restrict =  row.split(':')[1].trim()
   } else if (['nom', 'gen', 'dat', 'acc', 'voc'].includes(descr)) {

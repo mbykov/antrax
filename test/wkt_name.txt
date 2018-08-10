@@ -23840,7 +23840,7 @@ acc: νάρκωσιν, ναρκώσει, ναρκώσεις
 voc: νάρκωσι, ναρκώσει, ναρκώσεις
 
 # ----------------------------------
-dict: ναῦς • (naûs) f (genitive νεώς or ναός); third declension
+dict: ναῦς • (naûs) f (genitive νεώς); third declension
 
     a ship
 
@@ -23852,13 +23852,20 @@ dat: νηΐ, νεοῖν, ναυσί-ναυσίν
 acc: ναῦν, νῆε, ναῦς
 voc: ναῦ, νῆε, νῆες
 
+# ----------------------------------
+dict: ναῦς • (naûs) f (genitive ναός); third declension
+
+    a ship
+
 #, Irregular declension, of, ναῦς; ναός, (Doric)
+
 restrict: sg pl
 nom: ναῦς, νᾶες
 gen: ναός, ναῶν
 dat: ναΐ, ναυσί-ναυσίν-νάεσσι-νάεσσιν
 acc: ναῦν, νᾶας
-voc: ναῦς, νᾶες
+# voc: ναῦς, νᾶες
+# FAIL- ?? проверить
 
 # ----------------------------------
 dict: ναυσία • (nausía) f (genitive ναυσίας); first declension
@@ -25509,11 +25516,12 @@ dict: ὄν • (ón) n (genitive ὄντος); third declension
     reality
     Neuter dative singular τῷ ὄντι (tôi ónti) as adverb: in fact, in reality
 
-nom: ὄν, ὄντε, ὄντα
-gen: ὄντος, ὀντοῖν, ὀντῶν
-dat: ὄντι, ὀντοῖν, -
-acc: ὄν, ὄντε, ὄντα
-voc: ὄν, ὄντε, ὄντα
+# IRREG - too short
+# nom: ὄν, ὄντε, ὄντα
+# gen: ὄντος, ὀντοῖν, ὀντῶν
+# dat: ὄντι, ὀντοῖν, -
+# acc: ὄν, ὄντε, ὄντα
+# voc: ὄν, ὄντε, ὄντα
 
 # ----------------------------------
 dict: ὄναρ • (ónar) n (genitive); third declension
@@ -33961,7 +33969,7 @@ dict: σύνδεσμος • (súndesmos) m (genitive συνδέσμου); secon
     (grammar) conjunction
     bundle
 
-With heteroclitic neuter plural.
+    With heteroclitic neuter plural.
 
 nom: σύνδεσμος, συνδέσμω, σύνδεσμοι
 gen: συνδέσμου, συνδέσμοιν, συνδέσμων
@@ -33972,7 +33980,7 @@ voc: σύνδεσμε, συνδέσμω, σύνδεσμοι
 # With neuter
 
 # ??
-restrict: pl
+# restrict: pl
 # nom: σύνδεσμα
 # gen: συνδέσμων
 # dat: συνδέσμοις
@@ -36846,11 +36854,12 @@ dict: ὗς • (hûs) m f (genitive ὑός); third declension
 
     pig, swine, hog
 
-nom: ὗς, ὕε, ὕες
-gen: ὑός, ὐοῖν, ὑῶν
-dat: ὑΐ, ὐοῖν, ὑσί-ὑσίν
-acc: ὗν, ὕε, ὗς
-voc: ὗ, ὕε, ὕες
+# IRREG
+# nom: ὗς, ὕε, ὕες
+# gen: ὑός, ὐοῖν, ὑῶν
+# dat: ὑΐ, ὐοῖν, ὑσί-ὑσίν
+# acc: ὗν, ὕε, ὗς
+# voc: ὗ, ὕε, ὕες
 
 # ----------------------------------
 dict: ὕσσωπος • (hússōpos) f (genitive ὑσσώπου); second declension
@@ -39142,7 +39151,7 @@ acc: χρῶμα, χρώματε, χρώματα
 voc: χρῶμα, χρώματε, χρώματα
 
 # ----------------------------------
-dict: χρώς • (khrṓs) m (genitive χρωτός or χροός); third declension
+dict: χρώς • (khrṓs) m (genitive χρωτός); third declension
 
     skin, flesh
     complexion
@@ -39153,6 +39162,12 @@ gen: χρωτός, χρωτοῖν, χρωτῶν
 dat: χρωτί, χρωτοῖν, χρωσί-χρωσίν
 acc: χρῶτα, χρῶτε, χρῶτας
 voc: χρώς, χρῶτε, χρῶτες
+
+dict: χρώς • (khrṓs) m (genitive χροός); third declension
+
+    skin, flesh
+    complexion
+    color
 
 restrict: sg
 nom: χρώς
