@@ -3,6 +3,7 @@
 # ί̄-ί
 # ᾹΑ ᾸΑ
 
+MA
 # ----------------------------------
 dict: ἀβακίσκος • (abakískos) m (genitive ἀβακίσκου); second declension
 
@@ -301,7 +302,7 @@ dict: ἅγιος • (hágios) m (genitive ἁγίου); second declension
     (Koine, biblical) A Christian
     (Koine, Byzantine) a saint
 
-Case, , #, Singular, Plural
+restrict: sg pl
 nom: ἅγιος, ἅγιοι
 gen: ἁγίου, ἁγίων
 dat: ἁγίῳ, ἁγίοις
@@ -325,7 +326,7 @@ dict: ἁγιωσύνη • (hagiōsúnē) f (genitive ἁγιωσύνης); f
     holiness, sanctity
 
 #, ?
-Case, , #, Singular
+restrict: sg
 nom: ἁγιωσύνη
 gen: ἁγιωσύνης
 dat: ἁγιωσύνῃ
@@ -762,7 +763,7 @@ dict: ἀήρ • (āḗr) m (genitive ἀέρος); third declension
     space, volume
     blue or grey (the colour of the sky)
 
-Case, , #, Singular
+restrict: sg
 nom: ἀήρ
 gen: ἀέρος
 dat: ἀέρι
@@ -774,7 +775,7 @@ dict: ἀθανασία • (āthanasíā) f (genitive ἀθανασίας); fir
 
     immortality
 
-Case, , #, Singular
+restrict: sg
 nom: ἀθανασία
 gen: ἀθανασίας
 dat: ἀθανασίᾳ
@@ -989,7 +990,7 @@ dict: Αἰδώς • (Aidṓs) f (genitive Αἰδοῦς); third declension
 
     Aidos
 
-Case, , #, Singular
+restrict: sg
 nom: Αἰδώς
 gen: Αἰδοῦς
 dat: Αἰδοῖ
@@ -1090,7 +1091,7 @@ dict: Αἴθων • (Aíthōn) m (genitive Αἴθωνος); third declension
 
     name of the eagle that eats the liver of Prometheus
 
-Case, , #, Singular
+restrict: sg
 nom: Αἴθων
 gen: Αἴθωνος
 dat: Αἴθωνι
@@ -1205,7 +1206,7 @@ dict: αἱρέσια • (hairésia) n (genitive αἱρεσίων); second dec
 
     (plural only) dues paid on discharge of cargoes
 
-Case-#, Plural
+restrict: pl
 nom: αἱρέσια
 gen: αἱρεσίων
 dat: αἱρεσίοις
@@ -1277,7 +1278,7 @@ dict: αἰσχύνη • (aiskhū́nē) f (genitive αἰσχύνης); ? decle
 
     (mass noun) shame, disgrace
 
-Case-#, Singular
+restrict: sg
 nom: αἰσχύνη
 gen: αἰσχύνης
 dat: αἰσχύνῃ
@@ -1305,7 +1306,7 @@ dict: αἰτιατική • (aitiātikḗ) f (genitive αἰτιατικῆς)
 
     (grammar) The accusative case – elliptically for αἰτιατικὴ πτῶσις (ptôsis): literally, “inflection expressing an effect”
 
-Case-#, Singular
+restrict: sg
 nom: αἰτιατική
 gen: αἰτιατικῆς
 dat: αἰτιατικῇ
@@ -1328,7 +1329,7 @@ dict: Αἰτωλός • (Aitōlós) m (genitive Αἰτωλοῦ); second decl
 
     Aetolus
 
-Case-#, Singular
+restrict: sg
 nom: Αἰτωλός
 gen: Αἰτωλοῦ
 dat: Αἰτωλῷ
@@ -1388,7 +1389,7 @@ dict: ἀκακία • (akakíā) f (genitive ἀκακίας); first declensio
 
     An acacia tree (tribe Acacieae).
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: ἀκακία, ἀκακίαι
 gen: ἀκακίας, ἀκακιῶν
 dat: ἀκακίᾳ, ἀκακίαις
@@ -1400,7 +1401,7 @@ dict: ἀκακία • (akakíā) f (genitive ἀκακίας); first declensio
 
     innocence
 
-Case-#, Singular
+restrict: sg
 nom: ἀκακία
 gen: ἀκακίας
 dat: ἀκακίᾳ
@@ -1798,7 +1799,7 @@ dict: ἅλας • (hálas) n (genitive ἅλατος); third declension
 
     Synonym of ἅλς (háls, “salt”)
 
-Case-#, Singular
+restrict: sg
 nom: ἅλας
 gen: ἅλατος
 dat: ἅλατι
@@ -1885,7 +1886,7 @@ dict: ἄλευρον • (áleuron) n (genitive ἀλεύρου); second declen
 
     meal
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: ἄλευρον, ἄλευρα
 gen: ἀλεύρου, ἀλεύρων
 dat: ἀλεύρῳ, ἀλεύροις
@@ -1970,7 +1971,7 @@ dict: ἀλκή • (alkḗ) f (genitive ἀλκῆς); first declension
     defense, guard
     battle, fight
 
-Case-#, Singular
+restrict: sg
 nom: ἀλκή
 gen: ἀλκῆς
 dat: ἀλκῇ
@@ -2077,7 +2078,7 @@ dict: ἅλς • (háls) m (genitive ἁλός); third declension irreg
     wit
 
 #, Irregular declension, of, ὁ, ἅλς; τοῦ, ἁλός, (Attic) irreg
-Case-#, Singular, Plural
+restrict: sg pl
 # nom: ἅλς, ἅλες
 # gen: ἁλός, ἁλῶν
 # dat: ἁλί, ἁλσί-ἅλασιν
@@ -2085,7 +2086,7 @@ Case-#, Singular, Plural
 # voc: ἅλς, ἅλες
 
 #, Irregular declension, of, ἅλς; ἁλός, (Epic)
-Case-#, Singular, Plural
+restrict: sg pl
 # nom: ἅλς, ἅλες
 # gen: ἁλός, ἁλῶν
 # dat: ἁλί, ἅλεσσι
@@ -2110,7 +2111,7 @@ dict: ἁλτῆρες • (haltêres) m (genitive ἁλτήρων); third decle
 
     (plural only) dumbbells
 
-Case-#, Plural
+restrict: pl
 nom: ἁλτῆρες
 gen: ἁλτήρων
 dat: ἁλτῆρσι-ἁλτῆρσιν
@@ -2187,7 +2188,7 @@ dict: Ἁμαδρυάς • (Hamādruás) f (genitive Ἁμαδρυάδος); 
 
     (Greek mythology) the wife and sister of Drilo, and the mother of the hamadryads
 
-Case-#, Singular
+restrict: sg
 nom: Ἁμαδρυάς
 gen: Ἁμαδρυάδος
 dat: Ἁμαδρυάδι
@@ -2268,7 +2269,7 @@ dict: ἁμαρτία • (hamartíā) f (genitive ἁμαρτίας); first d
     error, mistake, fault, failure
     (religion, philosophy) guilt, sin
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: ἁμαρτία, ἁμαρτίαι
 gen: ἁμαρτίας, ἁμαρτιῶν
 dat: ἁμαρτίᾳ, ἁμαρτίαις
@@ -2574,7 +2575,7 @@ dict: Ἀμφίλοχος • (Amphílokhos) m (genitive Ἀμφιλόχου); s
 
     A male given name, equivalent to English Amphilochus
 
-Case-#, Singular
+restrict: sg
 nom: Ἀμφίλοχος
 
     Any individual among the inhabitants of Amphilochia; an Amphilochian
@@ -3153,7 +3154,7 @@ dict: Ἀνθεστήρια • (Anthestḗria) n (genitive Ἀνθεστηρί�
 
     Anthesteria or the Anthesteria: an Attic and Ionian festival held over three days in late February or early March in honor of Dionysus, the dead, and the coming spring
 
-Case-#, Plural
+restrict: pl
 nom: Ἀνθεστήρια
 gen: Ἀνθεστηρίων
 dat: Ἀνθεστηρίοις
@@ -3727,7 +3728,7 @@ dict: ἀπάθεια • (apátheia) f (genitive ἀπαθείας); first decl
     (among the Stoics) calmness, dispassionateness
     absence of suffering or pain
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: ἀπάθεια, ἀπάθειαι
 gen: ἀπαθείας, ἀπαθειῶν
 dat: ἀπαθείᾳ, ἀπαθείαις
@@ -3883,7 +3884,7 @@ dict: ἄποινα • (ápoina) n pl (genitive ἀποίνων); second declen
 
     compensation (recompense or reward for some loss or service)
 
-Case-#, Plural
+restrict: pl
 nom: ἄποινα
 gen: ἀποίνων
 dat: ἀποίνοις
@@ -4162,7 +4163,7 @@ dict: Ἀραμαῖοι • (Aramaîoi) m pl (genitive Ἀραμαίων); seco
 
     the Aramaeans (Aramaic-speaking Semitic tribes who settled in northern Syria and Mesopotamia)
 
-Case-#, Plural
+restrict: pl
 nom: Ἀραμαῖοι
 gen: Ἀραμαίων
 dat: Ἀραμαίοις
@@ -4512,7 +4513,7 @@ dict: ἀρνός • (arnós) m (genitive ἀρνοῦ); second declension
 
     (Koine, Byzantine) Synonym of ἀρήν (arḗn)
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: ἀρνός, ἀρνοί
 gen: ἀρνοῦ, ἀρνῶν
 dat: ἀρνῷ, ἀρνοῖς
@@ -4894,7 +4895,7 @@ dict: Ἀσκαλωνίτης • (Askalōnítēs) m (genitive Ἀσκαλωνί
 
     an inhabitant of Ascalon or Ashkelon; an Ashkelonite
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: Ἀσκαλωνίτης, Ἀσκαλωνίται
 gen: Ἀσκαλωνίτου, Ἀσκαλωνιτῶν
 dat: Ἀσκαλωνίτῃ, Ἀσκαλωνίταις
@@ -5015,7 +5016,7 @@ dict: ἀστρολογία • (astrologíā) f (genitive ἀστρολογία
     astronomy
     astrology
 
-Case-#, Singular
+restrict: sg
 nom: ἀστρολογία
 gen: ἀστρολογίας
 dat: ἀστρολογίᾳ
@@ -5042,7 +5043,7 @@ dict: ἀστρονομία • (astronomía) f (genitive ἀστρονομία�
 
     astronomy
 
-Case-#, Singular
+restrict: sg
 nom: ἀστρονομία
 gen: ἀστρονομίας
 dat: ἀστρονομίᾳ
@@ -5161,18 +5162,17 @@ dat: ἀτασθαλίᾳ, ἀτασθαλίαιν, ἀτασθαλίαις
 acc: ἀτασθαλίαν, ἀτασθαλία, ἀτασθαλίας
 voc: ἀτασθαλία, ἀτασθαλία, ἀτασθαλίαι
 
-dict: ἀτασθαλίαι • (atasthalíā) f pl (genitive ἀτασθαλιάων); first declension
+dict: ἀτασθαλίαι • (atasthalíā) f pl (genitive ἀτασθαλιῶν); first declension
 
     (in Homer, always in the plural) criminal folly, recklessness, heedlessness, wickedness
     deeds characterized by this quality: wicked deeds
 
-# не понял, вроде все правильно - IRREG?
-# Case-#, Plural
-# nom: ἀτασθαλίαι
-# gen: ἀτασθαλιάων-ἀτασθαλιέων-ἀτασθαλιῶν
-# dat: ἀτασθαλίῃσι-ἀτασθαλίῃσιν-ἀτασθαλίῃς-ἀτασθαλίαις
-# acc: ἀτασθαλίας
-# voc: ἀτασθαλίαι
+restrict: pl
+nom: ἀτασθαλίαι
+gen: ἀτασθαλιῶν # ἀτασθαλιάων-ἀτασθαλιέων-
+dat: ἀτασθαλίῃσι-ἀτασθαλίῃσιν-ἀτασθαλίῃς-ἀτασθαλίαις
+acc: ἀτασθαλίας
+voc: ἀτασθαλίαι
 
 # ----------------------------------
 dict: ἄτη • (átē) f (genitive ἄτης); first declension
@@ -5192,7 +5192,7 @@ dict: Ἀτθίς • (Atthís) f (genitive Ἀτθίδος); third declension
 
     Atthis, Attica
 
-Case-#, Singular
+restrict: sg
 nom: Ἀτθίς
 gen: Ἀτθίδος
 dat: Ἀτθίδι
@@ -5448,7 +5448,7 @@ dict: ἀφαιρετική • (aphairetikḗ) f (genitive ἀφαιρετικ�
 
     (grammar) ablative (case)
 
-Case-#, Singular
+restrict: sg
 nom: ἀφαιρετική
 gen: ἀφαιρετικῆς
 dat: ἀφαιρετικῇ
@@ -6232,7 +6232,7 @@ dict: Βλάχος • (Blákhos) m (genitive Βλάχου); second declension, 
     a Vlach
     an East Romance-speaking inhabitant of Greece
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: Βλάχος, Βλάχοι
 gen: Βλάχου, Βλάχων
 dat: Βλάχῳ, Βλάχοις
@@ -6411,20 +6411,24 @@ dat: βότρυϊ-βότρυι, βοτρύοιν, βότρυσι-βότρυσ�
 acc: βότρυν, βότρυε, βότρυς-βότρυας
 voc: βότρυ, βότρυε, βότρυες
 
-# ??
-# Case-#, Plural
-# nom: βότρυα
-# gen: βοτρύων
-# dat: βοτρύοις
-# acc: βότρυα
-# voc: βότρυα
+dict: βότρυα • (bótrus) m (genitive βοτρύων); third declension
+
+      = βότρυς
+    bunch of grapes, grapes
+
+restrict: pl
+nom: βότρυα
+gen: βοτρύων
+dat: βοτρύοις
+acc: βότρυα
+voc: βότρυα
 
 # ----------------------------------
 dict: Βοττιαῖοι • (Bottiaîoi) m (genitive Βοττιαίων); second declension
 
     the Bottiaeans
 
-Case-#, Plural
+restrict: pl
 nom: Βοττιαῖοι
 gen: Βοττιαίων
 dat: Βοττιαίοις
@@ -6695,7 +6699,7 @@ dict: βρότος • (brótos) m (genitive βρότου); second declension
 
     blood that has run from a wound, gore
 
-Case-#, Singular
+restrict: sg
 nom: βρότος
 gen: βρότου
 dat: βρότῳ
@@ -7048,7 +7052,7 @@ dict: γάρσανα • (gársana) n pl (genitive γαρσάνων); second dec
 
     (plural only) glossed by Hesychius as φρύγανα (phrúgana, “sticks, firewood”)
 
-Case-#, Plural
+restrict: pl
 nom: γάρσανα
 gen: γαρσάνων
 dat: γαρσάνοις
@@ -7180,7 +7184,7 @@ dict: γενέσια • (genésia) n (genitive γενεσίων); second declen
     birthday
     While γενέσια (genésia) was originally used specifically for birthdays of the dead, with γενέθλιος (genéthlios) being used for those of the living, in later Greek, it came in use for both. Also note that γενέσια (genésia) is only in plural, even though the meaning is generally taken to be single.
 
-Case-#, Plural
+restrict: pl
 nom: γενέσια
 gen: γενεσίων
 dat: γενεσίοις
@@ -7205,7 +7209,7 @@ dict: Γένεσις • (Génesis) f (genitive Γενέσεως); third declens
 
     Genesis. The title of the first book of the Bible and Pentateuch as in the Septuagint translation in Greek.
 
-Case-#, Singular
+restrict: sg
 nom: Γένεσις
 gen: Γενέσεως
 dat: Γενέσει
@@ -7391,7 +7395,7 @@ dict: Γερασηνοί • (Gerasēnoí) m pl (genitive Γερασηνῶν); 
 
     Gerasenes (inhabitants of Gerasa)
 
-Case-#, Plural
+restrict: pl
 nom: Γερασηνοί
 gen: Γερασηνῶν
 dat: Γερασηνοῖς
@@ -7403,7 +7407,7 @@ dict: Γερήνιος • (Gerḗnios) m (genitive Γερηνίου); second de
 
     Gerenian (epithet of Nestor)
 
-Case-#, Singular
+restrict: sg
 nom: Γερήνιος
 gen: Γερηνίου
 dat: Γερηνίῳ
@@ -7561,7 +7565,6 @@ dat: γλουτῷ, γλουτοῖν, γλουτοῖς
 acc: γλουτόν, γλουτώ, γλουτούς
 voc: γλουτέ, γλουτώ, γλουτοί
 
-MA
 # ----------------------------------
 dict: γλουτά • (gloutós) m pl (genitive γλουτῶν); second declension
 
@@ -7571,7 +7574,7 @@ dict: γλουτά • (gloutós) m pl (genitive γλουτῶν); second declen
 
     A heteroclite neuter form is attested (in a scholion to Theocritus, Collected Works 6.30) in the plural:
 
-# Case-#, Plural
+restrict: pl
 nom: γλουτά
 gen: γλουτῶν
 dat: γλουτοῖς
@@ -7822,7 +7825,7 @@ dict: Γραικός • (Graikós) m (genitive Γραικοῦ); ? declension
 
     Graecus, a character in Greek mythology, said to be a son of Thessalos, the king of Phthia; or else a son of Pandora and Zeus.
 
-Case-#, Singular
+restrict: sg
 nom: Γραικός
 gen: Γραικοῦ
 dat: Γραικῷ
@@ -8141,7 +8144,7 @@ dict: δάϊς • (dáïs), f; third declension
     battle
 
 #, Irregular declension, of, ἡ, δάϊς; -, (Attic)
-# Case-#, Singular
+restrict: sg
 nom: δάϊς
 gen: -
 dat: δαΐ
@@ -8250,7 +8253,7 @@ dict: Δαναοί • (Danaoí) m pl (genitive Δαναῶν); second declensio
     the Danaans, the subjects of Danaus
     the Greeks
 
-Case-#, Plural
+restrict: pl
 nom: Δαναοί
 gen: Δαναῶν
 dat: Δαναοῖς
@@ -8258,14 +8261,17 @@ acc: Δαναούς
 voc: Δαναοί
 
 
-XXX
-# ??
-# Case-#, Plural
-# nom: Δαναοί
-# gen: Δαναῶ
-# dat: Δαναοῖσι-Δαναοῖσιν-Δαναοῖς
-# acc: Δαναούς
-# voc: Δαναοί
+dict: Δαναοί • (Danaoí) m pl (genitive Δαναῶ); second declension
+
+    the Danaans, the subjects of Danaus
+    the Greeks
+
+restrict: pl
+nom: Δαναοί
+gen: Δαναῶ
+dat: Δαναοῖσι-Δαναοῖσιν-Δαναοῖς
+acc: Δαναούς
+voc: Δαναοί
 
 # ----------------------------------
 dict: δαπάνη • (dapánē) f (genitive δαπάνης); first declension
@@ -8340,7 +8346,7 @@ dict: δείλη • (deílē) f (genitive δείλης); first declension
 
     afternoon
 
-Case-#, Singular
+restrict: sg
 nom: δείλη
 gen: δείλης
 dat: δείλῃ
@@ -8356,7 +8362,7 @@ dict: δειλία • (deilíā) f (genitive δειλίας); first declension
 
     (uncountable) timidity
 
-Case-#, Singular
+restrict: sg
 nom: δειλία
 gen: δειλίας
 dat: δειλίᾳ
@@ -8668,7 +8674,7 @@ dict: δημός • (dēmós) m (genitive δημοῦ); second declension
 
     fat
 
-Case-#, Singular
+restrict: sg
 nom: δημός
 gen: δημοῦ
 dat: δημῷ
@@ -9319,7 +9325,7 @@ dict: Διονύσια • (Dionū́sia) n pl (genitive Διονύσίων); sec
 
     A festival of Dionysus
 
-Case-#, Plural
+restrict: pl
 nom: Διονύσια
 gen: Διονυσίων
 dat: Διονυσίοις
@@ -10046,7 +10052,7 @@ dict: δωράκινον • (dōrákinon) n pl (genitive δωρακίνου); s
 
     type of peach
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: δωράκινον, δωράκινα
 gen: δωρακίνου, δωρακίνων
 dat: δωρακίνῳ, δωρακίνοις
@@ -10087,7 +10093,7 @@ dict: Δωρίς • (Dōrís) f (genitive Δωρίδος); third declension
     a region of central Greece inhabited chiefly by the Dorians
     a region of southwest Anatolia colonized by Dorians in ancient times
 
-Case-#, Singular
+restrict: sg
 nom: Δωρίς
 gen: Δωρίδος
 dat: Δωρίδι
@@ -10163,7 +10169,7 @@ dict: Ἑβδομηκοντακωμῆται • (Hebdomēkontakōmêtai) m pl (
 
     an Ethiopian tribe mentioned in Pliny the Elder's Natural History
 
-Case-#, Plural
+restrict: pl
 nom: Ἑβδομηκοντακωμῆται
 gen: Ἑβδομηκοντακωμητῶν
 dat: Ἑβδομηκοντακωμήταις
@@ -10208,7 +10214,7 @@ dict: ἔγκατα • (énkata) n pl (genitive ἐγκάτων); third declens
 
     bowels, entrails, intestines
 
-Case-#, Plural
+restrict: pl
 nom: ἔγκατα
 gen: ἐγκάτων
 dat: ἔγκασι-ἔγκασιν
@@ -10307,7 +10313,7 @@ dict: ἐδητύς • (edētū́s) m (genitive ἐδητύος); third declens
 
     food, or eating
 
-Case-#, Singular
+restrict: sg
 nom: ἐδητύς
 gen: ἐδητύος
 dat: ἐδητύϊ
@@ -10518,13 +10524,21 @@ dat: εἰκόνι, εἰκόνοιν, εἰκόσι-εἰκόσιν
 acc: εἰκόνα, εἰκόνε, εἰκόνας
 voc: εἰκών, εἰκόνε, εἰκόνες
 
-# ??
-# Case-#, Singular
-# nom: εἰκώ
-# gen: εἰκοῦς
-# dat: εἰκοῖ
-# acc: εἰκοῦν
-# voc: εἰκοῖ
+# ----------------------------------
+dict: εἰκώ • (eikṓn) f (genitive εἰκοῦς); third declension
+
+    figure, image, likeness, portrait
+    image in a mirror, reflection
+    personal description
+    similitude, semblance, phantom
+    pattern, archetype
+
+restrict: sg
+nom: εἰκώ
+gen: εἰκοῦς
+dat: εἰκοῖ
+acc: εἰκοῦν
+voc: εἰκοῖ
 
 #
 dict: εἰλεός • (eileós) m (genitive); ? declension[1]
@@ -11178,7 +11192,7 @@ dict: Ἐλπίς • (Elpís) f (genitive Ἐλπίδος); third declension
 
     Elpis
 
-Case-#, Singular
+restrict: sg
 nom: Ἐλπίς
 gen: Ἐλπίδος
 dat: Ἐλπίδι
@@ -11282,7 +11296,7 @@ dict: ἐμπειρικοί • (empeirikoí) m pl (genitive ἐμπειρικ�
 
     the Empiric school of physicians
 
-Case-#, Plural
+restrict: pl
 nom: ἐμπειρικοί
 gen: ἐμπειρικῶν
 dat: ἐμπειρικοῖς
@@ -11352,7 +11366,7 @@ dict: ἐνάτηρ • (enátēr) f pl (genitive εἰνάτερος); third de
 
     Not actually attested in all forms. The accusative singular and plural as well as the dative and vocative plural are conjectural.
 
-# Case-#, Singular, Plural
+restrict: sg pl
 nom: ἐνάτηρ, εἰνάτερες
 gen: εἰνάτερος, εἰνατέρων
 dat: ἐνατρί, εἰνάτερσι-εἰνάτερσιν
@@ -11536,7 +11550,7 @@ dict: ἔντομα • (éntoma) n pl (genitive ἐντόμων); second declen
 
     insects
 
-Case-#, Plural
+restrict: pl
 nom: ἔντομα
 gen: ἐντόμων
 dat: ἐντόμοις
@@ -11867,7 +11881,7 @@ dict: ἐπιείκεια • (epieíkeia) f (genitive ἐπιεικείας); f
     equity
     (of persons) fairness
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: ἐπιείκεια, ἐπιείκειαι
 gen: ἐπιεικείας, ἐπιεικειῶν
 dat: ἐπιεικείᾳ, ἐπιεικείαις
@@ -12079,7 +12093,7 @@ dict: ἐπιτήδεια • (epitḗdeia) n pl (genitive ἐπιτηδείων
 
     provisions
 
-Case-#, Plural
+restrict: pl
 nom: ἐπιτήδεια
 gen: ἐπιτηδείων
 dat: ἐπιτηδείοις
@@ -12569,7 +12583,7 @@ dict: ἐσθλά • (esthlá) n pl (genitive ἐσθλῶν); ? declension
 
     (plural only) goods, wares
 
-Case-#, Plural
+restrict: pl
 nom: ἐσθλά
 gen: ἐσθλῶν
 dat: ἐσθλοῖς
@@ -13314,7 +13328,7 @@ dict: ζιγγίβερις • (zingíberis) f (genitive ζιγγιβέρεως)
 
     an Arabian spice plant, probably ginger
 
-Case-#, Singular
+restrict: sg
 nom: ζιγγίβερις
 gen: ζιγγιβέρεως
 dat: ζιγγιβέρει
@@ -13600,7 +13614,7 @@ dict: ἠέλιος • (ēélios) m (genitive ἠελίου); second declension
 
     Epic and Ionic form of ἥλιος (hḗlios, “sun”)
 
-Case-#, Singular
+restrict: sg
 nom: ἠέλιος
 # gen: ἠελίου-ἠελιοῖο-ἠελίοιο-ἠελιόο-ἠελίοο
 gen: ἠελίου
@@ -13685,7 +13699,7 @@ dict: ἥλιος • (hḗlios) m (genitive ἡλίου); second declension, (A
     day
     sunshine
 
-Case-#, Singular
+restrict: sg
 nom: ἥλιος
 gen: ἡλίου
 dat: ἡλίῳ
@@ -13750,21 +13764,20 @@ dict: ἡνία • (hēnía) n pl (genitive ἡνίων); second declension, (p
 
     rein, bridle
 
-# ἡνία • (hēníā) f (genitive ἡνίας); first declension, (post-Homeric)
-
-Case-#, Plural
+restrict: pl
 nom: ἡνία
 gen: ἡνίων
 dat: ἡνίοισι-ἡνίοισιν-ἡνίοις
 acc: ἡνία
 voc: ἡνία
 
-# Case-#, Singular, Plural feminine
-# nom: ἡνία, ἡνίαι
-# gen: ἡνίας, ἡνιῶν
-# dat: ἡνίᾳ, ἡνίαις
-# acc: ἡνίαν, ἡνίας
-# voc: ἡνία, ἡνίαι
+dict: ἡνία • (hēníā) f (genitive ἡνίας); first declension, (post-Homeric)
+
+restrict: sg plnom: ἡνία, ἡνίαι
+gen: ἡνίας, ἡνιῶν
+dat: ἡνίᾳ, ἡνίαις
+acc: ἡνίαν, ἡνίας
+voc: ἡνία, ἡνίαι
 
 # ----------------------------------
 dict: ἧπαρ • (hêpar) n (genitive ἥπατος); third declension
@@ -13942,7 +13955,7 @@ dict: ἠχώ • (ēkhṓ) f (genitive ἠχοῦς); third declension
     echo, reflected sound
     protracted sound
 
-Case-#, Singular
+restrict: sg
 nom: ἠχώ
 gen: ἠχοῦς
 dat: ἠχοῖ
@@ -13960,7 +13973,7 @@ dict: ἠώς • (ēṓs) f (genitive ἠοῦς); third declension, (Epic, Ion
 
 #, Irregular declension, of, ἠώς; ἠοῦς, ((Epic, Ionic), Epic)
 
-Case-#, Singular
+restrict: sg
 nom: ἠώς
 gen: ἠοῦς
 dat: ἠοῖ
@@ -14805,7 +14818,7 @@ dict: θρόμβωσις • (thrómbōsis) f (genitive θρομβώσεως); t
 
     a becoming curdled
 
-Case-#, Singular
+restrict: sg
 nom: θρόμβωσις
 gen: θρομβώσεως
 dat: θρομβώσει
@@ -15464,7 +15477,7 @@ dict: Ἰνδός • (Indós) m (genitive Ἰνδοῦ); second declension
 
     the Indus river
 
-Case-#, Singular
+restrict: sg
 nom: Ἰνδός
 gen: Ἰνδοῦ
 dat: Ἰνδῷ
@@ -15497,7 +15510,7 @@ dict: ἰά • (īós) m pl (genitive ἰῶν); second declension
 
     arrows
 
-Case-# Plural
+restrict: pl
 nom: ἰά
 gen: ἰῶν
 dat: ἰοῖς
@@ -15520,7 +15533,7 @@ dict: Ἰουδαία • (Ioudaíā) f (genitive Ἰουδαίας); first decl
 
     Judea (adjectival form with γῆ (gê) or χώρα (khṓra) implied)
 
-Case-#, Singular
+restrict: sg
 nom: Ἰουδαία
 gen: Ἰουδαίας
 dat: Ἰουδαίᾳ
@@ -15818,7 +15831,7 @@ dict: Ἰταλός • (Ītalós) m (genitive Ἰταλοῦ); second declens
 
     Italus
 
-Case-#, Singular
+restrict: sg
 nom: Ἰταλός
 gen: Ἰταλοῦ
 dat: Ἰταλῷ
@@ -16413,7 +16426,7 @@ dict: Καλλικλῆς • (Kalliklês) m (genitive Καλλικλέους); 
 
     A male given name, Kallicles.
 
-Case-#, Singular
+restrict: sg
 nom: Καλλικλῆς
 gen: Καλλικλέους
 dat: Καλλικλεῖ
@@ -16637,14 +16650,14 @@ dict: κάνναβις • (kánnabis) f (genitive καννάβιος or καν�
     (uncountable) hemp
     (countable) hemp seed
 
-Case-#, Singular
+restrict: sg
 nom: κάνναβις
 gen: καννάβιος
 dat: καννάβει
 acc: κάνναβιν
 voc: κάνναβι
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: κάνναβις, καννάβιδες
 gen: καννάβιδος, κανναβίδων
 dat: καννάβιδι, καννάβισι-καννάβισιν
@@ -16845,22 +16858,24 @@ dict: κάρπασος • (kárpasos) f (genitive καρπάσου, plural, (ne
 
 # Feminine, singular: irreg
 
-Case-#, Singular
+restrict: sg
 # nom: κάρπασος
 # gen: καρπάσου
 # dat: καρπάσῳ
 # acc: κάρπασον
 # voc: κάρπασε
 
-# Neuter
+dict: κάρπασοι • (kárpasos) n (genitive καρπάσων); second declension
 
-# ??
-# Case-#, Plural
-# nom: κάρπασοι
-# gen: καρπάσων
-# dat: καρπάσοις
-# acc: καρπάσους
-# voc: κάρπασοι
+    flax (Linum usitatissimum or Linum bienne)
+    cotton
+
+restrict: pl
+nom: κάρπασοι
+gen: καρπάσων
+dat: καρπάσοις
+acc: καρπάσους
+voc: κάρπασοι
 
 # ----------------------------------
 dict: καρπός • (karpós) m (genitive καρποῦ); second declension, (Epic, Attic, Ionic, Doric, Koine)
@@ -16890,7 +16905,7 @@ dict: κάστανα • (kástana) n pl (genitive καστάνων); second dec
 
     sweet chestnuts
 
-Case-#, Plural
+restrict: pl
 nom: κάστανα
 gen: καστάνων
 dat: καστάνοις
@@ -16902,7 +16917,7 @@ dict: καστάνεια • (kastáneia) n pl (genitive καστανείων); 
 
     Alternative form of κάστανα (kástana)
 
-Case-#, Plural
+restrict: pl
 nom: καστάνεια
 gen: καστανείων
 dat: καστανείοις
@@ -17291,7 +17306,7 @@ dict: κέδματα • (kédmata) n pl (genitive κεδμάτων); third decl
 
     Certain morbid affections mentioned by Hippocrates which, in his opinion, resulted from the continual horse-exercise of the Scythians. Possibly aneurysmal or varicose dilatations, chronic tumors, or collections of fluid.
 
-Case-#, Plural
+restrict: pl
 nom: κέδματα
 gen: κεδμάτων
 dat: κέδμασι-κέδμασιν
@@ -17540,7 +17555,7 @@ dict: κεράτια • (kerā́tia) n pl (genitive κερατίων); second d
 
     fruit of the carob
 
-Case-#, Plural
+restrict: pl
 nom: κεράτια
 gen: κερατίων
 dat: κερατίοις
@@ -17749,7 +17764,7 @@ dict: κῆρ • (kêr) n (genitive κῆρος); third declension
     The seat of the passions
 
 #, Irregular declension, of, τὸ, κῆρ; τοῦ, κῆρος, (Attic)
-# Case-#, Singular
+restrict: sg
 nom: κῆρ
 gen: κῆρος
 dat: κῆρι
@@ -17812,7 +17827,7 @@ dict: Κηφῆνες • (Kēphênes) m pl (genitive Κηφήνων); third dec
 
     Cephenes, an old name of the Persians
 
-Case-#, Plural
+restrict: pl
 nom: Κηφῆνες
 gen: Κηφήνων
 dat: Κηφῆσι-Κηφῆσιν
@@ -18151,7 +18166,7 @@ dict: κλητική • (klētikḗ) f (genitive κλητικῆς); first decl
 
     (grammar) the vocative case – elliptically for κλητικὴ πτῶσις (ptôsis): literally, “inflection for calling” or “addressing”
 
-Case-#, Singular
+restrict: sg
 nom: κλητική
 gen: κλητικῆς
 dat: κλητικῇ
@@ -18163,7 +18178,7 @@ dict: κλητικόν • (klētikón) n (genitive κλητικοῦ); second d
 
     The vocative particle, ὦ (ô)
 
-Case-#, Singular
+restrict: sg
 nom: κλητικόν
 gen: κλητικοῦ
 dat: κλητικῷ
@@ -18302,7 +18317,7 @@ dict: κνέφας • (knéphas) n (genitive κνέφους or κνέφατος
 
 #, Irregular declension of τὸ κνέφας; τοῦ κνέφους (Attic)
 
-# Case-#, Singular
+restrict: sg
 nom: κνέφας
 gen: κνέφους-κνέφατος
 dat: κνέφᾳ-κνέφεϊ
@@ -18625,7 +18640,7 @@ dict: κονία • (koníā) f (genitive κονίας); first declension
     a fine powder, sprinkled over wrestlers' bodies after being oiled, to make them more easily grasped by the opponent
     powdered lime, plaster, stucco
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: κονία, κονίαι
 gen: κονίας, κονιῶν
 dat: κονίᾳ, κονίαις
@@ -18637,7 +18652,7 @@ dict: κονίη • (koníē) f (genitive κονίης); first declension
 
     Epic and Ionic form of κονία (koníā)
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: κονίη, κονίαι
 gen: κονίης, κονιάων-κονιέων-κονιῶν
 dat: κονίῃ, κονίῃσι-κονίῃσιν-κονίῃς-κονίαις
@@ -19255,20 +19270,21 @@ dict: κρίνον • (krínon) n (genitive κρίνου); second declension
 
     Declined as a second-declension noun in the singular, but as a third-declension s-stem (as if κρίνος, κρίνεος) in the plural.
 
-Case-#, Singular
+restrict: sg
 nom: κρίνον
 gen: κρίνου
 dat: κρίνῳ
 acc: κρίνον
 voc: κρίνον
 
-# ??
-# Case-# Plural ?
-# nom: κρίνεα
-# gen: κρινέων
-# dat: κρίνεσι-κρίνεσιν
-# acc: κρίνεα
-# voc: κρίνεα
+dict: κρίνεα • (krínon) n (genitive κρινέων); second declension
+
+restrict: pl
+nom: κρίνεα
+gen: κρινέων
+dat: κρίνεσι-κρίνεσιν
+acc: κρίνεα
+voc: κρίνεα
 
 # ----------------------------------
 dict: κριός • (krīós) m (genitive κριοῦ); second declension
@@ -19653,13 +19669,16 @@ dat: κύκλῳ, κύκλοιν, κύκλοις
 acc: κύκλον, κύκλω, κύκλους
 voc: κύκλε, κύκλω, κύκλοι
 
-# ??
-# Case-#, Plural
-# nom: κύκλα
-# gen: κύκλων
-# dat: κύκλοις
-# acc: κύκλα
-# voc: κύκλα
+dict: κύκλα • (kúklos) m (genitive κύκλων); second declension
+
+    circle, ring
+
+restrict: pl
+nom: κύκλα
+gen: κύκλων
+dat: κύκλοις
+acc: κύκλα
+voc: κύκλα
 
 # ----------------------------------
 dict: Κύκλωψ • (Kúklōps) m (genitive Κύκλωπος or Κύκλοπος); third declension
@@ -19999,7 +20018,7 @@ dict: κῶας • (kôas) n (genitive); third declension
 
 #, Irregular declension, of, τὸ, κῶας; -, (Attic)
 
-# Case-#, Singular, Plural
+restrict: sg pl
 nom: κῶας-κῶς, κώεα
 gen: -, -
 dat: -, κώεσιν
@@ -20044,7 +20063,7 @@ dict: Κωκυτός • (Kōkūtós) m (genitive Κωκυτοῦ); second decle
 
     Cocytus, a river in the underworld
 
-Case-#, Singular
+restrict: sg
 nom: Κωκυτός
 gen: Κωκυτοῦ
 dat: Κωκυτῷ
@@ -20329,7 +20348,7 @@ dict: Λάκαινα • (Lákaina) f (genitive Λακαίνης); first declens
 
     Laconia
 
-Case-#, Singular
+restrict: sg
 nom: Λάκαινα
 gen: Λακαίνης
 dat: Λακαίνῃ
@@ -20485,7 +20504,7 @@ dict: Λάμια • (Lámia) f (genitive Λαμίης); first declension
 
     (mythology) A fabulous monster said to feed on man's flesh; bugbear with which to frighten children
 
-Case-#, Singular
+restrict: sg
 nom: Λάμια
 gen: Λαμίης
 dat: Λαμίῃ
@@ -20598,7 +20617,7 @@ dict: Λατῖνος • (Latînos) m (genitive Λατίνου); second declens
 
     Latinus, a figure in Greek and Roman mythology
 
-Case-#, Singular
+restrict: sg
 nom: Λατῖνος
 gen: Λατίνου
 dat: Λατίνῳ
@@ -20931,7 +20950,7 @@ dict: λεχώ • (lekhṓ) f (genitive λεχόος or λεχοῦς); third d
 
     a woman in childbed, or one who has just given birth
 
-Case-#, Singular
+restrict: sg
 nom: λεχώ
 gen: λεχόος-λεχοῦς
 dat: λεχοῖ
@@ -21167,7 +21186,7 @@ dict: λίς • (lī́s) m (genitive λιός); third declension, (poetic or Ep
 
 #, Irregular declension, of, ὁ, λίς; -, (Attic)
 
-# Case-#, Singular, Plural
+restrict: sg pl
 nom: λίς, λίες-λῖες
 gen: -, -
 dat: -, λίεσσι-λίεσι
@@ -21395,7 +21414,7 @@ dict: Λυκάων • (Lukā́ōn) m (genitive Λυκάονος); third declens
 
     Lycaon
 
-Case-#, Singular
+restrict: sg
 nom: Λυκάων
 gen: Λυκάονος
 dat: Λυκάονι
@@ -22214,7 +22233,7 @@ voc: Μεγαρεῦ, Μεγαρῆ, Μεγαρῆς-Μεγαρεῖς
 # ----------------------------------
 dict: Μεγαρεύς • (Megareús) m (genitive Μεγαρέως); third declension
 
-Case-#, Singular
+restrict: sg
 nom: Μεγαρεύς
 gen: Μεγαρέως
 dat: Μεγαρεῖ
@@ -22281,7 +22300,7 @@ dict: μεθοδικοί • (methodikoí) m pl (genitive μεθοδικῶν); 
 
     “methodic” physicians (as opposed to rationalists and empirics)
 
-Case-#, Plural
+restrict: pl
 nom: μεθοδικοί
 gen: μεθοδικῶν
 dat: μεθοδικοῖς
@@ -22312,7 +22331,7 @@ dict: μέθυ • (méthu) n (genitive μέθυος); third declension
 
     wine
 
-Case-#, Singular
+restrict: sg
 nom: μέθυ
 gen: μέθυος
 dat: μέθυϊ
@@ -22698,7 +22717,7 @@ dict: μήδεα • (mḗdea) n pl (genitive μηδέων); third declension
     (poetic, plural only) counsel, plan, art, prudence, cunning
     (Epic, plural only) male genitals
 
-Case-#, Plural
+restrict: pl
 nom: μήδεα
 gen: μηδέων
 dat: μήδεσι-μήδεσιν
@@ -22780,7 +22799,7 @@ dict: μηλοπέπων • (mēlopépōn) m (genitive μηλοπέπονος);
 
     (Koine) melon, Cucumis melo
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: μηλοπέπων, μηλοπέπονες
 gen: μηλοπέπονος, μηλοπεπόνων
 dat: μηλοπέπονι, μηλοπέποσι-μηλοπέποσιν
@@ -22868,7 +22887,7 @@ dict: μῆρα • (mêra) n pl (genitive μήρων); second declension
 
     thigh-bones (femora) wrapped in two folds of fat for votive immolation
 
-Case-#, Plural
+restrict: pl
 nom: μῆρα
 gen: μήρων
 dat: μήροις
@@ -23150,7 +23169,7 @@ dict: Μνημοσύνη • (Mnēmosúnē) f (genitive Μνημοσύνης); f
 
     Mnemosyne, mother of the Muses
 
-Case-#, Singular
+restrict: sg
 nom: Μνημοσύνη
 gen: Μνημοσύνης
 dat: Μνημοσύνῃ
@@ -23222,7 +23241,7 @@ dict: Μολοσσός • (Molossós) m (genitive Μολοσσοῦ); second de
 
     Molossus
 
-Case-#, Singular
+restrict: sg
 nom: Μολοσσός
 gen: Μολοσσοῦ
 dat: Μολοσσῷ
@@ -23834,7 +23853,7 @@ acc: ναῦν, νῆε, ναῦς
 voc: ναῦ, νῆε, νῆες
 
 #, Irregular declension, of, ναῦς; ναός, (Doric)
-# Case-#, Singular, Plural
+restrict: sg pl
 nom: ναῦς, νᾶες
 gen: ναός, ναῶν
 dat: ναΐ, ναυσί-ναυσίν-νάεσσι-νάεσσιν
@@ -23870,24 +23889,13 @@ dict: νάφθα • (náphtha) f (genitive νάφθης); first declension
 
     naphtha
 
-# νάφθα • (náphtha) n (indeclinable)
-
-    naphtha
-
-Case-#, Singular
+restrict: sg
 nom: νάφθα
 gen: νάφθης
 dat: νάφθῃ
 acc: νάφθαν
 voc: νάφθα
 
-# ??
-# Case-#, Singular
-# nom: νάφθα
-# gen: νάφθα
-# dat: νάφθα
-# acc: νάφθα
-# voc: νάφθα
 
 #
 dict: νεανίας • (neāníās) m (genitive νεανίου); first declension, (Attic, Doric)
@@ -23935,7 +23943,7 @@ dict: νεηνίης • (neēníēs) m (genitive νεηνίεω); first declens
 
     Ionic and Epic form of νεανίας (neāníās)
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: νεηνίης, νεηνίαι
 gen: νεηνίεω-νεηνίω, νεηνιέων-νεηνιῶν
 dat: νεηνίῃ, νεηνίαις
@@ -24155,17 +24163,17 @@ acc: νεφέλην, νεφέλα, νεφέλας
 voc: νεφέλη, νεφέλα, νεφέλαι
 
 # ----------------------------------
-dict: νεφεληγερέτα • (nephelēgeréta) m (genitive νεφεληγερέταο); first declension
+dict: νεφεληγερέτα • (nephelēgeréta) m (genitive νεφεληγερέτω); first declension
 
     (Epic) cloud-gatherer (epithet of Zeus)
 
 # ??
-# Case-#, Singular
-# nom: νεφεληγερέτα
-# gen: νεφεληγερέταο-νεφεληγερετέω-νεφεληγερέτω
-# dat: νεφεληγερέτῃ
-# acc: νεφεληγερέτην
-# voc: νεφεληγερέτα
+restrict: sg
+nom: νεφεληγερέτα
+gen: νεφεληγερέτω # νεφεληγερέταο-νεφεληγερετέω-
+dat: νεφεληγερέτῃ
+acc: νεφεληγερέτην
+voc: νεφεληγερέτα
 
 #
 dict: νέφος • (néphos) n (genitive νέφεος or νέφους); third declension
@@ -24265,7 +24273,7 @@ dict: νηῦς • (nēûs) f (genitive νεός or νηός); ? declension
     Epic and Ionic form of ναῦς (naûs)
 
 #, Irregular declension, of, νηῦς; νηός, (Epic)
-# Case-#, Singular, Plural
+restrict: sg pl
 nom: νηῦς, νῆες-νέες
 gen: νηός-νεός, νηῶν-νεῶν
 dat: νηΐ, νηυσί-νηυσίν-νήεσσι-νήεσσιν-νέεσσι-νέεσσιν
@@ -24273,7 +24281,7 @@ acc: νῆα-νέα, νῆας-νέας
 voc: νηῦς, νῆες-νέες
 
 #, Irregular declension, of, ἡ, νηῦς; τῆς, νεός, (Ionic)
-# Case-#, Singular, Plural
+restrict: sg pl
 nom: νηῦς, νέες
 gen: νεός, νεῶν
 dat: νηΐ, νηυσί
@@ -24877,7 +24885,7 @@ dict: Ὀασῖται • (Oasîtai) m pl (genitive Ὀασιτῶν); first de
 
     Oasis-dwellers
 
-Case-#, Plural
+restrict: pl
 nom: Ὀασῖται
 gen: Ὀασιτῶν
 dat: Ὀασίταις
@@ -25201,7 +25209,7 @@ dict: ὄϊς • (óïs) m f (genitive ὄϊος); third declension
     Epic form of οἶς (oîs)
 
 #, Irregular declension, of, ὄϊς; ὄϊος, (Epic)
-# Case-#, Singular, Plural
+restrict: sg pl
 nom: ὄϊς, ὄϊες
 gen: ὄϊος, ὀΐων
 dat: ὀΐ, ὀΐεσσι-ὀΐεσσιν-ὄεσσι-ὄεσσιν
@@ -25513,7 +25521,7 @@ dict: ὄναρ • (ónar) n (genitive); third declension
     a dream
 
 # This, noun, is, only, used, in, nom., sg., and, acc., sg.; otherwise, it, is, replaced, by, ὄνειρος, (óneiros).
-# Case-#, Singular, Plural
+restrict: sg pl
 nom: ὄναρ, -
 gen: -, -
 dat: -, -
@@ -25912,7 +25920,7 @@ dict: ὄργια • (órgia) n pl (genitive ὀργίων); second declension
     accusative plural of ὄργιον (órgion)
     vocative plural of ὄργιον (órgion)
 
-Case-#, Plural
+restrict: pl
 nom: ὄργια
 gen: ὀργίων
 dat: ὀργίοις
@@ -26281,7 +26289,8 @@ dict: ὄσσε • (ósse) n du, (genitive); second declension
     eyes
 
 # Irregular declension of ὄσσε; -, (Attic)
-Case-#, Dual, Plural
+
+restrict: du pl
 nom: ὄσσε, ὄσσε
 gen: -, ὄσσων
 dat: -, ὄσσοις
@@ -26607,7 +26616,7 @@ dict: ὄχεα • (ókhea) n pl (genitive ὀχέων); ? declension
     (Epic, plural only) a chariot
 # ? persus gives ὄχος, not ὄχεα-pl, so ὄχεσι
 
-Case-#, Plural
+restrict: pl
 nom: ὄχεα
 gen: ὀχέων
 dat: ὄχεσι-ὄχεσφι
@@ -26855,7 +26864,7 @@ dict: παιδεραστία • (paiderastíā) f (genitive παιδεραστ�
 
     love of boys
 
-Case-#, Singular
+restrict: sg
 nom: παιδεραστία
 gen: παιδεραστίας
 dat: παιδεραστίᾳ
@@ -27106,7 +27115,7 @@ dict: παραβολᾶνοι • (parabolânoi) m pl (genitive παραβολά
 
     (only in the plural) parabalani, persons who risk their lives as nurses
 
-Case-#, Plural
+restrict: pl
 nom: παραβολᾶνοι
 gen: παραβολάνων
 dat: παραβολάνοις
@@ -27612,7 +27621,7 @@ dict: πειθώ • (peithṓ) f (genitive πειθόος or πειθοῦς); 
     means of persuasion, inducement, argument
     obedience
 
-Case-#, Singular
+restrict: sg
 nom: πειθώ
 gen: πειθόος-πειθοῦς
 dat: πειθοῖ
@@ -28062,7 +28071,7 @@ dict: Πέρσης • (Pérsēs) m (genitive Πέρσου); first declension, (
 
     Perses
 
-Case-#, Singular
+restrict: sg
 nom: Πέρσης
 gen: Πέρσου
 dat: Πέρσῃ
@@ -28289,7 +28298,7 @@ dict: Πίερες • (Pī́eres) m pl (genitive Πιέρων); third declensio
 
     an inhabitant of Pieria; a Pierian
 
-Case-#, Plural
+restrict: pl
 nom: Πίερες
 gen: Πιέρων
 dat: Πίερσι-Πίερσιν
@@ -28659,20 +28668,12 @@ dict: πληθύς • (plēthū́s) f (genitive πληθύος); third declensi
 
     Ionic and Epic form of πλῆθος (plêthos, “throng, crowd; majority”)
 
-Case-#, Singular
+restrict: sg
 nom: πληθύς
 gen: πληθύος
 dat: πληθύϊ
 acc: πληθύν
 voc: πληθύ
-
-# ??
-# Case-#
-# nom: πληθύς
-# gen: πληθύος
-# dat: πληθύϊ-πληθυῖ
-# acc: πληθύν
-# voc: πληθύ
 
 # ----------------------------------
 dict: πληθυσμός • (plēthusmós) m (genitive πληθυσμοῦ); second declension
@@ -30162,7 +30163,7 @@ dict: Πυθία • (Pūthíā) f (genitive Πυθίας); first declension
 
     Pythia: priestess of Apollo at Delphi, who uttered prophetic oracles
 
-Case-#, Singular
+restrict: sg
 nom: Πυθία
 gen: Πυθίας
 dat: Πυθίᾳ
@@ -30264,7 +30265,7 @@ dict: πῦρ • (pûr) n (genitive πυρός); third declension
     lightning
     a fever
 
-Case-#, Singular
+restrict: sg
 nom: πῦρ
 gen: πυρός
 dat: πυρί
@@ -30444,7 +30445,7 @@ dict: πῶυ • (pôu) n (genitive πώεος); third declension
     flock of sheep
 
 #, Irregular declension, of, τὸ, πῶυ; τοῦ, πώεος, (Attic)
-# Case-#, Singular, Plural
+restrict: sg pl
 nom: πῶυ, πώεα
 gen: πώεος, -
 dat: -, πώεσι
@@ -30946,7 +30947,7 @@ dict: σάββατον • (sábbaton) n (genitive σαββάτου); second dec
 
     Sabbath
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: σάββατον, σάββατα
 gen: σαββάτου, σαββάτων
 dat: σαββάτῳ, σάββασι-σάββασιν-σαββάτοις
@@ -30958,7 +30959,7 @@ dict: Σαβῖνος • (Sabînos) m (genitive Σαβίνου); second declens
 
     Sabinus, mythological ancestor of the Sabines
 
-Case-#, Singular
+restrict: sg
 nom: Σαβῖνος
 gen: Σαβίνου
 dat: Σαβίνῳ
@@ -30981,7 +30982,7 @@ dict: σαγματοπασμαγάδια • (sagmatopasmagádia) n pl (genitive
 
     (Byzantine, plural only) saddle and welding blanket
 
-Case-#, Plural
+restrict: pl
 nom: σαγματοπασμαγάδια
 gen: σαγματοπασμαγαδίων
 dat: σαγματοπασμαγαδίοις
@@ -31744,7 +31745,7 @@ dict: σῖτος • (sîtos) m (genitive σίτου); second declension
     bread as opposed to meat
     food as opposed to drink
 
-Case-#, Singular
+restrict: sg
 nom: σῖτος
 gen: σίτου
 dat: σίτῳ
@@ -31754,7 +31755,7 @@ voc: σῖτε
 Plural
 
 # ??
-Case-#, Plural
+restrict: pl
 # nom: σῖτα
 # gen: σίτων
 # dat: σίτοις
@@ -32497,7 +32498,7 @@ dict: Σπάρτακος • (Spártakos) m (genitive Σπαρτάκου); secon
 
     Spartacus
 
-Case-#, Singular
+restrict: sg
 nom: Σπάρτακος
 gen: Σπαρτάκου
 dat: Σπαρτάκῳ
@@ -32531,7 +32532,7 @@ dict: Σπαρτιᾶτις • (Spartiâtis) f (genitive Σπαρτιάτιδο
 
     the land of Sparta; Spartiatis
 
-Case-#, Singular
+restrict: sg
 nom: Σπαρτιᾶτις
 gen: Σπαρτιάτιδος
 dat: Σπαρτιάτιδι
@@ -32544,8 +32545,21 @@ dict: σπέος • (spéos) n (genitive σπείους); third declension, (Ep
     cave, cavern, grotto
 
 #, Irregular declension, of, σπέος; σπείους, (Epic)
-# Case-#, Singular, Plural
+restrict: sg pl
 nom: σπέος-σπεῖος, -
+gen: σπείους, σπείων
+dat: σπῆϊ, σπέσσι-σπήεσσι
+acc: σπέος-σπεῖος, -
+voc: σπέος-σπεῖος, -
+
+#
+dict: σπεῖος • (spéos) n (genitive σπείους); third declension, (Epic)
+
+    cave, cavern, grotto
+
+#, Irregular declension, of, σπέος; σπείους, (Epic)
+restrict: sg pl
+nom: σπέος, -
 gen: σπείους, σπείων
 dat: σπῆϊ, σπέσσι-σπήεσσι
 acc: σπέος-σπεῖος, -
@@ -33146,7 +33160,7 @@ dict: στοιχειωματικοί • (stoikheiōmatikoí) m pl (genitive σ�
 
     persons who cast nativities from the signs of the Zodiac
 
-Case-#, Plural
+restrict: pl
 nom: στοιχειωματικοί
 gen: στοιχειωματικῶν
 dat: στοιχειωματικοῖς
@@ -33958,7 +33972,7 @@ voc: σύνδεσμε, συνδέσμω, σύνδεσμοι
 # With neuter
 
 # ??
-Case-#, Plural
+restrict: pl
 # nom: σύνδεσμα
 # gen: συνδέσμων
 # dat: συνδέσμοις
@@ -34215,7 +34229,7 @@ dict: Σύρος • (Súros) m (genitive Σύρου); second declension
 
     A common slave name
 
-Case-#, Singular
+restrict: sg
 nom: Σύρος
 gen: Σύρου
 dat: Σύρῳ
@@ -34238,14 +34252,14 @@ dict: Σύρτις • (Súrtis) f (genitive Σύρτεως or Σύρτιος); 
 
     the Syrtis, name of two large shallow gulfs on the coast of Libya
 
-Case-#, Singular
+restrict: sg
 nom: Σύρτις
 gen: Σύρτεως
 dat: Σύρτει
 acc: Σύρτιν
 voc: Σύρτι
 
-Case-# Singular
+restrict: sg
 nom: Σύρτις
 gen: Σύρτιος
 dat: Σύρτι
@@ -34577,7 +34591,7 @@ dict: Σωκρατικοί • (Sōkratikoí) m pl (genitive Σωκρατικῶ
 
     the philosophers of Socrates’ school, the Socratics
 
-Case-#, Plural
+restrict: pl
 nom: Σωκρατικοί
 gen: Σωκρατικῶν
 dat: Σωκρατικοῖς
@@ -34932,7 +34946,7 @@ dict: Τάφιος • (Táphios) m (genitive Ταφίου); second declension
 
     Taphius, the colonizer in Greek mythology of the islands of Taphos
 
-Case-#, Singular
+restrict: sg
 nom: Τάφιος
 gen: Ταφίου
 dat: Ταφίῳ
@@ -35270,7 +35284,7 @@ dict: Τεσσαρεσκαιδεκατῖται • (Tessareskaidekatîtai) m pl
     a name given to the followers of the fourth-century heretical movement of Audianism which honored the death of Christ on the eve of Jewish Passover on fourteenth day of Nisan instead of Easter Sunday; Quartodecimans, Audians
 
 slow test
-Case-#, Plural
+restrict: pl
 nom: Τεσσαρεσκαιδεκατῖται
 gen: Τεσσαρεσκαιδεκατιτῶν
 dat: Τεσσαρεσκαιδεκατίταις
@@ -35456,7 +35470,7 @@ dict: Τιβαρηνοί • (Tibarēnoí) m pl (genitive Τιβαρηνῶν); 
 
     Tabal; Tibareni, Anatolia
 
-Case-#, Plural
+restrict: pl
 nom: Τιβαρηνοί
 gen: Τιβαρηνῶν
 dat: Τιβαρηνοῖς
@@ -35468,7 +35482,7 @@ dict: Τιβαρηνοί • (Tibarēnoí) m pl (genitive Τιβαρηνῶν); 
 
     the Tibareni
 
-Case-#, Plural
+restrict: pl
 nom: Τιβαρηνοί
 gen: Τιβαρηνῶν
 dat: Τιβαρηνοῖς
@@ -35839,20 +35853,23 @@ dict: τράχηλος • (trákhēlos) m (genitive τραχήλου); second d
 
     neck
 
-Case-#, Singular
+restrict: sg
 nom: τράχηλος
 gen: τραχήλου
 dat: τραχήλῳ
 acc: τράχηλον
 voc: τράχηλε
 
-# ??
-Case-# Plural ?
-# nom: τράχηλα
-# gen: τραχήλων
-# dat: τραχήλοις
-# acc: τράχηλα
-# voc: τράχηλα
+dict: τράχηλα • (trákhēlos) m (genitive τραχήλων); second declension
+
+    neck
+
+restrict: pl
+nom: τράχηλα
+gen: τραχήλων
+dat: τραχήλοις
+acc: τράχηλα
+voc: τράχηλα
 
 # ----------------------------------
 dict: τρῆμα • (trêma) n (genitive τρήματος); third declension
@@ -35873,7 +35890,7 @@ dict: τριάς • (triás) f (genitive τριάδος); third declension
     (prosody) system of three strophes
     (Christianity) Trinity
 
-Case-#, Singular
+restrict: sg
 nom: τριάς
 gen: τριάδος
 dat: τριάδι
@@ -36103,7 +36120,7 @@ dict: Τρωάς • (Trōás) f (genitive Τρωάδος); third declension
 
     the Troas; the Troad
 
-Case-#, Singular
+restrict: sg
 nom: Τρωάς
 gen: Τρωάδος
 dat: Τρωάδι
@@ -36150,7 +36167,7 @@ dict: Τρῶες • (Trôes) m pl (genitive Τρώων); ? declension
 
     (plural only) Trojans
 
-Case-#, Plural
+restrict: pl
 nom: Τρῶες
 gen: Τρώων
 dat: Τρωσί-Τρωσίν-Τρώεσσι-Τρώεσσιν
@@ -36162,7 +36179,7 @@ dict: Τρωϊκά • (Trōïká) n pl (genitive Τρωϊκῶν); second d
 
     the times of Troy: the Trojan War
 
-Case-#, Plural
+restrict: pl
 nom: Τρωϊκά
 gen: Τρωϊκῶν
 dat: Τρωϊκοῖς
@@ -37015,7 +37032,7 @@ dict: φάλλαινα • (phállaina) f (genitive φαλλαίνης); first d
 
     whale
 
-Case-#, Singular, Plural
+restrict: sg pl
 nom: φάλλαινα, φάλλαιναι
 gen: φαλλαίνης, φαλλαινῶν
 dat: φαλλαίνῃ, φαλλαίναις
@@ -37916,7 +37933,7 @@ dict: φύζα • (phúza) f (genitive φύζης); first declension
 
     panicked flight from battle, rout
 
-Case-#, Singular
+restrict: sg
 nom: φύζα
 gen: φύζης
 dat: φύζῃ
@@ -39137,7 +39154,7 @@ dat: χρωτί, χρωτοῖν, χρωσί-χρωσίν
 acc: χρῶτα, χρῶτε, χρῶτας
 voc: χρώς, χρῶτε, χρῶτες
 
-Case-#, Singular
+restrict: sg
 nom: χρώς
 gen: χροός
 dat: χροΐ-χρῷ

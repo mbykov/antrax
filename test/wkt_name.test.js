@@ -86,6 +86,7 @@ rtests.forEach(doc => {
     line.forms.forEach((form2, idx) => {
       if (!form2) return
       form2.split('-').forEach(form => {
+        if (!form) return
         let number = numbers[idx]
         if (doc.pl) number = 'pl'
         let numcase = [number, kase].join('.')
