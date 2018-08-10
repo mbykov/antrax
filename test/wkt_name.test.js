@@ -57,17 +57,19 @@ rows.forEach((row, idx) => {
   if (row[0] == ' ') return
   let descr = row.split(':')[0].trim()
 
-  if (descr == 'dict' || descr == 'END') {
+  if (descr == 'dict') {
     let res =  {dict: dict, formstr: formstr, data: store} // ,
     parseGend(res)
+    // if (!/genitive /.test(formstr)) return
     if (dict) rtests.push(res)
-    store = []
   }
 
   if (descr == 'dict') {
     let txt = row.split(':')[1].trim()
     dict = txt.split('•')[0].trim()
     formstr = txt.split('•')[1].trim()
+    if (!/genitive /.test(formstr)) dict = null
+    store = []
   } else if (['nom', 'gen', 'dat', 'acc', 'voc'].includes(descr)) {
     let str = row.split(':')[1]
     if (!str) return
@@ -85,6 +87,7 @@ rtests.forEach(doc => {
       if (!form2) return
       form2.split('-').forEach(form => {
         let number = numbers[idx]
+        if (doc.pl) number = 'pl'
         let numcase = [number, kase].join('.')
         let test = [doc.dict, form, doc.gend, numcase]
         tests.push(test)
@@ -104,7 +107,10 @@ forEach(tests)
     antrax(arg)
       .then(chains => {
         if (!chains.length) log('NO RESULT'), assert.equal(false, true)
-        let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return dict.rdict}).includes(rdict) })
+        // remove other results:
+        // log('==', chains[0][0])
+        let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return dict.rdict}).includes(rdict)
+                                               && ch[ch.length-2].dicts.map(dict => { return dict.gend}).includes(gend)})
         if (!corrchs.length) log('no correct chains'), assert.equal(false, true)
 
         corrchs.forEach(chain => {
@@ -113,9 +119,9 @@ forEach(tests)
           let penult = chain[chain.length-2]
           let names = _.filter(penult.dicts, dict => { return dict.name })
           if (!names.length) log('no name'), assert.equal(false, true)
-          let gends = _.filter(names, dict => { return dict.gend == gend })
-          if (!gends.length) log('no gend'), assert.equal(false, true)
-          gends.forEach(dict => {
+          // let gends = _.filter(names, dict => { return dict.gend == gend })
+          // if (!gends.length) log('no gend'), assert.equal(false, true)
+          names.forEach(dict => {
             let fls = _.last(chain).flexes
             let numcases = fls.map(flex => { return flex.numcase })
             assert.equal(numcases.includes(numcase), true)

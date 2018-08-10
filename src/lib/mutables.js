@@ -1,8 +1,8 @@
 import { log, voice } from './utils'
 import _ from 'lodash'
 
-// const orthos = require('../../orthos')
-const orthos = require('orthos')
+import {combine, plaine} from '../../../orthos'
+
 
 let clog = console.log
 
@@ -11,7 +11,7 @@ let clog = console.log
 export function parseVerb (seg, segs, flexes) {
   let vchains = []
   let last = _.last(segs)
-  last.dicts.forEach(dict => { dict.dict = orthos.toComb(dict.rdict) } )
+  last.dicts.forEach(dict => { dict.dict = combine(dict.rdict) } )
   let lastverbs = _.filter(last.dicts, dict => { return dict.verb })
   let verbflexes = _.filter(flexes, flex => { return flex.verb })
   // let advflexes = _.filter(flexes, flex => { return flex.adv })
@@ -70,71 +70,49 @@ export function parseVerb (seg, segs, flexes) {
   return vchains
 }
 
-
+// NAME
 export function parseName (seg, segs, flexes) {
   let nchains = []
   let last = _.last(segs)
-  last.dicts.forEach(dict => { dict.dict = orthos.toComb(dict.rdict) } )
+  last.dicts.forEach(dict => { dict.dict = combine(dict.rdict) } )
   let lastnames = _.filter(last.dicts, dict => { return dict.name })
   let nameflexes = _.filter(flexes, flex => { return flex.name })
   // let verbflexes = _.filter(flexes, flex => { return flex.verb })
   let advflexes = _.filter(flexes, flex => { return flex.adv })
 
-  // let lastnouns = _.filter(lastnames, dict => { return dict.gend })
-  // let gendnames = _.gpoupBy(lastnouns, 'gend')
-  // for (let gend in gendnames) {
-  //   let gnames = gnames[gend]
-  // }
 
+  let gnames = _.filter(lastnames, dict => { return dict.gend })
+  let anames = _.filter(lastnames, dict => { return !dict.gend })
   let ndicts = []
   let nfls = []
-  lastnames.forEach(dict => {
-    if (dict.plain == 'ταφ') log('NC-d ===========================>>>', dict)
+  gnames.forEach(dict => {
+    if (dict.plain == 'γλουτ') log('NC-d ===========================>>>', dict)
     let fls = _.filter(nameflexes, flex => {
-      if (dict.plain == 'ταφ' && flex.numcase == 'sg.nom') log('NAME-f =========================', flex)
+      if (dict.plain == 'γλουτ' && flex.numcase == 'pl.nom') log('NAME-f =========================', flex)
+      if (dict.gend && dict.gend != flex.gend) return false
       if (!dict.keys.includes(flex.key)) return false
       return true
     })
-    // let fls = []
-    // nameflexes.forEach(flex => {
-    //   if (dict.plain == 'ταφ' && flex.numcase == 'sg.nom') log('NAME-f =========================', flex)
-
-    //   // let gend, fdicts
-    //   // for (let rgend in flex.rgend) {
-    //   //   let int = _.intersection(dict.dicts, flex.rgend[rgend])
-    //   //   if (int.length) gend = rgend, fdicts = flex.rgend[rgend]
-    //   // }
-
-    //   // if (!fdicts) fdicts = flex.dicts // nouns
-    //   // let dint =_.intersection(dict.dicts, fdicts)
-    //   // if (!dint.length) return false
-
-    //   // // на dict.ad не влияют flex for-noun-only, только для noun, не имеющие gend
-    //   // if (dict.gend) {
-    //   //   // if (!dict.gend.split(' ').includes(gend)) return false // убираю лишние gend
-    //   // } else {
-    //   //   if (!gend) return false // у adj  род определяется из flex, gend обязан быть
-    //   //   flex.gend = gend
-    //   // }
-
-    //   // if (flex.a && !dict.a) return false
-    //   // if (flex.h && !dict.h) return false
-    //   // fls.push(flex)
-    // })
 
     if (!fls.length) return
-    ndicts.push(dict)
-    nfls = fls // в names не так, как в глаголах - здесь разные db
-  })
-
-  if (ndicts.length && nfls.length) {
-    let cleanfls = nfls.map(flex => { return {numcase: flex.numcase} })
+    // ndicts.push(dict)
+    // nfls = fls // в names не так, как в глаголах - здесь разные db
+    let cleanfls = fls.map(flex => { return {numcase: flex.numcase} })
     let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
     cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
     let flsobj = {seg: seg, flexes: cleanfls}
-    let nchain = cloneChain(segs, ndicts, null, flsobj)
+    let nchain = cloneChain(segs, [dict], null, flsobj)
     nchains.push(nchain)
-  }
+  })
+
+  // if (ndicts.length && nfls.length) {
+  //   let cleanfls = nfls.map(flex => { return {numcase: flex.numcase} })
+  //   let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
+  //   cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
+  //   let flsobj = {seg: seg, flexes: cleanfls}
+  //   let nchain = cloneChain(segs, ndicts, null, flsobj)
+  //   nchains.push(nchain)
+  // }
 
   // ADVERBS
   lastnames.forEach(dict => {

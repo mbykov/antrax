@@ -8,12 +8,9 @@ import { parseVerb, parseName } from './lib/mutables'
 import { vowels, strongs, voice } from './lib/utils'
 import { strong } from './lib/augments'
 import util from 'util'
+import {combine, plaine} from '../../orthos'
 
-// process.EventEmitter = require('events').EventEmitter
 const path = require('path')
-// const orthos = require('../../orthos')
-const orthos = require('orthos')
-
 let clog = console.log
 
 let wordform = process.argv.slice(2)[0] // || 'ἀργυρῷ' // false;
@@ -24,28 +21,27 @@ export function enableDBs (upath, apath) {
 }
 
 export function clause (wfs) {
-  let keys = wfs.map(wf => orthos.toComb(wf))
-  let dkeys = keys.map(key => { return orthos.downcase(key) })
-  return getTerms(dkeys)
+  let keys = wfs.map(wf => combine(wf))
+  return getTerms(keys)
 }
 
 export function antrax (wordform) {
   if (!wordform) return new Promise(function() {})
 
   let clstr = cleanStr(wordform)
-  let comb = orthos.toComb(clstr)
-  comb = orthos.downcase(comb)
-  let sgms = segmenter(comb)
-  let clean = orthos.plain(comb)
+  let cmb = combine(clstr)
+  let sgms = segmenter(cmb)
+  let clean = plaine(clstr)
+  log('PLAIN', clean)
 
   // segments for flexes:
   let lasts = _.uniq(sgms.map(sgm =>  { return sgm[sgm.length-1] }))
-  // lasts.push(comb) // это, наверное, будет не нужно при поиске terms регулярно
+  // lasts.push(cmb) // это, наверное, будет не нужно при поиске terms регулярно
   log('lasts', lasts)
 
   // segments for dicts:
   let nonlasts = _.uniq(_.flatten(sgms.map(sgm =>  { return sgm.slice(0, -1) }) ))
-  let pnonlasts = _.uniq(_.compact(nonlasts.map(nonlast => { return orthos.plain(nonlast) }) ))
+  let pnonlasts = _.uniq(_.compact(nonlasts.map(nonlast => { return plaine(nonlast) }) ))
   log('NONlast:', pnonlasts.toString())
 
   let added = addedStems(pnonlasts)
@@ -59,7 +55,7 @@ export function antrax (wordform) {
       return queryDBs(plainsegs)
         .then(rdocs => {
           let dicts = _.flatten(rdocs)
-          return main(comb, plainsegs, sgms, pnonlasts, fls, dicts)
+          return main(cmb, plainsegs, sgms, pnonlasts, fls, dicts)
         })
     })
 } // export antrax
@@ -70,7 +66,7 @@ function addedStems(wforms) {
   let plain, first, added = []
   wforms.forEach(wf => {
     first = _.first(wf)
-    plain = orthos.plain(wf)
+    plain = plaine(wf)
     // let firsts = _.uniq([plain.slice(0,1), plain.slice(0,2), plain.slice(0,3), plain.slice(0,4), plain.slice(0,5)]) // aor. ind from aor others
     // // firsts = _.filter(firsts, first => { return first != plain })
     // firsts.forEach(first => {
@@ -96,12 +92,12 @@ function addedStems(wforms) {
   return _.uniq(added)
 }
 
-function main(comb, plainsegs, sgms, pnonlasts, flexes, dicts) {
+function main(cmb, plainsegs, sgms, pnonlasts, flexes, dicts) {
   dicts = _.filter(dicts, dict => { return !dict.indecl })
   dicts = _.filter(dicts, dict => { return dict.rdict })
   log('dicts--->', dicts.length)
-  let kdicts = _.filter(dicts, dict => { return dict.plain == 'αγαθοποι'})
-  log('kdicts---->', kdicts.length)
+  let kdicts = _.filter(dicts, dict => { return dict.plain == 'γλουτ'})
+  log('kdicts---->', kdicts)
   log('flexes--->', flexes.length)
   let kflexes = _.filter(flexes, fl => { return fl.flex == 'ον'})
   log('kflexes--->', kflexes.length)
@@ -160,7 +156,7 @@ function makeChains (sgms, segdicts, flexes) {
     psegs = segs.slice(0, -1)
     let chain = []
     psegs.forEach((seg, idx) => {
-      let pseg = orthos.plain(seg)
+      let pseg = plaine(seg)
       let pdicts = segdicts[pseg]
       let prfdicts
       if (idx < psegs.length-1) {
@@ -183,7 +179,7 @@ function addDicts(chains, pnonlasts, segdicts) {
   chains.forEach(segs => {
     let penult = segs[segs.length-2]
     let seg = penult.seg
-    seg = orthos.plain(seg)
+    seg = plaine(seg)
     let first = _.first(seg)
     let sdicts = _.clone(penult.dicts)
     let firsts = _.uniq([seg.slice(0,1), seg.slice(0,2), seg.slice(0,3), seg.slice(0,4), seg.slice(0,5)])
@@ -258,7 +254,7 @@ function filterDictFlex (rchains) {
     // BUG: жуткий баг, неизвестно откуда  - circulars, вместо обычных dict => npm start ἐμεόμενος
     // last.dicts = _.filter(last.dicts, dict => { return dict.rdict })
 
-    // last.dicts.forEach(dict => { dict.dict = orthos.toComb(dict.rdict) } )
+    // last.dicts.forEach(dict => { dict.dict = combine(dict.rdict) } )
 
     let vchains = parseVerb(seg, segs, flexes)
     chains.push(vchains)

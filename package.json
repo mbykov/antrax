@@ -42,7 +42,7 @@
     "fs-extra": "^6.0.1",
     "fs-jetpack": "^1.3.0",
     "lodash": "^4.17.4",
-    "orthos": "^0.3.2",
+    "orthos": "^0.3.41",
     "pouchdb": "^7.0.0"
   },
   "devDependencies": {

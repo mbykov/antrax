@@ -10,7 +10,6 @@ import {accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs
 let util = require('util');
 
 const path = require('path')
-// const orthos = require('../../orthos') // publish - поправить версию
 let only = process.argv.slice(3)[0] || false;
 
 let log = console.log

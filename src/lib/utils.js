@@ -1,7 +1,5 @@
 //
 let util = require('util')
-// const orthos = require('../../../orthos')
-const orthos = require('orthos')
 
 const ac = {
   'oxia': '\u0301',

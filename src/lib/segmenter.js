@@ -39,7 +39,7 @@ export function scrape (str) {
   while (pos > 0) {
     pos--
     tail = str.slice(pos)
-    if (!_.intersection(vows, _.values(tail)).length && !mts.includes(tail)) continue
+    // if (!_.intersection(vows, _.values(tail)).length && !mts.includes(tail)) continue
     head = str.substr(0, pos)
     if (!head) continue
     beg = tail[0]
