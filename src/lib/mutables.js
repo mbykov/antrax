@@ -85,10 +85,10 @@ export function parseName (seg, segs, flexes) {
   let anames = _.filter(lastnames, dict => { return !dict.gend })
   let ndicts = []
   let nfls = []
-  gnames.forEach(dict => {
-    if (dict.plain == 'γλουτ') log('NC-d ===========================>>>', dict)
+  lastnames.forEach(dict => {
+    if (dict.plain == 'αβρ') log('NC-d ===========================>>>', dict)
     let fls = _.filter(nameflexes, flex => {
-      if (dict.plain == 'γλουτ' && flex.numcase == 'pl.nom') log('NAME-f =========================', flex)
+      if (dict.plain == 'αβρ' && flex.numcase == 'sg.nom') log('NAME-f =========================', flex)
       if (dict.gend && dict.gend != flex.gend) return false
       if (!dict.keys.includes(flex.key)) return false
       return true
@@ -97,7 +97,7 @@ export function parseName (seg, segs, flexes) {
     if (!fls.length) return
     // ndicts.push(dict)
     // nfls = fls // в names не так, как в глаголах - здесь разные db
-    let cleanfls = fls.map(flex => { return {numcase: flex.numcase} })
+    let cleanfls = fls.map(flex => { return {numcase: flex.numcase, gend: flex.gend} })
     let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
     cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
     let flsobj = {seg: seg, flexes: cleanfls}
@@ -105,14 +105,6 @@ export function parseName (seg, segs, flexes) {
     nchains.push(nchain)
   })
 
-  // if (ndicts.length && nfls.length) {
-  //   let cleanfls = nfls.map(flex => { return {numcase: flex.numcase} })
-  //   let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
-  //   cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
-  //   let flsobj = {seg: seg, flexes: cleanfls}
-  //   let nchain = cloneChain(segs, ndicts, null, flsobj)
-  //   nchains.push(nchain)
-  // }
 
   // ADVERBS
   lastnames.forEach(dict => {
