@@ -26,8 +26,9 @@ process.prependListener("exit", (code) => {
   }
 })
 
-let upath = path.resolve(__dirname, '../../')
-enableDBs(upath)
+let upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
+let apath = path.resolve(__dirname, '../../egreek')
+enableDBs(upath, apath)
 
 const testpath = path.resolve(__dirname, 'wkt_ad-2.txt')
 const text = fse.readFileSync(testpath,'utf8')
@@ -37,11 +38,16 @@ let param = process.argv.slice(2)[1]
 let skip = true
 
 let cases = ['nom', 'gen', 'dat', 'acc', 'voc']
-let nums // = ['sg', 'du', 'pl']
 let marks = ['dict', 'nom', 'gen', 'dat' , 'acc' , 'voc' , 'adv' , 'caution' ]
-const morphs = {
-  '6': ['masc-fem.sg', 'neut.sg', 'masc-fem.du', 'neut.du', 'masc-fem.pl', 'neut.pl' ],
-  '9': ['masc.sg', 'fem.sg',  'neut.sg', 'masc.du', 'fem.du', 'neut.du', 'masc.pl', 'fem.pl', 'neut.pl' ]
+
+const gends = {
+  '6': ['masc fem', 'neut', 'masc fem', 'neut', 'masc fem', 'neut' ],
+  '9': ['masc', 'fem',  'neut', 'masc', 'fem', 'neut', 'masc', 'fem', 'neut' ]
+}
+
+const nums = {
+  '6': ['sg', 'sg', 'du', 'du', 'pl', 'pl' ],
+  '9': ['sg', 'sg',  'sg', 'du', 'du', 'du', 'pl', 'pl', 'pl' ]
 }
 
 let tests = []
@@ -69,7 +75,8 @@ rows.forEach((row, idx) => {
   txt = txt.trim()
   let tarr = txt.split(', ')
   let size = tarr.length
-  let morph = morphs[size]
+  let tgends = gends[size]
+  let tnums = nums[size]
   // log('R', size, row)
   if (mark == 'dict') {
     dict = txt.split('•')[0].trim()
@@ -81,9 +88,12 @@ rows.forEach((row, idx) => {
     if (mark == 'nom') rtests = []
     tarr.forEach((arg2, idy) => {
       arg2.split('-').forEach(arg => {
-        let morph = morphs[size][idy]
-        let test = [dict, arg, morph, mark]
-        rtests.push(test)
+        let gends = tgends[idy]
+        gends.split(' ').forEach(gend => {
+          let num = tnums[idy]
+          let test = [dict, arg, gend, num, mark]
+          rtests.push(test)
+        })
       })
     })
     if (mark == 'voc') {
@@ -105,35 +115,37 @@ rows.forEach((row, idx) => {
 
 tests = _.flatten(tests)
 
-// tests = tests.slice(0, 10)
-console.log('T', tests.length)
+// tests = tests.slice(0, 5)
+// console.log('T', tests)
 // tests = []
 
 forEach(tests)
-  .it('adj %s %s %s %s ', (rdict, arg, morph, kase, done) => {
-    // log('->', dict, arg, morph, kase)
+  .it('adj %s %s %s %s ', (rdict, arg, gend, num, kase, done) => {
+    // log('->', rdict, arg, gend, num, kase)
     antrax(arg)
       .then(chains => {
         if (!chains.length) log('NO RESULT'), assert.equal(false, true)
-        chains.forEach(chain => {
-          // log('CH.length', chain)
+        // remove other results:
+        let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return dict.rdict}).includes(rdict) })
+        if (!corrchs.length) log('no correct rdict'), assert.equal(false, true)
+        corrchs = _.filter(corrchs, ch => { return ch[ch.length-2].dicts.map(dict => { return !dict.gend } ) })
+        if (!corrchs.length) log('no adj'), assert.equal(false, true)
+        corrchs = _.filter(corrchs, ch => { return ch[ch.length-1].flexes.map(flex => { return flex.gend == gend}) })
+        if (!corrchs.length) log('no correct flex'), assert.equal(false, true)
+
+        corrchs.forEach(chain => {
+          // log('CH.length', chain.length)
           if (chain.length > 2) log('CH.length'), assert.equal(false, true)
           let penult = chain[chain.length-2]
+          let fls = _.last(chain).flexes
+          let actuals = fls.map(flex => { return flex.numcase })
+          let expected = [num, kase].join('.')
+          // log('-------', actuals, expected)
+          assert.equal(actuals.includes(expected), true)
+
           penult.dicts.forEach(dict => {
-            if (!dict.name) return // глаголы
-            if (dict.gend) return // не-прилагательные
-            if (orthos.toComb(dict.rdict) != orthos.toComb(rdict)) return
-
-            let fls = _.last(chain).flexes
-            let exps = fls.map(flex => { return [flex.gend, flex.numcase].join('.') })
-
-            if (exps.length != _.uniq(exps).length) log('EXPS', exps)
-            assert.equal(exps.length, _.uniq(exps).length) // результаты fls не повторяются
-
-            let act = [morph, kase].join('.')
-            // log('act:', act, 'exp:', exps)
-            assert.equal(exps.includes(act), true)
           })
+
         })
       })
       .then(done)

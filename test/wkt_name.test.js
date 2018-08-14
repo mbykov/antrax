@@ -114,7 +114,6 @@ forEach(tests)
       .then(chains => {
         if (!chains.length) log('NO RESULT'), assert.equal(false, true)
         // remove other results:
-        // log('==', chains[0][0])
         let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return dict.rdict}).includes(rdict)
                                                && ch[ch.length-2].dicts.map(dict => { return dict.gend}).includes(gend)})
         if (!corrchs.length) log('no correct chains'), assert.equal(false, true)
