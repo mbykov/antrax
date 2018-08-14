@@ -9,13 +9,17 @@ let clog = console.log
 // MAIN VERB
 // verbs строятся по разным stems, т.е. один verb может порождать один chain по разным stems :
 export function parseVerb (seg, segs, flexes) {
+  log('-----------------------> seg', seg)
   let vchains = []
   let last = _.last(segs)
+  let penult = segs[segs.length-2]
+
   last.dicts.forEach(dict => { dict.dict = combine(dict.rdict) } )
   let lastverbs = _.filter(last.dicts, dict => { return dict.verb })
   let verbflexes = _.filter(flexes, flex => { return flex.verb })
   // let advflexes = _.filter(flexes, flex => { return flex.adv })
-  let partflexes = _.filter(flexes, flex => { return flex.part })
+  // let partflexes = _.filter(flexes, flex => { return flex.part })
+  let nameflexes = _.filter(flexes, flex => { return flex.name })
   // clog('FL', verbflexes)
 
   let vdicts = []
@@ -30,8 +34,9 @@ export function parseVerb (seg, segs, flexes) {
       // if (!dict.reg) return filterVerb(dict, flex, first)
       return filterVerb(dict, flex)
     })
-    let pfls = _.filter(partflexes, flex => {
-      if (dict.plain == 'αγαθοποι' && flex.tense == 'act.pf.part') log('NC-p =========================', flex)
+    let pfls = _.filter(nameflexes, flex => {
+      // pres.part-masc: ἀγαθοποιέων, ἀγαθοποιεόμενος
+      if (dict.plain == 'αγαθοποι' && flex.numcase == 'sg.nom') log('NC-p =========================', flex)
       return filterPart(dict, flex)
     })
     if (fls.length) {
@@ -53,18 +58,17 @@ export function parseVerb (seg, segs, flexes) {
     let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
     cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
     let flsobj = {seg: seg, flexes: cleanfls}
-    let nchain = cloneChain(segs, vdicts, null, flsobj)
-    vchains.push(nchain)
+    let vchain = cloneChain(segs, vdicts, null, flsobj)
+    vchains.push(vchain)
   }
 
   if (partdicts.length && partfls.length) {
-    let cleanfls = partfls.map(flex => { return {tense: flex.tense, numcase: flex.numcase, gend: flex.gend } }) // , reg: flex.reg
-    // let cleanfls = partfls.map(flex => { return flex })
+    let cleanfls = partfls.map(flex => { return {numcase: flex.numcase, gend: flex.gend} })
     let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
     cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
     let flsobj = {seg: seg, flexes: cleanfls}
-    let nchain = cloneChain(segs, partdicts, null, flsobj)
-    vchains.push(nchain)
+    let pchain = cloneChain(segs, partdicts, null, flsobj)
+    vchains.push(pchain)
   }
 
   return vchains
@@ -151,6 +155,7 @@ function uniqDict(dicts) {
 
 function filterPart(dict, flex) {
   // pf is always irregular, even if dict is reg
+  return true
   if (!dict.pf && dict.reg != flex.reg) return false
   if (dict.act && flex.acts && !flex.acts.includes(dict.act)) return false
   if (dict.mp && flex.mps && !flex.mps.includes(dict.mp)) return false

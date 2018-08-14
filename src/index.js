@@ -20,6 +20,8 @@ export function enableDBs (upath, apath) {
   setDBs(upath, apath)
 }
 
+//
+
 export function clause (wfs) {
   let keys = wfs.map(wf => combine(wf))
   return getTerms(keys)
@@ -94,30 +96,38 @@ function addedStems(wforms) {
 
 function main(cmb, plainsegs, sgms, pnonlasts, flexes, dicts) {
   dicts = _.filter(dicts, dict => { return !dict.indecl })
-  dicts = _.filter(dicts, dict => { return dict.rdict })
+  // dicts = _.filter(dicts, dict => { return dict.rdict })
   log('dicts--->', dicts.length)
-  let kdicts = _.filter(dicts, dict => { return dict.plain == 'γλουτ'})
-  log('kdicts---->', kdicts)
+  let kdicts = _.filter(dicts, dict => { return dict.plain == 'αγαθοποι'})
+  log('kdicts---->', kdicts.length)
   log('flexes--->', flexes.length)
-  let kflexes = _.filter(flexes, fl => { return fl.flex == 'ον'})
+  let kflexes = _.filter(flexes, fl => { return fl.flex == 'ων'})
+  kflexes = _.filter(kflexes, fl => { return fl.name })
   log('kflexes--->', kflexes.length)
 
   let segdicts = distributeDicts(plainsegs, dicts)
+  // log('SGD', segdicts['αγαθοποι'])
   let chains = makeChains(sgms, segdicts, flexes)
+  chains = _.filter(chains, chain => { return chain.length == 3 })
 
-  addDicts(chains, pnonlasts, segdicts)
+  // неясно, compound до addDict или после
+  // addDicts(chains, pnonlasts, segdicts)
+  compound(chains)
+  let specs = _.filter(chains, chain => { return chain.slice(0, -1).map(seg => {return seg.dicts.map(dict => { return dict.spec } ).length } ) })
 
   let fulls = fullChains(chains)
   log('chains: ', chains.length, 'fulls: ', fulls.length)
+  // log('chains: ', chains)
   if (fulls.length) chains = fulls
   else return []
 
   // соответствие dicts и flex, added dicts
-  let cleans = filterDictFlex(chains)
-  let bests = selectLongest(cleans)
-  log('main =>', fulls.length)
+  // let cleans = filterDictFlex(chains)
+  let cleans = chains
 
-  //compounds
+  let bests = selectLongest(cleans)
+  log('bests =>', bests.length)
+
   bests.forEach(segs => {
     if (segs.length == 4) {
       segs.forEach(segment => {
@@ -150,6 +160,7 @@ function makeChains (sgms, segdicts, flexes) {
   let psegs, chains = []
   sgms.forEach(segs => {
     let lastseg = _.last(segs)
+    if (lastseg != 'ων') return
     let segflexes = _.filter(flexes, flex => { return flex.flex === lastseg} )
     if (!segflexes.length) return
 
@@ -158,17 +169,19 @@ function makeChains (sgms, segdicts, flexes) {
     psegs.forEach((seg, idx) => {
       let pseg = plaine(seg)
       let pdicts = segdicts[pseg]
-      let prfdicts
-      if (idx < psegs.length-1) {
-        pdicts = _.filter(pdicts, pdict => { return pdict.pref || pdict.name })
-        prfdicts = _.filter(pdicts, pdict => { return pdict.pref })
-        if (prfdicts.length) pdicts = prfdicts
-      }
+      // let prfdicts
+      // if (idx < psegs.length-1) {
+      //   pdicts = _.filter(pdicts, pdict => { return pdict.pref || pdict.name })
+      //   prfdicts = _.filter(pdicts, pdict => { return pdict.pref })
+      //   if (prfdicts.length) pdicts = prfdicts
+      // }
       let oseg = {seg: seg, dicts: pdicts }
       chain.push(oseg)
     })
 
+    // FLEXES поправить
     chain.push({seg: lastseg, flexes: segflexes})
+    // chain.push({seg: lastseg, flexes: []})
     chains.push(chain)
   })
   return chains
@@ -243,18 +256,13 @@ function fullChains(chains) {
 function filterDictFlex (rchains) {
   let chains = []
   rchains.forEach(rchain => {
-    if (rchain.length > 2) return // ============================================== убрать
     let lastseg = _.last(rchain)
     let seg = lastseg.seg
     let flexes = lastseg.flexes
     let segs = rchain.slice(0, -1)
     if (!segs.length) return
 
-    let last = _.last(segs)
-    // BUG: жуткий баг, неизвестно откуда  - circulars, вместо обычных dict => npm start ἐμεόμενος
-    // last.dicts = _.filter(last.dicts, dict => { return dict.rdict })
-
-    // last.dicts.forEach(dict => { dict.dict = combine(dict.rdict) } )
+    // let last = _.last(segs)
 
     let vchains = parseVerb(seg, segs, flexes)
     chains.push(vchains)
@@ -265,6 +273,24 @@ function filterDictFlex (rchains) {
   return _.flatten(chains)
 } // end filterDictFlex
 
+//     "masc": "ων-οντος ών-όντος ῶν-ῶντος ων-ουσα-ον ών-οῦσα-όν",
+// ῶν-οῦντος
+
+function compound(chains) {
+  let cmpds = []
+  chains.forEach(segs => {
+    // let ult = segs[segs.length-1]
+    let penult = segs[segs.length-2]
+    let antepen = segs[segs.length-3]
+    // если penult = suffix, а antepen - verb // NB - заменить после specs
+    let pensuffs = _.filter(penult.dicts, dict => { return dict.plain == 'ε' })
+    let anteverbs = _.filter(antepen.dicts, dict => { return dict.verb })
+    let suff = {spec: true, rdict: 'ο', dict: 'ο', trns: ['e-suffix'] }
+    log(111, antepen.seg, penult.seg, pensuffs.length, anteverbs.length)
+    if (penult && antepen && pensuffs.length && anteverbs.length) penult.dicts = [suff], antepen.dicts = anteverbs
+    // penult.dicts = [suff], antepen.dicts = anteverbs
+  })
+}
 
 function selectLongest(chains) {
   let min = _.min(chains.map(chain => {  return chain.length } ) )
