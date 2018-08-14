@@ -1,4 +1,5 @@
 #
+
 MA
 #---------------------------------
 dict: ἀάατος • (aā́atos) m, f (neuter ἀάατον); second declension (Epic)
@@ -7386,15 +7387,15 @@ dict: ἐΰς • (eǘs)
 
  (poetic) good, brave, noble
 
-# IRREG ?
-# variant: Masculine Feminine Neuter Masculine Feminine Neuter
+# два стема
+# variant: Masculine Feminine Neuter Masculine Feminine Neuter Masculine Feminine Neuter
 
-# nom: ἐΰς-ἠΰς, -, ἠΰ, -, -, ἠέα
-## gen: ἐῆος-ἐοῖο, -, ἐῆος-ἐοῖο, ἐάων, -, ἐάων
-# gen: ἐῆος, -, ἐῆος, ἐάων, -, ἐάων
-## dat: -, -, -, -, -, -
-# acc: ἐΰν-ἠΰν, -, ἠΰ, -, -, ἠέα?
-# voc: ἐΰς-ἠΰς, -, ἠΰ, -, -, ἠέα?
+# nom: ἐΰς-ἠΰς, -, ἠΰ, -, -, ἠέα, - , - , -
+# # gen: ἐῆος-ἐοῖο, -, ἐῆος-ἐοῖο, ἐάων, -, ἐάων, - , - , -
+# gen: ἐῆος, -, ἐῆος, ἐάων, -, ἐάων, - , - , -
+# # dat: -, -, -, -, -, -, - , - , -
+# acc: ἐΰν-ἠΰν, -, ἠΰ, -, -, ἠέα, - , - , -
+# voc: ἐΰς-ἠΰς, -, ἠΰ, -, -, ἠέα, - , - , -
 
 
 #---------------------------------
@@ -12429,9 +12430,9 @@ dict: ὅς • (hós) m, ἥ f (hḗ), ὅ n (hó)
  (in Homeric Greek, often demonstrative pronoun) this
  (relative) who, which, that
 
-# IRREG ?
 # variant: Masculine Feminine Neuter Masculine Feminine Neuter Masculine Feminine Neuter
 
+# IRREG - stems
 # nom: ὅς, ἥ, ὅ, ὥ, ἅ, ὥ, οἵ, αἵ, ἅ
 # gen: οὗ, ἧς, οὗ, οἷν, αἷν, οἷν, ὧν, ὧν, ὧν
 # dat: ᾧ, ᾗ, ᾧ, οἷν, αἷν, οἷν, οἷς, αἷς, οἷς
