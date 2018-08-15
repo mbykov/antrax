@@ -7,7 +7,7 @@ dict: ἄγων • (ágōn) m (feminine ἄγουσα, neuter ἄγον); first
 
  present active participle of ἄγω (ágō)
 
-part: act.pres.part
+part: act.pres
 verb: ἄγω
 
 # First and third declension of ἄγων; ἄγουσα; ἄγον (Attic)
@@ -25,7 +25,7 @@ dict: ἀμεθυστίζων • (amethustízōn) m (feminine ἀμεθυστ
 
  present active participle of *ἀμεθυστίζω (*amethustízō)
 
-part: act.pres.part
+part: act.pres
 verb: ἀμεθυστίζω
 
 # First and third declension of ἀμεθυστίζων; ἀμεθυστίζουσα; ἀμεθύστιζον (Attic)
@@ -43,7 +43,7 @@ dict: ἀμειβόμενος • (ameibómenos) m (feminine ἀμειβομέν
 
  present mediopassive participle of ἀμείβω (ameíbō)
 
-part: mp.pres.part
+part: mp.pres
 verb: ἀμείβω
 
 # First and second declension of ἀμειβόμενος; ἀμειβομένη; ἀμειβόμενον (Attic)
@@ -59,7 +59,7 @@ dict: ἀναγιγνωσκόμενος • (anagignōskómenos)
 
  present mediopassive participle of ἀναγιγνώσκω (anagignṓskō)
 
-part: mp.pres.part
+part: mp.pres
 verb: ἀναγιγνώσκω
 
 # First and second declension of ἀναγιγνωσκόμενος; ἀναγιγνωσκομένη; ἀναγιγνωσκόμενον (Attic)
@@ -75,7 +75,7 @@ dict: ἀνεσκαμμένος • (aneskamménos) m (feminine ἀνεσκαμ�
 
  perfect mediopassive participle of ἀνασκάπτω (anaskáptō)
 
-part: mp.pf.part
+part: mp.pf
 verb: ἀνασκάπτω
 
 # First and second declension of ἀνεσκαμμένος; ἀνεσκαμμένη; ἀνεσκαμμένον (Attic)
@@ -91,7 +91,7 @@ dict: ἀνημμένος • (anēmménos)
 
  perfect middle/passive participle of ἀνάπτω (anáptō)
 
-part: mp.pf.part
+part: mp.pf
 verb: ἀνάπτω
 
 # First and second declension of ἀνημμένος; ἀνημμένη; ἀνημμένον (Attic)
@@ -107,7 +107,7 @@ dict: ἄξων • (áxōn) m (feminine ἄξουσα, neuter ἄξον);
 
  future active participle of ἄγω (ágō)
 
-part: act.fut.part
+part: act.fut
 verb: ἄγω
 
 # First and third declension of ἄξων; ἄξουσα; ἄξον (Attic)
@@ -125,7 +125,7 @@ dict: ἀπαμειβόμενος • (apameibómenos)
 
  present middle participle of ἀπαμείβομαι (apameíbomai)
 
-part: mp.pres.part
+part: mp.pres
 verb: ἀπαμείβομαι
 
 # First and second declension of ἀπαμειβόμενος; ἀπαμειβομένη; ἀπαμειβόμενον (Attic)
@@ -144,7 +144,7 @@ dict: ἀπών • (apṓn) m (feminine ἀποῦσα, neuter ἀπόν); firs
  present active participle of ἄπειμι (ápeimi)
 
 # NB: ἄπειμι ? keys ?
-part: act.pres.part
+part: act.pres
 verb: ἄπειμι
 
 # First and third declension of ἀπών; ἀποῦσα; ἀπόν (Attic)
@@ -162,7 +162,7 @@ dict: αὐδηθείς • (audētheís) m (feminine αὐδηθεῖσα, neut
 
  aorist passive participle of αὐδάω (audáō)
 
-part: pas.aor.part
+part: pas.aor
 verb: αὐδάω
 
 # First and third declension of αὐδηθείς; αὐδηθεῖσα; αὐδηθέν (Attic)
@@ -180,7 +180,7 @@ dict: αὐδήσας • (audḗsās) m (feminine αὐδήσασα, neuter α�
 
  aorist active participle of αὐδάω (audáō)
 
-part: act.aor.part
+part: act.aor
 verb: αὐδάω
 
 # First and third declension of αὐδήσας; αὐδήσασα; αὐδῆσαν (Attic)
@@ -198,7 +198,7 @@ dict: αὐδώμενος • (audṓmenos) m (feminine αὐδωμένη, neute
 
  present mediopassive participle of αὐδάω (audáō) contracted
 
-part: mp.pres.part
+part: mp.pres
 verb: αὐδάω
 
 # First and second declension of αὐδώμενος; αὐδωμένη; αὐδώμενον (Attic)
@@ -216,7 +216,7 @@ dict: αὐδῶν • (audôn) m (feminine αὐδῶσα, neuter αὐδῶν)
 
  present active participle contracted of αὐδάω (audáō)
 
-part: act.pres.part
+part: act.pres
 verb: αὐδάω
 
 # First and third declension of αὐδῶν; αὐδῶσα; αὐδῶν (Attic)
@@ -234,7 +234,7 @@ dict: βεβηκώς • (bebēkṓs)
 
  perfect active participle of βαίνω (baínō)
 
-part: act.pf.part
+part: act.pf
 verb: βαίνω
 
 # First and third declension of βεβηκώς; βεβηκυῖα; βεβηκός (Attic)
@@ -252,7 +252,7 @@ dict: βιβάς • (bibā́s)
 
  present active participle: striding
 
-part: act.pres.part
+part: act.pres
 verb: βίβημι
 
 # First and third declension of βιβάς; βιβᾶσα; βιβάν (Attic)
@@ -270,7 +270,7 @@ dict: βιούς • (bioús) m (feminine βιοῦσα, neuter βιόν); first
 
  aorist active participle of βιόω (bióō)
 
-part: act.aor.part
+part: act.aor
 verb: βιόω
 
 # First and third declension of βιούς; βιοῦσα; βιόν (Attic)
@@ -288,7 +288,7 @@ dict: βιῶν • (biôn) m (feminine βιοῦσα, neuter βιοῦν); firs
 
  present active participle of βιόω (bióō)
 
-part: act.pres.part
+part: act.pres
 verb: βιόω
 
 # First and third declension of βιῶν; βιοῦσα; βιοῦν (Attic)
@@ -306,7 +306,7 @@ dict: γονυπετῶν • (gonupetôn) m (feminine γονυπετοῦσα, 
 
  present active participle of γονυπετῶ (gonupetô), contracted form of γονυπετέων (gonupetéōn)
 
-part: act.pres.part
+part: act.pres
 verb: γονυπετῶ
 
 # First and third declension of γονυπετῶν; γονυπετοῦσα; γονυπετοῦν (Attic)
@@ -324,7 +324,7 @@ dict: γραφόμενος • (graphómenos) n (feminine γραφομένη, ne
 
  present mediopassive participle of γράφω (gráphō)
 
-part: mp.pres.part
+part: mp.pres
 verb: γράφω
 
 # First and second declension of γραφόμενος; γραφομένη; γραφόμενον (Attic)
@@ -342,7 +342,7 @@ dict: δεδειγμένος • (dedeigménos) m (feminine δεδειγμένη
 
  perfect mediopassive participle of δείκνυμι (deíknūmi)
 
-part: mp.pf.part
+part: mp.pf
 verb: δείκνυμι
 
 # First and second declension of δεδειγμένος; δεδειγμένη; δεδειγμένον (Attic)
@@ -360,7 +360,7 @@ dict: διαιτῶν • (diaitôn)
 
  present active participle contracted of διαιτάω (diaitáō)
 
-part: act.pres.part
+part: act.pres
 verb: διαιτάω
 
 # First and third declension of διαιτῶν; διαιτῶσα; διαιτῶν (Attic)
@@ -378,7 +378,7 @@ dict: διακοιρανέων • (diakoiranéōn) m (feminine διακοιρα
 
  present active participle of *διακοιρανέω (*diakoiranéō)
 
-part: act.pres.part
+part: act.pres
 verb: διακοιρανέω
  commanding over, ruling over
 
@@ -397,7 +397,7 @@ dict: διῃτημένος • (diēitēménos)
 
  perfect mediopassive participle of διαιτάω (diaitáō)
 
-part: mp.pf.part
+part: mp.pf
 verb: διαιτάω
 
 # First and second declension of διῃτημένος; διῃτημένη; διῃτημένον (Attic)
@@ -415,7 +415,7 @@ dict: εἰδώς • (eidṓs) m (feminine εἰδυῖα, neuter εἰδός);
 
  perfect active participle of οἶδα (oîda)
 
-part: act.pf.part
+part: act.pf
 verb: οἶδα
 
 # First and third declension of εἰδώς; εἰδυῖα; εἰδός (Attic)
@@ -433,7 +433,7 @@ dict: εἰπών • (eipṓn)
 
  aorist active participle of εἶπον (eîpon)
 
-part: act.aor.part
+part: act.aor
 verb: εἶπον
 #
 # aorist, не определяется в dictWkt
@@ -453,7 +453,7 @@ dict: ἐλθών • (elthṓn) m (feminine ἐλθοῦσα, neuter ἐλθό�
 
  aorist active participle of ἔρχομαι (érkhomai)
 
-part: act.aor.part
+part: act.aor
 verb: ἔρχομαι
 
 # First and third declension of ἐλθών; ἐλθοῦσα; ἐλθόν (Attic)
@@ -471,7 +471,7 @@ dict: ἑλών • (helṓn) m (feminine ἑλοῦσα, neuter ἑλόν); fir
 
  aorist active participle of αἱρέω (hairéō)
 
-part: act.aor.part
+part: act.aor
 verb: αἱρέω
 
 # First and third declension of ἑλών; ἑλοῦσα; ἑλόν (Attic)
@@ -489,7 +489,7 @@ dict: ἐποψόμενος • (epopsómenos) m (feminine ἐποψομένη, 
 
  future middle participle of ἐφοράω (ephoráō)
 
-part: mid.fut.part
+part: mid.fut
 verb: ἐφοράω
 
 # First and second declension of ἐποψόμενος; ἐποψομένη; ἐποψόμενον (Attic)
@@ -507,7 +507,7 @@ dict: ἐρόμενος • (erómenos) m (feminine ἐρομένη, neuter ἐ�
 
  present mediopassive participle of ἔρομαι (éromai)
 
-part: mp.pres.part
+part: mp.pres
 verb: ἔρομαι
 
 # First and second declension of ἐρόμενος; ἐρομένη; ἐρόμενον (Attic)
@@ -525,7 +525,7 @@ dict: ἐρχόμενος • (erkhómenos) m (feminine ἐρχομένη, neute
 
  coming
 
-part: mp.pres.part
+part: mp.pres
 verb: ἔρχομαι
 
 # First and second declension of ἐρχόμενος; ἐρχομένη; ἐρχόμενον (Attic)
@@ -541,7 +541,7 @@ dict: ἐρώμενος • (erṓmenos) m (feminine ἐρωμένη, neuter ἐ
 
  present mediopassive participle of ἐράω (eráō)
 
-part: mp.pres.part
+part: mp.pres
 verb: ἐράω
 
 # First and second declension of ἐρώμενος; ἐρωμένη; ἐρώμενον (Attic)
@@ -559,7 +559,7 @@ dict: ἐρῶν • (erôn) m (feminine ἐρῶσα, neuter ἐρῶν); first
 
  contracted present active participle of ἐράω (eráō)
 
-part: act.pres.part
+part: act.pres
 verb: ἐράω
 
 # First and third declension of ἐρῶν; ἐρῶσα; ἐρῶν (Attic)
@@ -577,7 +577,7 @@ dict: εὐχόμενος • (eukhómenos) m (feminine εὐχομένη, neute
 
  middle participle of εὔχομαι (eúkhomai)
 
-part: mp.pres.part
+part: mp.pres
 verb: εὔχομαι
 
 # and second declension of εὐχόμενος; εὐχομένη; εὐχόμενον (Attic)
@@ -595,7 +595,7 @@ dict: ἐφορῶν • (ephorôn) m (feminine ἐφορῶσα, neuter ἐφο
 
  active participle contracted of ἐφοράω (ephoráō)
 
-part: act.pres.part
+part: act.pres
 verb: ἐφοράω
 
 # and third declension of ἐφορῶν; ἐφορῶσα; ἐφορῶν (Attic)
@@ -613,7 +613,7 @@ dict: ἔχων • (ékhōn) m (feminine ἔχουσα, neuter ἔχον); firs
 
  present active participle of ἔχω (ékhō)
 
-part: act.pres.part
+part: act.pres
 verb: ἔχω
 
 # First and third declension of ἔχων; ἔχουσα; ἔχον (Attic)
@@ -631,7 +631,7 @@ dict: ἐών • (eṓn)
 
  Epic form of ὤν (ṓn): present active participle of εἰμί (eimí)
 
-part: act.pres.part
+part: act.pres
 verb: εἰμί
 # NB - εἰμί - не определяется в dictWkt
 
@@ -650,7 +650,7 @@ dict: θεῶν • (theôn)
 
  present active participle of θεάομαι (theáomai)
 
-part: act.pres.part
+part: act.pres
 verb: θεάομαι
 
 # First and third declension of θεῶν; θεῶσα; θεῶν (Attic)
@@ -668,7 +668,7 @@ dict: ἰδών • (idṓn) m (feminine ἰδοῦσα, neuter ἰδόν); firs
 
  aorist active participle of ὁράω (horáō) and εἶδον (eîdon)
 
-part: act.aor.part
+part: act.aor
 verb: ὁράω
 
 # First and third declension of ἰδών; ἰδοῦσα; ἰδόν (Attic)
@@ -686,7 +686,7 @@ dict: ἱλάων • (hīlā́ōn) m (feminine ἱλάουσα, neuter ι
 
  present active participle of ἱλάομαι (hiláomai)
 
-part: act.pres.part
+part: act.pres
 verb: ἱλάομαι
 
 # First and third declension of ἱλάων; ἱλάουσα; ἱλᾶον (Attic)
@@ -704,7 +704,7 @@ dict: ἰών • (iṓn) m (feminine ἰοῦσα, neuter ἰόν); first/third
 
  present active participle of εἶμι (eîmi)
 
-part: act.pres.part
+part: act.pres
 verb: εἶμι
 # NB eimi
 
@@ -723,7 +723,7 @@ dict: καλυφείς • (kalupheís) m (feminine καλυφεῖσα, neuter 
 
  aorist passive participle of καλύπτω (kalúptō)
 
-part: pas.aor.part
+part: pas.aor
 verb: καλύπτω
 
 # First and third declension of καλυφείς; καλυφεῖσα; καλυφέν (Attic)
@@ -741,7 +741,7 @@ dict: κανονιζόμενος • (kanonizómenos)
 
  present mediopassive participle of κανονίζω (kanonízō)
 
-part: mp.pres.part
+part: mp.pres
 verb: κανονίζω
 
 # First and second declension of κανονιζόμενος; κανονιζομένη; κανονιζόμενον (Attic)
@@ -759,7 +759,7 @@ dict: κατακεχυμένος • (katakekhuménos) m (feminine κατακε�
 
  perfect mediopassive participle of καταχέω (katakhéō)
 
-part: mp.pf.part
+part: mp.pf
 verb: καταχέω
 
 # First and second declension of κατακεχυμένος; κατακεχυμένη; κατακεχυμένον (Attic)
@@ -777,7 +777,7 @@ dict: κατεσκευασμένος • (kateskeuasménos) m (feminine κατε
 
  mediopassive perfect participle of κατασκευάζω (kataskeuázō)
 
-part: mp.pf.part
+part: mp.pf
 verb: κατασκευάζω
 
 # First and second declension of κατεσκευασμένος; κατεσκευασμένη; κατεσκευασμένον (Attic)
@@ -795,7 +795,7 @@ dict: κεκλεισμένος • (kekleisménos) m (feminine κεκλεισμ�
 
  perfect passive participle of κλῄζω (klḗizō): having been made famous, celebrated
 
-part: pas.pf.part
+part: pas.pf
 verb: κλῄζω
 
 # First and second declension of κεκλεισμένος; κεκλεισμένη; κεκλεισμένον (Koine)
@@ -813,7 +813,7 @@ dict: κεχηνώς • (kekhēnṓs)
 
  perfect active participle of χάσκω (kháskō)
 
-part: act.pf.part
+part: act.pf
 verb: χάσκω
 
 # First and third declension of κεχηνώς; κεχηνυῖα; κεχηνός (Attic)
@@ -831,7 +831,7 @@ dict: κρίνων • (krī́nōn) m (feminine κρίνουσα, neuter κ�
 
  present active participle of κρίνω (krínō)
 
-part: act.pres.part
+part: act.pres
 verb: κρίνω
 
 # First and third declension of κρίνων; κρίνουσα; κρῖνον (Attic)
@@ -849,7 +849,7 @@ dict: λαβών • (labṓn) m (feminine λαβοῦσα, neuter λαβόν); 
 
  aorist active participle of λαμβάνω (lambánō)
 
-part: act.aor.part
+part: act.aor
 verb: λαμβάνω
 
 # First and third declension of λαβών; λαβοῦσα; λαβόν (Attic)
@@ -867,7 +867,7 @@ dict: λανθάνων • (lanthánōn) m (feminine λανθάνουσα, neute
 
  present active participle of λανθάνω (lanthánō)
 
-part: act.pres.part
+part: act.pres
 verb: λανθάνω
 
 # First and third declension of λανθάνων; λανθάνουσα; λανθάνον (Attic)
@@ -885,7 +885,7 @@ dict: λελυκώς • (lelukṓs)
 
  perfect active participle of λύω (lū́ō)
 
-part: act.pf.part
+part: act.pf
 verb: λύω
 
 # First and third declension of λελυκώς; λελυκυῖα; λελυκός (Attic)
@@ -903,7 +903,7 @@ dict: λιθίζων • (lithízōn) m (feminine λιθίζουσα, neuter
 
  looking like a stone
 
-part: act.pres.part
+part: act.pres
 verb: λιθίζω
 
 # First and third declension of λιθίζων; λιθίζουσα; λιθίζον (Attic)
@@ -921,7 +921,7 @@ dict: λύσας • (lū́sās) m (feminine λύσασα, neuter λῦσα�
 
  aorist active participle of λύω (lúō)
 
-part: act.aor.part
+part: act.aor
 verb: λύω
 
 # First and third declension of λύσας; λύσασα; λῦσαν (Attic)
@@ -939,7 +939,7 @@ dict: λύων • (lū́ōn)
 
  present active participle of λύω (lū́ō)
 
-part: act.pres.part
+part: act.pres
 verb: λύω
 
 # First and third declension of λύων; λύουσα; λῦον (Attic)
@@ -957,7 +957,7 @@ dict: μέλλων • (méllōn) m (feminine μέλλουσα, neuter μέλλ�
 
  present active participle of μέλλω (méllō)
 
-part: act.pres.part
+part: act.pres
 verb: μέλλω
 
 # First and third declension of μέλλων; μέλλουσα; μέλλον (Attic)
@@ -975,7 +975,7 @@ dict: νεκραγωγεόμενος • (nekragōgeómenos) m (feminine νεκ�
 
  present mediopassive participle of νεκραγωγέω (nekragōgéō)
 
-part: mp.pres.part
+part: mp.pres
 verb: νεκραγωγέω
 
 # First and second declension of νεκραγωγεόμενος; νεκραγωγεομένη; νεκραγωγεόμενον (Attic)
@@ -993,7 +993,7 @@ dict: νεκραγωγέων • (nekragōgéōn) m (feminine νεκραγωγέ
 
  present active participle of νεκραγωγέω (nekragōgéō)
 
-part: act.pres.part
+part: act.pres
 verb: νεκραγωγέω
 
 # First and third declension of νεκραγωγέων; νεκραγωγέουσα; νεκραγωγέον (Attic)
@@ -1011,7 +1011,7 @@ dict: νέων • (néōn) m (feminine νέουσα, neuter νέον); first/se
 
  present active participle of νέω (néō)
 
-part: act.pres.part
+part: act.pres
 verb: νέω
 
 # First and third declension of νέων; νέουσα; νέον (Attic)
@@ -1029,7 +1029,7 @@ dict: νήσων • (nḗsōn)
 
  future active participle of νέω (néō, “to spin; to pile up”)
 
-part: act.fut.part
+part: act.fut
 verb: νέω
 
 # First and third declension of νήσων; νήσουσα; νῆσον (Attic)
@@ -1047,7 +1047,7 @@ dict: νικῶν • (nīkôn) m
 
  (contracted) present active participle of νικάω
 
-part: act.pres.part
+part: act.pres
 verb: νικάω
 
 # First and third declension of νικῶν; νικῶσα; νικῶν (Attic)
@@ -1065,7 +1065,7 @@ dict: νυγείς • (nugeís) m (feminine νυγεῖσα, neuter νυγέν)
 
  aorist passive participle of νύσσω (nússō)
 
-part: pas.aor.part
+part: pas.aor
 verb: νύσσω
 
 # First and third declension of νυγείς; νυγεῖσα; νυγέν (Attic)
@@ -1083,7 +1083,7 @@ dict: νύξας • (núxās) m (feminine νύξασα, neuter νύξαν);
 
  aorist active participle of νύσσω (nússō)
 
-part: act.aor.part
+part: act.aor
 verb: νύσσω
 
 # First and third declension of νύξας; νύξασα; νύξαν (Attic)
@@ -1101,7 +1101,7 @@ dict: νύσσων • (nússōn) m (feminine νύσσουσα, neuter νύ�
 
  present active participle of νύσσω (nússō)
 
-part: act.pres.part
+part: act.pres
 verb: νύσσω
 
 # First and third declension of νύσσων; νύσσουσα; νύσσον (Attic)
@@ -1119,7 +1119,7 @@ dict: ὄζων • (ózōn) m (feminine ὄζουσα, neuter ὄζον); first
 
  present active participle of ὄζω (ózō)
 
-part: act.pres.part
+part: act.pres
 verb: ὄζω
 
 # First and third declension of ὄζων; ὄζουσα; ὄζον (Attic)
@@ -1137,7 +1137,7 @@ dict: οἰκούμενος • (oikoúmenos)
 
  contracted present mediopassive participle of οἰκέω (oikéō)
 
-part: mp.pres.part
+part: mp.pres
 verb: οἰκέω
 
 # First and second declension of οἰκούμενος; οἰκουμένη; οἰκούμενον (Attic)
@@ -1181,7 +1181,7 @@ dict: ὀχθήσας • (okhthḗsās) m (feminine ὀχθήσασα, neuter �
 
  aorist active participle of ὀχθέω (okhthéō): troubled, angered
 
-part: act.aor.part
+part: act.aor
 verb: ὀχθέω
 
 # First and third declension of ὀχθήσας; ὀχθήσασα; ὀχθῆσαν (Attic)
@@ -1199,7 +1199,7 @@ dict: παρακείμενος • (parakeímenos) m (feminine παρακειμ�
 
  perfect mediopassive participle of παράκειμαι (parákeimai)
 
-part: mp.pf.part
+part: mp.pf
 verb: παράκειμαι
 
 # First and second declension of παρακείμενος; παρακειμένη; παρακείμενον (Attic)
@@ -1217,7 +1217,7 @@ dict: παρελθών • (parelthṓn)
 
  aorist active participle of παρέρχομαι (parérkhomai)
 
-part: act.aor.part
+part: act.aor
 verb: παρέρχομαι
 
 # First and third declension of παρελθών; παρελθοῦσα; παρελθόν (Attic)
@@ -1235,7 +1235,7 @@ dict: πειθόμενος • (peithómenos) m (feminine πειθομένη, ne
 
  present mediopassive participle of πείθομαι (peíthomai)
 
-part: mp.pres.part
+part: mp.pres
 verb: πείθομαι
 
 # First and second declension of πειθόμενος; πειθομένη; πειθόμενον (Attic)
@@ -1251,7 +1251,7 @@ dict: πεπεισμένος • (pepeisménos) m (feminine πεπεισμένη
 
  perfect mediopassive participle of πείθομαι (peíthomai)
 
-part: mp.pf.part
+part: mp.pf
 verb: πείθομαι
 
 # First and second declension of πεπεισμένος; πεπεισμένη; πεπεισμένον (Attic)
@@ -1267,7 +1267,7 @@ dict: πεπνυμένος • (pepnūménos) m (feminine πεπνυμένη, ne
 
  perfect mediopassive participle of πέπνυμαι (pépnūmai)
 
-part: mp.pf.part
+part: mp.pf
 verb: πέπνυμαι
 
 # First and second declension of πεπνυμένος; πεπνυμένη; πεπνυμένον (Attic)
@@ -1285,7 +1285,7 @@ dict: περιοδεύων • (periodeúōn) m (feminine περιοδεύουσ
 
  present active participle of περιοδεύω (periodeúō)
 
-part: act.pres.part
+part: act.pres
 verb: περιοδεύω
 
 # First and third declension of περιοδεύων; περιοδεύουσα; περιοδεῦον (Attic)
@@ -1303,7 +1303,7 @@ dict: περισπαόμενος • (perispaómenos) m (feminine περισπα
 
  uncontracted present mediopassive participle of περισπάω (perispáō)
 
-part: mp.pres.part
+part: mp.pres
 verb: περισπάω
 
 # First and second declension of περισπαόμενος; περισπαομένη; περισπαόμενον (Attic)
@@ -1323,7 +1323,7 @@ dict: περισπώμενος • (perispṓmenos) m (feminine περισπωμ
 
  contracted present mediopassive participle of περισπάω (perispáō)
 
-part: mp.pres.part
+part: mp.pres
 verb: περισπάω
 
 # First and second declension of περισπώμενος; περισπωμένη; περισπώμενον (Attic)
@@ -1342,7 +1342,7 @@ dict: περιφερόμενος • (peripherómenos) m
 
  Present middle/passive indicative participle of περιφέρω (periphérō)
 
-part: mp.pres.part
+part: mp.pres
 verb: περιφέρω
 
 # First and second declension of περιφερόμενος; περιφερομένη; περιφερόμενον (Attic)
@@ -1360,7 +1360,7 @@ dict: πεφορημένος • (pephorēménos)
 
  perfect mediopassive participle of φορέω (phoréō)
 
-part: mp.pf.part
+part: mp.pf
 verb: φορέω
 
 # First and second declension of πεφορημένος; πεφορημένη; πεφορημένον (Attic)
@@ -1378,7 +1378,7 @@ dict: ποιήσας • (poiḗsās)
 
  aorist active participle of ποιέω (poiéō)
 
-part: act.aor.part
+part: act.aor
 verb: ποιέω
 
 # First and third declension of ποιήσας; ποιήσασα; ποιῆσαν (Attic)
@@ -1396,7 +1396,7 @@ dict: ποππύζων • (poppúzōn) m (feminine ποππύζουσα, ne
 
  present active participle of ποππύζω (poppúzō)
 
-part: act.pres.part
+part: act.pres
 verb: ποππύζω
 
 # First and third declension of ποππύζων; ποππύζουσα; ποππύζον (Attic)
@@ -1413,7 +1413,7 @@ adv: ποππυζόντως
 dict: προηγούμενος • (proēgoúmenos) m (feminine προηγουμένη, neuter προηγούμενον); first/second declension
 
 
-part: mp.pres.part
+part: mp.pres
 verb: προηγέομαι
 
 # First and second declension of προηγούμενος; προηγουμένη; προηγούμενον (Attic)
@@ -1431,7 +1431,7 @@ dict: ῥέπων • (rhépōn) m (feminine ῥέπουσα, neuter ῥέπον
 
  present active participle of ῥέπω (rhépō)
 
-part: act.pres.part
+part: act.pres
 verb: ῥέπω
 
 # First and third declension of ῥέπων; ῥέπουσα; ῥέπον (Attic)
@@ -1449,7 +1449,7 @@ dict: σεσημειωμένος • (sesēmeiōménos) m (feminine σεσημε
 
  perfect mediopassive participle of σημειόω (sēmeióō)
 
-part: mp.pf.part
+part: mp.pf
 verb: σημειόω
 
 # First and second declension of σεσημειωμένος; σεσημειωμένη; σεσημειωμένον (Attic)
@@ -1467,7 +1467,7 @@ dict: σημειούμενος • (sēmeioúmenos) m (feminine σημειουμ
 
  present mediopassive participle of σημειόω (sēmeióō)
 
-part: mp.pres.part
+part: mp.pres
 verb: σημειόω
 
 # First and second declension of σημειούμενος; σημειουμένη; σημειούμενον (Attic)
@@ -1485,7 +1485,7 @@ dict: σημειῶν • (sēmeiôn) m (feminine σημειοῦσα, neuter σ
 
  present active participle of σημειόω (sēmeióō)
 
-part: act.pres.part
+part: act.pres
 verb: σημειόω
 
 # First and third declension of σημειῶν; σημειοῦσα; σημειοῦν (Attic)
@@ -1503,7 +1503,7 @@ dict: σκάζων • (skázōn) m (feminine σκάζουσα, neuter σκ�
 
  limping
 
-part: act.pres.part
+part: act.pres
 verb: σκάζω
 
 # First and third declension of σκάζων; σκάζουσα; σκάζον (Attic)
@@ -1521,7 +1521,7 @@ dict: συγκρουόμενος • (sunkrouómenos) m (feminine συγκρου
 
  present mediopassive participle of συγκρούομαι (sunkroúomai)
 
-part: mp.pres.part
+part: mp.pres
 verb: συγκρούομαι
 
 # First and second declension of συγκρουόμενος; συγκρουομένη; συγκρουόμενον (Attic)
@@ -1537,7 +1537,7 @@ dict: συναλιζόμενος • (sunālizómenos)
 
  present middle/passive indicative participle of συναλίζω (sunālízō)
 
-part: mp.pres.part
+part: mp.pres
 verb: συναλίζω
 
 # First and second declension of συναλιζόμενος; συναλιζομένη; συναλιζόμενον (Attic)
@@ -1554,7 +1554,7 @@ sup: —	—	συναλιζομενώτατος
 dict: τετριμμένος • (tetrimménos) m (feminine τετριμμένη, neuter τετριμμένον); first/second declension
 
 
-part: mp.pf.part
+part: mp.pf
 verb: τρίβω
 
 # First and second declension of τετριμμένος; τετριμμένη; τετριμμένον (Attic)
@@ -1572,7 +1572,7 @@ dict: τιμῶν • (tīmôn)
 
  present active participle of τιμάω (timáō)
 
-part: act.pres.part
+part: act.pres
 verb: τιμάω
 
 # First and third declension of τιμῶν; τιμῶσα; τιμῶν (Attic)
@@ -1590,7 +1590,7 @@ dict: ὑπογεγραμμένος • (hupogegramménos)
 
  perfect mediopassive participle of ὑπογράφω (hupográphō)
 
-part: mp.pf.part
+part: mp.pf
 verb: ὑπογράφω
 
 # First and second declension of ὑπογεγραμμένος; ὑπογεγραμμένη; ὑπογεγραμμένον (Attic)
@@ -1606,7 +1606,7 @@ dict: ὑποδεδειγμένος • (hupodedeigménos) m (feminine ὑπο
 
  perfect mediopassive participle of ὑποδείκνυμι (hupodeíknūmi)
 
-part: mp.pf.part
+part: mp.pf
 verb: ὑποδείκνυμι
 
 # First and second declension of ὑποδεδειγμένος; ὑποδεδειγμένη; ὑποδεδειγμένον (Attic)
@@ -1624,7 +1624,7 @@ dict: ὑποκείμενος • (hupokeímenos)
 
  present middle/passive participle of ὑπόκειμαι (hupókeimai)
 
-part: mp.pres.part
+part: mp.pres
 verb: ὑπόκειμαι
 
 # Second declension of ὑποκείμενος; ὑποκείμενον (Attic)
@@ -1646,7 +1646,7 @@ dict: φαέθων • (phaéthōn) m (feminine φαέθουσα, neuter φά�
 
  shining, radiant
 
-part: act.pres.part
+part: act.pres
 verb: φαέθω
 # part sg pres act
 
@@ -1665,7 +1665,7 @@ dict: φαινόμενος • (phainómenos)
 
  present middle/passive participle of φαίνω (phaínō)
 
-part: mp.pres.part
+part: mp.pres
 verb: φαίνω
 
 # First and second declension of φαινόμενος; φαινομένη; φαινόμενον (Attic)
@@ -1683,7 +1683,7 @@ dict: φαίνων • (phaínōn) m (feminine φαίνουσα, neuter φαῖ�
 
  shining
 
-part: act.pres.part
+part: act.pres
 verb: φαίνω
 
 # First and third declension of φαίνων; φαίνουσα; φαῖνον (Attic)
@@ -1701,7 +1701,7 @@ dict: φάς • (phā́s) m (feminine φᾶσα, neuter φάν); first/thir
 
  masculine nominative singular present active participle of φημί (phēmí)
 
-part: act.pres.part
+part: act.pres
 verb: φημί
 
 # First and third declension of φάς; φᾶσα; φάν (Attic)
@@ -1719,7 +1719,7 @@ dict: φέρων • (phérōn) m (feminine φέρουσα, neuter φέρον); 
 
  present active participle of φέρω (phérō)
 
-part: act.pres.part
+part: act.pres
 verb: φέρω
 
 # First and third declension of φέρων; φέρουσα; φέρον (Attic)
@@ -1737,7 +1737,7 @@ dict: φορούμενος • (phoroúmenos)
 
  present mediopassive participle contracted of φορέω (phoréō)
 
-part: mp.pres.part
+part: mp.pres
 verb: φορέω
 
 # First and second declension of φορούμενος; φορουμένη; φορούμενον (Attic)
@@ -1755,7 +1755,7 @@ dict: φρονέων • (phronéōn) m (feminine φρονέουσα, neuter φ�
 
  present active participle of φρονέω (phronéō)
 
-part: act.pres.part
+part: act.pres
 verb: φρονέω
 
 # First and third declension of φρονέων; φρονέουσα; φρονέον (Attic)
@@ -1773,7 +1773,7 @@ dict: φωνήσας • (phōnḗsās) m (feminine φωνήσασα, neuter φ�
 
  aorist active participle of φωνέω (phōnéō)
 
-part: act.aor.part
+part: act.aor
 verb: φωνέω
 
 # First and third declension of φωνήσας; φωνήσασα; φωνῆσαν (Attic)
@@ -1791,7 +1791,7 @@ adv: φωνησάντως
 
  # present active participle of εἰμί (eimí)
 
-part: act.pres.part
+part: act.pres
 # verb: εἰμί
 
 # First and third declension of ὤν, οὖσα, ὄν
