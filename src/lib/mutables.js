@@ -1,7 +1,7 @@
 import { log, voice } from './utils'
 import _ from 'lodash'
 
-import {combine, plaine} from '../../../orthos'
+import {comb, plain} from '../../../orthos'
 
 
 let clog = console.log
@@ -9,12 +9,12 @@ let clog = console.log
 // MAIN VERB
 // verbs строятся по разным stems, т.е. один verb может порождать один chain по разным stems :
 export function parseVerb (seg, segs, flexes) {
-  log('-----------------------> seg', seg)
+  // log('-----------------------> seg', seg)
   let vchains = []
   let last = _.last(segs)
   let penult = segs[segs.length-2]
 
-  last.dicts.forEach(dict => { dict.dict = combine(dict.rdict) } )
+  last.dicts.forEach(dict => { dict.dict = comb(dict.rdict) } )
   let lastverbs = _.filter(last.dicts, dict => { return dict.verb })
   let verbflexes = _.filter(flexes, flex => { return flex.verb })
   // let advflexes = _.filter(flexes, flex => { return flex.adv })
@@ -27,17 +27,24 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'αγαθοποι') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'αγαλλι') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      if (dict.plain == 'αγαθοποι' && flex.tense == 'act.pres.ind') log('NC-f =========================', flex)
-      // if (dict.reg)
-      // if (!dict.reg) return filterVerb(dict, flex, first)
-      return filterVerb(dict, flex)
+      if (dict.plain == 'αγαλλι' && flex.tense == 'mid.fut.inf') log('NC-f =========================', flex)
+      // return filterVerb(dict, flex)
+      if (dict.rtype != flex.rtype) return false
+      if (dict.reg && flex.reg) return true
+      if (dict.reg) return false
+
+      let vc = voice(flex.tense)
+      if (dict.vkeys[vc] && dict.vkeys[vc].includes(flex.vkey)) return true
+      if (flex.inf && dict.ikeys[vc] && dict.ikeys[vc].includes(flex.ikey)) return true
+      return false
     })
     let pfls = _.filter(nameflexes, flex => {
       // pres.part-masc: ἀγαθοποιέων, ἀγαθοποιεόμενος
       if (dict.plain == 'αγαθοποι' && flex.numcase == 'sg.nom') log('NC-p =========================', flex)
-      return filterPart(dict, flex)
+      // return filterPart(dict, flex)
+      return false
     })
     if (fls.length) {
       vdicts.push(dict)
@@ -68,7 +75,7 @@ export function parseVerb (seg, segs, flexes) {
     cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
     let flsobj = {seg: seg, flexes: cleanfls}
     let pchain = cloneChain(segs, partdicts, null, flsobj)
-    vchains.push(pchain)
+    // vchains.push(pchain)
   }
 
   return vchains
@@ -78,7 +85,7 @@ export function parseVerb (seg, segs, flexes) {
 export function parseName (seg, segs, flexes) {
   let nchains = []
   let last = _.last(segs)
-  last.dicts.forEach(dict => { dict.dict = combine(dict.rdict) } )
+  last.dicts.forEach(dict => { dict.dict = comb(dict.rdict) } )
   let lastnames = _.filter(last.dicts, dict => { return dict.name })
   let nameflexes = _.filter(flexes, flex => { return flex.name })
   // let verbflexes = _.filter(flexes, flex => { return flex.verb })
@@ -143,7 +150,7 @@ function uniqDict(dicts) {
     if (!dict.trns) dict.trns = 'no trns:' + dict.rdict
     let uvkey = [dict.rdict, dict.dbname, dict.trns.toString()].join('')
     if (uvkeys[uvkey]) return
-    let udict = {verb: true, rdict: dict.rdict, dname: dict.dname, trns: dict.trns, weight: dict.weight, keys: dict.keys}
+    let udict = {verb: true, rdict: dict.rdict, dname: dict.dname, trns: dict.trns, weight: dict.weight}
     // let udict = dict
     if (dict.reg) udict.reg = true
     udicts.push(udict)
@@ -164,6 +171,16 @@ function filterPart(dict, flex) {
 }
 
 function filterVerb(dict, flex) {
+  if (dict.rtype != flex.rtype) return false
+  if (dict.reg && flex.reg) return true
+  if (dict.reg) return false
+  let vc = voice(flex.tense)
+  // clog('F', flex)
+  if (dict.vkeys[vc] && dict.vkeys[vc].includes(flex.vkey)) return true
+  return false
+}
+
+function filterVerb_(dict, flex) {
   if (dict.aor) {
     if (!flex.aor) return false
     // if (dict.added && mood(flex.tense) == 'ind') return false

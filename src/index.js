@@ -8,7 +8,7 @@ import { parseVerb, parseName } from './lib/mutables'
 import { vowels, strongs, voice } from './lib/utils'
 import { strong } from './lib/augments'
 import util from 'util'
-import {combine, plaine} from '../../orthos'
+import {comb, plain} from '../../orthos'
 
 const path = require('path')
 let clog = console.log
@@ -23,7 +23,7 @@ export function enableDBs (upath, apath) {
 //
 
 export function clause (wfs) {
-  let keys = wfs.map(wf => combine(wf))
+  let keys = wfs.map(wf => comb(wf))
   return getTerms(keys)
 }
 
@@ -31,9 +31,9 @@ export function antrax (wordform) {
   if (!wordform) return new Promise(function() {})
 
   let clstr = cleanStr(wordform)
-  let cmb = combine(clstr)
+  let cmb = comb(clstr)
   let sgms = segmenter(cmb)
-  let clean = plaine(clstr)
+  let clean = plain(clstr)
   log('PLAIN', clean)
 
   // segments for flexes:
@@ -43,7 +43,7 @@ export function antrax (wordform) {
 
   // segments for dicts:
   let nonlasts = _.uniq(_.flatten(sgms.map(sgm =>  { return sgm.slice(0, -1) }) ))
-  let pnonlasts = _.uniq(_.compact(nonlasts.map(nonlast => { return plaine(nonlast) }) ))
+  let pnonlasts = _.uniq(_.compact(nonlasts.map(nonlast => { return plain(nonlast) }) ))
   log('NONlast:', pnonlasts.toString())
 
   let added = addedStems(pnonlasts)
@@ -65,10 +65,10 @@ export function antrax (wordform) {
 
 // ADDED
 function addedStems(wforms) {
-  let plain, first, added = []
+  let wplain, first, added = []
   wforms.forEach(wf => {
     first = _.first(wf)
-    plain = plaine(wf)
+    wplain = plain(wf)
     // let firsts = _.uniq([plain.slice(0,1), plain.slice(0,2), plain.slice(0,3), plain.slice(0,4), plain.slice(0,5)]) // aor. ind from aor others
     // // firsts = _.filter(firsts, first => { return first != plain })
     // firsts.forEach(first => {
@@ -82,7 +82,7 @@ function addedStems(wforms) {
 
     let weaks = strong[first]
     if (!vowels.includes(first)) {
-      let add = ['ε', plain].join('') // aor.sub, opt, impf for consonants
+      let add = ['ε', wplain].join('') // aor.sub, opt, impf for consonants
       added.push(add)
     } else if (weaks) {
       weaks.forEach(weak => {
@@ -99,21 +99,22 @@ function main(cmb, plainsegs, sgms, pnonlasts, flexes, dicts) {
   // dicts = _.filter(dicts, dict => { return dict.rdict })
   log('dicts--->', dicts.length)
   let kdicts = _.filter(dicts, dict => { return dict.plain == 'αγαθοποι'})
-  log('kdicts---->', kdicts.length)
+  // log('kdicts---->', kdicts)
   log('flexes--->', flexes.length)
-  let kflexes = _.filter(flexes, fl => { return fl.flex == 'ων'})
-  kflexes = _.filter(kflexes, fl => { return fl.name })
+  let kflexes = _.filter(flexes, fl => { return fl.flex == 'έω'})
+  kflexes = _.filter(kflexes, fl => { return fl.verb })
   log('kflexes--->', kflexes.length)
 
   let segdicts = distributeDicts(plainsegs, dicts)
   // log('SGD', segdicts['αγαθοποι'])
   let chains = makeChains(sgms, segdicts, flexes)
-  chains = _.filter(chains, chain => { return chain.length == 3 })
 
   // неясно, compound до addDict или после
-  // addDicts(chains, pnonlasts, segdicts)
-  compound(chains)
-  let specs = _.filter(chains, chain => { return chain.slice(0, -1).map(seg => {return seg.dicts.map(dict => { return dict.spec } ).length } ) })
+  addDicts(chains, pnonlasts, segdicts)
+
+  chains = _.filter(chains, chain => { return chain.length == 2 })
+  // compound(chains)
+  // let specs = _.filter(chains, chain => { return chain.slice(0, -1).map(seg => {return seg.dicts.map(dict => { return dict.spec } ).length } ) })
 
   let fulls = fullChains(chains)
   log('chains: ', chains.length, 'fulls: ', fulls.length)
@@ -122,8 +123,7 @@ function main(cmb, plainsegs, sgms, pnonlasts, flexes, dicts) {
   else return []
 
   // соответствие dicts и flex, added dicts
-  // let cleans = filterDictFlex(chains)
-  let cleans = chains
+  let cleans = filterDictFlex(chains)
 
   let bests = selectLongest(cleans)
   log('bests =>', bests.length)
@@ -160,14 +160,13 @@ function makeChains (sgms, segdicts, flexes) {
   let psegs, chains = []
   sgms.forEach(segs => {
     let lastseg = _.last(segs)
-    if (lastseg != 'ων') return
     let segflexes = _.filter(flexes, flex => { return flex.flex === lastseg} )
     if (!segflexes.length) return
 
     psegs = segs.slice(0, -1)
     let chain = []
     psegs.forEach((seg, idx) => {
-      let pseg = plaine(seg)
+      let pseg = plain(seg)
       let pdicts = segdicts[pseg]
       // let prfdicts
       // if (idx < psegs.length-1) {
@@ -192,7 +191,7 @@ function addDicts(chains, pnonlasts, segdicts) {
   chains.forEach(segs => {
     let penult = segs[segs.length-2]
     let seg = penult.seg
-    seg = plaine(seg)
+    seg = plain(seg)
     let first = _.first(seg)
     let sdicts = _.clone(penult.dicts)
     let firsts = _.uniq([seg.slice(0,1), seg.slice(0,2), seg.slice(0,3), seg.slice(0,4), seg.slice(0,5)])
