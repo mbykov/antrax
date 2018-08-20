@@ -68,6 +68,7 @@ export function setDBs (upath, apath) {
 
   dbs = []
   dbnames.forEach((dn, idx) => {
+    if (dn == 'flex') return
     let dpath = path.resolve(upath, 'pouch', dn)
     let pouch = new PouchDB(dpath)
     pouch.dname = dn
