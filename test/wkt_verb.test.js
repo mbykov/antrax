@@ -113,6 +113,7 @@ forEach(tests)
         // log('C', chains)
         if (!chains.length) log('NO RESULT'), assert.equal(false, true)
         let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return dict.rdict}).includes(rdict) })
+        corrchs = _.filter(corrchs, ch => { return ch[ch.length-1].flexes.map(flex => { return flex.tense}).includes(tense) })
         if (!corrchs.length) log('no correct chains'), assert.equal(false, true)
         corrchs.forEach(chain => {
           if (chain.length > 2) log('CH.length'), assert.equal(false, true)
@@ -121,7 +122,6 @@ forEach(tests)
           if (!verbs.length) log('no verb'), assert.equal(false, true)
           let cverbs = _.filter(verbs, dict => { return comb(dict.rdict) == comb(rdict) })
           if (!cverbs.length) log('no correct verb'), assert.equal(false, true)
-          if (cverbs.length != 1) log('verb should be one', cverbs), assert.equal(false, true)
           cverbs.forEach(dict => {
             let fls = _.last(chain).flexes
             // log('FLS', fls)
