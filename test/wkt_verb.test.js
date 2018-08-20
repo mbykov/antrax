@@ -6,7 +6,7 @@ let log = console.log
 import { clause, antrax, enableDBs } from '../dist'
 import _ from 'lodash'
 // import { property } from 'jsverify'
-const orthos = require('orthos')
+import {comb, plain} from '../../orthos'
 const assert = require('assert')
 const forEach = require('mocha-each')
 const fse = require('fs-extra')
@@ -42,93 +42,65 @@ let irregs = [ 'δράω', 'εἰμί', 'εἶμι', 'εἰσέρχομαι', '�
 
 let skip = true
 
-let tests = []
-let title, descrs, sys, old, rows = []
-let dict
-text.split('\n').forEach((row, idx) => {
-  if (/MA/.test(row)) skip = false
-  if (skip) return
-  if (!row || row[0] == '#' || row[0] == ' ') return
-  // if (idx > 200) return
+let pars = parseText(text.split('\n'))
 
-  let descr = row.split(':')[0].trim()
-  if (descr == 'dict') {
-    // dict: ἀάω • (aáō)
-    let txt = row.split(':')[1].trim()
-    dict = txt.split('•')[0].trim()
-    // log('D', descr, dict)
-  }
-  else if (/inf/.test(descr)) {
-    // if (!row.split(':')[1]) log('RRR', row)
-    if (!row.split(':')[1]) return
-    let stest = row.split(':')[1].trim()
-    if (!stest) return
-    let test = ['inf', dict, stest, descr, null]
-    // tests.push(test)
-    // aor.part-masc: ἀάσας, ἀασάμενος, ἀασθείς
-  } else if (/part/.test(descr)) {
-    return
-    // if (!row.split(':')[1]) log('RRR', row)
-    if (!row.split(':')[1]) return
-    // log('R', row)
-    let stest2 = row.split(':')[1].trim()
-    if (!stest2) return
-    let vdescr = descr.split('-')[0]
-    let ndescr = [descr.split('-')[1], 'sg.nom'].join('.')
-    let stests = stest2.split(', ')
-    if (stests.length == 1) {
-      stests[0].split('-').forEach(stest => {
-        let test = ['part', dict, stest, vdescr, ndescr]
-        tests.push(test)
-      })
-    } else  if (stests.length == 2) {
-      stests.forEach((stest2a, idx) => {
-        stest2a.split('-').forEach(stest => {
-          if (!stest) return
-          if (stest == 'x') return
-          let mid
-          if (vdescr == 'aor.part' || vdescr == 'fut.part') mid = 'mid'
-          else mid = 'mp'
-          let voice = (idx) ? mid : 'act'
-          let vfull = [voice, vdescr].join('.')
-          let test = ['part', dict, stest, vfull, ndescr]
-          tests.push(test)
-        })
-      })
-    } else  if (stests.length == 3) {
-      stests.forEach((stest2a, idx) => {
-        stest2a.split('-').forEach(stest => {
-          if (!stest) return
-          if (stest == 'x') return
-          let voice
-          if (idx == 1) voice = 'mid'
-          else if (idx == 2) voice = 'pas'
-          else voice = 'act'
-          let vfull = [voice, vdescr].join('.')
-          let test = ['part', dict, stest, vfull, ndescr]
-          tests.push(test)
-        })
-      })
-    }
-  } else  if (/act\./.test(descr) || /mp\./.test(descr) || /pas\./.test(descr)) {
-    if (!row.split(':')[1]) return
-    let stests = row.split(':')[1].trim().split(', ')
-    stests.forEach((stest2, idy) => {
-      if (!stest2) return // imperatives
-      let numper = numpers[idy]
-      // let expected = [descr, numper].join('-')
-      stest2.split('-').forEach(stest => {
-        // let plain = orthos.toComb(stest)
-        // let first = _.first(plain)
-        let test = ['verb', dict, stest, descr, numper]
-        if (irregs.includes(dict)) return
+let tests = []
+
+pars.forEach(par => {
+  let descrs = par.data.map(line => { return line.descr })
+  descrs = _.uniq(descrs)
+  let voices = descrs.map(descr => { return descr.split('.')[0] })
+  voices = _.uniq(voices)
+
+  par.data.forEach(line => {
+    line.forms.forEach((form2, idy) => {
+      if (!form2) return
+      form2.split('-').forEach(form => {
+        if (!form) return
+        let numper = numpers[idy]
+        let test = ['verb', par.rdict, form, line.descr, numper]
         tests.push(test)
       })
     })
-  }
+  })
+
+  par.parts.forEach(line => {
+    let descrs = line.descr.split('-')
+    let rdescr = descrs[0]
+    let gend = descrs[1]
+    line.forms.forEach((form2, idy) => {
+      if (!form2) return
+      form2.split('-').forEach(form => {
+        if (!form) return
+        let voice = voices[idy]
+        let descr
+        if (rdescr.split('.').length == 3) descr = rdescr
+        else descr = [voice, rdescr].join('.')
+        let test = ['part', par.rdict, form, descr, gend]
+        tests.push(test)
+      })
+    })
+  })
+
+  par.infs.forEach(line => {
+    line.forms.forEach((form2, idy) => {
+      if (!form2) return
+      form2.split('-').forEach(form => {
+        if (!form) return
+        voices.forEach(voice => {
+          let descr
+          if (line.descr.split('.').length == 3) descr = line.descr
+          else descr = [voice, line.descr].join('.')
+          let test = ['inf', par.rdict, form, descr]
+          tests.push(test)
+        })
+      })
+    })
+  })
+
 })
 
-// tests = tests.slice(0, 50)
+// tests = tests.slice(0, 20)
 // console.log('T', tests)
 // tests = []
 
@@ -147,26 +119,26 @@ forEach(tests)
           let penult = chain[chain.length-2]
           let verbs = _.filter(penult.dicts, dict => { return dict.verb })
           if (!verbs.length) log('no verb'), assert.equal(false, true)
-          let cverbs = _.filter(verbs, dict => { return orthos.toComb(dict.rdict) == orthos.toComb(rdict) })
+          let cverbs = _.filter(verbs, dict => { return comb(dict.rdict) == comb(rdict) })
           if (!cverbs.length) log('no correct verb'), assert.equal(false, true)
+          if (cverbs.length != 1) log('verb should be one', cverbs), assert.equal(false, true)
           cverbs.forEach(dict => {
             let fls = _.last(chain).flexes
             // log('FLS', fls)
             let tenses = fls.map(flex => { return flex.tense })
             tenses = _.uniq(tenses)
-            if (morph) {
-              if (!tenses.includes(tense)) { // chain has correct verb, but verb has other tense :
-                assert.equal(true, true)
-                return
-              }
-              // verb or participle:
-              let morphs = fls.map(flex => { return flex.numper || [flex.gend, flex.numcase].join('.') })
-              morphs = _.uniq(morphs)
+            assert.equal(tenses.includes(tense), true)
+
+            if (morph) { // verb, or part, cause inf has no morph
+              let morphs
+              let pfls = _.filter(fls, flex => { return flex.gend })
+              let vfls = _.filter(fls, flex => { return flex.numcase })
+              if (title == 'part') morphs = pfls.map(flex => { return flex.gend })
+              else if (title == 'verb')  morphs = vfls.map(flex => { return flex.numcase })
               // log('M', morph, morphs)
               assert.equal(morphs.includes(morph), true)
             } else {
-              assert.equal(true, true) // can be act.fut.inf where act.pres.inf is tested - ἀλέξειν
-              // assert.equal(tenses.includes(tense), true)
+              assert.equal(false, true)
             }
           })
         })
@@ -175,3 +147,74 @@ forEach(tests)
 
   })
 // })
+
+function parseText (rows, only) {
+  let pars = []
+  let rdict, dict, pres, futs, trns, trn
+  let formstr, futstr
+  let mark
+  let store = []
+  let parts = []
+  let infs = []
+  rows.forEach((row, idx) => {
+    // if (idx > 61) return
+
+    if (/MA/.test(row)) skip = false
+    if (skip) return
+    if (!row || row.slice(0,2) == '# ') return
+    if (!row[0] == ' ') trn = row.trim()
+    let descr = row.split(':')[0].trim()
+
+    if (row.slice(0,2) == '#=' || descr == 'dict') {
+      if (mark && formstr) {
+        let res =  {pos: mark, rdict: rdict, dict: dict, formstr: formstr, data: store, parts: parts, infs: infs} // , trns: trns // TRNS, STORE
+        let cres = _.clone(res)
+        pars.push(cres)
+      }
+      store = []
+      parts = []
+      infs = []
+      mark = null
+    }
+
+    if (descr == 'dict') {
+      let txt = row.split(':')[1].trim()
+      rdict = txt.split('•')[0].trim()
+      dict = comb(rdict)
+      trns = []
+    } else if (/Present/.test(descr)) {
+      if (!row.split(':')[1]) log('ROW', row)
+      formstr = row.split(':')[1].trim()
+      mark = 'pres'
+    } else if (/Imperfect/.test(descr)) {
+      formstr = row.split(':')[1].trim()
+      mark = 'impf'
+    } else if (/Future/.test(descr)) {
+      formstr = row.split(':')[1].trim()
+      mark = 'fut'
+    } else if (/inf/.test(descr)) {
+      let str = row.split(':')[1]
+      if (!str) return
+      str = str.trim()
+      let forms = str.split(', ')
+      let part = {descr: descr, forms: forms}
+      infs.push(part)
+    } else if (/\.part/.test(descr)) {
+      let str = row.split(':')[1]
+      if (!str) return
+      str = str.trim()
+      let forms = str.split(', ')
+      let part = {descr: descr, forms: forms}
+      parts.push(part)
+    } else  if (/act\./.test(descr) || /mp\./.test(descr) || /mid\./.test(descr) || /pas\./.test(descr)) {
+      // descr = descr.replace('mp.', 'mid.')
+      let str = row.split(':')[1]
+      if (!str) return
+      let res = {descr: descr, forms: str.trim().split(', ')}
+      store.push(res)
+    } else if (row[0] == ' ') {
+      if (trns) trns.push(trn)
+    }
+  })
+  return pars
+}

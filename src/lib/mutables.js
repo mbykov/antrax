@@ -27,9 +27,9 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'ζ') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'α') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      if (dict.plain == 'ζζ' && flex.tense == 'act.pres.ind') log('NC-f =========================', flex)
+      if (dict.plain == 'α' && flex.tense == 'mp.pres.ind') log('NC-f =========================', flex)
 
       // return filterVerb(dict, flex)
       if (dict.rtype != flex.rtype) return false
@@ -39,6 +39,7 @@ export function parseVerb (seg, segs, flexes) {
       let vc = voice(flex.tense)
       if (dict.vkeys[vc] && dict.vkeys[vc].includes(flex.vkey)) return true
       if (flex.inf && dict.ikeys[vc] && dict.ikeys[vc].includes(flex.ikey)) return true
+      if (flex.part && dict.pkeys[vc] && dict.pkeys[vc].includes(flex.pkey)) return true
       return false
     })
     let pfls = _.filter(nameflexes, flex => {
@@ -62,7 +63,13 @@ export function parseVerb (seg, segs, flexes) {
   partdicts = uniqDict(partdicts)
 
   if (vdicts.length && vfls.length) {
-    let cleanfls = vfls.map(flex => { return {tense: flex.tense, numper: flex.numper} })
+    // let cleanfls = vfls.map(flex => { return {tense: flex.tense, numper: flex.numper} })
+    let cleanfls = vfls.map(flex => {
+      let cflex
+      if (flex.numcase) cflex = {tense: flex.tense, numcase: flex.numcase, gend: flex.gend}
+      else cflex = {tense: flex.tense, numper: flex.numper}
+      return cflex
+    })
     let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
     cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
     let flsobj = {seg: seg, flexes: cleanfls}
