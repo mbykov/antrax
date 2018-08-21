@@ -91,7 +91,7 @@ pars.forEach(par => {
           let descr
           if (line.descr.split('.').length == 3) descr = line.descr
           else descr = [voice, line.descr].join('.')
-          let test = ['inf', par.rdict, form, descr]
+          let test = ['inf', par.rdict, form, descr, '-']
           tests.push(test)
         })
       })
@@ -100,7 +100,7 @@ pars.forEach(par => {
 
 })
 
-// tests = tests.slice(0, 20)
+// tests = tests.slice(0, 35)
 // console.log('T', tests)
 // tests = []
 
@@ -129,16 +129,14 @@ forEach(tests)
             tenses = _.uniq(tenses)
             assert.equal(tenses.includes(tense), true)
 
-            if (morph) { // verb, or part, cause inf has no morph
+            if (title == 'verb' || title == 'part') { // verb, or part, cause inf has no morph
               let morphs
               let pfls = _.filter(fls, flex => { return flex.gend })
-              let vfls = _.filter(fls, flex => { return flex.numcase })
+              let vfls = _.filter(fls, flex => { return flex.numper })
               if (title == 'part') morphs = pfls.map(flex => { return flex.gend })
-              else if (title == 'verb')  morphs = vfls.map(flex => { return flex.numcase })
+              else if (title == 'verb')  morphs = vfls.map(flex => { return flex.numper })
               // log('M', morph, morphs)
               assert.equal(morphs.includes(morph), true)
-            } else {
-              assert.equal(false, true)
             }
           })
         })
