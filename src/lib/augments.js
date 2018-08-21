@@ -1,7 +1,7 @@
 //
 
-export const strong = {
-  'η': ['α', 'ε'],
+export const strong2weak = {
+  'η': ['α', 'ε', 'αι'],
   '': [''],
   '': [''],
   '': ['']

@@ -6,7 +6,7 @@ import { segmenter } from './lib/segmenter'
 import { parseVerb, parseName } from './lib/mutables'
 // import { accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs } from './lib/utils'
 import { vowels, strongs, voice } from './lib/utils'
-import { strong } from './lib/augments'
+import { strong2weak } from './lib/augments'
 import util from 'util'
 import {comb, plain} from '../../orthos'
 
@@ -80,7 +80,7 @@ function addedStems(wforms) {
     //   }
     // })
 
-    let weaks = strong[first]
+    let weaks = strong2weak[first]
     if (!vowels.includes(first)) {
       let add = ['ε', wplain].join('') // aor.sub, opt, impf for consonants
       added.push(add)
@@ -211,7 +211,7 @@ function addDicts(chains, pnonlasts, segdicts) {
     //   }
     // })
 
-    let weaks = strong[first]
+    let weaks = strong2weak[first]
     if (!vowels.includes(first)) {
       let added = ['ε', seg].join('') // aor.sub, opt, impf from ind
       let adicts = segdicts[added]
