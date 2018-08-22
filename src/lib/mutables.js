@@ -27,9 +27,9 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'α') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'αγαθοποι') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      if (dict.plain == 'α' && flex.tense == 'mp.pres.ind') log('NC-f =========================', flex)
+      if (dict.plain == 'αγαθοποι' && flex.tense == 'act.pres.ind') log('NC-f =========================', flex)
 
       // return filterVerb(dict, flex)
       if (dict.rtype != flex.rtype) return false

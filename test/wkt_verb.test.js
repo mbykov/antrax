@@ -100,7 +100,7 @@ pars.forEach(par => {
 
 })
 
-// tests = tests.slice(0, 35)
+// tests = tests.slice(200, 300)
 // console.log('T', tests)
 // tests = []
 
@@ -187,6 +187,9 @@ function parseText (rows, only) {
     } else if (/Imperfect/.test(descr)) {
       formstr = row.split(':')[1].trim()
       mark = 'impf'
+    } else if (/Aorist/.test(descr)) {
+      formstr = row.split(':')[1].trim()
+      mark = 'aor'
     } else if (/Future/.test(descr)) {
       formstr = row.split(':')[1].trim()
       mark = 'fut'
