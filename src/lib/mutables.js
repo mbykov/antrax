@@ -32,7 +32,7 @@ export function parseVerb (seg, segs, flexes) {
       if (dict.plain == 'αγαθοποι' && flex.tense == 'act.pres.ind') log('NC-f =========================', flex)
 
       // return filterVerb(dict, flex)
-      if (dict.rtype != flex.rtype) return false
+      if (dict.reg && dict.rtype != flex.rtype) return false
       if (dict.reg && flex.reg) return true
       if (dict.reg) return false
 
