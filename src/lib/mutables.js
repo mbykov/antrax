@@ -27,9 +27,9 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'αγαλλι') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'αγαθοποι') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      if (dict.plain == 'αγαλλι' && flex.tense == 'mid.aor.sub') log('NC-f =========================', flex)
+      if (dict.plain == 'αγαθοποι' && flex.tense == 'act.aor.ind') log('NC-f =========================', flex)
 
       // return filterVerb(dict, flex)
       if (dict.reg && dict.rtype != flex.rtype) return false
@@ -37,8 +37,9 @@ export function parseVerb (seg, segs, flexes) {
       if (dict.reg) return false
 
       if (dict.type != flex.type) return false
+      // if (dict.pos != flex.pos) return false // если здесь pos, то отвалится part, inf - можно только в формах ггаголов
       let vc = voice(flex.tense)
-      if (dict.vkeys[vc] && dict.vkeys[vc].includes(flex.vkey)) return true
+      if (dict.vkeys[vc] && dict.vkeys[vc].includes(flex.vkey) && dict.pos == flex.pos) return true
       if (flex.inf && dict.ikeys[vc] && dict.ikeys[vc].includes(flex.ikey)) return true
       if (flex.part && dict.pkeys[vc] && dict.pkeys[vc].includes(flex.pkey)) return true
       return false

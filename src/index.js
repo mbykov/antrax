@@ -48,6 +48,8 @@ export function antrax (wordform) {
 
   let added = addedStems(pnonlasts)
   log('Added:', added.toString())
+  // added = []  // added необходимо добавлять, потому что reg impf, aor - в словаре только слабая форма
+  // а вот non-reg из added можно убрать? то есть достройка только до splain, strong-plain ?
 
   let plainsegs = (added.length) ? _.uniq(pnonlasts.concat(added)) : pnonlasts
   log('Psegs:', plainsegs.toString())
