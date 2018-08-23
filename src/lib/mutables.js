@@ -36,6 +36,7 @@ export function parseVerb (seg, segs, flexes) {
       if (dict.reg && flex.reg) return true
       if (dict.reg) return false
 
+      if (dict.type != flex.type) return false
       let vc = voice(flex.tense)
       if (dict.vkeys[vc] && dict.vkeys[vc].includes(flex.vkey)) return true
       if (flex.inf && dict.ikeys[vc] && dict.ikeys[vc].includes(flex.ikey)) return true
