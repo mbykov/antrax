@@ -1,11 +1,10 @@
-// import sum from './sum'
+//
 import _ from 'lodash'
 import { log } from './lib/utils'
 import { getTerms, getTerm, getFlex, queryDBs, setDBs } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import { parseVerb, parseName } from './lib/mutables'
-// import { accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs } from './lib/utils'
-import { vowels, strongs, voice } from './lib/utils'
+import { vowels, strongs } from './lib/utils'
 import { strong2weak } from './lib/augments'
 import util from 'util'
 import {comb, plain} from '../../orthos'
@@ -20,8 +19,6 @@ export function enableDBs (upath, apath) {
   setDBs(upath, apath)
 }
 
-
-
 export function clause (wfs) {
     let keys = wfs.map(wf => comb(wf))
     return getTerms(keys)
@@ -30,13 +27,11 @@ export function clause (wfs) {
 export function antrax (wf) {
   let clwf = cleanStr(wf)
   let cwf = comb(clwf)
-  let sgms = segmenter(cwf)
 
+  let sgms = segmenter(cwf)
   // segments for flexes:
   let lasts = _.uniq(sgms.map(sgm =>  { return sgm[sgm.length-1] }))
-  // lasts.push(cmb) // это, наверное, будет не нужно при поиске terms регулярно
   log('lasts', lasts)
-
   // segments for dicts:
   let nonlasts = _.uniq(_.flatten(sgms.map(sgm =>  { return sgm.slice(0, -1) }) ))
   let pnonlasts = _.uniq(_.compact(nonlasts.map(nonlast => { return plain(nonlast) }) ))
@@ -49,7 +44,6 @@ export function antrax (wf) {
 
   let plainsegs = (added.length) ? _.uniq(pnonlasts.concat(added)) : pnonlasts
   log('Psegs:', plainsegs.toString())
-  // plainsegs = ['αβα']
 
   return Promise.all([
     getTerm(cwf),
@@ -59,52 +53,10 @@ export function antrax (wf) {
     let terms = _.flatten(res[0])
     let dicts = _.flatten(res[1])
     let flexes = _.flatten(res[2])
-    // clog('=== RES:', res[1])
     let muts = main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts)
-
     return terms.concat(muts)
   })
 }
-
-
-
-export function antrax_ (wordform) {
-  if (!wordform) return new Promise(function() {})
-
-  let clstr = cleanStr(wordform)
-  let cmb = comb(clstr)
-  let sgms = segmenter(cmb)
-  let clean = plain(clstr)
-  log('PLAIN', clean)
-
-  // segments for flexes:
-  let lasts = _.uniq(sgms.map(sgm =>  { return sgm[sgm.length-1] }))
-  // lasts.push(cmb) // это, наверное, будет не нужно при поиске terms регулярно
-  log('lasts', lasts)
-
-  // segments for dicts:
-  let nonlasts = _.uniq(_.flatten(sgms.map(sgm =>  { return sgm.slice(0, -1) }) ))
-  let pnonlasts = _.uniq(_.compact(nonlasts.map(nonlast => { return plain(nonlast) }) ))
-  log('NONlast:', pnonlasts.toString())
-
-  let added = addedStems(pnonlasts)
-  log('Added:', added.toString())
-  // added = []  // added необходимо добавлять, потому что reg impf, aor - в словаре только слабая форма
-  // а вот non-reg из added можно убрать? то есть достройка только до splain, strong-plain ?
-
-  let plainsegs = (added.length) ? _.uniq(pnonlasts.concat(added)) : pnonlasts
-  log('Psegs:', plainsegs.toString())
-
-  return getFlex(lasts)
-    .then(fls => {
-      return queryDBs(plainsegs)
-        .then(rdocs => {
-          let dicts = _.flatten(rdocs)
-          return main(cmb, plainsegs, sgms, pnonlasts, fls, dicts)
-        })
-    })
-} // export antrax
-
 
 // ADDED
 function addedStems(wforms) {
@@ -137,7 +89,7 @@ function addedStems(wforms) {
   return _.uniq(added)
 }
 
-function main(cmb, plainsegs, sgms, pnonlasts, flexes, dicts) {
+function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   dicts = _.filter(dicts, dict => { return !dict.indecl })
   // dicts = _.filter(dicts, dict => { return dict.rdict })
   log('dicts--->', dicts.length)
@@ -188,7 +140,7 @@ function main(cmb, plainsegs, sgms, pnonlasts, flexes, dicts) {
     _.last(best).flexes.forEach(flex => { delete flex.dicts, delete flex.flex, delete flex.a, delete flex.h, delete flex.rgend, delete flex.rdicts })
     // DELETES - здесь проходит
   })
-  return bests
+  return {form: cwf, chains: bests}
 }
 
 
@@ -227,7 +179,6 @@ function makeChains (sgms, segdicts, flexes) {
 
     // FLEXES поправить
     chain.push({seg: lastseg, flexes: segflexes})
-    // chain.push({seg: lastseg, flexes: []})
     chains.push(chain)
   })
   return chains
@@ -297,8 +248,6 @@ function fullChains(chains) {
   return fulls
 }
 
-
-// MAIN
 function filterDictFlex (rchains) {
   let chains = []
   rchains.forEach(rchain => {
@@ -308,19 +257,14 @@ function filterDictFlex (rchains) {
     let segs = rchain.slice(0, -1)
     if (!segs.length) return
 
-    // let last = _.last(segs)
-
     let vchains = parseVerb(seg, segs, flexes)
     chains.push(vchains)
     let nchains = parseName(seg, segs, flexes)
     chains.push(nchains)
-
   })
   return _.flatten(chains)
-} // end filterDictFlex
+}
 
-//     "masc": "ων-οντος ών-όντος ῶν-ῶντος ων-ουσα-ον ών-οῦσα-όν",
-// ῶν-οῦντος
 
 function compound(chains) {
   let cmpds = []
