@@ -60,8 +60,9 @@ export function antrax (wf) {
     let dicts = _.flatten(res[1])
     let flexes = _.flatten(res[2])
     // clog('=== RES:', res[1])
-    return main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts)
-    // return []
+    let muts = main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts)
+
+    return terms.concat(muts)
   })
 }
 
