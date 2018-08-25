@@ -36,8 +36,7 @@ function createZeroCfg(upath, aversion) {
 function initDBs(upath, apath, aversion) {
   let srcpath = path.resolve(apath, 'pouch')
   let destpath = path.resolve(upath, 'pouch')
-  log('SRC', srcpath)
-  log('DEST', destpath)
+  log('init - SRC:', srcpath, 'DEST:', destpath)
   const dest = jetpack.dir(destpath, { empty: true, mode: '755' });
 
   try {
@@ -69,6 +68,7 @@ export function setDBs (upath, apath) {
   dbs = []
   dbnames.forEach((dn, idx) => {
     if (dn == 'flex') return
+    if (dn == 'terms') return
     let dpath = path.resolve(upath, 'pouch', dn)
     let pouch = new PouchDB(dpath)
     pouch.dname = dn
@@ -128,6 +128,22 @@ export function getTerms (keys) {
         terms[doc.term].push(doc)
       })
       return terms
+    })
+}
+
+export function getTerm (wf) {
+  return db_terms.allDocs({keys: [wf], include_docs: true})
+    .then(function(res) {
+      let rdocs = _.compact(res.rows.map(row => { return row.doc }))
+      let docs = rdocs.map(rdoc => { return rdoc.docs })
+      return docs
+      // let terms = {}
+      // _.flatten(docs).forEach(doc => {
+      //   doc.dname = 'term'
+      //   if (!terms[doc.term]) terms[doc.term] = []
+      //   terms[doc.term].push(doc)
+      // })
+      // return terms
     })
 }
 

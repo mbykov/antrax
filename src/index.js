@@ -1,7 +1,7 @@
 // import sum from './sum'
 import _ from 'lodash'
 import { log } from './lib/utils'
-import { getTerms, getFlex, queryDBs, setDBs } from './lib/pouch'
+import { getTerms, getTerm, getFlex, queryDBs, setDBs } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import { parseVerb, parseName } from './lib/mutables'
 // import { accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs } from './lib/utils'
@@ -20,14 +20,54 @@ export function enableDBs (upath, apath) {
   setDBs(upath, apath)
 }
 
-//
+
 
 export function clause (wfs) {
-  let keys = wfs.map(wf => comb(wf))
-  return getTerms(keys)
+    let keys = wfs.map(wf => comb(wf))
+    return getTerms(keys)
 }
 
-export function antrax (wordform) {
+export function antrax (wf) {
+  let clwf = cleanStr(wf)
+  let cwf = comb(clwf)
+  let sgms = segmenter(cwf)
+
+  // segments for flexes:
+  let lasts = _.uniq(sgms.map(sgm =>  { return sgm[sgm.length-1] }))
+  // lasts.push(cmb) // это, наверное, будет не нужно при поиске terms регулярно
+  log('lasts', lasts)
+
+  // segments for dicts:
+  let nonlasts = _.uniq(_.flatten(sgms.map(sgm =>  { return sgm.slice(0, -1) }) ))
+  let pnonlasts = _.uniq(_.compact(nonlasts.map(nonlast => { return plain(nonlast) }) ))
+  log('NONlast:', pnonlasts.toString())
+
+  let added = addedStems(pnonlasts)
+  log('Added:', added.toString())
+  // added = []  // added необходимо добавлять, потому что reg impf, aor - в словаре только слабая форма
+  // а вот non-reg из added можно убрать? то есть достройка только до splain, strong-plain ?
+
+  let plainsegs = (added.length) ? _.uniq(pnonlasts.concat(added)) : pnonlasts
+  log('Psegs:', plainsegs.toString())
+  // plainsegs = ['αβα']
+
+  return Promise.all([
+    getTerm(cwf),
+    queryDBs(plainsegs),
+    getFlex(lasts)
+  ]).then(function (res) {
+    let terms = res[0]
+    let dicts = res[1]
+    let flexes = res[2]
+    // clog('=== RES:', res[1])
+    return main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts)
+    // return []
+  })
+}
+
+
+
+export function antrax_ (wordform) {
   if (!wordform) return new Promise(function() {})
 
   let clstr = cleanStr(wordform)
@@ -104,8 +144,8 @@ function main(cmb, plainsegs, sgms, pnonlasts, flexes, dicts) {
   log('dplains---->', dplains)
   let ndplains = _.filter(dicts, dict => { return !dict.plain })
   log('ndplains---->', ndplains.length)
-  let kdicts = _.filter(dicts, dict => { return dict.plain == 'αγαθοποι'})
-  log('kdicts---->', kdicts.length)
+  let kdicts = _.filter(dicts, dict => { return dict.plain == 'αβα'})
+  log('kdicts---->', kdicts)
   log('flexes--->', flexes.length)
   let kflexes = _.filter(flexes, fl => { return fl.flex == 'έω'})
   kflexes = _.filter(kflexes, fl => { return fl.verb })

@@ -1,0 +1,295 @@
+#
+# replaced: ᾰα ᾱα ῑι ῐι ῠυ ῡυ
+# database 'spec'
+
+# ============================= PREFIXES ======================
+
+pref: ἀ- • (a-)
+    The alpha privativum, used to make words that have a sense opposite to the word (or stem) to which the prefix is attached. It is also known as privative a and alpha privative.
+    The alpha intensivum, used to strengthen the force of compounds.
+    The alpha euphonicum, used to soften pronunciation before two consonants.
+
+pref: ἁ- • (ha-)
+    The alpha copulativum, used to express union or likeness.
+
+pref: ἀν- • (an-)
+    Alternative form of ἀ- (a-) used before a vowel.
+
+pref: ἀνα- • (ana-)
+    up to, upwards, up
+    (intensifier) thoroughly
+    indicating repetition or improvement: re-, again
+    back, backwards
+
+pref: ἀντι- • (anti-)
+    anti-, against
+    = ἀνθ
+    = ἀνθο
+    = ἀντ
+
+pref: ἀπο- • (apo-)
+    Indicating movement: away, from, off
+    Indicating breaking one part from another: un-, asunder, apart, off
+    Indicating ending or finishing, or almost like the negative ἀ- (a-, “not”), especially in adjectives
+    back, again
+    Simply emphasizing the meaning of the verb
+    because of, owing to
+    = ἀπ
+    = ἀφ
+
+pref: ἀρι- • (ari-)
+    (mostly early Epic and Lyric) strengthening prefix, generally with a sense of goodness, excellence
+
+
+pref: ἐρι- • (eri-)
+    ἀρι- • (ari-) - (mostly early Epic and Lyric) strengthening prefix, generally with a sense of goodness, excellence
+
+pref: ἀρχι- • (arkhi-)
+    denotes primary importance or authority.
+
+pref: ἀμφι
+      both, on both sides of, around
+      = ἀμφ
+      = ἀμπ
+
+pref: αὐτο
+      auto-
+
+pref: ἀνισο
+      not equal
+      = ἀνισ
+
+# =============================D =================
+
+pref: δια- • (dia-)
+    through, right through, across, over
+    in different directions
+        of separation: asunder, apart
+        at variance
+        of mutual relation: one with another
+    of preeminence
+    of completion: to the end, utterly, out
+    to add strength: thoroughly, out and out
+    of mixture: between, partly, somewhat
+      = δι- • (dia-)
+      = διε
+      = διεκ
+
+
+pref: δυσ- • (dus-)
+    bad, hard, unfortunate
+
+pref: διχο- • (dixo-)
+    in two
+
+pref: δίς-
+      twice, doubly, again
+      = δίχα
+      = δίσ
+
+pref: δύο
+     (cardinal): two
+      = δύ'
+      = δύω
+pref: δώδεκα
+          (cardinal) twelve
+
+# =========================================== E =======================
+
+pref: εἰσ- • (eis-)
+    into
+
+pref: ἐκ- • (ek-)
+      (With a sense of removal): out, away, off
+      (Expressing completion or totality): utterly
+      = ἐξ
+
+pref: ἑξα- • (hexa-)
+    Forming compound words with the sense of "six"
+    = ἑξ
+    = ἐσ
+
+pref: ἐπι- • (epi-)
+    (place) on, upon, on top of, all over, covering
+    (motion) on, over
+    (addition, accompaniment) in addition to, as interest on, with
+    (time) after
+    (of superiority, authority, motivation) over, at, for, against
+    (intensive) over-
+      against
+      on, for the purpose of, because of
+      on. at
+      = ἐπ
+
+pref: εὐ- • (eu-)
+    good, well
+
+pref: ἐν
+      in
+      = ἐγ
+      = ἐμ
+      = ἐλ
+
+pref: ἐφ
+      translation?
+
+pref: φιλο
+      fond of ...
+
+# ============================================= H =======================
+
+pref: ἡμι- • (hēmi-)
+    half
+
+# ============================================= I =======================
+
+pref: ἰσο
+      the same
+
+# ============================================= K =======================
+
+pref: κατά • (katá)
+    back
+    downwards
+    against
+    fully, completely
+    = κατ • (katá)
+    = καθ
+
+pref: κακά
+      bad
+      = κακ
+
+# ============================================= M =======================
+
+pref: μετα- • (meta-)
+    concerning community or participation
+        concerning action in common with another
+    in the midst of
+    concerning succession
+    concerning pursuit
+    concerning letting go
+    after, behind
+    reversely
+    (most frequent) concerning change in position or condition
+    = μεθ
+    = μετ
+
+# ============================================= N =======================
+
+pref: να- • (nā-)
+    Alternative form of ἀ- (a-)
+
+pref: νεκρο- • (nekro-)
+    Used to derive words relating to death or the dead; necro-
+
+pref: νη- • (nē-)
+    Alternative form of ἀ- (a-)
+
+pref: νω- • (nō-)
+    Alternative form of ἀ- (a-)
+
+pref: νεά
+     new
+
+pref: νε
+      νεά
+
+# wtf?
+# νεάγγελλω
+#pref: λω
+#     new=
+
+# ============================================= O =======================
+
+pref: ὀκτα- • (okta-)
+    eight
+
+pref: ὀλιγο
+      not many
+
+# ============================================= P =======================
+
+pref: προ- • (pro-)
+    (with prepositions) quotations ▼
+        (strengthener)
+        (adds the notion of forward, forth)
+    (with substantives)
+        (denotes position before or in front) quotations ▼
+        (denotes priority of rank, order) quotations ▼
+        (denotes standing in another's place) quotations ▼
+    (with adjectives)
+        (denotes proximity, readiness) quotations ▼
+        (denotes a coming forth) quotations ▼
+        (denotes prematureness) quotations ▼
+        (denotes intensity) quotations ▼
+    (with verbs)
+        (of place) before, forwards quotations ▼
+        forth, publicly quotations ▼
+        before one, away quotations ▼
+        before, in preference quotations ▼
+        before, beforehand, of foresight quotations ▼
+
+pref: προσ- • (pros-)
+       motion towards, accession to, or nearness to
+       = ποτι
+
+pref: παρα
+      from
+      = παρ
+
+pref: περι
+      about
+
+pref: πολυ
+      many
+
+pref: παθο
+      bad
+
+pref: παντο
+      full
+
+pref: ψευδο
+      false, unauthentic, counterfeit
+
+# ============================================= S =======================
+
+pref: συν- • (sun-)
+    with, together, co-, syn-
+    indicates completeness
+    = συγ
+    = συμ
+    = συλ
+    = συ
+
+# ============================================= T =======================
+
+pref: τρι- • (tri-)
+    tri- (three, thrice)
+
+pref: τοπο
+      place
+
+# ============================================= U =======================
+
+pref: ὑπο- • (hupo-)
+    under, sub-, hypo-
+        of the casing or covering
+        of the agency or influence
+    denoting a small degree, gradual
+    = ὑπ
+    = ὑφ
+
+pref: ὑπερ
+      above, over, beyond
+
+# ================================== SUFFIXES ==========================
+
+suf: ε
+      participle act.present suffix
+
+
+# LAST
+pref: ὑπερ
+      above, over, beyond

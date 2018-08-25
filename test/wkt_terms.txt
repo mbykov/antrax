@@ -1,0 +1,690 @@
+#
+# replaced: ᾰα ᾱα ῑι ῐι ῠυ ῡυ
+
+# ================================ TERMS: ======================
+
+conj: ἀλλά • (allá)
+
+    but
+    = ἀλλ’ • (all’)
+
+conj: ἄν • (án) (modal particle)
+
+    Particle expresses potentiality or conditionality
+
+    = κε (ke), κεν (ken) – Epic, Lyric
+    = κα (ka) – Doric
+
+conj: ἄρα • (ára)
+
+    so, then, therefore, consequently
+
+    = ἄρ (ár) – before a consonant
+    = ἄρ’ (ár’) – apocopic
+    = ῥα (rha) – after a monosyllabic word or a word ending in a vowel
+    = ῥ’ (rh’) – apocopic
+    = ῥά • (rhá)
+
+conj: ἀτάρ • (atár)
+
+    but, nevertheless
+
+conj: αὐτάρ • (autár) (Epic)
+
+    (marking contrast or transition, sometimes paired with μέν (mén)) But, however, besides, moreover
+
+conj: ἄχρι • (ákhri)
+
+    to the very bottom, to the uttermost, utterly
+        (after Homer, before prepositions)
+            even to, as far as
+        (of time) until
+        (of space) as far as, even to
+        (of measure or degree) up to this point
+
+conj: γάρ • (gár)
+
+    for
+    since
+    because (postpositive)
+
+conj: δέ • (dé)
+
+    but, and
+    = δ’ • (d’)
+
+conj: διό • (dió)
+
+    wherefore, on which account
+    because
+
+conj: διότι • (dióti)
+
+    because
+
+conj: ἐάν • (eā́n)
+
+    if (for more depth see εἰ (ei) and ἄν (án)
+    (New Testament Koine) Used in place of ἄν (án) after relative pronouns and conjunctions
+    = ἤν • (ḗn)
+
+conj: εἰ • (ei)
+
+    if
+    = εἴ • (eí)
+    = εἰκ • (eik)
+
+conj: εἴπερ • (eíper)
+
+    if really, if indeed, even if, even though
+    (in Attic, to imply that the supposition agrees with the fact, with the imperfect it implies that it is contrary to the fact) act.aor.
+
+conj: εἴτε • (eíte)
+
+    (generally doubled) either...or, whether..or
+    (like εἰ (ei), in indirect questions)
+    =     αἴτε (aíte) – Doric
+    = εἴτ’
+
+conj: ἕνεκα • (héneka)
+
+    because
+    that
+
+    (with genitive)
+    on account of, for the sake of, because of
+    with regard to, as far as regards, as for
+    (pleonastic)
+
+    = ἕνεκεν (héneken)
+    = εἵνεκα (heíneka) – Ionic, Poetic
+    = εἵνεκεν (heíneken) – Ionic, Poetic
+    = ἕνεκε (héneke)
+    = ἕννεκα (hénneka) – Aeolic
+
+conj: ἐπεί • (epeí)
+
+    after, after that, since, when
+    = ἐπειδή • (epeidḗ)
+    =  ἐπείτε
+
+
+conj: ἐπήν • (epḗn)
+
+    when, whenever
+
+conj: ἕως • (héōs)
+
+  until, while
+
+    = εἵως (heíōs),
+    = εἷος (heîos)
+    = ἇς (hâs)
+
+conj: ἤ • (ḗ)
+
+    or
+    than, as (in a comparative construction)
+    = ἢ • (ḕ)
+    = ἠέ • (ēé)
+
+conj: ἦ • (ê)
+
+    or
+     The pair ἤ... ἦ (ḗ... ê) means ‘either... or...’ or ‘whether... or...’.
+
+    = ἦε (êe) – Epic
+
+conj: ἠδέ • (ēdé) (poetic)
+
+    ἠμέν (ēmén) ... ἠδέ ...: both ... and ...
+    Alone or with τε (te) before it: and
+    Followed by καί (kaí): and, also
+
+    = ἠδ’ (ēd’) – apocopic
+    = ἰδέ (idé) – Epic
+
+conj: ἠμέν • (ēmén) (poetic)
+
+    ἠμέν (ēmén) ... ἠδέ (ēdé) ...: both ... and ...
+
+conj: ἤτοι • (ḗtoi)
+
+    either
+    or
+
+conj: ἵνα • (hína)
+
+        in order that, so that, so
+        that
+        where
+        = ἵν’ • (hín’)
+
+conj: καί • (kaí)
+
+    and
+    even, also
+    both ... and ... (when used in the construction καί ... καί ...)
+
+conj: καίπερ • (kaíper)
+
+    although, albeit
+
+conj: κᾷτα • (kâita)
+
+    Contraction of καὶ εἶτα (kaì eîta, “and then”).
+
+conj: μέχρι • (mékhri)
+
+    until
+
+prep: μέχρι • (mékhri) (governs the genitive)
+
+    (Marker of spatial extension): as far as
+    (Marker of temporal extension): until
+    (Marker of general extent): to the point of, so far as
+
+    = μέχρις • (mékhris) – before vowels
+
+conj: μηδέ • (mēdé)
+
+    (connecting two clauses, used with the same constructions as μή (mḗ)) but not, and not, nor
+        (doubled, μηδέ...μηδέ, opposing the two clauses of a sentence)
+
+    = μηδ’ (mēd’) – apocopic
+
+conj: μήποτε • (mḗpote)
+
+    never, on no account
+        (in prohibition or strong denial, with aorist subjunctive)
+        (Koine) perhaps
+
+conj: μήποτε • (mḗpote)
+
+    that at not time, lest ever
+
+conj: μήτε • (mḗte)
+
+    (mostly doubled, sometimes with μηδέ (mēdé)) and not, neither...nor
+
+conj: μή • (mḗ)
+
+      negative used in prohibitions
+
+conj: ὁπότε • (hopóte) (relative)
+
+    when (mostly in reference to the past)
+    = ὁπότ’ • (hopót’)
+
+    = ὁππότε (hoppóte) – Epic
+    = ὁκότε (hokóte) – Ionic
+    = ὁπόκα (hopóka) – Cyrenaic
+    = ὁππόκα (hoppóka) – Doric
+
+conj: ὁπόταν • (hopótan)
+
+    See ὁπότε (hopóte) and ἄν (án).
+
+conj: ὅπως • (hópōs)
+
+    that, in order that
+
+conj: ὅταν • (hótan)
+
+    (with a conditional force, about events likely to recur) whenever, when
+
+conj: ὅτι • (hóti)
+
+        after verbs of perception and emotion, introducing a noun clause expressing a fact: that (with the same mood as the corresponding independent clause)
+        after verbs of perception, emotion, saying, or hearing, introducing an indirect statement: that (with indicative or optative)
+        introducing a causal clause expressing a reason: because
+    (with a superlative) as much as possible
+
+    = ὅττι • (hótti)
+
+conj: οὐδέ • (oudé)
+
+    (more often) and not, nor
+    (mostly answering to μέν (mén)) but not
+    not even, not at all
+    = οὐδ’ (oud’) – apocopic
+
+conj: οὔτε
+
+  (with indicative)  - and…not
+
+conj: μήτε
+
+    (with infinitive) - and…not
+
+
+conj: οὐκοῦν • (oukoûn)
+
+    therefore
+
+conj: ὄφρα • (óphra) (final or temporal conjunction) (poetic)
+
+    in order that (with subjunctive or optative)
+    as long as, while (with imperfect, or subjunctive and ἄν (án) or κε (ke))
+    until (with aorist indicative of past time, aorist subjunctive of future time, optative of future in past)
+
+    = ὄφρ’ (óphr’) – apocopic
+
+conj:  οὖν
+
+   therefore (postpositive)
+
+conj: ὅθεν
+  from where
+
+conj: ὅτε
+        when
+        = ὅτ’
+
+conj: πάρος • (páros) (poetic)
+
+    formerly, up to now
+    too soon
+    rather, sooner
+    before
+
+conj: πλήν • (plḗn) (governs the genitive)
+
+    more than, above, beyond, except
+
+conj: πλήν • (plḗn)
+
+    except, save
+        (with single words and phrases, especially when a negative precedes)
+        (often joined with other particles)
+            (with εἰ (ei))
+                (followed by a verb)
+                (with a verb omitted)
+            (with ἤ (ḗ))
+            (with οὐ (ou)) only not
+            (with ὅτι (hóti)) except that, save that
+            (with ὅσον (hóson)) except or save so far as
+                (without a verb expressed) save so far as
+        (introducing a clause)
+            (to break off and pass to another subject) only
+            (late prose)
+
+conj: πρίν  • (prín)
+
+    before, sooner, formerly
+        (of future time, with future indicative)
+        (of past time) formerly, once
+
+conj: ῥα • (rha)
+
+    aphetic form of ἄρα (ára)
+    = ῥ’ (rh’) – apocopic
+    = ῥά • (rhá)
+
+conj: τε • (te)
+
+    and, also or untranslatable
+        (after each item in a list) and
+        (combined with καί (kaí), untranslatable)
+
+    = θ’ (th’) – apocopic before a rough breathing
+    = τ’ (t’) – apocopic before a smooth breathing
+
+conj: τοίνυν
+  therefore (postpositive)
+
+conj: ὡς • (hōs) (relative adverb)
+
+  as
+  the introduction to similes
+        like as, as, just as
+        according as
+    (with adverbial clauses)
+        (parenthetically) to qualify a general statement; as it seems
+        (in elliptical phrases) so far as....
+        (attached to the object of a verb) as
+    (to limit or augment the force of adverbs)
+
+conj: ὥστε • (hṓste)
+
+    (chiefly Epic, used in similes, similarly to ὡς (hōs))
+    (to mark the power or virtue by which one does a thing) as
+    so that
+
+# particles: https://ancientgreek.pressbooks.com/chapter/particles/
+
+
+particle: αὖ
+          “on the other hand…”
+particle: γε
+          intensifies and sharpens the word(s) before it
+          = γ᾽
+          = γ'
+particle: δή
+          literally “now!” but more generally emphatic
+particle: ἦ
+          emphasizes the particle that follows
+particle: καίτοι
+          marks a transition, restatement or conclusion
+particle: μέντοι
+          postpositive “of course” (emphatic in replies); “however” (in a transition)
+particle: μήν
+          follows a particle that it emphasizes
+particle: μέν
+          indeed, of a truth
+particle: νῦν
+          ”now” “as it is now…”
+          = νυνί
+particle: οὐκοῦν
+          sets up an expectation to agree
+particle: πέρ
+          enclitic, an emphatic suffix following relatives and conjunctions
+
+
+particle: ἆρα
+          turns a statement into a yes/no question.
+particle: πότε
+          when?
+particle: ποῦ
+          where?
+particle: πῶς
+          how?
+particle: πότερον
+          whether?
+
+particle: ναί
+          yes
+particle: μάλιστα
+          definitely yes
+particle: οὔ
+          no
+          = οὐχ
+          = οὐκ
+          = οὐ
+
+particle: καθὼς
+          as, just as
+
+adv: ἀεί
+     always
+adv: ἄνω
+     up
+adv: ἄρτι
+     now
+adv: αὖθις
+     again
+adv: αὐτίκα
+     immediately
+adv: εἶτα
+     then, next
+adv: ἐκεῖ
+     there
+adv: ἔνθα
+     there
+adv: ἐνταῦθα
+     here, there
+adv: ἔπειτα
+     then, next
+adv: ἔτι
+     still
+adv: εὖ
+     well
+adv: εὐθύς
+     immediately
+adv: ἤδη
+     already
+adv: μάλα
+     very, very much
+adv: μάλιστα
+     most, most of all, certainly
+adv: μᾶλλον
+     more, rather
+adv: οὐκέτι
+     no longer
+adv: πάλιν
+     back, backwards
+adv: πάντοτε
+     always, at all times
+adv: πλέον
+     more, rather
+adv: πολλάκις
+     often
+adv: ποτε
+     sometime
+adv: που
+     somewhere
+adv: πρίν
+     before, until; formerly
+adv: τότε
+     then
+adv: καθάπερ
+     according as, just as
+adv: οὕτως
+     in this manner, thus, so
+     even so, just so
+     = οὕτω
+adv: λίαν
+     very, exceedingly
+     = λίην
+adv: ὀλιγαχοῦ
+     in a few places
+
+# PREPOSITIONS
+
+prep: ἀμφί
+      (+acc.) around, about
+prep: ἀνά
+      (+acc.) up, through
+prep: διά
+      (+acc.) because of, through
+prep: εἰς
+      (+acc.) into
+prep: ἐς
+      (+acc.) into
+prep: ἐπί
+      (+acc.) against
+      = ἐπ'
+      = ἐπ
+prep: κατά
+      (+acc.) down, along, according to
+prep: μετά
+      (+acc.) after, behind
+prep: παρά
+      (+acc.) to, throughout, beside
+prep: περί
+      (+acc.) near, around
+prep: πρός
+      (+acc.) toward
+prep: ὑπέρ
+      (+acc.) above, over, beyond
+prep: ὑπό
+      (+acc.) under
+
+prep: ἀμφί
+      (+dat.) around, near
+prep: ἀνά
+      (+dat.) upon
+prep: ἐν
+      (+dat.) in
+prep: ἐπί
+      (+dat.) on, for the purpose of, because of
+      = ἐπ'
+      = ἐπ
+prep: παρά
+      (+dat.) with, near
+prep: περί
+      (+dat.) about
+prep: πρός
+      (+dat.) by, in addition to
+prep: σύν
+      (+dat.) with (the help of)
+prep: ὑπό
+      (+dat.) under
+
+
+prep: ἀμφί
+      (+gen.) around, for the sake of
+prep: ἀντί
+      (+gen.) opposite, instead of, for the sake of
+prep: ἀπό
+      (+gen.) from
+      = ἀπ
+      = ἀφ
+
+prep: διά
+      (+gen.) through
+prep: ἐκ
+     (+gen.) from
+     = ἐξ
+prep: ἐπί
+      (+gen.) on, at
+prep: κατά
+      (+gen.) down, against
+prep: μετά
+      (+gen.) with
+prep: παρά
+      (+gen.) from
+prep: περί
+      (+gen.) about
+prep: πρό
+      (+gen.) before, in front of
+prep: πρός
+      (+gen.) toward, (swear) by
+prep: ὑπέρ
+      (+gen.) over, on behalf of
+prep: ὑπό
+      (+gen.) under, by
+
+
+adv: ἅμα
+     together with (+dat.)
+adv: ἄνευ
+     without, except, besides (+gen.)
+adv: ἄχρι
+     until (+gen.)
+adv: ἄχρις
+     until (+gen.)
+adv: ἕνεκα
+     because of (+gen.)
+adv: ἔξω
+     outside of (+gen.)
+adv: μεταξύ
+     between (+gen.)
+adv: μέχρι
+     as far as (+ gen.)
+adv: ὁπίσω
+     behind, after (+gen.)
+adv: πλήν
+     except (+gen.)
+adv: χωρίς
+     separately, without (+gen.)
+adv: κἀκεῖ
+     and there
+adv: ἐκεῖ
+     there, to there
+adv: τἀκεῖ
+     what is or happens there, events there
+adv: οὔπω
+     not yet
+
+conj: ἵνα
+      where; purpose: so that, in order that
+conj: ὅπου
+      where, wherever
+conj: ὅπως
+      how; purpose: so that, in order that
+
+conj: ὥστεὥστε
+      result: so that so that
+
+"μέχρι ὁπίσω"
+
+adv: ἐκεῖθεν
+     from that place, thence, opp. ἐκεῖσε
+     = ἐνθένδε
+
+adv: ἐκεῖσε
+     thither, to that place, opp. ἐκεῖθεν or ἐνθένδε
+
+indecl: δεῖ
+        It is necessary, It must
+
+indecl: ἔδει
+        (act.impf.ind)
+        It was necessary, It must
+
+indecl: δεήσει
+        (act.fut.ind)
+        It will be necessary, It must
+
+indecl: ἐδέησε
+        (act.aor.ind) It was necessary, It must
+
+indecl: χρή
+        It is necessary, It must
+
+indecl:  ἐχρῆν
+        (act.impf.ind)
+        It was necessary, It must
+
+indecl: χρῆν
+        (act.impf.ind)
+        It was necessary, It must
+
+indecl: χρηστέον
+         one must use
+
+num: δέκα
+         (cardinal) ten
+num: δίς • (dís)
+         (cardinal δύο, ordinal δεύτερος)
+         twice, doubly, again
+adv: δίχα • (díkha)
+         in two, asunder, apart
+         in doubt
+         differently, oppositely
+num: δύο
+     (cardinal): two
+      = δύ'
+      = δύω
+num: δώδεκα
+          (cardinal) twelve
+num: εἴκοσι
+         (cardinal) twenty
+num: εἷς
+        (cardinal) one
+num: ἑκατόν
+         (cardinal) hundred
+num: ἕνδεκα
+         (cardinal) eleven
+num: ἐννέα
+         (cardinal) nine
+num ἕξ • (héx)
+        (cardinal) six
+        (ordinal ἕκτος, adverbial ἑξάκις)
+adv: ἑξάκις • (hexákis) (cardinal ἕξ, ordinal ἕκτος)
+      six times
+
+num: ἑπτά
+         (cardinal) seven
+num: Ι • (I)
+     ten
+     (uppercase, lowercase ι)
+     = ι
+num: ὀκτώ • (oktṓ) (ordinal ὄγδοος, adverbial ὀκτάκις)
+         (cardinal) eight
+num: πέμπε • (pémpe), genitive πέμπων (pémpōn)
+         Aeolic form of πέντε (pénte, “five”)
+num: πέντε • (pénte) (ordinal πέμπτος, adverbial πεντάκις)
+         (cardinal) five
+num: τέσσαρες
+         (cardinal) four
+         = τέτταρες
+num: τρεῖς • (treîs) (ordinal τρίτος, adverbial τρίς)
+         (cardinal) three
+num: τριάκοντα
+         (cardinal) thirty
+num: τρίς • (trís) (cardinal τρεῖς, ordinal τρίτος)
+     (adverbial) thrice, three times
+num: χίλιοι
+    -thousands
