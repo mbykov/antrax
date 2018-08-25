@@ -56,9 +56,9 @@ export function antrax (wf) {
     queryDBs(plainsegs),
     getFlex(lasts)
   ]).then(function (res) {
-    let terms = res[0]
-    let dicts = res[1]
-    let flexes = res[2]
+    let terms = _.flatten(res[0])
+    let dicts = _.flatten(res[1])
+    let flexes = _.flatten(res[2])
     // clog('=== RES:', res[1])
     return main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts)
     // return []
