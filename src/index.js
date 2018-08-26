@@ -111,13 +111,11 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   // неясно, compound до addDict или после
   addDicts(chains, pnonlasts, segdicts)
 
-  chains = _.filter(chains, chain => { return chain.length == 2 })
+  chains = _.filter(chains, chain => { return chain.length == 2 }) // NB: <<<<<<<<<<<<<<<<<<<<<========================
   // compound(chains)
-  // let specs = _.filter(chains, chain => { return chain.slice(0, -1).map(seg => {return seg.dicts.map(dict => { return dict.spec } ).length } ) })
 
   let fulls = fullChains(chains)
   log('chains: ', chains.length, 'fulls: ', fulls.length)
-  // log('chains: ', chains)
   if (fulls.length) chains = fulls
   else return []
 
@@ -135,11 +133,7 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
     }
   })
 
-  // убрать - д.б. uniqNames
-  bests.forEach(best => {
-    _.last(best).flexes.forEach(flex => { delete flex.dicts, delete flex.flex, delete flex.a, delete flex.h, delete flex.rgend, delete flex.rdicts })
-    // DELETES - здесь проходит
-  })
+  if (!bests.length) return
   return {form: cwf, chains: bests}
 }
 

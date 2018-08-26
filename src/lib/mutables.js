@@ -102,15 +102,16 @@ export function parseName (seg, segs, flexes) {
   let advflexes = _.filter(flexes, flex => { return flex.adv })
 
 
-  let gnames = _.filter(lastnames, dict => { return dict.gend })
-  let anames = _.filter(lastnames, dict => { return !dict.gend })
-  let ndicts = []
-  let nfls = []
+  // let gnames = _.filter(lastnames, dict => { return dict.gend })
+  // let anames = _.filter(lastnames, dict => { return !dict.gend })
+  // let ndicts = []
+  // let nfls = []
   lastnames.forEach(dict => {
-    if (dict.plain == 'αβα') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'δειν') log('NAME-d ===========================>>>', dict)
     let fls = _.filter(nameflexes, flex => {
-      if (dict.plain == 'αβα' && flex.numcase == 'sg.gen') log('NAME-f =========================', flex)
+      if (dict.plain == 'δειν' && flex.numcase == 'sg.nom') log('NAME-f =========================', flex)
       if (dict.gend && dict.gend != flex.gend) return false
+      if (dict.ends && dict.ends != flex.ends) return false
       if (!dict.keys.includes(flex.key)) return false
       return true
     })
