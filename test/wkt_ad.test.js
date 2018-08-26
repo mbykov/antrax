@@ -37,7 +37,7 @@ let param = process.argv.slice(2)[1]
 
 let skip = true
 
-let cases = ['nom', 'gen', 'dat', 'acc', 'voc']
+// let cases = ['nom', 'gen', 'dat', 'acc', 'voc']
 let marks = ['dict', 'nom', 'gen', 'dat' , 'acc' , 'voc' , 'adv' , 'caution' ]
 
 const gends = {
@@ -59,15 +59,13 @@ rows.forEach((row, idx) => {
   if (!row) return
   if (row[0] == '#') return
   else if (row[0] == ' ') return
-  // if (idx > 82) return
+  // if (idx > 125) return
   row = row.trim()
   if (row == 'MA')
   { skip = false
     return }
   if (skip) return
-  // dict: βαθύς • (bathús) m (feminine βαθεῖα, neuter βαθύ); first/third declension
-  // dict: βάρβαρος • (bárbaros) m, f (neuter βάρβαρον); second declension (Attic, Ionic, Koine)
-  // dict: ἁβρός • (habrós) m (feminine ἁβρά, neuter ἁβρόν); first/second declension (
+
   let arr = row.split(': ')
   let mark = arr[0].trim()
   if (!marks.includes(mark)) return
@@ -115,37 +113,39 @@ rows.forEach((row, idx) => {
 
 tests = _.flatten(tests)
 
-// tests = tests.slice(0, 5)
+// tests = tests.slice(-25)
 // console.log('T', tests)
 // tests = []
 
 forEach(tests)
   .it('adj %s %s %s %s ', (rdict, arg, gend, num, kase, done) => {
-    // log('->', rdict, arg, gend, num, kase)
+    // log('--->', rdict, arg, gend, num, kase)
     antrax(arg)
-      .then(chains => {
-        if (!chains.length) log('NO RESULT'), assert.equal(false, true)
-        // remove other results:
-        let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return dict.rdict}).includes(rdict) })
-        if (!corrchs.length) log('no correct rdict'), assert.equal(false, true)
-        corrchs = _.filter(corrchs, ch => { return ch[ch.length-2].dicts.map(dict => { return !dict.gend } ) })
-        if (!corrchs.length) log('no adj'), assert.equal(false, true)
-        corrchs = _.filter(corrchs, ch => { return ch[ch.length-1].flexes.map(flex => { return flex.gend == gend}) })
-        if (!corrchs.length) log('no correct flex'), assert.equal(false, true)
+      .then(results => {
+        results.forEach(res => {
+          let chains = res.chains
+          if (!chains) return // indecls
+          if (!chains.length) log('NO RESULT'), assert.equal(false, true)
+          // remove other results:
+          let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return dict.rdict}).includes(rdict) })
+          // log('CORR', corrchs.length)
+          if (!corrchs.length) log('no correct rdict'), assert.equal(false, true)
+          corrchs = _.filter(corrchs, ch => { return _.filter(ch[ch.length-2].dicts, dict => { return !dict.gend }).length }) // remove nouns
+          // log('GENDS', corrchs.length)
+          if (!corrchs.length) log('no adj'), assert.equal(false, true)
+          corrchs = _.filter(corrchs, ch => { return ch[ch.length-1].flexes.map(flex => { return flex.gend == gend}) })
+          if (!corrchs.length) log('no correct flex'), assert.equal(false, true)
 
-        corrchs.forEach(chain => {
-          // log('CH.length', chain.length)
-          if (chain.length > 2) log('CH.length'), assert.equal(false, true)
-          let penult = chain[chain.length-2]
-          let fls = _.last(chain).flexes
-          let actuals = fls.map(flex => { return flex.numcase })
-          let expected = [num, kase].join('.')
-          // log('-------', actuals, expected)
-          assert.equal(actuals.includes(expected), true)
-
-          penult.dicts.forEach(dict => {
+          corrchs.forEach(chain => {
+            // log('CH.length', chain.length)
+            if (chain.length > 2) log('CH.length'), assert.equal(false, true)
+            let penult = chain[chain.length-2]
+            let fls = _.last(chain).flexes
+            let actuals = fls.map(flex => { return flex.numcase })
+            let expected = [num, kase].join('.')
+            // log('------- acts:', actuals, 'exps:', expected)
+            assert.equal(actuals.includes(expected), true)
           })
-
         })
       })
       .then(done)
