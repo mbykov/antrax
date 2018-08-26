@@ -132,24 +132,20 @@ export function parseName (seg, segs, flexes) {
 
   // ADVERBS
   lastnames.forEach(dict => {
-    let fls = []
-    if (dict.plain == 'ααατ') log('ADV-d ===========================>>>', dict)
-    advflexes.forEach(flex => {
-      if (dict.plain == 'ααατ') log('ADV-f =========================', flex)
-
-      let dint =_.intersection(dict.dicts, flex.dicts)
-      if (!dint.length) return false
-
-      // delete flex.dicts, delete flex.flex, delete flex.a, delete flex.h, delete flex.rgend
-      let cflex = _.clone(flex)
-      fls.push(cflex)
+    if (dict.plain == 'αγαθ') log('ADV-d ===========================>>>', dict)
+    let fls = _.filter(advflexes, flex => {
+      if (dict.plain == 'αγαθ') log('ADV-f =========================', flex)
+      if (!dict.keys.includes(flex.key)) return false
+      return true
     })
 
     if (!fls.length) return
 
-    let flsobj = {seg: seg, flexes: fls}
+    let cleanfls = fls.map(flex => { return {adv: true, term: flex.term, degree: flex.degree} })
+    let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
+    cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
+    let flsobj = {seg: seg, flexes: cleanfls}
     let nchain = cloneChain(segs, [dict], null, flsobj)
-    // _.last(nchain).flexes.forEach(flex => { delete flex.dicts, delete flex.flex }) // DELETES - изменяет flexes ! нельзя !
     nchains.push(nchain)
   }) // adv
   return nchains
