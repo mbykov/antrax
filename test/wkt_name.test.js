@@ -109,27 +109,31 @@ rtests.forEach(doc => {
 
 forEach(tests)
   .it('name %s %s %s %s ', (rdict, arg, gend, numcase, done) => {
-    // log('->', rdict, arg, gend, numcase)
+    // log('--->', rdict, arg, gend, numcase)
     antrax(arg)
-      .then(chains => {
-        if (!chains.length) log('NO RESULT'), assert.equal(false, true)
-        // remove other results:
-        let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return dict.rdict}).includes(rdict)
-                                               && ch[ch.length-2].dicts.map(dict => { return dict.gend}).includes(gend)})
-        if (!corrchs.length) log('no correct chains'), assert.equal(false, true)
+      .then(results => {
+        results.forEach(res => {
+          let chains = res.chains
+          if (!chains) return // indecls
+          if (!chains.length) log('NO RESULT'), assert.equal(false, true)
+          // remove other results:
+          let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return dict.rdict}).includes(rdict)
+                                                 && ch[ch.length-2].dicts.map(dict => { return dict.gend}).includes(gend)})
+          if (!corrchs.length) log('no correct chains'), assert.equal(false, true)
 
-        corrchs.forEach(chain => {
-          // log('CH.length', chain)
-          if (chain.length > 2) log('CH.length'), assert.equal(false, true)
-          let penult = chain[chain.length-2]
-          let names = _.filter(penult.dicts, dict => { return dict.name })
-          if (!names.length) log('no name'), assert.equal(false, true)
-          // let gends = _.filter(names, dict => { return dict.gend == gend })
-          // if (!gends.length) log('no gend'), assert.equal(false, true)
-          names.forEach(dict => {
-            let fls = _.last(chain).flexes
-            let numcases = fls.map(flex => { return flex.numcase })
-            assert.equal(numcases.includes(numcase), true)
+          corrchs.forEach(chain => {
+            // log('CH.length', chain)
+            if (chain.length > 2) log('CH.length'), assert.equal(false, true)
+            let penult = chain[chain.length-2]
+            let names = _.filter(penult.dicts, dict => { return dict.name })
+            if (!names.length) log('no name'), assert.equal(false, true)
+            // let gends = _.filter(names, dict => { return dict.gend == gend })
+            // if (!gends.length) log('no gend'), assert.equal(false, true)
+            names.forEach(dict => {
+              let fls = _.last(chain).flexes
+              let numcases = fls.map(flex => { return flex.numcase })
+              assert.equal(numcases.includes(numcase), true)
+          })
           })
         })
       })

@@ -107,9 +107,11 @@ export function parseName (seg, segs, flexes) {
   // let ndicts = []
   // let nfls = []
   lastnames.forEach(dict => {
-    if (dict.plain == 'δειν') log('NAME-d ===========================>>>', dict)
+    if (dict.added) return false
+    if (dict.plain == 'αγρωστ') log('NAME-d ===========================>>>', dict)
     let fls = _.filter(nameflexes, flex => {
-      if (dict.plain == 'δειν' && flex.numcase == 'sg.nom') log('NAME-f =========================', flex)
+      if (flex.added) return false
+      if (dict.plain == 'αγρωστ' && flex.numcase == 'sg.nom') log('NAME-f =========================', flex)
       if (dict.gend && dict.gend != flex.gend) return false
       if (dict.ends && dict.ends != flex.ends) return false
       if (!dict.keys.includes(flex.key)) return false
