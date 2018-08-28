@@ -26,10 +26,9 @@ let apath = path.resolve(__dirname, '../../egreek')
 enableDBs(upath, apath)
 
 antrax(wordform).then(chains => {
-  // if (only && only == 'log') chains.forEach(chain => { log('C:', chain) , log('D:', chain[chain.length-2].dicts), log('F:', chain[chain.length-1].flexes) })
   if (only && only == 'log') chains.forEach(chain => { log('C:'), insp(chain)  })
-  else chains.forEach(chain => { log('C:'), insp(chain)  })
-  // else chains.forEach(chain => { log('C:', chain) , log('F:', chain[chain.length-1].flexes) })
+  // else chains.forEach(chain => { log('C:'), insp(chain)  })
+  else insp(chains)
   console.timeEnd("queryTime");
 }).catch(function (err) {
   console.log('ANTRAX-ERR', err)

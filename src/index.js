@@ -19,12 +19,13 @@ export function enableDBs (upath, apath) {
   setDBs(upath, apath)
 }
 
-export function clause (wfs) {
-    let keys = wfs.map(wf => comb(wf))
-    return getTerms(keys)
-}
+// export function clause (wfs) {
+//     let keys = wfs.map(wf => comb(wf))
+//     return getTerms(keys)
+// }
 
 export function antrax (wf) {
+
   let clwf = cleanStr(wf)
   let cwf = comb(clwf)
 
@@ -52,9 +53,10 @@ export function antrax (wf) {
   ]).then(function (res) {
     let terms = _.flatten(res[0])
     let dicts = _.flatten(res[1])
+    dicts = _.filter(dicts, dict => { return !dict.term })
     let flexes = _.flatten(res[2])
     let muts = main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts)
-    return terms.concat(muts)
+    return _.compact(terms.concat(muts))
   })
 }
 
@@ -120,7 +122,19 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   else return []
 
   // соответствие dicts и flex, added dicts
-  let cleans = filterDictFlex(chains)
+  let dfchains = filterDictFlex(chains)
+
+  // нужно, чтобы лишних в aors не было, но пока: (κτήσησθε)
+  let cleans = []
+  let fkeys = {}
+  dfchains.forEach(chain => {
+    let penult = chain[chain.length-2]
+    let ult = chain[chain.length-1]
+    let fkey = [JSON.stringify(penult.dicts), JSON.stringify(ult.flexes)].join('-')
+    if (fkeys[fkey]) return
+    cleans.push(chain)
+    fkeys[fkey] = true
+  })
 
   let bests = selectLongest(cleans)
   log('bests =>', bests.length)
@@ -134,7 +148,8 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   })
 
   if (!bests.length) return
-  return {form: cwf, chains: bests}
+  // return {form: cwf, chains: bests}
+  return bests
 }
 
 

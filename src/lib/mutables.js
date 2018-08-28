@@ -119,6 +119,7 @@ export function parseName (seg, segs, flexes) {
     })
 
     if (!fls.length) return
+    dict.pos = 'name'
     // ndicts.push(dict)
     // nfls = fls // в names не так, как в глаголах - здесь разные db
     let cleanfls = fls.map(flex => { return {numcase: flex.numcase, gend: flex.gend} })
@@ -131,17 +132,19 @@ export function parseName (seg, segs, flexes) {
 
 
   // ADVERBS
-  lastnames.forEach(dict => {
-    if (dict.plain == 'αγαθ') log('ADV-d ===========================>>>', dict)
+  lastnames.forEach(rdict => {
+    let dict = _.clone(rdict)
+    if (dict.plain == 'αργυρ') log('ADV-d ===========================>>>', dict)
     let fls = _.filter(advflexes, flex => {
-      if (dict.plain == 'αγαθ') log('ADV-f =========================', flex)
+      if (dict.plain == 'αργυρ') log('ADV-f =========================', flex)
       if (!dict.keys.includes(flex.key)) return false
       return true
     })
 
     if (!fls.length) return
+    dict.pos = 'adv'
 
-    let cleanfls = fls.map(flex => { return {adv: true, term: flex.term, degree: flex.degree} })
+    let cleanfls = fls.map(flex => { return {term: flex.term, degree: flex.degree} })
     let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
     cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
     let flsobj = {seg: seg, flexes: cleanfls}
@@ -159,7 +162,7 @@ function uniqDict(dicts) {
     if (!dict.trns) dict.trns = 'no trns:' + dict.rdict
     let uvkey = [dict.rdict, dict.dbname, dict.trns.toString()].join('')
     if (uvkeys[uvkey]) return
-    let udict = {verb: true, rdict: dict.rdict, dname: dict.dname, trns: dict.trns, weight: dict.weight}
+    let udict = {pos: 'verb', rdict: dict.rdict, dname: dict.dname, trns: dict.trns, weight: dict.weight}
     // let udict = dict
     if (dict.reg) udict.reg = true
     udicts.push(udict)
