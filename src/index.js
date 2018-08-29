@@ -112,7 +112,7 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
 
   // неясно, compound до addDict или после
   addDicts(chains, pnonlasts, segdicts)
-  // неясно вообще с addDicts
+  // неясно вообще с addDicts, оставить до aor
 
   chains = _.filter(chains, chain => { return chain.length == 2 }) // NB: <<<<<<<<<<<<<<<<<<<<<========================
   // compound(chains)

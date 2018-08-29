@@ -1,4 +1,4 @@
-import { log, voice } from './utils'
+import { log, voice, time } from './utils'
 import _ from 'lodash'
 
 import {comb, plain} from '../../../orthos'
@@ -52,6 +52,9 @@ export function parseVerb (seg, segs, flexes) {
       // return filterPart(dict, flex)
 
       if (dict.type != flex.type) return false
+
+      if (dict.pos != time(flex.tense)) return false
+
       if (!dict.pkeys) return false
       let vc = voice(flex.tense)
       if (flex.part && dict.pkeys[vc] && !dict.pkeys[vc].includes(flex.pkey)) return false
@@ -171,7 +174,8 @@ function uniqDict(dicts) {
     if (!dict.trns) dict.trns = 'no trns:' + dict.rdict
     let uvkey = [dict.rdict, dict.dbname, dict.trns.toString()].join('')
     if (uvkeys[uvkey]) return
-    let udict = {pos: 'verb', rdict: dict.rdict, dname: dict.dname, trns: dict.trns, weight: dict.weight}
+    // в глаголах dict.pos - везде - исправить на dict.time <<<<<<<<<<<<<<<<<<< NB!
+    let udict = {pos: 'verb', time: dict.pos, rdict: dict.rdict, plain: dict.plain, dname: dict.dname, trns: dict.trns, weight: dict.weight}
     // let udict = dict
     if (dict.reg) udict.reg = true
     udicts.push(udict)

@@ -206,7 +206,7 @@ export const augmods = ['act.impf.ind', 'mp.impf.ind', 'act.aor.ind', 'mid.aor.i
 export const apicompats = ['act.pres.ind', 'act.fut.ind', 'act.impf.ind','mp.pres.ind','mp.impf.ind','act.pres.sub','mp.pres.sub','mp.pres.opt', 'act.pres.opt', 'act.pres.imp', 'mp.pres.imp', 'mid.fut.ind', 'act.fut.opt', 'mid.fut.opt', 'act.aor.ind', 'mid.aor.ind', 'act.aor.sub', 'mid.aor.sub', 'act.aor.opt', 'mid.aor.opt', 'act.aor.imp', 'mid.aor.imp', 'pas.aor.ind', 'pas.fut.ind', 'pas.fut.opt', 'pas.aor.sub', '', '', '']
 
 
-export const tense =
+export const time =
   (vrnt) => { return vrnt.split('.')[1] }
 
 export const voice =
