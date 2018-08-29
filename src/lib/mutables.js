@@ -27,7 +27,8 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'αγ') log('NC-d ===========================>>>', dict)
+    // if (dict.plain == 'α') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'α' && dict.pos == 'fut') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
       // if (dict.plain == 'αγ' && flex.tense == 'act.aor.ind') log('NC-f =========================', flex)
 
@@ -41,15 +42,21 @@ export function parseVerb (seg, segs, flexes) {
       let vc = voice(flex.tense)
       if (dict.vkeys[vc] && dict.vkeys[vc].includes(flex.vkey) && dict.pos == flex.pos) return true
       if (flex.inf && dict.ikeys[vc] && dict.ikeys[vc].includes(flex.ikey)) return true
-      if (flex.part && dict.pkeys[vc] && dict.pkeys[vc].includes(flex.pkey)) return true
+      // if (flex.part && dict.pkeys[vc] && dict.pkeys[vc].includes(flex.pkey)) return true
       return false
     })
+
     let pfls = _.filter(partflexes, flex => {
       // pres.part-masc: ἀγαθοποιέων, ἀγαθοποιεόμενος
-      if (dict.plain == 'αγ' && flex.numcase == 'sg.gen') log('NC-p =========================', flex)
+      if (dict.plain == 'α' && flex.numcase == 'sg.gen') log('NC-p =========================', flex)
       // return filterPart(dict, flex)
+
+      if (dict.type != flex.type) return false
+      if (!dict.pkeys) return false
+      let vc = voice(flex.tense)
+      if (flex.part && dict.pkeys[vc] && !dict.pkeys[vc].includes(flex.pkey)) return false
+      // return true
       return true
-      // return false
     })
     if (fls.length) {
       vdicts.push(dict)
@@ -81,7 +88,7 @@ export function parseVerb (seg, segs, flexes) {
   }
 
   if (partdicts.length && partfls.length) {
-    let cleanfls = partfls.map(flex => { return {part: flex.part, numcase: flex.numcase, gend: flex.gend} })
+    let cleanfls = partfls.map(flex => { return {tense: flex.tense, numcase: flex.numcase, gend: flex.gend} })
     // let cleanfls = partfls.map(flex => { return flex })
     let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
     cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })

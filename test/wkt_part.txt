@@ -108,7 +108,8 @@ dict: ἄξων • (áxōn) m (feminine ἄξουσα, neuter ἄξον);
  future active participle of ἄγω (ágō)
 
 part: act.fut
-verb: ἄγω
+# verb: ἄγω
+verb: ἄξω
 
 # First and third declension of ἄξων; ἄξουσα; ἄξον (Attic)
 
