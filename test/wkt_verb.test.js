@@ -100,7 +100,7 @@ pars.forEach(par => {
 
 })
 
-// tests = tests.slice(200, 300)
+// tests = tests.slice(200, 201)
 // console.log('T', tests)
 // tests = []
 
@@ -118,7 +118,7 @@ forEach(tests)
         corrchs.forEach(chain => {
           if (chain.length > 2) log('CH.length'), assert.equal(false, true)
           let penult = chain[chain.length-2]
-          let verbs = _.filter(penult.dicts, dict => { return dict.verb })
+          let verbs = _.filter(penult.dicts, dict => { return dict.pos == 'verb' })
           if (!verbs.length) log('no verb'), assert.equal(false, true)
           let cverbs = _.filter(verbs, dict => { return comb(dict.rdict) == comb(rdict) })
           if (!cverbs.length) log('no correct verb'), assert.equal(false, true)

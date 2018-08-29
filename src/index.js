@@ -99,7 +99,7 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   log('dplains---->', dplains)
   let ndplains = _.filter(dicts, dict => { return !dict.plain })
   log('ndplains---->', ndplains.length)
-  let kdicts = _.filter(dicts, dict => { return dict.plain == 'αγαλακτ'})
+  let kdicts = _.filter(dicts, dict => { return dict.plain == 'δ’'})
   log('kdicts---->', kdicts.length)
   log('flexes--->', flexes.length)
   let kflexes = _.filter(flexes, fl => { return fl.flex == 'έω'})
@@ -112,6 +112,7 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
 
   // неясно, compound до addDict или после
   addDicts(chains, pnonlasts, segdicts)
+  // неясно вообще с addDicts
 
   chains = _.filter(chains, chain => { return chain.length == 2 }) // NB: <<<<<<<<<<<<<<<<<<<<<========================
   // compound(chains)
@@ -217,26 +218,25 @@ function addDicts(chains, pnonlasts, segdicts) {
     let weaks = strong2weak[first]
     if (!vowels.includes(first)) {
       let added = ['ε', seg].join('') // aor.sub, opt, impf from ind
-      let adicts = segdicts[added]
-      addDictCarefully(pnonlasts, sdicts, adicts, 'added')
+      addDictCarefully(pnonlasts, segdicts, sdicts, added, 'added')
     } else if (first == 'ε') { // pas.aor.sub - βλέπω  - ἔβλεψα - ἐβλεφθῶ - dict plain βλε
       if (seg.length < 2) return
       let added = seg.slice(1)
-      let adicts = segdicts[added]
-      addDictCarefully(pnonlasts, sdicts, adicts, 'sliced')
+      addDictCarefully(pnonlasts, segdicts, sdicts, added, 'sliced')
     } else if (weaks) {
       weaks.forEach(weak => {
         let stem = seg.slice(1)
         let added = [weak, stem].join('')
-        let adicts = segdicts[added]
-        addDictCarefully(pnonlasts, sdicts, adicts, 'sliced')
+        addDictCarefully(pnonlasts, segdicts, sdicts, added, 'sliced')
       })
     }
     penult.dicts = _.uniq(_.compact(_.flatten(sdicts)))
   })
 }
 
-function addDictCarefully(pnonlasts, sdicts, adicts, mark) {
+function addDictCarefully(pnonlasts, segdicts, sdicts, added, mark) {
+  let adicts = segdicts[added]
+  adicts = _.filter(adicts, dict => { return dict.pos == 'verb' })
   if (!adicts || !adicts.length) return
   adicts.forEach(adict => {
     if (!pnonlasts.includes(adict.plain)) adict[mark] = true
