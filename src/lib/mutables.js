@@ -44,20 +44,20 @@ export function parseVerb (seg, segs, flexes) {
       if (flex.part && dict.pkeys[vc] && dict.pkeys[vc].includes(flex.pkey)) return true
       return false
     })
-    let pfls = _.filter(nameflexes, flex => {
-      // pres.part-masc: ἀγαθοποιέων, ἀγαθοποιεόμενος
-      if (dict.plain == 'αγαθοποι' && flex.numcase == 'sg.nom') log('NC-p =========================', flex)
-      // return filterPart(dict, flex)
-      return false
-    })
+    // let pfls = _.filter(nameflexes, flex => {
+    //   // pres.part-masc: ἀγαθοποιέων, ἀγαθοποιεόμενος
+    //   if (dict.plain == 'αγαθοποι' && flex.numcase == 'sg.nom') log('NC-p =========================', flex)
+    //   // return filterPart(dict, flex)
+    //   return false
+    // })
     if (fls.length) {
       vdicts.push(dict)
       vfls = vfls.concat(fls)
     }
-    if (pfls.length) {
-      partdicts.push(dict)
-      partfls = partfls.concat(pfls)
-    }
+    // if (pfls.length) {
+    //   partdicts.push(dict)
+    //   partfls = partfls.concat(pfls)
+    // }
   })
 
   // здесь verbs из разных rform (pres, fut, etc). Они дают корректные fls, но dicts должны дать один результат
@@ -79,14 +79,14 @@ export function parseVerb (seg, segs, flexes) {
     vchains.push(vchain)
   }
 
-  if (partdicts.length && partfls.length) {
-    let cleanfls = partfls.map(flex => { return {numcase: flex.numcase, gend: flex.gend} })
-    let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
-    cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
-    let flsobj = {seg: seg, flexes: cleanfls}
-    let pchain = cloneChain(segs, partdicts, null, flsobj)
-    // vchains.push(pchain)
-  }
+  // if (partdicts.length && partfls.length) {
+  //   let cleanfls = partfls.map(flex => { return {numcase: flex.numcase, gend: flex.gend} })
+  //   let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
+  //   cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
+  //   let flsobj = {seg: seg, flexes: cleanfls}
+  //   let pchain = cloneChain(segs, partdicts, null, flsobj)
+  //   // vchains.push(pchain)
+  // }
 
   return vchains
 }
@@ -108,13 +108,14 @@ export function parseName (seg, segs, flexes) {
   // let nfls = []
   lastnames.forEach(dict => {
     if (dict.added) return false
-    if (dict.plain == 'αγρωστ') log('NAME-d ===========================>>>', dict)
+    if (dict.plain == 'αγαλακτ') log('NAME-d ===========================>>>', dict)
     let fls = _.filter(nameflexes, flex => {
       if (flex.added) return false
-      if (dict.plain == 'αγρωστ' && flex.numcase == 'sg.nom') log('NAME-f =========================', flex)
+      if (dict.plain == 'αγαλακτ' && flex.numcase == 'sg.nom') log('NAME-f =========================', flex)
       if (dict.gend && dict.gend != flex.gend) return false
       if (dict.ends && dict.ends != flex.ends) return false
-      if (!dict.keys.includes(flex.key)) return false
+      if (dict.keys.includes(flex.key)) return true
+      if (dict.gend && dict.keys.map(key => { return key.split('-')[0] }).includes(flex.key.split('-')[0]) ) return true
       return true
     })
 

@@ -1,7 +1,7 @@
 //
 import _ from 'lodash'
 import { log } from './lib/utils'
-import { getTerms, getTerm, getFlex, queryDBs, setDBs } from './lib/pouch'
+import { getTerm, getFlex, queryDBs, setDBs } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import { parseVerb, parseName } from './lib/mutables'
 import { vowels, strongs } from './lib/utils'
@@ -99,8 +99,8 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   log('dplains---->', dplains)
   let ndplains = _.filter(dicts, dict => { return !dict.plain })
   log('ndplains---->', ndplains.length)
-  let kdicts = _.filter(dicts, dict => { return dict.plain == 'αβα'})
-  log('kdicts---->', kdicts)
+  let kdicts = _.filter(dicts, dict => { return dict.plain == 'αγαλακτ'})
+  log('kdicts---->', kdicts.length)
   log('flexes--->', flexes.length)
   let kflexes = _.filter(flexes, fl => { return fl.flex == 'έω'})
   kflexes = _.filter(kflexes, fl => { return fl.verb })
