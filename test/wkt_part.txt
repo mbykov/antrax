@@ -381,6 +381,7 @@ dict: διακοιρανέων • (diakoiranéōn) m (feminine διακοιρα
 
 part: act.pres
 verb: διακοιρανέω
+
  commanding over, ruling over
 
 # First and third declension of διακοιρανέων; διακοιρανέουσα; διακοιρανέον (Attic)

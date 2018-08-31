@@ -51,9 +51,9 @@ export function parseVerb (seg, segs, flexes) {
       if (dict.plain == 'α' && flex.numcase == 'sg.gen') log('NC-p =========================', flex)
       // return filterPart(dict, flex)
 
-      if (dict.type != flex.type) return false
-
+      // if (dict.type != flex.type) return false
       if (dict.pos != time(flex.tense)) return false
+      if (dict.reg && flex.reg) return true
 
       if (!dict.pkeys) return false
       let vc = voice(flex.tense)
