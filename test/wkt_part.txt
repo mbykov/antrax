@@ -218,7 +218,8 @@ dict: αὐδῶν • (audôn) m (feminine αὐδῶσα, neuter αὐδῶν)
  present active participle contracted of αὐδάω (audáō)
 
 part: act.pres
-verb: αὐδάω
+rverb: αὐδάω
+verb: αὐδῶ
 
 # First and third declension of αὐδῶν; αὐδῶσα; αὐδῶν (Attic)
 
@@ -290,7 +291,8 @@ dict: βιῶν • (biôn) m (feminine βιοῦσα, neuter βιοῦν); firs
  present active participle of βιόω (bióō)
 
 part: act.pres
-verb: βιόω
+rverb: βιόω
+verb: βιῶ
 
 # First and third declension of βιῶν; βιοῦσα; βιοῦν (Attic)
 
@@ -308,6 +310,7 @@ dict: γονυπετῶν • (gonupetôn) m (feminine γονυπετοῦσα, 
  present active participle of γονυπετῶ (gonupetô), contracted form of γονυπετέων (gonupetéōn)
 
 part: act.pres
+rverb: γονυπετέω
 verb: γονυπετῶ
 
 # First and third declension of γονυπετῶν; γονυπετοῦσα; γονυπετοῦν (Attic)
@@ -362,7 +365,8 @@ dict: διαιτῶν • (diaitôn)
  present active participle contracted of διαιτάω (diaitáō)
 
 part: act.pres
-verb: διαιτάω
+rverb: διαιτάω
+verb: διαιτῶ
 
 # First and third declension of διαιτῶν; διαιτῶσα; διαιτῶν (Attic)
 
@@ -562,7 +566,8 @@ dict: ἐρῶν • (erôn) m (feminine ἐρῶσα, neuter ἐρῶν); first
  contracted present active participle of ἐράω (eráō)
 
 part: act.pres
-verb: ἐράω
+rverb: ἐράω
+verb: ἐρῶ
 
 # First and third declension of ἐρῶν; ἐρῶσα; ἐρῶν (Attic)
 
@@ -598,7 +603,8 @@ dict: ἐφορῶν • (ephorôn) m (feminine ἐφορῶσα, neuter ἐφο
  active participle contracted of ἐφοράω (ephoráō)
 
 part: act.pres
-verb: ἐφοράω
+rverb: ἐφοράω
+verb: ἐφορῶ
 
 # and third declension of ἐφορῶν; ἐφορῶσα; ἐφορῶν (Attic)
 
@@ -653,7 +659,8 @@ dict: θεῶν • (theôn)
  present active participle of θεάομαι (theáomai)
 
 part: act.pres
-verb: θεάομαι
+rverb: θεάομαι
+verb: θεῶ
 
 # First and third declension of θεῶν; θεῶσα; θεῶν (Attic)
 
@@ -1050,7 +1057,8 @@ dict: νικῶν • (nīkôn) m
  (contracted) present active participle of νικάω
 
 part: act.pres
-verb: νικάω
+rverb: νικάω
+verb: νικῶ
 
 # First and third declension of νικῶν; νικῶσα; νικῶν (Attic)
 
@@ -1488,7 +1496,8 @@ dict: σημειῶν • (sēmeiôn) m (feminine σημειοῦσα, neuter σ
  present active participle of σημειόω (sēmeióō)
 
 part: act.pres
-verb: σημειόω
+rverb: σημειόω
+verb: σημειῶ
 
 # First and third declension of σημειῶν; σημειοῦσα; σημειοῦν (Attic)
 
@@ -1575,7 +1584,8 @@ dict: τιμῶν • (tīmôn)
  present active participle of τιμάω (timáō)
 
 part: act.pres
-verb: τιμάω
+rverb: τιμάω
+verb: τιμῶ
 
 # First and third declension of τιμῶν; τιμῶσα; τιμῶν (Attic)
 
