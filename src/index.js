@@ -99,7 +99,7 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   log('dplains---->', dplains)
   let ndplains = _.filter(dicts, dict => { return !dict.plain })
   log('ndplains---->', ndplains.length)
-  let kdicts = _.filter(dicts, dict => { return dict.plain == 'δ’'})
+  let kdicts = _.filter(dicts, dict => { return dict.plain == 'αγ'})
   log('kdicts---->', kdicts.length)
   log('flexes--->', flexes.length)
   let kflexes = _.filter(flexes, fl => { return fl.flex == 'έω'})

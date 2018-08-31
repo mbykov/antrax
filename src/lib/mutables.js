@@ -27,10 +27,9 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    // if (dict.plain == 'α') log('NC-d ===========================>>>', dict)
-    if (dict.plain == 'α' && dict.pos == 'fut') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'αγ') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      // if (dict.plain == 'αγ' && flex.tense == 'act.aor.ind') log('NC-f =========================', flex)
+      // if (dict.plain == 'αγ' && flex.tense == 'act.aor.ind') log('NC-f ============', flex)
 
       // return filterVerb(dict, flex)
       if (dict.reg && dict.rtype != flex.rtype) return false
@@ -48,7 +47,7 @@ export function parseVerb (seg, segs, flexes) {
 
     let pfls = _.filter(partflexes, flex => {
       // pres.part-masc: ἀγαθοποιέων, ἀγαθοποιεόμενος
-      if (dict.plain == 'α' && flex.numcase == 'sg.gen') log('NC-p =========================', flex)
+      if (dict.plain == 'αγ' && flex.reg && flex.numcase == 'sg.gen') log('NC-p ==========', flex)
       // return filterPart(dict, flex)
 
       if (dict.pos != time(flex.tense)) return false
