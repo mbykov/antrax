@@ -46,7 +46,6 @@ export function parseVerb (seg, segs, flexes) {
     })
 
     let pfls = _.filter(partflexes, flex => {
-      // pres.part-masc: ἀγαθοποιέων, ἀγαθοποιεόμενος
       if (dict.plain == 'αγ' && flex.reg && flex.numcase == 'sg.gen') log('NC-p ==========', flex)
       // return filterPart(dict, flex)
 
