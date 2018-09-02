@@ -27,10 +27,11 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'αγ') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'αυδ') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
       // if (dict.plain == 'αγ' && flex.tense == 'act.aor.ind') log('NC-f ============', flex)
 
+      if (!dict.vkeys) return false // пока что - jsj
       // return filterVerb(dict, flex)
       if (dict.reg && dict.rtype != flex.rtype) return false
       if (dict.reg && flex.reg) return true
@@ -39,6 +40,7 @@ export function parseVerb (seg, segs, flexes) {
       if (dict.type != flex.type) return false
       // if (dict.pos != flex.pos) return false // если здесь pos, то отвалится part, inf - можно только в формах ггаголов
       let vc = voice(flex.tense)
+      if (!dict.vkeys[vc]) return false
       if (dict.vkeys[vc] && dict.vkeys[vc].includes(flex.vkey) && dict.pos == flex.pos) return true
       if (flex.inf && dict.ikeys[vc] && dict.ikeys[vc].includes(flex.ikey)) return true
       // if (flex.part && dict.pkeys[vc] && dict.pkeys[vc].includes(flex.pkey)) return true
@@ -46,7 +48,7 @@ export function parseVerb (seg, segs, flexes) {
     })
 
     let pfls = _.filter(partflexes, flex => {
-      if (dict.plain == 'αγ' && flex.reg && flex.numcase == 'sg.gen') log('NC-p ==========', flex)
+      if (dict.plain == 'αυδ' && flex.reg && flex.numcase == 'sg.gen') log('NC-p ==========', flex)
       // return filterPart(dict, flex)
 
       if (dict.pos != time(flex.tense)) return false

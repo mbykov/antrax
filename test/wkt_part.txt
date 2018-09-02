@@ -9,6 +9,8 @@ dict: ἄγων • (ágōn) m (feminine ἄγουσα, neuter ἄγον); first
 
 part: act.pres
 verb: ἄγω
+plain: αγ
+rtype: ω
 
 # First and third declension of ἄγων; ἄγουσα; ἄγον (Attic)
 
@@ -27,6 +29,8 @@ dict: ἀμεθυστίζων • (amethustízōn) m (feminine ἀμεθυστ
 
 part: act.pres
 verb: ἀμεθυστίζω
+plain: αμεθυστι
+rtype: ζω
 
 # First and third declension of ἀμεθυστίζων; ἀμεθυστίζουσα; ἀμεθύστιζον (Attic)
 
@@ -45,6 +49,9 @@ dict: ἀμειβόμενος • (ameibómenos) m (feminine ἀμειβομέν
 
 part: mp.pres
 verb: ἀμείβω
+plain: αμειβ
+rtype: ω
+
 
 # First and second declension of ἀμειβόμενος; ἀμειβομένη; ἀμειβόμενον (Attic)
 
@@ -61,6 +68,9 @@ dict: ἀναγιγνωσκόμενος • (anagignōskómenos)
 
 part: mp.pres
 verb: ἀναγιγνώσκω
+plain: ἀναγιγνώσκ
+rtype: ω
+
 
 # First and second declension of ἀναγιγνωσκόμενος; ἀναγιγνωσκομένη; ἀναγιγνωσκόμενον (Attic)
 
@@ -77,6 +87,9 @@ dict: ἀνεσκαμμένος • (aneskamménos) m (feminine ἀνεσκαμ�
 
 part: mp.pf
 verb: ἀνασκάπτω
+plain: ἀνασκάπτ
+rtype: ω
+
 
 # First and second declension of ἀνεσκαμμένος; ἀνεσκαμμένη; ἀνεσκαμμένον (Attic)
 
@@ -93,6 +106,9 @@ dict: ἀνημμένος • (anēmménos)
 
 part: mp.pf
 verb: ἀνάπτω
+plain: ἀνάπτ
+rtype: ω
+
 
 # First and second declension of ἀνημμένος; ἀνημμένη; ἀνημμένον (Attic)
 
@@ -108,8 +124,11 @@ dict: ἄξων • (áxōn) m (feminine ἄξουσα, neuter ἄξον);
  future active participle of ἄγω (ágō)
 
 part: act.fut
-# verb: ἄγω
-verb: ἄξω
+verb: ἄγω
+# verb: ἄξω
+plain: αξ
+rtype: ω
+
 
 # First and third declension of ἄξων; ἄξουσα; ἄξον (Attic)
 
@@ -128,6 +147,9 @@ dict: ἀπαμειβόμενος • (apameibómenos)
 
 part: mp.pres
 verb: ἀπαμείβομαι
+plain: ἀπαμείβ
+rtype: ομαι
+
 
 # First and second declension of ἀπαμειβόμενος; ἀπαμειβομένη; ἀπαμειβόμενον (Attic)
 
@@ -147,6 +169,9 @@ dict: ἀπών • (apṓn) m (feminine ἀποῦσα, neuter ἀπόν); firs
 # NB: ἄπειμι ? keys ?
 part: act.pres
 verb: ἄπειμι
+plain: ἀπ
+rtype: ειμι
+
 
 # First and third declension of ἀπών; ἀποῦσα; ἀπόν (Attic)
 
@@ -165,6 +190,9 @@ dict: αὐδηθείς • (audētheís) m (feminine αὐδηθεῖσα, neut
 
 part: pas.aor
 verb: αὐδάω
+plain: αὐδ
+rtype: άω
+
 
 # First and third declension of αὐδηθείς; αὐδηθεῖσα; αὐδηθέν (Attic)
 
@@ -183,6 +211,9 @@ dict: αὐδήσας • (audḗsās) m (feminine αὐδήσασα, neuter α�
 
 part: act.aor
 verb: αὐδάω
+plain: αὐδ
+rtype: άω
+
 
 # First and third declension of αὐδήσας; αὐδήσασα; αὐδῆσαν (Attic)
 
@@ -200,7 +231,11 @@ dict: αὐδώμενος • (audṓmenos) m (feminine αὐδωμένη, neute
  present mediopassive participle of αὐδάω (audáō) contracted
 
 part: mp.pres
-verb: αὐδάω
+rverb: αὐδάω
+verb: αὐδῶ
+plain: αὐδ
+rtype: άω
+
 
 # First and second declension of αὐδώμενος; αὐδωμένη; αὐδώμενον (Attic)
 
@@ -220,6 +255,9 @@ dict: αὐδῶν • (audôn) m (feminine αὐδῶσα, neuter αὐδῶν)
 part: act.pres
 rverb: αὐδάω
 verb: αὐδῶ
+plain: αὐδ
+rtype: άω
+
 
 # First and third declension of αὐδῶν; αὐδῶσα; αὐδῶν (Attic)
 
@@ -238,6 +276,9 @@ dict: βεβηκώς • (bebēkṓs)
 
 part: act.pf
 verb: βαίνω
+plain: βεβηκ
+rtype: ώς
+
 
 # First and third declension of βεβηκώς; βεβηκυῖα; βεβηκός (Attic)
 
@@ -256,6 +297,9 @@ dict: βιβάς • (bibā́s)
 
 part: act.pres
 verb: βίβημι
+plain: βιβ
+rtype: άς
+
 
 # First and third declension of βιβάς; βιβᾶσα; βιβάν (Attic)
 
@@ -274,6 +318,9 @@ dict: βιούς • (bioús) m (feminine βιοῦσα, neuter βιόν); first
 
 part: act.aor
 verb: βιόω
+plain: βι
+rtype: όω
+
 
 # First and third declension of βιούς; βιοῦσα; βιόν (Attic)
 
@@ -293,6 +340,9 @@ dict: βιῶν • (biôn) m (feminine βιοῦσα, neuter βιοῦν); firs
 part: act.pres
 rverb: βιόω
 verb: βιῶ
+plain: βι
+rtype: όω
+
 
 # First and third declension of βιῶν; βιοῦσα; βιοῦν (Attic)
 
@@ -312,6 +362,9 @@ dict: γονυπετῶν • (gonupetôn) m (feminine γονυπετοῦσα, 
 part: act.pres
 rverb: γονυπετέω
 verb: γονυπετῶ
+plain: γονυπετ
+rtype: έω
+
 
 # First and third declension of γονυπετῶν; γονυπετοῦσα; γονυπετοῦν (Attic)
 
@@ -330,6 +383,9 @@ dict: γραφόμενος • (graphómenos) n (feminine γραφομένη, ne
 
 part: mp.pres
 verb: γράφω
+plain: γράφ
+rtype: ω
+
 
 # First and second declension of γραφόμενος; γραφομένη; γραφόμενον (Attic)
 
@@ -348,6 +404,9 @@ dict: δεδειγμένος • (dedeigménos) m (feminine δεδειγμένη
 
 part: mp.pf
 verb: δείκνυμι
+plain: δείκ
+rtype: νυμι
+
 
 # First and second declension of δεδειγμένος; δεδειγμένη; δεδειγμένον (Attic)
 
@@ -367,6 +426,9 @@ dict: διαιτῶν • (diaitôn)
 part: act.pres
 rverb: διαιτάω
 verb: διαιτῶ
+plain: διαιτ
+rtype: άω
+
 
 # First and third declension of διαιτῶν; διαιτῶσα; διαιτῶν (Attic)
 
@@ -385,6 +447,9 @@ dict: διακοιρανέων • (diakoiranéōn) m (feminine διακοιρα
 
 part: act.pres
 verb: διακοιρανέω
+plain: διακοιραν
+rtype: έω
+
 
  commanding over, ruling over
 
@@ -405,6 +470,9 @@ dict: διῃτημένος • (diēitēménos)
 
 part: mp.pf
 verb: διαιτάω
+plain: διαιτ
+rtype: άω
+
 
 # First and second declension of διῃτημένος; διῃτημένη; διῃτημένον (Attic)
 
@@ -422,7 +490,11 @@ dict: εἰδώς • (eidṓs) m (feminine εἰδυῖα, neuter εἰδός);
  perfect active participle of οἶδα (oîda)
 
 part: act.pf
-verb: οἶδα
+# rverb: οἶδα // perf ind
+verb: εἰδώ // perf sub
+plain: εἰδ
+rtype: ώς
+
 
 # First and third declension of εἰδώς; εἰδυῖα; εἰδός (Attic)
 
@@ -441,6 +513,9 @@ dict: εἰπών • (eipṓn)
 
 part: act.aor
 verb: εἶπον
+plain: εἰπ
+rtype: ών
+
 #
 # aorist, не определяется в dictWkt
 
@@ -461,6 +536,9 @@ dict: ἐλθών • (elthṓn) m (feminine ἐλθοῦσα, neuter ἐλθό�
 
 part: act.aor
 verb: ἔρχομαι
+plain: ἐλθ
+rtype: ών
+
 
 # First and third declension of ἐλθών; ἐλθοῦσα; ἐλθόν (Attic)
 
@@ -478,7 +556,11 @@ dict: ἑλών • (helṓn) m (feminine ἑλοῦσα, neuter ἑλόν); fir
  aorist active participle of αἱρέω (hairéō)
 
 part: act.aor
-verb: αἱρέω
+rverb: αἱρέω
+verb: εἷλον // aor
+plain: ἑλ
+rtype: ών
+
 
 # First and third declension of ἑλών; ἑλοῦσα; ἑλόν (Attic)
 
@@ -496,7 +578,11 @@ dict: ἐποψόμενος • (epopsómenos) m (feminine ἐποψομένη, 
  future middle participle of ἐφοράω (ephoráō)
 
 part: mid.fut
-verb: ἐφοράω
+# verb: ἐφοράω
+verb: ἐπόψομαι
+plain: ἐπο
+rtype: ψομαι
+
 
 # First and second declension of ἐποψόμενος; ἐποψομένη; ἐποψόμενον (Attic)
 
@@ -515,6 +601,9 @@ dict: ἐρόμενος • (erómenos) m (feminine ἐρομένη, neuter ἐ�
 
 part: mp.pres
 verb: ἔρομαι
+plain: ἔρ
+rtype: ομαι
+
 
 # First and second declension of ἐρόμενος; ἐρομένη; ἐρόμενον (Attic)
 
@@ -533,6 +622,9 @@ dict: ἐρχόμενος • (erkhómenos) m (feminine ἐρχομένη, neute
 
 part: mp.pres
 verb: ἔρχομαι
+plain: ἔρχ
+rtype: ομαι
+
 
 # First and second declension of ἐρχόμενος; ἐρχομένη; ἐρχόμενον (Attic)
 
@@ -549,6 +641,9 @@ dict: ἐρώμενος • (erṓmenos) m (feminine ἐρωμένη, neuter ἐ
 
 part: mp.pres
 verb: ἐράω
+plain: ἐρ
+rtype: άω
+
 
 # First and second declension of ἐρώμενος; ἐρωμένη; ἐρώμενον (Attic)
 
@@ -568,6 +663,9 @@ dict: ἐρῶν • (erôn) m (feminine ἐρῶσα, neuter ἐρῶν); first
 part: act.pres
 rverb: ἐράω
 verb: ἐρῶ
+plain: ἐρα
+rtype: άω
+
 
 # First and third declension of ἐρῶν; ἐρῶσα; ἐρῶν (Attic)
 
@@ -586,6 +684,9 @@ dict: εὐχόμενος • (eukhómenos) m (feminine εὐχομένη, neute
 
 part: mp.pres
 verb: εὔχομαι
+plain: εὔχ
+rtype: ομαι
+
 
 # and second declension of εὐχόμενος; εὐχομένη; εὐχόμενον (Attic)
 
@@ -605,6 +706,9 @@ dict: ἐφορῶν • (ephorôn) m (feminine ἐφορῶσα, neuter ἐφο
 part: act.pres
 rverb: ἐφοράω
 verb: ἐφορῶ
+plain: ἐφορ
+rtype: άω
+
 
 # and third declension of ἐφορῶν; ἐφορῶσα; ἐφορῶν (Attic)
 
@@ -623,6 +727,9 @@ dict: ἔχων • (ékhōn) m (feminine ἔχουσα, neuter ἔχον); firs
 
 part: act.pres
 verb: ἔχω
+plain: ἔχ
+rtype: ω
+
 
 # First and third declension of ἔχων; ἔχουσα; ἔχον (Attic)
 
@@ -641,7 +748,8 @@ dict: ἐών • (eṓn)
 
 part: act.pres
 verb: εἰμί
-# NB - εἰμί - не определяется в dictWkt
+plain: ἐ
+rtype: ών
 
 # First and third declension of ἐών; ἐοῦσα; ἐόν (Attic)
 
@@ -661,6 +769,9 @@ dict: θεῶν • (theôn)
 part: act.pres
 rverb: θεάομαι
 verb: θεῶ
+plain: θ
+rtype: εῶ
+
 
 # First and third declension of θεῶν; θεῶσα; θεῶν (Attic)
 
@@ -679,6 +790,9 @@ dict: ἰδών • (idṓn) m (feminine ἰδοῦσα, neuter ἰδόν); firs
 
 part: act.aor
 verb: ὁράω
+plain: ὁρ
+rtype: άω
+
 
 # First and third declension of ἰδών; ἰδοῦσα; ἰδόν (Attic)
 
@@ -697,6 +811,9 @@ dict: ἱλάων • (hīlā́ōn) m (feminine ἱλάουσα, neuter ι
 
 part: act.pres
 verb: ἱλάομαι
+plain: ἱλ
+rtype: άομαι
+
 
 # First and third declension of ἱλάων; ἱλάουσα; ἱλᾶον (Attic)
 
@@ -715,6 +832,9 @@ dict: ἰών • (iṓn) m (feminine ἰοῦσα, neuter ἰόν); first/third
 
 part: act.pres
 verb: εἶμι
+plain: ἰ
+rtype: ών
+
 # NB eimi
 
 # First and third declension of ἰών; ἰοῦσα; ἰόν (Attic)
@@ -734,6 +854,9 @@ dict: καλυφείς • (kalupheís) m (feminine καλυφεῖσα, neuter 
 
 part: pas.aor
 verb: καλύπτω
+plain: καλυφ
+rtype: είς
+
 
 # First and third declension of καλυφείς; καλυφεῖσα; καλυφέν (Attic)
 
@@ -752,6 +875,9 @@ dict: κανονιζόμενος • (kanonizómenos)
 
 part: mp.pres
 verb: κανονίζω
+plain: κανονί
+rtype: ζω
+
 
 # First and second declension of κανονιζόμενος; κανονιζομένη; κανονιζόμενον (Attic)
 
@@ -770,6 +896,9 @@ dict: κατακεχυμένος • (katakekhuménos) m (feminine κατακε�
 
 part: mp.pf
 verb: καταχέω
+plain: καταχ
+rtype: έω
+
 
 # First and second declension of κατακεχυμένος; κατακεχυμένη; κατακεχυμένον (Attic)
 
@@ -788,6 +917,9 @@ dict: κατεσκευασμένος • (kateskeuasménos) m (feminine κατε
 
 part: mp.pf
 verb: κατασκευάζω
+plain: κατασκευά
+rtype: ζω
+
 
 # First and second declension of κατεσκευασμένος; κατεσκευασμένη; κατεσκευασμένον (Attic)
 
@@ -806,6 +938,9 @@ dict: κεκλεισμένος • (kekleisménos) m (feminine κεκλεισμ�
 
 part: pas.pf
 verb: κλῄζω
+plain: κλῄ
+rtype: ζω
+
 
 # First and second declension of κεκλεισμένος; κεκλεισμένη; κεκλεισμένον (Koine)
 
@@ -824,6 +959,9 @@ dict: κεχηνώς • (kekhēnṓs)
 
 part: act.pf
 verb: χάσκω
+plain: χάσκ
+rtype: ω
+
 
 # First and third declension of κεχηνώς; κεχηνυῖα; κεχηνός (Attic)
 
@@ -842,6 +980,9 @@ dict: κρίνων • (krī́nōn) m (feminine κρίνουσα, neuter κ�
 
 part: act.pres
 verb: κρίνω
+plain: κρίν
+rtype: ω
+
 
 # First and third declension of κρίνων; κρίνουσα; κρῖνον (Attic)
 
@@ -860,6 +1001,9 @@ dict: λαβών • (labṓn) m (feminine λαβοῦσα, neuter λαβόν); 
 
 part: act.aor
 verb: λαμβάνω
+plain: λαβ
+rtype: ών
+
 
 # First and third declension of λαβών; λαβοῦσα; λαβόν (Attic)
 
@@ -878,6 +1022,9 @@ dict: λανθάνων • (lanthánōn) m (feminine λανθάνουσα, neute
 
 part: act.pres
 verb: λανθάνω
+plain: λανθάν
+rtype: ω
+
 
 # First and third declension of λανθάνων; λανθάνουσα; λανθάνον (Attic)
 
@@ -896,6 +1043,9 @@ dict: λελυκώς • (lelukṓs)
 
 part: act.pf
 verb: λύω
+plain: λύ
+rtype: ω
+
 
 # First and third declension of λελυκώς; λελυκυῖα; λελυκός (Attic)
 
@@ -914,6 +1064,9 @@ dict: λιθίζων • (lithízōn) m (feminine λιθίζουσα, neuter
 
 part: act.pres
 verb: λιθίζω
+plain: λιθί
+rtype: ζω
+
 
 # First and third declension of λιθίζων; λιθίζουσα; λιθίζον (Attic)
 
@@ -932,6 +1085,9 @@ dict: λύσας • (lū́sās) m (feminine λύσασα, neuter λῦσα�
 
 part: act.aor
 verb: λύω
+plain: λύ
+rtype: ω
+
 
 # First and third declension of λύσας; λύσασα; λῦσαν (Attic)
 
@@ -950,6 +1106,9 @@ dict: λύων • (lū́ōn)
 
 part: act.pres
 verb: λύω
+plain: λύ
+rtype: ω
+
 
 # First and third declension of λύων; λύουσα; λῦον (Attic)
 
@@ -968,6 +1127,9 @@ dict: μέλλων • (méllōn) m (feminine μέλλουσα, neuter μέλλ�
 
 part: act.pres
 verb: μέλλω
+plain: μέλλ
+rtype: ω
+
 
 # First and third declension of μέλλων; μέλλουσα; μέλλον (Attic)
 
@@ -986,6 +1148,9 @@ dict: νεκραγωγεόμενος • (nekragōgeómenos) m (feminine νεκ�
 
 part: mp.pres
 verb: νεκραγωγέω
+plain: νεκραγωγ
+rtype: έω
+
 
 # First and second declension of νεκραγωγεόμενος; νεκραγωγεομένη; νεκραγωγεόμενον (Attic)
 
@@ -1004,6 +1169,9 @@ dict: νεκραγωγέων • (nekragōgéōn) m (feminine νεκραγωγέ
 
 part: act.pres
 verb: νεκραγωγέω
+plain: νεκραγωγ
+rtype: έω
+
 
 # First and third declension of νεκραγωγέων; νεκραγωγέουσα; νεκραγωγέον (Attic)
 
@@ -1022,6 +1190,9 @@ dict: νέων • (néōn) m (feminine νέουσα, neuter νέον); first/se
 
 part: act.pres
 verb: νέω
+plain: ν
+rtype: έω
+
 
 # First and third declension of νέων; νέουσα; νέον (Attic)
 
@@ -1040,6 +1211,9 @@ dict: νήσων • (nḗsōn)
 
 part: act.fut
 verb: νέω
+plain: ν
+rtype: έω
+
 
 # First and third declension of νήσων; νήσουσα; νῆσον (Attic)
 
@@ -1059,6 +1233,9 @@ dict: νικῶν • (nīkôn) m
 part: act.pres
 rverb: νικάω
 verb: νικῶ
+plain: νικ
+rtype: άω
+
 
 # First and third declension of νικῶν; νικῶσα; νικῶν (Attic)
 
@@ -1077,6 +1254,9 @@ dict: νυγείς • (nugeís) m (feminine νυγεῖσα, neuter νυγέν)
 
 part: pas.aor
 verb: νύσσω
+plain: νυγ
+rtype: είς
+
 
 # First and third declension of νυγείς; νυγεῖσα; νυγέν (Attic)
 
@@ -1095,6 +1275,9 @@ dict: νύξας • (núxās) m (feminine νύξασα, neuter νύξαν);
 
 part: act.aor
 verb: νύσσω
+plain: νύξ
+rtype: ας
+
 
 # First and third declension of νύξας; νύξασα; νύξαν (Attic)
 
@@ -1113,6 +1296,9 @@ dict: νύσσων • (nússōn) m (feminine νύσσουσα, neuter νύ�
 
 part: act.pres
 verb: νύσσω
+plain: νύσσ
+rtype: ω
+
 
 # First and third declension of νύσσων; νύσσουσα; νύσσον (Attic)
 
@@ -1131,6 +1317,9 @@ dict: ὄζων • (ózōn) m (feminine ὄζουσα, neuter ὄζον); first
 
 part: act.pres
 verb: ὄζω
+plain: ὄζ
+rtype: ω
+
 
 # First and third declension of ὄζων; ὄζουσα; ὄζον (Attic)
 
@@ -1149,6 +1338,9 @@ dict: οἰκούμενος • (oikoúmenos)
 
 part: mp.pres
 verb: οἰκέω
+plain: οἰκ
+rtype: έω
+
 
 # First and second declension of οἰκούμενος; οἰκουμένη; οἰκούμενον (Attic)
 
@@ -1193,6 +1385,9 @@ dict: ὀχθήσας • (okhthḗsās) m (feminine ὀχθήσασα, neuter �
 
 part: act.aor
 verb: ὀχθέω
+plain: ὀχθ
+rtype: έω
+
 
 # First and third declension of ὀχθήσας; ὀχθήσασα; ὀχθῆσαν (Attic)
 
@@ -1211,6 +1406,9 @@ dict: παρακείμενος • (parakeímenos) m (feminine παρακειμ�
 
 part: mp.pf
 verb: παράκειμαι
+plain: παράκ
+rtype: ειμαι
+
 
 # First and second declension of παρακείμενος; παρακειμένη; παρακείμενον (Attic)
 
@@ -1229,6 +1427,9 @@ dict: παρελθών • (parelthṓn)
 
 part: act.aor
 verb: παρέρχομαι
+plain: παρέρχ
+rtype: ομαι
+
 
 # First and third declension of παρελθών; παρελθοῦσα; παρελθόν (Attic)
 
@@ -1247,6 +1448,9 @@ dict: πειθόμενος • (peithómenos) m (feminine πειθομένη, ne
 
 part: mp.pres
 verb: πείθομαι
+plain: πείθ
+rtype: ομαι
+
 
 # First and second declension of πειθόμενος; πειθομένη; πειθόμενον (Attic)
 
@@ -1263,6 +1467,9 @@ dict: πεπεισμένος • (pepeisménos) m (feminine πεπεισμένη
 
 part: mp.pf
 verb: πείθομαι
+plain: πεπεισ
+rtype: μένος
+
 
 # First and second declension of πεπεισμένος; πεπεισμένη; πεπεισμένον (Attic)
 
@@ -1279,6 +1486,9 @@ dict: πεπνυμένος • (pepnūménos) m (feminine πεπνυμένη, ne
 
 part: mp.pf
 verb: πέπνυμαι
+plain: πεπνυ
+rtype: μένος
+
 
 # First and second declension of πεπνυμένος; πεπνυμένη; πεπνυμένον (Attic)
 
@@ -1297,6 +1507,9 @@ dict: περιοδεύων • (periodeúōn) m (feminine περιοδεύουσ
 
 part: act.pres
 verb: περιοδεύω
+plain: περιοδεύ
+rtype: ω
+
 
 # First and third declension of περιοδεύων; περιοδεύουσα; περιοδεῦον (Attic)
 
@@ -1315,6 +1528,9 @@ dict: περισπαόμενος • (perispaómenos) m (feminine περισπα
 
 part: mp.pres
 verb: περισπάω
+plain: περισπα
+rtype: άω
+
 
 # First and second declension of περισπαόμενος; περισπαομένη; περισπαόμενον (Attic)
 
@@ -1335,6 +1551,9 @@ dict: περισπώμενος • (perispṓmenos) m (feminine περισπωμ
 
 part: mp.pres
 verb: περισπάω
+plain: περισπ
+rtype: άω
+
 
 # First and second declension of περισπώμενος; περισπωμένη; περισπώμενον (Attic)
 
@@ -1354,6 +1573,9 @@ dict: περιφερόμενος • (peripherómenos) m
 
 part: mp.pres
 verb: περιφέρω
+plain: περιφέρ
+rtype: ω
+
 
 # First and second declension of περιφερόμενος; περιφερομένη; περιφερόμενον (Attic)
 
@@ -1372,6 +1594,9 @@ dict: πεφορημένος • (pephorēménos)
 
 part: mp.pf
 verb: φορέω
+plain: φορ
+rtype: έω
+
 
 # First and second declension of πεφορημένος; πεφορημένη; πεφορημένον (Attic)
 
@@ -1390,6 +1615,9 @@ dict: ποιήσας • (poiḗsās)
 
 part: act.aor
 verb: ποιέω
+plain: ποι
+rtype: έω
+
 
 # First and third declension of ποιήσας; ποιήσασα; ποιῆσαν (Attic)
 
@@ -1408,6 +1636,9 @@ dict: ποππύζων • (poppúzōn) m (feminine ποππύζουσα, ne
 
 part: act.pres
 verb: ποππύζω
+plain: ποππύ
+rtype: ζω
+
 
 # First and third declension of ποππύζων; ποππύζουσα; ποππύζον (Attic)
 
@@ -1425,6 +1656,9 @@ dict: προηγούμενος • (proēgoúmenos) m (feminine προηγουμ
 
 part: mp.pres
 verb: προηγέομαι
+plain: προηγ
+rtype: έομαι
+
 
 # First and second declension of προηγούμενος; προηγουμένη; προηγούμενον (Attic)
 
@@ -1443,6 +1677,9 @@ dict: ῥέπων • (rhépōn) m (feminine ῥέπουσα, neuter ῥέπον
 
 part: act.pres
 verb: ῥέπω
+plain: ῥέπ
+rtype: ω
+
 
 # First and third declension of ῥέπων; ῥέπουσα; ῥέπον (Attic)
 
@@ -1461,6 +1698,9 @@ dict: σεσημειωμένος • (sesēmeiōménos) m (feminine σεσημε
 
 part: mp.pf
 verb: σημειόω
+plain: σημει
+rtype: όω
+
 
 # First and second declension of σεσημειωμένος; σεσημειωμένη; σεσημειωμένον (Attic)
 
@@ -1479,6 +1719,9 @@ dict: σημειούμενος • (sēmeioúmenos) m (feminine σημειουμ
 
 part: mp.pres
 verb: σημειόω
+plain: σημει
+rtype: όω
+
 
 # First and second declension of σημειούμενος; σημειουμένη; σημειούμενον (Attic)
 
@@ -1498,6 +1741,9 @@ dict: σημειῶν • (sēmeiôn) m (feminine σημειοῦσα, neuter σ
 part: act.pres
 rverb: σημειόω
 verb: σημειῶ
+plain: σημει
+rtype: όω
+
 
 # First and third declension of σημειῶν; σημειοῦσα; σημειοῦν (Attic)
 
@@ -1516,6 +1762,9 @@ dict: σκάζων • (skázōn) m (feminine σκάζουσα, neuter σκ�
 
 part: act.pres
 verb: σκάζω
+plain: σκά
+rtype: ζω
+
 
 # First and third declension of σκάζων; σκάζουσα; σκάζον (Attic)
 
@@ -1534,6 +1783,9 @@ dict: συγκρουόμενος • (sunkrouómenos) m (feminine συγκρου
 
 part: mp.pres
 verb: συγκρούομαι
+plain: συγκρού
+rtype: ομαι
+
 
 # First and second declension of συγκρουόμενος; συγκρουομένη; συγκρουόμενον (Attic)
 
@@ -1550,6 +1802,9 @@ dict: συναλιζόμενος • (sunālizómenos)
 
 part: mp.pres
 verb: συναλίζω
+plain: συναλί
+rtype: ζω
+
 
 # First and second declension of συναλιζόμενος; συναλιζομένη; συναλιζόμενον (Attic)
 
@@ -1567,6 +1822,9 @@ dict: τετριμμένος • (tetrimménos) m (feminine τετριμμένη
 
 part: mp.pf
 verb: τρίβω
+plain: τρίβ
+rtype: ω
+
 
 # First and second declension of τετριμμένος; τετριμμένη; τετριμμένον (Attic)
 
@@ -1586,6 +1844,9 @@ dict: τιμῶν • (tīmôn)
 part: act.pres
 rverb: τιμάω
 verb: τιμῶ
+plain: τιμ
+rtype: άω
+
 
 # First and third declension of τιμῶν; τιμῶσα; τιμῶν (Attic)
 
@@ -1604,6 +1865,9 @@ dict: ὑπογεγραμμένος • (hupogegramménos)
 
 part: mp.pf
 verb: ὑπογράφω
+plain: ὑπογράφ
+rtype: ω
+
 
 # First and second declension of ὑπογεγραμμένος; ὑπογεγραμμένη; ὑπογεγραμμένον (Attic)
 
@@ -1620,6 +1884,9 @@ dict: ὑποδεδειγμένος • (hupodedeigménos) m (feminine ὑπο
 
 part: mp.pf
 verb: ὑποδείκνυμι
+plain: ὑποδεδειγ
+rtype: μένος
+
 
 # First and second declension of ὑποδεδειγμένος; ὑποδεδειγμένη; ὑποδεδειγμένον (Attic)
 
@@ -1638,6 +1905,9 @@ dict: ὑποκείμενος • (hupokeímenos)
 
 part: mp.pres
 verb: ὑπόκειμαι
+plain: ὑπόκε
+rtype: ιμαι
+
 
 # Second declension of ὑποκείμενος; ὑποκείμενον (Attic)
 # Case/Gender	Masculine / Feminine	Neuter	Masculine / Feminine	Neuter	Masculine / Feminine	Neuter
@@ -1660,6 +1930,9 @@ dict: φαέθων • (phaéthōn) m (feminine φαέθουσα, neuter φά�
 
 part: act.pres
 verb: φαέθω
+plain: φαέθ
+rtype: ω
+
 # part sg pres act
 
 # First and third declension of φαέθων; φαέθουσα; φαέθον (Attic)
@@ -1679,6 +1952,9 @@ dict: φαινόμενος • (phainómenos)
 
 part: mp.pres
 verb: φαίνω
+plain: φαίν
+rtype: ω
+
 
 # First and second declension of φαινόμενος; φαινομένη; φαινόμενον (Attic)
 
@@ -1697,6 +1973,9 @@ dict: φαίνων • (phaínōn) m (feminine φαίνουσα, neuter φαῖ�
 
 part: act.pres
 verb: φαίνω
+plain: φαίν
+rtype: ω
+
 
 # First and third declension of φαίνων; φαίνουσα; φαῖνον (Attic)
 
@@ -1715,6 +1994,9 @@ dict: φάς • (phā́s) m (feminine φᾶσα, neuter φάν); first/thir
 
 part: act.pres
 verb: φημί
+plain: φ
+rtype: ημί
+
 
 # First and third declension of φάς; φᾶσα; φάν (Attic)
 
@@ -1733,6 +2015,9 @@ dict: φέρων • (phérōn) m (feminine φέρουσα, neuter φέρον); 
 
 part: act.pres
 verb: φέρω
+plain: φέρ
+rtype: ω
+
 
 # First and third declension of φέρων; φέρουσα; φέρον (Attic)
 
@@ -1751,6 +2036,9 @@ dict: φορούμενος • (phoroúmenos)
 
 part: mp.pres
 verb: φορέω
+plain: φορ
+rtype: έω
+
 
 # First and second declension of φορούμενος; φορουμένη; φορούμενον (Attic)
 
@@ -1769,6 +2057,9 @@ dict: φρονέων • (phronéōn) m (feminine φρονέουσα, neuter φ�
 
 part: act.pres
 verb: φρονέω
+plain: φρον
+rtype: έω
+
 
 # First and third declension of φρονέων; φρονέουσα; φρονέον (Attic)
 
@@ -1787,6 +2078,9 @@ dict: φωνήσας • (phōnḗsās) m (feminine φωνήσασα, neuter φ�
 
 part: act.aor
 verb: φωνέω
+plain: φων
+rtype: έω
+
 
 # First and third declension of φωνήσας; φωνήσασα; φωνῆσαν (Attic)
 
