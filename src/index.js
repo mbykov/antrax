@@ -100,9 +100,9 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   let ndplains = _.filter(dicts, dict => { return !dict.plain })
   log('ndplains---->', ndplains.length)
   let kdicts = _.filter(dicts, dict => { return dict.plain == 'αγαθοποι'})
-  log('kdicts---->', kdicts)
+  log('kdicts---->', kdicts.length)
   log('flexes--->', flexes.length)
-  let kflexes = _.filter(flexes, fl => { return fl.flex == 'ωμένης'})
+  let kflexes = _.filter(flexes, fl => { return fl.flex == 'ησα'})
   kflexes = _.filter(kflexes, fl => { return fl.verb })
   log('kflexes--->', kflexes.length)
 
@@ -110,11 +110,13 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   // log('SGD', segdicts['αγαθοποι'])
   let chains = makeChains(sgms, segdicts, flexes)
 
+  chains = _.filter(chains, chain => { return chain.length == 2 }) // NB: <<<<<<<<<<<<<<<<<<<<<========================
+  log('total chains', chains.length)
+
   // неясно, compound до addDict или после
   addDicts(chains, pnonlasts, segdicts)
   // неясно вообще с addDicts, оставить до aor
 
-  chains = _.filter(chains, chain => { return chain.length == 2 }) // NB: <<<<<<<<<<<<<<<<<<<<<========================
   // compound(chains)
 
   let fulls = fullChains(chains)
@@ -230,13 +232,14 @@ function addDicts(chains, pnonlasts, segdicts) {
         addDictCarefully(pnonlasts, segdicts, sdicts, added, 'sliced')
       })
     }
-    penult.dicts = _.uniq(_.compact(_.flatten(sdicts)))
+    penult.dicts = _.compact(_.flatten(sdicts))
   })
 }
 
 function addDictCarefully(pnonlasts, segdicts, sdicts, added, mark) {
   let adicts = segdicts[added]
-  adicts = _.filter(adicts, dict => { return dict.pos == 'verb' })
+  // log('added: --------------------------------------->', added, adicts.length)
+  adicts = _.filter(adicts, dict => { return dict.verb })
   if (!adicts || !adicts.length) return
   adicts.forEach(adict => {
     if (!pnonlasts.includes(adict.plain)) adict[mark] = true

@@ -21,6 +21,7 @@ export function parseVerb (seg, segs, flexes) {
   // let nameflexes = _.filter(flexes, flex => { return flex.name })
   let partflexes = _.filter(flexes, flex => { return flex.part })
   // clog('FL', verbflexes)
+  // clog('LASTVERBS', lastverbs.length)
 
   let vdicts = []
   let vfls = []
@@ -29,7 +30,7 @@ export function parseVerb (seg, segs, flexes) {
   lastverbs.forEach(dict => {
     if (dict.plain == 'αγαθοποι') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      if (dict.plain == 'αγαθοποι' && flex.tense == 'act.fut.ind' && flex.reg) log('NC-f ============', flex)
+      if (dict.plain == 'αγαθοποι' && flex.tense == 'act.aor.ind') log('NC-f ============', flex)
 
       if (dict.reg != flex.reg) return false
       if (!dict.reg && dict.time != flex.time) return false
