@@ -27,43 +27,53 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'αυδ') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'αγαθοποι') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      // if (dict.plain == 'αγ' && flex.tense == 'act.aor.ind') log('NC-f ============', flex)
+      if (dict.plain == 'αγαθοποι' && flex.tense == 'act.fut.ind' && flex.reg) log('NC-f ============', flex)
 
-      if (!dict.vkeys) return false // пока что - jsj
-      // return filterVerb(dict, flex)
-      if (dict.reg && dict.rtype != flex.rtype) return false
-      if (dict.reg && flex.reg) return true
-      if (dict.reg) return false
 
-      if (dict.type != flex.type) return false
-      // if (dict.pos != flex.pos) return false // если здесь pos, то отвалится part, inf - можно только в формах ггаголов
-      let vc = voice(flex.tense)
-      if (!dict.vkeys[vc]) return false
-      if (dict.vkeys[vc] && dict.vkeys[vc].includes(flex.vkey) && dict.pos == flex.pos) return true
-      if (flex.inf && dict.ikeys[vc] && dict.ikeys[vc].includes(flex.ikey)) return true
-      // if (flex.part && dict.pkeys[vc] && dict.pkeys[vc].includes(flex.pkey)) return true
-      return false
+      if (dict.reg != flex.reg) return false
+      if (!dict.reg && dict.time != flex.time) return false
+      if (flex.vkey && !dict.vkeys.includes(flex.vkey)) return false
+      if (flex.skey && !dict.skeys.includes(flex.skey)) return false
+      if (flex.pkey && !dict.pkeys.includes(flex.pkey)) return false
+      if (flex.ikey && !dict.ikeys.includes(flex.ikey)) return false
+      return true
+
+      // if (!dict.vkeys) return false // пока что - jsj
+      // // return filterVerb(dict, flex)
+      // if (dict.reg && dict.rtype != flex.rtype) return false
+      // if (dict.reg && flex.reg) return true
+      // if (dict.reg) return false
+
+      // if (dict.type != flex.type) return false
+      // // if (dict.pos != flex.pos) return false // если здесь pos, то отвалится part, inf - можно только в формах ггаголов
+      // let vc = voice(flex.tense)
+      // if (!dict.vkeys[vc]) return false
+      // if (dict.vkeys[vc] && dict.vkeys[vc].includes(flex.vkey) && dict.pos == flex.pos) return true
+      // if (flex.inf && dict.ikeys[vc] && dict.ikeys[vc].includes(flex.ikey)) return true
+      // // if (flex.part && dict.pkeys[vc] && dict.pkeys[vc].includes(flex.pkey)) return true
+      // return false
     })
 
     let pfls = _.filter(partflexes, flex => {
-      if (dict.plain == 'αυδ' && flex.reg && flex.numcase == 'sg.gen') log('NC-p ==========', flex)
-      // return filterPart(dict, flex)
+      // if (dict.plain == 'αυδ' && flex.reg && flex.numcase == 'sg.gen') log('NC-p ==========', flex)
+      // // return filterPart(dict, flex)
 
-      if (dict.pos != time(flex.tense)) return false
+      // if (dict.pos != time(flex.tense)) return false
 
-      if (dict.reg) {
-        if (!flex.reg) return false
-        if (dict.rtype != flex.rtype) return false
-      } else {
-        // type, time, voice, keys
-        if (dict.type != flex.type) return false
-        if (!dict.pkeys) return false
-        let vc = voice(flex.tense)
-        if (flex.part && dict.pkeys[vc] && !dict.pkeys[vc].includes(flex.pkey)) return false
-      }
-      return true
+      // if (dict.reg) {
+      //   if (!flex.reg) return false
+      //   if (dict.rtype != flex.rtype) return false
+      // } else {
+      //   // type, time, voice, keys
+      //   if (dict.type != flex.type) return false
+      //   if (!dict.pkeys) return false
+      //   let vc = voice(flex.tense)
+      //   if (flex.part && dict.pkeys[vc] && !dict.pkeys[vc].includes(flex.pkey)) return false
+      // }
+      // return true
+      return false
     })
     if (fls.length) {
       vdicts.push(dict)
@@ -178,8 +188,7 @@ function uniqDict(dicts) {
     if (!dict.trns) dict.trns = 'no trns:' + dict.rdict
     let uvkey = [dict.rdict, dict.dbname, dict.trns.toString()].join('')
     if (uvkeys[uvkey]) return
-    // в глаголах dict.pos - везде - исправить на dict.time <<<<<<<<<<<<<<<<<<< NB!
-    let udict = {pos: 'verb', time: dict.pos, rdict: dict.rdict, plain: dict.plain, dname: dict.dname, trns: dict.trns, weight: dict.weight}
+    let udict = {pos: 'verb', time: dict.time, rdict: dict.rdict, plain: dict.plain, dname: dict.dname, trns: dict.trns, weight: dict.weight}
     // let udict = dict
     if (dict.reg) udict.reg = true
     udicts.push(udict)

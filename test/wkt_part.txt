@@ -580,8 +580,8 @@ dict: ἐποψόμενος • (epopsómenos) m (feminine ἐποψομένη, 
 part: mid.fut
 # verb: ἐφοράω
 verb: ἐπόψομαι
-plain: ἐπο
-rtype: ψομαι
+plain: ἐποψ
+rtype: ομαι
 
 
 # First and second declension of ἐποψόμενος; ἐποψομένη; ἐποψόμενον (Attic)
