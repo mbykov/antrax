@@ -31,7 +31,6 @@ export function parseVerb (seg, segs, flexes) {
     let fls = _.filter(verbflexes, flex => {
       if (dict.plain == 'αγαθοποι' && flex.tense == 'act.fut.ind' && flex.reg) log('NC-f ============', flex)
 
-
       if (dict.reg != flex.reg) return false
       if (!dict.reg && dict.time != flex.time) return false
       if (flex.vkey && !dict.vkeys.includes(flex.vkey)) return false
@@ -40,20 +39,6 @@ export function parseVerb (seg, segs, flexes) {
       if (flex.ikey && !dict.ikeys.includes(flex.ikey)) return false
       return true
 
-      // if (!dict.vkeys) return false // пока что - jsj
-      // // return filterVerb(dict, flex)
-      // if (dict.reg && dict.rtype != flex.rtype) return false
-      // if (dict.reg && flex.reg) return true
-      // if (dict.reg) return false
-
-      // if (dict.type != flex.type) return false
-      // // if (dict.pos != flex.pos) return false // если здесь pos, то отвалится part, inf - можно только в формах ггаголов
-      // let vc = voice(flex.tense)
-      // if (!dict.vkeys[vc]) return false
-      // if (dict.vkeys[vc] && dict.vkeys[vc].includes(flex.vkey) && dict.pos == flex.pos) return true
-      // if (flex.inf && dict.ikeys[vc] && dict.ikeys[vc].includes(flex.ikey)) return true
-      // // if (flex.part && dict.pkeys[vc] && dict.pkeys[vc].includes(flex.pkey)) return true
-      // return false
     })
 
     let pfls = _.filter(partflexes, flex => {
