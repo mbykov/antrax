@@ -112,7 +112,7 @@ forEach(tests)
       .then(chains => {
         // log('C', chains)
         if (!chains.length) log('NO RESULT'), assert.equal(false, true)
-        let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return dict.rdict}).includes(rdict) })
+        let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return comb(dict.rdict) }).includes(comb(rdict)) })
         corrchs = _.filter(corrchs, ch => { return ch[ch.length-1].flexes.map(flex => { return flex.tense}).includes(tense) })
         if (!corrchs.length) log('no correct chains'), assert.equal(false, true)
         corrchs.forEach(chain => {
