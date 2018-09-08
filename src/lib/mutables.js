@@ -28,20 +28,20 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'αγγαρευ') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'αγαπ') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      if (dict.plain == 'αγγαρευ' && flex.tense == 'act.aor.sub') log('NC-f ============', flex)
+      if (dict.plain == 'αγαπ' && flex.tense == 'act.fut.ind') log('NC-f ============', flex)
 
       if (dict.reg != flex.reg) return false
       if (dict.reg) {
-        if (flex.vkey && !dict.vkeys.includes(flex.vkey)) return false
-        if (flex.skey && !dict.skeys.includes(flex.skey)) return false
-        if (flex.pkey && !dict.pkeys.includes(flex.pkey)) return false
-        if (flex.ikey && !dict.ikeys.includes(flex.ikey)) return false
+        if (flex.vkey && !dict.vkeys[flex.time].includes(flex.vkey)) return false
+        // if (flex.skey && !dict.skeys.includes(flex.skey)) return false
+        if (flex.pkey && !dict.pkeys[flex.time].includes(flex.pkey)) return false
+        if (flex.ikey && !dict.ikeys[flex.time].includes(flex.ikey)) return false
       } else {
         if (dict.time != flex.time) return false
         if (flex.vkey && dict.vkey != flex.vkey) return false
-        if (flex.skey && dict.skey != flex.skey) return false
+        // if (flex.skey && dict.skey != flex.skey) return false
         if (flex.pkey && dict.pkey != flex.pkey) return false
         if (flex.ikey && dict.ikey != flex.ikey) return false
       }

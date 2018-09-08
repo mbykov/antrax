@@ -99,7 +99,7 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   log('dplains---->', dplains.toString())
   let ndplains = _.filter(dicts, dict => { return !dict.plain })
   log('ndplains---->', ndplains.length)
-  let kdicts = _.filter(dicts, dict => { return dict.plain == 'αγαθοποι'})
+  let kdicts = _.filter(dicts, dict => { return dict.plain == 'αγαπ'})
   log('kdicts---->', kdicts.length)
   log('flexes--->', flexes.length)
   let kflexes = _.filter(flexes, fl => { return fl.flex == 'ησα'})
@@ -203,6 +203,7 @@ function addDicts(chains, pnonlasts, segdicts) {
     let seg = penult.seg
     seg = plain(seg)
     let first = _.first(seg)
+    if (penult.dicts.length) return // уже есть значение, добавлять не нужно
     let sdicts = _.clone(penult.dicts)
     let firsts = _.uniq([seg.slice(0,1), seg.slice(0,2), seg.slice(0,3), seg.slice(0,4), seg.slice(0,5)])
     // firsts = _.filter(firsts, first => { return first != seg })
