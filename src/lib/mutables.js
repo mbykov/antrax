@@ -34,10 +34,12 @@ export function parseVerb (seg, segs, flexes) {
 
       if (dict.reg != flex.reg) return false
       if (dict.reg) {
-        if (flex.vkey && !dict.vkeys[flex.time].includes(flex.vkey)) return false
-        // if (flex.skey && !dict.skeys.includes(flex.skey)) return false
-        if (flex.pkey && !dict.pkeys[flex.time].includes(flex.pkey)) return false
-        if (flex.ikey && !dict.ikeys[flex.time].includes(flex.ikey)) return false
+        if (flex.vkey && !dict.vkeys[flex.time]) return false
+        else if (flex.vkey && !dict.vkeys[flex.time].includes(flex.vkey)) return false
+        if (flex.pkey && !dict.pkeys[flex.voice]) return false
+        else if (flex.pkey && !dict.pkeys[flex.voice].includes(flex.pkey)) return false
+        if (flex.ikey && !dict.ikeys[flex.time]) return false
+        else if (flex.ikey && !dict.ikeys[flex.time].includes(flex.ikey)) return false
       } else {
         if (dict.time != flex.time) return false
         if (flex.vkey && dict.vkey != flex.vkey) return false
