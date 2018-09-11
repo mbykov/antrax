@@ -28,16 +28,16 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'αγαπ') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'αγαθοποι') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      if (dict.plain == 'αγαπ' && flex.tense == 'act.fut.ind') log('NC-f ============', flex)
+      if (dict.plain == 'αγαθοποι' && flex.tense == 'act.fut.part') log('NC-f ============', flex)
 
       if (dict.reg != flex.reg) return false
       if (dict.reg) {
         if (flex.vkey && !dict.vkeys[flex.time]) return false
         else if (flex.vkey && !dict.vkeys[flex.time].includes(flex.vkey)) return false
-        if (flex.pkey && !dict.pkeys[flex.voice]) return false
-        else if (flex.pkey && !dict.pkeys[flex.voice].includes(flex.pkey)) return false
+        if (flex.pkey && !dict.pkeys[flex.time]) return false
+        else if (flex.pkey && !dict.pkeys[flex.time].includes(flex.pkey)) return false
         if (flex.ikey && !dict.ikeys[flex.time]) return false
         else if (flex.ikey && !dict.ikeys[flex.time].includes(flex.ikey)) return false
       } else {
