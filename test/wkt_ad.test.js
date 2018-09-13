@@ -122,10 +122,11 @@ forEach(tests)
     // log('--->', rdict, arg, gend, num, kase)
     antrax(arg)
       .then(results => {
+        if (!results.length) log('NO RESULT'), assert.equal(false, true)
         results.forEach(res => {
           let chains = res.chains
           if (!chains) return // indecls
-          if (!chains.length) log('NO RESULT'), assert.equal(false, true)
+          // if (!chains.length) log('NO RESULT'), assert.equal(false, true)
           // remove other results:
           let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return dict.rdict}).includes(rdict) })
           // log('CORR', corrchs.length)

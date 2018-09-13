@@ -102,8 +102,9 @@ rtests.forEach(doc => {
   })
 })
 
-// tests = _.compact(tests)
-// tests = tests.slice(0, 25)
+tests = _.compact(tests)
+
+// tests = tests.slice(0, 1)
 // console.log('T', tests)
 // tests = []
 
@@ -112,6 +113,7 @@ forEach(tests)
     // log('--->', rdict, arg, gend, numcase)
     antrax(arg)
       .then(results => {
+        if (!results.length) log('NO RESULT'), assert.equal(false, true)
         results.forEach(res => {
           let chains = res.chains
           if (!chains) return // indecls
@@ -120,6 +122,7 @@ forEach(tests)
           let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return dict.rdict}).includes(rdict)
                                                  && ch[ch.length-2].dicts.map(dict => { return dict.gend}).includes(gend)})
           if (!corrchs.length) log('no correct chains'), assert.equal(false, true)
+          // log('SIZE', corrchs.length)
 
           corrchs.forEach(chain => {
             // log('CH.length', chain)

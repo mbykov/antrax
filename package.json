@@ -28,7 +28,7 @@
     "name_": "cross-env NODE_ENV=test mocha -c -R dot -b 'test/name_ucb.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
     "adj_": "cross-env NODE_ENV=test mocha -c -R dot -b 'test/name_ad_fgb.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
     "wktname": "cross-env NODE_ENV=test mocha -c -R dot -b --timeout 5000 'test/wkt_name.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
-    "wktad": "cross-env NODE_ENV=test mocha -c -R dot -b --timeout 5000 'test/wkt_ad.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
+    "wktadj": "cross-env NODE_ENV=test mocha -c -R dot -b --timeout 5000 'test/wkt_ad.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
     "wktadv": "cross-env NODE_ENV=test mocha -c -R dot -b --timeout 5000 'test/wkt_adv.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
     "wktpart_": "cross-env NODE_ENV=test mocha -c -R dot -b --timeout 5000 'test/wkt_part.test.js' --compilers js:babel-register --check-leaks --no-deprecation",
     "test_": "cross-env NODE_ENV=test mocha -c -S -R spec 'test/**/*.test.js' --compilers js:babel-register --check-leaks",

@@ -28,7 +28,7 @@ dict: ἀμεθυστίζων • (amethustízōn) m (feminine ἀμεθυστ
  present active participle of *ἀμεθυστίζω (*amethustízō)
 
 part: act.pres
-verb: ἀμεθυστίζω
+# verb: ἀμεθυστίζω
 plain: αμεθυστι
 rtype: ζω
 
@@ -126,8 +126,8 @@ dict: ἄξων • (áxōn) m (feminine ἄξουσα, neuter ἄξον);
 part: act.fut
 verb: ἄγω
 # verb: ἄξω
-plain: αξ
-rtype: ω
+plain: α
+rtype: ξω
 
 
 # First and third declension of ἄξων; ἄξουσα; ἄξον (Attic)
@@ -168,7 +168,7 @@ dict: ἀπών • (apṓn) m (feminine ἀποῦσα, neuter ἀπόν); firs
 
 # NB: ἄπειμι ? keys ?
 part: act.pres
-verb: ἄπειμι
+# verb: ἄπειμι
 plain: ἀπ
 rtype: ειμι
 
@@ -296,7 +296,7 @@ dict: βιβάς • (bibā́s)
  present active participle: striding
 
 part: act.pres
-verb: βίβημι
+# verb: βίβημι
 plain: βιβ
 rtype: άς
 
@@ -361,7 +361,7 @@ dict: γονυπετῶν • (gonupetôn) m (feminine γονυπετοῦσα, 
 
 part: act.pres
 rverb: γονυπετέω
-verb: γονυπετῶ
+# verb: γονυπετῶ
 plain: γονυπετ
 rtype: έω
 
@@ -446,7 +446,7 @@ dict: διακοιρανέων • (diakoiranéōn) m (feminine διακοιρα
  present active participle of *διακοιρανέω (*diakoiranéō)
 
 part: act.pres
-verb: διακοιρανέω
+# verb: διακοιρανέω
 plain: διακοιραν
 rtype: έω
 
@@ -746,8 +746,9 @@ dict: ἐών • (eṓn)
 
  Epic form of ὤν (ṓn): present active participle of εἰμί (eimí)
 
+# eimi ================================================ eimi
 part: act.pres
-verb: εἰμί
+# verb: εἰμί
 plain: ἐ
 rtype: ών
 
@@ -831,9 +832,9 @@ dict: ἰών • (iṓn) m (feminine ἰοῦσα, neuter ἰόν); first/third
  present active participle of εἶμι (eîmi)
 
 part: act.pres
-verb: εἶμι
-plain: ἰ
-rtype: ών
+# verb: εἶμι
+# plain: ἰ
+# rtype: ών
 
 # NB eimi
 
@@ -1317,8 +1318,8 @@ dict: ὄζων • (ózōn) m (feminine ὄζουσα, neuter ὄζον); first
 
 part: act.pres
 verb: ὄζω
-plain: ὄζ
-rtype: ω
+plain: ὄ
+rtype: ζω
 
 
 # First and third declension of ὄζων; ὄζουσα; ὄζον (Attic)
@@ -1447,9 +1448,9 @@ dict: πειθόμενος • (peithómenos) m (feminine πειθομένη, ne
  present mediopassive participle of πείθομαι (peíthomai)
 
 part: mp.pres
-verb: πείθομαι
+verb: πείθω
 plain: πείθ
-rtype: ομαι
+rtype: ω
 
 
 # First and second declension of πειθόμενος; πειθομένη; πειθόμενον (Attic)
@@ -1655,7 +1656,7 @@ dict: προηγούμενος • (proēgoúmenos) m (feminine προηγουμ
 
 
 part: mp.pres
-verb: προηγέομαι
+# verb: προηγέομαι
 plain: προηγ
 rtype: έομαι
 
