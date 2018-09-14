@@ -11,7 +11,8 @@ part: act.pres
 verb: ἄγω
 plain: αγ
 rtype: ω
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and third declension of ἄγων; ἄγουσα; ἄγον (Attic)
 
@@ -53,7 +54,8 @@ part: mp.pres
 verb: ἀμείβω
 plain: αμειβ
 rtype: ω
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and second declension of ἀμειβόμενος; ἀμειβομένη; ἀμειβόμενον (Attic)
 
@@ -70,9 +72,9 @@ dict: ἀναγιγνωσκόμενος • (anagignōskómenos)
 
 part: mp.pres
 verb: ἀναγιγνώσκω
-plain: ἀναγιγνώσκ
+plain: αναγιγνώσκ
 rtype: ω
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
 
 # First and second declension of ἀναγιγνωσκόμενος; ἀναγιγνωσκομένη; ἀναγιγνωσκόμενον (Attic)
 
@@ -151,7 +153,8 @@ part: mp.pres
 verb: ἀπαμείβομαι
 plain: ἀπαμείβ
 rtype: ομαι
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and second declension of ἀπαμειβόμενος; ἀπαμειβομένη; ἀπαμειβόμενον (Attic)
 
@@ -173,7 +176,7 @@ part: act.pres
 verb: ἄπειμι
 plain: ἀπ
 rtype: ειμι
-vkey = 'ειμι'
+vkey: 'ειμι'
 
 # First and third declension of ἀπών; ἀποῦσα; ἀπόν (Attic)
 
@@ -299,7 +302,7 @@ dict: βιβάς • (bibā́s)
 part: act.pres
 verb: βίβημι
 plain: βιβ
-vkey = 'ημι-αμαι'
+vkey: 'ημι-αμαι'
 
 # First and third declension of βιβάς; βιβᾶσα; βιβάν (Attic)
 
@@ -384,7 +387,8 @@ dict: γραφόμενος • (graphómenos) n (feminine γραφομένη, ne
 part: mp.pres
 verb: γράφω
 plain: γράφ
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 
 # First and second declension of γραφόμενος; γραφομένη; γραφόμενον (Attic)
@@ -603,7 +607,8 @@ part: mp.pres
 verb: ἔρομαι
 plain: ἔρ
 rtype: ομαι
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 
 # First and second declension of ἐρόμενος; ἐρομένη; ἐρόμενον (Attic)
@@ -624,7 +629,8 @@ dict: ἐρχόμενος • (erkhómenos) m (feminine ἐρχομένη, neute
 part: mp.pres
 verb: ἔρχομαι
 plain: ἔρχ
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 
 # First and second declension of ἐρχόμενος; ἐρχομένη; ἐρχόμενον (Attic)
@@ -686,7 +692,8 @@ dict: εὐχόμενος • (eukhómenos) m (feminine εὐχομένη, neute
 part: mp.pres
 verb: εὔχομαι
 plain: εὔχ
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # and second declension of εὐχόμενος; εὐχομένη; εὐχόμενον (Attic)
 
@@ -728,7 +735,8 @@ dict: ἔχων • (ékhōn) m (feminine ἔχουσα, neuter ἔχον); firs
 part: act.pres
 verb: ἔχω
 plain: ἔχ
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and third declension of ἔχων; ἔχουσα; ἔχον (Attic)
 
@@ -876,7 +884,8 @@ dict: κανονιζόμενος • (kanonizómenos)
 part: mp.pres
 verb: κανονίζω
 plain: κανονί
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and second declension of κανονιζόμενος; κανονιζομένη; κανονιζόμενον (Attic)
 
@@ -980,7 +989,8 @@ dict: κρίνων • (krī́nōn) m (feminine κρίνουσα, neuter κ�
 part: act.pres
 verb: κρίνω
 plain: κρίν
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and third declension of κρίνων; κρίνουσα; κρῖνον (Attic)
 
@@ -1021,7 +1031,8 @@ dict: λανθάνων • (lanthánōn) m (feminine λανθάνουσα, neute
 part: act.pres
 verb: λανθάνω
 plain: λανθάν
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and third declension of λανθάνων; λανθάνουσα; λανθάνον (Attic)
 
@@ -1062,7 +1073,8 @@ dict: λιθίζων • (lithízōn) m (feminine λιθίζουσα, neuter
 part: act.pres
 verb: λιθίζω
 plain: λιθί
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and third declension of λιθίζων; λιθίζουσα; λιθίζον (Attic)
 
@@ -1103,7 +1115,8 @@ dict: λύων • (lū́ōn)
 part: act.pres
 verb: λύω
 plain: λύ
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and third declension of λύων; λύουσα; λῦον (Attic)
 
@@ -1123,7 +1136,8 @@ dict: μέλλων • (méllōn) m (feminine μέλλουσα, neuter μέλλ�
 part: act.pres
 verb: μέλλω
 plain: μέλλ
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and third declension of μέλλων; μέλλουσα; μέλλον (Attic)
 
@@ -1291,7 +1305,8 @@ dict: νύσσων • (nússōn) m (feminine νύσσουσα, neuter νύ�
 part: act.pres
 verb: νύσσω
 plain: νύσσ
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and third declension of νύσσων; νύσσουσα; νύσσον (Attic)
 
@@ -1442,7 +1457,8 @@ dict: πειθόμενος • (peithómenos) m (feminine πειθομένη, ne
 part: mp.pres
 verb: πείθω
 plain: πείθ
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and second declension of πειθόμενος; πειθομένη; πειθόμενον (Attic)
 
@@ -1500,7 +1516,8 @@ dict: περιοδεύων • (periodeúōn) m (feminine περιοδεύουσ
 part: act.pres
 verb: περιοδεύω
 plain: περιοδεύ
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and third declension of περιοδεύων; περιοδεύουσα; περιοδεῦον (Attic)
 
@@ -1565,7 +1582,8 @@ dict: περιφερόμενος • (peripherómenos) m
 part: mp.pres
 verb: περιφέρω
 plain: περιφέρ
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and second declension of περιφερόμενος; περιφερομένη; περιφερόμενον (Attic)
 
@@ -1668,7 +1686,8 @@ dict: ῥέπων • (rhépōn) m (feminine ῥέπουσα, neuter ῥέπον
 part: act.pres
 verb: ῥέπω
 plain: ῥέπ
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and third declension of ῥέπων; ῥέπουσα; ῥέπον (Attic)
 
@@ -1792,7 +1811,8 @@ dict: συναλιζόμενος • (sunālizómenos)
 part: mp.pres
 verb: συναλίζω
 plain: συναλιζ
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and second declension of συναλιζόμενος; συναλιζομένη; συναλιζόμενον (Attic)
 
@@ -1918,7 +1938,8 @@ dict: φαέθων • (phaéthōn) m (feminine φαέθουσα, neuter φά�
 part: act.pres
 verb: φαέθω
 plain: φαέθ
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # part sg pres act
 
@@ -1940,7 +1961,8 @@ dict: φαινόμενος • (phainómenos)
 part: mp.pres
 verb: φαίνω
 plain: φαίν
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and second declension of φαινόμενος; φαινομένη; φαινόμενον (Attic)
 
@@ -1960,7 +1982,8 @@ dict: φαίνων • (phaínōn) m (feminine φαίνουσα, neuter φαῖ�
 part: act.pres
 verb: φαίνω
 plain: φαίν
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and third declension of φαίνων; φαίνουσα; φαῖνον (Attic)
 
@@ -2001,7 +2024,8 @@ dict: φέρων • (phérōn) m (feminine φέρουσα, neuter φέρον); 
 part: act.pres
 verb: φέρω
 plain: φέρ
-vkey = 'ω-ομαι'
+vkey: ω-ομαι
+reg: true
 
 # First and third declension of φέρων; φέρουσα; φέρον (Attic)
 
