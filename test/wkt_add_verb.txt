@@ -1,0 +1,53 @@
+#
+
+MA
+
+# ================ added
+ἀμεθυστίζω
+ἄπειμι
+διακοιρανέω  (κοιρανέω -to be lord )
+κανονίζω
+συγκρούω - strike together
+
+dict: ἄπειμι
+      away or absent, and of things, to be wanting
+plain: απ
+vkey: ειμι
+pkey: ών-οῦσα-όν
+ikey: εῖναι
+
+# βίβημι - глагол unattesed - нужно убрать, и тупо добавить причастие βιβάς
+dict: βίβημι
+      walk with long, decisive steps in a specified direction (unattested)
+plain: βιβ
+vkey: ημι-αμαι
+pkey: άς-ᾶσα-άν
+ikey: άναι-ασθαι
+
+dict: γονυπετέω
+       fall on the knee
+plain: γονυπετ
+vkey: ῶ-οῦμαι
+pkey: ῶν-οῦσα-οῦν
+ikey: εῖν-εῖσθαι
+
+dict: ποππύζω
+       smack the lips
+plain: ποππυ
+vkey: ζω-ζομαι
+pkey: ζων-ζουσα-ζον
+ikey: ζειν-ζεσθαι
+
+dict: προηγέομαι
+       go first and lead the way
+vkey: έομαι
+pkey: ούμενος-ουμένη-ούμενον
+ikey: έεσθαι
+
+dict: σκάζω
+      limp, halt
+vkey: ζω-ζομαι
+pkey: ζων-ζουσα-ζον
+ikey: ζειν-ζεσθαι
+
+# dict: συγκρούομαι

@@ -11,6 +11,7 @@ part: act.pres
 verb: ἄγω
 plain: αγ
 rtype: ω
+vkey = 'ω-ομαι'
 
 # First and third declension of ἄγων; ἄγουσα; ἄγον (Attic)
 
@@ -22,25 +23,26 @@ voc: ἄγων, ἄγουσα, ἄγον, ἄγοντε, ἀγούσα, ἄγο�
 
 adv: ἀγόντως
 
+# NB
 # -----------------------------
-dict: ἀμεθυστίζων • (amethustízōn) m (feminine ἀμεθυστίζουσα, neuter ἀμεθύστιζον); first/third declension
+# dict: ἀμεθυστίζων • (amethustízōn) m (feminine ἀμεθυστίζουσα, neuter ἀμεθύστιζον); first/third declension
 
- present active participle of *ἀμεθυστίζω (*amethustízō)
+#  present active participle of *ἀμεθυστίζω (*amethustízō)
 
-part: act.pres
-# verb: ἀμεθυστίζω
-plain: αμεθυστι
-rtype: ζω
+# part: act.pres
+# # verb: ἀμεθυστίζω
+# plain: αμεθυστι
+# rtype: ζω
 
-# First and third declension of ἀμεθυστίζων; ἀμεθυστίζουσα; ἀμεθύστιζον (Attic)
+# # First and third declension of ἀμεθυστίζων; ἀμεθυστίζουσα; ἀμεθύστιζον (Attic)
 
-nom: ἀμεθυστίζων, ἀμεθυστίζουσα, ἀμεθύστιζον, ἀμεθυστίζοντε, ἀμεθυστιζούσα, ἀμεθυστίζοντε, ἀμεθυστίζοντες, ἀμεθυστίζουσαι, ἀμεθυστίζοντα
-gen: ἀμεθυστίζοντος, ἀμεθυστιζούσης, ἀμεθυστίζοντος, ἀμεθυστιζόντοιν, ἀμεθυστιζούσαιν, ἀμεθυστιζόντοιν, ἀμεθυστιζόντων, ἀμεθυστιζουσῶν, ἀμεθυστιζόντων
-dat: ἀμεθυστίζοντι, ἀμεθυστιζούσῃ, ἀμεθυστίζοντι, ἀμεθυστιζόντοιν, ἀμεθυστιζούσαιν, ἀμεθυστιζόντοιν, ἀμεθυστίζουσι-ἀμεθυστίζουσιν, ἀμεθυστιζούσαις, ἀμεθυστίζουσι-ἀμεθυστίζουσιν
-acc: ἀμεθυστίζοντα, ἀμεθυστίζουσαν, ἀμεθύστιζον, ἀμεθυστίζοντε, ἀμεθυστιζούσα, ἀμεθυστίζοντε, ἀμεθυστίζοντας, ἀμεθυστιζούσας, ἀμεθυστίζοντα
-voc: ἀμεθυστίζων, ἀμεθυστίζουσα, ἀμεθύστιζον, ἀμεθυστίζοντε, ἀμεθυστιζούσα, ἀμεθυστίζοντε, ἀμεθυστίζοντες, ἀμεθυστίζουσαι, ἀμεθυστίζοντα
+# nom: ἀμεθυστίζων, ἀμεθυστίζουσα, ἀμεθύστιζον, ἀμεθυστίζοντε, ἀμεθυστιζούσα, ἀμεθυστίζοντε, ἀμεθυστίζοντες, ἀμεθυστίζουσαι, ἀμεθυστίζοντα
+# gen: ἀμεθυστίζοντος, ἀμεθυστιζούσης, ἀμεθυστίζοντος, ἀμεθυστιζόντοιν, ἀμεθυστιζούσαιν, ἀμεθυστιζόντοιν, ἀμεθυστιζόντων, ἀμεθυστιζουσῶν, ἀμεθυστιζόντων
+# dat: ἀμεθυστίζοντι, ἀμεθυστιζούσῃ, ἀμεθυστίζοντι, ἀμεθυστιζόντοιν, ἀμεθυστιζούσαιν, ἀμεθυστιζόντοιν, ἀμεθυστίζουσι-ἀμεθυστίζουσιν, ἀμεθυστιζούσαις, ἀμεθυστίζουσι-ἀμεθυστίζουσιν
+# acc: ἀμεθυστίζοντα, ἀμεθυστίζουσαν, ἀμεθύστιζον, ἀμεθυστίζοντε, ἀμεθυστιζούσα, ἀμεθυστίζοντε, ἀμεθυστίζοντας, ἀμεθυστιζούσας, ἀμεθυστίζοντα
+# voc: ἀμεθυστίζων, ἀμεθυστίζουσα, ἀμεθύστιζον, ἀμεθυστίζοντε, ἀμεθυστιζούσα, ἀμεθυστίζοντε, ἀμεθυστίζοντες, ἀμεθυστίζουσαι, ἀμεθυστίζοντα
 
-adv: ἀμεθυστιζόντως
+# adv: ἀμεθυστιζόντως
 
 # -----------------------------
 dict: ἀμειβόμενος • (ameibómenos) m (feminine ἀμειβομένη, neuter ἀμειβόμενον); first/second declension
@@ -51,7 +53,7 @@ part: mp.pres
 verb: ἀμείβω
 plain: αμειβ
 rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and second declension of ἀμειβόμενος; ἀμειβομένη; ἀμειβόμενον (Attic)
 
@@ -70,7 +72,7 @@ part: mp.pres
 verb: ἀναγιγνώσκω
 plain: ἀναγιγνώσκ
 rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and second declension of ἀναγιγνωσκόμενος; ἀναγιγνωσκομένη; ἀναγιγνωσκόμενον (Attic)
 
@@ -149,7 +151,7 @@ part: mp.pres
 verb: ἀπαμείβομαι
 plain: ἀπαμείβ
 rtype: ομαι
-
+vkey = 'ω-ομαι'
 
 # First and second declension of ἀπαμειβόμενος; ἀπαμειβομένη; ἀπαμειβόμενον (Attic)
 
@@ -168,10 +170,10 @@ dict: ἀπών • (apṓn) m (feminine ἀποῦσα, neuter ἀπόν); firs
 
 # NB: ἄπειμι ? keys ?
 part: act.pres
-# verb: ἄπειμι
+verb: ἄπειμι
 plain: ἀπ
 rtype: ειμι
-
+vkey = 'ειμι'
 
 # First and third declension of ἀπών; ἀποῦσα; ἀπόν (Attic)
 
@@ -234,8 +236,7 @@ part: mp.pres
 rverb: αὐδάω
 verb: αὐδῶ
 plain: αὐδ
-rtype: άω
-
+vkey: άω-άομαι
 
 # First and second declension of αὐδώμενος; αὐδωμένη; αὐδώμενον (Attic)
 
@@ -256,7 +257,7 @@ part: act.pres
 rverb: αὐδάω
 verb: αὐδῶ
 plain: αὐδ
-rtype: άω
+vkey: άω-άομαι
 
 
 # First and third declension of αὐδῶν; αὐδῶσα; αὐδῶν (Attic)
@@ -296,10 +297,9 @@ dict: βιβάς • (bibā́s)
  present active participle: striding
 
 part: act.pres
-# verb: βίβημι
+verb: βίβημι
 plain: βιβ
-rtype: άς
-
+vkey = 'ημι-αμαι'
 
 # First and third declension of βιβάς; βιβᾶσα; βιβάν (Attic)
 
@@ -341,7 +341,7 @@ part: act.pres
 rverb: βιόω
 verb: βιῶ
 plain: βι
-rtype: όω
+vkey: ῶ-οῦμαι
 
 
 # First and third declension of βιῶν; βιοῦσα; βιοῦν (Attic)
@@ -363,7 +363,7 @@ part: act.pres
 rverb: γονυπετέω
 # verb: γονυπετῶ
 plain: γονυπετ
-rtype: έω
+vkey: ῶ-οῦμαι
 
 
 # First and third declension of γονυπετῶν; γονυπετοῦσα; γονυπετοῦν (Attic)
@@ -384,7 +384,7 @@ dict: γραφόμενος • (graphómenos) n (feminine γραφομένη, ne
 part: mp.pres
 verb: γράφω
 plain: γράφ
-rtype: ω
+vkey = 'ω-ομαι'
 
 
 # First and second declension of γραφόμενος; γραφομένη; γραφόμενον (Attic)
@@ -427,7 +427,7 @@ part: act.pres
 rverb: διαιτάω
 verb: διαιτῶ
 plain: διαιτ
-rtype: άω
+vkey: άω-άομαι
 
 
 # First and third declension of διαιτῶν; διαιτῶσα; διαιτῶν (Attic)
@@ -441,27 +441,27 @@ voc: διαιτῶν, διαιτῶσα, διαιτῶν, διαιτῶντε, �
 adv: διαιτώντως
 
 # -----------------------------
-dict: διακοιρανέων • (diakoiranéōn) m (feminine διακοιρανέουσα, neuter διακοιράνεον); first/third declension
+# dict: διακοιρανέων • (diakoiranéōn) m (feminine διακοιρανέουσα, neuter διακοιράνεον); first/third declension
 
- present active participle of *διακοιρανέω (*diakoiranéō)
+#  present active participle of *διακοιρανέω (*diakoiranéō)
 
-part: act.pres
-# verb: διακοιρανέω
-plain: διακοιραν
-rtype: έω
+# part: act.pres
+# # verb: διακοιρανέω
+# plain: διακοιραν
+# rtype: έω
 
 
- commanding over, ruling over
+#  commanding over, ruling over
 
-# First and third declension of διακοιρανέων; διακοιρανέουσα; διακοιρανέον (Attic)
+# # First and third declension of διακοιρανέων; διακοιρανέουσα; διακοιρανέον (Attic)
 
-nom: διακοιρανέων, διακοιρανέουσα, διακοιρανέον, διακοιρανέοντε, διακοιρανεούσα, διακοιρανέοντε, διακοιρανέοντες, διακοιρανέουσαι, διακοιρανέοντα
-gen: διακοιρανέοντος, διακοιρανεούσης, διακοιρανέοντος, διακοιρανεόντοιν, διακοιρανεούσαιν, διακοιρανεόντοιν, διακοιρανεόντων, διακοιρανεουσῶν, διακοιρανεόντων
-dat: διακοιρανέοντι, διακοιρανεούσῃ, διακοιρανέοντι, διακοιρανεόντοιν, διακοιρανεούσαιν, διακοιρανεόντοιν, διακοιρανέουσι-διακοιρανέουσιν, διακοιρανεούσαις, διακοιρανέουσι-διακοιρανέουσιν
-acc: διακοιρανέοντα, διακοιρανέουσαν, διακοιρανέον, διακοιρανέοντε, διακοιρανεούσα, διακοιρανέοντε, διακοιρανέοντας, διακοιρανεούσας, διακοιρανέοντα
-voc: διακοιρανέων, διακοιρανέουσα, διακοιρανέον, διακοιρανέοντε, διακοιρανεούσα, διακοιρανέοντε, διακοιρανέοντες, διακοιρανέουσαι, διακοιρανέοντα
+# nom: διακοιρανέων, διακοιρανέουσα, διακοιρανέον, διακοιρανέοντε, διακοιρανεούσα, διακοιρανέοντε, διακοιρανέοντες, διακοιρανέουσαι, διακοιρανέοντα
+# gen: διακοιρανέοντος, διακοιρανεούσης, διακοιρανέοντος, διακοιρανεόντοιν, διακοιρανεούσαιν, διακοιρανεόντοιν, διακοιρανεόντων, διακοιρανεουσῶν, διακοιρανεόντων
+# dat: διακοιρανέοντι, διακοιρανεούσῃ, διακοιρανέοντι, διακοιρανεόντοιν, διακοιρανεούσαιν, διακοιρανεόντοιν, διακοιρανέουσι-διακοιρανέουσιν, διακοιρανεούσαις, διακοιρανέουσι-διακοιρανέουσιν
+# acc: διακοιρανέοντα, διακοιρανέουσαν, διακοιρανέον, διακοιρανέοντε, διακοιρανεούσα, διακοιρανέοντε, διακοιρανέοντας, διακοιρανεούσας, διακοιρανέοντα
+# voc: διακοιρανέων, διακοιρανέουσα, διακοιρανέον, διακοιρανέοντε, διακοιρανεούσα, διακοιρανέοντε, διακοιρανέοντες, διακοιρανέουσαι, διακοιρανέοντα
 
-adv: διακοιρανεόντως
+# adv: διακοιρανεόντως
 
 # -----------------------------
 dict: διῃτημένος • (diēitēménos)
@@ -603,6 +603,7 @@ part: mp.pres
 verb: ἔρομαι
 plain: ἔρ
 rtype: ομαι
+vkey = 'ω-ομαι'
 
 
 # First and second declension of ἐρόμενος; ἐρομένη; ἐρόμενον (Attic)
@@ -623,7 +624,7 @@ dict: ἐρχόμενος • (erkhómenos) m (feminine ἐρχομένη, neute
 part: mp.pres
 verb: ἔρχομαι
 plain: ἔρχ
-rtype: ομαι
+vkey = 'ω-ομαι'
 
 
 # First and second declension of ἐρχόμενος; ἐρχομένη; ἐρχόμενον (Attic)
@@ -642,7 +643,7 @@ dict: ἐρώμενος • (erṓmenos) m (feminine ἐρωμένη, neuter ἐ
 part: mp.pres
 verb: ἐράω
 plain: ἐρ
-rtype: άω
+vkey: άω-άομαι
 
 
 # First and second declension of ἐρώμενος; ἐρωμένη; ἐρώμενον (Attic)
@@ -664,7 +665,7 @@ part: act.pres
 rverb: ἐράω
 verb: ἐρῶ
 plain: ἐρα
-rtype: άω
+vkey: άω-άομαι
 
 
 # First and third declension of ἐρῶν; ἐρῶσα; ἐρῶν (Attic)
@@ -685,8 +686,7 @@ dict: εὐχόμενος • (eukhómenos) m (feminine εὐχομένη, neute
 part: mp.pres
 verb: εὔχομαι
 plain: εὔχ
-rtype: ομαι
-
+vkey = 'ω-ομαι'
 
 # and second declension of εὐχόμενος; εὐχομένη; εὐχόμενον (Attic)
 
@@ -707,7 +707,7 @@ part: act.pres
 rverb: ἐφοράω
 verb: ἐφορῶ
 plain: ἐφορ
-rtype: άω
+vkey: άω-άομαι
 
 
 # and third declension of ἐφορῶν; ἐφορῶσα; ἐφορῶν (Attic)
@@ -728,8 +728,7 @@ dict: ἔχων • (ékhōn) m (feminine ἔχουσα, neuter ἔχον); firs
 part: act.pres
 verb: ἔχω
 plain: ἔχ
-rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and third declension of ἔχων; ἔχουσα; ἔχον (Attic)
 
@@ -748,9 +747,9 @@ dict: ἐών • (eṓn)
 
 # eimi ================================================ eimi
 part: act.pres
-# verb: εἰμί
-plain: ἐ
-rtype: ών
+verb: εἰμί
+plain: ε
+vkey: ἰμί
 
 # First and third declension of ἐών; ἐοῦσα; ἐόν (Attic)
 
@@ -771,7 +770,7 @@ part: act.pres
 rverb: θεάομαι
 verb: θεῶ
 plain: θ
-rtype: εῶ
+vkey: ῶμαι
 
 
 # First and third declension of θεῶν; θεῶσα; θεῶν (Attic)
@@ -813,7 +812,7 @@ dict: ἱλάων • (hīlā́ōn) m (feminine ἱλάουσα, neuter ι
 part: act.pres
 verb: ἱλάομαι
 plain: ἱλ
-rtype: άομαι
+vkey: άομαι
 
 
 # First and third declension of ἱλάων; ἱλάουσα; ἱλᾶον (Attic)
@@ -832,9 +831,9 @@ dict: ἰών • (iṓn) m (feminine ἰοῦσα, neuter ἰόν); first/third
  present active participle of εἶμι (eîmi)
 
 part: act.pres
-# verb: εἶμι
-# plain: ἰ
-# rtype: ών
+verb: εἶμι
+plain: ει
+vkey: μι
 
 # NB eimi
 
@@ -877,8 +876,7 @@ dict: κανονιζόμενος • (kanonizómenos)
 part: mp.pres
 verb: κανονίζω
 plain: κανονί
-rtype: ζω
-
+vkey = 'ω-ομαι'
 
 # First and second declension of κανονιζόμενος; κανονιζομένη; κανονιζόμενον (Attic)
 
@@ -982,8 +980,7 @@ dict: κρίνων • (krī́nōn) m (feminine κρίνουσα, neuter κ�
 part: act.pres
 verb: κρίνω
 plain: κρίν
-rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and third declension of κρίνων; κρίνουσα; κρῖνον (Attic)
 
@@ -1024,8 +1021,7 @@ dict: λανθάνων • (lanthánōn) m (feminine λανθάνουσα, neute
 part: act.pres
 verb: λανθάνω
 plain: λανθάν
-rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and third declension of λανθάνων; λανθάνουσα; λανθάνον (Attic)
 
@@ -1066,8 +1062,7 @@ dict: λιθίζων • (lithízōn) m (feminine λιθίζουσα, neuter
 part: act.pres
 verb: λιθίζω
 plain: λιθί
-rtype: ζω
-
+vkey = 'ω-ομαι'
 
 # First and third declension of λιθίζων; λιθίζουσα; λιθίζον (Attic)
 
@@ -1108,8 +1103,7 @@ dict: λύων • (lū́ōn)
 part: act.pres
 verb: λύω
 plain: λύ
-rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and third declension of λύων; λύουσα; λῦον (Attic)
 
@@ -1129,8 +1123,7 @@ dict: μέλλων • (méllōn) m (feminine μέλλουσα, neuter μέλλ�
 part: act.pres
 verb: μέλλω
 plain: μέλλ
-rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and third declension of μέλλων; μέλλουσα; μέλλον (Attic)
 
@@ -1150,7 +1143,7 @@ dict: νεκραγωγεόμενος • (nekragōgeómenos) m (feminine νεκ�
 part: mp.pres
 verb: νεκραγωγέω
 plain: νεκραγωγ
-rtype: έω
+vkey: έω-έομαι
 
 
 # First and second declension of νεκραγωγεόμενος; νεκραγωγεομένη; νεκραγωγεόμενον (Attic)
@@ -1171,7 +1164,7 @@ dict: νεκραγωγέων • (nekragōgéōn) m (feminine νεκραγωγέ
 part: act.pres
 verb: νεκραγωγέω
 plain: νεκραγωγ
-rtype: έω
+vkey: έω-έομαι
 
 
 # First and third declension of νεκραγωγέων; νεκραγωγέουσα; νεκραγωγέον (Attic)
@@ -1192,7 +1185,7 @@ dict: νέων • (néōn) m (feminine νέουσα, neuter νέον); first/se
 part: act.pres
 verb: νέω
 plain: ν
-rtype: έω
+vkey: έω
 
 
 # First and third declension of νέων; νέουσα; νέον (Attic)
@@ -1235,7 +1228,7 @@ part: act.pres
 rverb: νικάω
 verb: νικῶ
 plain: νικ
-rtype: άω
+vkey: άω-άομαι
 
 
 # First and third declension of νικῶν; νικῶσα; νικῶν (Attic)
@@ -1298,8 +1291,7 @@ dict: νύσσων • (nússōn) m (feminine νύσσουσα, neuter νύ�
 part: act.pres
 verb: νύσσω
 plain: νύσσ
-rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and third declension of νύσσων; νύσσουσα; νύσσον (Attic)
 
@@ -1319,7 +1311,7 @@ dict: ὄζων • (ózōn) m (feminine ὄζουσα, neuter ὄζον); first
 part: act.pres
 verb: ὄζω
 plain: ὄ
-rtype: ζω
+vkey: ζω-ζομαι
 
 
 # First and third declension of ὄζων; ὄζουσα; ὄζον (Attic)
@@ -1340,7 +1332,7 @@ dict: οἰκούμενος • (oikoúmenos)
 part: mp.pres
 verb: οἰκέω
 plain: οἰκ
-rtype: έω
+vkey: έω-έομαι
 
 
 # First and second declension of οἰκούμενος; οἰκουμένη; οἰκούμενον (Attic)
@@ -1450,8 +1442,7 @@ dict: πειθόμενος • (peithómenos) m (feminine πειθομένη, ne
 part: mp.pres
 verb: πείθω
 plain: πείθ
-rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and second declension of πειθόμενος; πειθομένη; πειθόμενον (Attic)
 
@@ -1509,8 +1500,7 @@ dict: περιοδεύων • (periodeúōn) m (feminine περιοδεύουσ
 part: act.pres
 verb: περιοδεύω
 plain: περιοδεύ
-rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and third declension of περιοδεύων; περιοδεύουσα; περιοδεῦον (Attic)
 
@@ -1530,7 +1520,7 @@ dict: περισπαόμενος • (perispaómenos) m (feminine περισπα
 part: mp.pres
 verb: περισπάω
 plain: περισπα
-rtype: άω
+vkey: άω-άομαι
 
 
 # First and second declension of περισπαόμενος; περισπαομένη; περισπαόμενον (Attic)
@@ -1553,7 +1543,7 @@ dict: περισπώμενος • (perispṓmenos) m (feminine περισπωμ
 part: mp.pres
 verb: περισπάω
 plain: περισπ
-rtype: άω
+vkey: άω-άομαι
 
 
 # First and second declension of περισπώμενος; περισπωμένη; περισπώμενον (Attic)
@@ -1575,8 +1565,7 @@ dict: περιφερόμενος • (peripherómenos) m
 part: mp.pres
 verb: περιφέρω
 plain: περιφέρ
-rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and second declension of περιφερόμενος; περιφερομένη; περιφερόμενον (Attic)
 
@@ -1637,8 +1626,8 @@ dict: ποππύζων • (poppúzōn) m (feminine ποππύζουσα, ne
 
 part: act.pres
 verb: ποππύζω
-plain: ποππύ
-rtype: ζω
+plain: ποππυ
+vkey: ζω-ζομαι
 
 
 # First and third declension of ποππύζων; ποππύζουσα; ποππύζον (Attic)
@@ -1656,7 +1645,7 @@ dict: προηγούμενος • (proēgoúmenos) m (feminine προηγουμ
 
 
 part: mp.pres
-# verb: προηγέομαι
+verb: προηγέομαι
 plain: προηγ
 rtype: έομαι
 
@@ -1679,8 +1668,7 @@ dict: ῥέπων • (rhépōn) m (feminine ῥέπουσα, neuter ῥέπον
 part: act.pres
 verb: ῥέπω
 plain: ῥέπ
-rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and third declension of ῥέπων; ῥέπουσα; ῥέπον (Attic)
 
@@ -1721,7 +1709,7 @@ dict: σημειούμενος • (sēmeioúmenos) m (feminine σημειουμ
 part: mp.pres
 verb: σημειόω
 plain: σημει
-rtype: όω
+vkey: ῶ-οῦμαι
 
 
 # First and second declension of σημειούμενος; σημειουμένη; σημειούμενον (Attic)
@@ -1743,7 +1731,7 @@ part: act.pres
 rverb: σημειόω
 verb: σημειῶ
 plain: σημει
-rtype: όω
+vkey: ῶ-οῦμαι
 
 
 # First and third declension of σημειῶν; σημειοῦσα; σημειοῦν (Attic)
@@ -1764,7 +1752,7 @@ dict: σκάζων • (skázōn) m (feminine σκάζουσα, neuter σκ�
 part: act.pres
 verb: σκάζω
 plain: σκά
-rtype: ζω
+vkey: ζω-ζομαι
 
 
 # First and third declension of σκάζων; σκάζουσα; σκάζον (Attic)
@@ -1778,23 +1766,23 @@ voc: σκάζων, σκάζουσα, σκάζον, σκάζοντε, σ�
 adv: σκαζόντως
 
 # -----------------------------
-dict: συγκρουόμενος • (sunkrouómenos) m (feminine συγκρουομένη, neuter συγκρουόμενον)
+# dict: συγκρουόμενος • (sunkrouómenos) m (feminine συγκρουομένη, neuter συγκρουόμενον)
 
- present mediopassive participle of συγκρούομαι (sunkroúomai)
+#  present mediopassive participle of συγκρούομαι (sunkroúomai)
 
-part: mp.pres
-verb: συγκρούομαι
-plain: συγκρού
-rtype: ομαι
+# part: mp.pres
+# verb: συγκρούομαι
+# plain: συγκρού
+# rtype: ομαι
 
 
-# First and second declension of συγκρουόμενος; συγκρουομένη; συγκρουόμενον (Attic)
+# # First and second declension of συγκρουόμενος; συγκρουομένη; συγκρουόμενον (Attic)
 
-nom: συγκρουόμενος, συγκρουομένη, συγκρουόμενον, συγκρουομένω, συγκρουομένα, συγκρουομένω, συγκρουόμενοι, συγκρουόμεναι, συγκρουόμενα
-gen: συγκρουομένου, συγκρουομένης, συγκρουομένου, συγκρουομένοιν, συγκρουομέναιν, συγκρουομένοιν, συγκρουομένων, συγκρουομένων, συγκρουομένων
-dat: συγκρουομένῳ, συγκρουομένῃ, συγκρουομένῳ, συγκρουομένοιν, συγκρουομέναιν, συγκρουομένοιν, συγκρουομένοις, συγκρουομέναις, συγκρουομένοις
-acc: συγκρουόμενον, συγκρουομένην, συγκρουόμενον, συγκρουομένω, συγκρουομένα, συγκρουομένω, συγκρουομένους, συγκρουομένας, συγκρουόμενα
-voc: συγκρουόμενε, συγκρουομένη, συγκρουόμενον, συγκρουομένω, συγκρουομένα, συγκρουομένω, συγκρουόμενοι, συγκρουόμεναι, συγκρουόμενα
+# nom: συγκρουόμενος, συγκρουομένη, συγκρουόμενον, συγκρουομένω, συγκρουομένα, συγκρουομένω, συγκρουόμενοι, συγκρουόμεναι, συγκρουόμενα
+# gen: συγκρουομένου, συγκρουομένης, συγκρουομένου, συγκρουομένοιν, συγκρουομέναιν, συγκρουομένοιν, συγκρουομένων, συγκρουομένων, συγκρουομένων
+# dat: συγκρουομένῳ, συγκρουομένῃ, συγκρουομένῳ, συγκρουομένοιν, συγκρουομέναιν, συγκρουομένοιν, συγκρουομένοις, συγκρουομέναις, συγκρουομένοις
+# acc: συγκρουόμενον, συγκρουομένην, συγκρουόμενον, συγκρουομένω, συγκρουομένα, συγκρουομένω, συγκρουομένους, συγκρουομένας, συγκρουόμενα
+# voc: συγκρουόμενε, συγκρουομένη, συγκρουόμενον, συγκρουομένω, συγκρουομένα, συγκρουομένω, συγκρουόμενοι, συγκρουόμεναι, συγκρουόμενα
 
 # -----------------------------
 dict: συναλιζόμενος • (sunālizómenos)
@@ -1803,9 +1791,8 @@ dict: συναλιζόμενος • (sunālizómenos)
 
 part: mp.pres
 verb: συναλίζω
-plain: συναλί
-rtype: ζω
-
+plain: συναλιζ
+vkey = 'ω-ομαι'
 
 # First and second declension of συναλιζόμενος; συναλιζομένη; συναλιζόμενον (Attic)
 
@@ -1846,8 +1833,7 @@ part: act.pres
 rverb: τιμάω
 verb: τιμῶ
 plain: τιμ
-rtype: άω
-
+vkey: άω-άομαι
 
 # First and third declension of τιμῶν; τιμῶσα; τιμῶν (Attic)
 
@@ -1907,7 +1893,7 @@ dict: ὑποκείμενος • (hupokeímenos)
 part: mp.pres
 verb: ὑπόκειμαι
 plain: ὑπόκε
-rtype: ιμαι
+vkey: ιμαι
 
 
 # Second declension of ὑποκείμενος; ὑποκείμενον (Attic)
@@ -1932,7 +1918,7 @@ dict: φαέθων • (phaéthōn) m (feminine φαέθουσα, neuter φά�
 part: act.pres
 verb: φαέθω
 plain: φαέθ
-rtype: ω
+vkey = 'ω-ομαι'
 
 # part sg pres act
 
@@ -1954,8 +1940,7 @@ dict: φαινόμενος • (phainómenos)
 part: mp.pres
 verb: φαίνω
 plain: φαίν
-rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and second declension of φαινόμενος; φαινομένη; φαινόμενον (Attic)
 
@@ -1975,8 +1960,7 @@ dict: φαίνων • (phaínōn) m (feminine φαίνουσα, neuter φαῖ�
 part: act.pres
 verb: φαίνω
 plain: φαίν
-rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and third declension of φαίνων; φαίνουσα; φαῖνον (Attic)
 
@@ -1996,7 +1980,7 @@ dict: φάς • (phā́s) m (feminine φᾶσα, neuter φάν); first/thir
 part: act.pres
 verb: φημί
 plain: φ
-rtype: ημί
+vkey: ημί
 
 
 # First and third declension of φάς; φᾶσα; φάν (Attic)
@@ -2017,8 +2001,7 @@ dict: φέρων • (phérōn) m (feminine φέρουσα, neuter φέρον); 
 part: act.pres
 verb: φέρω
 plain: φέρ
-rtype: ω
-
+vkey = 'ω-ομαι'
 
 # First and third declension of φέρων; φέρουσα; φέρον (Attic)
 
@@ -2038,7 +2021,7 @@ dict: φορούμενος • (phoroúmenos)
 part: mp.pres
 verb: φορέω
 plain: φορ
-rtype: έω
+vkey: έω-έομαι
 
 
 # First and second declension of φορούμενος; φορουμένη; φορούμενον (Attic)
@@ -2059,7 +2042,7 @@ dict: φρονέων • (phronéōn) m (feminine φρονέουσα, neuter φ�
 part: act.pres
 verb: φρονέω
 plain: φρον
-rtype: έω
+vkey: έω-έομαι
 
 
 # First and third declension of φρονέων; φρονέουσα; φρονέον (Attic)
@@ -2098,7 +2081,7 @@ adv: φωνησάντως
 
  # present active participle of εἰμί (eimí)
 
-part: act.pres
+# part: act.pres
 # verb: εἰμί
 
 # First and third declension of ὤν, οὖσα, ὄν
