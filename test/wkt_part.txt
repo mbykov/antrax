@@ -132,7 +132,7 @@ verb: ἄγω
 # verb: ἄξω
 plain: α
 rtype: ξω
-
+vkey: ξω-ξομαι-χθήσομαι
 
 # First and third declension of ἄξων; ἄξουσα; ἄξον (Attic)
 
@@ -153,7 +153,8 @@ part: mp.pres
 verb: ἀπαμείβομαι
 plain: ἀπαμείβ
 rtype: ομαι
-vkey: ω-ομαι
+# vkey: ω-ομαι
+vkey: ομαι
 reg: true
 
 # First and second declension of ἀπαμειβόμενος; ἀπαμειβομένη; ἀπαμειβόμενον (Attic)
@@ -198,7 +199,6 @@ verb: αὐδάω
 plain: αὐδ
 rtype: άω
 
-
 # First and third declension of αὐδηθείς; αὐδηθεῖσα; αὐδηθέν (Attic)
 
 nom: αὐδηθείς, αὐδηθεῖσα, αὐδηθέν, αὐδηθέντε, αὐδηθείσα, αὐδηθέντε, αὐδηθέντες, αὐδηθεῖσαι, αὐδηθέντα
@@ -237,9 +237,10 @@ dict: αὐδώμενος • (audṓmenos) m (feminine αὐδωμένη, neute
 
 part: mp.pres
 rverb: αὐδάω
-verb: αὐδῶ
-plain: αὐδ
+verb: αὐδάω
+plain: αυδ
 vkey: άω-άομαι
+reg: true
 
 # First and second declension of αὐδώμενος; αὐδωμένη; αὐδώμενον (Attic)
 
@@ -261,7 +262,7 @@ rverb: αὐδάω
 verb: αὐδῶ
 plain: αὐδ
 vkey: άω-άομαι
-
+reg: true
 
 # First and third declension of αὐδῶν; αὐδῶσα; αὐδῶν (Attic)
 
@@ -345,7 +346,7 @@ rverb: βιόω
 verb: βιῶ
 plain: βι
 vkey: ῶ-οῦμαι
-
+reg: true
 
 # First and third declension of βιῶν; βιοῦσα; βιοῦν (Attic)
 
@@ -367,6 +368,7 @@ rverb: γονυπετέω
 # verb: γονυπετῶ
 plain: γονυπετ
 vkey: ῶ-οῦμαι
+reg: true
 
 
 # First and third declension of γονυπετῶν; γονυπετοῦσα; γονυπετοῦν (Attic)
@@ -432,6 +434,7 @@ rverb: διαιτάω
 verb: διαιτῶ
 plain: διαιτ
 vkey: άω-άομαι
+reg: true
 
 
 # First and third declension of διαιτῶν; διαιτῶσα; διαιτῶν (Attic)
@@ -583,9 +586,13 @@ dict: ἐποψόμενος • (epopsómenos) m (feminine ἐποψομένη, 
 
 part: mid.fut
 # verb: ἐφοράω
-verb: ἐπόψομαι
-plain: ἐποψ
+# verb: ἐπόψομαι
+verb: ἐφοράω
+plain: επο
 rtype: ομαι
+# vkey: άω-άομαι
+vkey: ψομαι-φθήσομαι
+# pkey: ψόμενος-ψομένη-ψόμενον
 
 
 # First and second declension of ἐποψόμενος; ἐποψομένη; ἐποψόμενον (Attic)
@@ -650,6 +657,7 @@ part: mp.pres
 verb: ἐράω
 plain: ἐρ
 vkey: άω-άομαι
+reg: true
 
 
 # First and second declension of ἐρώμενος; ἐρωμένη; ἐρώμενον (Attic)
@@ -672,6 +680,7 @@ rverb: ἐράω
 verb: ἐρῶ
 plain: ἐρα
 vkey: άω-άομαι
+reg: true
 
 
 # First and third declension of ἐρῶν; ἐρῶσα; ἐρῶν (Attic)
@@ -715,6 +724,7 @@ rverb: ἐφοράω
 verb: ἐφορῶ
 plain: ἐφορ
 vkey: άω-άομαι
+reg: true
 
 
 # and third declension of ἐφορῶν; ἐφορῶσα; ἐφορῶν (Attic)
@@ -1221,6 +1231,8 @@ part: act.fut
 verb: νέω
 plain: ν
 rtype: έω
+vkey: ήσω-ήσομαι-ηθήσομαι
+reg: true
 
 
 # First and third declension of νήσων; νήσουσα; νῆσον (Attic)
@@ -1243,6 +1255,7 @@ rverb: νικάω
 verb: νικῶ
 plain: νικ
 vkey: άω-άομαι
+reg: true
 
 
 # First and third declension of νικῶν; νικῶσα; νικῶν (Attic)
@@ -1538,6 +1551,7 @@ part: mp.pres
 verb: περισπάω
 plain: περισπα
 vkey: άω-άομαι
+reg: true
 
 
 # First and second declension of περισπαόμενος; περισπαομένη; περισπαόμενον (Attic)
@@ -1561,6 +1575,7 @@ part: mp.pres
 verb: περισπάω
 plain: περισπ
 vkey: άω-άομαι
+reg: true
 
 
 # First and second declension of περισπώμενος; περισπωμένη; περισπώμενον (Attic)
@@ -1729,6 +1744,7 @@ part: mp.pres
 verb: σημειόω
 plain: σημει
 vkey: ῶ-οῦμαι
+reg: true
 
 
 # First and second declension of σημειούμενος; σημειουμένη; σημειούμενον (Attic)
@@ -1751,6 +1767,7 @@ rverb: σημειόω
 verb: σημειῶ
 plain: σημει
 vkey: ῶ-οῦμαι
+reg: true
 
 
 # First and third declension of σημειῶν; σημειοῦσα; σημειοῦν (Attic)
@@ -1854,6 +1871,7 @@ rverb: τιμάω
 verb: τιμῶ
 plain: τιμ
 vkey: άω-άομαι
+reg: true
 
 # First and third declension of τιμῶν; τιμῶσα; τιμῶν (Attic)
 

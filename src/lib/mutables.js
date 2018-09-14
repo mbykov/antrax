@@ -28,9 +28,9 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'αναγιγνωσκ') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'επο') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      if (dict.plain == 'αναγιγνωσκ' && flex.tense == 'mp.pres.part') log('NC-f ============', flex)
+      if (dict.plain == 'επο' && flex.tense == 'mid.fut.part') log('NC-f ============', flex)
 
       if (dict.reg != flex.reg) return false
       if (dict.reg) {
