@@ -1,7 +1,7 @@
 /* global describe */
 
 // import {log} from '../src/lib/utils'
-import {augs, vowels, tense} from '../src/lib/utils'
+import {augs, vowels} from '../src/lib/utils'
 let log = console.log
 import { clause, antrax, enableDBs } from '../dist'
 import _ from 'lodash'
@@ -38,7 +38,7 @@ let param = process.argv.slice(2)[1]
 let skip = true
 
 // let cases = ['nom', 'gen', 'dat', 'acc', 'voc']
-let marks = ['dict', 'nom', 'gen', 'dat' , 'acc' , 'voc' , 'adv' , 'caution' ]
+let marks = ['dict', 'nom', 'gen', 'dat' , 'acc' , 'voc' , 'adv' , 'caution', 'part' ]
 
 const gends = {
   '6': ['masc fem', 'neut', 'masc fem', 'neut', 'masc fem', 'neut' ],
@@ -54,6 +54,7 @@ let tests = []
 let rtests = []
 let tdoc
 let dict
+let tense
 let rows = text.split('\n')
 rows.forEach((row, idx) => {
   if (!row) return
@@ -89,7 +90,7 @@ rows.forEach((row, idx) => {
         let gends = tgends[idy]
         gends.split(' ').forEach(gend => {
           let num = tnums[idy]
-          let test = [dict, arg, gend, num, mark]
+          let test = ['part', tense, dict, arg, gend, num, mark]
           rtests.push(test)
         })
       })
@@ -100,10 +101,8 @@ rows.forEach((row, idx) => {
   } else if (mark == 'adv') {
     // log('ADV', rtests.length)
     // tests[dict] = rtests
-  } else if (mark == 'caution') {
-    // log('CAU')
-    // return
-    tests.pop()
+  } else if (mark == 'part') {
+    tense = txt
   } else {
     // log('ELSE')
     // tests[dict] = rtests
@@ -113,13 +112,13 @@ rows.forEach((row, idx) => {
 
 tests = _.flatten(tests)
 
-tests = tests.slice(0, 25)
-console.log('T', tests)
-tests = []
+// tests = tests.slice(0, 10)
+// console.log('T', tests)
+// tests = []
 
 forEach(tests)
-  .it('adj %s %s %s %s ', (rdict, arg, gend, num, kase, done) => {
-    // log('--->', rdict, arg, gend, num, kase)
+  .it('%s %s %s %s %s %s ', (title, tense, rdict, arg, gend, num, kase, done) => {
+    // log('--->', title, rdict, arg, gend, num, kase)
     antrax(arg)
       .then(results => {
         if (!results.length) log('NO RESULT'), assert.equal(false, true)

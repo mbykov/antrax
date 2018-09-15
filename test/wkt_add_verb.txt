@@ -40,14 +40,30 @@ ikey: ζειν-ζεσθαι
 
 dict: προηγέομαι
        go first and lead the way
+plain: προηγ
 vkey: έομαι
 pkey: ούμενος-ουμένη-ούμενον
 ikey: έεσθαι
 
 dict: σκάζω
       limp, halt
+plain: σκά
 vkey: ζω-ζομαι
 pkey: ζων-ζουσα-ζον
 ikey: ζειν-ζεσθαι
 
 # dict: συγκρούομαι
+
+dict: λιθίζω
+       look like a stone
+plain: λιθι
+vkey: ζω-ζομαι
+pkey: ζων-ζουσα-ζον
+ikey: ζειν-ζεσθαι
+
+dict: περιοδεύω
+       go all round
+plain: περιοδεύ
+vkey: ω-ομαι
+pkey: ων-ουσα-ον
+ikey: ειν-εσθαι
