@@ -99,10 +99,10 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   log('dplains---->', dplains.toString())
   let ndplains = _.filter(dicts, dict => { return !dict.plain })
   log('ndplains---->', ndplains.length)
-  let kdicts = _.filter(dicts, dict => { return dict.plain == 'αγαπ'})
+  let kdicts = _.filter(dicts, dict => { return dict.plain == 'βουλ'})
   log('kdicts---->', kdicts.length)
   log('flexes--->', flexes.length)
-  let kflexes = _.filter(flexes, fl => { return fl.flex == 'ησα'})
+  let kflexes = _.filter(flexes, fl => { return fl.flex == 'ον'})
   kflexes = _.filter(kflexes, fl => { return fl.verb })
   log('kflexes--->', kflexes.length)
 
@@ -203,9 +203,9 @@ function addDicts(chains, pnonlasts, segdicts) {
     let seg = penult.seg
     seg = plain(seg)
     let first = _.first(seg)
-    if (penult.dicts.length) return // уже есть значение, добавлять не нужно
+    // if (penult.dicts.length) return // уже есть значение, добавлять не нужно - нет, так нельзя, ἦγον имеет ненужный ηγ и не пустит
     let sdicts = _.clone(penult.dicts)
-    let firsts = _.uniq([seg.slice(0,1), seg.slice(0,2), seg.slice(0,3), seg.slice(0,4), seg.slice(0,5)])
+    // let firsts = _.uniq([seg.slice(0,1), seg.slice(0,2), seg.slice(0,3), seg.slice(0,4), seg.slice(0,5)])
     // firsts = _.filter(firsts, first => { return first != seg })
     // firsts.forEach(first => {
     //   if (first != 'ῳ') return
@@ -226,7 +226,12 @@ function addDicts(chains, pnonlasts, segdicts) {
       if (seg.length < 2) return
       let added = seg.slice(1)
       addDictCarefully(pnonlasts, segdicts, sdicts, added, 'sliced')
-    } else if (weaks) {
+    } else if (first == 'η') { // mp.impf.ind - ἠβουλόμην, ἐβουλόμην
+      if (seg.length < 2) return
+      let added = seg.slice(1)
+      addDictCarefully(pnonlasts, segdicts, sdicts, added, 'sliced')
+    }
+    if (weaks) {
       weaks.forEach(weak => {
         let stem = seg.slice(1)
         let added = [weak, stem].join('')
@@ -243,7 +248,10 @@ function addDictCarefully(pnonlasts, segdicts, sdicts, added, mark) {
   adicts = _.filter(adicts, dict => { return dict.verb })
   if (!adicts || !adicts.length) return
   adicts.forEach(adict => {
-    if (!pnonlasts.includes(adict.plain)) adict[mark] = true
+    // случай, когда plain включен в исходные pnonlasts, но не в данной chain - ἐδείκνυν, plain δεικνυ в 3-chain
+    // if (!pnonlasts.includes(adict.plain)) adict[mark] = true
+    // но без проверки на pnonlasts.includes отвалится что-то важное потом
+    adict[mark] = true
   })
   sdicts.push(adicts)
 }

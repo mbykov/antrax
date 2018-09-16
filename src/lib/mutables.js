@@ -28,11 +28,12 @@ export function parseVerb (seg, segs, flexes) {
   let partdicts = []
   let partfls = []
   lastverbs.forEach(dict => {
-    if (dict.plain == 'λιθι') log('NC-d ===========================>>>', dict)
+    if (dict.plain == 'εχρα') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
-      if (dict.plain == 'λιθι' && flex.tense == 'act.pres.part') log('NC-f ============', flex)
+      if (dict.plain == 'εχρα' && flex.tense == 'act.impf.ind') log('NC-f ============', flex)
 
       if (dict.reg != flex.reg) return false
+      if (dict.sliced && flex.part) return false // причастия не имеют augs ἄγω - ἦγον
       if (dict.reg) {
         if (flex.vkey && !dict.vkeys[flex.time]) return false
         else if (flex.vkey && !dict.vkeys[flex.time].includes(flex.vkey)) return false
