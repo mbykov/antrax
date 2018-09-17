@@ -4,7 +4,7 @@ import { log } from './lib/utils'
 import { getTerm, getFlex, queryDBs, setDBs } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import { parseVerb, parseName } from './lib/mutables'
-import { vowels, strongs } from './lib/utils'
+import { vowels, strongs, accents } from './lib/utils'
 import { strong2weak } from './lib/augments'
 import util from 'util'
 import {comb, plain} from '../../orthos'
@@ -28,6 +28,7 @@ export function antrax (wf) {
 
   let clwf = cleanStr(wf)
   let cwf = comb(clwf)
+  cwf = cwf.split(accents.varia).join(accents.oxia)
 
   let sgms = segmenter(cwf)
   // segments for flexes:
@@ -110,7 +111,7 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   // log('SGD', segdicts['αγαθοποι'])
   let chains = makeChains(sgms, segdicts, flexes)
 
-  chains = _.filter(chains, chain => { return chain.length == 2 }) // NB: <<<<<<<<<<<<<<<<<<<<<========================
+  // chains = _.filter(chains, chain => { return chain.length == 2 }) // NB: <<<<<<<<<<<<<<<<<<<<<========================
   log('total chains', chains.length)
 
   // неясно, compound до addDict или после
@@ -179,17 +180,16 @@ function makeChains (sgms, segdicts, flexes) {
     psegs.forEach((seg, idx) => {
       let pseg = plain(seg)
       let pdicts = segdicts[pseg]
-      // let prfdicts
-      // if (idx < psegs.length-1) {
-      //   pdicts = _.filter(pdicts, pdict => { return pdict.pref || pdict.name })
-      //   prfdicts = _.filter(pdicts, pdict => { return pdict.pref })
-      //   if (prfdicts.length) pdicts = prfdicts
-      // }
+      let prfdicts
+      if (idx < psegs.length-1) {
+        pdicts = _.filter(pdicts, pdict => { return pdict.pref || pdict.name })
+        prfdicts = _.filter(pdicts, pdict => { return pdict.pref })
+        if (prfdicts.length) pdicts = prfdicts
+      }
       let oseg = {seg: seg, dicts: pdicts }
       chain.push(oseg)
     })
 
-    // FLEXES поправить
     chain.push({seg: lastseg, flexes: segflexes})
     chains.push(chain)
   })
@@ -200,6 +200,7 @@ function makeChains (sgms, segdicts, flexes) {
 function addDicts(chains, pnonlasts, segdicts) {
   chains.forEach(segs => {
     let penult = segs[segs.length-2]
+    if (!penult.dicts) clog('NO SDICTS', segs)
     let seg = penult.seg
     seg = plain(seg)
     let first = _.first(seg)

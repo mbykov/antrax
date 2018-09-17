@@ -688,3 +688,15 @@ num: τρίς • (trís) (cardinal τρεῖς, ordinal τρίτος)
      (adverbial) thrice, three times
 num: χίλιοι
     -thousands
+
+# =========================== verbs: ===============
+verb: ὦ
+      _ εἰμί, act.pres.sub, sg.1
+      To be, exist
+
+verb: ᾖ
+      _ εἰμί, act.pres.sub, sg.3
+      To be, exist
+
+num: χίλιοι
+    -thousands

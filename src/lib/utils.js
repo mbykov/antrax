@@ -3,7 +3,8 @@ let util = require('util')
 
 const ac = {
   'oxia': '\u0301',
-  'varia': '\u0060',
+  'varia_': '\u0060',
+  'varia': '\u0300',
   'peris': '\u0342',
   '': '',
   'psili': '\u0313',

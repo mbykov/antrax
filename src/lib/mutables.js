@@ -1,8 +1,7 @@
 import { log, voice, time } from './utils'
 import _ from 'lodash'
 
-import {comb, plain} from '../../../orthos'
-
+// import {comb, plain} from '../../../orthos'
 
 let clog = console.log
 
@@ -14,7 +13,7 @@ export function parseVerb (seg, segs, flexes) {
   let last = _.last(segs)
   let penult = segs[segs.length-2]
 
-  last.dicts.forEach(dict => { dict.dict = comb(dict.rdict) } )
+  // last.dicts.forEach(dict => { dict.dict = comb(dict.rdict) } )
   let lastverbs = _.filter(last.dicts, dict => { return dict.verb })
   let verbflexes = _.filter(flexes, flex => { return flex.verb })
   // let advflexes = _.filter(flexes, flex => { return flex.adv })
@@ -115,7 +114,7 @@ export function parseVerb (seg, segs, flexes) {
 export function parseName (seg, segs, flexes) {
   let nchains = []
   let last = _.last(segs)
-  last.dicts.forEach(dict => { dict.dict = comb(dict.rdict) } )
+  // last.dicts.forEach(dict => { dict.dict = comb(dict.rdict) } )
   let lastnames = _.filter(last.dicts, dict => { return dict.name })
   let nameflexes = _.filter(flexes, flex => { return flex.name })
   let advflexes = _.filter(flexes, flex => { return flex.adv })
