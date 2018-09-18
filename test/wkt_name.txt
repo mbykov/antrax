@@ -38195,7 +38195,7 @@ voc: φώς, φῶτε, φῶτες
 # ----------------------------------
 dict: φῶς • (phôs) n (genitive φωτός); third declension
 
-    Attic form of φάος (pháos)
+    Attic form of φάος - light, especially daylight, etc
 
 nom: φῶς, φῶτε, φῶτα
 gen: φωτός, φώτοιν, φώτων

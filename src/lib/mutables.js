@@ -132,8 +132,9 @@ export function parseName (seg, segs, flexes) {
 
       if (dict.gend && dict.gend != flex.gend) return false
       if (dict.ends && dict.ends != flex.ends) return false
-      if (dict.ends && !dict.keys.includes(flex.key)) return false
       if (dict.gend && !dict.keys.map(key => { return key.split('-')[0] }).includes(flex.key.split('-')[0]) ) return false // for dicts from lsj
+      // if (dict.ends && !dict.keys.includes(flex.key)) return false
+      if (!dict.gend && !dict.keys.map(key => { return key.split('-')[0] }).includes(flex.key.split('-')[0]) ) return false // for adj dicts from lsj
       return true
     })
 

@@ -351,6 +351,9 @@ conj: ὥστε • (hṓste)
     (to mark the power or virtue by which one does a thing) as
     so that
 
+conj: κἀγώ
+          crasis of καὶ (kaì) and ἐγώ (egṓ)
+
 # particles: https://ancientgreek.pressbooks.com/chapter/particles/
 
 
@@ -674,6 +677,9 @@ num ἕξ • (héx)
         (ordinal ἕκτος, adverbial ἑξάκις)
 adv: ἑξάκις • (hexákis) (cardinal ἕξ, ordinal ἕκτος)
       six times
+
+adv: ἔμπροσθεν
+      before, in front
 
 num: ἑπτά
          (cardinal) seven
