@@ -7,7 +7,7 @@ import { parseVerb, parseName } from './lib/mutables'
 import { vowels, strongs, accents } from './lib/utils'
 import { strong2weak } from './lib/augments'
 import util from 'util'
-import {comb, plain} from '../../orthos'
+import {oxia, comb, plain} from '../../orthos'
 
 const path = require('path')
 let clog = console.log
@@ -28,7 +28,7 @@ export function antrax (wf) {
 
   let clwf = cleanStr(wf)
   let cwf = comb(clwf)
-  cwf = cwf.split(accents.varia).join(accents.oxia)
+  cwf = oxia(cwf)
 
   let sgms = segmenter(cwf)
   // segments for flexes:
@@ -57,6 +57,10 @@ export function antrax (wf) {
     dicts = _.filter(dicts, dict => { return !dict.term })
     let flexes = _.flatten(res[2])
     let muts = main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts)
+    if (terms.length) {
+      let shorts = _.filter(muts, chain => { return chain.length == 2 })
+      muts = shorts
+    }
     return _.compact(terms.concat(muts))
   })
 }

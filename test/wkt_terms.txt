@@ -411,6 +411,7 @@ particle: ἰδοὺ
 particle: ἕνεκεν
           on account of
 
+
 adv: ἀεί
      always
 adv: ἄνω
@@ -474,6 +475,9 @@ adv: λίαν
      = λίην
 adv: ὀλιγαχοῦ
      in a few places
+
+adv: ἀμήν
+      verily, of a truth, so be it
 
 # PREPOSITIONS
 

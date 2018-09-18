@@ -126,9 +126,9 @@ export function parseName (seg, segs, flexes) {
   // let nfls = []
   lastnames.forEach(dict => {
     if (dict.added || dict.sliced) return false
-    // if (dict.plain == 'αγ') log('NAME-d ===========================>>>', dict)
+    if (dict.plain == 'αρκετ') log('NAME-d ===========================>>>', dict)
     let fls = _.filter(nameflexes, flex => {
-      // if (dict.plain == 'αγ' && flex.numcase == 'sg.gen') log('NAME-f =========================', flex)
+      if (dict.plain == 'αρκετ' && flex.numcase == 'sg.nom') log('NAME-f ==========', flex)
 
       if (dict.gend && dict.gend != flex.gend) return false
       if (dict.ends && dict.ends != flex.ends) return false
