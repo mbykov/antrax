@@ -405,6 +405,12 @@ particle: οὔ
 particle: καθὼς
           as, just as
 
+particle: ἰδοὺ
+          so, behold! see there
+
+particle: ἕνεκεν
+          on account of
+
 adv: ἀεί
      always
 adv: ἄνω
