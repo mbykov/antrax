@@ -354,6 +354,7 @@ conj: ὥστε • (hṓste)
 conj: κἀγώ
           crasis of καὶ (kaì) and ἐγώ (egṓ)
 
+
 # particles: https://ancientgreek.pressbooks.com/chapter/particles/
 
 
@@ -414,6 +415,11 @@ particle: ἰδοὺ
 particle: ἕνεκεν
           on account of
 
+adv: ὀπίσω
+     backwards
+
+adv: πρόσω
+     forwards, onwards
 
 adv: ἀεί
      always
