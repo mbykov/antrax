@@ -409,7 +409,7 @@ particle: οὔ
 particle: καθὼς
           as, just as
 
-particle: ἰδοὺ
+particle: ἰδού
           so, behold! see there
 
 particle: ἕνεκεν

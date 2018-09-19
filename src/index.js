@@ -7,7 +7,8 @@ import { parseVerb, parseName } from './lib/mutables'
 import { vowels, strongs, accents } from './lib/utils'
 import { strong2weak } from './lib/augments'
 import util from 'util'
-import {oxia, comb, plain} from '../../orthos'
+// import {oxia, comb, plain} from '../../orthos'
+import {oxia, comb, plain} from 'orthos'
 
 const path = require('path')
 let clog = console.log
@@ -71,16 +72,6 @@ function addedStems(wforms) {
   wforms.forEach(wf => {
     first = _.first(wf)
     wplain = plain(wf)
-    // let firsts = _.uniq([plain.slice(0,1), plain.slice(0,2), plain.slice(0,3), plain.slice(0,4), plain.slice(0,5)]) // aor. ind from aor others
-    // // firsts = _.filter(firsts, first => { return first != plain })
-    // firsts.forEach(first => {
-    //   for (let dict in weaks) {
-    //     let reals = weaks[dict]
-    //     if (!reals.includes(first)) continue
-    //     let add = [dict, plain.slice(first.length)].join('')
-    //     // added.push(add)
-    //   }
-    // })
 
     let weaks = strong2weak[first]
     if (!vowels.includes(first)) {
@@ -112,10 +103,9 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   log('kflexes--->', kflexes.length)
 
   let segdicts = distributeDicts(plainsegs, dicts)
-  // log('SGD', segdicts['αγαθοποι'])
   let chains = makeChains(sgms, segdicts, flexes)
 
-  // chains = _.filter(chains, chain => { return chain.length == 2 }) // NB: <<<<<<<<<<<<<<<<<<<<<========================
+  // chains = _.filter(chains, chain => { return chain.length == 2 }) // only for tests
   log('total chains', chains.length)
 
   // неясно, compound до addDict или после
@@ -132,7 +122,6 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   // соответствие dicts и flex, added dicts
   let dfchains = filterDictFlex(chains)
 
-  // нужно, чтобы лишних в aors не было, но пока: (κτήσησθε)
   let cleans = []
   let fkeys = {}
   dfchains.forEach(chain => {
@@ -156,7 +145,6 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   })
 
   if (!bests.length) return
-  // return {form: cwf, chains: bests}
   return bests
 }
 
@@ -171,7 +159,6 @@ function distributeDicts (plainsegs, dicts) {
   return segdicts
 }
 
-// отбрасываю chains без flexes:
 function makeChains (sgms, segdicts, flexes) {
   let psegs, chains = []
   sgms.forEach(segs => {
@@ -210,18 +197,6 @@ function addDicts(chains, pnonlasts, segdicts) {
     let first = _.first(seg)
     // if (penult.dicts.length) return // уже есть значение, добавлять не нужно - нет, так нельзя, ἦγον имеет ненужный ηγ и не пустит
     let sdicts = _.clone(penult.dicts)
-    // let firsts = _.uniq([seg.slice(0,1), seg.slice(0,2), seg.slice(0,3), seg.slice(0,4), seg.slice(0,5)])
-    // firsts = _.filter(firsts, first => { return first != seg })
-    // firsts.forEach(first => {
-    //   if (first != 'ῳ') return
-    //   for (let dict in weaks) {
-    //     let reals = weaks[dict]
-    //     if (!reals.includes(first)) continue
-    //     let added = [dict, seg.slice(first.length)].join('')
-    //     let adicts = segdicts[added]
-    //     addDictCarefully(pnonlasts, sdicts, adicts, 'weak')
-    //   }
-    // })
 
     let weaks = strong2weak[first]
     if (!vowels.includes(first)) {
@@ -249,13 +224,12 @@ function addDicts(chains, pnonlasts, segdicts) {
 
 function addDictCarefully(pnonlasts, segdicts, sdicts, added, mark) {
   let adicts = segdicts[added]
-  // log('added: --------------------------------------->', added, adicts.length)
   adicts = _.filter(adicts, dict => { return dict.verb })
   if (!adicts || !adicts.length) return
   adicts.forEach(adict => {
-    // случай, когда plain включен в исходные pnonlasts, но не в данной chain - ἐδείκνυν, plain δεικνυ в 3-chain
+    // есть случай, когда plain включен в исходные pnonlasts, но не в данной chain - ἐδείκνυν, plain δεικνυ в 3-chain
     // if (!pnonlasts.includes(adict.plain)) adict[mark] = true
-    // но без проверки на pnonlasts.includes отвалится что-то важное потом
+    // но без проверки на pnonlasts.includes отвалится что-то важное потом?
     adict[mark] = true
   })
   sdicts.push(adicts)
