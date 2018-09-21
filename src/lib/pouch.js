@@ -1,9 +1,7 @@
 //
 
 import _ from 'lodash'
-import jetpack from "fs-jetpack"
 
-// let fs = require('fs');
 let fse = require('fs-extra')
 
 let copydir = require('copy-dir')
@@ -17,31 +15,31 @@ let db_flex
 let db_terms
 
 function createZeroCfg(upath, aversion) {
-  let jetData = jetpack.cwd(upath)
+  let upouchpath = path.resolve(upath, 'pouch')
+  let fns = fse.readdirSync(upouchpath)
+
   let cfg = []
-  let fns = jetData.list('pouch')
   fns.forEach((dn, idx) => {
-    let dpath = ['pouch/', dn].join('')
-    if (jetData.exists(dpath) !== 'dir') return
+    let dpath = path.resolve(upouchpath, dn)
     let cf = {name: dn, active: true, idx: idx}
     cfg.push(cf)
   })
   cfg = _.sortBy(cfg, ['idx'])
-  jetData.write('pouch/cfg.json', cfg)
+  let sfgpath = path.resolve(upouchpath, 'cfg.json')
+  fse.writeJsonSync(sfgpath, cfg)
   let version = {version: aversion}
-  jetData.write('version.json', version)
+  let versionpath = path.resolve(upath, 'version.json')
+  fse.writeJsonSync(versionpath, version)
   return cfg
 }
 
 function initDBs(upath, apath, aversion) {
   let srcpath = path.resolve(apath, 'pouch')
   let destpath = path.resolve(upath, 'pouch')
-  log('init - SRC:', srcpath, 'DEST:', destpath)
-  // const dest = jetpack.dir(destpath, { empty: true, mode: '755' });
-  const dest = jetpack.dir(destpath, { mode: '755' });
+  // log('init - SRC:', srcpath, 'DEST:', destpath)
 
   try {
-    jetpack.copy(srcpath, destpath, {
+    fse.copySync(srcpath, destpath, {
       matching: ['*/**'],
       overwrite: true
     })
@@ -53,14 +51,15 @@ function initDBs(upath, apath, aversion) {
 }
 
 export function setDBs (upath, apath) {
-  const jetData = jetpack.cwd(upath)
   let pckg = require('../../package.json')
   let aversion = pckg.version
   let rewrite = false
-  let oldver = jetData.read('version.json', 'json')
+  let versionpath = path.resolve(upath, 'version.json')
+  let oldver = fse.readJsonSync(versionpath)
   if (!oldver) rewrite = true
   else if (oldver.version != aversion) rewrite = true
-  let cfg = jetData.read('pouch/cfg.json', 'json')
+  let cfgpath = path.resolve(upath, 'pouch/cfg.json')
+  let cfg = fse.readJsonSync(cfgpath, { throws: false })
   if (!cfg) rewrite = true
   if (rewrite) cfg = initDBs(upath, apath, aversion)
 
@@ -108,7 +107,6 @@ export function getFlex (keys) {
       let result = []
       rdocs.forEach(fl => {
         fl.docs.forEach(doc => {
-        // fl.morphs.forEach(doc => {
           doc.flex = fl._id
           result.push(doc)
         })
@@ -141,41 +139,3 @@ export function getTerm (wf) {
       return docs
     })
 }
-
-
-// function copyFileSync( source, target ) {
-
-//   var targetFile = target;
-
-//   //if target is a directory a new file with the same name will be created
-//   if ( fs.existsSync( target ) ) {
-//     if ( fs.lstatSync( target ).isDirectory() ) {
-//       targetFile = path.join( target, path.basename( source ) );
-//     }
-//   }
-
-//   fs.writeFileSync(targetFile, fs.readFileSync(source));
-// }
-
-// function copyFolderRecursiveSync( source, target ) {
-//   var files = [];
-
-//   //check if folder needs to be created or integrated
-//   var targetFolder = path.join( target, path.basename( source ) );
-//   if ( !fs.existsSync( targetFolder ) ) {
-//     fs.mkdirSync( targetFolder );
-//   }
-
-//   //copy
-//   if ( fs.lstatSync( source ).isDirectory() ) {
-//     files = fs.readdirSync( source );
-//     files.forEach( function ( file ) {
-//       var curSource = path.join( source, file );
-//       if ( fs.lstatSync( curSource ).isDirectory() ) {
-//         copyFolderRecursiveSync( curSource, targetFolder );
-//       } else {
-//         copyFileSync( curSource, targetFolder );
-//       }
-//     } );
-//   }
-// }
