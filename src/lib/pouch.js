@@ -40,8 +40,8 @@ function initDBs(upath, apath, aversion) {
   // log('init - SRC:', srcpath, 'DEST:', destpath)
 
   try {
+    fse.ensureDirSync(destpath)
     fse.copySync(srcpath, destpath, {
-      matching: ['*/**'],
       overwrite: true
     })
   } catch (err) {
