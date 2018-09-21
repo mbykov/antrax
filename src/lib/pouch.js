@@ -20,6 +20,7 @@ function createZeroCfg(upath, aversion) {
 
   let cfg = []
   fns.forEach((dn, idx) => {
+    if (dn == 'cfg.json') return
     let dpath = path.resolve(upouchpath, dn)
     let cf = {name: dn, active: true, idx: idx}
     cfg.push(cf)
@@ -55,7 +56,7 @@ export function setDBs (upath, apath) {
   let aversion = pckg.version
   let rewrite = false
   let versionpath = path.resolve(upath, 'version.json')
-  let oldver = fse.readJsonSync(versionpath)
+  let oldver = fse.readJsonSync(versionpath, { throws: false })
   if (!oldver) rewrite = true
   else if (oldver.version != aversion) rewrite = true
   let cfgpath = path.resolve(upath, 'pouch/cfg.json')
