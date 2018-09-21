@@ -34,15 +34,15 @@ function createZeroCfg(upath, aversion) {
   return cfg
 }
 
-function initDBs(upath, apath, aversion) {
+function initDBs(upath, apath, aversion, isDev) {
   log('APATH', apath)
   let env = process.env.NODE_ENV
   log('NODE_ENV', env)
   let srcpath
-  if (env == 'production') {
-    srcpath = path.resolve(apath, '../app.asar.unpacked/pouch')
-  } else {
+  if (isDev) {
     srcpath = path.resolve(apath, 'pouch')
+  } else {
+    srcpath = path.resolve(apath, '../app.asar.unpacked/pouch')
   }
   let destpath = path.resolve(upath, 'pouch')
   log('init - SRC:', srcpath, 'DEST:', destpath)
@@ -59,7 +59,7 @@ function initDBs(upath, apath, aversion) {
   return cfg
 }
 
-export function setDBs (upath, apath) {
+export function setDBs (upath, apath, isDev) {
   let pckg = require('../../package.json')
   let aversion = pckg.version
   let rewrite = false
@@ -70,7 +70,7 @@ export function setDBs (upath, apath) {
   let cfgpath = path.resolve(upath, 'pouch/cfg.json')
   let cfg = fse.readJsonSync(cfgpath, { throws: false })
   if (!cfg) rewrite = true
-  if (rewrite) cfg = initDBs(upath, apath, aversion)
+  if (rewrite) cfg = initDBs(upath, apath, aversion, isDev)
 
   let dbnames = _.compact(cfg.map(cf => { return (cf.active) ? cf.name : null }))
 

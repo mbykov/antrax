@@ -14,7 +14,7 @@ const path = require('path')
 let clog = console.log
 
 let wordform = process.argv.slice(2)[0] // || 'ἀργυρῷ' // false;
-let env = process.env.NODE_ENV
+// let env = process.env.NODE_ENV
 
 export function enableDBs (upath, apath) {
   setDBs(upath, apath)
