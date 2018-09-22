@@ -7,6 +7,7 @@ conj: ἀλλά • (allá)
 
     but
     = ἀλλ’ • (all’)
+    = ἀλλ • (all’)
 
 conj: ἄν • (án) (modal particle)
 
@@ -487,6 +488,12 @@ adv: ὀλιγαχοῦ
 
 adv: ἀμήν
       verily, of a truth, so be it
+
+adv: διατί
+     διὰ τί - wherefore
+
+adv: κακῶς
+     bad
 
 # PREPOSITIONS
 

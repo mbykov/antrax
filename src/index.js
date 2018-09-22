@@ -14,16 +14,10 @@ const path = require('path')
 let clog = console.log
 
 let wordform = process.argv.slice(2)[0] // || 'ἀργυρῷ' // false;
-// let env = process.env.NODE_ENV
 
-export function enableDBs (upath, apath) {
-  setDBs(upath, apath)
+export function enableDBs (upath, apath, isDev) {
+  setDBs(upath, apath, isDev)
 }
-
-// export function clause (wfs) {
-//     let keys = wfs.map(wf => comb(wf))
-//     return getTerms(keys)
-// }
 
 export function antrax (wf) {
 
@@ -108,10 +102,7 @@ function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
   // chains = _.filter(chains, chain => { return chain.length == 2 }) // only for tests
   log('total chains', chains.length)
 
-  // неясно, compound до addDict или после
   addDicts(chains, pnonlasts, segdicts)
-  // неясно вообще с addDicts, оставить до aor
-
   // compound(chains)
 
   let fulls = fullChains(chains)
@@ -276,7 +267,6 @@ function compound(chains) {
     let pensuffs = _.filter(penult.dicts, dict => { return dict.plain == 'ε' })
     let anteverbs = _.filter(antepen.dicts, dict => { return dict.verb })
     let suff = {spec: true, rdict: 'ο', dict: 'ο', trns: ['e-suffix'] }
-    log(111, antepen.seg, penult.seg, pensuffs.length, anteverbs.length)
     if (penult && antepen && pensuffs.length && anteverbs.length) penult.dicts = [suff], antepen.dicts = anteverbs
     // penult.dicts = [suff], antepen.dicts = anteverbs
   })

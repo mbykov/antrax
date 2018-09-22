@@ -35,9 +35,6 @@ function createZeroCfg(upath, aversion) {
 }
 
 function initDBs(upath, apath, aversion, isDev) {
-  log('APATH', apath)
-  let env = process.env.NODE_ENV
-  log('NODE_ENV', env)
   let srcpath
   if (isDev) {
     srcpath = path.resolve(apath, 'pouch')
@@ -45,7 +42,7 @@ function initDBs(upath, apath, aversion, isDev) {
     srcpath = path.resolve(apath, '../app.asar.unpacked/pouch')
   }
   let destpath = path.resolve(upath, 'pouch')
-  log('init - SRC:', srcpath, 'DEST:', destpath)
+  // log('init - SRC:', srcpath, 'DEST:', destpath)
 
   try {
     fse.ensureDirSync(destpath)

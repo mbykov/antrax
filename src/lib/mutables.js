@@ -1,5 +1,7 @@
 import { log, voice, time } from './utils'
 import _ from 'lodash'
+import { verbkeys } from './verbkeys'
+
 
 // import {comb, plain} from '../../../orthos'
 
@@ -25,6 +27,12 @@ export function parseVerb (seg, segs, flexes) {
     if (dict.plain == 'εχρα') log('NC-d ===========================>>>', dict)
     let fls = _.filter(verbflexes, flex => {
       if (dict.plain == 'εχρα' && flex.tense == 'act.impf.ind') log('NC-f ============', flex)
+
+      if (dict.reg && dict.key && !dict.vkeys) {
+        let vk = verbkeys[dict.key]
+        if (!vk) return false
+        dict.vkeys = verbkeys[dict.key].vkeys, dict.pkeys = verbkeys[dict.key].pkeys, dict.ikeys = verbkeys[dict.key].ikeys
+      }
 
       if (dict.reg != flex.reg) return false
       if (dict.sliced && flex.part) return false // причастия не имеют augs ἄγω - ἦγον

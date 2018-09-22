@@ -14,10 +14,6 @@ const ac = {
   '': ''
 }
 
-// const vows = ['α', 'ι', 'ε', 'ο', 'ω', 'η', 'υ']
-
-// TODO: экспортировать сразу функцию?
-
 export const accents = ac
 
 export const mutes =
@@ -31,7 +27,6 @@ export const contrs  = {
   'aw': ['α', ac.oxia, 'ω'].join(''),
   'ow': ['ο', ac.oxia, 'ω'].join('')
 }
-
 
 export const vowels =  ['α', 'ε', 'ι', 'ο', 'ω', 'η', 'υ']
 
