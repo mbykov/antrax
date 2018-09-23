@@ -91,15 +91,17 @@ export function parseName (seg, segs, flexes) {
 
   lastnames.forEach(dict => {
     if (dict.added || dict.sliced) return false
-    if (dict.plain == 'αρκετ') log('NAME-d ===========================>>>', dict)
+    if (dict.plain == 'ναυπηγικ') log('NAME-d ===========================>>>', dict)
     let fls = _.filter(nameflexes, flex => {
-      if (dict.plain == 'αρκετ' && flex.numcase == 'sg.nom') log('NAME-f ==========', flex)
+      if (dict.plain == 'ναυπηγικ' && flex.numcase == 'sg.gen') log('NAME-f ==========', flex)
 
       if (dict.gend && dict.gend != flex.gend) return false
-      if (dict.ends && dict.ends != flex.ends) return false
       if (dict.gend && !dict.keys.map(key => { return key.split('-')[0] }).includes(flex.key.split('-')[0]) ) return false // for dicts from lsj
-      // if (dict.ends && !dict.keys.includes(flex.key)) return false
-      if (!dict.gend && !dict.keys.map(key => { return key.split('-')[0] }).includes(flex.key.split('-')[0]) ) return false // for adj dicts from lsj
+
+      if (dict.ends && dict.ends != flex.ends) return false
+      // flex для adj можно переписать, включив общий key::
+      // if (!dict.gend && dict.adkey && dict.adkey != flex.key ) return false
+      if (!dict.gend && dict.adkey && !dict.adkey.split('-').includes(flex.key.split('-')[0]) ) return false
       return true
     })
 

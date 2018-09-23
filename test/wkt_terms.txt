@@ -694,6 +694,13 @@ adv: ἑξάκις • (hexákis) (cardinal ἕξ, ordinal ἕκτος)
 adv: ἔμπροσθεν
       before, in front
 
+adv: ὁμοίως
+     like, resembling, similar
+     = ὅμοιος
+     = ὁμοῖος
+
+# =========================================
+
 num: ἑπτά
          (cardinal) seven
 num: Ι • (I)

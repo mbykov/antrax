@@ -23,7 +23,7 @@ console.time("queryTime");
 // let upath = path.resolve(__dirname, '../../')
 let upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
 let apath = path.resolve(__dirname, '../../egreek')
-enableDBs(upath, apath)
+enableDBs(upath, apath, true)
 
 antrax(wordform).then(chains => {
   if (only && only == 'log') chains.forEach(chain => { log('C:'), insp(chain)  })
