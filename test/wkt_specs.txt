@@ -211,24 +211,24 @@ pref: ὀλιγο
 # ============================================= P =======================
 
 pref: προ- • (pro-)
-    (with prepositions) quotations ▼
+    (with prepositions)
         (strengthener)
         (adds the notion of forward, forth)
     (with substantives)
-        (denotes position before or in front) quotations ▼
-        (denotes priority of rank, order) quotations ▼
-        (denotes standing in another's place) quotations ▼
+        (denotes position before or in front)
+        (denotes priority of rank, order)
+        (denotes standing in another's place)
     (with adjectives)
-        (denotes proximity, readiness) quotations ▼
-        (denotes a coming forth) quotations ▼
-        (denotes prematureness) quotations ▼
-        (denotes intensity) quotations ▼
+        (denotes proximity, readiness)
+        (denotes a coming forth)
+        (denotes prematureness)
+        (denotes intensity)
     (with verbs)
-        (of place) before, forwards quotations ▼
-        forth, publicly quotations ▼
-        before one, away quotations ▼
-        before, in preference quotations ▼
-        before, beforehand, of foresight quotations ▼
+        (of place) before, forwards
+        forth, publicly
+        before one, away
+        before, in preference
+        before, beforehand, of foresight
 
 pref: προσ- • (pros-)
        motion towards, accession to, or nearness to

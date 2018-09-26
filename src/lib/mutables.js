@@ -2,9 +2,6 @@ import { log, voice, time } from './utils'
 import _ from 'lodash'
 import { verbkeys } from './verbkeys'
 
-
-// import {comb, plain} from '../../../orthos'
-
 let clog = console.log
 
 // MAIN VERB
