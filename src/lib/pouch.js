@@ -79,36 +79,36 @@ export function setDBs (upath) {
   db_terms = new PouchDB(termpath)
 }
 
-export function setDBs_ (upath, apath, isDev) {
-  let pckg = require('../../package.json')
-  let aversion = pckg.version
-  let rewrite = false
-  let versionpath = path.resolve(upath, 'version.json')
-  let oldver = fse.readJsonSync(versionpath, { throws: false })
-  if (!oldver) rewrite = true
-  else if (oldver.version != aversion) rewrite = true
-  let cfgpath = path.resolve(upath, 'pouch/cfg.json')
-  let cfg = fse.readJsonSync(cfgpath, { throws: false })
-  if (!cfg) cfg = createZeroCfg(upath, aversion)
-  // cfg = initDBs(upath, apath, aversion, isDev)
+// export function setDBs_ (upath, apath, isDev) {
+//   let pckg = require('../../package.json')
+//   let aversion = pckg.version
+//   let rewrite = false
+//   let versionpath = path.resolve(upath, 'version.json')
+//   let oldver = fse.readJsonSync(versionpath, { throws: false })
+//   if (!oldver) rewrite = true
+//   else if (oldver.version != aversion) rewrite = true
+//   let cfgpath = path.resolve(upath, 'pouch/cfg.json')
+//   let cfg = fse.readJsonSync(cfgpath, { throws: false })
+//   if (!cfg) cfg = createZeroCfg(upath, aversion)
+//   // cfg = initDBs(upath, apath, aversion, isDev)
 
-  let dbnames = _.compact(cfg.map(cf => { return (cf.active) ? cf.name : null }))
+//   let dbnames = _.compact(cfg.map(cf => { return (cf.active) ? cf.name : null }))
 
-  dbs = []
-  dbnames.forEach((dn, idx) => {
-    if (dn == 'flex') return
-    if (dn == 'terms') return
-    let dpath = path.resolve(upath, 'pouch', dn)
-    let pouch = new PouchDB(dpath)
-    pouch.dname = dn
-    pouch.weight = idx
-    dbs.push(pouch)
-  })
-  let flexpath = path.resolve(upath, 'pouch', 'flex')
-  db_flex = new PouchDB(flexpath)
-  let termpath = path.resolve(upath, 'pouch', 'terms')
-  db_terms = new PouchDB(termpath)
-}
+//   dbs = []
+//   dbnames.forEach((dn, idx) => {
+//     if (dn == 'flex') return
+//     if (dn == 'terms') return
+//     let dpath = path.resolve(upath, 'pouch', dn)
+//     let pouch = new PouchDB(dpath)
+//     pouch.dname = dn
+//     pouch.weight = idx
+//     dbs.push(pouch)
+//   })
+//   let flexpath = path.resolve(upath, 'pouch', 'flex')
+//   db_flex = new PouchDB(flexpath)
+//   let termpath = path.resolve(upath, 'pouch', 'terms')
+//   db_terms = new PouchDB(termpath)
+// }
 
 export function queryDBs (keys) {
   return Promise.all(dbs.map(function (db) {
