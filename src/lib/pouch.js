@@ -39,10 +39,11 @@ function initDBs(upath, apath, aversion, isDev) {
   if (isDev) {
     srcpath = path.resolve(apath, 'pouch')
   } else {
-    srcpath = path.resolve(apath, '../app.asar.unpacked/pouch')
+    // srcpath = path.resolve(apath, '../app.asar.unpacked/pouch')
+    srcpath = path.resolve(apath, '../../pouch')
   }
   let destpath = path.resolve(upath, 'pouch')
-  // log('init - SRC:', srcpath, 'DEST:', destpath)
+  log('init - SRC:', srcpath, 'DEST:', destpath)
 
   try {
     fse.ensureDirSync(destpath)
