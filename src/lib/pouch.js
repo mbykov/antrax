@@ -67,8 +67,8 @@ export function setDBs (upath, apath, isDev) {
   else if (oldver.version != aversion) rewrite = true
   let cfgpath = path.resolve(upath, 'pouch/cfg.json')
   let cfg = fse.readJsonSync(cfgpath, { throws: false })
-  if (!cfg) rewrite = true
-  if (rewrite) cfg = initDBs(upath, apath, aversion, isDev)
+  if (!cfg) cfg = createZeroCfg(upath, aversion)
+  // cfg = initDBs(upath, apath, aversion, isDev)
 
   let dbnames = _.compact(cfg.map(cf => { return (cf.active) ? cf.name : null }))
 
