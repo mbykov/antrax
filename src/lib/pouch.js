@@ -14,50 +14,72 @@ let dbs
 let db_flex
 let db_terms
 
-function createZeroCfg(upath, aversion) {
-  let upouchpath = path.resolve(upath, 'pouch')
-  let fns = fse.readdirSync(upouchpath)
+// function createZeroCfg(upath, aversion) {
+//   let upouchpath = path.resolve(upath, 'pouch')
+//   let fns = fse.readdirSync(upouchpath)
 
-  let cfg = []
-  fns.forEach((dn, idx) => {
-    if (dn == 'cfg.json') return
-    let dpath = path.resolve(upouchpath, dn)
-    let cf = {name: dn, active: true, idx: idx}
-    cfg.push(cf)
+//   let cfg = []
+//   fns.forEach((dn, idx) => {
+//     if (dn == 'cfg.json') return
+//     let dpath = path.resolve(upouchpath, dn)
+//     let cf = {name: dn, active: true, idx: idx}
+//     cfg.push(cf)
+//   })
+//   cfg = _.sortBy(cfg, ['idx'])
+//   let sfgpath = path.resolve(upouchpath, 'cfg.json')
+//   fse.writeJsonSync(sfgpath, cfg)
+//   let version = {version: aversion}
+//   let versionpath = path.resolve(upath, 'version.json')
+//   fse.writeJsonSync(versionpath, version)
+//   return cfg
+// }
+
+// function initDBs(upath, apath, aversion, isDev) {
+//   let srcpath
+//   if (isDev) {
+//     srcpath = path.resolve(apath, 'pouch')
+//   } else {
+//     // srcpath = path.resolve(apath, '../app.asar.unpacked/pouch')
+//     srcpath = path.resolve(apath, '../../pouch')
+//   }
+//   let destpath = path.resolve(upath, 'pouch')
+//   log('init - SRC:', srcpath, 'DEST:', destpath)
+
+//   try {
+//     fse.ensureDirSync(destpath)
+//     fse.copySync(srcpath, destpath, {
+//       overwrite: true
+//     })
+//   } catch (err) {
+//     log('ERR copying default DBs', err)
+//   }
+//   let cfg = createZeroCfg(upath, aversion)
+//   return cfg
+// }
+
+export function setDBs (upath) {
+  let cfgpath = path.resolve(upath, 'pouch/cfg.json')
+  let cfg = fse.readJsonSync(cfgpath, { throws: false })
+  if (!cfg) log('NO CFG!')
+
+  let dbnames = _.compact(cfg.map(cf => { return (cf.active) ? cf.name : null }))
+  dbs = []
+  dbnames.forEach((dn, idx) => {
+    if (dn == 'flex') return
+    if (dn == 'terms') return
+    let dpath = path.resolve(upath, 'pouch', dn)
+    let pouch = new PouchDB(dpath)
+    pouch.dname = dn
+    pouch.weight = idx
+    dbs.push(pouch)
   })
-  cfg = _.sortBy(cfg, ['idx'])
-  let sfgpath = path.resolve(upouchpath, 'cfg.json')
-  fse.writeJsonSync(sfgpath, cfg)
-  let version = {version: aversion}
-  let versionpath = path.resolve(upath, 'version.json')
-  fse.writeJsonSync(versionpath, version)
-  return cfg
+  let flexpath = path.resolve(upath, 'pouch', 'flex')
+  db_flex = new PouchDB(flexpath)
+  let termpath = path.resolve(upath, 'pouch', 'terms')
+  db_terms = new PouchDB(termpath)
 }
 
-function initDBs(upath, apath, aversion, isDev) {
-  let srcpath
-  if (isDev) {
-    srcpath = path.resolve(apath, 'pouch')
-  } else {
-    // srcpath = path.resolve(apath, '../app.asar.unpacked/pouch')
-    srcpath = path.resolve(apath, '../../pouch')
-  }
-  let destpath = path.resolve(upath, 'pouch')
-  log('init - SRC:', srcpath, 'DEST:', destpath)
-
-  try {
-    fse.ensureDirSync(destpath)
-    fse.copySync(srcpath, destpath, {
-      overwrite: true
-    })
-  } catch (err) {
-    log('ERR copying default DBs', err)
-  }
-  let cfg = createZeroCfg(upath, aversion)
-  return cfg
-}
-
-export function setDBs (upath, apath, isDev) {
+export function setDBs_ (upath, apath, isDev) {
   let pckg = require('../../package.json')
   let aversion = pckg.version
   let rewrite = false

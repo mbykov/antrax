@@ -15,12 +15,11 @@ let clog = console.log
 
 let wordform = process.argv.slice(2)[0] // || 'ἀργυρῷ' // false;
 
-export function enableDBs (upath, apath, isDev) {
-  setDBs(upath, apath, isDev)
+export function enableDBs (upath) {
+  setDBs(upath)
 }
 
 export function antrax (wf) {
-
   let clwf = cleanStr(wf)
   let cwf = comb(clwf)
   cwf = oxia(cwf)
