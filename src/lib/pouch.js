@@ -129,42 +129,42 @@ export function queryDBs (keys) {
   }))
 }
 
-export function getFlex (keys) {
-  return db_flex.allDocs({keys: keys, include_docs: true})
-    .then(function(res) {
-      let rdocs = _.compact(res.rows.map(row => { return row.doc }))
-      let result = []
-      rdocs.forEach(fl => {
-        fl.docs.forEach(doc => {
-          doc.flex = fl._id
-          result.push(doc)
-        })
-      })
-      return result
-    })
-}
+// export function getFlex (keys) {
+//   return db_flex.allDocs({keys: keys, include_docs: true})
+//     .then(function(res) {
+//       let rdocs = _.compact(res.rows.map(row => { return row.doc }))
+//       let result = []
+//       rdocs.forEach(fl => {
+//         fl.docs.forEach(doc => {
+//           doc.flex = fl._id
+//           result.push(doc)
+//         })
+//       })
+//       return result
+//     })
+// }
 
-export function getTerms (keys) {
-  return db_terms.allDocs({keys: keys, include_docs: true})
-    .then(function(res) {
-      let rdocs = _.compact(res.rows.map(row => { return row.doc }))
-      let docs = rdocs.map(rdoc => { return rdoc.docs })
-      let terms = {}
-      _.flatten(docs).forEach(doc => {
-        doc.dname = 'term'
-        if (!terms[doc.term]) terms[doc.term] = []
-        terms[doc.term].push(doc)
-      })
-      return terms
-    })
-}
+// export function getTerms (keys) {
+//   return db_terms.allDocs({keys: keys, include_docs: true})
+//     .then(function(res) {
+//       let rdocs = _.compact(res.rows.map(row => { return row.doc }))
+//       let docs = rdocs.map(rdoc => { return rdoc.docs })
+//       let terms = {}
+//       _.flatten(docs).forEach(doc => {
+//         doc.dname = 'term'
+//         if (!terms[doc.term]) terms[doc.term] = []
+//         terms[doc.term].push(doc)
+//       })
+//       return terms
+//     })
+// }
 
-export function getTerm (wf) {
-  return db_terms.allDocs({keys: [wf], include_docs: true})
-    .then(function(res) {
-      let rdocs = _.compact(res.rows.map(row => { return row.doc }))
-      let docs = _.flatten(rdocs.map(rdoc => { return rdoc.docs }))
-      docs.forEach(doc => { doc.dname = 'term', doc.weight = 0 })
-      return docs
-    })
-}
+// export function getTerm (wf) {
+//   return db_terms.allDocs({keys: [wf], include_docs: true})
+//     .then(function(res) {
+//       let rdocs = _.compact(res.rows.map(row => { return row.doc }))
+//       let docs = _.flatten(rdocs.map(rdoc => { return rdoc.docs }))
+//       docs.forEach(doc => { doc.dname = 'term', doc.weight = 0 })
+//       return docs
+//     })
+// }
