@@ -6,25 +6,24 @@
 conj: ἀλλά • (allá)
 
     but
-    = ἀλλ’ • (all’)
-    = ἀλλ • (all’)
+    = ἀλλ᾽ • (all᾽)
+    = ἀλλ • (all᾽)
 
-conj: ἄν • (án) (modal particle)
+conj: ἄν • (án) (modal particle)
 
     Particle expresses potentiality or conditionality
-
-    = κε (ke), κεν (ken) – Epic, Lyric
+    = κε (ke)
+    = κεν (ken) – Epic, Lyric
     = κα (ka) – Doric
 
-conj: ἄρα • (ára)
+conj: ἄρα • (ára) ἄἄ
 
     so, then, therefore, consequently
-
-    = ἄρ (ár) – before a consonant
-    = ἄρ’ (ár’) – apocopic
+    = ἄρ (ár) – before a consonant
+    = ἄρ᾽ (ár᾽) – apocopic
     = ῥα (rha) – after a monosyllabic word or a word ending in a vowel
-    = ῥ’ (rh’) – apocopic
-    = ῥά • (rhá)
+    = ῥ᾽ (rh᾽) – apocopic
+    = ῥά (rhá)
 
 conj: ἀτάρ • (atár)
 
@@ -52,7 +51,7 @@ conj: γάρ • (gár)
 conj: δέ • (dé)
 
     but, and
-    = δ’ • (d’)
+    = δ᾽ • (d᾽)
 
 conj: διό • (dió)
 
@@ -85,7 +84,7 @@ conj: εἴτε • (eíte)
     (generally doubled) either...or, whether..or
     (like εἰ (ei), in indirect questions)
     =     αἴτε (aíte) – Doric
-    = εἴτ’
+    = εἴτ᾽
 
 conj: ἕνεκα • (héneka)
 
@@ -132,7 +131,7 @@ conj: ἤ • (ḗ)
 conj: ἦ • (ê)
 
     or
-     The pair ἤ... ἦ (ḗ... ê) means ‘either... or...’ or ‘whether... or...’.
+     The pair ἤ... ἦ (ḗ... ê) means ‘either... or...᾽ or ‘whether... or...᾽.
 
     = ἦε (êe) – Epic
 
@@ -142,7 +141,7 @@ conj: ἠδέ • (ēdé) (poetic)
     Alone or with τε (te) before it: and
     Followed by καί (kaí): and, also
 
-    = ἠδ’ (ēd’) – apocopic
+    = ἠδ᾽ (ēd᾽) – apocopic
     = ἰδέ (idé) – Epic
 
 conj: ἠμέν • (ēmén) (poetic)
@@ -159,7 +158,7 @@ conj: ἵνα • (hína)
         in order that, so that, so
         that
         where
-        = ἵν’ • (hín’)
+        = ἵν᾽ • (hín᾽)
 
 conj: καί • (kaí)
 
@@ -192,7 +191,7 @@ conj: μηδέ • (mēdé)
     (connecting two clauses, used with the same constructions as μή (mḗ)) but not, and not, nor
         (doubled, μηδέ...μηδέ, opposing the two clauses of a sentence)
 
-    = μηδ’ (mēd’) – apocopic
+    = μηδ᾽ (mēd᾽) – apocopic
 
 conj: μήποτε • (mḗpote)
 
@@ -215,7 +214,7 @@ conj: μή • (mḗ)
 conj: ὁπότε • (hopóte) (relative)
 
     when (mostly in reference to the past)
-    = ὁπότ’ • (hopót’)
+    = ὁπότ᾽ • (hopót᾽)
 
     = ὁππότε (hoppóte) – Epic
     = ὁκότε (hokóte) – Ionic
@@ -224,7 +223,7 @@ conj: ὁπότε • (hopóte) (relative)
 
 conj: ὁπόταν • (hopótan)
 
-    See ὁπότε (hopóte) and ἄν (án).
+    See ὁπότε (hopóte) and ἄν (án).
 
 conj: ὅπως • (hópōs)
 
@@ -248,7 +247,7 @@ conj: οὐδέ • (oudé)
     (more often) and not, nor
     (mostly answering to μέν (mén)) but not
     not even, not at all
-    = οὐδ’ (oud’) – apocopic
+    = οὐδ᾽ (oud᾽) – apocopic
 
 conj: οὔτε
 
@@ -269,7 +268,7 @@ conj: ὄφρα • (óphra) (final or temporal conjunction) (poetic)
     as long as, while (with imperfect, or subjunctive and ἄν (án) or κε (ke))
     until (with aorist indicative of past time, aorist subjunctive of future time, optative of future in past)
 
-    = ὄφρ’ (óphr’) – apocopic
+    = ὄφρ᾽ (óphr᾽) – apocopic
 
 conj:  οὖν
 
@@ -280,7 +279,7 @@ conj: ὅθεν
 
 conj: ὅτε
         when
-        = ὅτ’
+        = ὅτ᾽
 
 conj: πάρος • (páros) (poetic)
 
@@ -319,7 +318,7 @@ conj: πρίν  • (prín)
 conj: ῥα • (rha)
 
     aphetic form of ἄρα (ára)
-    = ῥ’ (rh’) – apocopic
+    = ῥ᾽ (rh᾽) – apocopic
     = ῥά • (rhá)
 
 conj: τε • (te)
@@ -328,8 +327,8 @@ conj: τε • (te)
         (after each item in a list) and
         (combined with καί (kaí), untranslatable)
 
-    = θ’ (th’) – apocopic before a rough breathing
-    = τ’ (t’) – apocopic before a smooth breathing
+    = θ᾽ (th᾽) – apocopic before a rough breathing
+    = τ᾽ (t᾽) – apocopic before a smooth breathing
 
 conj: τοίνυν
   therefore (postpositive)
@@ -364,7 +363,7 @@ particle: αὖ
 particle: γε
           intensifies and sharpens the word(s) before it
           = γ᾽
-          = γ'
+          = γ᾽
 particle: δή
           literally “now!” but more generally emphatic
 particle: ἦ
@@ -431,7 +430,8 @@ adv: ἄρτι
 adv: αὖθις
      again
 adv: αὐτίκα
-     immediately
+     immediately, forthwith, at once, in a moment
+     = αὐτίχ᾽
 adv: εἶτα
      then, next
 adv: ἐκεῖ
@@ -509,14 +509,18 @@ prep: ἐς
       (+acc.) into
 prep: ἐπί
       (+acc.) against
-      = ἐπ'
       = ἐπ
+      = ἐπ᾽
 prep: κατά
       (+acc.) down, along, according to
+      = κατ᾽
+      = καθ᾽
 prep: μετά
       (+acc.) after, behind
+      = μεθ᾽
 prep: παρά
       (+acc.) to, throughout, beside
+      = παρ᾽
 prep: περί
       (+acc.) near, around
 prep: πρός
@@ -525,6 +529,7 @@ prep: ὑπέρ
       (+acc.) above, over, beyond
 prep: ὑπό
       (+acc.) under
+      = ὑπ᾽
 
 prep: ἀμφί
       (+dat.) around, near
@@ -534,10 +539,11 @@ prep: ἐν
       (+dat.) in
 prep: ἐπί
       (+dat.) on, for the purpose of, because of
-      = ἐπ'
+      = ἐπ᾽
       = ἐπ
 prep: παρά
       (+dat.) with, near
+      = παρ᾽
 prep: περί
       (+dat.) about
 prep: πρός
@@ -546,6 +552,7 @@ prep: σύν
       (+dat.) with (the help of)
 prep: ὑπό
       (+dat.) under
+      = ὑπ᾽
 
 
 prep: ἀμφί
@@ -556,6 +563,7 @@ prep: ἀπό
       (+gen.) from
       = ἀπ
       = ἀφ
+      = ἀφ᾽
 
 prep: διά
       (+gen.) through
@@ -566,10 +574,14 @@ prep: ἐπί
       (+gen.) on, at
 prep: κατά
       (+gen.) down, against
+      = κατ᾽
+      = καθ᾽
 prep: μετά
       (+gen.) with
+      = μεθ᾽
 prep: παρά
       (+gen.) from
+      = παρ᾽
 prep: περί
       (+gen.) about
 prep: πρό
@@ -580,6 +592,7 @@ prep: ὑπέρ
       (+gen.) over, on behalf of
 prep: ὑπό
       (+gen.) under, by
+      = ὑπ᾽
 
 
 adv: ἅμα
@@ -671,7 +684,7 @@ adv: δίχα • (díkha)
          differently, oppositely
 num: δύο
      (cardinal): two
-      = δύ'
+      = δύ᾽
       = δύω
 num: δώδεκα
           (cardinal) twelve
