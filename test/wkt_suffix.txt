@@ -1,0 +1,351 @@
+#
+
+# ================================== SUFFIXES ==========================
+
+# τειρα
+# suf: τειρ
+#     suffix of ... what?
+
+#suf: ευτικ
+#     ~ ευτής, i.e. ἀγγᾰρ-ευτής, from εὐτυχία, good luck, success
+
+suf: άκις
+    -άκις
+    Added to the stems of cardinal numerals, adjectives, and pronouns to form adverbs of repetition
+    ἑξάκις ἑξηκοντάκις πεντάκις πλειστάκις
+
+suf: άρι
+    -άριον
+    A neuter diminutive suffix.
+    δοξάριον τομάριον
+
+suf: άρχ
+      -άρχης
+      -arch (ruler, leader)
+      ἐθνάρχης ἐνωμοτάρχης ἱεράρχης μονάρχης ὀλιγάρχης πατριάρχης
+
+suf: βάτ
+   -βάτης
+  suff forming nouns masculine: one who walks on what is defined by the first combining form
+  κτηνοβάτης   λαλοβαρυπαραμελορυθμοβάτης   στυλοβάτης
+
+suf: γεν
+   -γενής
+   1. (forming adjectives) born in a certain place or condition, ἔνδον (éndon) + ‎-γενής (-genḗs) → ‎ἐνδογενής (endogenḗs)
+   2. (forming adjectives) of a kind, ἕτερος (héteros) + ‎-γενής (-genḗs) → ‎ἑτερογενής (heterogenḗs)
+   Ἀντιγένης Ἀριστογένης διγενής Διογένης διογενής ἐνδογενής ἑτερογενής μονογενής οἰκογενής ὁμογενής τετραγενής τριγενής
+
+# +-
+suf: ει
+     -εια
+     Added to various stems to form feminine nouns of person or thing concerned; ἱερός (hierós, “holy”) + ‎-εια (-eia) → ‎ἱέρειᾰ (hiéreia, “priestess”)
+     Αἰθάλεια Ἀλεξάνδρεια Ἀντιόχεια ἀξιοπρέπεια ἀπάθεια ἀριστολόχεια ἀσθένεια αὐτάρκεια ἱέρεια Ἱπποδάμεια Ἰφιγένεια Καισάρεια Λυσιμάχεια Τριτογένεια Χαιρώνεια
+
+suf: ειδ
+      -ειδής
+      Forms adjectives: like, connected to, from the nature of, full of;
+      ἠεροειδής ἠθμοειδής θεοειδής ἰχθυοειδής λαβδοειδής μηνοειδής μονοειδής νευροειδής πιθηκοειδής ῥομβοειδής σιγμοειδής τροχοειδής Ὑπερείδης χοριοειδής ᾠοειδής
+
+
+# -
+suf: ειν
+      -εινός
+      Usually added to neuter nouns in -ος (-os) to form an adjective
+      κλεινός φωτεινός
+
+# -εις • (-eis) m (feminine -εσσᾰ, neuter -εν); first/third declension
+# -εύς • (-eús) m (genitive -έως); third declension
+
+# suf: ευτκ
+#      ~ευτικός
+#      From verbs in -εύω (-eúō) +‎ -τῐκός (-tikós, verbal adjective suffix).
+
+suf: εῖ
+     -εῖον
+     Forms nouns, usually instruments or means of action, from noun-stems.
+     βιβλιοπωλεῖον ζωγραφεῖον ἡφαιστεῖον ἰχθυεῖον Μαυσωλεῖον μιλτεῖον μνημεῖον Μουσεῖον πανδοκεῖον πορνεῖον στοιχεῖον
+
+#     -ήϊος (-ḗïos) – Ionic
+suf: εῖ
+     -εῖος
+     Forms adjectives, usually with a meaning of "of" or "from".
+     Ἀργεῖος Ἠλεῖος οἰκεῖος
+     = -ήϊ
+
+# -ζω • (-zō)
+
+suf: ην
+  -ηνός
+   Added to place name to form an adjective: -ian, -ese
+   Ἀβυδηνός Γαδαρηνός Ἐμεσηνός Θαψακηνός Κυζικηνός Λαμψακηνός
+
+# -ης • (-ēs) m (genitive -ους or -εος); third declension - Forms third-declension proper nouns.
+# -θεν • (-then) Added to nouns to form adverbs of place from which: from; also used, like genitive, with prepositions
+
+suf: θήκ
+ -θήκη
+  Deverbal suffix from τίθημι (títhēmi), typically indicating a space in which things are put or stored.
+   ἀγγοθήκη ἀλαβαστροθήκη ἁλοθήκη
+
+suf: θ
+  -θι
+  Added to nouns to form adverbs of location: at, in, on
+  ἀγχόθι ἀλλαχόθι ἄλλοθι αὐτόθι αὖθι ἐγγύθι ἐκεῖθι ἔνδοθι νειόθι ὅθι ποθι πόθι τηλόθι τόθι
+
+
+suf: ί
+ -ία
+  Added to stems of adjectives, or rarely to the stems of verbs, to form feminine abstract nouns
+ ἀβουλία ἀγαθοποιΐα βαρυθυμία βασιλεία βαττολογία διακονία διαύγεια εἰδωλολατρία εἰρωνεία ἐκθυμία ζηλοτυπία ζωγραφία ἡγεμονία ἠθολογία ἡσυχία θεατροκρατία
+
+suf: ι
+ -ια
+  Primitive suffix added to the stems of adjectives in -ύς (-ús) and some nouns to form feminine gender
+  Suffix added to the stems of adjectives in -ής (-ḗs) to form abstract nouns
+  ἄγνοια ἀκράτεια ἀλήθεια ἀμέλεια
+
+suf: ί
+  -ίας
+  Suffix added to words to form a male name.
+  γαλαξίας ξιφίας ταμίας
+
+suf: ίδ
+ -ίδας
+ West Greek form of -ῐ́δης (-ídēs, “male patronymic suffix”)
+ Ἀνταλκίδας Καλλικρατίδας Λεωνίδας Λυκίδας Ξενοκλείδας Σθενελαΐδας Φοιβίδας
+
+suf: ίδ
+ -ίδης
+      Suffix added to a father's name to form a masculine patronymic: son of
+ Ἀγαμεμνονίδης Αἰακίδης Αἰθαλίδης Ἀλκμαιωνίδης Ἀνδοκίδης
+
+suf: ίδι
+ -ίδιον
+ suffixed to nouns of any gender, forms neuter diminutive nouns
+ ἀβραμίδιον δελτίδιον ἐνώτιον κυνίδιον
+
+
+suf: ίζ
+  -ίζω
+  Used to form verbs from nouns, adjectives and other verbs.
+  ἁγίζω ἁγνίζω ἀκοντίζω ἁλίζω
+
+suf: ικ
+ -ικός
+ Added to noun stems to form adjectives: of or pertaining to, in the manner of; -ic
+ ἀγγελικός ἀθλητικός Αἰολικός αἰσθητικός αἰτιατικός
+
+suf: ιμ
+     ‎-ιμος (dókimos, “approved”)
+    Added to the stems of verbs or verbal nouns in -σις (-sis) to form an adjective of possibility or capability: -able, -ible, -like, -ed
+
+suf: ιν
+ -ινος
+ Added to nouns or adverbs to form adjectives relating to material, time, and so on: made of, during the time of
+  Forms adjectives of place
+ ἀδαμάντινος ἀέρινος αἰγείρινος αἴρινος
+
+suf: ι
+ -ιον
+ ἀγγούριον Ἀθήναιον ἀντικνήμιον ἀργύριον
+
+# -εῖον
+# -εῖος
+
+suf: ι
+  -ιος
+      Suffix added to nouns or adjectives, forming adjectives: pertaining to, belonging to
+  ἀγελαῖος ἀγοραῖος ἄγριος Ἀθηναῖος Αἰγύπτιος αἰδοῖος
+
+# -ῐς • (-is) f (genitive -ῐδος); third declension;    Forms feminine nouns, or feminine forms of adjectives (often accented on the ultima)
+
+suf: ίσκ
+  -ίσκος
+      Noun-forming diminutive suffix.
+ ἀβακίσκος ἀνθρωπίσκος βωμίσκος μηνίσκος
+
+suf: ισμ
+ -ισμός
+     Forms abstract nouns
+    διεθνισμός     ιουδαϊσμός     κομμουνισμός
+
+
+# -ῐσσᾰ • (-issa) f (genitive -ῐ́σσης); first declension
+# -ῐστᾰ • (-ista)
+# -ῐστής • (-istḗs) m (genitive -ῐστοῦ); first declension Alternative form of -τής (-tḗs)
+
+suf: ιστ
+ -ιστος
+     Added to some adjectives to form a superlative adjective
+ βέλτιστος ἐλάχιστος ἥκιστος κάκιστος
+
+suf: ίτ
+ -ίτης
+      Suffix forming a masculine noun: one connected to, a member of; one from a particular place (demonym)
+ Ἀβδηρίτης Ἁδριανουπολίτης Ἀμφιπολίτης Ἀναιίτης Ἀρεοπαγίτης
+
+# -ίων Ἀτρεΐων Κρονίων Πηλεΐων Τιμασίων Ὑπερίων
+
+suf: κλ
+   -κλῆς
+       An element found in given names.
+   Ἀγαθοκλῆς Ἀμεινοκλῆς Ἀνδροκλῆς Ἀριστοκλῆς
+
+
+suf: κ
+ -κός
+     forms adjectives with the sense of 'of or pertaining to', 'in the manner of'
+ ἡλίκος καρδιακός Ῥωμαϊκός
+
+# -κρᾰτῐ́ᾱ • (-kratíā) f (genitive -κρᾰτῐ́ᾱς); first declension
+
+suf: λάτρ
+ -λάτρης
+     -later (server, to be subject, to serve gods)
+     εἰδωλολάτρης στοιχειολάτρης
+
+# -λλω • (-llō);    A suffix forming the present stem of some verbs from stems in the consonant λ (l)
+
+# -λογῐ́ᾱ • (-logíā) f (genitive -λογῐ́ᾱς); first declension    Base for nouns denoting the study of something, or the branch of knowledge of a discipline.
+
+# -μᾰ • (-ma) n (genitive -μᾰτος); third declension    Added to verbal stems to form neuter nouns denoting the result of an action, a particular instance of an action, or the object of an action
+
+
+# -μένος • (-ménos) m (feminine -μένη, neuter -μένον); first/second declension    Alternative form of -μενος (-menos), added to tense stems of verbs to form perfect mediopassive participles
+
+suf: μ
+-μός
+ ἁγνισμός ἀναχρονισμός ἀρχαϊσμός ἀφορισμός
+
+# -ν • (-n)
+# -νός • (-nós) m (feminine -νή, neuter -νόν); first/second declension
+# -νος • (-nos) m (feminine -νη, neuter -νον); first/second declension
+
+# -νῡμῐ • (-nūmi)     A suffix forming transitive verbs
+
+# -οι • (-oi)
+# -οις • (-ois) (Attic, Doric)
+# -ος • (-os) n (genitive -εος or -ους); third declension
+
+suf: οσύν
+  -οσύνη
+  variant form of -σῠ́νη (-súnē) (used sometimes for third-declension nouns)
+ μαντοσύνη ἡδοσύνη
+
+# -ου • (-ou) (Attic, Ionic, Epic, Doric)
+
+suf: ό
+ -όω
+     Added to a noun or adjective to make a verb with a causative or factitive meaning: to make someone do or be something.
+ ἀλλοιόω ἀμαυρόω ἀξιόω ἀποθεόω
+
+suf: -πετ
+ -πετής
+     Forms adjectives: one who falls from, where, or in the way the first combining form denotes
+  γονυπετής
+
+suf: πλό
+   -πλόος
+       Forms an adjective indicating repetition or multiplication: -fold
+   ἁπλόος διπλόος
+
+suf: -πλάσι
+     -πλάσιος
+     Synonym -πλόος
+     Forms an adjective indicating repetition or multiplication: -fold
+
+suf: πλοῦς
+     -πλοῦς
+         Attic form of -πλόος, Forms an adjective indicating repetition or multiplication: -fold
+
+# -ποιήσεις • (-poiḗseis) f
+# -ποιήσεων • (-poiḗseōn) f
+# -ποιήσεως • (-poiḗseōs) f
+# -πτω • (-ptō)
+
+
+# Ancient Greek words suffixed with -σε
+# κυκλόσε πόσε πολλαχόσε
+# =========== NB ======== адвербиальные желательно добавить, но в Морфее они не суффиксы, а окончания. Что делать?
+
+suf: σ
+  -σις
+      Added to verb stems to form abstract nouns or nouns of action, result or process
+ ἀγαλλίασις ἀγανάκτησις αἴνεσις αἵρεσις αἴσθησις
+
+
+# -σκω • (-skō)    Primitive suffix used to form present-tense stems, very rarely associated with the inchoative meaning of becoming
+# -σσω • (-ssō) (Epic, Ionic, Doric, Aeolic, Koine)    A suffix forming the present stem of some verbs from stems in the consonants τ, θ, κ, χ, γ (t, th, k, kh, g)
+
+suf: στ
+ -στης
+     Alternative form of -της (-tēs)
+ δυνάστης ἐραστής καταγελαστής
+
+suf: σύν
+ -σύνη
+ Forms abstract nouns from adjectives or nouns
+  ἀγαθωσύνη ἁγιωσύνη ἀφροσύνη
+
+suf: τερ
+ -τερος
+ Used on adjectives that express some notion of contrast with an antonym
+ Added to adjective stems to form comparative forms
+ ἀμφότερος ἀριστερός δασύτερος δεύτερος
+
+# verb, изменения стема
+# suf: τ
+#  -τήρ
+#  Added to verb stems to form masculine agent nouns
+#  ἁλτῆρες ἀροτήρ δηλητήρ καθετήρ
+
+# -τής • (-tḗs) m (genitive -τοῦ); first declension
+# -της • (-tēs) f (genitive -τητος); third declension
+
+suf: τικ
+  -τικός
+  Added to other stems to form adjectives, particularly those ending in vowels
+  Added to verbal stems to form adjectives: relating to, suited to, skilled in, able to, -ive
+  αἰτιατικός ἀλλοιωτικός ἀναλογητικός
+
+suf: τρ
+ -τρις
+ αὐλητρίς
+
+suf: τρ
+ -τρον
+     Forms instrument nouns
+ ἄγκιστρον ἄροτρον ἔλυτρον
+
+# -ττω • (-ttō) (Attic)    Attic form of -σσω (-ssō)
+# -τῠπῐ́ᾱ • (-tupíā) f (genitive -τῠπῐ́ᾱς); first declension    Forms feminine abstract nouns indicating printing processes.
+# τῡ́ς • (-tū́s) m (genitive -τῠ́ος); third declension    Suffix forming nouns of action
+# τωρ • (-tōr) m (genitive -τορος); third declension     Used to form agent nouns
+# -φῐ • (-phi) (Epic)
+
+suf: ώδ
+  -ώδης
+      Adjective-forming suffix: smelling of
+    (by generalization) adjective-forming suffix: full of, like
+  ἐργώδης εὐώδης θυελλώδης
+
+# -ων • (-ōn)
+
+suf: ών
+  -ώνη
+  Added to the names of people to form a feminine patronym: daughter of
+  ἀνεμώνη
+
+# adverb:
+# Ancient Greek words suffixed with -ως
+# ἁβρῶς ἀδεῶς αἰνῶς
+
+# -ῖνος • (-înos) m (feminine ῑ́νη, neuter ῖνον); first/second declension
+# -ῶν • (-ôn)
+# -ῳ • (-ōi)
+
+
+
+LAST
+pref: ὑπερ
+      above, over, beyond

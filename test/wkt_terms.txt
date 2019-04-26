@@ -420,6 +420,7 @@ adv: ὀπίσω
 
 adv: πρόσω
      forwards, onwards
+     = προσ
 
 adv: ἀεί
      always
@@ -749,3 +750,6 @@ verb: ᾖ
 
 num: χίλιοι
     -thousands
+
+adj: ἔνιοι
+     some,  	adj pl masc nom, voc

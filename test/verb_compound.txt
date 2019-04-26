@@ -4,9 +4,9 @@
 MA
 dict: ἀγγέλλω
 
-    ἄγγελμα (ángelma)
-    ἀγγέλτειρα (angélteira)
-    ἀγγελτικός (angeltikós)
+#    ἄγγελμα (ángelma) # FAIL - no neut in flex
+#    ἀγγέλτειρα (angélteira)
+#    ἀγγελτικός (angeltikós)
     ἀναγγέλλω (anangéllō)
 #    ἀνάγγελτος (anángeltos)
     ἀπαγγέλλω (apangéllō)
@@ -189,9 +189,9 @@ dict: αφαιρέω
 dict: αἰσχυνω
 
     ᾐσχυμμένος (ēiskhūmménos)
-#    καταισχύνω (kataiskhúnō) # BAG : 2 решения - ῃσχυνα - лишнее - NB - убрать
-#    προσκαταισχύνω (proskataiskhúnō) # то же самое
-#    συναισχύνω (sunaiskhúnō)
+   καταισχύνω (kataiskhúnō)
+   προσκαταισχύνω (proskataiskhúnō) # то же самое
+   συναισχύνω (sunaiskhúnō)
 
 dict: αἰτέω
 

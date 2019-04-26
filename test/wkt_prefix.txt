@@ -103,6 +103,7 @@ pref: ἐκ- • (ek-)
       (With a sense of removal): out, away, off
       (Expressing completion or totality): utterly
       = ἐξ
+      = εξ
 
 pref: ἑξα- • (hexa-)
     Forming compound words with the sense of "six"
@@ -281,15 +282,5 @@ pref: ὑπο- • (hupo-)
     = ὑπ
     = ὑφ
 
-pref: ὑπερ
-      above, over, beyond
-
-# ================================== SUFFIXES ==========================
-
-suf: ε
-      participle act.present suffix
-
-
-# LAST
 pref: ὑπερ
       above, over, beyond
