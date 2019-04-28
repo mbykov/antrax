@@ -413,11 +413,14 @@ suf: -πλάσι
 # κυκλόσε πόσε πολλαχόσε
 # =========== NB ======== адвербиальные желательно добавить, но в Морфее они не суффиксы, а окончания. Что делать?
 
-# suf: σ
-#       -σις
-#       Added to verb stems to form abstract nouns or nouns of action, result or process
-#       ἀγαλλίασις ἀγανάκτησις αἴνεσις αἵρεσις αἴσθησις
-
+suf: σ
+      -σις
+      Added to verb stems to form abstract nouns or nouns of action, result or process
+      stem: verb
+      keys: ις-εως, ις-ιος
+      pos: name
+      gends: fem
+      αἵρεσις ἀγαλλίασις ἀγανάκτησις αἴνεσις αἴσθησις
 
 # -σκω • (-skō)    Primitive suffix used to form present-tense stems, very rarely associated with the inchoative meaning of becoming
 # -σσω • (-ssō) (Epic, Ionic, Doric, Aeolic, Koine)    A suffix forming the present stem of some verbs from stems in the consonants τ, θ, κ, χ, γ (t, th, k, kh, g)
