@@ -54,6 +54,8 @@ pref: ἀμφι
 
 pref: αὐτο
       auto-
+      = αὐθ
+      = αὐτ
 
 pref: ἀνισο
       not equal
@@ -103,8 +105,8 @@ pref: ἐκ- • (ek-)
       (With a sense of removal): out, away, off
       (Expressing completion or totality): utterly
       = ἐξ
-      = εξ
 
+# а тут не путается ли ударение?
 pref: ἑξα- • (hexa-)
     Forming compound words with the sense of "six"
     = ἑξ

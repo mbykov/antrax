@@ -1,0 +1,28 @@
+#
+# schemas:
+#   1. stem
+
+#   doubles:
+#   2. pref+stem
+#   3. stem+stem
+#   4. stem+suf
+
+#   triples:
+#   5. stem+connector+stem
+#   6. pref+stem+stem
+#   7. pref+pref+stem
+#   8. pref+stem+suf
+#   9. stem+stem+suf
+
+
+# 3 pref + stem - verb_compound
+# 3 stem + stem
+
+# βοῶπις # FAIL, no ὤψ
+# From βοῦς (boûs, “cow”) +‎ ὤψ (ṓps, “eye”) +‎ -ις (-is, feminine adjectival suffix).
+
+# пока примеров на 3 - stem-stem нет
+
+# 5:
+βαρύτονος, βαρύς,‎ τόνος # 'βαρύτης', 'ὄνος'
+ὀξύτονος, 'ὀξύτης', 'ὄνος'
