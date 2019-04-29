@@ -154,9 +154,9 @@ dict: αἱρέω
     αἵρεσις (haíresis)
     αἱρετέος (hairetéos)
     αἱρετής (hairetḗs)
-    αἱρετίζω (hairetízō)
+#    αἱρετίζω (hairetízō) # нет суффикса τίζω
     αἱρετικός (hairetikós)
-    αὐθαίρετος (authaíretos)
+#    αὐθαίρετος (authaíretos) # слишком сложно пока
 
     ἀφαιρέω (aphairéō)
     διαιρέω (diairéō)

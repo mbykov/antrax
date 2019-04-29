@@ -218,7 +218,7 @@ suf: ίζ
      -ίζω
      Used to form verbs from nouns, adjectives and other verbs.
      pos: verb
-     stem: name
+     # stem: name
      ex: ἁγίζω ἁγνίζω ἁλίζω
      fail: ἀκοντίζω
 
@@ -468,17 +468,28 @@ suf: τερ
 
 suf: τ
       ~τής
+      Used to form agent nouns, cf. της, state of being
       stem: verb
       pos: name
       gends: masc
       keys: ής-οῦ
       ex: αἱρετής αἱρετοῦ
 
+# нет примеров, нет таких глаголов в wkt
+# suf: τ
+#       ~της
+#       Forms nouns representing a state of being, cf. τής, agent nouns
+#       stem: verb
+#       pos: name
+#       gends: masc
+#       keys: ης-ου
+#       ex: ναύτης
+
 suf: τικ
      -τικός
      Added to other stems to form adjectives, particularly those ending in vowels
      Added to verbal stems to form adjectives: relating to, suited to, skilled in, able to, -ive
-     stem: name
+     # stem: name
      pos: name
      keys: ός-οῦ, ή-ῆς, όν-οῦ
      ex: αἰτιατικός ἀλλοιωτικός ἀναλογητικός
