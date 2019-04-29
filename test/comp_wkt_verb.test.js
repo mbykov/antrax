@@ -26,7 +26,8 @@ process.prependListener("exit", (code) => {
   }
 })
 
-const testpath = path.resolve(__dirname, 'verb_compound.txt')
+// const testpath = path.resolve(__dirname, 'comp_wkt_verb.txt')
+const testpath = path.resolve(__dirname, '/home/michael/greek/antrax/test/comp_wkt_verb.txt')
 const text = fse.readFileSync(testpath,'utf8')
 
 let param = process.argv.slice(2)[1]
@@ -70,9 +71,9 @@ text.split('\n').forEach(row => {
 })
 
 tests = _.compact(tests)
-// tests = tests.slice(0, 1)
-// console.log('T', tests)
-// tests = []
+tests = tests.slice(0, 1)
+console.log('T', tests)
+tests = []
 
 tests.forEach(test => {
   let expected = test.expected

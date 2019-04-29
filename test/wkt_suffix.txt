@@ -337,6 +337,7 @@ suf: λάτρ
 
 # -μένος • (-ménos) m (feminine -μένη, neuter -μένον); first/second declension    Alternative form of -μενος (-menos), added to tense stems of verbs to form perfect mediopassive participles
 
+# suf-M
 # suf: μ
 #      -μός
 #      ἁγνισμός ἀναχρονισμός ἀρχαϊσμός ἀφορισμός

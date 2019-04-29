@@ -1,24 +1,23 @@
 #
 # replaced: ᾰα ᾱα ῑι ῐι ῠυ ῡυ
 
-MA
 dict: ἀγγέλλω
 
-#    ἄγγελμα (ángelma) # FAIL - no neut in flex
-#    ἀγγέλτειρα (angélteira)
-#    ἀγγελτικός (angeltikós)
+   # ἄγγελμα (ángelma) # FAIL - no neut in flex
+   # ἀγγέλτειρα (angélteira)
+   # ἀγγελτικός (angeltikós)
     ἀναγγέλλω (anangéllō)
-#    ἀνάγγελτος (anángeltos)
+   ἀνάγγελτος (anángeltos)
     ἀπαγγέλλω (apangéllō)
     διαγγελλω (diangeltéon)
-#    διαγγελτέον (diangeltéon) # tail
+   διαγγελτέον (diangeltéon) # tail
     εἰσαγγέλλω (eisangéllō)
     ἐξαγγέλλω (exangéllō)
     ἐπαγγέλλω (epangéllō)
-   # κακάγγελτος (kakángeltos)
+   κακάγγελτος (kakángeltos)
     κακάγγελλω (kakángeltos)
     καταγγέλλω (katangéllō)
-#    νεάγγελτος (neángeltos)
+   νεάγγελτος (neángeltos)
     νεάγγελλω (neángeltos)
     παραγγέλλω (parangéllō)
     περιαγγέλλω (periangéllō)
@@ -50,7 +49,7 @@ dict: ἀγορεύω
     συνηγορέω (sunēgoréō)
     ὑπαγορεύω (hupagoreúō)
 
-# ἄγχω
+dict: ἄγχω
 
     ἀνάγχω (anánkhō)
     ἀπάγχω (apánkhō)
@@ -89,12 +88,14 @@ dict: ἄγω
     ὑπάγω (hupágō)
     ὑπεράγω (huperágō)
 
-dict: ἀείδω
+# FAIL
+# dict: ἀείδω
 
-    ἀοιδή (aoidḗ), ᾠδή (ōidḗ, “song”)
-    ἀοιδός (aoidós), ᾠδός (ōidós, “singer”)
-    ἀοίδιμος (aoídimos, “famous in song”)
+#     ἀοιδή (aoidḗ), ᾠδή (ōidḗ, “song”)
+#     ἀοιδός (aoidós), ᾠδός (ōidós, “singer”)
+#     ἀοίδιμος (aoídimos, “famous in song”)
 
+MA
 dict: ἀείρω
 
     ἄορ (áor)
@@ -154,9 +155,9 @@ dict: αἱρέω
     αἵρεσις (haíresis)
     αἱρετέος (hairetéos)
     αἱρετής (hairetḗs)
-#    αἱρετίζω (hairetízō) # нет суффикса τίζω
+#    αἱρετίζω (hairetízō) # no suffix τίζω
     αἱρετικός (hairetikós)
-#    αὐθαίρετος (authaíretos) # слишком сложно пока
+#    αὐθαίρετος (authaíretos) # too complex, alas
 
     ἀφαιρέω (aphairéō)
     διαιρέω (diairéō)
