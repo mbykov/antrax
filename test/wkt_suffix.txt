@@ -71,7 +71,7 @@ suf: γεν
       pos: name
       # gends: masc
       # keys: ης-ου
-      # keys: ής-ές
+      # keys: ής-ές - это adkey
       keys: ής-οῦς, ές-οῦς
       1. (forming adjectives) born in a certain place or condition, ἔνδον (éndon) + ‎-γενής (-genḗs) → ‎ἐνδογενής (endogenḗs)
       2. (forming adjectives) of a kind, ἕτερος (héteros) + ‎-γενής (-genḗs) → ‎ἑτερογενής (heterogenḗs)
@@ -440,6 +440,13 @@ suf: σύν
       ex: ἀγαθωσύνη ἁγιωσύνη
       fail: ἀφροσύνη
 
+suf: τέ
+      ~τέος
+      pos: name
+      stem: verb
+      keys: ος-ου, η-ης, ον-ου
+      ex: αἱρετέος
+
 suf: τερ
       -τερος
       Used on adjectives that express some notion of contrast with an antonym
@@ -458,6 +465,14 @@ suf: τερ
 
 # -τής • (-tḗs) m (genitive -τοῦ); first declension
 # -της • (-tēs) f (genitive -τητος); third declension
+
+suf: τ
+      ~τής
+      stem: verb
+      pos: name
+      gends: masc
+      keys: ής-οῦ
+      ex: αἱρετής αἱρετοῦ
 
 suf: τικ
      -τικός
