@@ -26,6 +26,7 @@ pref: ἀντι- • (anti-)
     = ἀνθ
     = ἀνθο
     = ἀντ
+    = ἀντ᾽
 
 pref: ἀπο- • (apo-)
     Indicating movement: away, from, off

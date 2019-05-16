@@ -170,6 +170,10 @@ conj: καίπερ • (kaíper)
 
     although, albeit
 
+conj: κἀπεί
+
+      after that, since, when
+
 conj: κᾷτα • (kâita)
 
     Contraction of καὶ εἶτα (kaì eîta, “and then”).
@@ -415,6 +419,12 @@ particle: ἰδού
 particle: ἕνεκεν
           on account of
 
+particle: δήποτε
+          at some time, once upon a time
+
+adv: ὁπωσδήποτε
+     ὅπως, as, in such manner as, how
+
 adv: ὀπίσω
      backwards
 
@@ -560,6 +570,7 @@ prep: ἀμφί
       (+gen.) around, for the sake of
 prep: ἀντί
       (+gen.) opposite, instead of, for the sake of
+      = ἀντ᾽
 prep: ἀπό
       (+gen.) from
       = ἀπ

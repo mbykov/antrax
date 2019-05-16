@@ -95,7 +95,6 @@ dict: ἄγω
 #     ἀοιδός (aoidós), ᾠδός (ōidós, “singer”)
 #     ἀοίδιμος (aoídimos, “famous in song”)
 
-MA
 dict: ἀείρω
 
     ἄορ (áor)
@@ -136,7 +135,7 @@ dict: αἰνέω
     αἰνετήριος (ainetḗrios)
     αἰνετής (ainetḗs)
     αἰνετός (ainetós)
-    αἴνη (aínē)
+    # αἴνη (aínē) # ====================================== FAIL
 
     αἴνησις (aínēsis)
     αἰνητός (ainētós)
@@ -178,12 +177,12 @@ dict: αἱρέω
     ὑπεξαιρέω (hupexairéō)
     ὑφαιρέω (huphairéō)
 
-dict: αναιρέω
+dict: ἀναιρέω
 
     προαναιρέω (proanairéō)
     προσαναιρέω (prosanairéō)
 
-dict: αφαιρέω
+dict: ἀφαιρέω
     προσαφαιρέω (prosaphairéō)
     συναφαιρέω (sunaphairéō)
 
@@ -242,7 +241,7 @@ dict: ἁμαρτάνω
     ἁμαρτωλός (hamartōlós)
     ἀναμάρτητος (anamártētos)
     διαμαρτάνω (diamartánō)
-    διαμαρτία (diamartíā)
+    # διαμαρτία (diamartíā) # correct, but no test
 
     ἐξαμαρτάνω (examartánō)
     ἡμαρτημένως (hēmartēménōs)
@@ -254,8 +253,8 @@ dict: ἀμφιλέγω
     ἀμφίλεκτος (masc. fem.),
     ἀμφίλεκτον (amphílekton) (neu.) “of which one disputes”
     ἀμφιλογία f (amphilogía, “the doubting”)
-    ἀμφίλογος (masc. fem.),
-    ἀμφίλογον (amphílogon) (neu.) “of which one disputes”
+    # ἀμφίλογος (masc. fem.), # correct, no test
+    # ἀμφίλογον (amphílogon) (neu.) “of which one disputes”
 
 dict: ἀναβαίνω
 
@@ -276,16 +275,17 @@ dict: ἀναβαίνω
 
 dict: ἀνακαινόω
 
-    ἀνακαίνωσις (anakaínōsis)
+    # ἀνακαίνωσις (anakaínōsis)
 
-dict: ἀναλαμβάνω
+# FAIL - too complex
+# dict: ἀναλαμβάνω
 
-    ἀνάλημμα (análēmma)
-    ἀναληπτέον (analēptéon)
-    ἀνάληψις (análēpsis)
-    δυσανάληπτος (dusanálēptos)
-    ἐπανάληψις (epanálēpsis)
-    εὐανάληπτος (euanálēptos)
+#     ἀνάλημμα (análēmma)
+#     ἀναληπτέον (analēptéon)
+#     ἀνάληψις (análēpsis)
+#     δυσανάληπτος (dusanálēptos)
+#     ἐπανάληψις (epanálēpsis)
+#     εὐανάληπτος (euanálēptos)
 
 dict: ἀναλίσκω
 
@@ -323,9 +323,9 @@ dict: ἀνασκάπτω
 
 dict: ἀνίστημι
 
-    ἀνάστασις (anástasis)
-    ἀνάστατος (anástatos)
-    ανίσταμαι (anístamai)
+    # ἀνάστασις (anástasis)
+    # ἀνάστατος (anástatos)
+    # ανίσταμαι (anístamai)
     ἀντανίστημι (antanístēmi)
     ἀπανίστημι (apanístēmi)
     διανίστημι (dianístēmi)
@@ -352,32 +352,35 @@ dict: ἀνοίγω
 
     ἄνοιξις (ánoixis, “opening”)
 
-dict: ἀνταποδίδωμι
+# FAIL
+# dict: ἀνταποδίδωμι
 
-    ἀνανταπόδοσις (anantapódosis)
-    ἀνανταπόδοτος (anantapódotos)
-    ἀνταπόδομα (antapódoma)
-    ἀνταπόδοσις (antapódosis)
-    ἀνταποδοτέον (antapodotéon)
-    ἀνταποδοτικός (antapodotikós)
-    προσανταποδίδωμι (prosantapodídōmi)
+#     ἀνανταπόδοσις (anantapódosis)
+#     ἀνανταπόδοτος (anantapódotos)
+#     ἀνταπόδομα (antapódoma)
+#     ἀνταπόδοσις (antapódosis)
+#     ἀνταποδοτέον (antapodotéon)
+#     ἀνταποδοτικός (antapodotikós)
+#     προσανταποδίδωμι (prosantapodídōmi)
 
+MA
 dict: ἀντλέω
 
     ἄντλος (ántlos)
     ἀντλία (antlía)
 
-dict: ἀξιόω
+# dict: ἀξιόω
+dict: ἀξιῶ
 
     ἀξίωμα (axíōma)
-        ἀξιωματικός (axiōmatikós)
+    ἀξιωματικός (axiōmatikós)
     ἀξίωσις (axíōsis)
     ἀξιωτέον (axiōtéon)
 
 dict: ἀπαγγέλλω
 
     ἀπαγγελεύς (apangeleús)
-    ἀπαγγελία (apangelíā)
+    # ἀπαγγελία (apangelíā)
     ἀπάγγελσις (apángelsis)
     ἀπαγγελτήρ (apangeltḗr)
     ἀπαγγελτικός (apangeltikós)
@@ -396,7 +399,7 @@ dict: ἀπαιτέω
     ἀπαιτητής (apaitētḗs)
     ἀπαιτητικός (apaitētikós)
 
-    ἀπαιτίζω (apaitízō)
+    # ἀπαιτίζω (apaitízō)
     προσαπαιτέω (prosapaitéō)
     συναπαιτέω (sunapaitéō)
     ὑπεραπαιτέω (huperapaitéō)
@@ -404,12 +407,12 @@ dict: ἀπαιτέω
 dict: ἀποδείκνυμι
 
     ἀποδεικτέον (apodeiktéon)
-    ἀποδεικτικός (apodeiktikós)
-    ἀποδεικτός (apodeiktós)
+    # ἀποδεικτικός (apodeiktikós)
+    # ἀποδεικτός (apodeiktós)
 
 dict: ἀποδίδωμι
 
-    ἀπόδοσις (apódosis)
+    # ἀπόδοσις (apódosis)
 
 dict: ἀποθεόω
 
