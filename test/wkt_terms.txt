@@ -4,7 +4,6 @@
 # ================================ TERMS: ======================
 
 conj: ἀλλά • (allá)
-
     but
     = ἀλλ᾽ • (all᾽)
     = ἀλλ • (all᾽)
@@ -470,7 +469,7 @@ adv: μᾶλλον
 adv: οὐκέτι
      no longer
 adv: πάλιν
-     back, backwards
+     back, backwards, but, in turn
 adv: πάντοτε
      always, at all times
 adv: πλέον
@@ -510,64 +509,62 @@ adv: κακῶς
 
 prep: ἀμφί
       (+acc.) around, about
+      (+dat.) around, near
+      (+gen.) around, for the sake of
 prep: ἀνά
       (+acc.) up, through
 prep: διά
       (+acc.) because of, through
+      (+gen.) through
 prep: εἰς
       (+acc.) into
 prep: ἐς
       (+acc.) into
 prep: ἐπί
       (+acc.) against
+      (+gen.) on, at
+      (+dat.) on, for the purpose of, because of
       = ἐπ
       = ἐπ᾽
+      = ἐφ᾽
 prep: κατά
       (+acc.) down, along, according to
       = κατ᾽
       = καθ᾽
 prep: μετά
       (+acc.) after, behind
+      (+gen.) with
       = μεθ᾽
 prep: παρά
       (+acc.) to, throughout, beside
+      (+dat.) with, near
+      (+gen.) from
       = παρ᾽
 prep: περί
       (+acc.) near, around
+      (+dat.) about
+      (+gen.) about
 prep: πρός
       (+acc.) toward
+      (+dat.) by, in addition to
+      (+gen.) toward, (swear) by
 prep: ὑπέρ
       (+acc.) above, over, beyond
+      (+gen.) over, on behalf of
 prep: ὑπό
       (+acc.) under
+      (+dat.) under
+      (+gen.) under, by
       = ὑπ᾽
 
-prep: ἀμφί
-      (+dat.) around, near
 prep: ἀνά
       (+dat.) upon
 prep: ἐν
       (+dat.) in
-prep: ἐπί
-      (+dat.) on, for the purpose of, because of
-      = ἐπ᾽
-      = ἐπ
-prep: παρά
-      (+dat.) with, near
-      = παρ᾽
-prep: περί
-      (+dat.) about
-prep: πρός
-      (+dat.) by, in addition to
 prep: σύν
       (+dat.) with (the help of)
-prep: ὑπό
-      (+dat.) under
-      = ὑπ᾽
 
 
-prep: ἀμφί
-      (+gen.) around, for the sake of
 prep: ἀντί
       (+gen.) opposite, instead of, for the sake of
       = ἀντ᾽
@@ -577,34 +574,15 @@ prep: ἀπό
       = ἀφ
       = ἀφ᾽
 
-prep: διά
-      (+gen.) through
 prep: ἐκ
      (+gen.) from
      = ἐξ
-prep: ἐπί
-      (+gen.) on, at
 prep: κατά
       (+gen.) down, against
       = κατ᾽
       = καθ᾽
-prep: μετά
-      (+gen.) with
-      = μεθ᾽
-prep: παρά
-      (+gen.) from
-      = παρ᾽
-prep: περί
-      (+gen.) about
 prep: πρό
       (+gen.) before, in front of
-prep: πρός
-      (+gen.) toward, (swear) by
-prep: ὑπέρ
-      (+gen.) over, on behalf of
-prep: ὑπό
-      (+gen.) under, by
-      = ὑπ᾽
 
 
 adv: ἅμα
@@ -750,14 +728,73 @@ num: τρίς • (trís) (cardinal τρεῖς, ordinal τρίτος)
 num: χίλιοι
     -thousands
 
-# =========================== verbs: ===============
-verb: ὦ
-      _ εἰμί, act.pres.sub, sg.1
-      To be, exist
+particle: ὄν
+          = ἐξόν
+          = παρόν
+          when, because, although, if allowed (sole participle in acc.)
 
-verb: ᾖ
-      _ εἰμί, act.pres.sub, sg.3
-      To be, exist
+particle: δεόν
+          = χρεών
+          need to (sole participle in acc.)
+
+particle: δόξαν
+          = δεδογμένον
+          it's decided (sole participle in acc.)
+
+particle: δυνατὸν
+          = οἷόν
+          δυνατὸν ὄν, οἷόν τε ὄν - is possible (sole participle in acc.)
+
+particle: προσταχθέν
+          ordered  (sole participle in acc.)
+
+particle: προσῆκον
+          decently  (sole participle in acc.)
+
+particle: ἀδύνατον
+          ἀδύνατον ὄν - is impossible  (sole participle in acc.)
+
+particle: αἰσχρὸν
+          αἰσχρὸν ὄν - shamefully  (sole participle in acc.)
+
+particle: δίκαιον
+          δίκαιον ὄν - ustly, fairly (sole participle in acc.)
+
+particle: εἰπεῖν
+          (independent infinitive)
+          ὡς (ἔπος) εἰπεῖν - so to speak
+          ἐν βραχεῖ εἰπεῖν - briefly say
+          ἁπλῶς εἰπεῖν - in general, in one word
+
+particle: συνελόντι
+          (independent infinitive)
+          ὡς συνελόντι - briefly say
+
+particle: ὅλον
+          (independent infinitive)
+          ὡς τὸ ὅλον - in general, in one word
+
+particle: δεῖν
+          (independent infinitive)
+          ὀλίγου (μικροῦ) δεῖν - barely had
+
+particle: δοκεῖν
+          (independent infinitive)
+          ὡς ἐμοὶ δοκεῖν - it seems to me
+          δοκεῖ σχεδὸν - it seems that
+
+# xxx: τὰ τοιαῦτα
+#     и тому подобное, etc
+
+# =========================== verbs: ===============
+# verb-irreg обрабатываются в wkt_verb:
+#verb: ὦ
+#      _ εἰμί, act.pres.sub, sg.1
+#      To be, exist
+
+#verb: ᾖ
+#      _ εἰμί, act.pres.sub, sg.3
+#      To be, exist
 
 num: χίλιοι
     -thousands

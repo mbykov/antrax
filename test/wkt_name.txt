@@ -3,6 +3,7 @@ x#
 # ί̄-ί
 # ᾹΑ ᾸΑ   ἰ̄ἴ
 
+MA
 # ----------------------------------
 dict: ἀβακίσκος • (abakískos) m (genitive ἀβακίσκου); second declension
 
@@ -39462,9 +39463,9 @@ acc: ψῦχος, ψύχεε, ψύχεα
 voc: ψῦχος, ψύχεε, ψύχεα
 
 # ----------------------------------
-dict: ψχέντ • (pskhént), (invariable)
+# dict: ψχέντ • (pskhént), (invariable)
 
-    pschent (double crown of ancient Egypt)
+#    pschent (double crown of ancient Egypt)
 
 # ----------------------------------
 dict: ψωλή • (psōlḗ) f (genitive ψωλῆς); first declension

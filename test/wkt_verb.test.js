@@ -161,6 +161,7 @@ function parseText (rows, only) {
     if (skip) return
     if (!row || row.slice(0,2) == '# ') return
     if (!row[0] == ' ') trn = row.trim()
+    row = row.split('#')[0]
     let descr = row.split(':')[0].trim()
 
     if (row.slice(0,2) == '#=' || descr == 'dict') {

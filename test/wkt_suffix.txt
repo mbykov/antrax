@@ -458,6 +458,14 @@ suf: τερ
       ex:  δασύτερος
       fail: ἀμφότερος ἀριστερός δεύτερος
 
+suf: εστερ
+      -τερος
+      Added to adjective stems to form comparative forms
+      stem: name
+      pos: name
+      keys: ος-ου, η-ης, ον-ου
+      ex:  ἀκριβέστερον
+
 # verb, изменения стема
 # suf: τ
 #  -τήρ

@@ -1,7 +1,7 @@
 /* global describe */
 
 // import {log} from '../src/lib/utils'
-import {augs, vowels, tense} from '../src/lib/utils'
+import { augs, vowels, tense } from '../src/lib/utils'
 let log = console.log
 import { clause, antrax, enableDBs } from '../dist'
 import _ from 'lodash'
