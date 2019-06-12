@@ -979,11 +979,11 @@ dict: αἰδώς • (aidṓs) f (genitive αἰδοῦς); third declension
 
 #, Irregular declension, of, ἡ, αἰδώς; τῆς, αἰδοῦς, (Attic)
 
-# nom: αἰδώς, αἰδώε, αἰδώες
-# gen: αἰδοῦς, αἰδώοιν, αἰδώων
-# dat: αἰδοῖ, αἰδώοιν, αἰδώσι
-# acc: αἰδῶ, αἰδώε, αἰδώας
-# voc: αἰδώς, αἰδώε, αἰδώες
+nom: αἰδώς, αἰδώε, αἰδώες
+gen: αἰδοῦς, αἰδώοιν, αἰδώων
+dat: αἰδοῖ, αἰδώοιν, αἰδώσι
+acc: αἰδῶ, αἰδώε, αἰδώας
+voc: αἰδώς, αἰδώε, αἰδώες
 
 # ----------------------------------
 dict: Αἰδώς • (Aidṓs) f (genitive Αἰδοῦς); third declension
@@ -2079,19 +2079,19 @@ dict: ἅλς • (háls) m (genitive ἁλός); third declension irreg
 
 #, Irregular declension, of, ὁ, ἅλς; τοῦ, ἁλός, (Attic) irreg
 restrict: sg pl
-# nom: ἅλς, ἅλες
-# gen: ἁλός, ἁλῶν
-# dat: ἁλί, ἁλσί-ἅλασιν
-# acc: ἅλα, ἅλας
-# voc: ἅλς, ἅλες
+nom: ἅλς, ἅλες
+gen: ἁλός, ἁλῶν
+dat: ἁλί, ἁλσί-ἅλασιν
+acc: ἅλα, ἅλας
+voc: ἅλς, ἅλες
 
 #, Irregular declension, of, ἅλς; ἁλός, (Epic)
 restrict: sg pl
-# nom: ἅλς, ἅλες
-# gen: ἁλός, ἁλῶν
-# dat: ἁλί, ἅλεσσι
-# acc: ἅλα, ἅλας
-# voc: ἅλς, ἅλες
+nom: ἅλς, ἅλες
+gen: ἁλός, ἁλῶν
+dat: ἁλί, ἅλεσσι
+acc: ἅλα, ἅλας
+voc: ἅλς, ἅλες
 
 # ----------------------------------
 dict: ἄλσος • (álsos) n (genitive ἄλσεος or ἄλσους); third declension
@@ -5138,6 +5138,7 @@ dat: ἀταραξίᾳ, ἀταραξίαιν, ἀταραξίαις
 acc: ἀταραξίαν, ἀταραξία, ἀταραξίας
 voc: ἀταραξία, ἀταραξία, ἀταραξίαι
 
+# atasbalia
 # ----------------------------------
 dict: ἀτασθαλία • (atasthalíā) f (genitive ἀτασθαλίας); first declension
 
@@ -5150,17 +5151,17 @@ dat: ἀτασθαλίᾳ, ἀτασθαλίαιν, ἀτασθαλίαις
 acc: ἀτασθαλίαν, ἀτασθαλία, ἀτασθαλίας
 voc: ἀτασθαλία, ἀτασθαλία, ἀτασθαλίαι
 
-dict: ἀτασθαλίαι • (atasthalíā) f pl (genitive ἀτασθαλιῶν); first declension
+# dict: ἀτασθαλίαι • (atasthalíā) f pl (genitive ἀτασθαλιῶν); first declension
 
-    (in Homer, always in the plural) criminal folly, recklessness, heedlessness, wickedness
-    deeds characterized by this quality: wicked deeds
+#     (in Homer, always in the plural) criminal folly, recklessness, heedlessness, wickedness
+#     deeds characterized by this quality: wicked deeds
 
-restrict: pl
-nom: ἀτασθαλίαι
-gen: ἀτασθαλιῶν # ἀτασθαλιάων-ἀτασθαλιέων-
-dat: ἀτασθαλίῃσι-ἀτασθαλίῃσιν-ἀτασθαλίῃς-ἀτασθαλίαις
-acc: ἀτασθαλίας
-voc: ἀτασθαλίαι
+# restrict: pl
+# nom: ἀτασθαλίαι
+# gen: ἀτασθαλιῶν # ἀτασθαλιάων-ἀτασθαλιέων-
+# dat: ἀτασθαλίῃσι-ἀτασθαλίῃσιν-ἀτασθαλίῃς-ἀτασθαλίαις
+# acc: ἀτασθαλίας
+# voc: ἀτασθαλίαι
 
 # ----------------------------------
 dict: ἄτη • (átē) f (genitive ἄτης); first declension
@@ -8022,6 +8023,7 @@ dat: γυναικονόμῳ, γυναικονόμοιν, γυναικονόμο
 acc: γυναικονόμον, γυναικονόμω, γυναικονόμους
 voc: γυναικονόμε, γυναικονόμω, γυναικονόμοι
 
+# gune
 # ----------------------------------
 dict: γυνή • (gunḗ) f (genitive γυναικός); third declension
 
@@ -10308,16 +10310,17 @@ dat: ἐδητύϊ
 acc: ἐδητύν
 voc: ἐδητύ
 
-#
-dict: ἕδνον • (hédnon) n (genitive); second declension
+# FAIL - no genetive ?
+# ----------------------------------
+# dict: ἕδνον • (hédnon) n (genitive); second declension
 
-    (generally plural only) dowry, bride-price
+#     (generally plural only) dowry, bride-price
 
-nom: ἕδνον, -, ἕδνα
-gen: -, -, ἕδνων
-dat: -, -, ἕδνοις
-acc: -, -, ἕδνα
-voc: -, -, -
+# nom: ἕδνον, -, ἕδνα
+# gen: -, -, ἕδνων
+# dat: -, -, ἕδνοις
+# acc: -, -, ἕδνα
+# voc: -, -, -
 
 # ----------------------------------
 dict: ἕδρα • (hédrā) f (genitive ἕδρας); first declension
@@ -14003,11 +14006,11 @@ dat: θαλάσσῃ, θαλάσσαιν, θαλάσσαις
 acc: θάλασσαν, θαλάσσα, θαλάσσας
 voc: θάλασσα, θαλάσσα, θάλασσαι
 
-# nom: θάλασσα, θαλάσσα, θάλασσαι
-# gen: θαλάσσας, θαλάσσαιν, θαλασσᾶν
-# dat: θαλάσσᾳ, θαλάσσαιν, θαλάσσαις
-# acc: θάλασσαν, θαλάσσα, θαλάσσας
-# voc: θάλασσα, θαλάσσα, θάλασσαι
+nom: θάλασσα, θαλάσσα, θάλασσαι
+gen: θαλάσσας, θαλάσσαιν, θαλασσᾶν
+dat: θαλάσσᾳ, θαλάσσαιν, θαλάσσαις
+acc: θάλασσαν, θαλάσσα, θαλάσσας
+voc: θάλασσα, θαλάσσα, θάλασσαι
 
 # ----------------------------------
 dict: θάλαττα • (thálatta) f (genitive θαλάττης); first declension
@@ -20000,6 +20003,7 @@ acc: κύνα, κύνε, κύνας
 voc: κύον-κύων, κύνε, κύνες
 
 # ----------------------------------
+# sg pl - не обраба
 dict: κῶας • (kôas) n (genitive); third declension
 
     fleece
@@ -20007,11 +20011,11 @@ dict: κῶας • (kôas) n (genitive); third declension
 #, Irregular declension, of, τὸ, κῶας; -, (Attic)
 
 restrict: sg pl
-nom: κῶας-κῶς, κώεα
-gen: -, -
-dat: -, κώεσιν
-acc: κῶας-κῶς, κώεα
-voc: κῶας-κῶς, κώεα
+nom: κῶας-κῶς, -, κώεα
+gen: -, -, -
+dat: -, -, κώεσιν
+acc: κῶας-κῶς, -, κώεα
+voc: κῶας-κῶς, -, κώεα
 
 # ----------------------------------
 dict: κῴδιον • (kṓidion) n (genitive κῳδίου); second declension

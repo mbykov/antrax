@@ -62,16 +62,15 @@ conj: διότι • (dióti)
     because
 
 conj: ἐάν • (eā́n)
-
     if (for more depth see εἰ (ei) and ἄν (án)
     (New Testament Koine) Used in place of ἄν (án) after relative pronouns and conjunctions
     = ἤν • (ḗn)
 
 conj: εἰ • (ei)
-
     if
     = εἴ • (eí)
     = εἰκ • (eik)
+    = εἴγε
 
 conj: εἴπερ • (eíper)
 
