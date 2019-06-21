@@ -3,28 +3,28 @@
 
 dict: ἀγγέλλω
 
-   # ἄγγελμα (ángelma) # FAIL - no neut in flex
-   # ἀγγέλτειρα (angélteira)
-   # ἀγγελτικός (angeltikós)
-    ἀναγγέλλω (anangéllō)
+   ἄγγελμα (ángelma) # FAIL - no neut in flex
+   ἀγγέλτειρα (angélteira)
+   ἀγγελτικός (angeltikós)
+   ἀναγγέλλω (anangéllō)
    ἀνάγγελτος (anángeltos)
-    ἀπαγγέλλω (apangéllō)
-    διαγγελλω (diangeltéon)
+   ἀπαγγέλλω (apangéllō)
+   διαγγελλω (diangeltéon)
    διαγγελτέον (diangeltéon) # tail
-    εἰσαγγέλλω (eisangéllō)
-    ἐξαγγέλλω (exangéllō)
-    ἐπαγγέλλω (epangéllō)
+   εἰσαγγέλλω (eisangéllō)
+   ἐξαγγέλλω (exangéllō)
+   ἐπαγγέλλω (epangéllō)
    κακάγγελτος (kakángeltos)
-    κακάγγελλω (kakángeltos)
-    καταγγέλλω (katangéllō)
+   κακάγγελλω (kakángeltos)
+   καταγγέλλω (katangéllō)
    νεάγγελτος (neángeltos)
-    νεάγγελλω (neángeltos)
-    παραγγέλλω (parangéllō)
-    περιαγγέλλω (periangéllō)
-    προαγγέλλω (proangéllō)
-    προσαγγέλλω (prosangéllō)
-    συναγγέλλω (sunangéllō)
-    ὑπάγγελτος (hupángeltos)
+   νεάγγελλω (neángeltos)
+   παραγγέλλω (parangéllō)
+   περιαγγέλλω (periangéllō)
+   προαγγέλλω (proangéllō)
+   προσαγγέλλω (prosangéllō)
+   συναγγέλλω (sunangéllō)
+   ὑπάγγελτος (hupángeltos)
 
 dict: ἀγορεύω
 
@@ -154,9 +154,9 @@ dict: αἱρέω
     αἵρεσις (haíresis)
     αἱρετέος (hairetéos)
     αἱρετής (hairetḗs)
-#    αἱρετίζω (hairetízō) # no suffix τίζω
+    αἱρετίζω (hairetízō) # no suffix τίζω
     αἱρετικός (hairetikós)
-#    αὐθαίρετος (authaíretos) # too complex, alas
+    αὐθαίρετος (authaíretos) # too complex, alas
 
     ἀφαιρέω (aphairéō)
     διαιρέω (diairéō)
