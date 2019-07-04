@@ -39677,14 +39677,15 @@ dict: ὤψ • (ṓps) f (genitive ὠπός); third declension
     (the phrase εἰς ὦπα, in Homer and Hesiod) to the eye; (possibly) in the face
     (rarely in other forms) eye
 
-dict: χίλιοι • () f (genitive χίλιων)
-      - thousands
-
 nom: ὤψ, ὦπε, ὦπες
 gen: ὠπός, ὠποῖν, ὠπῶν
 dat: ὠπί, ὠποῖν, ὠψί-ὠψίν
 acc: ὦπα, ὦπε, ὦπας
 voc: ὤψ, ὦπε, ὦπες
+
+# dict: χίλιοι • () f (genitive χίλιων)
+#      - thousands
+
 
 #, FF
 

@@ -6,9 +6,11 @@ dict: ἀγγέλλω
    ἄγγελμα (ángelma) # FAIL - no neut in flex
    ἀγγέλτειρα (angélteira)
    ἀγγελτικός (angeltikós)
-   ἀναγγέλλω (anangéllō)
-   ἀνάγγελτος (anángeltos)
-   ἀπαγγέλλω (apangéllō)
+   ἀνάγγελτος (anángeltos)
+   ὑπάγγελτος (hupángeltos)
+
+   ἀναγγέλλω (anangéllō)
+   ἀπαγγέλλω (apangéllō)
    διαγγελλω (diangeltéon)
    διαγγελτέον (diangeltéon) # tail
    εἰσαγγέλλω (eisangéllō)
@@ -24,7 +26,6 @@ dict: ἀγγέλλω
    προαγγέλλω (proangéllō)
    προσαγγέλλω (prosangéllō)
    συναγγέλλω (sunangéllō)
-   ὑπάγγελτος (hupángeltos)
 
 dict: ἀγορεύω
 
@@ -58,7 +59,7 @@ dict: ἄγχω
     κυνάγχη (kunánkhē)
     περιάγχω (periánkhō)
 
-dict: ἄγω
+dict: ἄγω
 
     ἄγε (áge)
     ἄγετε (ágete)
@@ -66,7 +67,7 @@ dict: ἄγω
     ἀγός (agós)
     ἀγωγή (agōgḗ)
     ἀγωγός (agōgós)
-    ἄγω καὶ φέρω (ágō kaì phérō)
+    # ἄγω καὶ φέρω (ágō kaì phérō)
     ἀγών (agṓn)
     ἄκτωρ (áktōr)
 
@@ -109,21 +110,21 @@ dict: ἄημι
 
     ἀκραής (akrāḗs)
     ἀλιαής (aliāḗs)
-
     δυσαής (dusāḗs)
-
     εὐαής (euāḗs)
     ζαής (zāḗs)
-
     πολυαής (poluāḗs)
     ὑπεραής (huperāḗs)
 
-dict: ἀθλέω
+dict: ἀθλέω
 
-    ἄθλημα (ā́thlēma)
-    ἄθλησις (ā́thlēsis)
-    ἀθλητήρ (āthlētḗr)
-    ἀθλητής (āthlētḗs)
+    ἄθλημα (ā́thlēma)
+    ἄθλησις (ā́thlēsis)
+    ἀθλητήρ (āthlētḗr)
+    ἀθλητής (āthlētḗs)
+
+ἀθ - ἀθ
+
 
 dict: αἴθω
 
@@ -135,7 +136,7 @@ dict: αἰνέω
     αἰνετήριος (ainetḗrios)
     αἰνετής (ainetḗs)
     αἰνετός (ainetós)
-    # αἴνη (aínē) # ====================================== FAIL
+    αἴνη (aínē)
 
     αἴνησις (aínēsis)
     αἰνητός (ainētós)
@@ -156,7 +157,7 @@ dict: αἱρέω
     αἱρετής (hairetḗs)
     αἱρετίζω (hairetízō) # no suffix τίζω
     αἱρετικός (hairetikós)
-    αὐθαίρετος (authaíretos) # too complex, alas
+    αὐθαίρετος (authaíretos)
 
     ἀφαιρέω (aphairéō)
     διαιρέω (diairéō)
@@ -168,16 +169,16 @@ dict: αἱρέω
     παραιρέω (parairéō)
     περιαιρέω (periairéō)
     προαιρέω (proairéō)
+    συναιρέω (sunairéō)
+    ὑφαιρέω (huphairéō)
 
     προσδιαιρέω (prosdiairéō)
     συγκαθαιρέω (sunkathairéō)
-    συναιρέω (sunairéō)
     συνδιαιρέω (sundiairéō)
     συνεξαιρέω (sunexairéō)
     ὑπεξαιρέω (hupexairéō)
-    ὑφαιρέω (huphairéō)
 
-dict: ἀναιρέω
+dict: ἀναιρέω
 
     προαναιρέω (proanairéō)
     προσαναιρέω (prosanairéō)
@@ -188,7 +189,7 @@ dict: ἀφαιρέω
 
 dict: αἰσχυνω
 
-    ᾐσχυμμένος (ēiskhūmménos)
+   ᾐσχυμμένος (ēiskhūmménos)
    καταισχύνω (kataiskhúnō)
    προσκαταισχύνω (proskataiskhúnō) # то же самое
    συναισχύνω (sunaiskhúnō)
@@ -200,7 +201,7 @@ dict: αἰτέω
     αἰτητής (aitētḗs)
     αἰτητός (aitētós)
 
-dict: ἀκούω
+dict: ἀκούω
 
     ἀκοή (akoḗ)
     ἀκοΐδιον (akoḯdion)
@@ -221,10 +222,8 @@ dict: ἁλίσκομαι
     ἀνθαλίσκομαι (anthalískomai)
     ἐναλίσκομαι (enalískomai)
     παραλίσκομαι (paralískomai)
-
     προαλίσκομαι (proalískomai)
     προσαλίσκομαι (prosalískomai)
-
     συναλίσκομαι (sunalískomai)
 
 dict: αναλίσκω
@@ -237,15 +236,14 @@ dict: ἁμαρτάνω
     ἁμαρτία (hamartíā)
     ἁμάρτιον (hamártion)
     ἁμαρτωλή (hamartōlḗ)
-
     ἁμαρτωλός (hamartōlós)
     ἀναμάρτητος (anamártētos)
-    διαμαρτάνω (diamartánō)
-    # διαμαρτία (diamartíā) # correct, but no test
-
-    ἐξαμαρτάνω (examartánō)
+    διαμαρτία (diamartíā) # correct, but no test
     ἡμαρτημένως (hēmartēménōs)
     νημερτής (nēmertḗs)
+
+    διαμαρτάνω (diamartánō)
+    ἐξαμαρτάνω (examartánō)
     συνεξαμαρτάνω (sunexamartánō)
 
 dict: ἀμφιλέγω
@@ -253,32 +251,31 @@ dict: ἀμφιλέγω
     ἀμφίλεκτος (masc. fem.),
     ἀμφίλεκτον (amphílekton) (neu.) “of which one disputes”
     ἀμφιλογία f (amphilogía, “the doubting”)
-    # ἀμφίλογος (masc. fem.), # correct, no test
-    # ἀμφίλογον (amphílogon) (neu.) “of which one disputes”
+    ἀμφίλογος (masc. fem.), # correct, no test
+    ἀμφίλογον (amphílogon) # (neu.) “of which one disputes”
 
-dict: ἀναβαίνω
+dict: ἀναβαίνω
 
     δυσανάβατος (dusanábatos)
-    εἰσαναβαίνω (eisanabaínō)
-    ἐξαναβαίνω (exanabaínō)
-    ἐπαναβαίνω (epanabaínō)
-
     ἱππαναβάτης (hippanabátēs)
     νεκυάμβατος (nekuámbatos)
     ὀπισαμβώ (opisambṓ)
-    παραναβαίνω (paranabaínō)
 
+    παραναβαίνω (paranabaínō)
+    εἰσαναβαίνω (eisanabaínō)
+    ἐξαναβαίνω (exanabaínō)
+    ἐπαναβαίνω (epanabaínō)
     προαναβαίνω (proanabaínō)
     προσαναβαίνω (prosanabaínō)
     συναναβαίνω (sunanabaínō)
     ὑπεραναβαίνω (huperanabaínō)
 
-dict: ἀνακαινόω
+dict: ἀνακαινόω
 
     # ἀνακαίνωσις (anakaínōsis)
 
 # FAIL - too complex
-# dict: ἀναλαμβάνω
+dict: ἀναλαμβάνω
 
 #     ἀνάλημμα (análēmma)
 #     ἀναληπτέον (analēptéon)
@@ -308,7 +305,7 @@ dict: ἀναλίσκω
     ὑπαναλίσκω (hupanalískō)
     ὑπεραναλίσκω (huperanalískō)
 
-dict: ἀναμιμνήσκω
+dict: ἀναμιμνήσκω
 
     ἐπαναμιμνήσκω (epanamimnḗiskō)
     προαναμιμνήσκω (proanamimnḗskō)
@@ -317,17 +314,17 @@ dict: ἀναμιμνήσκω
 
     συναναμιμνήσκω (sunanamimnḗskō)
 
-dict: ἀνασκάπτω
+dict: ἀνασκάπτω
 
     ἀνασκαφή (anaskaphḗ)
 
-dict: ἀνίστημι
+dict: ἀνίστημι
 
-    # ἀνάστασις (anástasis)
-    # ἀνάστατος (anástatos)
+    # ἀνάστασις (anástasis)
+    # ἀνάστατος (anástatos)
     # ανίσταμαι (anístamai)
     ἀντανίστημι (antanístēmi)
-    ἀπανίστημι (apanístēmi)
+    ἀπανίστημι (apanístēmi)
     διανίστημι (dianístēmi)
 
     ἐξανίστημι (exanístēmi)
@@ -348,15 +345,15 @@ dict: ἀνοίγνυμι
     παρανοίγνυμι (paranoígnumi)
     προσανοίγνυμι (prosanoígnumi)
 
-dict: ἀνοίγω
+dict: ἀνοίγω
 
     ἄνοιξις (ánoixis, “opening”)
 
 # FAIL
 # dict: ἀνταποδίδωμι
 
-#     ἀνανταπόδοσις (anantapódosis)
-#     ἀνανταπόδοτος (anantapódotos)
+#     ἀνανταπόδοσις (anantapódosis)
+#     ἀνανταπόδοτος (anantapódotos)
 #     ἀνταπόδομα (antapódoma)
 #     ἀνταπόδοσις (antapódosis)
 #     ἀνταποδοτέον (antapodotéon)
@@ -369,37 +366,37 @@ dict: ἀντλέω
     ἄντλος (ántlos)
     ἀντλία (antlía)
 
-# dict: ἀξιόω
-dict: ἀξιῶ
+# dict: ἀξιόω
+dict: ἀξιῶ
 
     ἀξίωμα (axíōma)
     ἀξιωματικός (axiōmatikós)
     ἀξίωσις (axíōsis)
     ἀξιωτέον (axiōtéon)
 
-dict: ἀπαγγέλλω
+dict: ἀπαγγέλλω
 
-    ἀπαγγελεύς (apangeleús)
-    # ἀπαγγελία (apangelíā)
-    ἀπάγγελσις (apángelsis)
-    ἀπαγγελτήρ (apangeltḗr)
-    ἀπαγγελτικός (apangeltikós)
+    ἀπαγγελεύς (apangeleús)
+    # ἀπαγγελία (apangelíā)
+    ἀπάγγελσις (apángelsis)
+    ἀπαγγελτήρ (apangeltḗr)
+    ἀπαγγελτικός (apangeltikós)
     προαπαγγέλλω (proapangéllō)
     προσαπαγγέλλω (prosapangéllō)
 
-dict: ἀπαιτέω
+dict: ἀπαιτέω
 
-    ἀναπαίτητος (anapaítētos)
-    ἀνταπαιτέω (antapaitéō)
-    ἀπαίτημα (apaítēma)
-    ἀπαιτήσιμον (apaitḗsimon)
+    ἀναπαίτητος (anapaítētos)
+    ἀνταπαιτέω (antapaitéō)
+    ἀπαίτημα (apaítēma)
+    ἀπαιτήσιμον (apaitḗsimon)
 
-    ἀπαίτησις (apaítēsis)
-    ἀπαιτητέον (apaitētéon)
-    ἀπαιτητής (apaitētḗs)
-    ἀπαιτητικός (apaitētikós)
+    ἀπαίτησις (apaítēsis)
+    ἀπαιτητέον (apaitētéon)
+    ἀπαιτητής (apaitētḗs)
+    ἀπαιτητικός (apaitētikós)
 
-    # ἀπαιτίζω (apaitízō)
+    # ἀπαιτίζω (apaitízō)
     προσαπαιτέω (prosapaitéō)
     συναπαιτέω (sunapaitéō)
     ὑπεραπαιτέω (huperapaitéō)
@@ -407,8 +404,8 @@ dict: ἀπαιτέω
 dict: ἀποδείκνυμι
 
     ἀποδεικτέον (apodeiktéon)
-    # ἀποδεικτικός (apodeiktikós)
-    # ἀποδεικτός (apodeiktós)
+    ἀποδεικτικός (apodeiktikós)
+    ἀποδεικτός (apodeiktós)
 
 dict: ἀποδίδωμι
 
@@ -418,11 +415,11 @@ dict: ἀποθεόω
 
     ἀποθέωσις (apothéōsis)
 
-dict: ἀποθλίβω
+dict: ἀποθλίβω
 
-    ἀπόθλιμμα (apóthlimma)
-    ἀποθλιμμός (apothlimmós)
-    ἀπόθλιψις (apóthlipsis)
+    ἀπόθλιμμα (apóthlimma)
+    ἀποθλιμμός (apothlimmós)
+    ἀπόθλιψις (apóthlipsis)
 
 dict: ἀποκαλύπτω
 
@@ -452,7 +449,7 @@ dict: ἀποστέλλω
     προσαποστέλλω (prosapostéllō)
     συναποστέλλω (sunapostéllō)
 
-dict: ἀποτελέω
+dict: ἀποτελέω
 
     ἀποτέλεσμα (apotélesma)
 
@@ -490,11 +487,11 @@ dict: ἅπτω
     συνάπτω (sunáptō)
     ὑφάπτω (hupháptō)
 
-dict: ἀριθμέω
+dict: ἀριθμέω
 
-    ἀριθμητικός (arithmētikós)
+    ἀριθμητικός (arithmētikós)
 
-dict: ἀρκέω
+dict: ἀρκέω
 
     αὐτάρκης (autárkēs)
 
@@ -776,11 +773,11 @@ dict: γιγνώσκω
     ἀλλόγνωτος (allógnōtos)
     ἀμφιγνοέω (amphignoéō)
     ἀμφοτερογνώμων (amphoterognṓmōn)
-    ἀναγιγνώσκω (anagignṓskō)
-    ἀπογιγνώσκω (apogignṓskō)
+    ἀναγιγνώσκω (anagignṓskō)
+    ἀπογιγνώσκω (apogignṓskō)
     ἀργυρογνώμων (argurognṓmōn)
-    ἀριγνώς (arignṓs)
-    ἀρίγνωτος (arígnōtos)
+    ἀριγνώς (arignṓs)
+    ἀρίγνωτος (arígnōtos)
     ἀρτίγνωστος (artígnōstos)
     αὐτογνώμων (autognṓmōn)
     αὐτόγνωτος (autógnōtos)
@@ -942,7 +939,7 @@ dict: δάκνω
     ὑποδάκνω (hupodáknō)
 
 dict: αποδείκνυμι
-    ἀνταποδείκνυμι (antapodeíknūmi)
+    ἀνταποδείκνυμι (antapodeíknūmi)
     προαποδείκνυμι (proapodeíknūmi)
     προσαποδείκνυμι (prosapodeíknūmi)
 
@@ -951,11 +948,11 @@ dict: συνυποδείκνυμι
 
 dict: δείκνυμι
 
-    ἀναδείκνυμι (anadeíknūmi)
-    ἀναπόδεικτος (anapódeiktos)
-    ἀντεπιδείκνυμι (antepideíknūmi)
-    ἀποδείκνυμι (apodeíknūmi)
-    ἀριδείκετος (arideíketos)
+    ἀναδείκνυμι (anadeíknūmi)
+    ἀναπόδεικτος (anapódeiktos)
+    ἀντεπιδείκνυμι (antepideíknūmi)
+    ἀποδείκνυμι (apodeíknūmi)
+    ἀριδείκετος (arideíketos)
     δακτυλοδεικτέω (daktulodeiktéō)
     δεῖγμα (deîgma)
     δειγματίζω (deigmatízō)
@@ -996,23 +993,23 @@ dict: δέχομαι
 
     ἀποδέχομαι (apodékhomai)
     δέκτης (déktēs)
-        πανδέκτης (pandéktēs)
+    πανδέκτης (pandéktēs)
     δεκτός (dektós)
     πανδοκεῖον (pandokeîon)
 
 dict: δέω
 
-    ἀγκιστρόδετος (ankistródetos)
-    ἀδαμαντόδετος (adamantódetos)
-    ἄδετος (ádetos)
+    ἀγκιστρόδετος (ankistródetos)
+    ἀδαμαντόδετος (adamantódetos)
+    ἄδετος (ádetos)
     αἰχμόδετος (aikhmódetos)
-    ἀκρόδετος (akródetos)
+    ἀκρόδετος (akródetos)
     ἁλυσίδετος (halusídetos)
-    ἀμαλλοδετήρ (amallodetḗr)
+    ἀμαλλοδετήρ (amallodetḗr)
     ἀμφιδέω (amphidéō)
-    ἀναδέω (anadéō)
+    ἀναδέω (anadéō)
     ἀντιδέω (antidéō)
-    ἀποδέω (apodéō)
+    ἀποδέω (apodéō)
     ἀσκοδέτης (askodétēs)
     αὐτόδετος (autódetos)
     γομφόδετος (gomphódetos)
@@ -1093,7 +1090,7 @@ dict: διαλέγομαι
 
 dict: διαλογίζω
 
-    ἀδιαλόγιστος (adialógistos)
+    ἀδιαλόγιστος (adialógistos)
     ἀντιδιαλογίζομαι (antidialogízomai)
     προδιαλογισμός (prodialogismós)
     προδιαλογίζομαι (prodialogízomai)
@@ -1156,7 +1153,7 @@ dict: δοξάζω
 
 dict: δράω
 
-    ἀντιδράω (antidráō)
+    ἀντιδράω (antidráō)
     δρᾶμα (drâma)
 
     δρᾶσις (drâsis)
@@ -1192,13 +1189,12 @@ dict: ἐγείρω
     διεγείρω (diegeírō)
     ἐγρεκύδοιμος (egrekúdoimos)
     ἐγρεμάχης (egremákhēs)
-
     ἐγρέμοθος (egrémothos)
+
     ἐξεγείρω (exegeírō)
     ἐπεγείρω (epegeírō)
     παρεγείρω (paregeírō)
     περιεγείρω (periegeírō)
-
     προεγείρω (proegeírō)
     προσεγείρω (prosegeírō)
     συνεγείρω (sunegeírō)
@@ -1222,6 +1218,7 @@ dict: ἐθέλω
     ἐθελόπονος (ethelóponos)
     ἐθελουργός (ethelourgós)
     ἐθελούσιος (etheloúsios)
+
     συνεθέλω (sunethélō)
 
 dict: ἔθω
@@ -1229,7 +1226,7 @@ dict: ἔθω
     ἐθήμων (ethḗmōn)
     ἐθίζω (ethízō)
     ἔθος (éthos)
-        ἐθικός (ethikós)
+    ἐθικός (ethikós)
     ἔθιμος (éthimos)
     ἔθνος (éthnos)
     ἦθος (êthos)
@@ -1369,7 +1366,7 @@ dict: ἐλεέω
 dict: ἐλελίζω
 
     ἀμφελελίζω (amphelelízō)
-    ἀνελελίξω (anelelíxō)
+    ἀνελελίξω (anelelíxō)
 
 dict: ἕλκω
 
@@ -1474,7 +1471,7 @@ dict: ἐξίστημι
 
 # no υπνίζω
 # dict: ἐξυπνίζω
-#     ἀφυπνίζω (aphupnízō)
+#     ἀφυπνίζω (aphupnízō)
 #     διυπνίζω (diupnízō)
 #     περιυπνίζω (periupnízō)
 
@@ -1567,7 +1564,7 @@ dict: ἔραμαι
 
 dict: ἐράω
 
-    ἀντεράω (anteráō)
+    ἀντεράω (anteráō)
     ἐρωμένη (erōménē)
     ἐρώμενος (erṓmenos)
     ἐρῶν (erôn)
@@ -1759,7 +1756,7 @@ dict: εὔχομαι
 
 dict: ἐφίστημι
 
-    ἀνεπίστατος (anepístatos)
+    ἀνεπίστατος (anepístatos)
     ἀντεφίστημι (antephístēmi)
     κατεφίσταμαι (katephístamai)
     προεφίστημι (proephístēmi)
@@ -1768,9 +1765,9 @@ dict: ἐφίστημι
 dict: ἔχω
 
     ἀμπέχω (ampékhō)
-    ἀνέχω (anékhō)
+    ἀνέχω (anékhō)
     ἀντέχω (antékhō)
-    ἀπέχω (apékhō)
+    ἀπέχω (apékhō)
     διέχω (diékhō)
     εἰσέχω (eisékhō)
     ἐνέχω (enékhō)
@@ -2254,9 +2251,9 @@ dict: καθαρίζω
 
 dict: καθίστημι
 
-    ἀκατάστατος (akatástatos)
+    ἀκατάστατος (akatástatos)
     ἀντικαθίστημι (antikathístēmi)
-    ἀποκαθίστημι (apokathístēmi)
+    ἀποκαθίστημι (apokathístēmi)
     δυσκατάστατος (duskatástatos)
 
     ἐγκαθίστημι (enkathístēmi)
@@ -2334,10 +2331,10 @@ dict: κάμνω
 
 dict: κάμπτω
 
-    ἀκαμπής (akampḗs)
-    ἄκαμπτος (ákamptos)
-    ἀνακάμπτω (anakámptō)
-    ἀποκάμπτω (apokámptō)
+    ἀκαμπής (akampḗs)
+    ἄκαμπτος (ákamptos)
+    ἀνακάμπτω (anakámptō)
+    ἀποκάμπτω (apokámptō)
     ᾀσματοκάμπτης (āismatokámptēs)
     βαθυκαμπής (bathukampḗs)
 # FAIL ??
@@ -2608,6 +2605,7 @@ dict: κλίνω
     ἐπικατακλίνω (epikataklínō)
     ἐπικλίνω (epiklínō)
     κατακλίνω (kataklínō)
+
     κλίμα (klíma)
     κλῖμαξ (klîmax)
     κλίνη (klínē)
@@ -2885,7 +2883,7 @@ dict: λαμβάνω
     ἀκανθολάβος (akantholábos)
     ἄληπτος (álēptos)
     ἀμφιλαμβάνω (amphilambánō)
-    ἀναλαμβάνω (analambánō)
+    ἀναλαμβάνω (analambánō)
     ἀντιλαμβάνω (antilambánō)
     άπολαμβάνω (ápolambánō)
     ἀστρολάβος (astrolábos)
@@ -3818,7 +3816,7 @@ dict: παραμένω
 
 dict: παρέχω
 
-    ἀπάροχος (apárokhos)
+    ἀπάροχος (apárokhos)
     ἀντιπαρέχω (antiparékhō)
     ἐλαιοπάροχος (elaiopárokhos)
     ἐμπαρέχω (emparékhō)
@@ -3969,8 +3967,8 @@ dict: περιπατέω
 dict: περισπάω
 
     ἀντιπερισπαστός (antiperispastós)
-    ἀπερίσπαστος (aperíspastos)
-    ἀποπερισπάω (apoperispáō)
+    ἀπερίσπαστος (aperíspastos)
+    ἀποπερισπάω (apoperispáō)
     ἐκπερισπάω (ekperispáō)
     εὐπερίσπαστος (euperíspastos)
     περίσπασις (períspasis)
@@ -4014,11 +4012,11 @@ dict: πετάννυμι
 
 dict: πέτομαι
 
-    ἀεροπετής (āeropetḗs)
+    ἀεροπετής (āeropetḗs)
     ἀερσιπέτης (aersipétēs)
     ἀμφιπέτομαι (amphipétomai)
-    ἀναπέτομαι (anapétomai)
-    ἀποπέτομαι (apopétomai)
+    ἀναπέτομαι (anapétomai)
+    ἀποπέτομαι (apopétomai)
     διαπέτομαι (diapétomai)
     εἰσπέτομαι (eispétomai)
     ἐκπέτομαι (ekpétomai)
@@ -4480,8 +4478,8 @@ dict: ῥαίνω
 
     αἱμόρραντος (haimórrhantos)
     ἁλίρραντος (halírrhantos)
-    ἀναρραίνω (anarrhaínō)
-    ἀπορραίνω (aporrhaínō)
+    ἀναρραίνω (anarrhaínō)
+    ἀπορραίνω (aporrhaínō)
     ἄρραντος (árrhantos)
 
     διαρραίνω (diarrhaínō)
@@ -4925,7 +4923,7 @@ dict: στέργω
 
 dict: στερέω
 
-    ἀποστερέω (aposteréō)
+    ἀποστερέω (aposteréō)
     ἀργυροστερής (argurosterḗs)
     βιοστερής (biosterḗs)
     Ἡλιοστερής (Hēliosterḗs)
@@ -4939,9 +4937,9 @@ dict: στέφω
 
     ἀκανθοστεφής (akanthostephḗs)
     ἁλιστεφής (halistephḗs)
-    ἀμφιστεφής (amphistephḗs)
-    ἀναστέφω (anastéphō)
-    ἀστεφής (astephḗs)
+    ἀμφιστεφής (amphistephḗs)
+    ἀναστέφω (anastéphō)
+    ἀστεφής (astephḗs)
     διστεφής (distephḗs)
     ἐκστέφω (ekstéphō)
     ἐπιστέφής (epistéphḗs)
@@ -4988,7 +4986,7 @@ dict: στίλβω
 dict: στοχάζομαι
 
     ἀντιστόχαστος (antistókhastos)
-    ἀστόχαστος (astókhastos)
+    ἀστόχαστος (astókhastos)
     διαστοχάζομαι (diastokházomai)
     δυστόχαστος (dustókhastos)
     καταστοχάζομαι (katastokházomai)
@@ -5044,9 +5042,9 @@ dict: σφύζω
 dict: σχίζω
 
     ἀκροσχιδής (akroskhidḗs)
-    ἀνασχίζω (anaskhízō)
-    ἀποσχίζω (aposkhízō)
-    ἀσχιδής (askhidḗs)
+    ἀνασχίζω (anaskhízō)
+    ἀποσχίζω (aposkhízō)
+    ἀσχιδής (askhidḗs)
     αὐτοσχιδής (autoskhidḗs)
     διασχιδής (diaskhidḗs)
     διασχίζω (diaskhízō)
@@ -5076,11 +5074,11 @@ dict: σχίζω
 
 dict: σῴζω
 
-    ἀνασῴζω (anasṓizō)
+    ἀνασῴζω (anasṓizō)
     ἀντισῴζω (antisṓizō)
-    ἀποσῴζω (aposṓizō)
-    ἄσωστος (ásōstos)
-    ἄσωτος (ásōtos)
+    ἀποσῴζω (aposṓizō)
+    ἄσωστος (ásōstos)
+    ἄσωτος (ásōtos)
     βιοσσόος (biossóos)
     βροτοσσόος (brotossóos)
     δημοσσόος (dēmossóos)
@@ -5215,17 +5213,17 @@ dict: τέρπω
 
 dict: τίθημι
 
-    ἀγωνοθετέω (agōnothetéō)
-    ἄθετος (áthetos)
-    ἀθλοθετέω (āthlothetéō)
+    ἀγωνοθετέω (agōnothetéō)
+    ἄθετος (áthetos)
+    ἀθλοθετέω (āthlothetéō)
     ἀκμοθέτης (akmothétēs)
-    ἀμφιτίθημι (amphitíthēmi)
-    ἀνατίθημι (anatíthēmi)
-    ἀντιτίθημι (antitíthēmi)
-    ἀοιδοθέτης (aoidothétēs)
-    ἀποτίθημι (apotíthēmi)
+    ἀμφιτίθημι (amphitíthēmi)
+    ἀνατίθημι (anatíthēmi)
+    ἀντιτίθημι (antitíthēmi)
+    ἀοιδοθέτης (aoidothétēs)
+    ἀποτίθημι (apotíthēmi)
     ἁρματοθεσία (harmatothesíā)
-    ἀστρόθετος (astróthetos)
+    ἀστρόθετος (astróthetos)
     αὐλοθετέω (aulothetéō)
     αὐτόθετος (autóthetos)
     δεινοθέτης (deinothétēs)
@@ -5420,9 +5418,9 @@ dict: φαέθω
 dict: φαίνω
 # with prepositional prefix:
 
-    ἀναφαίνω (anaphaínō)
-    ἀντιφαίνω (antiphaínō)
-    ἀποφαίνω (apophaínō)
+    ἀναφαίνω (anaphaínō)
+    ἀντιφαίνω (antiphaínō)
+    ἀποφαίνω (apophaínō)
     διαφαίνω (diaphaínō)
     εἰσφαίνω (eisphaínō)
     ἐκφαίνω (ekphaínō)
@@ -5933,10 +5931,10 @@ dict: ψηφίζω
 
 dict: ψύχω
 
-    ἀναψύχω (anapsū́khō)
+    ἀναψύχω (anapsū́khō)
     ἀντιψύχω (antipsū́khō)
-    ἀποψύχω (apopsū́khō)
-    ἄψυκτος (ápsuktos)
+    ἀποψύχω (apopsū́khō)
+    ἄψυκτος (ápsuktos)
     διαψύχω (diapsū́khō)
     δύσψυκτος (dúspsuktos)
     ἐκψύχω (ekpsū́khō)

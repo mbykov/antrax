@@ -2,6 +2,38 @@
 
 # ================================== SUFFIXES ==========================
 
+suf: ητήρ
+      ~ητήρ
+      Used to form agent nouns, cf. της, state of being
+      stem: verb
+      pos: name
+      gends: masc
+      key: ήρ-ῆρος
+      ex: ἀσκητήρ
+      = οντ
+      = τ
+      = οτ
+
+#
+suf: ητός
+      Usually to form an adjective
+      stem: verb
+      pos: name
+      adj: true
+      key: ός-ή-όν
+#      key: ός-ά-όν
+      ex: ἀσκητός, αἰνετός, ἀποδεικτός, δυνατός
+      = ετ
+      = τ
+      = οτ
+      = ατ
+
+
+
+
+
+# ============================ OLD ============================
+
 # τειρα
 # suf: τειρ
 #     suffix of ... what?
@@ -474,6 +506,7 @@ suf: εστερ
 
 # -τής • (-tḗs) m (genitive -τοῦ); first declension
 # -της • (-tēs) f (genitive -τητος); third declension
+
 
 suf: τ
       ~τής
