@@ -1241,18 +1241,19 @@ dict: εἴδομαι
 dict: εἰμί
 
     ἄπειμι (ápeimi)
-    ἀπουσία (apousía)
-    αὐτοουσία (autoousía)
     ἔνειμι (éneimi)
     ἔξειμι (éxeimi)
-    ἔξεστι (éxesti)
-    ἐξουσία (exousía)
     ἔπειμι (épeimi)
-    ἐπιούσιος (epioúsios)
+    ἔξεστι (éxesti)
+
+    ἀπουσία (apousía)
+    αὐτοουσία (autoousía)
+    ἐξουσία (exousía)
+    ἐπιούσιος (epioúsios) # FAIL NB
+
     ἐπιπρόσειμι (epipróseimi)
     ἐπισυμπάρειμι (episumpáreimi)
     ἐπισύνειμι (episúneimi)
-
     καταπερίειμι (kataperíeimi)
     μέτειμι (méteimi)
     μετουσία (metousía)

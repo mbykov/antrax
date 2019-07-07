@@ -106,6 +106,7 @@ pref: ἐκ- • (ek-)
       (With a sense of removal): out, away, off
       (Expressing completion or totality): utterly
       = ἐξ
+      = εξ
 
 # а тут не путается ли ударение?
 pref: ἑξα- • (hexa-)
@@ -120,10 +121,11 @@ pref: ἐπι- • (epi-)
     (time) after
     (of superiority, authority, motivation) over, at, for, against
     (intensive) over-
-      against
-      on, for the purpose of, because of
-      on. at
-      = ἐπ
+    against
+    on, for the purpose of, because of
+    on. at
+    = ἐπ
+    = επ
 
 pref: εὐ- • (eu-)
     good, well
@@ -133,6 +135,7 @@ pref: ἐν
       = ἐγ
       = ἐμ
       = ἐλ
+      = εν
 
 pref: ἐφ
       translation?
@@ -284,6 +287,11 @@ pref: ὑπο- • (hupo-)
     denoting a small degree, gradual
     = ὑπ
     = ὑφ
+    = υπ
 
+pref: ὑπερ
+      above, over, beyond
+
+# last in a list:
 pref: ὑπερ
       above, over, beyond

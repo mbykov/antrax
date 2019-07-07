@@ -2018,16 +2018,20 @@ adv: φωνησάντως
 # -----------------------------
 # dict: ὤν • (ṓn)
 
- # present active participle of εἰμί (eimí)
+#  present active participle of εἰμί (eimí)
 
 # part: act.pres
 # verb: εἰμί
+# irreg: true
 
-# First and third declension of ὤν, οὖσα, ὄν
-# Number	Singular	Dual	Plural
-# Case / Gender	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
-# Nominative	ὤν	οὖσα	ὄν	ὄντε	οὔσα	ὄντε	ὄντες	οὖσαι	ὄντα
-# Genitive	ὄντος	οὔσης	ὄντος	ὄντοιν	οὔσαιν	ὄντοιν	ὄντων	οὐσῶν	ὄντων
-# Dative	ὄντι	οὔσῃ	ὄντι	ὄντοιν	οὔσαιν	ὄντοιν	οὖσι-οὖσιν	οὔσαις	οὖσι-οὖσιν
-# Accusative	ὄντα	οὖσαν	ὄν	ὄντε	οὔσα	ὄντε	ὄντας	οὔσας	ὄντα
-# Vocative	ὤν	οὖσα	ὄν	ὄντε	οὔσα	ὄντε	ὄντες	οὖσαι	ὄντα
+# # First and third declension of ὤν, οὖσα, ὄν
+# # Number	Singular	Dual	Plural
+
+# # Case / Gender	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+# nom: ὤν, οὖσα, ὄν, ὄντε, οὔσα, ὄντε, ὄντες, οὖσαι, ὄντα
+# gen: ὄντος, οὔσης, ὄντος, ὄντοιν, οὔσαιν, ὄντοιν, ὄντων, οὐσῶν, ὄντων
+# dat: ὄντι, οὔσῃ, ὄντι, ὄντοιν, οὔσαιν, ὄντοιν, οὖσι-οὖσιν, οὔσαις, οὖσι-οὖσιν
+# acc: ὄντα, οὖσαν, ὄν, ὄντε, οὔσα, ὄντε, ὄντας, οὔσας, ὄντα
+# voc: ὤν, οὖσα, ὄν, ὄντε, οὔσα, ὄντε, ὄντες, οὖσαι, ὄντα
+
+# οὔσιης οὔσιαν
