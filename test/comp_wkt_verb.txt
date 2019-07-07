@@ -1215,7 +1215,7 @@ dict: ἐθέλω
     ἐθελοντί (ethelontí)
 
     ἐθελόντως (ethelóntōs)
-    ἐθελόπονος (ethelóponos)
+    ἐθελόπονος (ethelóponos) # FAIL
     ἐθελουργός (ethelourgós)
     ἐθελούσιος (etheloúsios)
 
@@ -1312,13 +1312,14 @@ dict: εἶπον
 
 dict: εἴρω
 
-    ἀνείρω (aneírō)
-    διείρω (dieírō)
     εἰρήνη (eirḗnē) (possibly)
-    ἐνείρω (eneírō)
-    ἐξείρω (exeírō)
     σειρά (seirá)
     Σειρήν (Seirḗn) (possibly)
+
+    ἀνείρω (aneírō)
+    διείρω (dieírō)
+    ἐνείρω (eneírō)
+    ἐξείρω (exeírō)
     συνείρω (suneírō)
 
 dict: ἐκλείπω
@@ -1343,7 +1344,7 @@ dict: ἐκρέω
     συνεκρέω (sunekréō)
     ὑπεκρέω (hupekréō)
 
-dict: ἐκχυμόω
+dict: ἐκχυμόω # FAIL
 
     ἐκχύμωσις (ekkhúmōsis)
     ἐκχύμωμα (ekkhū́mōma)

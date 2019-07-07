@@ -14,6 +14,7 @@ pref: ἁ- • (ha-)
 
 pref: ἀν- • (an-)
     Alternative form of ἀ- (a-) used before a vowel.
+    = αν
 
 pref: ἀνα- • (ana-)
     up to, upwards, up
@@ -27,6 +28,7 @@ pref: ἀντι- • (anti-)
     = ἀνθο
     = ἀντ
     = ἀντ᾽
+    = αντ
 
 pref: ἀπο- • (apo-)
     Indicating movement: away, from, off
@@ -37,6 +39,8 @@ pref: ἀπο- • (apo-)
     because of, owing to
     = ἀπ
     = ἀφ
+    = απ
+    = αφ
 
 pref: ἀρι- • (ari-)
     (mostly early Epic and Lyric) strengthening prefix, generally with a sense of goodness, excellence
