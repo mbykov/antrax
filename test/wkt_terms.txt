@@ -176,10 +176,6 @@ conj: κᾷτα • (kâita)
 
     Contraction of καὶ εἶτα (kaì eîta, “and then”).
 
-conj: μέχρι • (mékhri)
-
-    until
-
 prep: μέχρι • (mékhri) (governs the genitive)
 
     (Marker of spatial extension): as far as
@@ -420,89 +416,6 @@ particle: ἕνεκεν
 particle: δήποτε
           at some time, once upon a time
 
-adv: ὁπωσδήποτε
-     ὅπως, as, in such manner as, how
-
-adv: ὀπίσω
-     backwards
-
-adv: πρόσω
-     forwards, onwards
-     = προσ
-
-adv: ἀεί
-     always
-adv: ἄνω
-     up
-adv: ἄρτι
-     now
-adv: αὖθις
-     again
-adv: αὐτίκα
-     immediately, forthwith, at once, in a moment
-     = αὐτίχ᾽
-adv: εἶτα
-     then, next
-adv: ἐκεῖ
-     there
-adv: ἔνθα
-     there
-adv: ἐνταῦθα
-     here, there
-adv: ἔπειτα
-     then, next
-adv: ἔτι
-     still
-adv: εὖ
-     well
-adv: εὐθύς
-     immediately
-adv: ἤδη
-     already
-adv: μάλα
-     very, very much
-adv: μάλιστα
-     most, most of all, certainly
-adv: μᾶλλον
-     more, rather
-adv: οὐκέτι
-     no longer
-adv: πάλιν
-     back, backwards, but, in turn
-adv: πάντοτε
-     always, at all times
-adv: πλέον
-     more, rather
-adv: πολλάκις
-     often
-adv: ποτε
-     sometime
-adv: που
-     somewhere
-adv: πρίν
-     before, until; formerly
-adv: τότε
-     then
-adv: καθάπερ
-     according as, just as
-adv: οὕτως
-     in this manner, thus, so
-     even so, just so
-     = οὕτω
-adv: λίαν
-     very, exceedingly
-     = λίην
-adv: ὀλιγαχοῦ
-     in a few places
-
-adv: ἀμήν
-      verily, of a truth, so be it
-
-adv: διατί
-     διὰ τί - wherefore
-
-adv: κακῶς
-     bad
 
 # PREPOSITIONS
 
@@ -584,37 +497,6 @@ prep: πρό
       (+gen.) before, in front of
 
 
-adv: ἅμα
-     together with (+dat.)
-adv: ἄνευ
-     without, except, besides (+gen.)
-adv: ἄχρι
-     until (+gen.)
-adv: ἄχρις
-     until (+gen.)
-adv: ἕνεκα
-     because of (+gen.)
-adv: ἔξω
-     outside of (+gen.)
-adv: μεταξύ
-     between (+gen.)
-adv: μέχρι
-     as far as (+ gen.)
-adv: ὁπίσω
-     behind, after (+gen.)
-adv: πλήν
-     except (+gen.)
-adv: χωρίς
-     separately, without (+gen.)
-adv: κἀκεῖ
-     and there
-adv: ἐκεῖ
-     there, to there
-adv: τἀκεῖ
-     what is or happens there, events there
-adv: οὔπω
-     not yet
-
 conj: ἵνα
       where; purpose: so that, in order that
 conj: ὅπου
@@ -624,15 +506,6 @@ conj: ὅπως
 
 conj: ὥστεὥστε
       result: so that so that
-
-"μέχρι ὁπίσω"
-
-adv: ἐκεῖθεν
-     from that place, thence, opp. ἐκεῖσε
-     = ἐνθένδε
-
-adv: ἐκεῖσε
-     thither, to that place, opp. ἐκεῖθεν or ἐνθένδε
 
 indecl: δεῖ
         It is necessary, It must
@@ -667,10 +540,6 @@ num: δέκα
 num: δίς • (dís)
          (cardinal δύο, ordinal δεύτερος)
          twice, doubly, again
-adv: δίχα • (díkha)
-         in two, asunder, apart
-         in doubt
-         differently, oppositely
 num: δύο
      (cardinal): two
       = δύ᾽
@@ -690,16 +559,7 @@ num: ἐννέα
 num ἕξ • (héx)
         (cardinal) six
         (ordinal ἕκτος, adverbial ἑξάκις)
-adv: ἑξάκις • (hexákis) (cardinal ἕξ, ordinal ἕκτος)
-      six times
 
-adv: ἔμπροσθεν
-      before, in front
-
-adv: ὁμοίως
-     like, resembling, similar
-     = ὅμοιος
-     = ὁμοῖος
 
 # =========================================
 

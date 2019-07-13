@@ -7892,22 +7892,23 @@ voc: ἥκιστε, ἡκίστη, ἥκιστον, ἡκίστω, ἡκίστα
 
 adv: ἥκιστα, ἡκιστότερος, ἡκιστότατος
 
+# PRON
 #---------------------------------
-dict: ἡλίκος • (hēlíkos) m (feminine ἡλίκη, neuter ἡλίκον) first/second declension
+# dict: ἡλίκος • (hēlíkos) m (feminine ἡλίκη, neuter ἡλίκον) first/second declension
 
- (relative adjective) as big or great as, as old as
- (indirect interrogative adjective) how big; extraordinarily big or small
- (exclamatory adjective) how big!
+#  (relative adjective) as big or great as, as old as
+#  (indirect interrogative adjective) how big; extraordinarily big or small
+#  (exclamatory adjective) how big!
 
-variant: Masculine Feminine Neuter Masculine Feminine Neuter Masculine Feminine Neuter
+# variant: Masculine Feminine Neuter Masculine Feminine Neuter Masculine Feminine Neuter
 
-nom: ἡλίκος, ἡλίκη, ἡλίκον, ἡλίκω, ἡλίκα, ἡλίκω, ἡλίκοι, ἡλίκαι, ἡλίκα
-gen: ἡλίκου, ἡλίκης, ἡλίκου, ἡλίκοιν, ἡλίκαιν, ἡλίκοιν, ἡλίκων, ἡλίκων, ἡλίκων
-dat: ἡλίκῳ, ἡλίκῃ, ἡλίκῳ, ἡλίκοιν, ἡλίκαιν, ἡλίκοιν, ἡλίκοις, ἡλίκαις, ἡλίκοις
-acc: ἡλίκον, ἡλίκην, ἡλίκον, ἡλίκω, ἡλίκα, ἡλίκω, ἡλίκους, ἡλίκας, ἡλίκα
-voc: ἡλίκε, ἡλίκη, ἡλίκον, ἡλίκω, ἡλίκα, ἡλίκω, ἡλίκοι, ἡλίκαι, ἡλίκα
+# nom: ἡλίκος, ἡλίκη, ἡλίκον, ἡλίκω, ἡλίκα, ἡλίκω, ἡλίκοι, ἡλίκαι, ἡλίκα
+# gen: ἡλίκου, ἡλίκης, ἡλίκου, ἡλίκοιν, ἡλίκαιν, ἡλίκοιν, ἡλίκων, ἡλίκων, ἡλίκων
+# dat: ἡλίκῳ, ἡλίκῃ, ἡλίκῳ, ἡλίκοιν, ἡλίκαιν, ἡλίκοιν, ἡλίκοις, ἡλίκαις, ἡλίκοις
+# acc: ἡλίκον, ἡλίκην, ἡλίκον, ἡλίκω, ἡλίκα, ἡλίκω, ἡλίκους, ἡλίκας, ἡλίκα
+# voc: ἡλίκε, ἡλίκη, ἡλίκον, ἡλίκω, ἡλίκα, ἡλίκω, ἡλίκοι, ἡλίκαι, ἡλίκα
 
-adv: ἡλίκως, ἡλικώτερος, ἡλικώτατος
+# adv: ἡλίκως, ἡλικώτερος, ἡλικώτατος
 
 MA
 # PRON

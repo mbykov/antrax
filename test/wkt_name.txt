@@ -3115,7 +3115,7 @@ dict: ἀνήρ • (anḗr) m (genitive ἀνδρός); third declension
 nom: ἀνήρ, ἀνδρέ, ἀνδρές
 gen: ἀνδρός, ἀνδροίν, ἀνδρών
 dat: ἀνδρί, ἀνδροίν, ἀνδράσιν
-acc: ἀνδρά, ἀνδρέ, ἀνδράς
+acc: ἀνδρά, ἀνδρέ, ἀνδράς-ἄνδρας
 voc: ἄνερ, ἀνδρέ, ἀνδρές
 
 nom: ἀνήρ, ἀνέρε, ἀνέρες
@@ -25508,11 +25508,11 @@ dict: ὄν • (ón) n (genitive ὄντος); third declension
     Neuter dative singular τῷ ὄντι (tôi ónti) as adverb: in fact, in reality
 
 # IRREG - too short
-# nom: ὄν, ὄντε, ὄντα
-# gen: ὄντος, ὀντοῖν, ὀντῶν
-# dat: ὄντι, ὀντοῖν, -
-# acc: ὄν, ὄντε, ὄντα
-# voc: ὄν, ὄντε, ὄντα
+nom: ὄν, ὄντε, ὄντα
+gen: ὄντος, ὀντοῖν, ὀντῶν
+dat: ὄντι, ὀντοῖν, -
+acc: ὄν, ὄντε, ὄντα
+voc: ὄν, ὄντε, ὄντα
 
 # ----------------------------------
 dict: ὄναρ • (ónar) n (genitive); third declension
@@ -32137,22 +32137,22 @@ dict: σκότος • (skótos) m (genitive σκότου); second declension
     (of a person) the mystery, ignorance, deceit
     the dark part or shadow in a picture
 
-# σκότος • (skótos) n (genitive σκότους); third declension
-
-    darkness, gloom
-    the darkness of death
-    the darkness of the netherworld
-    the darkness of the womb
-    blindness
-    (figuratively) obscurity
-    (of a person) the mystery, ignorance, deceit
-    the dark part or shadow in a picture
-
 nom: σκότος, σκότω, σκότοι
 gen: σκότου, σκότοιν, σκότων
 dat: σκότῳ, σκότοιν, σκότοις
 acc: σκότον, σκότω, σκότους
 voc: σκότε, σκότω, σκότοι
+
+# σκότος • (skótos) n (genitive σκότους); third declension
+
+#    darkness, gloom
+#    the darkness of death
+#    the darkness of the netherworld
+#    the darkness of the womb
+#    blindness
+#    (figuratively) obscurity
+#    (of a person) the mystery, ignorance, deceit
+#    the dark part or shadow in a picture
 
 # ??
 # nom: σκότος, σκότει, σκότη
@@ -32162,9 +32162,9 @@ voc: σκότε, σκότω, σκότοι
 # voc: σκότος, σκότει, σκότη
 
 # ----------------------------------
-dict: σκύβα • (skúba)
+# dict: σκύβα • (skúba)
 
-    (According to Hesychius of Alexandria[1]) garden herbs, charlock, Brassica arvensis
+#    (According to Hesychius of Alexandria[1]) garden herbs, charlock, Brassica arvensis
 
 # ----------------------------------
 dict: Σκύθαινα • (Skúthaina) f (genitive Σκυθαίνης); first declension
@@ -32244,18 +32244,18 @@ dict: σκύφος • (skúphos) m (genitive σκύφου); second declension
     of wooden milk-vessels
     (perhaps) a skull
 
-# NB !!!
-# σκύφος • (skúphos) n (genitive σκύφεος or σκύφους); third declension
-
-    a cup or can, especially one used by peasants
-    of wooden milk-vessels
-    (perhaps) a skull
-
 nom: σκύφος, σκύφω, σκύφοι
 gen: σκύφου, σκύφοιν, σκύφων
 dat: σκύφῳ, σκύφοιν, σκύφοις
 acc: σκύφον, σκύφω, σκύφους
 voc: σκύφε, σκύφω, σκύφοι
+
+# NB !!!
+# σκύφος • (skúphos) n (genitive σκύφεος or σκύφους); third declension
+
+#    a cup or can, especially one used by peasants
+#    of wooden milk-vessels
+#    (perhaps) a skull
 
 # ??
 # nom: σκύφος, σκύφει, σκύφη
