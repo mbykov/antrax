@@ -16,7 +16,6 @@ conj: ἄν • (án) (modal particle)
     = κα (ka) – Doric
 
 conj: ἄρα • (ára) ἄἄ
-
     so, then, therefore, consequently
     = ἄρ (ár) – before a consonant
     = ἄρ᾽ (ár᾽) – apocopic
@@ -385,6 +384,7 @@ particle: πέρ
 
 particle: ἆρα
           turns a statement into a yes/no question.
+          = ἆρ᾽
 particle: πότε
           when?
 particle: ποῦ

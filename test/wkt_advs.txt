@@ -1,526 +1,1156 @@
-adv: τίς
-  type: interrog
-  cat: base
-    what?
-adv: ἄλλοσε
-  type: other
-  cat: destination
-    to somewhere else
-    elsewhither
-adv: αὐτόσε
-  type: identity
-  cat: destination
-    to the same place
-adv: ὁμόσε
-  type: identity
-  cat: destination
-    to the same place
-adv: ἐκεῖσε
-  type: dem-dist
-  cat: destination
-    to that place
-    thither
-adv: ἐνταῦθα
-  type: dem-med
-  cat: place
+#
+# replaced: ᾰα ᾱα ῑι ῐι ῠυ ῡυ
+# ί-ί
+# ί-ί
+
+ἁβρῶς • (habrôs) (comparative ἁβρότερον, superlative ἁβρότατα)
+    gracefully, delicately
+ἄγαν • (ágan)
+    very much
+    too much
+ἄγχι • (ánkhi) (comparative ἆσσον, superlative ἄγχιστα or ἄγχιστον)
+    (Poetic) near
+        (of time)
+        like, resembling
+ἀγχίμολον • (ankhímolon)
+    near, close by, closely following
+ἀγχόθι • (ankhóthi)
+    (Poetic) near
+ἀγχοῦ • (ankhoû)
+    near, nearby
+        Synonyms: ἄγχι (ánkhi), ἐγγύθι (engúthi)
+ἀδεῶς • (adeôs) (comparative ἀδεέστερον, no superlative) (Attic, Ionic)
+    without fear, confidently
+ἀεί • (āeí or aeí) (Attic)
+    always, ever, forever
+Ἀθήναζε • (Athḗnaze)
+    to Athens
+Ἀθήνηθεν • (Athḗnēthen)
+    from Athens
+Ἀθήνησιν • (Athḗnēsin)
+    at Athens, in Athens
+αἰεί • (aieí)
+    Epic and Ionic form of ἀεί (aeí)
+αἰέν • (aién)
+    Epic form of ἀεί (aeí)
+αἰνῶς • (ainôs)
+    horribly, dreadfully
+    terribly (very, extremely), dreadfully (exceptionally, eminently, very much), awfully (very, exceedingly)
+ἀκήν • (akḗn)
+    silently
+ἀληθῶς • (alēthôs)
+    truly, verily (adverb of ἀληθής (alēthḗs))
+ἅλιον • (hálion)
+    in vain
+ἅλις • (hális)
+    in crowds
+    in plenty
+    enough
+ἀλλαχόθι • (allakhóthi)
+    elsewhere
+ἄλλοθεν • (állothen)
+    from another place
+ἄλλοθι • (állothi)
+    elsewhere, in another place; esp. in a strange or foreign land
+    in other ways
+ἄλλοτε • (állote)
+    at another time
+ἄλλυδις • (álludis)
+    (Epic) to another place
+ἄλλως • (állōs)
+    otherwise
+ἅμα • (háma)
+    marking the simultaneous occurrence of two events: simultaneously, at once, at the same time
+    marking general concurrence (spatial, temporal, etc: together)
+    = ἅμ᾽ • (hám’)  Apocopic form of ἅμα (háma)
+ἀμήν • (āmḗn)
+    truly, certainly
+    so be it
+ἁμόθεν • (hamóthen)
+    from some place or time
+ἄμυδις • (ámudis) (Aeolic, Epic)
+    together
+    at the same time
+ἀμφίς • (amphís)
+    on both sides
+    around
+    apart, asunder
+    separately
+    between
+ἀμφότερον • (amphóteron)
+    both together
+ἀμφοτέρωθεν • (amphotérōthen)
+    from or on both sides
+ἄνευθεν • (áneuthen)
+    away
+    far away
+ἄντα • (ánta) (Epic)
+    over against, face to face
+ἄντην • (ántēn)
+    opposite
+    in front
+    in view
+    openly
+ἀντικρύ • (antikrū́)
+    face to face, over against
+    straight on
+    outright
+ἀντίον • (antíon) (governs the genitive)
+    against
+    before, in front of
+    in the presence of
+    facing
+ἄνω • (ánō)
+    (with verbs of motion) upwards
+    above, high up
+    (of motion) inland, away from the coast
+ἄνωθεν • (ánōthen)
+    from above
+    above
+        Synonym: ἄνω (ánō)
+        Antonyms: κάτω (kátō), κάτωθεν (kátōthen)
+    in the world of the living
+        Synonym: ἄνω (ánō)
+        Antonyms: κάτω (kátō), κάτωθεν (kátōthen)
+    from inland
+    from the north
+    from farther back (in writing or conversation)
+ἀπάνευθε • (apáneuthe)
+    from afar
+    far off
+    aside, apart
+ἅπαξ • (hápax)
+    once, one time, only once
+ἀπέναντι • (apénanti)
+    opposite
+ἀπολογητικῶς • (apologētikôs) (Medieval)
+    (Ancient Greek) —
+    (Medieval Byzantine)[1] in an apologetic manner, in defence
+ἄπωθεν • (ápōthen)
+    from far away
+ἄρδην • (ā́rdēn)
+    lifted up on high
+    completely, utterly
+ἄρτι • (árti)
+    (mostly of the present) this moment, even now
+    (of the past) just now, just
+ἀσφαλῶς • (asphalôs)
+    steadfastly
+ἀτρεκέως • (atrekéōs)
+    accurately, precisely
+    truly
+αὔριον • (aúrion)
+    tomorrow
+    soon
+αὐτίκα • (autíka)
+    at once, immediately
+    for the moment
+    for example
+    = αὐτίκ᾽ • (autík’)    Apocopic form of αὐτίκα (autíka) (before a smooth breathing)
+αὐτόθεν • (autóthen)
+    from that very place; often combined with a prepositional phrase headed by ἐξ (ex)
+    from oneself, of one's own accord
+    at once, immediately
+αὐτόθι • (autóthi)
+    on the spot; here, there
+    forthwith, straightway
+αὐτοῦ • (autoû)
+    here, there
+αὔτως • (aútōs)
+    just so
+    merely
+    in vain
+ἄφαρ • (áphar)
+    forthwith
+    quickly
+ἄχρι • (ákhri)
+    to the very bottom, to the uttermost, utterly
+ἄψ • (áps)
+    back, back again
+    again, in return
+αἶψα • (aîpsa)
+    quickly, all of a sudden
+    = αἶψ᾽ • (aîps’)    Apocopic form of αἶψα (aîpsa)
+αὖ • (aû)
+    Again, anew, afresh, in turn; often after ordinal numerals; in a question, expressing impatience
+    Further, moreover
+    On the other hand after δέ (dé) in μέν ... δέ ... (mén ... dé ...)
+αὖθι • (aûthi)
+    Contraction of αὐτόθι (autóthi, “on the spot”).
+    = αὖθ᾽ • (aûth’)    Apocopic form of αὖθι (aûthi)
+αὖθις • (aûthis)
+    (of place) back, back again
+    (of time) again, afresh, anew, in turn
+    (of sequence) moreover, in turn, on the other hand
+αὖτε • (aûte)
+    (Epic) again
+    = αὖτ᾽ • (aût’)    Apocopic form of αὖτε (aûte)
+αὖτις • (aûtis) (Epic)
+    back (to a previous place)
+    again, anew
+    in turn
+ἀῶθεν • (aôthen)
+    (Doric) Alternative form of ἕωθεν (héōthen)
+βάδην • (bádēn)
+    step-by-step
+    more and more, gradually
+    on foot
+βεβαίως • (bebaíōs)
+    constantly, without interruption
+βουστροφηδόν • (boustrophēdón)
+    boustrophedon: a manner of writing which alternated between left to right and right to left directions (similar to the back and forth pattern of someone plowing a field with an ox); an intermediate between the inherited right to left direction used by Semitic languages and the left to right direction ultimately used in later Greek.
+γονυπετῶς • (gonupetôs) (Koine)
+    adverb of γονυπετής (gonupetḗs) with bended knees
+δεῦρο • (deûro)
+    (of locations) hither
+        (later) here
+        (rhetoric) up to this point of the argument
+    (of time) until now, hitherto
+  = δεῦρ᾽ • (deûr’)    Apocopic form of δεῦρο (deûro)
+δηθά • (dēthá)
+    (Epic) for a long time
+δημοσίᾳ • (dēmosíāi)
+    at public expense
+    by public consent
+    in public courts
+δήν • (dḗn)
+    for a long time
+διά • (diá)
+    throughout
+διαμπερές • (diamperés)
+    through and through, right through
+    continuously
+δικαίως • (dikaíōs)
+    decently
+    legally
+    justly
+δίς • (dís) (cardinal δύο, ordinal δεύτερος)
+    twice, doubly, again
+δίχα • (díkha)
+    in two, asunder, apart
+    in doubt
+    differently, oppositely
+διχθά • (dikhthá)
+    Epic form of δίχα (díkha)
+δωρεάν • (dōreā́n)
+    as a free gift, freely; also, by grant
+    to no purpose, for naught
+Ἑβραϊστί • (Hebraïstí)
+    in the Hebrew or Aramaic language
+ἐγγύθεν • (engúthen)
+    from nearby
+    nearby
+ἐγγύθι • (engúthi)
+    near
+ἐγγύς • (engús)
+    near
+εἰκότως • (eikótōs)
+    suitably, in keeping with [+dative = with something]
+εἰκῇ • (eikêi)
+    without cause
+    without planning, heedlessly, rashly, haphazardly
+    without purpose, for no reason
+    vainly, to no avail
+    slightly, moderately
+# εἰς ὄνυχα • (eis ónukha)
+#    ad unguem, to a nail
+εἴσω • (eísō) (comparative ἐσωτέρω, superlative ἐσωτάτω)
+    (of motion) into
+    (of location) inside, within
+ἑκάς • (hekás)
+    afar, far off
+    long after
+ἑκατέρωθεν • (hekatérōthen)
+    on either side
+ἐκεῖ • (ekeî)
+    demonstrative adverb there, in that place
+        (in Tragic, euphemistic), "in Hades", i.e. dead.
+    (with verbs of motion) thither
+    (rarely) then, at that time
+ἐκεῖθεν • (ekeîthen)
+    from that place, thence
+        there
+        to that place, thither
+    thence, from that place
+    (of time) thereafter, next
+ἐκεῖθι • (ekeîthi) (poetic)
+    there
+ἐκτός • (ektós)
+    without, outside, out
+    (absolute) external, strange, vulgar
+    out
+ἔμπας • (émpās)
+    in any case, at all events
+    all the same, nevertheless
+    at any rate, yet
+ἔμπεδον • (émpedon)
+    with firm stand
+    immovably, steadily, fixedly
+    steadfastly, unshrinkingly
+    without stirring
+    without intermission or break, continuously
+    continually
+    with steady or undeviating course, without break or stop
+    without hesitation or uncertainty
+ἔμπης • (émpēs)
+    Epic and Ionic form of ἔμπας (émpās)
+ἔμπροσθεν • (émprosthen)
+    (of place) before, in front
+    (of time) before, earlier, of old
+# ἐν τούτοις • (en toútois) (Byzantine)
+#     (Byzantine) Alternative form of ἐντούτοις (entoútois)
+ἔναντι • (énanti)
+    opposite
+    in the presence of, before, in front of, in the sight of (especially a deity, ruler, judge, etc.)
+ἐναντίβιον • (enantíbion)
+    in hostile opposition
+ἐναντίον • (enantíon)
+    opposite, facing
+ἔνδοθι • (éndothi)
+    within, at home
+ἔνδον • (éndon)
+    in, within
+        (substantive plural noun) things of the home, domestics, family matters
+        (with genitive) in the house of....
+        (with dative) strengthened form of ἐν (en, “in”)
+ἐνδυκέως • (endukéōs)
+    kindly
+ἔνθα • (éntha)
+    (demonstrative) there, thither (location or movement)
+    (demonstrative) thereupon, then
+    (relative) where, whither (location or movement)
+    (relative) when
+    = ἔνθ᾽ • (énth’)    Apocopic form of ἔνθα (éntha)
+ἐνθάδε • (entháde)
+    thither, there
+    hither, here
+    in this case, in this condition
+    to this point, at this stage
+    now
+    = ἐνθάδ᾽ • (enthád’)    Apocopic form of ἐνθάδε (entháde)
+ἐνθαῦτα • (enthaûta)
+    Ionic form of ἐνταῦθα (entaûtha)
+ἔνθεν • (énthen)
+    thence, from there
+ἐνθεῦτεν • (entheûten)
+    Ionic form of ἐντεῦθεν (enteûthen)
+ἐννῆμαρ • (ennêmar)
+    (Epic) for nine days, nine days long
+ἐνταῦθα • (entaûtha)
     here, there
     hither, thither
     at the very time, then, thereupon
     herein, in this position, in this circumstance
-adv: ἔνθα
-  type: dem-dist
-  cat: place
-    there
-    in that place
-adv: ἐνθάδε
-  type: dem-proximal
-  cat: destination
-    to here
-    hither
-adv: οἷ
-  type: relative
-  cat: destination
-    to where
-    whither
-    how, in what state
-adv: ὅποι
-  type: indef-relative
-  cat: destination
-    to wherever
-adv: ὁπόσε
-  type: indef-relative
-  cat: destination
-    to wherever
-adv: ποι
-  type: indef
-  cat: destination
-    to somewhere
-    somewhither
-adv: ποῖ
-  type: interrog
-  cat: place
-    where?
-    how?, in what manner? ποῖ (whither?)
-adv: αὐτίκα
-  type: identity
-  cat: exact-time
-    at once, immediately
-    for the moment
-    for example
-    = αὐτίχ᾽
-adv: ἡνίκα
-  type: relative
-  cat: exact-time
-    at which time
-adv: ὁπηνίκα
-  type: relat-indef
-  cat: exact-time
-    at whatever time
-adv: πηνίκα
-  type: interrog
-  cat: exact-time
-    at what time?
-adv: τηνίκα
-  type: demonstr
-  cat: exact-time
-    at this time
-adv: τηνικαῦτα
-  type: demonstr
-  cat: exact-time
-    at this time
-adv: τηνικάδε
-  type: dem-proxi
-  cat: exact-time
-    at this time
-adv: ἄλλως
-  type: other
-  cat: manner
-    in the other way
-    otherwise
-adv: ἑτέρως
-  type: other
-  cat: manner
-    in the other way
-adv: ὧδε
-  type: dem-proximal
-  cat: manner
-    demonstrative adverb In this manner, thus
-    (of a state or condition) as it is
-    (indicating something immediately to come) as follows
-adv: ὁμῶς
-  type: relative
-  cat: manner
-    in the same way
-    likewise
-    together
-    equally, alike
-adv: ὅπως
-  type: relative
-  cat: manner
-    however
-    in such a manner, as
-    etc, etc
-adv: ὅκως
-  type: relative
-  cat: manner
-    however
-    in such a manner, as
-    etc, etc
-adv: ὅππως
-  type: relative
-  cat: manner
-    however
-    in such a manner, as
-    etc, etc
-adv: ὡς
-  type: relative
-  cat: manner
-    as, like as, as, just as
-    according as
-    Conjunction: (causal) as, since, because
-    (temporal) when
-    (modal) how
-    (local) where
-adv: οὕτως
-  type: dem-med
-  cat: manner
-    thus, so, even so, just so
-    so, merely, simply
-adv: οὕτω
-  type: dem-med
-  cat: manner
-    thus, so, even so, just so
-    so, merely, simply
-adv: πως
-  type: indef
-  cat: manner
-    In any way, at all, by any means
-    In a certain way
-adv: πῶς
-  type: interrog
-  cat: manner
-    how?, in what way?
-adv: τώς
-  type: dem-med
-  cat: manner
-    as, like as, as, just as
-    according as
-    Conjunction: (causal) as, since, because
-    (temporal) when
-    (modal) how
-    (local) where
-adv: ὁσαπλασίων
-  type: interrog
-  cat: repetition
-    as many times as
-adv: ὁσαπλάσιος
-  type: interrog
-  cat: repetition
-    as many times as
-adv: ποσαπλάσιος
-  type: interrog
-  cat: repetition
-    how many times?
-adv: ὁπόστος
-  type: relative
-  cat: order
-    in which place in a series
-adv: ποστός
-  type: indef
-  cat: order
-    somewhere in a series
-adv: πόστος
-  type: interrog
-  cat: order
-    which in a series?
-adv: ἄλλοθι
-  type: other
-  cat: place
-    elsewhere
-    in another place
-    esp. in a strange or foreign land
-    in other ways
-adv: ἀλλαχῇ
-  type: other
-  cat: place
-    elsewhere
-    in another place
-    esp. in a strange or foreign land
-    in other ways
-adv: ἀλλαχόθι
-  type: other
-  cat: place
-    elsewhere
-    in another place
-    esp. in a strange or foreign land
-    in other ways
-adv: ἀλλαχοῦ
-  type: other
-  cat: place
-    elsewhere
-    in another place
-    esp. in a strange or foreign land
-    in other ways
-adv: ἄλλῃ
-  type: other
-  cat: place
-    elsewhere
-    in another place
-    esp. in a strange or foreign land
-    in other ways
-adv: αὐτόθι
-  type: relative
-  cat: place
-    in the same place
-    on the spot
-    here, there
-    forthwith, straightway
-adv: αὐτοῦ
-  type: relative
-  cat: place
-    in the same place
-    on the spot
-    here, there
-    forthwith, straightway
-adv: ἐκεῖ
-  type: dem-dist
-  cat: place
-    there
-    in that place
-adv: κεῖθι
-  type: dem-dist
-  cat: place
-    there
-    in that place
-adv: ἐκεῖθι
-  type: dem-dist
-  cat: place
-    there
-    in that place
-adv: ὁμοῦ
-  type: relative
-  cat: place
-    At the same place: together
-    Close at hand, nearby
-adv: ὅπου
-  type: relative
-  cat: place
-    where, when, wherever
-adv: ὅκου
-  type: relative
-  cat: place
-    where, when, wherever
-adv: ὁπόθι
-  type: relative
-  cat: place
-    where, when, wherever
-adv: οὗ
-  type: relative
-  cat: place
-    where, when
-adv: που
-  type: indef
-  cat: place
-    somewhere
-    (enclitic) anywhere, somewhere
-    possibly, perhaps
-    about, approximately
-adv: ποῦ
-  type: interrog
-  cat: place
-    where?
-    how?, in what manner? ποῖ (whither?)
-adv: πόθι
-  type: interrog
-  cat: place
-    where?
-    how?, in what manner? ποῖ (whither?)
-adv: ὁποσάκις
-  type: relative
-  cat: repetition
-    however many times
-adv: ὁσάκις
-  type: relative
-  cat: repetition
-    however many times
-adv: ποσάκις
-  type: interrog
-  cat: repetition
-    how many times?
-adv: ποσίνδα
-  type: interrog
-  cat: repetition
-    how many times?
-adv: τόσακις
-  type: demonstr
-  cat: repetition
-    this many times
-adv: τουτάκις
-  type: demonstr
-  cat: repetition
-    this many times
-adv: ὁμῆλιξ
-  type: relative
-  cat: size
-    the same age
-adv: ἄλλοθεν
-  type: other
-  cat: source
-    from elsewhere
-    from another place
-adv: ἐκεῖθεν
-  type: dem-dist
-  cat: source
-    from that place
-    thence
-    to that place, thither
-    (of time) thereafter, next
-adv: ἔνθεν
-  type: demonstr
-  cat: source
-    from there
-    thence
-adv: ἐντεῦθεν
-  type: demonstr
-  cat: source
-    from there
-    thence
-adv: τόθεν
-  type: demonstr
-  cat: source
-    from there
-    thence
-adv: ὁμόθεν
-  type: identity
-  cat: source
-    from the same place
-adv: ὁπόθεν
-  type: indef-relat
-  cat: source
-    from wherever
-adv: ὅθεν
-  type: relative
-  cat: source
-    from where
+    = ἐνταῦθ᾽ • (entaûth’)    Apocopic form of ἐνταῦθα (entaûtha)
+ἐντεῦθεν • (enteûthen)
+    from this or that place, hence or thence
+    from this or that time, henceforth, thereupon
+    from this or that source or cause, therefore
+ἐντός • (entós)
+    within
+ἔντοσθεν • (éntosthen)
+    within, from within
+ἐντούτοις • (entoútois)
+    (Medieval Byzantine) in the meantime
+ἐνώπιον • (enṓpion)
+    face to face
+ἑξείης • (hexeíēs)
+    Epic form of ἑξῆς (hexês)
+ἔξοχον • (éxokhon)
+    eminently, chiefly
+    preferably
+ἔξω • (éxō) (comparative ἐξωτέρω, superlative ἐξωτάτω)
+    out, out of
+    outside
+    (governs the genitive) without, except
+    (adjectival) outer, external or foreign
+ἑξῆς • (hexês) (Epic, Attic, Koine)
+    in order, one after another
+ἐπάνω • (epánō)
+    above, higher than, more than
+ἔπειτα • (épeita)
+    (of mere sequence, without any notion of cause) thereupon, thereafter, then
+        (with the article) what follows
+        (like εἶτα, with a finite verb after a participle)
+        (in apodoses, though never at the beginning of the clause, in Homer often strengthened)
+        (after a temporal conjunction) then, thereafter
+
+        (after a conditional conjunction) then, surely
+
+    (of sequence in thought, i.e. consequence or inference) then, therefore
+        (to begin a story)
+        (in Attic often to introduce emphatic questions)
+    = ἔπειθ᾽ • (épeith’)    Apocopic form of ἔπειτα (épeita) (used before a rough breathing)
+    = ἔπειτ᾽ • (épeit’)    Apocopic form of ἔπειτα (épeita) (used before a smooth breathing)
+ἐπισταμένως • (epistaménōs)
+    skillfully
+ἔραζε • (éraze)
+    to the ground
+ἐσσυμένως • (essuménōs)
+    eagerly, impetuously
+ἔσω • (ésō)
+    Alternative form of εἴσω (eísō, “into, within”)
+ἑτέρωθεν • (hetérōthen)
+    from the other side
+    on the other side
+ἔτι • (éti)
+    (of time) yet, still
+        (of the present)
+        (of the past, mostly with imperfect)
+        (of the future)
+        (with a negative) no more, no longer
+    (of degree) yet, still, besides, further, moreover
+        (often to strengthen a comparative)
+        (with the positive)
+    = ἔτ' • (ét')    Apocopic form of ἔτι (éti)
+ἐύ • (eú)
+    Alternative spelling of ἐΰ (eǘ)
+ἐΰ • (eǘ)
+    Epic form of εὖ (eû)
+εὐθέως • (euthéōs)
+    immediately, at once, straightway
+    as soon as, shortly
+εὐθύς • (euthús)
+    (of place) straight
+        simply
+        in the face of
+    (of time) straightaway, forthwith, at once
+        (of manner) directly, simply
+ἕωθεν • (héōthen)
+    From morn; at earliest dawn
+ἕως • (héōs) (Epic)
+    for a time, like τέως (téōs)
+εἶτα • (eîta)
+    (of mere sequence) then, next
+        (often stands with the finite verb after a participle, where the participle may be resolved into a finite verb and εἶτα rendered "and then", "and yet", expressing surprise or incongruity)
+    (to denote consequence) and so, so then, therefore, accordingly
+εὖ • (eû) (indeclinable)
+    well
+εὖτε • (eûte) (Epic, Ionic, poetic)
+    when
+    as, since
+    = εὖτ᾽ • (eût’)    Apocopic form of εὖτε (eûte)
+ἤδη • (ḗdē)
+    (of the immediate past) by this time, before this, already
+        (of a local relation)
+    (of the immediate future) forthwith, straightway
+    (in opposition to future or past) now, presently
+    (of logical proximity)
+    (with a comparative or superlative)
+    (joined with other temporal words)
+ἥκιστα • (hḗkista)
+    least
+    (in answer to question) not at all
+ἠῶθεν • (ēôthen)
+    (Epic) Alternative form of ἕωθεν (héōthen)
+θεοσόφως • (theosóphōs)
+    With knowledge in divine things.
+θετικῶς • (thetikôs) (comparative θετικώτερον, no superlative)
+    positively, affirmatively
+θοῶς • (thoôs)
+    quickly, swiftly
+θύραζε • (thúrāze)
+    to the door
+    outside the door, outdoors
+θᾶσσον • (thâsson)
+    sooner, quicker
+    sooner, rather
+ἰδίως • (idíōs)
+    peculiarly
+ἰδίᾳ • (idíāi)
+    privately, by oneself
+ἰδού • (idoú)
+    lo!, behold!
+        (in giving or offering a thing) there! take it!
+        (in repeating another's words quizzingly)
+Ἰουδαϊκῶς • (Ioudaïkôs)
+    In a Judean/Jewish manner.
+καθάπερ • (katháper)
+    exactly as
+καθότι • (kathóti)
+    in what manner, so far as, inasmuch as
+καθύπερθεν • (kathúperthen)
+    down from above
+κακῶς • (kakôs)
+    badly
+    miserably
+    maliciously
+καλῶς • (kalôs)
+    adverb of καλός (kalós)
+καρπαλίμως • (karpalímōs)
+    swiftly, quickly
+# κατὰ στοιχεῖον • (katà stoikheîon)
+#    in the order of the letters, alphabetically
+Synonyms
+καταλογάδην • (katalogádēn)
+    in conversation or prose
+    in detail, longwindedly
+κατέναντι • (katénanti)
+    Alternative spelling of κατεναντίον (katenantíon)
+κατεναντίον • (katenantíon)
+    over against, opposite
+κάτω • (kátō) (governs the genitive)
+    under, below
+κεκρυμμένως • (kekrumménōs)
+    covertly, secretly
+κεῖθι • (keîthi)
+    (Epic) Alternative form of ἐκεῖθι (ekeîthi, “there”)
+κοινῇ • (koinêi) (Attic, Ionic)
+    in common, by agreement
+κρατερῶς • (kraterôs)
+    (Epic) strongly
+κρύβδην • (krúbdēn)
+    secretly; without the knowledge of (with genitive of person)
+κρύφα • (krúpha)
+    secretly
+κρυφᾷ • (kruphâi)
+    Doric form of κρυφῇ (kruphêi)
+κρυφῇ • (kruphêi)
+    secretly, in secret
+κυκλόσε • (kuklóse)
+    into a circle, in a circle
+λίαν • (lī́ān)
+    very
+λίην • (líēn)
+    Epic and Ionic form of λίαν (lī́ān)
+λίπα • (lípa)
+    richly
+    = λίπ᾽ • (líp’)    Apocopic form of λίπα (lípa)
+μακράν • (makrā́n) (comparative μακροτέραν, superlative μακροτάτην)
+    (distance) far
+    (time) long
+μάλα • (mála)
+    very, very much, exceedingly
+        (simply strengthening the word with which it stands)
+            (with adjectives)
+            (with adverbs)
+            (with verbs)
+        (strengthening an assertion)
+        (in Homer, often after εἰ)
+        (in Attic, often in answers) yes, certainly, exactly so
+    = μάλ᾽ • (mál’)    Apocopic form of μάλα (mála)
+μάλιστα • (málista)
+    most, most of all, above all
+        (strengthened, preceded by ὡς or ὅτι)
+        (with the article) for the most part, mostly
+        (added to a superlative)
+        (for μᾶλλον)
+        (in loose accounts of numbers, used to show that they are not exact)
+        (καὶ μάλιστα, used in answers) most certainly
+    = μάλιστ᾽ • (málist’)    Apocopic form of μάλιστα (málista)
+μέγιστον • (mégiston)
+    most greatly
+μετά • (metá)
+    among them, with them
+    afterwards
+    thereafter
+μεταξύ • (metaxú)
+    between, in between, betwixt
+    meanwhile, in the meantime
+    (Koine) afterwards
+μετόπισθε • (metópisthe)
+    behind, in the rear
+    toward the west
+    afterwards
+    = μετόπισθ᾽ • (metópisth’)    Apocopic form of μετόπισθε (metópisthe)
+μέχρι • (mékhri)
+    until
+μέχρις • (mékhris)
+    Alternative form of μέχρι (mékhri)
+μηδέ • (mēdé)
+    (joined with a single word or phrase) not even
+    = μηδ᾽ • (mēd’)    Apocopic form of μηδέ (mēdé)
+μηκέτι • (mēkéti)
+    no more, no longer, no further
+μήποτε • (mḗpote)
+    never, on no account
+        (in prohibition or strong denial, with aorist subjunctive)
+        (Koine) perhaps
+μίνυνθα • (mínuntha)
+    a bit
+μόνον • (mónon)
+    only
+μόνως • (mónōs)
+    adverb of μόνος (mónos)
+μᾶλλον • (mâllon)
+    (comparative) more, more strongly, rather
+        (strengthened)
+        (joined to a second comparative)
+        (in the phrase μᾶλλον δέ (mâllon dé)) much more, rather
+        (in the phrase οὐδὲν μᾶλλον (oudèn mâllon))
+ναί • (naí)
+    (used to express strong affirmation) yea, verily
+        (in oaths)
+    (in answers) yes
+        (with ἀλλά (allá, “but”) or similar words, as a qualified assent) yes...but
+νειόθεν • (neióthen)
+    (Ionic) from the bottom
+νειόθι • (neióthi)
+    (Ionic) at the bottom
+    (Ionic) under, beneath
+νέω • (néō)
+    (Doric, in the phrase ἐς νέω) next year
+νή • (nḗ)
+    (used to express strong affirmation, with accusative case of the divinity invoked) by
+        (with the article)
+    (in answers)
+νημερτές • (nēmertés)
+    clearly, so that no mistake can be made; truly
+νόσφι • (nósphi) (governs the genitive) (Epic, Lyric)
+    (of location) far from; in the absence of, apart from, without
+    (of motion or direction) away from, to a distance from
+    apart from, without the help of
+    except (for)
+    = νόσφ᾽ • (nósph’)    Apocopic form of νόσφι (nósphi)
+    = νόσφιν • (nósphin)    Alternative form of νόσφι (nósphi) with movable nu
+νυνί • (nuní)
+    now, at this moment
+νῦν • (nûn)
+    (of time) now, at this time
+        Νῦν δὲ ἄκουσον μου!
+            Nûn dè ákouson mou!
+            Now listen to me!
+        Νῦν καὶ ἀεὶ.
+            Nûn kaì aeì.
+            For ever and ever.
+        (of the recent past) just now
+        (constrasting what might have been) as it is, as it stands
+    (not of time, often enclitic)
+        (used to strengthen or hasten a command, call, etc.)
+        (used to strengthen a question)
+ὅθεν • (hóthen)
     (relative) whence, from where, from which
     (relative) wherefore, for which reason
-adv: ποθέν
-  type: indef
-  cat: source
-    from somewhere
-adv: πόθεν
-  type: interrog
-  cat: source
-    from where? whence? from what source? wherefore?, why?, how?, for what reason?, how come?
-adv: ἄλλοτε
-  type: other
-  cat: time
-    at another time
-adv: ἦμος
-  type: relative
-  cat: time
-    when (relative), at which time
-adv: ἅμα
-  type: identity
-  cat: time
-    at the same time
-    simultaneously, at once
+ὅθι • (hóthi)
+    (relative) where
+οἴκαδε • (oíkade)
+    home (homewards)
+    = οἴκαδ᾽ • (oíkad’)    Apocopic form of οἴκαδε (oíkade)
+οἴκοθεν • (oíkothen)
+    from home
+ὁμοίως • (homoíōs)
+    In like manner.
+ὁμοῦ • (homoû)
+    At the same place: together
+    Close at hand, nearby
+ὅμως • (hómōs)
+    nevertheless, yet, all the same
+ὁμῶς • (homôs)
     together
-adv: ὁπότε
-  type: rel-indef
-  cat: time
-    whenever
-adv: ὁππῆμος
-  type: rel-indef
-  cat: time
-    whenever
-adv: ὅτε
-  type: relative
-  cat: time
-    when
-adv: ποτέ
-  type: indef
-  cat: time
+    equally, alike
+ὄπιθεν • (ópithen)
+    Alternative form of ὄπισθεν (ópisthen, “behind, backwards, in the future”)
+ὄπισθε • (ópisthe)
+    Alternative form of ὄπισθεν (ópisthen)
+ὄπισθεν • (ópisthen)
+    behind, at the back
+    backwards
+    in the future, after, hereafter
+        yet to come
+ὀπίσσω • (opíssō)
+    Ionic form of ὀπίσω (opísō)
+ὀπίσω • (opísō)
+    (of place) backwards
+        back, back again, by the same way one took
+        again
+        (with genitive) after
+    (of time) hereafter
+        following, yet to come
+ὁπότε • (hopóte) (relative)
+    when (mostly in reference to the past)
+ὅπου • (hópou) (relative, interrogative, and demonstrative adverb)
+    where
+        (in indirect questions)
+        (extended senses)
+            (of time or occasion)
+            (of manner) by which, that
+            (of cause) whereas
+    (Koine demonstrative adverb)
+ὁππότε • (hoppóte)
+    Epic form of ὁπότε (hopóte)
+    = ὁππότ᾽ • (hoppót’)    Apocopic form of ὁππότε (hoppóte)
+ὅππως • (hóppōs)
+    Epic form of ὅπως (hópōs)
+ὅπως • (hópōs) (interrogative or relative adverb)
+    (relative to ὥς (hṓs) or οὕτως (hoútōs)) in such a manner, as
+        (with the ordinary regimen of the relative adverb)
+            (with indicative)
+            (with the future indicative) in what manner, how
+        (with ἄν (án) and subjective in indefinite sentences) in whatever way, just as, however
+            (with optative after historical tenses)
+        (οὐκ ἔστιν) there is no way in which, it cannot be that
+        (in Attic poets, like ὡς (hōs) in comparisons)
+        (also like ὡς (hōs) or ὅτι (hóti), with superlative of adverbs)
+        (with a genitive added)
+        (of time) when
+    (used to introduce the statement of a fact)
+        (οὐχ ὅπως...ἀλλά) is not only not..but..
+            (rare, following another clause)
+    (in indirect questions) how, in what way or manner
+        (with indicative)
+            (of past tenses)
+            (future)
+        (with subjunctive)
+        (with optative)
+        (with optative and ἄν (án), expressing a wich)
+        (ὅπως ἄν with the subjunctive makes the manner or purpose indefinite)
+        (Xenophon occasionally uses ὅπως somewhat like ὥστε (hṓste), with infinitive)
+        (after verbs of fear and cuation)
+            (with future indicative)
+            (with aorist subjunctive)
+            (with optative representing subjunctive after an historical tense)
+        (this construction is most frequent in an imperative and prohibitive, in the original construction some verb implying caution or circumspection precedes)
+            (with future indicative)
+            (aorist subjunctive)
+        (used as the echo to a preceding πῶς (pôs))
+        (with a genitive of manner)
+ὅπῃ • (hópēi)
+    in which or whichever direction
+    in which or whichever way, how
+ὀρθῶς • (orthôs)
+    correctly
+ὅσα • (hósa)
+    as far as
+    Synonym of ὡς (hōs)
+    = ὅσ᾽ • (hós’)    Apocopic form of ὅσα (hósa)
+ὅσον • (hóson)
+    so far as, so much as
+    how far, how much
+    only so far as, only just
+    (in reference to distances) about, nearly
+    (with adjectives of quality or degree, mostly with comparative)
+    (with negatives) just not, all but
+ὅσσα • (hóssa)
+    Epic form of ὅσα (hósa)
+    = ὅσσ᾽ • (hóss’)    Apocopic form of ὅσσα (hóssa)
+ὅσσον • (hósson)
+    Epic form of ὅσον (hóson)
+ὅτε • (hóte) (relative adverb)
+    (of time) when
+        (with indicative, to denote single events) when
+            (with present, of a thing now happening)
+            (rarely with future)
+        (with optative, to denote repeated events or actions in past time)
+            (of future events which are represented as uncertain, in clauses dependent on a verb in optative or subjunctive)
+            (only in Epic and Lyric poets, with subjunctive)
+        (in Homer, to introduce a simile)
+        (with other particles)
+    (causal sense) whereas
+    (absolute) sometimes, now and then
+    = ὅθ᾽ • (hóth’)    Apocopic form of ὅτε (hóte) (used before a rough breathing)
+    = ὅτ᾽ • (hót’)    Apocopic form of ὅτε (hóte)
+οὐδέ • (oudé)
+    not even, not at all
+    Usage notes
+    When οὐδέ (oudé) is repeated at the beginning of two clauses, the first is often adverbial and the second is a conjunction. It may also follow οὔτε (oúte), as an anacoluthon.
+    = οὐδ᾽ • (oud’)    Apocopic form of οὐδέ (oudé)
+οὐδέν • (oudén)
+    in no way, not at all
+οὐκέτι • (oukéti)
+    no more, no longer, no further, not now
+    = οὐκέτ᾽ • (oukét’)    Apocopic form of οὐκέτι (oukéti)
+οὔπω • (oúpō)
+    not yet
+    not, not at all
+οὐρανόθεν • (ouranóthen)
+    from heaven
+οὔτε • (oúte)
+    (rare) and not
+    (mostly repeated) neither...nor
+        (often used to distinguish a general negation by dividing it into subordinate clauses)
+        (alternating clauses with οὐδέ (oudé))
+        (may be followed by a positive clause with τε (te))
+        (often, by anacoluthon, followed by some other particle)
+            (in poetry, οὐ (ou) sometimes follows without any conjunctive particle)
+            (sometimes replaced by οὐ (ou) in poetry)
+            (the former οὔτε is sometimes omitted)
+        (corresponding with μήτε (mḗte))
+    = οὔτ᾽ • (oút’)    Apocopic form of οὔτε (oúte)
+οὕτω • (hoútō) (demonstrative adverb)
+    Alternative form of οὕτως (hoútōs) (used before a consonant)
+οὕτως • (hoútōs) (demonstrative adverb)
+    in this manner, thus, so
+        even so, just so
+        (with imperative, added emphasis)
+        (the introduction of the apodosis after a protasis)
+    (in a really inferential sense) so, therefore
+    (with an adjective or adverb) so, so much, so excessively
+    (sometimes used like αὔτως (aútōs)) so, merely, simply
+# οὐχ ἥκιστα • (oukh hḗkista)
+#    not least; above all, especially
+ὄχα • (ókha)
+    (Epic) by far
+    = ὄχ᾽ • (ókh’)    Apocopic form of ὄχα (ókha)
+ὀψέ • (opsé)
+    late
+    long after
+    late in the day, in the evening
+οἷ • (hoî)
+    to where, whither
+    how, in what state
+οἶκόνδε • (oîkónde) (Epic)
+    to one's house, homewards
+οἷον • (hoîon)
+    in poets and Ionic Prose also neuter plural, to add force, like ὡς (hōs) and ὥσπερ (hṓsper): how
+        (in comparisons) as, like, just as
+            as, like for instance
+        like ὡς (hōs), ἅτε (háte), with a particle
+οὗ • (hoû) (relative adverb)
+    where, when
+πάγχυ • (pánkhu)
+    wholly, quite
+πάλαι • (pálai)
+    (of a point in the past)
+        long ago, in days past
+
+        Of past time closer to the present: before, earlier, a while ago
+        with a present-tense verb since a point in the past, for a long time
+πάλιν • (pálin)
+    (of place) back, backwards
+        (with a notion of contradiction)
+    (of time) again, once more, anew
+    again, in turn, doubly
+πάμπαν • (pámpan)
+    wholly, altogether, quite
+πανδημεί • (pandēmeí)
+    with the whole people, en masse
+πανστρατιᾷ • (panstratiâi) (Attic)
+    with the whole army
+πανστρατιῇ • (panstratiêi) (Ionic)
+    Ionic form of πανστρατιᾷ (panstratiâi)
+πανταχόθεν • (pantakhóthen)
+    from all sides, from all directions, on all sides
+πάντοσε • (pántose)
+    every way
+    in all directions
+    = πάντοσ' • (pántos')    Apocopic form of πάντοσε (pántose)
+πάντῃ • (pántēi)
+    everywhere, in every direction, on every side, all around
+πάνυ • (pánu)
+    altogether, completely, perfectly
+    (modifying adjective) very
+    (negated) not quite, not at all
+    (in answer to a question, often πάνυ γε) quite so, by all means
+παραυτίκα • (parautíka)
+    immediately, straightaway
+παραχρῆμα • (parakhrêma)
+    on the spot, forthwith, immediately
+πάρεγγυς • (párengus)
+    near at hand, close by
+    (of time) near
+    nearly alike
+παρέκ • (parék)
+    along past, close by
+    away from the point, evasively
+    differently
+παρέξ • (paréx)
+    Alternative form of παρέκ (parék)
+πάροιθεν • (pároithen)
+    in front
+    heretofore, beforehand
+πάρος • (páros) (poetic)
+    formerly, up to now
+    too soon
+    rather, sooner
+πεδίονδε • (pedíonde)
+    to the ground
+        Synonym: οὐρανόθεν (ouranóthen)
+πεζῇ • (pezêi)
+    by land
+    on foot
+πέλας • (pélas)
+    Nearby, hard by, close by.
+πέρα • (péra)
+    beyond
+πέραν • (pérān)
+    (with genitive, often with the associated idea of a body of water)
+        on the other side, across
+            (absolute) on the other side
+            (with verbs of motion, followed by εἰς (eis)) over or across to
+            (with the article)
+        over against, opposite
+        (less often) beyond
+        right through
+πέρυσι • (pérusi)
+    a year ago, last year
+πλειστάκις • (pleistákis)
+    mostly, very often
+πλησίον • (plēsíon)
+    nearby
+πόθεν • (póthen) (interrogative adverb)
+    whence?, from where?
+    whence?, from what source?
+    wherefore?, why?, how?, for what reason?, how come?
+ποθεν • (pothen) (enclitic)
+    from somewhere
+πόθι • (póthi) (Epic, Lyric, interrogative adverb)
+    where?
+    (later) whither?, to where?
+ποθι • (pothi) (enclitic)
+    somewhere, anywhere
+    ever
+    perhaps
+ποι • (poi)
+    to somewhere, somewhither
+ποικίλως • (poikílōs) (comparative ποικιλώτερον, superlative ποικιλώτατα)
+    embroidered in various colours
+        ποικίλως ὑφασμένον ― poikílōs huphasménon ― weaved with many colours
+    (metaphorically) in various ways
+        intricate, complex
+    (metaphorically) unstable, changeable
+        ποικίλως αὐδώμενος ― poikílōs audṓmenos ― speaking in double sense
+        ποικίλως ἔχειν ― poikílōs ékhein ― to be different
+πόλεμονδε • (pólemonde)
+    (Epic) into the fight, to the war
+πολλαχόσε • (pollakhóse)
+    Towards many sides, into many parts.
+πολύ • (polú)
+    much, very
+    too, much too
+πόσε • (póse)
+    (interrogative, Epic) whither?
+πότε • (póte) (interrogative adverb)
+    when? at what time?
+ποτέ • (poté)
     at some time, once, ever
     presumably, possibly
     whatever, whoever
-adv: πότε
-  type: interrog
-  cat: time
-    when? at what time?
-adv: τημόσδε
-  type: interrog
-  cat: time
-    at this time
-adv: τότε
-  type: demonstr
-  cat: time
+ποτε • (pote)
+    at some time (or other), at one time
+    = ποθ᾽ • (poth’)    Apocopic form of ποτε (pote) (used before a rough breathing)
+    = ποτ᾽ • (pot’)    Apocopic form of ποτε (pote) (used before a smooth breathing)
+πού • (poú)
+    anywhere, somewhere
+που • (pou)
+    (enclitic) anywhere, somewhere
+    possibly, perhaps
+    about, approximately
+ποῖ • (poî) (interrogative adverb)
+    whither? whereto? where?
+ποῦ • (poû)
+    (interrogative adverb)
+        where?
+        how?, in what manner?
+πρίν • (prín or prī́n)
+    before, sooner, formerly
+        (of future time, with future indicative)
+        (of past time) formerly, once
+πρό • (pró)
+    (of place) before, in front, forth, forward
+    (of time) before, beforehand
+προηγουμένως • (proēgouménōs) (adverb of προηγούμενος (proēgoúmenos))
+    previously, beforehand
+προθύμως • (prothū́mōs)
+    eagerly, zealously
+προπάροιθε • (propároithe)
+    before (spatial), in front
+    beforehand (temporal), first
+προσέτι • (proséti)
+    besides, in addition
+πρόσθε • (prósthe)
+    (poetic) Alternative form of πρόσθεν (prósthen, “before”)
+    = πρόσθ᾽ • (prósth’)    Apocopic form of πρόσθε (prósthe)
+πρόσθεν • (prósthen)
+    (of place) before, in front
+    (of time) before, earlier, formerly
+πρόσσω • (próssō)
+    Alternative form of πρόσω (prósō) with initial syllable made heavy for metrical purposes
+πρόσω • (prósō) (Epic, Ionic, poetic)
+    forward
+    in the future
+πρωΐ • (prōḯ)
+    early in the day
+    during morning
+πρῶϊ • (prôï)
+    Alternative form of πρωΐ (prōḯ)
+πρῴ • (prṓi)
+    Attic form of πρωΐ (prōḯ)
+πτωχῶς • (ptōkhôs)
+    poorly, scantily
+πύκα • (púka)
+    thickly, strongly
+    wisely, carefully
+πυκινῶς • (pukinôs)
+    close
+    fast, rapidly
+    often
+    deeply
+    wisely
+πώς • (pṓs)
+    stressed form of πως (pōs)
+πως • (pōs) (indefinite adverb)
+    In any way, at all, by any means
+    In a certain way
+πῆμος • (pêmos) (rare)
+    when?
+πῇ • (pêi) (interrogative adverb)
+    whereby? which way? how?
+    Usage notes
+    This word can be used to introduce direct and indirect questions. ὅπη (hópē) can introduce indirect questions only.
+πῃ • (pēi)
+    somehow
+    (to) somewhere
+πῶς • (pôs)
+    how?, in what way?
+ῥεῖα • (rheîa)
+    easily, lightly
+ῥηϊδίως • (rhēïdíōs)
+    Epic and Ionic form of ῥᾳδίως (rhāidíōs)
+ῥίμφα • (rhímpha)
+    fast, quickly
+ῥᾷον • (rhâion)
+    more easily
+ῥᾳδίως • (rhāidíōs)
+    easily
+σάφα • (sápha) (Epic, Attic)
+    clearly, obviously, assuredly
+    Usage notes
+    Often used with verbs of knowing, such as οἶδα (oîda).
+σαφῶς • (saphôs)
+    clearly, distinctly
+σήμερον • (sḗmeron)
+    today
+σιγῇ • (sīgêi)
+    silently
+σιωπῇ • (siōpêi)
+    silently, in silence
+σμερδαλέον • (smerdaléon)
+    terribly, fearsomely
+σποράδην • (sporádēn)
+    in a scattered manner, here and there
+στοιχειακῶς • (stoikheiakôs)
+    literally, alphabetically
+στοιχειωδῶς • (stoikheiōdôs)
+    (used especially of grammar) elementarily
+συλλήβδην • (sullḗbdēn)
+    in sum, in short
+σφιγκτῶς • (sphinktôs)
+    adverb of σφιγκτός (sphinktós)
+σφόδρα • (sphódra)
+    Very, very much: modifies verbs, adjectives, or nouns
+    σφόδρα γε (sphódra ge), καὶ σφόδρα γε (kaì sphódra ge), or πάνυ γε σφόδρα (pánu ge sphódra) in answer to a question: very much so, definitely
+σχεδόν • (skhedón)
+    near, nearby
+    nearly, almost
+τάδε • (táde)
+    on this account
+  = τάδ᾽ • (tád’)    Apocopic form of τάδε (táde)
+ταύτῃ • (taútēi)
+    here
+    in this point
+    in this way, thus
+τάχα • (tákha)
+    quickly, soon, forthwith
+    = τάχ᾽ • (tákh’)    Apocopic form of τάχα (tákha)
+τάχιστα • (tákhista)
+    quickest, speediest
+    (after particles of time) as soon as
+τέτραχα • (tétrakha)
+    in four parts
+τηλόθεν • (tēlóthen)
+    from far away
+τηλόθι • (tēlóthi)
+    at a distance, far away [+genitive = from something, someone]
+    (rarely) to far away
+τί • (tí)
+    why?
+τίπτε • (típte) (Epic)
+    how?
+    why?
+τόδε • (tóde)
+    hither, to this spot
+    therefore, on this account
+    = τόδ᾽ • (tód’)    Apocopic form of τόδε (tóde)
+τόθι • (tóthi)
+    there
+    (relative) where
+τοιαῦτα • (toiaûta)
+    in such wise, in such a manner
+τοιγάρ • (toigár)
+    therefore, accordingly
+τότε • (tóte)
     at that time, then
-adv: τῆμος
-  type: demonstr
-  cat: time
-    at that time, then
-# =========================== OLD ================
-adv: ὁπωσδήποτε
-     ὅπως, as, in such manner as, how
-adv: ὀπίσω
-     backwards
-adv: πρόσω
-     forwards, onwards
-     = προσ
-adv: ἀεί
-     always
-adv: ἄνω
-     up
-adv: ἄρτι
-     now
-adv: αὖθις
-     again
-adv: εἶτα
-     then, next
-adv: ἔπειτα
-     then, next
-adv: ἔτι
-     still
-adv: εὖ
-     well
-adv: εὐθύς
-     immediately
-adv: ἤδη
-     already
-adv: μάλα
-     very, very much
-adv: μάλιστα
-     most, most of all, certainly
-adv: μᾶλλον
-     more, rather
-adv: οὐκέτι
-     no longer
-adv: πάλιν
-     back, backwards, but, in turn
-adv: πάντοτε
-     always, at all times
-adv: πλέον
-     more, rather
-adv: πολλάκις
-     often
-adv: ποτε
-     sometime
-adv: πρίν
-     before, until; formerly
-adv: καθάπερ
-     according as, just as
-adv: λίαν
-     very, exceedingly
-     = λίην
-adv: ὀλιγαχοῦ
-     in a few places
-adv: ἀμήν
-      verily, of a truth, so be it
-adv: διατί
-     διὰ τί - wherefore
-adv: κακῶς
-     bad
-# ==========================
-adv: ἄνευ
-     without, except, besides (+gen.)
-adv: ἄχρι
-     until (+gen.)
-adv: ἄχρις
-     until (+gen.)
-adv: ἕνεκα
-     because of (+gen.)
-adv: ἔξω
-     outside of (+gen.)
-adv: μεταξύ
-     between (+gen.)
-adv: μέχρι
-     as far as (+ gen.)
-adv: ὁπίσω
-     behind, after (+gen.)
-adv: πλήν
-     except (+gen.)
-adv: χωρίς
-     separately, without (+gen.)
-adv: κἀκεῖ
-     and there
-adv: τἀκεῖ
-     what is or happens there, events there
-adv: οὔπω
-     not yet
-#
-adv: ἐνθένδε
-     from that place, thence, opp. ἐκεῖσε
-# ==================
-adv: δίχα • (díkha)
-         in two, asunder, apart
-         in doubt
-         differently, oppositely
-adv: ἑξάκις • (hexákis) (cardinal ἕξ, ordinal ἕκτος)
-      six times
-adv: ἔμπροσθεν
-      before, in front
-adv: ὁμοίως
-     like, resembling, similar
-     = ὅμοιος
-     = ὁμοῖος
+        (joined with other particles)
+        (with the article)
+        (εἰς τότε) until then
+        (in apodoses, answering to ὅτε)
+        (used in late poets for ὅτε)
+    = τόθ᾽ • (tóth’)    Apocopic form of τότε (tóte) (used before a rough breathing)
+    = τότ᾽ • (tót’)    Apocopic form of τότε (tóte) (used before a smooth breathing)
+τόφρα • (tóphra) (correlative with ὄφρα (óphra))
+    up to that time
+    during that time, so long
+    meanwhile
+    = τόφρ᾽ • (tóphr’)    Apocopic form of τόφρα (tóphra)
+τυτθόν • (tutthón)
+    a little, a bit
+τῆλε • (têle)
+    far off, afar, far away
+ὑπέρ • (hupér)
+    over-much, above measure
+ὕπερθε • (húperthe)
+    Alternative form of ὕπερθεν (húperthen, “from above”)
+ὕπερθεν • (húperthen)
+    from above
+ὑπόδρα • (hupódra)
+    (Epic) scowlingly, grimly
+ὑποκάτω • (hupokátō)
+    under, below
+ὕστερον • (hústeron)
+    later [+genitive = than]
+ὑφέν • (huphén)
+    in one word, in a single word
+ὕψι • (húpsi)
+    on high, aloft
+ὑψόσε • (hupsóse)
+    (Epic) upwards, aloft
+    = ὑψόσ᾽ • (hupsós’)    Apocopic form of ὑψόσε (hupsóse)
+φανερῶς • (phanerôs)
+    openly, manifestly
+χαλεπῶς • (khalepôs)
+    with difficulty, hardly
+χαμάδις • (khamádis)
+    to the ground
+χαμαί • (khamaí)
+    on the earth, near the ground
+    to the earth/ground
+χαμᾶζε • (khamâze)
+    to the ground
+χεῖρον • (kheîron)
+    worse
+χθές • (khthés)
+    yesterday
+Χνᾶ • (Khnâ)
+    Abbreviation of Χαναάν (Khanaán).
+χύδην • (khúdēn)
+    as if poured out
+        without order
+        in prose
+        abundantly
+χωρίς • (khōrís)
+    separately, differently
+ὡς • (hōs) (relative adverb)
+    the introduction to similes
+        like as, as, just as
+        according as
+    (with adverbial clauses)
+        (parenthetically) to qualify a general statement; as it seems
+        (in elliptical phrases) so far as....
+        (attached to the object of a verb) as
+    (to limit or augment the force of adverbs)
+ὥς • (hṓs)
+    stressed form of ὡς (hōs)
+ὡσεί • (hōseí)
+    as if, as though
+        (with optative)
+        (ὡσεί τε, with subjunctive)
+        (ὡς εἰ or ὡς εἴ τε, with indicative)
+    (in mere comparisons, as if, like, just)
+    (like ὡς, with numerals or measures of time and space) about
+ὥσπερ • (hṓsper)
+    like, as, even as, just as
+    (to limit or modify an assertion) as it were
+    (rarely of time)
+        so long as, however long
+        as soon as
+    (after a comparative)

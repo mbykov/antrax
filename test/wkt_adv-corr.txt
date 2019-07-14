@@ -1,0 +1,526 @@
+adv: τίς
+  type: interrog
+  cat: base
+    what?
+adv: ἄλλοσε
+  type: other
+  cat: destination
+    to somewhere else
+    elsewhither
+adv: αὐτόσε
+  type: identity
+  cat: destination
+    to the same place
+adv: ὁμόσε
+  type: identity
+  cat: destination
+    to the same place
+adv: ἐκεῖσε
+  type: dem-dist
+  cat: destination
+    to that place
+    thither
+adv: ἐνταῦθα
+  type: dem-med
+  cat: place
+    here, there
+    hither, thither
+    at the very time, then, thereupon
+    herein, in this position, in this circumstance
+adv: ἔνθα
+  type: dem-dist
+  cat: place
+    there
+    in that place
+adv: ἐνθάδε
+  type: dem-proximal
+  cat: destination
+    to here
+    hither
+adv: οἷ
+  type: relative
+  cat: destination
+    to where
+    whither
+    how, in what state
+adv: ὅποι
+  type: indef-relative
+  cat: destination
+    to wherever
+adv: ὁπόσε
+  type: indef-relative
+  cat: destination
+    to wherever
+adv: ποι
+  type: indef
+  cat: destination
+    to somewhere
+    somewhither
+adv: ποῖ
+  type: interrog
+  cat: place
+    where?
+    how?, in what manner? ποῖ (whither?)
+adv: αὐτίκα
+  type: identity
+  cat: exact-time
+    at once, immediately
+    for the moment
+    for example
+    = αὐτίχ᾽
+adv: ἡνίκα
+  type: relative
+  cat: exact-time
+    at which time
+adv: ὁπηνίκα
+  type: relat-indef
+  cat: exact-time
+    at whatever time
+adv: πηνίκα
+  type: interrog
+  cat: exact-time
+    at what time?
+adv: τηνίκα
+  type: demonstr
+  cat: exact-time
+    at this time
+adv: τηνικαῦτα
+  type: demonstr
+  cat: exact-time
+    at this time
+adv: τηνικάδε
+  type: dem-proxi
+  cat: exact-time
+    at this time
+adv: ἄλλως
+  type: other
+  cat: manner
+    in the other way
+    otherwise
+adv: ἑτέρως
+  type: other
+  cat: manner
+    in the other way
+adv: ὧδε
+  type: dem-proximal
+  cat: manner
+    demonstrative adverb In this manner, thus
+    (of a state or condition) as it is
+    (indicating something immediately to come) as follows
+adv: ὁμῶς
+  type: relative
+  cat: manner
+    in the same way
+    likewise
+    together
+    equally, alike
+adv: ὅπως
+  type: relative
+  cat: manner
+    however
+    in such a manner, as
+    etc, etc
+adv: ὅκως
+  type: relative
+  cat: manner
+    however
+    in such a manner, as
+    etc, etc
+adv: ὅππως
+  type: relative
+  cat: manner
+    however
+    in such a manner, as
+    etc, etc
+adv: ὡς
+  type: relative
+  cat: manner
+    as, like as, as, just as
+    according as
+    Conjunction: (causal) as, since, because
+    (temporal) when
+    (modal) how
+    (local) where
+adv: οὕτως
+  type: dem-med
+  cat: manner
+    thus, so, even so, just so
+    so, merely, simply
+adv: οὕτω
+  type: dem-med
+  cat: manner
+    thus, so, even so, just so
+    so, merely, simply
+adv: πως
+  type: indef
+  cat: manner
+    In any way, at all, by any means
+    In a certain way
+adv: πῶς
+  type: interrog
+  cat: manner
+    how?, in what way?
+adv: τώς
+  type: dem-med
+  cat: manner
+    as, like as, as, just as
+    according as
+    Conjunction: (causal) as, since, because
+    (temporal) when
+    (modal) how
+    (local) where
+adv: ὁσαπλασίων
+  type: interrog
+  cat: repetition
+    as many times as
+adv: ὁσαπλάσιος
+  type: interrog
+  cat: repetition
+    as many times as
+adv: ποσαπλάσιος
+  type: interrog
+  cat: repetition
+    how many times?
+adv: ὁπόστος
+  type: relative
+  cat: order
+    in which place in a series
+adv: ποστός
+  type: indef
+  cat: order
+    somewhere in a series
+adv: πόστος
+  type: interrog
+  cat: order
+    which in a series?
+adv: ἄλλοθι
+  type: other
+  cat: place
+    elsewhere
+    in another place
+    esp. in a strange or foreign land
+    in other ways
+adv: ἀλλαχῇ
+  type: other
+  cat: place
+    elsewhere
+    in another place
+    esp. in a strange or foreign land
+    in other ways
+adv: ἀλλαχόθι
+  type: other
+  cat: place
+    elsewhere
+    in another place
+    esp. in a strange or foreign land
+    in other ways
+adv: ἀλλαχοῦ
+  type: other
+  cat: place
+    elsewhere
+    in another place
+    esp. in a strange or foreign land
+    in other ways
+adv: ἄλλῃ
+  type: other
+  cat: place
+    elsewhere
+    in another place
+    esp. in a strange or foreign land
+    in other ways
+adv: αὐτόθι
+  type: relative
+  cat: place
+    in the same place
+    on the spot
+    here, there
+    forthwith, straightway
+adv: αὐτοῦ
+  type: relative
+  cat: place
+    in the same place
+    on the spot
+    here, there
+    forthwith, straightway
+adv: ἐκεῖ
+  type: dem-dist
+  cat: place
+    there
+    in that place
+adv: κεῖθι
+  type: dem-dist
+  cat: place
+    there
+    in that place
+adv: ἐκεῖθι
+  type: dem-dist
+  cat: place
+    there
+    in that place
+adv: ὁμοῦ
+  type: relative
+  cat: place
+    At the same place: together
+    Close at hand, nearby
+adv: ὅπου
+  type: relative
+  cat: place
+    where, when, wherever
+adv: ὅκου
+  type: relative
+  cat: place
+    where, when, wherever
+adv: ὁπόθι
+  type: relative
+  cat: place
+    where, when, wherever
+adv: οὗ
+  type: relative
+  cat: place
+    where, when
+adv: που
+  type: indef
+  cat: place
+    somewhere
+    (enclitic) anywhere, somewhere
+    possibly, perhaps
+    about, approximately
+adv: ποῦ
+  type: interrog
+  cat: place
+    where?
+    how?, in what manner? ποῖ (whither?)
+adv: πόθι
+  type: interrog
+  cat: place
+    where?
+    how?, in what manner? ποῖ (whither?)
+adv: ὁποσάκις
+  type: relative
+  cat: repetition
+    however many times
+adv: ὁσάκις
+  type: relative
+  cat: repetition
+    however many times
+adv: ποσάκις
+  type: interrog
+  cat: repetition
+    how many times?
+adv: ποσίνδα
+  type: interrog
+  cat: repetition
+    how many times?
+adv: τόσακις
+  type: demonstr
+  cat: repetition
+    this many times
+adv: τουτάκις
+  type: demonstr
+  cat: repetition
+    this many times
+adv: ὁμῆλιξ
+  type: relative
+  cat: size
+    the same age
+adv: ἄλλοθεν
+  type: other
+  cat: source
+    from elsewhere
+    from another place
+adv: ἐκεῖθεν
+  type: dem-dist
+  cat: source
+    from that place
+    thence
+    to that place, thither
+    (of time) thereafter, next
+adv: ἔνθεν
+  type: demonstr
+  cat: source
+    from there
+    thence
+adv: ἐντεῦθεν
+  type: demonstr
+  cat: source
+    from there
+    thence
+adv: τόθεν
+  type: demonstr
+  cat: source
+    from there
+    thence
+adv: ὁμόθεν
+  type: identity
+  cat: source
+    from the same place
+adv: ὁπόθεν
+  type: indef-relat
+  cat: source
+    from wherever
+adv: ὅθεν
+  type: relative
+  cat: source
+    from where
+    (relative) whence, from where, from which
+    (relative) wherefore, for which reason
+adv: ποθέν
+  type: indef
+  cat: source
+    from somewhere
+adv: πόθεν
+  type: interrog
+  cat: source
+    from where? whence? from what source? wherefore?, why?, how?, for what reason?, how come?
+adv: ἄλλοτε
+  type: other
+  cat: time
+    at another time
+adv: ἦμος
+  type: relative
+  cat: time
+    when (relative), at which time
+adv: ἅμα
+  type: identity
+  cat: time
+    at the same time
+    simultaneously, at once
+    together
+adv: ὁπότε
+  type: rel-indef
+  cat: time
+    whenever
+adv: ὁππῆμος
+  type: rel-indef
+  cat: time
+    whenever
+adv: ὅτε
+  type: relative
+  cat: time
+    when
+adv: ποτέ
+  type: indef
+  cat: time
+    at some time, once, ever
+    presumably, possibly
+    whatever, whoever
+adv: πότε
+  type: interrog
+  cat: time
+    when? at what time?
+adv: τημόσδε
+  type: interrog
+  cat: time
+    at this time
+adv: τότε
+  type: demonstr
+  cat: time
+    at that time, then
+adv: τῆμος
+  type: demonstr
+  cat: time
+    at that time, then
+# =========================== OLD ================
+adv: ὁπωσδήποτε
+     ὅπως, as, in such manner as, how
+adv: ὀπίσω
+     backwards
+adv: πρόσω
+     forwards, onwards
+     = προσ
+adv: ἀεί
+     always
+adv: ἄνω
+     up
+adv: ἄρτι
+     now
+adv: αὖθις
+     again
+adv: εἶτα
+     then, next
+adv: ἔπειτα
+     then, next
+adv: ἔτι
+     still
+adv: εὖ
+     well
+adv: εὐθύς
+     immediately
+adv: ἤδη
+     already
+adv: μάλα
+     very, very much
+adv: μάλιστα
+     most, most of all, certainly
+adv: μᾶλλον
+     more, rather
+adv: οὐκέτι
+     no longer
+adv: πάλιν
+     back, backwards, but, in turn
+adv: πάντοτε
+     always, at all times
+adv: πλέον
+     more, rather
+adv: πολλάκις
+     often
+adv: ποτε
+     sometime
+adv: πρίν
+     before, until; formerly
+adv: καθάπερ
+     according as, just as
+adv: λίαν
+     very, exceedingly
+     = λίην
+adv: ὀλιγαχοῦ
+     in a few places
+adv: ἀμήν
+      verily, of a truth, so be it
+adv: διατί
+     διὰ τί - wherefore
+adv: κακῶς
+     bad
+# ==========================
+adv: ἄνευ
+     without, except, besides (+gen.)
+adv: ἄχρι
+     until (+gen.)
+adv: ἄχρις
+     until (+gen.)
+adv: ἕνεκα
+     because of (+gen.)
+adv: ἔξω
+     outside of (+gen.)
+adv: μεταξύ
+     between (+gen.)
+adv: μέχρι
+     as far as (+ gen.)
+adv: ὁπίσω
+     behind, after (+gen.)
+adv: πλήν
+     except (+gen.)
+adv: χωρίς
+     separately, without (+gen.)
+adv: κἀκεῖ
+     and there
+adv: τἀκεῖ
+     what is or happens there, events there
+adv: οὔπω
+     not yet
+#
+adv: ἐνθένδε
+     from that place, thence, opp. ἐκεῖσε
+# ==================
+adv: δίχα • (díkha)
+         in two, asunder, apart
+         in doubt
+         differently, oppositely
+adv: ἑξάκις • (hexákis) (cardinal ἕξ, ordinal ἕκτος)
+      six times
+adv: ἔμπροσθεν
+      before, in front
+adv: ὁμοίως
+     like, resembling, similar
+     = ὅμοιος
+     = ὁμοῖος
