@@ -5,8 +5,8 @@
 
 conj: ἀλλά • (allá)
     but
-    = ἀλλ᾽ • (all᾽)
-    = ἀλλ • (all᾽)
+#    = ἀλλ᾽ • (all᾽) # δῆτ᾽
+#    = ἀλλ • (all᾽)
 
 conj: ἄν • (án) (modal particle)
 
@@ -15,7 +15,7 @@ conj: ἄν • (án) (modal particle)
     = κεν (ken) – Epic, Lyric
     = κα (ka) – Doric
 
-conj: ἄρα • (ára) ἄἄ
+conj: ἄρα • (ára)
     so, then, therefore, consequently
     = ἄρ (ár) – before a consonant
     = ἄρ᾽ (ár᾽) – apocopic
@@ -360,9 +360,10 @@ particle: αὖ
 particle: γε
           intensifies and sharpens the word(s) before it
           = γ᾽
-          = γ᾽
 particle: δή
-          literally “now!” but more generally emphatic
+          literally “now!” but more generally emphatic,  hence, now, then, already
+particle: δῆτα
+          Adv., lengthd. and more emphatic form of δή
 particle: ἦ
           emphasizes the particle that follows
 particle: καίτοι
@@ -385,6 +386,11 @@ particle: πέρ
 particle: ἆρα
           turns a statement into a yes/no question.
           = ἆρ᾽
+
+particle: μῶν
+           (= μὴ οὖν)
+          turns a statement into a yes/no question, with negative
+
 particle: πότε
           when?
 particle: ποῦ
