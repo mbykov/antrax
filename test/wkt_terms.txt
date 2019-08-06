@@ -648,6 +648,9 @@ particle: δοκεῖν
           ὡς ἐμοὶ δοκεῖν - it seems to me
           δοκεῖ σχεδὸν - it seems that
 
+particle: ὦ
+          o! oh!
+
 # xxx: τὰ τοιαῦτα
 #     и тому подобное, etc
 
