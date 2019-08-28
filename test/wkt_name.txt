@@ -3,7 +3,6 @@
 # ί̄-ί
 # ᾹΑ ᾸΑ   ἰ̄ἴ
 
-MA
 # ----------------------------------
 dict: ἀβακίσκος • (abakískos) m (genitive ἀβακίσκου); second declension
 
@@ -11352,18 +11351,19 @@ acc: ἔμφασιν, ἐμφάσει, ἐμφάσεις
 voc: ἔμφασι, ἐμφάσει, ἐμφάσεις
 
 # ----------------------------------
-dict: ἐνάτηρ • (enátēr) f pl (genitive εἰνάτερος); third declension
+# dict: ἐνάτηρ • (enátēr) f pl (genitive εἰνάτερος); third declension
 
-    brother’s wife, or the wife of husband’s brother: sister-in-law
+#    brother’s wife, or the wife of husband’s brother: sister-in-law
 
-    Not actually attested in all forms. The accusative singular and plural as well as the dative and vocative plural are conjectural.
+#    Not actually attested in all forms. The accusative singular and plural as well as the dative and vocative plural are conjectural.
 
-restrict: sg pl
-nom: ἐνάτηρ, εἰνάτερες
-gen: εἰνάτερος, εἰνατέρων
-dat: ἐνατρί, εἰνάτερσι-εἰνάτερσιν
-acc: εἰνάτερα, εἰνάτερας
-voc: εἴνατερ, εἰνάτερες
+# FAIL - будет работать только после добавления augs в name, либо - одна гласная, первая - в irregs
+# restrict: sg pl
+# nom: ἐνάτηρ, εἰνάτερες
+# gen: εἰνάτερος, εἰνατέρων
+# dat: ἐνατρί, εἰνάτερσι-εἰνάτερσιν
+# acc: εἰνάτερα, εἰνάτερας
+# voc: εἴνατερ, εἰνάτερες
 
 # ----------------------------------
 dict: ἐνέργεια • (enérgeia) f (genitive ἐνεργείας); first declension
@@ -14767,6 +14767,7 @@ dat: θριάμβῳ, θριάμβοιν, θριάμβοις
 acc: θρίαμβον, θριάμβω, θριάμβους
 voc: θρίαμβε, θριάμβω, θρίαμβοι
 
+MA
 # thrix trix
 # ----------------------------------
 dict: θρίξ • (thríx) f (genitive τριχός); third declension

@@ -593,14 +593,15 @@ num: τρίς • (trís) (cardinal τρεῖς, ordinal τρίτος)
 num: χίλιοι
     -thousands
 
-particle: ὄν
-          = ἐξόν
-          = παρόν
-          when, because, although, if allowed (sole participle in acc.)
+particle: ἐξόν
+           it is allowed, is possible
 
 particle: δεόν
           = χρεών
           need to (sole participle in acc.)
+
+particle: παρόν
+          although, however
 
 particle: δόξαν
           = δεδογμένον
@@ -650,6 +651,10 @@ particle: δοκεῖν
 
 particle: ὦ
           o! oh!
+
+particle: οὕνεκα
+          on account of which, wherefore
+          = οὕνεκ᾽
 
 # xxx: τὰ τοιαῦτα
 #     и тому подобное, etc
