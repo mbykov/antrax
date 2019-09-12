@@ -1,12 +1,13 @@
 /* global describe */
 
 // import {log} from '../src/lib/utils'
-import {augs, vowels, tense} from '../src/lib/utils'
 let log = console.log
-import { clause, antrax, enableDBs } from '../dist'
 import _ from 'lodash'
+import { antrax } from '../index'
+import { setDBs } from '../lib/pouch'
 // import { property } from 'jsverify'
-import {comb, plain} from '../../orthos'
+// import {comb, plain} from 'orthos'
+import {oxia, comb, plain} from '../../../../greek/orthos'
 const assert = require('assert')
 const forEach = require('mocha-each')
 const fse = require('fs-extra')
@@ -15,13 +16,11 @@ const path = require('path')
 const numpers = "sg.1 sg.2 sg.3 du.2 du.3 pl.1 pl.2 pl.3".split(' ')
 
 let unhandledRejectionExitCode = 0
-
 process.on("unhandledRejection", (reason) => {
   // console.log("unhandled rejection:", reason)
   unhandledRejectionExitCode = 1
   throw reason
 })
-
 process.prependListener("exit", (code) => {
   if (code === 0) {
     process.exit(unhandledRejectionExitCode)
@@ -29,16 +28,14 @@ process.prependListener("exit", (code) => {
 })
 
 let upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
-let apath = path.resolve(__dirname, '../../egreek')
-enableDBs(upath, apath)
+let dnames = ['wkt']
+setDBs(upath, dnames)
 
-const testpath = path.resolve(__dirname, 'wkt_verb.txt')
+// const testpath = path.resolve(__dirname, '../../test/wkt_verb.txt')
+const testpath = path.resolve('/home/michael/greek/antrax/test/wkt_verb.txt')
 const text = fse.readFileSync(testpath,'utf8')
 
 let param = process.argv.slice(2)[1]
-log('FILTER', param)
-
-let irregs = [ 'δράω', 'εἰμί', 'εἶμι', 'εἰσέρχομαι', 'ἔρχομαι', 'θάπτω',  'θύω', 'τίθημι', 'τρέφω', 'φημί' ]
 
 let skip = true
 
@@ -100,7 +97,7 @@ pars.forEach(par => {
 
 })
 
-// tests = tests.slice(200, 201)
+// tests = tests.slice(0, 20)
 // console.log('T', tests)
 // tests = []
 
@@ -109,37 +106,24 @@ forEach(tests)
   .it(' %s %s %s %s %s ', (title, rdict, arg, tense, morph, done) => {
     // log('C:=>', title, rdict, arg, tense, morph)
     antrax(arg)
-      .then(chains => {
-        // log('C', chains)
-        if (!chains.length) log('NO RESULT'), assert.equal(false, true)
-        let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return comb(dict.rdict) }).includes(comb(rdict)) })
-        corrchs = _.filter(corrchs, ch => { return ch[ch.length-1].flexes.map(flex => { return flex.tense}).includes(tense) })
-        if (!corrchs.length) log('no correct chains'), assert.equal(false, true)
-        corrchs.forEach(chain => {
-          if (chain.length > 2) log('CH.length'), assert.equal(false, true)
-          let penult = chain[chain.length-2]
-          let verbs = _.filter(penult.dicts, dict => { return dict.pos == 'verb' })
-          if (!verbs.length) log('no verb'), assert.equal(false, true)
-          let cverbs = _.filter(verbs, dict => { return comb(dict.rdict) == comb(rdict) })
-          if (!cverbs.length) log('no correct verb'), assert.equal(false, true)
-          cverbs.forEach(dict => {
-            let fls = _.last(chain).flexes
-            // log('FLS', fls)
-            let tenses = fls.map(flex => { return flex.tense })
-            tenses = _.uniq(tenses)
-            assert.equal(tenses.includes(tense), true)
+      .then(res => {
+        // if (!res.chains.length) log('NO RESULT'), assert.equal(false, true) // comment cause of terms
+        let chains = _.filter(res.chains, chain=> { return _.find(chain[0].dicts, dict=> { return dict.verb && dict.rdict == rdict }) })
+        let dicts = _.map(chains, chain=> { return _.map(chain[0].dicts, dict=> { return _.find(dict.fls, flex=> { return flex.tense == tense }) ? dict : null }) })
+        dicts = _.compact(_.flatten(dicts))
+        let terms = _.filter(res.terms, dict=> { return dict.fls })
+        terms = terms.map(dict=> { return _.find(dict.fls, flex=> { return flex.tense == tense }) ? dict : null })
+        terms = _.compact(_.flatten(terms))
+        dicts = dicts.concat(terms)
+        if (!dicts.length) log('NO DICTS'), assert.equal(false, true)
+        let verbs = _.filter(dicts, dict=> { dict.verb })
+        let fls = verbs.map(dict=> { return dict.fls})
+        fls = _.flatten(fls)
 
-            if (title == 'verb' || title == 'part') { // verb, or part, cause inf has no morph
-              let morphs
-              let pfls = _.filter(fls, flex => { return flex.gend })
-              let vfls = _.filter(fls, flex => { return flex.numper })
-              if (title == 'part') morphs = pfls.map(flex => { return flex.gend })
-              else if (title == 'verb')  morphs = vfls.map(flex => { return flex.numper })
-              // log('M', morph, morphs)
-              assert.equal(morphs.includes(morph), true)
-            }
-          })
+        fls.forEach(flex => {
+          assert.equal(flex.numper, morph)
         })
+
       })
       .then(done)
 
@@ -161,7 +145,7 @@ function parseText (rows, only) {
     if (skip) return
     if (!row || row.slice(0,2) == '# ') return
     if (!row[0] == ' ') trn = row.trim()
-    row = row.split('#')[0]
+    row = row.split(' # ')[0]
     let descr = row.split(':')[0].trim()
 
     if (row.slice(0,2) == '#=' || descr == 'dict') {

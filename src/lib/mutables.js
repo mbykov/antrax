@@ -1,162 +1,145 @@
-import { log, voice, time } from './utils'
+import { dbg as clog, time } from './utils'
 import _ from 'lodash'
-import { verbkeys } from './verbkeys'
+import { verbkeys } from './verb-reg-keys'
+import { namekeys } from './name-reg-keys'
+const d = require('debug')('app')
+// import {oxia, comb, plain} from 'orthos'
+// import {oxia, comb, plain} from '../../../../greek/orthos'
 
-let clog = console.log
+let log = console.log
 
-// MAIN VERB
 // verbs строятся по разным stems, т.е. один verb может порождать один chain по разным stems :
-export function parseVerb (seg, segs, flexes) {
-  let vchains = []
-  let last = _.last(segs)
-  let penult = segs[segs.length-2]
-
-  // last.dicts.forEach(dict => { dict.dict = comb(dict.rdict) } )
-  let lastverbs = _.filter(last.dicts, dict => { return dict.verb })
-  let verbflexes = _.filter(flexes, flex => { return flex.verb })
-  let partflexes = _.filter(flexes, flex => { return flex.part })
+export function parseVerb (verbs, flexes, only) {
 
   let vdicts = []
-  let vfls = []
-  let partdicts = []
-  let partfls = []
-  lastverbs.forEach(dict => {
-    if (dict.plain == 'εχρα') log('NC-d ===========================>>>', dict)
-    let fls = _.filter(verbflexes, flex => {
-      if (dict.plain == 'εχρα' && flex.tense == 'act.impf.ind') log('NC-f ============', flex)
+  verbs.forEach(dict => {
 
-      if (dict.reg && dict.key && !dict.vkeys) {
-        let vk = verbkeys[dict.key]
-        if (!vk) return false
-        dict.vkeys = verbkeys[dict.key].vkeys, dict.pkeys = verbkeys[dict.key].pkeys, dict.ikeys = verbkeys[dict.key].ikeys
-      }
+    if (dict.augs) throw new Error('DICT-AUGS!') // :NB:
 
-      if (dict.reg != flex.reg) return false
-      if (dict.sliced && flex.part) return false // причастия не имеют augs ἄγω - ἦγον
-      if (dict.reg) {
-        if (flex.vkey && !dict.vkeys[flex.time]) return false
-        else if (flex.vkey && !dict.vkeys[flex.time].includes(flex.vkey)) return false
-        if (flex.pkey && !dict.pkeys[flex.time]) return false
-        else if (flex.pkey && !dict.pkeys[flex.time].includes(flex.pkey)) return false
-        if (flex.ikey && !dict.ikeys[flex.time]) return false
-        else if (flex.ikey && !dict.ikeys[flex.time].includes(flex.ikey)) return false
-      } else {
-        if (dict.time != flex.time) return false
-        if (flex.vkey && dict.vkey != flex.vkey) return false
-        if (flex.pkey && dict.pkey != flex.pkey) return false
-        if (flex.ikey && dict.ikey != flex.ikey) return false
-      }
-      return true
-    })
+    // βραχυνομένῳ - lsj - это ужас, но работает. Нужно привести в порядок    // // нужно проверить - κλίνεσθαι
+    if (!dict.keys && dict.key) dict.keys = verbkeys[dict.key] || [] // lsj, etc
+    if (dict.plain == only) d('VERB-d ===========================>>>', dict.rdict, 'key:', dict.key, 'dict.keys:', dict.keys.length)
 
-    if (fls.length) {
-      vdicts.push(dict)
-      vfls = vfls.concat(fls)
-    }
-  })
+    let fls = _.map(flexes, flex => {
+      // if (dict.plain == only) d('verb-flex ----------------', flex.term, flex.tense, flex.key)
 
-  // здесь verbs из разных rform (pres, fut, etc). Они дают корректные fls, но dicts должны дать один результат
-  vdicts = uniqDict(vdicts)
-  // partdicts = uniqDict(partdicts)
+      let dkey = _.find(dict.keys, dkey=> { return dkey.key == flex.key && dkey.tense == flex.tense })
 
-  if (vdicts.length && vfls.length) {
-    // let cleanfls = vfls.map(flex => { return {tense: flex.tense, numper: flex.numper} })
-    let cleanfls = vfls.map(flex => {
+      // то есть если для глаголов хороший набор флексий, есть все с аугментами, то для причастий примеров склонения мало. И флексии с нужным
+      // аугментом попросту нет. Возможен костыль, но тогда здесь нужны флексии прилагательных:
+      // сделать только для part, -- добавить parsePart - возможно возникновение лишних результатов
+      // if (!dkey) dkey = _.find(dict.keys, dkey=> { return dkey.key == flex.key })
+
+      if (!dkey) return
+      if (dict.plain == only) d('verb-DKEY-flex ------------------------', dict.rdict, dkey, flex.key)
+
       let cflex
-      if (flex.numcase) cflex = {tense: flex.tense, numcase: flex.numcase, gend: flex.gend}
-      else cflex = {tense: flex.tense, numper: flex.numper}
+      // if (flex.numcase) cflex = { tense: flex.tense, numcase: flex.numcase, gend: flex.gend, voice: flex.voice, dictpkeys: JSON.stringify(dict.pkeys), pkey: flex.pkey }
+      if (flex.numcase) cflex = { tense: flex.tense, numcase: flex.numcase, gend: flex.gend }
+      else if (flex.numper) cflex = { tense: flex.tense, numper: flex.numper }
+      // else if (flex.numper) cflex = { tense: flex.tense, numper: flex.numper, dictpkeys: JSON.stringify(dict.vkeys), pkey: flex.vkey }
+      // else  cflex = { tense: flex.tense, adv: flex.adv }
       return cflex
     })
-    let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
-    cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
-    let flsobj = {seg: seg, flexes: cleanfls}
-    let vchain = cloneChain(segs, vdicts, null, flsobj)
-    vchains.push(vchain)
-  }
 
-  return vchains
+    fls = _.compact(fls) // map, not filter!
+    if (dict.plain == only) d('NC-FLS =========>>>', dict.rdict, fls.length)
+    if (!fls.length) return
+
+    let cfls = []
+    let keyfls = {}
+    _.flatten(fls).forEach(flex=> {
+      let keyflex = JSON.stringify(flex)
+      if (keyfls[keyflex]) return
+      cfls.push(flex)
+      keyfls[keyflex] = true
+    })
+    dict.fls = cfls
+    // d('______________________>>>', dict.rdict)
+    vdicts.push(dict)
+  })
+  return vdicts
 }
 
 // NAME
-export function parseName (seg, segs, flexes) {
-  let nchains = []
-  let last = _.last(segs)
-  // last.dicts.forEach(dict => { dict.dict = comb(dict.rdict) } )
-  let lastnames = _.filter(last.dicts, dict => { return dict.name })
-  let nameflexes = _.filter(flexes, flex => { return flex.name })
-  let advflexes = _.filter(flexes, flex => { return flex.adv })
+export function parseName (names, flexes, only) {
+  let ndicts = []
+  // let nnames = _.filter(names, dict => { return dict.name })
+  // let nflexes = _.filter(flexes, flex => { return flex.name })
 
-  lastnames.forEach(dict => {
-    if (dict.added || dict.sliced) return false
-    if (dict.plain == 'ναυπηγικ') log('NAME-d ===========================>>>', dict)
-    let fls = _.filter(nameflexes, flex => {
-      if (dict.plain == 'ναυπηγικ' && flex.numcase == 'sg.gen') log('NAME-f ==========', flex)
+  names.forEach(dict => {
+    // log('_________________________________________________________________________D', dict.rdict, dict.plain)
+    if (dict.plain == only) d('NAME-d ===========================>>>', dict.rdict)
+    /*
+      key - проверяется, но не обязательно. Сколько плохих значений возникнет?
+      или - сделать это только в компаундах? Где меняется ударение, и правильная флексия может отсутствовать. И вообще меняется склонение
+    */
+    // if (dict.key && !dict.keys) dict.keys = namekeys[dict.key]
+    // if (dict.key && !dict.keys) log('_________________________________')
 
-      if (dict.gend && dict.gend != flex.gend) return false
-      if (dict.gend && !dict.keys.map(key => { return key.split('-')[0] }).includes(flex.key.split('-')[0]) ) return false // for dicts from lsj
+    let fls = _.filter(flexes, flex => {
+      // if (dict.plain == only) log('NAME-f -------------->', flex)
+      let fkey = flex.key.split('-')[0]
+      // if (!dict.gends && dict.key && dict.key != fkey) return false
+      if (!dict.gends && dict.key && dict.key != flex.key && dict.key != fkey) return false // corr. - στατικός
+      if (dict.gends && !dict.gends.includes(flex.gend)) return false
+      // if (flex.adv) dict.pos = 'adv'
+      // это неясно, правильно ли, т.е. всегда ли, на все ли dict нужно навесить pos=adv
 
-      if (dict.ends && dict.ends != flex.ends) return false
-      // flex для adj можно переписать, включив общий key::
-      // if (!dict.gend && dict.adkey && dict.adkey != flex.key ) return false
-      if (!dict.gend && dict.adkey && !dict.adkey.split('-').includes(flex.key.split('-')[0]) ) return false
       return true
     })
 
+    if (dict.plain == only) d('NAME-flex.size ===========================>>>', fls.length)
     if (!fls.length) return
-    dict.pos = 'name'
-    let cleanfls = fls.map(flex => { return {numcase: flex.numcase, gend: flex.gend} })
-    let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
-    cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
-    let flsobj = {seg: seg, flexes: cleanfls}
-    let nchain = cloneChain(segs, [dict], null, flsobj)
-    nchains.push(nchain)
+
+    // непонятно, как избавиться от лишних значений adj в ἡμισέως, т.е. adv: - или пропадет значение при совпадении adv и adj?
+    let advfls = _.filter(fls, fl=> { return fl.adv })
+    // if (advfls.length) fls = advfls
+
+    // добавить в dict и потом отбросить лишние dicts, если есть exacts
+    let exactfls
+    let ksize = dict.key.split('-').length
+    let keys
+    if (ksize == 1) keys = namekeys[dict.key], exactfls = _.filter(fls, flex=> { return keys.includes(flex.key) })
+    else exactfls = _.filter(fls, flex=> { return dict.key == flex.key })
+
+    // log('__KEYS', dict.key, dict.keys)
+    if (!exactfls.length && dict.plain.length < 3) return // плохие значения от одной буквы в стеме, типа ἰσθμός = ἰσθ + μ
+
+    if (exactfls.length) fls = exactfls
+    else dict.possible = true
+
+    dict.fls = compactNameFls(fls, exactfls.length)
+    ndicts.push(dict)
+    // log('___ DICT', dict.rdict, dict.fls.length)
   })
 
-
-  // ADVERBS
-  lastnames.forEach(rdict => {
-    let dict = _.clone(rdict)
-    if (dict.plain == 'αργυρ') log('ADV-d ===========================>>>', dict)
-    let fls = _.filter(advflexes, flex => {
-      if (dict.plain == 'αργυρ') log('ADV-f =========================', flex)
-      if (!dict.keys.includes(flex.key)) return false
-      return true
-    })
-
-    if (!fls.length) return
-    dict.pos = 'adv'
-
-    let cleanfls = fls.map(flex => { return {term: flex.term, degree: flex.degree} })
-    let jsonfls = _.uniq(cleanfls.map(flex => { return JSON.stringify(flex) }) )
-    cleanfls = jsonfls.map(flex => { return JSON.parse(flex) })
-    let flsobj = {seg: seg, flexes: cleanfls}
-    let nchain = cloneChain(segs, [dict], null, flsobj)
-    nchains.push(nchain)
-  }) // adv
-  return nchains
+  // log('___________________ EXDICTS', ndicts.length)
+  let exdicts = _.filter(ndicts, dict=> { return !dict.possible })
+  if (exdicts) ndicts = exdicts
+  // log('________________ NDICTS', ndicts.length)
+  return ndicts
 }
 
-function uniqDict(dicts) {
-  let udicts = []
-  let uvkeys = {}
-  dicts.forEach(dict => {
-    // NB: нужна санитанизация dict - иначе если нет trns, будет ошибка
-    if (!dict.trns) dict.trns = 'no trns:' + dict.rdict
-    let uvkey = [dict.rdict, dict.dbname, dict.trns.toString()].join('')
-    if (uvkeys[uvkey]) return
-    let udict = {pos: 'verb', time: dict.time, rdict: dict.rdict, plain: dict.plain, dname: dict.dname, trns: dict.trns, weight: dict.weight}
-    // let udict = dict
-    if (dict.reg) udict.reg = true
-    udicts.push(udict)
-    uvkeys[uvkey] = true
+function compactNameFls(fls, exact) {
+  let cleanfls = []
+  let flkey = {}
+  fls.forEach(flex=> {
+    let clflex
+    // if (flex.adv) clflex = { adv: true, term: flex.term, degree: flex.degree } // только для тестов
+    // else clflex = { name: true, term: flex.term, numcase: flex.numcase }
+    if (flex.adv) clflex = { degree: flex.degree }
+    else clflex = { numcase: flex.numcase }
+    if (flex.gend) clflex.gend = flex.gend
+    if (!exact) clflex.possible = true
+    let flexkey = [clflex.gend, clflex.numcase].join('-')
+    if (flkey[flexkey]) return
+    cleanfls.push(clflex)
+    flkey[flexkey] = true
   })
-  return udicts
+  return cleanfls
 }
 
-function cloneChain(segs, dicts, pdict, fls) {
-  let nchain = _.cloneDeep(segs)
-  let nlast = _.last(nchain)
-  nlast.dicts = dicts
-  nchain.push(fls)
-  return nchain
-}
+
+// export function parsePart_ (verbs, flexes) {
+// }

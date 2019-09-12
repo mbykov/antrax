@@ -1,14 +1,12 @@
 /* global describe */
 
 // import {log} from '../src/lib/utils'
-import {augs, vowels, tense} from '../src/lib/utils'
 let log = console.log
-import { antrax } from '../dist/antrax'
-import { createDBs } from '../dist/lib/pouch'
 import _ from 'lodash'
+import { antrax } from '../index'
+import { setDBs } from '../lib/pouch'
 // import { property } from 'jsverify'
-// const orthos = require('orthos')
-let orthos = require('../../orthos');
+import {comb, plain} from 'orthos'
 const assert = require('assert')
 const forEach = require('mocha-each')
 const fse = require('fs-extra')
@@ -26,16 +24,12 @@ process.prependListener("exit", (code) => {
   }
 })
 
-// const testpath = path.resolve(__dirname, 'comp_wkt_verb.txt')
+let upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
+let dnames = ['wkt']
+setDBs(upath, dnames)
+
 const testpath = path.resolve(__dirname, '/home/michael/greek/antrax/test/comp_wkt_verb.txt')
 const text = fse.readFileSync(testpath,'utf8')
-
-let param = process.argv.slice(2)[1]
-// log('PPP', param)
-
-let upath = path.resolve(__dirname, '../../')
-createDBs(upath)
-
 
 let skip = true
 
@@ -46,65 +40,68 @@ let idy = 0
 text.split('\n').forEach(row => {
   if (/MA/.test(row)) skip = false
   if (skip) return
-  if (!row) return
   row = row.trim()
+  if (!row) return
   if (row[0] == '#') return
+  if (row == 'MA') return
 
   let mark = row.split(':')[1]
   if (mark) {
-    tests.push(test)
+    // tests.push(test)
     dict = mark.split('\(')[0].trim()
-    head = dict.slice(0,3)
-    tail = dict.slice(-3)
-    phead = orthos.cplain(head)
-    ptail = orthos.cplain(tail)
-    test = {expected: dict, tests: []}
+    // test = [dict]
   } else {
-    let arg = row.split('\(')[0].trim()
-    let ahead = arg.slice(0,3)
-    let atail = arg.slice(-3)
-    let aphead = orthos.cplain(ahead)
-    let aptail = orthos.cplain(atail)
-    if (phead != aphead && ptail == aptail) test.tests.push(arg)
+    let arg = row.split(' ')[0]
+    let test = [dict, arg]
+    tests.push(test)
   }
 
 })
 
 tests = _.compact(tests)
-tests = tests.slice(0, 1)
-console.log('T', tests)
-tests = []
+// tests = tests.slice(0, 50)
+console.log('T', tests.length)
+// tests = []
 
-tests.forEach(test => {
-  let expected = test.expected
-  // log('EXP', expected)
-  forEach(test.tests)
-    .it('comp %s ', (arg, done) => {
-      // log('EXP', expected, 'ARG', arg)
-      antrax(arg)
-        .then(chains => {
-          if (!chains.length) log('NO CHS'), assert.equal(false, true)
-          chains = _.filter(chains, chain => { return chain.length > 2 }) // expected is in dicts already exists, i.e. length == 2
-          if (!chains.length) return
-          // προαναιρέω - два результата, оба с префиксом
-          let exists = false
-          chains.forEach(chain => {
-            if (chain.length != 3 && chain.length != 4) log('CH.length'), assert.equal(false, true) // προσδιαιρέω - προσ-δι-αιρέω
-            let rdicts = chain[chain.length-2].dicts.map(dict => { return dict.rdict} )
-            let prdicts = _.uniq(rdicts).map(rdict => { return orthos.cplain(rdict)})
-            let pexp = orthos.cplain(expected)
-            // log('EXP', expected, 'ARG', arg, 'RDs', rdicts, 'PDs', prdicts, 'PEX', pexp)
-            if (prdicts.includes(pexp)) exists = true
-          })
-          assert.equal(exists, true)
-          // let dicts = chains.map(chain => { return chain[chain.length-2].d })
-          // // let dicts = chains.map(chain => { return chain[chain.length-2].dicts[0].rdict })
-          // log('DICTS', dicts)
-          // let pdicts = dicts.map(d => { return orthos.cplain(d) })
-          // let pexp = orthos.cplain(expected)
-          // assert.equal(pdicts.includes(pexp), true)
-        })
-        .then(done)
+let nores = []
 
-    })
-})
+forEach(tests)
+  .it('compound %s %s', (expected, arg, done) => {
+    // log('cmp->', expected, arg)
+    antrax(arg, true)
+      .then(res => {
+        if (!res.chains) {
+          // log('no-res:',expected, arg)
+          // assert.equal(true, false)
+        }
+        return
+
+        // correct resut should be first:
+        let chain = res.chains[0]
+        // log('CH', arg, chain)
+        if (chain.length == 2) {
+          let second_verb = _.find(chain[1].dicts, dict=> { return comb(dict.rdict) == comb(expected) })
+          if (chain[0].pref && second_verb) assert.equal(true, true)
+          else {
+            log('chain.length=2, no prefix or suffix', expected, arg, 'verb', second_verb)
+            assert.equal(true, false)
+          }
+        } else if (chain.length == 3) {
+          if (chain[1].conn && chain[2].suf) {
+            let first_verb = _.find(chain[0].dicts, dict=> { return comb(dict.rdict) == comb(expected) })
+            assert.equal(true, true)
+          } else if (chain[0].pref && chain[1].pref ) {
+            let last_verb = _.find(chain[2].dicts, dict=> { return comb(dict.rdict) == comb(expected) })
+            assert.equal(true, true)
+          } else {
+            log('chain.length=3, err:', expected, arg, chain[0].dicts)
+            assert.equal(true, false)
+          }
+        } else {
+          log('chain.length', chain.length)
+          assert.equal(true, false)
+        }
+      })
+      .then(done)
+
+  })

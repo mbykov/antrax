@@ -1,0 +1,2056 @@
+#
+
+# tab:->	<-
+
+# sg.1 sg.2 sg.3 du.2 du.3 pl.1 pl.2 pl.3
+
+# ========== ἀάω • (aáō)
+
+    (chiefly Epic) to hurt or damage the mind: mislead, infatuate
+
+# = Present: ἀᾰ́ομαι (Uncontracted)
+
+# = Present: ἀῶμαι (Contracted)
+
+# = Aorist: ᾱ̓́ᾱσᾰ, ᾱ̓ᾱσᾰ́μην, ᾱ̓ᾱ́σθην
+
+# ========== ἀγαθοεργέω • (agathoergéō) (rare, Koine)
+
+    (intransitive) To do good or well
+
+# = Present: ἀγαθοεργέω (Koine, contracted)
+
+# ========== ἀγαθοποιέω • (agathopoiéō) (Koine)
+
+    (transitive, intransitive) To do good to, be helpful to; to benefit
+    (intransitive) To act morally, dutifully
+
+# = Present: ἀγαθοποιέω, ἀγαθοποιέομαι (Uncontracted)
+
+# = Present: ἀγαθοποιῶ, ἀγαθοποιοῦμαι (Contracted)
+
+# = Future: ἀγαθοποιήσω, ἀγαθοποιήσομαι, ἀγαθοποιηθήσομαι
+
+# = Aorist: ἠγαθοποίησᾰ, ἠγαθοποιησᾰ́μην, ἠγαθοποιήθην
+
+# ========== ἀγαλλιάω • (agalliáō) (Koine)
+
+    (intransitive) To be overjoyed, rejoice
+Only used in Christian writings.
+
+# = Present: ἀγαλλιᾰ́ω, ἀγαλλιᾰ́ομαι (Uncontracted)
+
+# = Present: ἀγαλλιῶ, ἀγαλλιῶμαι (Contracted)
+
+# = Future: ἀγαλλιάσομαι, ἀγαλλιασθήσομαι
+
+# = Aorist: ἠγαλλιᾱσᾰ́μην, ἠγαλλιάσθην
+
+# ========== ἀγανακτέω • (aganaktéō) (Attic, Koine)
+
+    (intransitive) To feel a violent irritation
+        (of wine, intransitive) to ferment
+    (figuratively) to be grieved, displeased, vexed, annoyed, angry, or discontented, to show outward signs of grief [+sometimes ὅτι (hóti) or εἰ (ei) = that or if ...]
+        (transitive, intransitive) To be vexed [+dative or rarely accusative or genitive = at something]
+        (transitive, intransitive) To be vexed at or with, to be angry at [+dative = someone], [+κατά (katá) or πρός (prós)]
+
+Some authors use the verb as a deponent.
+
+# = Present: ἀγανακτέω, ἀγανακτέομαι (Uncontracted)
+
+# = Present: ἀγανακτῶ, ἀγανακτοῦμαι (Contracted)
+
+# = Future: ἀγανακτήσω, ἀγανακτήσομαι
+
+# ========== ᾰ̓γᾰπᾰ́ω • (agapáō) (chiefly Attic, Doric, Koine)
+
+    (Tragic Greek) To show affection for the dead
+    (transitive) To treat with affection, be fond of, love
+    (passive) To be beloved
+    (transitive, rare) To caress, pet
+    (transitive, intransitive) I am pleased with, take pleasure in, like
+    (New Testament, transitive) To show brotherly love or agape to
+
+# = Present: ἀγαπᾰ́ω, ἀγαπᾰ́ομαι (Uncontracted)
+
+# = Present: ἀγαπῶ, ἀγαπῶμαι (Contracted)
+
+# = Future: ἀγαπήσω, ἀγαπήσομαι, αγαπηθήσομαι
+
+# = Aorist: ἠγάπησᾰ, ἠγαπησᾰ́μην, ἠγαπήθην
+
+# = Perfect: ἠγάπηκᾰ
+
+# = Pluperfect: ἠγαπήκειν
+
+# ========== ἀγγαρεύω • (angareúō)
+
+    (transitive) To dispatch as a courier
+    (transitive) To consign one to some task, requisition, press into service
+
+# = Present: ἀγγαρεύω, ἀγγαρεύομαι
+# = Future: ἀγγαρεύσω, ἀγγαρεύσομαι
+
+# = Aorist: ἠγγάρευσᾰ, ἠγγαρευσᾰ́μην
+
+# ========== ἀγγέλλω • (angéllō)
+
+    (transitive, intransitive) To carry, deliver, pass on, relay (a message, information, news, a command, instructions); to announce, report
+    (middle, only present) To announce myself
+
+The person told generally takes the dative case, with the message in accusative or set up with a preposition, such as περί (perí, “about”).
+
+# = Present: ἀγγέλλω, ἀγγέλλομαι
+
+# = Future: ἀγγελέω, ἀγγελέομαι, ἀγγελθήσομαι (Epic)
+# = Future: ἀγγελέω, ἀγγελέομαι, ἀγγελθήσομαι (Ionic)
+# = Future: ἀγγελέω, ἀγγελέομαι, ἀγγελθήσομαι (Uncontracted)
+# = Future: ἀγγελῶ, ἀγγελοῦμαι, ἀγγελθήσομαι (Contracted)
+# = Future: ἀγγελήσομαι (Koine)
+# = Future: ἀγγελῐ́ω, ἀγγελῐ́ομαι (Doric)
+# = Aorist: ἤγγειλᾰ, ἠγγειλᾰ́μην, ἠγγέλθην (Epic)
+# = Aorist: ἤγγειλᾰ, ἠγγειλᾰ́μην, ἠγγέλθην (Attic)
+# = Aorist: ἤγγελον, ἠγγελόμην, ἠγγέλην (Koine, active and middle rare)
+
+# = Perfect: ἤγγελκᾰ, ἤγγελμαι
+
+# ========== ἀγείρω • (ageírō)
+
+    to collect, gather
+Conjugation
+
+# = Present: ἀγείρω, ἀγείρομαι
+# = Future: ἀγερέω, ἀγερέομαι, ἀγερήσομαι (Uncontracted)
+
+# = Future: ἀγερῶ, ἀγεροῦμαι, ἀγερήσομαι (Contracted)
+
+# = Aorist: ἤγειρᾰ, ἠγειρᾰ́μην, ἠγέρθην
+
+# = Aorist: ἠγερόμην
+
+# = Pluperfect: ἀγηγέρμην
+
+# ========== ἁγιάζω • (hagiázō)
+
+    Koine form of ἁγίζω (hagízō)
+
+# = Present: ἁγιάζω, ἁγιάζομαι
+
+# ========== ἁγίζω • (hagízō) (Attic, Doric)
+
+    (transitive) To hallow, make sacred, especially by burning a sacrifice
+
+# = Present: ἁγίζω, ἁγίζομαι
+# = Future: ἁγιέω, ἁγιέομαι (Uncontracted)
+
+# = Future: ἁγιῶ, ἁγιοῦμαι (Contracted)
+
+# ========== ᾰ̔γνῐ́ζω • (hagnízō) (Attic, Koine)
+
+    (transitive) To make pure, to purify, cleanse away, especially by water
+    (transitive) To hallow the dead by fire
+        (transitive) To burn up, destroy
+
+# = Present: ᾰ̔γνῐ́ζω, ᾰ̔γνῐ́ζομαι
+
+# = Future: ᾰ̔γνῐέω, ᾰ̔γνῐέομαι (Uncontracted)
+
+# = Future: ᾰ̔γνῐῶ, ᾰ̔γνῐοῦμαι (Contracted)
+
+# = Aorist: ἥγνῐσᾰ, ἡγνῐσᾰ́μην, ἡγνῐ́σθην
+
+# = Perfect: ἥγνῐκᾰ, ἥγνῐσμαι
+
+# ========== ἀγνοέω • (agnoéō)
+
+    (transitive, intransitive) To not perceive or recognize, to not know, to fail to understand, to be ignorant, to forget.
+    (transitive, intransitive, litotes, with negative) To not be ignorant, to know well
+    (intransitive) To sin or act unethically out of ignorance.
+
+# = Present: ἀγνοέω, ἀγνοέομαι (Uncontracted)
+
+# = Present: ἀγνοῶ, ἀγνοοῦμαι (Contracted)
+
+# = Present: ἀγνοιέω, ἀγνοιέομαι (Uncontracted)
+
+# = Present: ἀγνοιέω, ἀγνοιεῦμαι (Uncontracted)
+
+# = Future: ἀγνοήσομαι, ἀγνοηθήσομαι
+
+# = Aorist: ἠγνόησᾰ, ἠγνοησᾰ́μην, ἠγνοήθην
+
+# = Aorist: ἠγνοίησᾰ (Epic)
+# = Perfect: ἠγνόηκᾰ, ἠγνόημαι
+
+# = Pluperfect: ἠγνοήκειν, ἠγνοήμην
+
+# ========== ἀγνώσσω • (agnṓssō)
+
+    poetic and Koine form of ἀγνοέω (agnoéō)
+
+# ========== ᾰ̓γορᾰ́ζω • (agorázō)
+
+    (intransitive) to be in the market, to frequent it
+    (transitive) to buy in the market, buy, purchase
+    (intransitive) to haunt the market, lounge there, as a mark of idle fellows
+
+# = Present: ᾰ̓γορᾰ́ζω, ᾰ̓γορᾰ́ζομαι
+# = Future: ᾰ̓γορᾰ́σω, ᾰ̓γορᾰ́σομαι
+
+# = Future: ᾰ̓γορέω, ᾰ̓γορέομαι (Uncontracted)
+
+# = Future: ᾰ̓γορῶ, ᾰ̓γοροῦμαι (Contracted)
+
+# = Aorist: ἠγόρᾰσᾰ, ἠγορᾰσᾰ́μην, ἠγορᾰ́σθην
+
+# = Perfect: ἠγόρᾰκᾰ, ἠγόρᾰσμαι
+
+# ========== ἀγορεύω • (agoreúō)
+
+    to speak in the assembly
+    to say, speak
+    to proclaim
+Only the present and imperfect of the simple verb occur. The rest of the tenses are only used in compounds.
+
+# = Present: ἀγορεύω, ἀγορεύομαι
+
+# = Future: ἀγορεύσω
+
+# = Aorist: ἠγόρευσᾰ, ἠγορευσᾰ́μην, ἠγορεύθην
+
+# = Perfect: ἠγόρευκᾰ, ἠγόρευμαι
+
+# ========== ἀγραυλέω • (agrauléō) (Attic, Koine)
+
+    (intransitive, stative) To live outside
+
+# = Present: ἀγραυλέω, ἀγραυλέομαι (Uncontracted)
+
+# = Present: ἀγραυλῶ, ἀγραυλοῦμαι (Uncontracted)
+
+# ========== ἀγρεύω • (agreúō) (Attic, Ionic, Koine)
+
+    (transitive) To take by hunting or fishing, catch, take
+        (transitive, figuratively) to hunt after, thirst for
+
+# = Present: ἀγρεύω, ἀγρεύομαι
+# = Future: ἀγρεύσω, ἀγρεύσομαι, ἀγρευθήσομαι
+
+# = Aorist: ἤγρευσᾰ, ἠγρευσᾰ́μην, ἠγρεύθην
+
+# ========== ἀγρυπνέω • (agrupnéō) (Epic, Attic, Koine)
+
+    (intransitive) To lie awake, be wakeful, to suffer from sleeplessness
+        (figuratively, intransitive) To be watchful
+
+# = Present: ἀγρυπνέω, ἀγρυπνέομαι (Uncontracted)
+
+# = Present: ἀγρυπνῶ, ἀγρυπνοῦμαι (Contracted)
+
+# ==========
+# = Present: ἄγχω, ἄγχομαι
+# = Future: ἄγξω
+
+# = Aorist: ἦγξᾰ
+
+# ========== ᾰ̓́γω • (ágō)
+
+    (transitive) To lead, fetch, bring along (a living creature), take with
+    (transitive) To carry off as captives or booty
+    (transitive) To guide, command (an army, a ship); to march in war
+    (transitive) To draw out (a line, wall, and so on)
+    (geometry) To draw (a line) or describe (a plane)
+    (transitive) To hold (an event); to celebrate or observe (festival)
+    (transitive) To weigh down a scale by a certain amount, to have a certain weight
+    (middle) I take for myself
+
+# = Present: ᾰ̓́γω, ᾰ̓́γομαι
+
+# = Future: ᾰ̓́ξω, ᾰ̓́ξομαι, ᾰ̓χθήσομαι
+
+# = Aorist: ἤγαγον, ἠγαγόμην
+
+# = Aorist: ἦξᾰ, ἠξᾰ́μην, ἤχθην
+
+# = Perfect: ἦχᾰ, ἦγμαι
+
+# = Perfect: ᾰ̓γήγοχᾰ
+
+# = Perfect: ᾰ̓γᾱ́γοχᾰ (Doric)
+
+# = Perfect: ᾰ̓γήοχᾰ
+
+# = Perfect: ᾰ̓γέωχᾰ
+
+# = Pluperfect: ᾰ̓γηόχειν
+
+# ========== ᾰ̓δῐκέω • (adikéō)
+
+    (intransitive) to do wrong, to sin, break the law
+    (transitive) to do one wrong, to wrong one, to injure [+accusative = someone]
+
+# = Present: ἀδικέω, ἀδικέομαι (Uncontracted)
+
+# = Present: ἀδικῶ, ἀδικοῦμαι (Contracted)
+
+# = Future: ἀδικήσω, ἀδικήσομαι, ἀδικηθήσομαι
+
+# ========== ᾄδω • (ā́idō)
+
+    Alternative form of ἀείδω (aeídō, “I sing”)
+
+# = Present: ᾄδω, ᾄδομαι
+# = Future: ᾄσω, ᾄσομαι, ᾀσθήσομαι (active rare)
+
+# = Aorist: ᾖσᾰ, ᾐσᾰ́μην, ᾔσθην
+
+# = Perfect: ᾖμαι
+
+# = Pluperfect: ᾔμην
+
+# ========== ἀείδω • (aeídō) (Epic, Tragic, Ionic, Doric)
+
+    (transitive, intransitive) To sing, chant, praise
+    (transitive, intransitive) To make various noises: hoot, howl, croak
+    (transitive) To celebrate, praise
+
+# = Present: ἀείδω, ἀείδομαι
+
+# = Present: ᾄδω, ᾄδομαι
+
+# = Future: ἀείσω, ἀείσομαι, ἀεισθήσομαι (Usually middle, active is rare)
+
+# = Future: ᾄσω, ᾄσομαι, ᾀσθήσομαι (Attic)
+# = Future: ᾅσομαι (Epic)
+# = Aorist: ἤεισᾰ, ἠεισᾰ́μην, ἠείσθην
+
+# = Aorist: ᾖσᾰ, ᾐσᾰ́μην, ᾔσθην (Attic)
+# = Aorist: ἄεισᾰ, ἀεισᾰ́μην, ἀείσθην (Epic)
+# = Perfect: ᾖσμαι
+
+# = Pluperfect: ᾔσμην
+
+# ========== ἀείρω • (aeírō) (Epic, Ionic, poetic)
+
+    (transitive) to lift up, raise, support
+        (of armies, ships, transitive) to get the fleet under sail
+    (transitive) to bear, sustain
+    (transitive) to raise up, exalt
+        (transitive) to raise by words, praise, extol
+    (transitive) to lift and take away, remove
+        (transitive, with genitive) to take away from
+        (Koine, transitive) to take off, kill
+    (middle, transitive) to take up for oneself, to win, gain
+        (transitive) to take upon oneself, undergo
+            (transitive) to undertake, begin
+        (transitive) to raise up
+        (transitive) to take away
+
+# = Present: ἀείρω, ἀείρομαι
+
+# = Future: ἀρέω, ἀρέομαι, ἀρθήσομαι (Uncontracted)
+
+# = Future: ἀρῶ, ἀροῦμαι, ἀρθήσομαι (Contracted)
+
+# = Aorist: ἤειρᾰ, ἠειρᾰ́μην, ἠέρθην
+
+# = Perfect: ἦρκᾰ, ἤερμαι
+
+# ========== ἅζομαι • (házomai) (Epic)
+
+    to dread, stand in awe of, reverence
+
+# = Present: ἅζομαι
+
+# = Present: ᾰ̓́ημῐ (Poetic)
+
+# ========== ᾱ̓θλέω • (āthléō) (Epic, Attic, Koine)
+
+    (transitive, intransitive) to contend for a prize, combat, wrestle [+dative = with or against someone]
+    to be an athlete, contend for a prize in games
+
+# = Present: ᾱ̓θλέω, ᾱ̓θλέομαι (Uncontracted)
+
+# = Present: ᾱ̓θλῶ, ᾱ̓θλοῦμαι (Contracted)
+
+# = Future: ᾱ̓θλήσω, ᾱ̓θλήσομαι, ᾱ̓θληθήσομαι
+
+# = Aorist: ἤθλησᾰ, ἠθλησᾰ́μην, ἠθλήθην
+
+# = Perfect: ἤθληκᾰ, ἤθλημαι
+
+# = Pluperfect: ἠθλήκειν, ἠθλήμην
+
+# ========== αἰδέομαι • (aidéomai)
+
+    to be ashamed
+        Synonyms: αἰσχῡ́νομαι (aiskhū́nomai)
+    to fear
+Conjugation
+
+# = Present: αἰδέομαι (Uncontracted)
+
+# = Present: αἰδοῦμαι (Contracted)
+
+# = Future: αἰδέσομαι, αἰδεσθήσομαι
+
+# = Aorist: ᾐδεσᾰ́μην, ᾐδέσθην
+
+# = Perfect: ᾔδεσμαι
+
+# = Pluperfect: ᾐδέσμην
+
+# ========== αἴθω • (aíthō) (Epic, Attic, Ionic, Doric)
+
+    (transitive) To ignite, kindle, light
+    (rarely intransitive, more commonly in the middle) To burn, blaze
+
+The Iliad and Odyssey only use forms of the participle αἰθόμενος (aithómenos, “burning”).
+
+# = Present: αἴθω, αἴθομαι
+
+# ========== αἰνέω • (ainéō) (poetic, Ionic)
+
+    (transitive) I tell of, speak of
+        (transitive) I praise, approve
+            (Christianity, transitive) I praise, glorify
+        (transitive) I approve, advise, recommend
+        (transitive) I promise or vow
+
+# = Present: αἰνέω, αἰνέομαι (Uncontracted)
+
+# = Present: αἰνῶ, αἰνοῦμαι (Contracted)
+# = Future: αἰνήσω, αἰνήσομαι, αἰνηθήσομαι
+
+# = Future: αἰνέσω, αἰνέσομαι, αἰνεθήσομαι (Attic)
+# = Aorist: ᾔνησᾰ, ᾐνησᾰ́μην, ᾐνήθην
+
+# = Aorist: αἴνησᾰ, αἰνησᾰ́μην, αἰνήθην (Doric)
+# = Aorist: ᾔνεσᾰ, ᾐνεσᾰ́μην, ᾐνέθην (Attic)
+# = Aorist: αἴνεσᾰ, αἰνεσᾰ́μην, αἰνέθην (Ionic)
+# = Perfect: ᾔνεκᾰ, ᾔμημαι
+
+# ========== αἱρέω • (hairéō) uncontracted form of αἱρῶ (hairô, “to hang”)
+
+    (transitive) to take, grasp, seize
+    (transitive) to win, gain
+    (transitive) to convict, win a conviction
+    (figuratively, transitive) to grasp with the mind, understand
+    (middle, transitive) to take for oneself, choose
+    (middle, transitive) to prefer
+
+# = Present: αἱρέω, αἱρέομαι (Uncontracted)
+
+# = Present: αἱρῶ, αἱροῦμαι (Contracted)
+
+# = Future: αἱρήσω, αἱρήσομαι, αἱρεθήσομαι
+
+# = Aorist: εἷλον, εἱλόμην
+
+# = Aorist: ᾕρησᾰ, ᾑρησᾰ́μην, ᾑρέθην (Koine)
+# = Perfect: ᾕρηκᾰ, ᾕρημαι
+
+# = Perfect: ἀραίρηκᾰ, ἀραίρημαι (Epic)
+
+# = Future perfect: ᾑρήσομαι (rare)
+
+# ========== αἱρῶ • (hairô)
+
+    Contracted form of αἱρέω (hairéō, “take, grasp, seize”)
+
+# ========== αἴρω • (aírō) (Attic)
+
+    Contracted form of ἀείρω (aeírō, “to lift, remove”)
+
+# = Present: αἴρω, αἴρομαι
+# = Future: ἀρέω, ἀρέομαι, ἀρθήσομαι (Uncontracted)
+
+# = Future: ἀρῶ, ἀροῦμαι, ἀρθήσομαι (Contracted)
+
+# = Aorist: ἦρᾰ, ἠρᾰ́μην, ἤρθην
+
+# = Perfect: ἦρκᾰ, ἦρμαι
+
+# ========== αἰσθάνομαι • (aisthánomai)
+
+    (transitive) I perceive, apprehend, notice [+genitive or accusative = something], [+nominative participle = oneself doing, that one is doing], [+genitive and genitive participle = that someone or something is doing, does], with ὅτι (hóti) or ὡς (hōs) and a verb: that ...
+    (transitive, intransitive) I understand
+    (transitive) I learn
+
+# = Present: αἰσθάνομαι
+# = Future: αἰσθήσομαι, αἰσθηθήσομαι
+
+# = Future: αἰσθανθήσομαι
+
+# = Aorist: ᾐσθόμην, ᾐσθήθην
+
+# = Aorist: ᾐσθησᾰ́μην, ᾐσθήθην
+
+# = Perfect: ᾔσθημαι
+
+# ========== ἀΐσσω • (aḯssō)
+
+    (intransitive) I move quickly, dart, shoot
+    (intransitive) I am eager for with the prepositions εἰς (eis), ἐπί (epí), or πρός (prós) governing the accusative
+
+# = Present: ἀΐσσω, ἀΐσσομαι
+
+# = Future: ἀΐξω
+
+# = Future: ᾄξω
+
+# = Aorist: ἤϊξᾰ, ἠϊξᾰ́μην, ἠΐχθην
+
+# ========== αἰσχῡνω • (aiskhūnō)
+
+    (active) to disgrace
+    (in the mediopassive) to be ashamed
+        Synonyms: αἰδέομαι (aidéomai)
+Conjugation
+
+# = Present: αἰσχῡ́νω, αἰσχῡ́νομαι
+# = Future: αἰσχῡνέω, αἰσχῡνέομαι, αἰσχῡνθήσομαι (Uncontracted)
+
+# = Future: αἰσχῡνῶ, αἰσχῡνοῦμαι, αἰσχῡνθήσομαι (Contracted)
+
+# = Aorist: ᾔσχῡνᾰ, ᾐσχῡνᾰ́μην, ᾐσχῡ́νθην
+
+# ========== αἰτέω • (aitéō)
+
+    (usually transitive) to ask for, crave, demand, beg [+accusative = something], [+two accusatives = something from someone]; or with object omitted
+        (transitive) to ask for [+accusative and
+# = Present: αἰτέω, αἰτέομαι (Uncontracted)
+
+# = Present: αἰτῶ, αἰτοῦμαι (Contracted)
+
+# = Future: αἰτήσω, αἰτήσομαι
+
+# = Aorist: ᾔτησᾰ, ᾐτησᾰ́μην
+
+# = Perfect: ᾔτηκᾰ, ᾔτημαι
+
+# = Pluperfect: ᾐτήκειν, ᾐτήμην
+
+# ========== ἀΐω • (aḯō)
+
+    (poetic) perceive (with genitive or accusative)
+        (with the ear) to hear
+        (with the eye) to see
+        To have heard
+        To listen, obey
+
+# = Present: ᾰ̓ῐ̈́ω
+
+# ========== ἀκμάζω • (akmázō) (Attic, Ionic, Koine)
+
+    (intransitive) to be at or to reach the highest point (often figuratively)
+    (intransitive) to be in one's prime, be ripe
+    to have plenty of [+dative]
+Conjugation
+
+# = Present: ᾰ̓κμᾰ́ζω
+# = Aorist: ἤκμᾰσᾰ
+
+# ========== ἀκολουθέω • (akolouthéō)
+
+    (transitive, intransitive) to follow, go after, go with [+dative or rarely accusative = someone] or with prepositions such as σύν (sún) and the dative, μετά (metá) and the genitive, or ἐπί (epí) and the accusative
+    (figuratively)
+        (transitive) to follow one in a thing, let oneself be led by [+dative or rarely accusative = someone or something]
+        (transitive) to follow the thread of a discourse
+        (of things, transitive) to follow, be consequent on
+        (intransitive) it follows
+
+# = Present: ἀκολουθέω, ἀκολουθέομαι (Uncontracted)
+
+# = Present: ἀκολουθῶ, ἀκολουθοῦμαι (Contracted)
+
+# = Future: ἀκολουθήσω, ἀκολουθήσομαι
+
+# ========== ᾰ̓κούω • (akoúō)
+
+    (transitive) I hear [+accusative = something], [+genitive = someone]
+    (transitive) I hear about, learn
+    (transitive) I listen, pay attention to, heed
+    (transitive) I understand
+    (transitive) I obey
+    (passive) I am called, am spoken of, am known as
+Usually, the object which is heard takes the accusative case, while the speaker, when present, takes the genitive. Sometimes the object is in the genitive, or the person is introduced with a preposition.
+Attic uses the future middle ἀκούσομαι (akoúsomai), while future active ἀκούσω (akoúsō) appears in Koine.
+
+# = Present: ᾰ̓κούω, ᾰ̓κούομαι
+
+# = Future: ᾰ̓κούσω, ᾰ̓κούσομαι, ᾰ̓κουσθήσομαι (active is late)
+
+# = Aorist: ἤκουσᾰ, ἠκουσᾰ́μην, ἠκούσθην
+
+# = Aorist: ᾰ̓́κουσᾰ, ᾰ̓κουσᾰ́μην, ᾰ̓κούσθην (Epic)
+# = Perfect: ᾰ̓κήκοᾰ
+
+# = Perfect: ἄκουκᾰ (Laconian)
+
+# = Perfect: ᾰ̓κήκουκᾰ (late Ionic)
+
+# = Pluperfect: ἠκηκόειν (Old Attic)
+
+# ========== ἀκροάομαι • (akroáomai)
+
+    (middle only) I listen.
+
+# = Present: ἀκροᾰ́ομαι (Uncontracted)
+
+# = Present: ἀκροῶμαι (Contracted)
+
+# = Future: ἀκροᾱ́σομαι
+
+# = Aorist: ἠκροᾱσᾰ́μην
+
+# = Perfect: ἠκρόαμαι
+
+# = Pluperfect: ἠκροάμην
+# ========== ἀλείφω • (aleíphō)
+
+    (active, transitive) To anoint someone else (smear the skin with oil after bathing)
+    (middle, intransitive, reflexive) To anoint oneself
+Often appears with the adverb λίπα (lípa, “richly”) and with ἐλαίῳ (elaíōi, “with oil”, instrumental dative).
+
+# = Present: ἀλείφω, ἀλείφομαι
+# = Future: ἀλείψω, ἀλείψομαι, ἀλειφθήσομαι
+
+# = Aorist: ἤλειψᾰ, ἠλειψᾰ́μην, ἠλείφθην
+
+# = Perfect: ἀλήλιφᾰ, ἀλήλιμμαι
+
+# ========== ἀλέξω • (aléxō)
+
+    to keep off, turn aside
+    to guard, protect, defend, help
+    (middle) to recompense, requite
+
+Many of the forms seem to be formed as if from *ἀλεξέω (*alexéō), e.g. ἀλεξήσω (alexḗsō), while other seem to be formed from ἀλέκω (alékō), e.g. ἤλεξα (ḗlexa).
+
+# = Present: ᾰ̓λέξω, ᾰ̓λέξομαι
+
+# = Present: ᾰ̓λέκω, ᾰ̓λέκομαι
+
+# = Future: ᾰ̓λεξήσω, ᾰ̓λεξήσομαι
+
+# = Future: ᾰ̓λέξω, ᾰ̓λέξομαι
+
+# = Aorist: ἤλεξᾰ, ἠλεξᾰ́μην
+
+# ========== ἀλέω • (aléō)
+
+    (transitive) To grind, bruise, pound, mill
+
+# = Present: ᾰ̓λέω, ᾰ̓λέομαι (Uncontracted)
+
+# = Present: ᾰ̓λῶ, ᾰ̓λοῦμαι (Contracted)
+
+# = Aorist: ἤλεσᾰ, ἠλεσᾰ́μην, ἠλέσθην
+
+# = Aorist: ᾰ̓́λεσσᾰ, ᾰ̓λεσσᾰ́μην
+
+# = Perfect: ᾰ̓λήλεκᾰ, ᾰ̓λήλεσμαι
+
+# = Perfect: ᾰ̓λήλεμαι
+
+# ========== ᾰ̔λῐ́ζω • (halízō) (Attic, Koine)
+
+    (transitive) To make salty; to salt or salinate
+
+Conjugation
+
+# = Present: ᾰ̔λῐ́ζω, ᾰ̔λῐ́ζομαι
+
+# = Future: ᾰ̔λῐσθήσομαι
+# = Aorist: ἥλῐσᾰ, ἡλῐ́σθην
+
+# ========== ἁλίσκομαι • (halískomai)
+
+    to be captured
+Conjugation
+
+# = Present: ᾰ̔λῐ́σκομαι
+# = Future: ᾰ̔λώσομαι
+
+# = Aorist: ἑᾱ́λων (Attic)
+
+# = Aorist: ἥλων (Epic, Ionic)
+
+# = Perfect: ἑᾰ́λωκᾰ
+
+# = Perfect: ἥλωκᾰ
+
+# = Pluperfect: ἡλώκειν
+
+# ========== ἀλλοιόω • (alloióō)
+
+    (transitive) to make different, change, alter
+    (passive)
+        to become different, be changed, undergo an alteration
+        to be estranged
+        to be changed for the worse
+        to be deranged in mind
+
+# = Present: ἀλλοιῶ, ἀλλοιοῦμαι (Contracted)
+
+# = Present: ἠλλοιῶ, ἠλλοιοῦμαι (Contracted)
+
+# = Future: ἀλλοιώσω, ἀλλοιώσομαι, ἀλλοιωθήσομαι
+# XXXXXXXXXXXX ?
+
+# ᾰ̔μᾰρτᾰ́νω • (hamartánō)
+    (transitive, intransitive) to miss, miss the mark, especially of a thrown spear [+genitive = something]
+        (transitive, intransitive) to fail at, miss one's point, go wrong in [+genitive = something]
+        (transitive) to be deprived of, to lose [+genitive = something]
+        (rarely transitive) to fail to do, neglect [+genitive = something]
+    (intransitive) to fail, do wrong, err, sin
+
+# = Present: ᾰ̔μᾰρτᾰ́νω, ᾰ̔μᾰρτᾰ́νομαι
+# = Future: ᾰ̔μᾰρτήσω, ᾰ̔μᾰρτήσομαι, ᾰ̔μᾰρτηθήσομαι
+
+# = Aorist: ἥμᾰρτον, ἡμᾰρτόμην, ἡμᾰρτήθην
+
+# = Aorist: ἡμᾰ́ρτησᾰ, ἡμᾰρτησᾰ́μην
+
+# = Perfect: ἡμᾰ́ρτηκᾰ, ἡμᾰ́ρτημαι
+
+# ========== ᾰ̓μᾰρῠ́σσω • (amarússō)
+
+    (intransitive) I sparkle, twinkle
+    (intransitive) I shoot forth, dart
+    I dazzle
+
+# = Present: ᾰ̓μᾰρῠ́σσω, ᾰ̓μᾰρῠ́σσομαι
+
+# ========== ἀμαυρόω • (amauróō)
+
+    to darken
+    to weaken
+    (in passive) to grow dark, dim, or pale
+Conjugation
+
+# = Present: ἀμαυρῶ, ἀμαυροῦμαι (Contracted)
+# = Future: ἀμαυρώσω, ἀμαυρώσομαι, ἀμαυρωθησήσομαι
+
+# = Aorist: ἠμαύρωσᾰ, ἠμαυρωσᾰ́μην, ἠμαυρώθην
+
+# = Aorist: ἀμαύρωσᾰ, ἀμαυρωσᾰ́μην, ἀμαυρώθην (unaugmented)
+
+# = Perfect: ἠμαύρωκᾰ, ἠμαύρωμαι
+
+# = Pluperfect: ἠμαυρώκειν, ἠμαυρώμην
+# ========== ᾰ̓μείβω • (ameíbō)
+
+    (active)
+        (transitive) to exchange [+accusative and genitive = something for something]
+            (transitive) to give in exchange often with the preposition ἀντί (antí)
+            (transitive) to take in exchange
+        (transitive) to pass in or out of a house
+    (middle)
+        (intransitive) to do in turn or alternately, alternate, move crosswise
+        (transitive) to reply, answer (also in compounds)
+        (transitive) repay, requite [+accusative and dative = someone for something]
+
+# = Present: ᾰ̓μείβω, ᾰ̓μείβομαι
+
+# = Future: ᾰ̓μείψω, ᾰ̓μείψομαι, ᾰ̓μειφθήσομαι
+
+# = Aorist: ἤμειψᾰ, ἠμειψᾰ́μην, ἠμείφθην
+
+# = Aorist: ᾰ̓́μειψᾰ, ᾰ̓μειψᾰ́μην (Epic)
+
+# ========== ἀμέλγω • (amélgō)
+
+    I milk
+    I press out, squeeze out, suck
+    I drink, sip, imbibe
+
+# = Present: ᾰ̓μέλγω, ᾰ̓μέλγομαι
+# = Future: ἀμέλξω, ἀμέλξομαι
+
+# ========== ᾰ̓μῡ́νω • (amū́nō)
+
+    (transitive) I keep off, ward off, defend, guard, assist [+accusative = something or someone], [+dative = from something or someone]
+    (transitive) I avenge, punish, repay, requite
+Generally, the object being protected received the accusative case, while the offending object receives the dative. The second sense, "avenge" is more common in the middle voice.
+
+# = Present: ᾰ̓μῡ́νω, ᾰ̓μῡ́νομαι
+
+# = Future: ᾰ̓μῠνέω, ᾰ̓μῠνέομαι (Uncontracted)
+
+# = Future: ᾰ̓μῠνῶ, ᾰ̓μῠνοῦμαι (Contracted)
+
+# = Aorist: ἤμῡνᾰ, ἠμῡνᾰ́μην (Epic, Attic, Ionic)
+
+# = Aorist: ἠμῡ́ναθον, ἠμῡναθόμην (Epic, Attic, Ionic)
+
+# ========== ᾰ̓νᾰβαίνω • (anabaínō)
+
+    (transitive, intransitive) I go up, mount
+        (transitive, intransitive) I board a ship, embark
+        (intransitive) I mount
+        (of rivers, intransitive) I rise
+        (intransitive) I shoot up (rise rapidly)
+        (Attic, intransitive, often with ἐπὶ τὸ βῆμα (epì tò bêma)) I mount the tribune, i.e. rise to speak
+        (of animals, transitive, intransitive) I mount (i.e. to mate)
+        (of age)
+        (intransitive) I ascend to higher knowledge
+        (transitive) I surpass
+    (of events) I turn out
+        (intransitive, with καρδία (kardía)) I enter into one's heart
+        (intransitive) I come to, pass to
+    (intransitive) I go back
+
+# = Present: ᾰ̓νᾰβαίνω, ᾰ̓νᾰβαίνομαι
+# = Future: ᾰ̓νᾰβήσομαι
+
+# = Aorist: ᾰ̓νέβην
+
+# = Aorist: ᾰ̓νεβᾰ́θην
+
+# = Aorist: ᾰ̓νέβησᾰ, ᾰ̓νεβησᾰ́μην (active in causal sense)
+
+# = Perfect: ᾰ̓νᾰβέβηκᾰ, ᾰ̓νᾰβέβᾰμαι
+
+# ========== ᾰ̓νᾰβλέπω • (anablépō)
+
+    (intransitive) to look up, especially as a mark of confidence
+        (transitive) to look up at [+accusative or dative]
+        (with cognate accusative) to cast a look of
+    (intransitive) to see again, to recover one's sight
+
+# = Present: ᾰ̓νᾰβλέπω, ᾰ̓νᾰβλέπομαι
+
+# = Future: ᾰ̓νᾰβλέψω, ᾰ̓νᾰβλέψομαι
+
+# = Aorist: ᾰ̓νᾰ́βλεψᾰ, ᾰ̓νᾰβλεψᾰ́μην
+
+# ========== ᾰ̓νᾰγῐγνώσκω • (anagignṓskō)
+
+    (Epic, in the second aorist)
+        (transitive) to know well, know certainly
+        (transitive) to know again, recognize
+    (Attic, of written characters, transitive) to know them again, to read
+    (Ionic, causative, mostly in aorist, transitive) to persuade or induce one to do something
+
+Conjugation
+
+# = Present: ᾰ̓νᾰγῐγνώσκω, ᾰ̓νᾰγῐγνώσκομαι
+
+# = Future: ᾰ̓νᾰγνώσω, ᾰ̓νᾰγνώσομαι, ᾰ̓νᾰγνωσθήσομαι
+
+# = Aorist: ᾰ̓νέγνων
+
+# = Aorist: ᾰ̓νέγνωσᾰ (Ionic)
+# = Perfect: ᾰ̓νέγνωκᾰ, ᾰ̓νέγνωσμαι
+
+# ========== ᾰ̓νᾰγῑνώσκω • (anagīnṓskō)
+
+    Ionic and Koine form of ᾰ̓νᾰγῐγνώσκω (anagignṓskō)
+
+# ========== ᾰ̓νᾰγκᾰ́ζω • (anankázō)
+
+    (transitive, control verb) I force [+accusative and
+# = Present: ᾰ̓νᾰγκᾰ́ω, ᾰ̓νᾰγκᾰ́ομαι
+# = Future: ᾰ̓νᾰγκᾰ́σω, ᾰ̓νᾰγκᾰ́σομαι, ᾰ̓νᾰγκᾰσθήσομαι
+
+# = Aorist: ἠνᾰ́γκᾰσᾰ, ἠνᾰγκᾰσᾰ́μην, ἠνᾰγκᾰ́σθην
+
+# = Perfect: ἠνᾰ́γκᾰκᾰ, ἠνᾰ́γκᾰσμαι
+
+# = Pluperfect: ἠνᾰγκᾰ́κειν, ἠνᾰγκᾰ́σμην
+# ========== ᾰ̓νᾰ́γω • (anágō)
+
+    (active)
+        (transitive) to lead up from a lower place to a higher
+            (transitive) to lead up to the high sea, to take to sea, carry by sea
+            (transitive) to take up from the coast into the interior, especially from Asia Minor into Central Asia
+            (transitive) to bring up, especially from the dead
+            (transitive) to conduct
+            (transitive) to lift up, raise
+            (in various senses)
+        (transitive) to bring back
+            (transitive) to carry back, refer to its principles
+            (transitive) to reduce a syllogism to the first figure
+            to rebuild
+            (transitive) to reckon or calculate
+            (intransitive) to draw back, withdraw, retreat
+    (middle, passive)
+        (intransitive) to put out to sea, to set sail
+            (figuratively, intransitive) to put to sea, to make ready, prepare oneself
+
+# = Present: ᾰ̓νᾰ́γω, ᾰ̓νᾰ́γομαι
+# = Future: ᾰ̓νᾰ́ξω, ᾰ̓νᾰ́ξομαι
+
+# = Aorist: ᾰ̓νήγᾰγον, ᾰ̓νηγᾰγόμην
+
+# ========== ᾰ̓ναιρέω • (anairéō)
+
+    (active)
+        (transitive) to take up
+            (transitive) to take up and carry off, bear away
+            (transitive) to take up
+            (transitive) to take up bodies for burial
+        (transitive) to take away, make away with, destroy, kill
+            (of things, transitive) to abolish, annul, cancel
+            (transitive) to destroy (an argument), answer or confute it completely
+        (transitive) to appoint, ordain
+            (intransitive) to answer, give a response
+    (middle)
+        (transitive) to take up for oneself, take up
+            (transitive) to take up and carry off, snatch away
+            (transitive) to take up dead bodies for burial
+            (transitive) to take up in one's arms
+            (transitive) to conceive in the womb
+            (transitive) to take up money at interest
+        (transitive) to take upon oneself, undertake
+            (transitive) to accept as one's own
+        (transitive) to take back to oneself, undo what one has done, cancel
+
+# = Present: ἀναιρέω, ἀναιρέομαι (Uncontracted)
+
+# = Present: ἀναιρῶ, ἀναιροῦμαι (Contracted)
+
+# ========== ᾰ̓νᾰκαινόω • (anakainóō) (Koine)
+
+    (passive) I am renewed
+    (middle) I renew
+Conjugation
+
+# = Present: ᾰ̓νᾰκαινῶ, ᾰ̓νᾰκαινοῦμαι (Contracted)
+# = Aorist: ᾰ̓νεκαίνωσᾰ
+
+# = Perfect: ᾰ̓νᾰκεκαίνωμαι
+
+# ========== ἀναλάζομαι • (analázomai)
+
+    I take again
+
+# ========== ᾰ̓νᾰλᾰμβᾰ́νω • (analambánō)
+
+    (transitive) take up
+        (physically, transitive) take in one's hands
+        (figuratively, transitive) take up subjects in turn
+    (transitive) take back
+        (transitive) regain, recover
+        (transitive) restore, repair
+        (transitive) resume
+Conjugation
+
+# = Present: ᾰ̓νᾰλᾰμβᾰ́νω
+# = Future: ᾰ̓νᾰλήψομαι
+
+# = Aorist: ᾰ̓νέλᾰβον
+
+# = Perfect: ᾰ̓νείληφᾰ, ᾰ̓νείλημμαι
+
+# = Pluperfect: ᾰ̓νειλήφειν, ᾰ̓νειλήμμην
+# ========== ἀνᾱλίσκω • (anālískō)
+
+    to spend
+    to kill, destroy
+Conjugation
+
+# = Present: ᾰ̓νᾱλῐ́σκω, ᾰ̓νᾱλῐ́σκομαι
+# = Future: ᾰ̓νᾱλώσω, ᾰ̓νᾱλώσομαι, ᾰ̓νᾱλωθήσομαι
+
+# = Aorist: ᾰ̓νήλωσᾰ, ᾰ̓νηλωσᾰ́μην, ᾰ̓νηλώθην
+
+# = Perfect: ᾰ̓νήλωκᾰ, ᾰ̓νήλωμαι
+
+# = Pluperfect: ᾰ̓νηλώκειν, ᾰ̓νηλώμην
+# ========== ᾰ̓νᾰμῐμνήσκω • (anamimnḗskō)
+
+    (active) to remind
+    (passive) to remember
+
+# = Present: ᾰ̓νᾰμῐμνήσκω, ᾰ̓νᾰμῐμνήσκομαι
+# = Future: ᾰ̓νᾰμνήσω, ᾰ̓νᾰμνήσομαι, ᾰ̓νᾰμνησθήσομαι
+
+# = Aorist: ᾰ̓νέμνησᾰ, ᾰ̓νεμνησᾰ́μην, ᾰ̓νεμνήσθην
+
+# = Perfect: ᾰ̓νᾰμέμνημαι
+
+# = Pluperfect: ᾰ̓νεμεμνήμην
+# ========== ᾰ̓νᾰ́πτω • (anáptō)
+
+    (transitive, ditransitive) bind or make fast to
+            (middle, transitive) moor, form a close connection with, confer, to fasten to oneself
+            (passive) be fastened to, cling
+        (transitive) hang up in a temple, offer up
+        (figuratively, transitive) attach to, ascribe, refer
+    (transitive) light up, kindle
+        (intransitive) to be lighted up, ignited
+
+# = Present: ᾰ̓νᾰ́πτω, ᾰ̓νᾰ́πτομαι
+# = Future: ᾰ̓νᾰ́ψω, ᾰ̓νᾰ́ψομαι
+
+# = Aorist: ᾰ̓νήφθην
+
+# = Perfect: ᾰ̓́νημμαι
+
+# ========== ᾰ̓νᾰσκᾰ́πτω • (anaskáptō)
+
+    to dig up
+    to extirpate (of plants)
+    to raze to the ground (of buildings)
+Conjugation
+
+# = Present: ᾰ̓νᾰσκᾰ́πτω, ᾰ̓νᾰσκᾰ́πτομαι
+# = Future: ᾰ̓νᾰσκᾰ́ψω, ᾰ̓νᾰσκᾰ́ψομαι, ᾰ̓νᾰσκᾰφήσομαι
+
+# = Aorist: ᾰ̓νέσκᾰψᾰ, ᾰ̓νεσκᾰψᾰ́μην, ᾰ̓νεσκᾰ́φην
+
+# = Perfect: ᾰ̓νέσκᾰφᾰ, ᾰ̓νέσκᾰμμαι
+
+# = Pluperfect: ᾰ̓νεσκᾰ́φειν, ᾰ̓νεσκᾰ́μμην
+# ========== ᾰ̓νᾰχρονῐ́ζομαι • (anakhronízomai)
+
+    (intransitive) to be an anachronism
+
+# = Present: ᾰ̓νᾰχρονῐ́ζομαι
+
+# ========== ἁνδάνω • (handánō)
+
+    (transitive) to please, delight, gratify [+dative = someone]
+    (in Herodotus, of the opinion of a group of people, transitive) to be thought, decided, chosen [+dative = by someone]
+
+In the second definition, the opinion is the subject of the verb and the person who has the opinion is the indirect object (dative).
+
+# = Present: ἁνδᾰ́νω, ἁνδᾰ́νομαι
+
+# = Future: ᾰ̔δήσω
+
+# = Aorist: ἕᾰδον (Epic, Ionic)
+
+# = Aorist: εὔᾰδον (Epic)
+
+# = Aorist: ᾰ̔́δον (Epic)
+
+# = Perfect: ᾰ̔́δηκᾰ
+
+# = Perfect: ἕᾱδᾰ
+
+# ========== ᾰ̓νῐ́στημῐ • (anístēmi)
+
+    active of the present, imperfect, future, and first aorist, and the perfect active ᾰ̓νέστᾰκᾰ (anéstaka)
+        (transitive) to make to stand up, raise up
+            (transitive) to raise from sleep, wake up
+            (transitive) to raise from the dead
+            (after Homer, of things, transitive) to set up, build
+                (transitive) to build up again, restore
+            (transitive) to put up for sale
+        (transitive) to rouse to action, stir up
+        (transitive) to make people rise, break up an assembly, to adjourn
+            (transitive) to make people emigrate, transplant
+            (transitive) to make suppliants rise and leave sanctuary
+            (transitive) to make to ascend
+            (of sportsmen, transitive) to put up game, to spring
+    other tenses and voices
+        (intransitive) to stand up, rise, to speak
+            (intransitive) to rise from bed
+            (intransitive) to rise from the dead
+            (intransitive) to rise from an illness, recover
+            (intransitive) to rise as a champion
+            (intransitive) to rise up, rear itself
+            (intransitive) to be set up
+            (of a river) to rise
+        (intransitive) to rise to go, set out, go away
+            (intransitive) to be compelled to migrate, to be removed
+            (of a law court, intransitive) to rise
+            (of game, intransitive) to be put up
+
+# = Present: ᾰ̓νῐ́στημῐ, ᾰ̓νῐ́στᾰμαι
+# = Future: ᾰ̓νᾰστήσω, ᾰ̓νᾰστήσομαι, ᾰ̓νᾰστᾰθήσομαι
+
+# = Future: ᾰ̓νστήσω, ᾰ̓νστήσομαι (Poetic)
+# = Aorist: ᾰ̓νέστησᾰ, ᾰ̓νεστησᾰ́μην, ᾰ̓νεστᾰ́θην
+
+# = Aorist: ᾰ̓́νστησᾰ, ᾰ̓νστησᾰ́μην (Epic)
+# = Aorist: ᾰ̓νέστην, ᾰ̓νεστᾰ́μην
+
+# = Perfect: ᾰ̓νέστᾰκᾰ
+
+# = Perfect: ᾰ̓νέστηκᾰ
+
+# = Pluperfect: ᾰ̓νεστήκειν (Attic)
+
+# ========== ἀνοίγνυμι • (anoígnumi)
+
+    Synonym of ἀνοίγω (anoígō, “to open”)
+
+# = Present: ᾰ̓νοίγνῡμῐ, ᾰ̓νοίγνῠμαι
+
+ᾰ̓νοίγω • (anoígō)
+    to open
+        (figuratively) to lay open, unfold, disclose
+        (nautical) to get into the open sea, get clear of land
+    (passive) to be open, stand open, lie open
+
+# = Present: ᾰ̓νοίγω, ᾰ̓νοίγομαι
+# = Future: ᾰ̓νοίξω, ᾰ̓νοίξομαι
+
+# = Aorist: ᾰ̓νέῳξᾰ, ᾰ̓νεῳξᾰ́μην, ᾰ̓νεῴχθην
+
+# = Perfect: ᾰ̓νέῳχᾰ, ᾰ̓νέῳγμαι
+
+# = Pluperfect: ᾰ̓νεῴχειν, ᾰ̓νεῴγμην
+# ========== ἀντᾰποδῐ́δωμῐ • (antapodídōmi)
+
+    (transitive) I give back, requite, repay, give
+        (figuratively, transitive)
+    (transitive) I correspond to; I cause to correspond with
+        I make convertible
+        (grammar)
+        (intransitive) I correspond with
+        (intransitive) I give back insults, esp. tu quoque
+    (transitive) I give in turn
+    (transitive) I give back a sound
+
+# = Present: ἀντᾰποδῐ́δωμῐ, ἀντᾰποδῐ́δομαι
+# = Future: ἀντᾰποδώσω, ἀντᾰποδώσομαι
+
+# = Aorist: ἀντᾰπέδοτον, ἀντᾰπεδόμην, ἀντᾰπεδόθην
+
+# = Aorist: ἀντᾰπέδωκᾰ, ἀντᾰπεδωκᾰ́μην
+
+# = Perfect: ἀντᾰποδέδωκᾰ, ἀντᾰποδέδομαι
+
+# ========== ἀντλέω • (antléō)
+
+    (transitive, intransitive) I bale out bilge-water
+    (transitive, intransitive) I draw water
+    I search, seek
+    (transitive) I drain, exhaust
+
+# = Present: ἀντλέω, ἀντλέομαι (Uncontracted)
+
+# = Present: ἀντλῶ, ἀντλοῦμαι (Contracted)
+
+# = Future: ἀντλήσω
+
+# = Aorist: ἤντλησᾰ
+
+# ========== ἄνωγα • (ánōga) (Epic)
+
+    to order, command, bid
+    to advise, urge, prompt
+Conjugation
+
+# = Perfect: ἄνωγᾰ, ἄνωγμαι with present meaning (Epic)
+
+# = Pluperfect: ἀνώγειν with present or imperfect meaning (Epic)
+
+# = Future: ἀνώξω (Epic)
+# = Aorist: ἤνωξᾰ (Epic)
+
+# ========== ᾰ̓ξῐόω • (axióō) (Attic, Ionic)
+
+    to think or deem worthy
+        (transitive) to think one worthy, either in a good or bad sense [+accusative = someone], [+genitive = of something]
+            (transitive) to esteem, honor
+            (intransitive) to value at a certain price
+        (transitive) to think [+accusative = someone] worthy [+
+
+# = Present: ᾰ̓ξῐῶ, ᾰ̓ξῐοῦμαι (Contracted)
+# = Future: ᾰ̓ξῐώσω, ᾰ̓ξῐώσομαι, ᾰ̓ξῐωθήσομαι
+
+# = Aorist: ἠξῐώθην
+
+# = Perfect: ἠξῐ́ωκᾰ, ἠξῐ́ωμαι
+
+# ========== ᾰ̓παγγέλλω • (apangéllō)
+
+    (of a messenger, transitive, ditransitive) to bring tidings, report, announce [+accusative = something], [+dative = to someone]
+        (of a speaker or writer, transitive) to report, relate, narrate
+        (transitive) I recite, declaim
+    (transitive) I explain, interpret
+
+# = Present: ᾰ̓πᾰγγέλλω, ᾰ̓πᾰγγέλλομαι
+# = Future: ᾰ̓πᾰγγελέω, ᾰ̓πᾰγγελέομαι, ᾰ̓πᾰγγελθήσομαι (Uncontracted)
+
+# = Future: ᾰ̓πᾰγγελῶ, ᾰ̓πᾰγγελοῦμαι, ᾰ̓πᾰγγελθήσομαι (Contracted)
+
+# = Aorist: ᾰ̓πήγγειλᾰ, ᾰ̓πηγγειλᾰ́μην, ᾰ̓πηγγέλθην
+
+# = Aorist: ᾰ̓πηγγέλην (Koine)
+# = Perfect: ᾰ̓πήγγελκᾰ, ᾰ̓πήγγελμαι
+
+# ========== ᾰ̓παιτέω • (apaitéō)
+
+    (transitive) to demand back, demand in payment
+    (transitive) to require
+    (passive)
+        (of persons, transitive) to have something demanded of one
+        (of persons, intransitive) to yield to a request
+        (of things, intransitive) to be demanded
+
+# = Present: ᾰ̓παιτέω, ᾰ̓παιτέομαι (Uncontracted)
+
+# = Present: ᾰ̓παιτῶ, ᾰ̓παιτοῦμαι (Contracted)
+
+# = Future: ᾰ̓παιτήσω
+
+# = Aorist: ᾰ̓πῄτησᾰ, ᾰ̓πῃτήθην
+
+# = Perfect: ᾰ̓πῄτηκᾰ, ᾰ̓πῄτημαι
+
+# ========== ἀπαμείβομαι • (apameíbomai)
+
+    (transitive) to answer, reply to
+
+Conjugation
+
+# = Present: ἀπαμείβομαι
+
+# = Future: ἀπαμείψομαι
+
+# = Aorist: ἀπημείφθην
+
+# = Perfect: ἀπάμειμμαι (Epic)
+
+# ========== ᾰ̓πέρχομαι • (apérkhomai)
+
+    (with genitive) to go away from, depart from
+        (when used with εἰς (eis), departure at one place and arrival at another is implied)
+        (absolute)
+        (with participle)
+        to depart from life
+
+# = Present: ᾰ̓πέρχομαι
+
+# = Future: ᾰ̓πελεύσομαι
+
+# ========== ᾰ̓πῐχθῠόομαι • (apikhthuóomai)
+
+    I become a fish
+Conjugation
+
+# = Present: ᾰ̓πῐχθῠόομαι
+
+# ========== ἀποδείκνυμι • (apodeíknumi)
+
+    I demonstrate, point out, show.
+Conjugation
+
+# = Present: ἀποδείκνῡμῐ, ἀποδείκνῠμαι
+# = Future: ἀποδείξω, ἀποδείξομαι, ἀποδειχθήσομαι
+
+# = Future: ἀποδέξω, ἀποδέξομαι, ἀποδεχθήσομαι (Ionic)
+# = Aorist: ἀπέδειξᾰ, ἀπεδειξᾰ́μην, ἀπεδείχθην
+
+# = Aorist: ἀπόδειξᾰ, ἀποδειξᾰ́μην, ἀπεδείχθην (Epic)
+
+# = Aorist: ἀπέδεξᾰ, ἀπεδεξᾰ́μην, ἀπεδέχθην (Ionic)
+# = Perfect: ἀποδέδειχᾰ, ἀποδέδειγμαι
+
+# = Perfect: ἀποδέδεχᾰ, ἀποδέδεγμαι (Ionic)
+
+# = Pluperfect: ἀπεδεδέχειν, ἀπεδεδέγμην (Ionic)
+# ========== ἀποδίδωμι • (apodídōmi)
+
+    to give up or back, restore, return, to render what is due, pay
+        to assign
+            to refer to one, as belonging to his department
+        to return, render, yield
+        to concede, allow, to suffer or allow a person to do
+        (like ἀποδείκνυμι (apodeíknumi)) to render or make
+            to exhibit, display
+        to deliver over, give up
+        to deliver
+        to bring to a conclusion, wind it up
+        to render, give an account
+        to render, give an account, to define, interpret
+        to attach or append, make dependent upon
+        to affirm
+    (intransitive) to increase
+        to return, recur
+        (in rhetoric and grammar)
+            to be construed with, refer to
+    (middle) to give away of one's own will, to sell
+
+# = Present: ἀποδῐ́δωμῐ, ἀποδῐ́δομαι
+
+# = Future: ἀποδώσω, ἀποδώσομαι, ἀποδοθήσομαι
+
+# ========== ἀποθεόω • (apotheóō)
+
+    I deify
+Conjugation
+
+# = Present: ἀποθεῶ, ἀποθεοῦμαι (Contracted)
+# = Future: ἀποθεώσω, ἀποθεώσομαι, ἀποθεωθήσομαι
+
+# = Aorist: ἀπεθέωσᾰ, ἀπεθεωσᾰ́μην, ἀπεθεώθην
+
+# ========== ᾰ̓ποθλῑ́βω • (apothlī́bō)
+
+    to squeeze out
+Conjugation
+
+# = Present: ᾰ̓ποθλῑ́βω, ᾰ̓ποθλῑ́βομαι
+# = Future: ᾰ̓ποθλίψω, ᾰ̓ποθλίψομαι, ᾰ̓ποθλῐβήσομαι
+
+# = Aorist: ᾰ̓πέθλιψᾰ, ᾰ̓πεθλιψᾰ́μην, ᾰ̓πεθλίφθην
+
+# = Aorist: ᾰ̓πέθλῐβον, ᾰ̓πεθλῐβόμην, ᾰ̓πεθλῐ́βην
+
+# = Perfect: ᾰ̓ποτέθλῐφᾰ, ᾰ̓ποτέθλῐμμαι
+
+# = Pluperfect: ᾰ̓πετεθλῐ́φειν, ᾰ̓πετεθλῐ́μμην
+# ========== ἀποθνῄσκω • (apothnḗiskō)
+
+    Strengthened form of θνῄσκω (thnḗiskō), but essentially synonymous
+        To die
+        To be killed, put to death, slain: serves as passive of ἀποκτείνω (apokteínō)
+
+# = Present: ἀποθνῄσκω
+# = Future: ἀποθᾰνέομαι (Uncontracted)
+
+# = Future: ἀποθᾰνοῦμαι (Contracted)
+
+# = Aorist: ἀπέθᾰνον
+
+# = Perfect: ἀποτέθνηκᾰ
+
+# ========== ἀποκαλύπτω • (apokalúptō)
+
+    I reveal
+Conjugation
+
+# = Present: ἀποκαλύπτω, ἀποκαλύπτομαι
+# = Future: ἀποκαλύψω, ἀποκαλύψομαι, ἀποκαλυφθήσομαι
+
+# = Aorist: ἀπεκάλυφᾰ, ἀπεκαλυφᾰ́μην, ἀπεκαλύφθην
+
+# = Perfect: ἀποκεκάλυφᾰ, ἀποκεκάλυμμαι
+
+# = Pluperfect: ἀπεκεκαλύφειν, ἀπεκεκαλύμμην
+# ========== ἀποκεφαλίζω • (apokephalízō)
+
+    To decapitate, behead
+
+# = Present: ᾰ̓ποκεφᾰλῐ́ζω, ᾰ̓ποκεφᾰλῐ́ζομαι
+# = Future: ᾰ̓ποκεφᾰλῐέω, ᾰ̓ποκεφᾰλῐέομαι, ᾰ̓ποκεφᾰλῐσθήσομαι (Uncontracted)
+
+# = Future: ᾰ̓ποκεφᾰλῐῶ, ᾰ̓ποκεφᾰλῐοῦμαι, ᾰ̓ποκεφᾰλῐσθήσομαι (Contracted)
+
+# = Aorist: ᾰ̓πεκεφᾰ́λῐσᾰ, ᾰ̓πεκεφᾰλῐσᾰ́μην, ᾰ̓πεκεφᾰλῐ́σθην
+
+# = Perfect: ᾰ̓ποκεκεφᾰ́λῐκᾰ, ᾰ̓ποκεκεφᾰ́λῐσμαι
+
+# = Pluperfect: ᾰ̓πεκεκεφᾰλῐ́κειν, ᾰ̓πεκεκεφᾰλῐ́σμην
+# ========== ἀποκόπτω • (apokóptō)
+
+    to cut off
+    to smite the breast in mourning, to mourn
+    (speech) to cut off
+
+# = Present: ᾰ̓ποκόπτω, ᾰ̓ποκόπτομαι
+# = Future: ᾰ̓ποκόψω, ᾰ̓ποκόψομαι, ᾰ̓ποκοπήσομαι
+
+# = Aorist: ᾰ̓πέκοψᾰ, ᾰ̓πεκοψᾰ́μην, ᾰ̓πεκόπην
+
+# = Perfect: ᾰ̓ποκέκοφᾰ, ᾰ̓ποκέκομμαι
+
+# ========== ἀποκρῑ́νω • (apokrī́nō)
+
+    to separate, set apart
+        to distinguish
+    to choose
+    to reject on inquiry
+    (in middle voice) to give answer, reply
+        to answer charges, defend oneself
+        to meet events, circumstances
+        (passive) to be given as an answer (+ dative of agent)
+
+# = Present: ἀποκρῑ́νω, ἀποκρῑ́νομαι
+
+# = Future: ἀποκρῑ́νω, ἀποκρῑ́νομαι
+
+# ========== ἀποκτείνω • (apokteínō)
+
+    I kill, slay
+    I condemn, put to death (judicial)
+
+# = Present: ἀποκτείνω, ἀποκτείνομαι
+# = Future: ἀποκτενέω, ἀποκτενέομαι (Uncontracted)
+
+# = Future: ἀποκτενῶ, ἀποκτενοῦμαι (Contracted)
+
+# = Aorist: ἀπέκτεινᾰ, ἀπεκτεινᾰ́μην
+
+# = Aorist: ἀπέκτᾰνον, ἀπεκτᾰνόμην, ἀπεκτᾰ́νθην
+
+# = Aorist: ἀπέκτην, ἀπεκτᾰ́μην (Epic)
+# = Perfect: ἀπέκτονᾰ, ἀπέκτᾰσμαι
+
+# = Pluperfect: ἀπεκτόνειν, ἀπεκτᾰ́σμην
+# ========== ᾰ̓πόλλῡμῐ • (apóllūmi)
+
+    (active)
+        to destroy utterly, kill, slay
+        to lose utterly
+    (middle)
+        to perish, die
+        to be lost, slip away, vanish
+
+# = Present: ἀπόλλυμαι
+# = Future: ἀπολέω, ἀπολέομαι (Uncontracted)
+
+# = Future: ἀπολῶ, ἀπολοῦμαι (Contracted)
+
+# = Future: ἀπολέσω (Doric)
+
+# = Aorist: ἀπώλεσᾰ
+
+# = Aorist: ἀπόλεσσᾰ (Epic)
+
+# = Aorist: ἀπωλόμην
+
+# = Aorist: ἀπολόμην (Epic unaugmented)
+
+# = Perfect: ἀπολώλεκᾰ
+
+# = Perfect: ἀπόλωλᾰ (active with middle meaning)
+
+# ========== ἀπολῡ́ω • (apolū́ō)
+
+    to loose from
+        to set free from, release or relieve from
+            (law) to acquit
+    (sole use in the Iliad) to let go free on receipt of ransom
+        to let go, let alone, leave
+    to discharge or disband an army, dismiss
+        to divorce a wife
+        to do away with, remove
+        to discharge or pay a debt
+        to dismiss a charge
+    to sell
+    (middle) to redeem
+        to do away with calumnies against one
+        to acquit of
+            to release from
+        to depart
+    (passive) to be released, let off
+        to be separated, get clear, part
+            to depart
+        (of a child) to be brought forth
+        to be annulled
+
+# = Present: ἀπολῡ́ω, ἀπολῡ́ομαι
+
+# = Future: ἀπολῡ́σω, ἀπολῡ́σομαι
+
+# ========== ἀποπέρδομαι • (apopérdomai)
+
+    to break wind
+Conjugation
+
+# = Present: ἀποπέρδομαι
+# = Future: ἀποπαρδήσομαι
+
+# = Aorist: ἀπέπαρδον
+
+# ========== ἀποπλήσσω • (apoplḗssō)
+
+    I strike to earth
+    I cripple with a stroke, disable
+    (passive) I lose my senses, become dizzy, become dumbfounded
+    (middle) I drive back, repulse
+
+# = Present: ἀποπλήσσω, ἀποπλήσσομαι
+
+# = Present: ἀποπλήττω, ἀποπλήττομαι (Attic)
+
+# = Future: ἀποπλήξω, ἀποπλήξομαι, ἀποπλᾰγήσομαι
+
+# = Aorist: ἀπέπληξᾰ, ἀπεπληξᾰ́μην, ἀπεπλᾰ́γην
+
+# = Aorist: ἀπόπληξᾰ, ἀποπληξᾰ́μην, ἀποπλᾰ́γην (Epic)
+
+# = Aorist: ἀπόπλᾱξᾰ, ἀποπλᾱξᾰ́μην, ἀποπλᾰ́γην (Doric)
+
+# = Aorist: ἀπεπέπληγον, ἀπεπεπληγόμην (Epic)
+
+# = Aorist: ἀπεπλήχθην
+
+# = Perfect: ἀποπέπληγᾰ, ἀποπέπληγμαι
+
+# = Perfect: ἀποπέπληχᾰ, ἀποπέπληγμαι (later)
+
+# ========== ἀποπτύω • (apoptúō)
+
+    to spit out, spit
+        to abominate, spurn, disown
+
+# = Present: ἀποπτῡ́ω, ἀποπτῡ́ομαι
+
+# = Future: ἀποπτῠ́σω, ἀποπτῠ́σομαι
+
+# = Aorist: ἀπέπτῠσᾰ, ἀπεπτῠσᾰ́μην
+
+# ========== ἀποστέλλω • (apostéllō)
+
+    to send off, send away from
+        (absolute) to send away, banish
+        (passive) to go away, depart, set out
+    to send off, dispatch, on some mission or service
+    to put off, doff
+    (intransitive) to go back, retire
+
+# = Present: ἀποστέλλω, ἀποστέλλομαι
+# = Future: ἀποστελέω, ἀποστελέομαι, ἀποστᾰλήσομαι (Uncontracted)
+
+# = Future: ἀποστελῶ, ἀποστελοῦμαι, ἀποστᾰλήσομαι (Contracted)
+
+# = Future: ἀποστελέω, ἀποστελέομαι, ἀποστᾰλήσομαι (Epic)
+
+# = Aorist: ἀπέστειλᾰ, ἀπεστειλᾰ́μην, ἀπεστᾰ́λην
+
+# = Aorist: ἀποστεῖλᾰ, ἀποστειλᾰ́μην, ἀποστᾰ́λην (Epic)
+
+# = Aorist: ἀπεστᾰ́λθην
+
+# = Perfect: ἀπέστᾰλκᾰ, ἀπέστᾰλμαι
+
+# = Pluperfect: ἀπεστᾰ́λκειν, ἀπεστᾰ́λμην
+# ========== ἀποτειχίζω • (apoteikhízō)
+
+    wall off
+        fortify
+        blockade
+        (middle) build a party-wall
+    raise fortifications
+
+# = Present: ἀποτειχῐ́ζω, ἀποτειχῐ́ζομαι
+# = Future: ἀποτειχῐέω, ἀποτειχῐέομαι (Uncontracted)
+
+# = Future: ἀποτειχῐῶ, ἀποτειχῐοῦμαι (Contracted)
+
+# = Aorist: ἀπετείχῐσᾰ, ἀπετειχῐσᾰ́μην
+
+# = Perfect: ἀποτετειχίκῐκᾰ, ἀποτετειχίκῐσμαι
+
+# = Pluperfect: ἀπετετειχικῐ́κειν, ἀπετετειχικῐ́σμην
+# ========== ᾰ̓ποτελέω • (apoteléō)
+
+    (transitive) to finish (something), to accomplish, to form fully
+
+# = Present: ᾰ̓ποτελέω, ᾰ̓ποτελέομαι (Uncontracted)
+
+# = Present: ᾰ̓ποτελῶ, ᾰ̓ποτελοῦμαι (Contracted)
+
+# = Future: ᾰ̓ποτελέω, ᾰ̓ποτελέομαι (Uncontracted)
+# = Future: ᾰ̓ποτελῶ, ᾰ̓ποτελοῦμαι (Uncontracted)
+# = Future: ᾰ̓ποτελέσω, ᾰ̓ποτελέσομαι
+
+# = Aorist: ᾰ̓πετέλεσᾰ, ᾰ̓πετελεσᾰ́μην
+
+# = Perfect: ᾰ̓ποτετέλεσμαι
+
+# ========== ἀποφθέγγομαι • (apophthéngomai)
+
+    to speak my opinion plainly, boldly declare
+    to utter an apophthegm
+
+# = Present: ἀποφθέγγομαι
+# = Future: ἀποφθέγξομαι
+
+# = Aorist: ἀπεφθεγξᾰ́μην
+
+# ========== ᾰ̔́πτω • (háptō)
+
+    to kindle, set on fire, fasten fire to
+    to fasten to, bind fast
+    to join to
+    (middle) to fasten myself to, cling to, hang on by, lay hold of, grasp, touch
+    (middle) to reach the mark
+    (middle) to engage in, take part in
+    (middle) to set upon, attack, assail
+    (middle) to touch, affect
+    (middle) to grasp with the senses, apprehend, perceive
+    (middle) to come up to, reach, gain
+
+# = Present: ᾰ̔́πτω, ᾰ̔́πτομαι
+# = Future: ᾰ̔́ψω, ᾰ̔́ψομαι, ᾰ̔φθήσομαι
+
+# = Aorist: ἧψᾰ, ἡψᾰ́μην, ἥφθην
+
+# = Perfect: ἧμμαι
+
+# = Pluperfect: ἥμμην
+# ========== ᾰ̓ράομαι or ᾱ̓ράομαι • (aráomai or āráomai)
+
+    (middle only) to pray
+
+# = Present: ἀρᾰ́ομαι (Uncontracted)
+
+# = Present: ἀρῶμαι (Contracted)
+
+# = Future: ἀρᾱ́σομαι
+
+# = Future: ἀρήσομαι (Ionic)
+# = Aorist: ἠρησᾰ́μην
+
+# = Aorist: ᾱ̓ρᾱσᾰ́μην (Aeolic)
+# = Perfect: ἤρᾱμαι
+
+# ========== ἀραρίσκω • (ararískō)
+
+    (transitive)
+        join, fasten
+        fit together, construct
+            prepare, contrive
+        fit, equip, furnish
+            please, gratify
+        make fit, make pleasing
+    (intransitive)
+        to be joined closely together
+            to be fixed
+        to fit or suit
+        to be fitted with, furnished with
+        to be fitted, suiting, agreeable, pleasing
+The present, imperfect, future, and aorist 1 active forms govern the transitive senses, while the middle tenses, aorist 2 and active perfect and pluperfect forms govern the intransitive.
+
+# = Present: ᾰ̓ρᾰρίσκω, ᾰ̓ρᾰρίσκομαι
+# = Aorist: ἦρσᾰ, ἠρσᾰ́μην, ἤρθην
+
+# = Aorist: ἆρσᾰ, ἀρσᾰ́μην
+
+# = Aorist: ἤρᾰρον, ἠρᾰρόμην
+
+# = Perfect: ᾰ̓́ρᾰρᾰ, ᾰ̓ρήρεμαι
+
+# = Pluperfect: ἠρήρειν, ἠρηρέμην
+# ========== ᾰ̓ρῐθμέω • (arithméō)
+
+    (transitive) To count
+
+# ========== ᾰ̓ρκέω • (arkéō)
+
+    to ward off, keep off
+    (+ dative) to defend
+    to assist, succour
+    to be strong enough, am sufficient, suffice
+    to suffice, am enough for, satisfy
+    to be enough, be strong enough, avail, hold out
+    (passive) to be satisfied with
+
+# = Present: ᾰ̓ρκέω, ᾰ̓ρκέομαι (Uncontracted)
+
+# = Present: ᾰ̓ρκῶ, ᾰ̓ρκοῦμαι (Contracted)
+
+# = Future: ᾰ̓ρκέσω, ᾰ̓ρκέσομαι, ᾰ̓ρκεσθήσομαι
+
+# = Aorist: ἤρκεσᾰ, ἠρκεσᾰ́μην, ἠρκέσθην
+
+# = Perfect: ἤρκεμαι
+
+# ========== ἁρμόζω • (harmózō)
+
+    to fit together, join
+    to betroth
+    to arrange, govern, command
+    to compose
+    to fit, suit, am adapted well for
+
+# = Present: ἁρμόζω, ἁρμόζομαι
+# = Future: ἁρμόσω, ἁρμόσομαι, ἁρμοσθήσομαι
+
+# = Aorist: ἥρμοσᾰ, ἡρμοσᾰ́μην, ἡρμόσθην
+
+# = Aorist: ἅρμοξᾰ, ἁρμοξᾰ́μην, ἁρμόχθην (Doric)
+# = Perfect: ἥρμοκᾰ, ἥρμομαι
+
+# = Perfect: ἥρμοκᾰ, ἅρμομαι (Doric)
+
+# ========== ἀρνέομαι • (arnéomai)
+
+    to deny, disown
+    to refuse
+    (absolute) to say "no", decline, refuse
+
+# = Present: ἀρνέομαι (Uncontracted)
+
+# = Present: ἀρνοῦμαι (Contracted)
+
+# = Future: ἀρνήσομαι, ἀρνηθήσομαι
+
+# = Aorist: ἠρνησᾰ́μην, ἠρνήθην
+
+# = Perfect: ἤρνημαι
+
+# ========== ἄρνυμαι • (árnumai)
+
+    To get, win, gain, achieve, receive (usually in positive sense)
+        (present, imperfect) to strive for, try to get
+    To take up, bear, carry
+
+# = Present: ἄρνῠμαι
+
+# = Present: ἄρνῠμαι
+
+# = Aorist: ἀρόμην
+
+# ========== ἀρόω • (aróō)
+
+    I plow, till
+    I sow
+    I beget
+    (middle) I enjoy the fruits of tillage
+
+# = Present: ἀρῶ, ἀροῦμαι (Contracted)
+# = Future: ἀρόσω, ἀρόσομαι
+
+# = Aorist: ἤροσᾰ, ἠροσᾰ́μην, ἠρόθην
+
+# ========== ἁρπάζω • (harpázō)
+
+    to snatch away, carry off
+    to seize hastily, snatch up
+    to seize, overpower
+    to plunder
+
+# = Present: ἁρπᾰ́ζω, ἁρπᾰ́ζομαι
+# = Future: ἁρπᾰ́ξω, ἁρπᾰ́ξομαι, ἁρπᾰχθήσομαι
+
+# = Future: ἁρπᾰ́σω, ἁρπᾰ́σομαι, ἁρπᾰσθήσομαι
+
+# = Future: ἁρπᾰγήσομαι
+
+# = Aorist: ἥρπᾰξᾰ, ἡρπᾰξᾰ́μην, ἡρπᾰ́χθην
+
+# = Aorist: ἥρπᾰσᾰ, ἡρπᾰσᾰ́μην, ἡρπᾰ́σθην (Attic, Tragic)
+
+# = Aorist: ἡρπάγην
+
+# = Perfect: ἥρπᾰκᾰ, ἥρπᾰσμαι
+
+# = Perfect: ἥρπαγμαι
+
+# = Pluperfect: ἡρπᾰ́σμην
+# ========== ἀρτῡ́νω • (artū́nō)
+
+    Alternative form of ἀρτύω (artúō)
+
+# = Present: ἀρτῡ́νω, ἀρτῡ́νομαι
+# = Future: ἀρτῠνέω, ἀρτῠνέομαι, ἀρτῠνθήσομαι (Uncontracted)
+
+# = Future: ἀρτῠνῶ, ἀρτῠνοῦμαι, ἀρτῠνθήσομαι (Contracted)
+
+# = Aorist: ἤρτῡνᾰ, ἠρτῡνᾰ́μην, ἠρτῡ́νθην
+
+# ========== ἀρτύω • (artúō)
+
+    to arrange, devise, prepare, make ready
+    (cooking) to dress, season
+
+# = Present: ἀρτύω, ἀρτύομαι
+# = Future: ἀρτῡ́σω, ἀρτῡ́σομαι, ἀρτῡθήσομαι
+
+# = Aorist: ἤρτῡσᾰ, ἠρτῡσᾰ́μην, ἠρτῡ́θην
+
+# = Perfect: ἤρτῡκᾰ, ἤρτῡμαι
+
+# = Pluperfect: ἠρτῡ́κειν, ἠρτῡ́μην
+# ========== ἀρχαΐζω • (arkhaḯzō)
+
+    I am old-fashioned, copy the ancients (in manners, language, etc.)
+
+# = Present: ἀρχαῐ̈́ζω, ἀρχαῐ̈́ζομαι
+# = Future: ἀρχαῐ̈έω, ἀρχαῐ̈έομαι, ἀρχαῐ̈σθήσομαι (Uncontracted)
+
+# = Future: ἀρχαῐ̈ῶ, ἀρχαῐ̈οῦμαι, ἀρχαῐ̈σθήσομαι (Contracted)
+
+# = Aorist: ἠρχάῐ̈σᾰ, ἠρχαῐ̈σᾰ́μην, ἠρχαῐ̈́σθην
+
+# = Perfect: ἠρχάῐ̈κᾰ, ἠρχάῐ̈σμαι
+
+# = Pluperfect: ἠρχαῐ̈́κειν, ἠρχαῐ̈́σμην
+# ========== ἄρχω • (árkhō)
+
+    (transitive) To begin [+genitive = something, from something, with something]
+    (transitive) To lead, rule, govern, command [+genitive = someone]; [+dative = someone]
+    (intransitive) To be ruler; to hold an archonship
+
+# = Present: ἄρχω, ἄρχομαι
+# = Future: ἄρξω, ἄρξομαι, ἀρχθήσομαι
+
+# = Aorist: ἦρξᾰ, ἠρξᾰ́μην, ἤρχθην
+
+# = Perfect: ἦρχᾰ, ἦργμαι
+
+# ========== ἀσθενέω • (asthenéō)
+
+    to be weak, feeble, sickly
+    to be needy
+    (with
+# = Present: ἀσθενέω (Uncontracted)
+
+# = Present: ἀσθενῶ (Contracted)
+
+# = Future: ἀσθενήσω
+
+# = Aorist: ἠσθένησᾰ
+
+# = Perfect: ἠσθένηκᾰ
+
+# = Pluperfect: ἠσθενήκειν
+# ========== ἀσκέω • (askéō)
+
+    to work, form
+    to adorn, decorate, trick out
+    to honor, revere
+    to practice, exercise, train (often, but not always, of athletics)
+
+# = Present: ἀσκέω, ἀσκέομαι (Uncontracted)
+
+# = Present: ἀσκῶ, ἀσκοῦμαι (Contracted)
+
+# = Future: ἀσκήσω, ἀσκήσομαι, ἀσκηθήσομαι
+
+# = Aorist: ἤσκησᾰ, ἠσκησᾰ́μην, ἠσκήθην
+
+# = Perfect: ἤσκηκᾰ, ἤσκημαι
+
+# ========== ἀσπάζομαι • (aspázomai)
+
+    to welcome kindly, bid welcome, greet
+        to take leave of
+    to kiss, embrace, caress
+    (of things) to follow eagerly, cleave to
+    to be glad that
+
+# = Present: ἀσπᾰ́ζομαι
+# = Future: ἀσπᾰ́σομαι
+
+# = Aorist: ἠσπᾰσᾰ́μην
+
+# = Perfect: ἤσπᾰσμαι
+
+# = Pluperfect: ἠσπᾰ́σμην
+
+# = Aorist: ἀσπᾰσσᾰ́μην (Epic)
+
+# ========== ἀτασθάλλω • (atasthállō)
+
+    to act recklessly, wickedly, or without regard for consequences
+
+The only forms occurring are the present present participles: ἀτασθάλλων (atasthállōn) and ἀτασθάλλουσα (atasthállousa), as seen above.
+
+# = Present: ἀτασθάλλω
+
+# ========== ἀτενίζω • (atenízō)
+
+    to gaze intently, to fixate one's eyes (upon), to stare
+    to be fixated on, to focus on, to concentrate on
+
+Conjugation
+
+# = Present: ἀτενῐ́ζω, ἀτενῐ́ζομαι
+# = Future: ἀτενῐέω, ἀτενῐέομαι, ἀτενῐσθήσομαι (Uncontracted)
+
+# = Future: ἀτενῐῶ, ἀτενῐοῦμαι, ἀτενῐσθήσομαι (Contracted)
+
+# = Aorist: ἠτένῐσᾰ, ἠτενῐσᾰ́μην, ἠτενῐ́σθην
+
+# = Perfect: ἠτένῐκᾰ, ἠτένῐσμαι
+
+# = Pluperfect: ἠτενῐ́κειν, ἠτενῐ́σμην
+# ========== ᾰ̓τῑμᾰ́ζω • (atīmázō)
+
+    to dishonour, hold in dishonour
+# ========== αὐδάω • (audáō)
+
+    to speak, utter
+    to speak to, address
+Conjugation
+
+# = Present: αὐδᾰ́ω, αὐδᾰ́ομαι (Uncontracted)
+
+# = Present: αὐδῶ, αὐδῶμαι (Contracted)
+
+# = Future: αὐδήσω, αὐδήσομαι, αὐδηθήσομαι
+
+# = Aorist: ηὔδησᾰ, ηὐδησᾰ́μην, ηὐδήθην
+
+# = Aorist: αὐδήσασκᾰ (Epic, Ionic, iterative unaugmented)
+
+# = Perfect: ηὔδηκᾰ, ηὔδημαι
+
+# = Pluperfect: ηὐδήκειν, ηὐδήμην
+# ========== αὐλέω • (auléō)
+
+    to play on the flute
+    (passive, of tunes) to be played on the flute
+        (passive, of persons) to be played to, to hear music
+
+# = Present: αὐλέω, αὐλέομαι (Uncontracted)
+
+# = Present: αὐλῶ, αὐλοῦμαι (Contracted)
+
+# = Future: αὐλήσω, αὐλήσομαι
+
+# ========== αὐξάνω • (auxánō)
+
+    to make grow, increase
+    to promote, honour, exalt
+
+# = Present: αὐξᾰ́νω, αὐξᾰ́νομαι
+# = Future: αὐξήσω, αὐξήσομαι, αὐξηθήσομαι
+
+# = Aorist: ηὔξησᾰ, ηὐξησᾰ́μην, ηὐξήθην
+
+# = Perfect: ηὔξηκᾰ, ηὔξημαι
+
+# = Pluperfect: ηὐξήκειν, ηὐξήμην
+# ========== αὔξω • (aúxō)
+
+    Alternative form of αὐξάνω (auxánō)
+
+# = Present: αὔξω, αὔξομαι
+# = Future: αὐξήσω, αὐξήσομαι, αὐξηθήσομαι
+
+# = Aorist: ηὔξησᾰ, ηὐξησᾰ́μην, ηὐξήθην
+
+# = Perfect: ηὔξηκᾰ, ηὔξημαι
+
+# = Pluperfect: ηὐξήκειν, ηὐξήμην
+# ========== ἀφαιρέω • (aphairéō)
+
+    to take away [+accusative = something] [+genitive or dative = from someone]; or [+genitive = something] [+accusative = something]
+    (middle)
+        to deprive of [+accusative = something]
+        to prevent someone [+
+# = Present: ἀφαιρέω, ἀφαιρέομαι (Uncontracted)
+
+# = Present: ἀφαιρῶ, ἀφαιροῦμαι (Contracted)
+
+# = Future: ἀφαιρήσω, ἀφαιρήσομαι, ἀφαιρεθήσομαι
+
+# = Future: ἀφελέομαι (Koine, contracted)
+# = Aorist: ἄφειλον, ἀφειλόμην, ἀφῃρέθην
+
+# = Aorist: ἀφῄρησᾰ
+
+# = Perfect: ἀφῄρημαι
+
+# = Perfect: ἀπαραίρημαι (Ionic)
+
+# ========== ἀφέλκω • (aphélkō)
+
+    to drag off
+
+# ========== ἀφῑ́ημῐ • (aphī́ēmi)
+
+    to send forth, discharge, emit
+        to let fall from one's grasp
+        (in prose) to send forth, dispatch
+        to give up or hand over
+    to send away
+        (of people)
+            to let go, loose, set free
+            to let go, dissolve, disband, break up, dismiss
+            to put away, divorce
+            to let go as an ἄφετος (áphetos)
+        (of things) to get rid of, shed, give up
+            (with πλοῖον (ploîon)) to set sail
+            (law) to remit, excuse
+    to leave alone, pass by, not notice
+        (with accusative and infitive) to donate to public property
+    (with accusative and
+
+        Antonyms: ἐμποδίζω (empodízō)
+    (seemingly intransitive) to break up, march, sail
+        (with
+# = Present: ἀφῑ́ημῐ, ἀφῑ́εμαι
+
+# = Future: ἀφήσω, ἀφήσομαι, ἀφεθήσομαι
+
+# = Future: ἀπήσω, ἀπήσομαι (Ionic)
+# = Aorist: ἀφῆκᾰ, ἀφηκᾰ́μην
+
+# = Aorist: ἀπῆκᾰ, ἀπηκᾰ́μην (Ionic)
+
+# = Aorist: ἀφέηκᾰ, ἀφεηκᾰ́μην (Epic)
+
+# = Aorist: ἀφείμην, ἀφέθην
+
+# = Aorist: ἀφέθην
+
+# = Aorist: ἀπείθην (Ionic)
+# = Perfect: ἀφεῖκᾰ, ἀφεῖμαι
+
+# = Perfect: ἀφέωμαι
+
+# = Pluperfect: ἀφείμην
+# ========== ἀφικνέομαι • (aphiknéomai)
+
+    to arrive, come
+
+# = Present: ἀφικνέομαι (Uncontracted)
+
+# = Present: ἀφικνοῦμαι (Contracted)
+
+# = Future: ἀφίξομαι
+
+# = Aorist: ἀφῑκόμην
+
+# = Perfect: ἀφῖγμαι
+
+# ========== ἀφορίζω • (aphorízō)
+
+    to mark off boundary
+    (middle) to mark off for myself
+    to border on
+    to determine, define
+    to separate, distinguish
+    to finish
+    to grant as a special gift
+    (with accusative of person) to set apart
+        to banish
+        to separate
+        to cast out, excommunicate
+        to appoint, ordain
+
+# = Present: ᾰ̓φορῐ́ζω, ᾰ̓φορῐ́ζομαι
+# = Future: ᾰ̓φορῐέω, ᾰ̓φορῐέομαι, ᾰ̓φορῐσθήσομαι (Uncontracted)
+
+# = Future: ᾰ̓φορῐῶ, ᾰ̓φορῐοῦμαι, ᾰ̓φορῐσθήσομαι (Contracted)
+
+# = Aorist: ἀφώρῐσᾰ, ἀφωρῐσᾰ́μην, ᾰ̓φωρῐ́σθην
+
+# = Perfect: ᾰ̓φώρῐκᾰ, ᾰ̓φώρῐσμαι
+
+# ========== ᾰ̓φῠπνῐ́ζω • (aphupnízō)
+
+    to wake
+
+# = Present: ᾰ̓φῠπνῐ́ζω, ᾰ̓φῠπνῐ́ζομαι
+
+# ========== ἄω • (áō)
+
+    to sleep
+
+Only used in the aorist.
+
+# = Aorist: ᾰ̓́εσᾰ
+
+# = Aorist: ἆσᾰ
+
+# ========== еще раз ао
+
+# ========== ἄω • (áō)
+
+    to satiate
+    (intransitive) to take one's fill
+
+# = Present: ᾱ̓́ω, ᾱ̓́ομαι (Epic)
+# = Future: ᾱ̓́σω, ᾱ̓́σομαι (Epic)
+# = Aorist: ἆσᾰ, ᾱ̓σᾰ́μην (Epic)
+
+# ============================== B =====================================
+
+#

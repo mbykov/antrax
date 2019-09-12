@@ -1,0 +1,42 @@
+#
+#= Present: ἀγαθοποιέω, ἀγαθοποιέομαι (Uncontracted)
+
+act.pres.inf: ἀγαθοποιέειν
+mp.pres.inf: ἀγαθοποιέεσθαι
+
+pres.part-masc: ἀγαθοποιέων, ἀγαθοποιεόμενος
+pres.part-fem: ἀγαθοποιέουσα, ἀγαθοποιεομένη
+pres.part-neut: ἀγαθοποιέον, ἀγαθοποιεόμενον
+
+#= Present: ἀγαθοποιῶ, ἀγαθοποιοῦμαι (Contracted)
+
+
+act.pres.inf: ἀγαθοποιεῖν
+mp.pres.inf: ἀγαθοποιεῖσθαι
+
+pres.part-masc: ἀγαθοποιῶν, ἀγαθοποιούμενος
+pres.part-fem: ἀγαθοποιοῦσα, ἀγαθοποιουμένη
+pres.part-neut: ἀγαθοποιοῦν, ἀγαθοποιούμενον
+
+#= Imperfect: ἠγαθοποίεον, ἠγαθοποιεόμην (Uncontracted)
+
+#= Present: ἀγαθοποιέω, ἀγαθοποιέομαι (Uncontracted)
+
+act.pres.inf: ἀγαθοποιέειν
+mp.pres.inf: ἀγαθοποιέεσθαι
+
+act.pres.part-masc: ἀγαθοποιέων, ἀγαθοποιεόμενος
+pres.part-fem: ἀγαθοποιέουσα, ἀγαθοποιεομένη
+pres.part-neut: ἀγαθοποιέον, ἀγαθοποιεόμενον
+
+#= Present: ἀγαθοποιῶ, ἀγαθοποιοῦμαι (Contracted)
+
+
+act.pres.inf: ἀγαθοποιεῖν
+mp.pres.inf: ἀγαθοποιεῖσθαι
+
+act.pres.part-masc: ἀγαθοποιῶν, ἀγαθοποιούμενος
+pres.part-fem: ἀγαθοποιοῦσα, ἀγαθοποιουμένη
+pres.part-neut: ἀγαθοποιοῦν, ἀγαθοποιούμενον
+
+#= Imperfect: ἠγαθοποίεον, ἠγαθοποιεόμην (Uncontracted)

@@ -7,7 +7,7 @@ export const strong2weak = {
   '': ['']
 }
 
-export const augments_ = {
+export const augments = {
   'α': ['η'],
   'αι': ['ῃ'],
   'ανα': ['ανε', 'ανη'],

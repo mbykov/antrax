@@ -1,285 +1,206 @@
 //
 import _ from 'lodash'
-import { log } from './lib/utils'
-import { getTerm, getFlex, queryDBs, setDBs } from './lib/pouch'
+import { getComp, getTerms, getFlex, queryDBs, setDBs, installDBs, updateDB, readDB, delDB } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
-import { parseVerb, parseName } from './lib/mutables'
-import { vowels, strongs, accents } from './lib/utils'
-import { strong2weak } from './lib/augments'
+import { makeChains } from './lib/chains'
+import { accents, vowels, aspirations, coronis, corvowels, stressed } from './lib/utils'
 import util from 'util'
-// import {oxia, comb, plain} from '../../orthos'
-import {oxia, comb, plain} from 'orthos'
-
 const path = require('path')
-let clog = console.log
+// import {oxia, comb, plain} from 'orthos'
+import {oxia, comb, plain, strip} from '../../../greek/orthos'
 
-let wordform = process.argv.slice(2)[0] // || 'ἀργυρῷ' // false;
+let log = console.log
+const d = require('debug')('app')
 
-export function enableDBs (upath) {
-  setDBs(upath)
+export function checkConnection (upath, dnames) {
+  // if (!upath)  upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
+  // log('________index: check connection', dnames)
+  setDBs(upath, dnames)
 }
 
-export function antrax (wf) {
-  let clwf = cleanStr(wf)
-  let cwf = comb(clwf)
-  cwf = oxia(cwf)
+// dictCsv.js
+export function readDictionary (upath, dname) {
+  return readDB(upath, dname)
+}
+
+export function installDefaults (apath, upath) { return installDBs(apath, upath) }
+
+export function delDictionary (upath, dname) { return delDB(upath, dname) }
+
+// nav.js, i.e. remote пока
+export function updateCurrent (upath, docs) {
+  let dname = 'local'
+  return updateDB(upath, dname, docs)
+}
+
+export function antrax (wf, compound, only) {
+  let cwf = corrStr(wf)
+  cwf = cwf.replace(/-/g, '')
+  let pwf = plain(cwf)
 
   let sgms = segmenter(cwf)
-  // segments for flexes:
+  let strong = false
+  if (compound && compound == 'strong') strong = true, compound = false
+  else if (compound) sgms = _.filter(sgms, sgm=> { return sgm.length > 2 })
+
+  // sgms = _.filter(sgms, sgm=> { return sgm.length > 2 })
+
+  // lasts - segments for flexes:
   let lasts = _.uniq(sgms.map(sgm =>  { return sgm[sgm.length-1] }))
-  log('lasts', lasts)
   // segments for dicts:
   let nonlasts = _.uniq(_.flatten(sgms.map(sgm =>  { return sgm.slice(0, -1) }) ))
-  let pnonlasts = _.uniq(_.compact(nonlasts.map(nonlast => { return plain(nonlast) }) ))
-  log('NONlast:', pnonlasts.toString())
+  let plainsegs = _.uniq(_.compact(nonlasts.map(nonlast => { return plain(nonlast) }) ))
 
-  let added = addedStems(pnonlasts)
-  log('Added:', added.toString())
-  // added = []  // added необходимо добавлять, потому что reg impf, aor - в словаре только слабая форма
-  // а вот non-reg из added можно убрать? то есть достройка только до splain, strong-plain ?
+  let cwfs = addTerms(cwf)
+  plainsegs.push(cwf) // for terms in regular DBs, but not in special 'terms' DB
+  // примеры корониса: - может ли быть во флексии два и более символов, и последний - коронис?
+  // εὕρημ᾽ -
 
-  let plainsegs = (added.length) ? _.uniq(pnonlasts.concat(added)) : pnonlasts
-  log('Psegs:', plainsegs.toString())
+  d('cwfs:', cwf, cwfs)
+  // d('sgms:', JSON.stringify(sgms))
+  // d('sgms:', sgms)
+  d('lasts:', lasts.toString())
+  d('plainsegs:', plainsegs.toString())
+
+  // это - только для анализа terms:
+  // plainsegs = ['δῆτα'] // !!!!!!!!!!!!!!!
 
   return Promise.all([
-    getTerm(cwf),
+    getTerms(cwfs),
     queryDBs(plainsegs),
     getFlex(lasts)
+    // , getComp(plainsegs)
   ]).then(function (res) {
     let terms = _.flatten(res[0])
     let dicts = _.flatten(res[1])
+    d('dicts all---->', dicts.length)
+
+    let dterms = _.filter(dicts, dict => { return dict.term && cwfs.includes(dict.term) })
     dicts = _.filter(dicts, dict => { return !dict.term })
+
+    d('terms---->', terms.length)
+    terms.push(...dterms)
+
+    let rdterms = _.uniq(dterms.map(dict => { return dict.term}))
+    d('rdterms---->', rdterms)
+    d('dterms---->', dterms.length)
+    d('all terms---->', terms.length)
+
     let flexes = _.flatten(res[2])
-    let muts = main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts)
-    if (terms.length) {
-      let shorts = _.filter(muts, chain => { return chain.length == 2 })
-      muts = shorts
-    }
-    return _.compact(terms.concat(muts))
-  })
-}
 
-// ADDED
-function addedStems(wforms) {
-  let wplain, first, added = []
-  wforms.forEach(wf => {
-    first = _.first(wf)
-    wplain = plain(wf)
+    // dicts = _.filter(dicts, dict => { return !dict.indecl })
+    let dplains = _.uniq(dicts.map(dict => { return dict.plain}))
+    d('dictplains---->', dplains.toString())
+    d('dicts.size---->', dicts.length)
+    // let complains = _.uniq(comps.map(dict => { return dict.plain}))
+    // d('complains---->', complains.toString())
+    // d('complains.size---->', complains.length)
 
-    let weaks = strong2weak[first]
-    if (!vowels.includes(first)) {
-      let add = ['ε', wplain].join('') // aor.sub, opt, impf for consonants
-      added.push(add)
-    } else if (weaks) {
-      weaks.forEach(weak => {
-        let add = [weak, wf.slice(1)].join('') // impfs
-        added.push(add)
+    let prefs = _.filter(dicts, dict => { return dict.pref})
+    let pprefs = _.uniq(prefs.map(dict => { return dict.plain}))
+    d('prefs---->', pprefs.toString(), prefs.length)
+    let sufs = _.filter(dicts, dict => { return dict.suf})
+    let psufs = _.uniq(sufs.map(dict => { return dict.plain}))
+    d('sufs---->', psufs.toString(), sufs.length)
+
+    let kdicts = _.filter(dicts, dict => { return dict.plain == only })
+    d('kdicts---->', kdicts.length)
+
+    d('singles:', sgms.length)
+
+    let chains = makeChains(sgms, dicts, flexes, compound, only)
+    d('total chains', chains.length)
+    // return {chains: [], terms: []}
+
+    let bests = selectBest(chains, compound)
+    d('bests =>', bests.length)
+    if (bests.length) chains = bests
+
+    // или strong - после refine?
+    // if (strong) {
+    //   let simples = _.filter(chains, chain=> { return chain.length == 1 })
+    //   let pwfs = simples.map(chain=> { return chain[0].dicts.map(dict=> { return dict.plain }) })
+    //   pwfs = _.uniq(_.flattenDeep(pwfs))
+    //   let fpwfs = pwfs[0]
+    //   let cognates = segdicts[fpwfs]
+    //   if (!cognates) return
+    //   let cnames = _.filter(cognates, dict=> { return dict.name })
+    //   let cverbs = _.filter(cognates, dict=> { return dict.verb && dict.time == 'pres' })
+    //   cognates = cnames.concat(cverbs)
+    //   if (cognates.length > 1) return {cognates: cognates}
+    //   else return
+    // }
+    // let result = { chains: chains, terms: terms }
+    // return result
+    // log('CHAINS', chains[0])
+
+    // refine results (i.e. verbs only) with changed stems:
+    let chaindicts = _.flatten(chains.map(chain=> { return _.flatten(chain.map(sec=> { return sec.dicts })) }))
+    // chaindicts.forEach(dict=> { delete dict.keys, delete dict.trns })
+    chaindicts.forEach(dict=> { delete dict.keys })
+    // log('___chainDicts', chaindicts)
+    let wktverbs = _.filter(chaindicts, dict=> { return dict.verb && dict.dname == 'wkt' })
+    let wktplains = wktverbs.map(dict=> { return dict.plain })
+    // log('___wktRDicts', wktplains)
+    return queryDBs(wktplains)
+      .then(res=>{
+        let refined = _.flatten(res)
+        // непонятно, dict.dict, а если fit = term?
+        refined = _.filter(refined, dict=> { return dict.dict && dict.dname != 'wkt' })
+        refined.forEach(dict=> { delete dict.keys })
+        let fits = []
+        refined.forEach(fit=> {
+          let wkt = _.find(wktverbs, wkt=> { return fit.dict == comb(wkt.rdict) })
+          if (!wkt) return
+          fit.fls = wkt.fls
+          fits.push(fit)
+        })
+
+        // log('REFINED', refined.length)
+        chains.forEach(chain=> {
+          chain.forEach(sec=> {
+            let secwkts = _.filter(sec.dicts, dict=> { return dict.verb && dict.dname == 'wkt' })
+            if (!secwkts.length) return
+            let secdicts = _.filter(sec.dicts, dict=> { return !dict.verb })
+            secwkts.push(...secdicts)
+            secwkts.push(...fits)
+            sec.dicts = secwkts
+          })
+        })
+
+        // это если possible в name, а есть точный verb - нет примера, где это нужно
+        // chains.forEach(chain=> {
+        //   chain.forEach(sec=> {
+        //     let exacts = _.filter(sec.dicts, dict=> { return !dict.possible })
+        //     log('_____________sec.seg', sec.seg, exacts.length)
+        //     if (!exacts.length) return
+        //     sec.dicts = exacts
+        //   })
+        // })
+
+        // terms дает много очень лишнего в chains, так нельзя, но как можно? напр., артикль τῶν дает τ, и пиздец
+        // нужен пример, почему нельзя только terms - например, ἦσαν
+        // но просто убрать это нельзя! см. τῶν
+        // if (terms.length) chains = []
+        let result = { chains: chains, terms: terms }
+        if (chains.length && compound) result.compound = true
+        return result
       })
-    }
+
   })
-  return _.uniq(added)
 }
 
-function main(cwf, plainsegs, sgms, pnonlasts, flexes, dicts) {
-  dicts = _.filter(dicts, dict => { return !dict.indecl })
-  // dicts = _.filter(dicts, dict => { return dict.rdict })
-  log('dicts--->', dicts.length)
-  let dplains = _.uniq(dicts.map(dict => { return dict.plain}))
-  log('dplains---->', dplains.toString())
-  let ndplains = _.filter(dicts, dict => { return !dict.plain })
-  log('ndplains---->', ndplains.length)
-  let kdicts = _.filter(dicts, dict => { return dict.plain == 'βουλ'})
-  log('kdicts---->', kdicts.length)
-  log('flexes--->', flexes.length)
-  let kflexes = _.filter(flexes, fl => { return fl.flex == 'ον'})
-  kflexes = _.filter(kflexes, fl => { return fl.verb })
-  log('kflexes--->', kflexes.length)
-
-  let segdicts = distributeDicts(plainsegs, dicts)
-  let chains = makeChains(sgms, segdicts, flexes)
-
-  // chains = _.filter(chains, chain => { return chain.length == 2 }) // only for tests
-  log('total chains', chains.length)
-
-  addDicts(chains, pnonlasts, segdicts)
-  // compound(chains)
-
-  let fulls = fullChains(chains)
-  log('chains: ', chains.length, 'fulls: ', fulls.length)
-  if (fulls.length) chains = fulls
-  else return []
-
-  // соответствие dicts и flex, added dicts
-  let dfchains = filterDictFlex(chains)
-
-  let cleans = []
-  let fkeys = {}
-  dfchains.forEach(chain => {
-    let penult = chain[chain.length-2]
-    let ult = chain[chain.length-1]
-    let fkey = [JSON.stringify(penult.dicts), JSON.stringify(ult.flexes)].join('-')
-    if (fkeys[fkey]) return
-    cleans.push(chain)
-    fkeys[fkey] = true
-  })
-
-  let bests = selectLongest(cleans)
-  log('bests =>', bests.length)
-
-  bests.forEach(segs => {
-    if (segs.length == 4) {
-      segs.forEach(segment => {
-        if (segment.seg == 'ο') segment.dicts = [{spec: true, rdict: 'ο', trns: ['o-connector'] }]
-      })
-    }
-  })
-
-  if (!bests.length) return
-  return bests
-}
-
-
-// предварительно распределяю dicts по всем plain-сегментам, включая добавочные :
-function distributeDicts (plainsegs, dicts) {
-  let segdicts = {}
-  plainsegs.forEach(pseg => {
-    let sdicts = _.filter(dicts, dict => { return pseg === dict.plain })
-    segdicts[pseg] = sdicts
-  })
-  return segdicts
-}
-
-function makeChains (sgms, segdicts, flexes) {
-  let psegs, chains = []
-  sgms.forEach(segs => {
-    let lastseg = _.last(segs)
-    let segflexes = _.filter(flexes, flex => { return flex.flex === lastseg} )
-    if (!segflexes.length) return
-
-    psegs = segs.slice(0, -1)
-    let chain = []
-    psegs.forEach((seg, idx) => {
-      let pseg = plain(seg)
-      let pdicts = segdicts[pseg]
-      let prfdicts
-      if (idx < psegs.length-1) {
-        pdicts = _.filter(pdicts, pdict => { return pdict.pref || pdict.name })
-        prfdicts = _.filter(pdicts, pdict => { return pdict.pref })
-        if (prfdicts.length) pdicts = prfdicts
-      }
-      let oseg = {seg: seg, dicts: pdicts }
-      chain.push(oseg)
+function selectBest(chains, compound) {
+  let exacts = []
+  chains.forEach(chain=> {
+    let possible = false
+    chain.forEach(sec=> {
+      sec.dicts.forEach(dict=> { if (dict.possible) possible = true })
     })
-
-    chain.push({seg: lastseg, flexes: segflexes})
-    chains.push(chain)
+    if (!possible) exacts.push(chain)
   })
-  return chains
-}
-
-// ADDED
-function addDicts(chains, pnonlasts, segdicts) {
-  chains.forEach(segs => {
-    let penult = segs[segs.length-2]
-    if (!penult.dicts) clog('NO SDICTS', segs)
-    let seg = penult.seg
-    seg = plain(seg)
-    let first = _.first(seg)
-    // if (penult.dicts.length) return // уже есть значение, добавлять не нужно - нет, так нельзя, ἦγον имеет ненужный ηγ и не пустит
-    let sdicts = _.clone(penult.dicts)
-
-    let weaks = strong2weak[first]
-    if (!vowels.includes(first)) {
-      let added = ['ε', seg].join('') // aor.sub, opt, impf from ind
-      addDictCarefully(pnonlasts, segdicts, sdicts, added, 'added')
-    } else if (first == 'ε') { // pas.aor.sub - βλέπω  - ἔβλεψα - ἐβλεφθῶ - dict plain βλε
-      if (seg.length < 2) return
-      let added = seg.slice(1)
-      addDictCarefully(pnonlasts, segdicts, sdicts, added, 'sliced')
-    } else if (first == 'η') { // mp.impf.ind - ἠβουλόμην, ἐβουλόμην
-      if (seg.length < 2) return
-      let added = seg.slice(1)
-      addDictCarefully(pnonlasts, segdicts, sdicts, added, 'sliced')
-    }
-    if (weaks) {
-      weaks.forEach(weak => {
-        let stem = seg.slice(1)
-        let added = [weak, stem].join('')
-        addDictCarefully(pnonlasts, segdicts, sdicts, added, 'sliced')
-      })
-    }
-    penult.dicts = _.compact(_.flatten(sdicts))
-  })
-}
-
-function addDictCarefully(pnonlasts, segdicts, sdicts, added, mark) {
-  let adicts = segdicts[added]
-  adicts = _.filter(adicts, dict => { return dict.verb })
-  if (!adicts || !adicts.length) return
-  adicts.forEach(adict => {
-    // есть случай, когда plain включен в исходные pnonlasts, но не в данной chain - ἐδείκνυν, plain δεικνυ в 3-chain
-    // if (!pnonlasts.includes(adict.plain)) adict[mark] = true
-    // но без проверки на pnonlasts.includes отвалится что-то важное потом?
-    adict[mark] = true
-  })
-  sdicts.push(adicts)
-}
-
-function fullChains(chains) {
-  let fulls = []
-  chains.forEach(segs => {
-    let full = true
-    let dsegs = segs.slice(0, -1)
-    dsegs.forEach(seg => {
-      if (!seg.dicts.length) full = false
-    })
-    if (full) fulls.push(segs)
-  })
-  return fulls
-}
-
-function filterDictFlex (rchains) {
-  let chains = []
-  rchains.forEach(rchain => {
-    let lastseg = _.last(rchain)
-    let seg = lastseg.seg
-    let flexes = lastseg.flexes
-    let segs = rchain.slice(0, -1)
-    if (!segs.length) return
-
-    let vchains = parseVerb(seg, segs, flexes)
-    chains.push(vchains)
-    let nchains = parseName(seg, segs, flexes)
-    chains.push(nchains)
-  })
-  return _.flatten(chains)
-}
-
-
-function compound(chains) {
-  let cmpds = []
-  chains.forEach(segs => {
-    // let ult = segs[segs.length-1]
-    let penult = segs[segs.length-2]
-    let antepen = segs[segs.length-3]
-    // если penult = suffix, а antepen - verb // NB - заменить после specs
-    let pensuffs = _.filter(penult.dicts, dict => { return dict.plain == 'ε' })
-    let anteverbs = _.filter(antepen.dicts, dict => { return dict.verb })
-    let suff = {spec: true, rdict: 'ο', dict: 'ο', trns: ['e-suffix'] }
-    if (penult && antepen && pensuffs.length && anteverbs.length) penult.dicts = [suff], antepen.dicts = anteverbs
-    // penult.dicts = [suff], antepen.dicts = anteverbs
-  })
-}
-
-function selectLongest(chains) {
-  let min = _.min(chains.map(chain => {  return chain.length } ) )
-  log('MIN', min)
-  let shortests = _.filter(chains, chain => { return chain.length == min })
-  let max = _.max(shortests.map(chain => {  return _.sum(chain.map(segment => { return segment.seg.length }))/chain.length } ) )
-  log('MAX', max)
-  let lngsts = _.filter(shortests, chain => { return _.sum(chain.map(segment => { return segment.seg.length }))/chain.length >= max -1 })
-  lngsts = _.sortBy(lngsts, chain => { return _.sum(chain.map(segment => { return segment.seg.length }))/chain.length }).reverse()
-  return lngsts
+  if (exacts.length) return exacts
+  else return chains
 }
 
 function cleanStr(row) {
@@ -288,4 +209,27 @@ function cleanStr(row) {
   clean = clean.replace(/Ῐ/gi, 'Ι').replace(/Ῑ/gi, 'Ι')
   clean = clean.replace(/̆/gi, '')
   return clean
+}
+
+function corrStr(wf) {
+  let clwf = cleanStr(wf)
+  let cwf = comb(clwf)
+  return oxia(cwf)
+}
+
+function addTerms(cwf) {
+  let cwfs = []
+  let last = _.last(cwf)
+  if (last == coronis) {
+    let stress = stressed(cwf)
+    corvowels.forEach(vow=> {
+      let clean = cwf.slice(0, -1)
+      clean = [clean, vow].join('')
+      if (!stress) clean = [clean, accents.oxia].join('')
+      cwfs.push(clean)
+    })
+  } else {
+    cwfs.push(cwf)
+  }
+  return cwfs
 }

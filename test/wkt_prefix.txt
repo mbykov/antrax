@@ -129,6 +129,7 @@ pref: ἐπι- • (epi-)
     on, for the purpose of, because of
     on. at
     = ἐπ
+    = επι
     = επ
 
 pref: εὐ- • (eu-)

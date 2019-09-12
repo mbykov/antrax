@@ -1,13 +1,10 @@
 /* global describe */
 
-// import {log} from '../src/lib/utils'
-import {augs, vowels, tense} from '../src/lib/utils'
 let log = console.log
-import { clause, antrax, enableDBs } from '../dist'
+import { antrax } from '../index'
+import { setDBs } from '../lib/pouch'
 import _ from 'lodash'
-// import { property } from 'jsverify'
-const orthos = require('orthos')
-// let orthos = require('../../orthos');
+
 const assert = require('assert')
 const forEach = require('mocha-each')
 const fse = require('fs-extra')
@@ -28,14 +25,14 @@ process.prependListener("exit", (code) => {
 })
 
 let upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
-let apath = path.resolve(__dirname, '../../egreek')
-enableDBs(upath, apath)
+let dnames = ['wkt']
+setDBs(upath, dnames)
 
-const testpath = path.resolve(__dirname, 'wkt_name.txt')
+// const testpath = path.resolve(__dirname, '../../test/wkt_name.txt')
+const testpath = path.resolve('/home/michael/greek/antrax/test/wkt_name.txt')
 const text = fse.readFileSync(testpath,'utf8')
 
 let param = process.argv.slice(2)[1]
-
 let skip = true
 
 // let cases = ['nom', 'gen', 'dat', 'acc', 'voc']
@@ -61,7 +58,6 @@ rows.forEach((row, idx) => {
     let res =  {dict: dict, formstr: formstr, data: store} // ,
     if (restrict) res.restrict = restrict
     parseGend(res)
-    // if (!/genitive /.test(formstr)) return
     if (dict) rtests.push(res)
   }
 
@@ -104,7 +100,7 @@ rtests.forEach(doc => {
 
 tests = _.compact(tests)
 
-// tests = tests.slice(0, 1)
+// tests = tests.slice(0, 20)
 // console.log('T', tests)
 // tests = []
 
@@ -112,33 +108,32 @@ forEach(tests)
   .it('name %s %s %s %s ', (rdict, arg, gend, numcase, done) => {
     // log('--->', rdict, arg, gend, numcase)
     antrax(arg)
-      .then(results => {
-        if (!results.length) log('NO RESULT'), assert.equal(false, true)
-        results.forEach(res => {
-          let chains = res.chains
-          if (!chains) return // indecls
-          if (!chains.length) log('NO RESULT'), assert.equal(false, true)
-          // remove other results:
-          let corrchs = _.filter(chains, ch => { return ch[ch.length-2].dicts.map(dict => { return dict.rdict}).includes(rdict)
-                                                 && ch[ch.length-2].dicts.map(dict => { return dict.gend}).includes(gend)})
-          if (!corrchs.length) log('no correct chains'), assert.equal(false, true)
-          // log('SIZE', corrchs.length)
+      .then(result => {
+        // terms:
+        let terms = _.filter(result.terms, dict=> { return dict.name })
+        let tfls = _.compact(_.flatten(terms.map(term=> { return term.fls })))
+        let numcases = _.compact(tfls.map(flex => { return flex.numcase }))
+        if (numcases.length) {
+          assert.equal(numcases.includes(numcase), true)
+          return
+        }
+        // chains:
+        if (!result.chains.length) log('NO CHAINS'), assert.equal(false, true)
+        let chains = _.flatten(result.chains)
+        let dicts = _.flatten(chains.map(chain=> { return chain.dicts }))
+        dicts = _.filter(dicts, dict=> { return dict.rdict == rdict })
+        let names = _.compact(_.flatten(dicts))
+        if (!dicts.length) log('NO DICTS'), assert.equal(false, true)
 
-          corrchs.forEach(chain => {
-            // log('CH.length', chain)
-            if (chain.length > 2) log('CH.length'), assert.equal(false, true)
-            let penult = chain[chain.length-2]
-            let names = _.filter(penult.dicts, dict => { return dict.name })
-            if (!names.length) log('no name'), assert.equal(false, true)
-            // let gends = _.filter(names, dict => { return dict.gend == gend })
-            // if (!gends.length) log('no gend'), assert.equal(false, true)
-            names.forEach(dict => {
-              let fls = _.last(chain).flexes
-              let numcases = fls.map(flex => { return flex.numcase })
-              assert.equal(numcases.includes(numcase), true)
-          })
-          })
+        let gendnames = _.filter(names, dict => { return dict.gend == gend }) // ex. ἄνθος masc, neut
+        // if (!gendnames.length) log('NO GEND'), assert.equal(false, true) // στίξ στίχε fem du.nom - correct, but στίχος - sg.voc
+
+        gendnames.forEach(dict => {
+          let fls = dict.fls
+          let numcases = fls.map(flex => { return flex.numcase })
+          assert.equal(numcases.includes(numcase), true)
         })
+
       })
       .then(done)
   })
@@ -152,7 +147,5 @@ function parseGend(res) {
   else if (head.split(' n ').length > 1) gend = 'neut'
   else if (head.split(' m f ').length > 1) gend = 'masc fem'
   if (head.split(' pl ').length > 1) res.pl = true
-  // if (!gend) log('H', par.rdict, head)
-  // if (!gend) return
   res.gend = gend
 }

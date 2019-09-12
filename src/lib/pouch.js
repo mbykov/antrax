@@ -1,116 +1,99 @@
 //
 
 import _ from 'lodash'
-
-let fse = require('fs-extra')
-
 let copydir = require('copy-dir')
-const path = require('path')
+let path = require('path')
+const fse = require('fs-extra');
 const PouchDB = require('pouchdb')
 
-let log = console.log
+import { verbkeys } from './verb-reg-keys'
+import { namekeys } from './name-reg-keys'
+const nkeys = _.values(namekeys)
+const vkeys = _.values(verbkeys)
 
-let dbs
+import {oxia, comb, plain} from 'orthos'
+// import {oxia, comb, plain} from '../../../../greek/orthos'
+
+const log = console.log
+
+let dbs = []
 let db_flex
 let db_terms
+let db_comp
 
-// function createZeroCfg(upath, aversion) {
-//   let upouchpath = path.resolve(upath, 'pouch')
-//   let fns = fse.readdirSync(upouchpath)
+// я так понимаю, тут работа с cfg - всегда инициализация, так?
 
-//   let cfg = []
-//   fns.forEach((dn, idx) => {
-//     if (dn == 'cfg.json') return
-//     let dpath = path.resolve(upouchpath, dn)
-//     let cf = {name: dn, active: true, idx: idx}
-//     cfg.push(cf)
-//   })
-//   cfg = _.sortBy(cfg, ['idx'])
-//   let sfgpath = path.resolve(upouchpath, 'cfg.json')
-//   fse.writeJsonSync(sfgpath, cfg)
-//   let version = {version: aversion}
-//   let versionpath = path.resolve(upath, 'version.json')
-//   fse.writeJsonSync(versionpath, version)
-//   return cfg
-// }
+export function getCfg (apath, upath) {
+  let pouchpath = path.resolve(upath, 'pouch')
+  fse.ensureDirSync(pouchpath)
+  let dnames = fse.readdirSync(pouchpath)
+  if (!dnames.length) return installDBs(apath, upath)
+  else return checkCfg(apath, upath, dnames)
+}
 
-// function initDBs(upath, apath, aversion, isDev) {
-//   let srcpath
-//   if (isDev) {
-//     srcpath = path.resolve(apath, 'pouch')
-//   } else {
-//     // srcpath = path.resolve(apath, '../app.asar.unpacked/pouch')
-//     srcpath = path.resolve(apath, '../../pouch')
-//   }
-//   let destpath = path.resolve(upath, 'pouch')
-//   log('init - SRC:', srcpath, 'DEST:', destpath)
+function checkCfg(apath, upath, dnames) {
+  let pouchpath = path.resolve(upath, 'pouch')
+  return Promise.all(dnames.map(function(dname) {
+    let dbpath = [pouchpath, dname].join('/')
+    let remoteDB = new PouchDB(dbpath) // проверить skip_setup
+    // здесь нужно делать два запроса, второй - про size, т.е. db.info()
+    return remoteDB.get('description')
+      .then(descr=> {
+        descr.dname = dname
+        return descr
+      })
+      .catch(err=> {
+        if (err.reason == 'missing') return
+        log('CFG-ERR:', err.reason)
+      })
+  }))
+    .then(descrs=> {
+      let cfg = _.compact(descrs)
+      cfg = _.filter(cfg, dict=> { return dict.dname != 'flex' })
+      cfg.forEach((dict, idx)=> { dict.idx = idx, dict.active = true, dict.sync = true, dict.size = 0 })
+      // log('--init-cfg--', cfg)
+      return cfg
+    })
+}
 
-//   try {
-//     fse.ensureDirSync(destpath)
-//     fse.copySync(srcpath, destpath, {
-//       overwrite: true
-//     })
-//   } catch (err) {
-//     log('ERR copying default DBs', err)
-//   }
-//   let cfg = createZeroCfg(upath, aversion)
-//   return cfg
-// }
-
-export function setDBs (upath) {
-  let cfgpath = path.resolve(upath, 'pouch/cfg.json')
-  let cfg = fse.readJsonSync(cfgpath, { throws: false })
-  if (!cfg) log('NO CFG!')
-
-  let dbnames = _.compact(cfg.map(cf => { return (cf.active) ? cf.name : null }))
+export function setDBs (upath, dnames) {
   dbs = []
-  dbnames.forEach((dn, idx) => {
+  dnames.forEach((dn, idx) => {
     if (dn == 'flex') return
     if (dn == 'terms') return
     let dpath = path.resolve(upath, 'pouch', dn)
     let pouch = new PouchDB(dpath)
     pouch.dname = dn
-    pouch.weight = idx
+    // pouch.weight = idx
     dbs.push(pouch)
   })
+
   let flexpath = path.resolve(upath, 'pouch', 'flex')
   db_flex = new PouchDB(flexpath)
   let termpath = path.resolve(upath, 'pouch', 'terms')
   db_terms = new PouchDB(termpath)
 }
 
-// export function setDBs_ (upath, apath, isDev) {
-//   let pckg = require('../../package.json')
-//   let aversion = pckg.version
-//   let rewrite = false
-//   let versionpath = path.resolve(upath, 'version.json')
-//   let oldver = fse.readJsonSync(versionpath, { throws: false })
-//   if (!oldver) rewrite = true
-//   else if (oldver.version != aversion) rewrite = true
-//   let cfgpath = path.resolve(upath, 'pouch/cfg.json')
-//   let cfg = fse.readJsonSync(cfgpath, { throws: false })
-//   if (!cfg) cfg = createZeroCfg(upath, aversion)
-//   // cfg = initDBs(upath, apath, aversion, isDev)
+export function installDBs (apath, upath) {
+  let srcpath = path.resolve(apath, 'src/dumps')
+  let pouchpath = path.resolve(upath, 'pouch')
+  try {
+    fse.ensureDirSync(pouchpath)
+    fse.copySync(srcpath, pouchpath, {
+      overwrite: true
+    })
+    let dnames = fse.readdirSync(pouchpath)
+    return checkCfg(apath, upath, dnames)
+    // cfg.forEach((dict, idx)=> { dict.idx = idx })
+    // return cfg
+  } catch (err) {
+    log('ERR copying default DBs', err)
+  }
 
-//   let dbnames = _.compact(cfg.map(cf => { return (cf.active) ? cf.name : null }))
-
-//   dbs = []
-//   dbnames.forEach((dn, idx) => {
-//     if (dn == 'flex') return
-//     if (dn == 'terms') return
-//     let dpath = path.resolve(upath, 'pouch', dn)
-//     let pouch = new PouchDB(dpath)
-//     pouch.dname = dn
-//     pouch.weight = idx
-//     dbs.push(pouch)
-//   })
-//   let flexpath = path.resolve(upath, 'pouch', 'flex')
-//   db_flex = new PouchDB(flexpath)
-//   let termpath = path.resolve(upath, 'pouch', 'terms')
-//   db_terms = new PouchDB(termpath)
-// }
+}
 
 export function queryDBs (keys) {
+  let dnames = dbs.map(db=> { return db.dname})
   return Promise.all(dbs.map(function (db) {
     return db.allDocs({
       keys: keys,
@@ -120,8 +103,7 @@ export function queryDBs (keys) {
         if (!res || !res.rows) throw new Error('no dbn result')
         let rdocs = _.compact(res.rows.map(row => { return row.doc }))
         let docs = _.flatten(_.compact(rdocs.map(rdoc => { return rdoc.docs })))
-        if (!docs.length) return []
-        docs.forEach(doc => { doc.dname = db.dname, doc.weight = db.weight })
+        docs.forEach(doc => { doc.dname = db.dname }) // , doc.weight = db.weight
         return docs
       }).catch(function (err) {
         console.log('ERR GET DBs', err)
@@ -129,42 +111,129 @@ export function queryDBs (keys) {
   }))
 }
 
-// export function getFlex (keys) {
-//   return db_flex.allDocs({keys: keys, include_docs: true})
-//     .then(function(res) {
-//       let rdocs = _.compact(res.rows.map(row => { return row.doc }))
-//       let result = []
-//       rdocs.forEach(fl => {
-//         fl.docs.forEach(doc => {
-//           doc.flex = fl._id
-//           result.push(doc)
-//         })
-//       })
-//       return result
-//     })
-// }
+export function getFlex (keys) {
+  return db_flex.allDocs({keys: keys, include_docs: true})
+    .then(function(res) {
+      let rdocs = _.compact(res.rows.map(row => { return row.doc }))
+      let result = []
+      rdocs.forEach(fl => {
+        fl.docs.forEach(doc => {
+          result.push(doc)
+        })
+      })
+      return result
+    })
+}
 
-// export function getTerms (keys) {
-//   return db_terms.allDocs({keys: keys, include_docs: true})
-//     .then(function(res) {
-//       let rdocs = _.compact(res.rows.map(row => { return row.doc }))
-//       let docs = rdocs.map(rdoc => { return rdoc.docs })
-//       let terms = {}
-//       _.flatten(docs).forEach(doc => {
-//         doc.dname = 'term'
-//         if (!terms[doc.term]) terms[doc.term] = []
-//         terms[doc.term].push(doc)
-//       })
-//       return terms
-//     })
-// }
+export function getTerms (wfs) {
+  return db_terms.allDocs({keys: wfs, include_docs: true})
+    .then(function(res) {
+      let rdocs = _.compact(res.rows.map(row => { return row.doc }))
+      let docs = _.flatten(rdocs.map(rdoc => { return rdoc.docs }))
+      docs.forEach(doc => { doc.dname = 'terms' }) // , doc.weight = 0
+      return docs
+    })
+}
 
-// export function getTerm (wf) {
-//   return db_terms.allDocs({keys: [wf], include_docs: true})
-//     .then(function(res) {
-//       let rdocs = _.compact(res.rows.map(row => { return row.doc }))
-//       let docs = _.flatten(rdocs.map(rdoc => { return rdoc.docs }))
-//       docs.forEach(doc => { doc.dname = 'term', doc.weight = 0 })
-//       return docs
-//     })
-// }
+export function createDB (upath, docs) {
+  let local = 'local'
+  let dpath = path.resolve(upath, 'pouch', local)
+  let dbloc = _.find(dbs, db=> { return db.dname == local})
+  if (dbloc) dbloc.destroy()
+    .then(res=> {
+      dbs = _.filter(dbs, db=> { return db.dname != local})
+      createLocal(upath, docs)
+    })
+  else createLocal(upath, docs)
+}
+
+function createLocal(upath, docs) {
+  let local = 'local'
+  let dpath = path.resolve(upath, 'pouch', local)
+  let pouch = new PouchDB(dpath)
+  pouch.dname = local
+  // pouch.weight = 0
+  dbs.unshift(pouch)
+  pouch.bulkDocs(docs)
+    .then(res=> {
+      // log('create-local: BULK-RES', docs)
+    })
+}
+
+export function readDB(upath, dname) {
+  let local = setLocalDB(upath, dname)
+  return local.allDocs({ include_docs: true, startkey: 'α', endkey: 'ω\ufff0'  })
+    .then(res=> {
+      let rdocs = _.compact(res.rows.map(row => { return row.doc }))
+      return rdocs
+    })
+}
+
+export function updateDB(upath, dname, newdocs) {
+  determineKey(newdocs)
+  return readDB(upath, dname)
+    .then(olddocs=> {
+      // log('UPDATE old LOCAL:', olddocs)
+      // log('UPDATE new LOCA:L', newdocs)
+      let cleans = []
+      olddocs.forEach(rdoc=> {
+        let newdoc = _.find(newdocs, newdoc=> { return rdoc._id == newdoc._id })
+        if (newdoc) newdoc.processed = true, rdoc.docs = newdoc.docs
+        cleans.push(rdoc)
+      })
+      let news = _.filter(newdocs, dict=> { return !dict.processed })
+      cleans.push(...news)
+      let local = setLocalDB(upath, dname)
+      return local.bulkDocs(cleans)
+        .then(res=> {
+          return {res: res, size: cleans.length}
+        })
+        .catch(err=> {
+          console.log('ERR bulkDocs', err)
+        })
+    })
+}
+
+function setLocalDB(upath, dname) {
+  let local = _.find(dbs, db=> { return db.dname == dname})
+  if (!local) {
+    let dpath = path.resolve(upath, 'pouch', dname)
+    local = new PouchDB(dpath)
+    local.dname = dname
+    dbs.unshift(local)
+  }
+  return local
+}
+
+export function delDB(upath, dname) {
+  let local = setLocalDB(upath, dname)
+  return local.destroy().then(function (response) {
+    return true
+  }).catch(function (err) {
+    console.log('Local DB destroy err:', err);
+    return false
+  });
+}
+
+function determineKey(rdocs) {
+  rdocs.forEach(rdoc=> {
+    rdoc.docs.forEach(doc=> {
+      if (doc.key) return
+      doc.dict = comb(doc.rdict)
+      if (doc.name) {
+        nkeys.forEach(nkey=> {
+          let rekey = new RegExp(nkey + '$')
+          let test = doc.dict.replace(rekey, '')
+          if (test != doc.dict) doc.key = nkey
+        })
+      } else if (doc.verb) {
+        vkeys.forEach(vkey=> {
+          let rekey = new RegExp(vkey + '$')
+          let test = doc.dict.replace(rekey, '')
+          if (test != doc.dict) doc.key = vkey
+        })
+      }
+    })
+  })
+
+}

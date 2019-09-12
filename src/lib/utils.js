@@ -1,5 +1,6 @@
 //
 let util = require('util')
+import _ from 'lodash'
 
 const ac = {
   'oxia': '\u0301',
@@ -10,11 +11,42 @@ const ac = {
   'psili': '\u0313',
   'dasia': '\u0314',
   '': '',
-  'ypo': '\u0345',
+  // 'ypo': '\u0345',
   '': ''
 }
 
 export const accents = ac
+
+export const tobedel = [ac.varia, ac.oxia, ac.peris] // dialitika remains // ac.dasia, , ac.ypo // , ac.psili
+
+export const aspirations = {
+  'psili': '\u0313',
+  'dasia': '\u0314'
+}
+
+export const ypo = '\u0345'
+
+export const uisyms = ['υ', 'ι']
+
+export const coronis = '\u1fbd'
+
+export const vowels =  ['α', 'ε', 'ι', 'ο', 'ω', 'η', 'υ']
+// export const vowels =  ['α', 'ε', 'ι', 'ο', 'ω', 'η', 'υ', 'ͅ'] // ypo last
+
+export const corvowels =  ['α', 'ε', 'ι', 'ο'] // vows replaced by coronis
+
+export const stresses = [ac.oxia, ac.varia, ac.peris]
+
+export function stressed(str) {
+  let syms = str.split('')
+  // let stress
+  // syms.forEach(sym => {
+  //   if (stresses.includes(sym)) stress = sym
+  // })
+  return _.intersection(syms, stresses).length
+}
+
+
 
 export const mutes =
   () => ['ψ', 'ξ']
@@ -27,8 +59,6 @@ export const contrs  = {
   'aw': ['α', ac.oxia, 'ω'].join(''),
   'ow': ['ο', ac.oxia, 'ω'].join('')
 }
-
-export const vowels =  ['α', 'ε', 'ι', 'ο', 'ω', 'η', 'υ']
 
 // export const eaug = 'ἐ'
 export const eaug = 'ε'
@@ -125,55 +155,55 @@ export const affixes = {
 // ᾀδοίτην
 
 
-// εἰ
-export const apiaugs = [
-  ['α', ac.psili].join(''),
-  ['α', ac.dasia].join(''),
-  ['αι', ac.psili].join(''),
-  ['αι', ac.dasia].join(''),
-  ['αυ', ac.psili].join(''),
-  ['αυ', ac.dasia].join(''),
+// // εἰ
+// export const apiaugs = [
+//   ['α', ac.psili].join(''),
+//   ['α', ac.dasia].join(''),
+//   ['αι', ac.psili].join(''),
+//   ['αι', ac.dasia].join(''),
+//   ['αυ', ac.psili].join(''),
+//   ['αυ', ac.dasia].join(''),
 
-  ['ε', ac.psili].join(''),
-  ['ε', ac.dasia].join(''),
-  ['ει', ac.psili].join(''),
-  ['ει', ac.dasia].join(''),
-  ['ευ', ac.psili].join(''),
-  ['ευ', ac.dasia].join(''),
+//   ['ε', ac.psili].join(''),
+//   ['ε', ac.dasia].join(''),
+//   ['ει', ac.psili].join(''),
+//   ['ει', ac.dasia].join(''),
+//   ['ευ', ac.psili].join(''),
+//   ['ευ', ac.dasia].join(''),
 
-  ['ο', ac.psili].join(''),
-  ['ο', ac.dasia].join(''),
-  ['οι', ac.psili].join(''),
-  ['οι', ac.dasia].join(''),
-  ['ου', ac.psili].join(''),
-  ['ου', ac.dasia].join(''),
+//   ['ο', ac.psili].join(''),
+//   ['ο', ac.dasia].join(''),
+//   ['οι', ac.psili].join(''),
+//   ['οι', ac.dasia].join(''),
+//   ['ου', ac.psili].join(''),
+//   ['ου', ac.dasia].join(''),
 
-  ['ι', ac.psili].join(''),
-  ['ι', ac.dasia].join(''),
-  ['υ', ac.psili].join(''),
-  ['υ', ac.dasia].join(''),
+//   ['ι', ac.psili].join(''),
+//   ['ι', ac.dasia].join(''),
+//   ['υ', ac.psili].join(''),
+//   ['υ', ac.dasia].join(''),
 
-  ['ω', ac.psili].join(''),
-  ['ω', ac.dasia].join(''),
-  ['η', ac.psili].join(''),
-  ['η', ac.psili, ac.ypo].join(''),
-  ['η', ac.dasia].join(''),
+//   ['ω', ac.psili].join(''),
+//   ['ω', ac.dasia].join(''),
+//   ['η', ac.psili].join(''),
+//   ['η', ac.psili, ac.ypo].join(''),
+//   ['η', ac.dasia].join(''),
 
-  // ['', ac.psili].join(''),
-  // ['', ac.dasia].join(''),
-  // ['', ac.psili].join(''),
-  // ['', ac.dasia].join('')
-    ]
+//   // ['', ac.psili].join(''),
+//   // ['', ac.dasia].join(''),
+//   // ['', ac.psili].join(''),
+//   // ['', ac.dasia].join('')
+//     ]
 
-export const augs = {
-  'X̓': 'ἐ',
-  'ἀ': 'ἀ ἠ',
-  'ἠ': 'ἠ ἀ',
-  'ἡ': 'ἡ',
-  'ὁ': 'ὁ ὡ',
-  'ὡ': 'ὁ ὡ',
-  'ᾐ': 'αἰ'
-}
+// export const augs = {
+//   'X̓': 'ἐ',
+//   'ἀ': 'ἀ ἠ',
+//   'ἠ': 'ἠ ἀ',
+//   'ἡ': 'ἡ',
+//   'ὁ': 'ὁ ὡ',
+//   'ὡ': 'ὁ ὡ',
+//   'ᾐ': 'αἰ'
+// }
 
 // export const augplains = {
 //   'ε': 'X',
@@ -219,13 +249,15 @@ export const mood =
 let print = process.argv.slice(3)[0]
 
 // if (process.env.NODE_ENV === 'test')
-export function log () {
+export function dbg () {
   if (print == 'log') console.log.apply(console, arguments)
 }
 
-export function plog () {
-  var vs = _.values(arguments)
+export function insp () {
+  if (print != 'insp') return
+  let vs = _.values(arguments)
   if (vs.length === 1) vs = vs[0]
   // console.log(util.inspect(vs, {showHidden: false, depth: null}))
-  console.log(util.inspect(vs, {showHidden: false, depth: 3}))
+  // console.log(util.inspect(vs, {showHidden: false, depth: true}))
+  console.log(util.inspect(vs, false, null, true));
 }

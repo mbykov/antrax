@@ -1,50 +1,40 @@
 /* global describe */
 
-// import {log} from '../src/lib/utils'
-import {augs, vowels, tense} from '../src/lib/utils'
 let log = console.log
-import { clause, antrax, enableDBs } from '../dist'
+import { antrax } from '../index'
+import { setDBs } from '../lib/pouch'
 import _ from 'lodash'
-// import { property } from 'jsverify'
-// const orthos = require('orthos')
-let orthos = require('../../orthos');
+import {comb, plain} from 'orthos'
 const assert = require('assert')
 const forEach = require('mocha-each')
 const fse = require('fs-extra')
 const path = require('path')
 
 let unhandledRejectionExitCode = 0
-
 process.on("unhandledRejection", (reason) => {
   // console.log("unhandled rejection:", reason)
   unhandledRejectionExitCode = 1
   throw reason
 })
-
 process.prependListener("exit", (code) => {
   if (code === 0) {
     process.exit(unhandledRejectionExitCode)
   }
 })
 
-let upath = path.resolve(__dirname, '../../')
-enableDBs(upath)
+let upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
+let dnames = ['wkt']
+setDBs(upath, dnames)
 
-const testpath = path.resolve(__dirname, 'wkt_ad-2.txt')
+const testpath = path.resolve('/home/michael/greek/antrax/test/wkt_ad-2.txt')
 const text = fse.readFileSync(testpath,'utf8')
 
 let param = process.argv.slice(2)[1]
 
 let skip = true
 
-// let cases = ['nom', 'gen', 'dat', 'acc', 'voc']
-// let nums // = ['sg', 'du', 'pl']
-// const morphs = {
-//   '6': ['masc-fem.sg', 'neut.sg', 'masc-fem.du', 'neut.du', 'masc-fem.pl', 'neut.pl' ],
-//   '9': ['masc.sg', 'fem.sg',  'neut.sg', 'masc.du', 'fem.du', 'neut.du', 'masc.pl', 'fem.pl', 'neut.pl' ]
-// }
 const marks = ['dict', 'nom', 'gen', 'dat' , 'acc' , 'voc' , 'adv' , 'caution' ]
-const degrees = ['adv', 'adv.comp', 'adv.sup']
+const degrees = ['adv', 'comp', 'sup']
 
 let tests = []
 let rtests = []
@@ -85,41 +75,36 @@ rows.forEach((row, idx) => {
     })
   } else if (mark == 'caution') {
     // log('CAUTION!')
-    // tests.pop()
+    tests.pop()
   } else {
     // log('ELSE')
   }
   // log('IDX', idx, mark)
 })
 
-// tests = tests.slice(0, 20)
+// tests = tests.slice(0, 3)
 // console.log('T', tests)
 // tests = []
 
 forEach(tests)
   .it('adv %s %s %s ', (rdict, arg, dgr, done) => {
-    // log('->', dict, arg, dgr)
+    // log('->', rdict, arg, dgr)
     antrax(arg)
-      .then(chains => {
-        if (!chains.length) log('NO RESULT'), assert.equal(false, true)
-        chains.forEach(chain => {
-          // log('CH.length', chain)
-          if (chain.length > 2) log('CH.length'), assert.equal(false, true)
-          let penult = chain[chain.length-2]
-          penult.dicts.forEach(dict => {
-            if (!dict.name) return // глаголы
-            if (dict.gend) return // не-прилагательные
-            if (orthos.toComb(dict.rdict) != orthos.toComb(rdict)) return
+      .then(res => {
+        if (!res.chains.length) log('NO RESULT'), assert.equal(false, true)
 
-            let fls = _.last(chain).flexes
-            let exps = fls.map(flex => { return flex.degree })
-            let exp = exps[0]
-            if (!exp) return // adj, but not adv - αἰπύς
+        let chains = _.flatten(res.chains)
+        let dicts = _.flatten(chains.map(chain=> { return chain.dicts }))
+        dicts = _.filter(dicts, dict=> { return dict.rdict == rdict })
+        dicts = _.compact(_.flatten(dicts))
+        if (!dicts.length) log('NO DICTS'), assert.equal(false, true)
 
-            // log('exp:', exps, 'dgr', dgr)
-            // assert.equal(exp, dgr)
-            assert.equal(true, true)
-          })
+        // assert.equal(true, true)
+        dicts.forEach(dict => {
+          let fls = _.filter(dict.fls, flex=> { return flex.degree})
+          if (!fls.length) log('NO FLEX'), assert.equal(false, true)
+          let degrees = _.map(fls, flex => { return flex.degree })
+          assert.equal(degrees.includes(dgr), true)
         })
       })
       .then(done)

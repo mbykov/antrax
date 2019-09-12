@@ -1,8 +1,7 @@
 //
 
-import {log} from './utils'
 import _ from 'lodash'
-import {accents as acs, vowels, mutes} from './utils'
+import {accents as acs, vowels, mutes, tobedel} from './utils'
 
 const vows = vowels
 const mts = mutes()
@@ -20,7 +19,7 @@ export function segmenter (str) {
         pdchs.push(_.clone(pdch))
         pdch.pop()
       }
-      if (pdch.length < 3) rec(flake.tail, pdch) // three parts for now ! // 5 is four parts, i.e affix, stem, suffix, flex ========= NB: ============
+      if (pdch.length < 4) rec(flake.tail, pdch) // three parts for now ! // 5 is four parts, i.e affix, stem, suffix, flex ========= NB: ============
       // rec(flake.tail, pdch)
       pdch.pop()
     })
@@ -44,6 +43,7 @@ export function scrape (str) {
     if (!head) continue
     beg = tail[0]
     if (_.values(acs).includes(beg)) continue
+    // if (_.values(tobedel).includes(beg)) continue
     let res = {head: head, tail: tail}
     flakes.push(res)
   }

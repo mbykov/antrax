@@ -1,0 +1,5207 @@
+#
+# replaced: ᾰα ᾱα ῑι ῐι ῠυ ῡυ
+
+#= Adjective
+
+ἀθάνατος • (āthánatos) m (feminine ἀθάνατος or ἀθανάτη, neuter ἀθάνατον); first/second declension
+
+    undying, immortal
+    everlasting, perpetual
+    maintained at a constant figure
+
+Inflection
+hide ▲First and second declension of ἀθάνατος; ἀθανάτη; ἀθάνατον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		ἀθάνατος
+āthánatos 	ἀθανάτη
+āthanátē 	ἀθάνατον
+āthánaton 		ἀθανάτω
+āthanátō 	ἀθανάτα
+āthanátā 	ἀθανάτω
+āthanátō 		ἀθάνατοι
+āthánatoi 	ἀθάναται
+āthánatai 	ἀθάνατα
+āthánata
+Genitive 		ἀθανάτου
+āthanátou 	ἀθανάτης
+āthanátēs 	ἀθανάτου
+āthanátou 		ἀθανάτοιν
+āthanátoin 	ἀθανάταιν
+āthanátain 	ἀθανάτοιν
+āthanátoin 		ἀθανάτων
+āthanátōn 	ἀθανάτων
+āthanátōn 	ἀθανάτων
+āthanátōn
+Dative 		ἀθανάτῳ
+āthanátōi 	ἀθανάτῃ
+āthanátēi 	ἀθανάτῳ
+āthanátōi 		ἀθανάτοιν
+āthanátoin 	ἀθανάταιν
+āthanátain 	ἀθανάτοιν
+āthanátoin 		ἀθανάτοις
+āthanátois 	ἀθανάταις
+āthanátais 	ἀθανάτοις
+āthanátois
+Accusative 		ἀθάνατον
+āthánaton 	ἀθανάτην
+āthanátēn 	ἀθάνατον
+āthánaton 		ἀθανάτω
+āthanátō 	ἀθανάτα
+āthanátā 	ἀθανάτω
+āthanátō 		ἀθανάτους
+āthanátous 	ἀθανάτας
+āthanátās 	ἀθάνατα
+āthánata
+Vocative 		ἀθάνατε
+āthánate 	ἀθανάτη
+āthanátē 	ἀθάνατον
+āthánaton 		ἀθανάτω
+āthanátō 	ἀθανάτα
+āthanátā 	ἀθανάτω
+āthanátō 		ἀθάνατοι
+āthánatoi 	ἀθάναται
+āthánatai 	ἀθάνατα
+āthánata
+Derived forms 		Adverb 		Comparative 		Superlative
+	ἀθανάτως
+āthanátōs 		ἀθανατώτερος
+āthanatṓteros 		ἀθανατώτατος
+āthanatṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+hide ▲First and second declension of ἀθάνατος; ἀθανάτη; ἀθάνατον (Epic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		ἀθάνατος
+āthánatos 	ἀθανάτη
+āthanátē 	ἀθάνατον
+āthánaton 		ἀθανάτω
+āthanátō 	ἀθανάτα
+āthanátā 	ἀθανάτω
+āthanátō 		ἀθάνατοι
+āthánatoi 	ἀθάναται
+āthánatai 	ἀθάνατα
+āthánata
+Genitive 		ἀθανάτου / ἀθανατοῖο / ἀθανάτοιο / ἀθανατόο / ἀθανάτοο
+āthanátou / āthanatoîo / āthanátoio / āthanatóo / āthanátoo 	ἀθανάτης
+āthanátēs 	ἀθανάτου / ἀθανατοῖο / ἀθανάτοιο / ἀθανατόο / ἀθανάτοο
+āthanátou / āthanatoîo / āthanátoio / āthanatóo / āthanátoo 		ἀθανάτοιιν
+āthanátoiin 	ἀθανάται(ι)ν / ἀθανάτῃιν
+āthanátai(i)n / āthanátēiin 	ἀθανάτοιιν
+āthanátoiin 		ἀθανάτων
+āthanátōn 	ἀθανατάων / ἀθανατέ͜ων / ἀθανατῶν
+āthanatā́ōn / āthanaté͜ōn / āthanatôn 	ἀθανάτων
+āthanátōn
+Dative 		ἀθανάτῳ
+āthanátōi 	ἀθανάτῃ
+āthanátēi 	ἀθανάτῳ
+āthanátōi 		ἀθανάτοιιν
+āthanátoiin 	ἀθανάται(ι)ν / ἀθανάτῃιν
+āthanátai(i)n / āthanátēiin 	ἀθανάτοιιν
+āthanátoiin 		ἀθανάτοισι(ν) / ἀθανάτοις
+āthanátoisi(n) / āthanátois 	ἀθανάτῃσι(ν) / ἀθανάτῃς / ἀθανάταις
+āthanátēisi(n) / āthanátēis / āthanátais 	ἀθανάτοισι(ν) / ἀθανάτοις
+āthanátoisi(n) / āthanátois
+Accusative 		ἀθάνατον
+āthánaton 	ἀθανάτην
+āthanátēn 	ἀθάνατον
+āthánaton 		ἀθανάτω
+āthanátō 	ἀθανάτα
+āthanátā 	ἀθανάτω
+āthanátō 		ἀθανάτους
+āthanátous 	ἀθανάτας
+āthanátās 	ἀθάνατα
+āthánata
+Vocative 		ἀθάνατε
+āthánate 	ἀθανάτη
+āthanátē 	ἀθάνατον
+āthánaton 		ἀθανάτω
+āthanátō 	ἀθανάτα
+āthanátā 	ἀθανάτω
+āthanátō 		ἀθάνατοι
+āthánatoi 	ἀθάναται
+āthánatai 	ἀθάνατα
+āthánata
+Derived forms 		Adverb 		Comparative 		Superlative
+	ἀθανάτως
+āthanátōs 		ἀθανατώτερος
+āthanatṓteros 		ἀθανατώτατος
+āthanatṓtatos
+Notes: 		Dialects other than Attic are not well attested. Some forms may be based on conjecture. Use with caution.
+hide ▲Second declension of ἀθάνατος; ἀθάνατον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		ἀθάνατος
+āthánatos 	ἀθάνατον
+āthánaton 		ἀθανάτω
+āthanátō 	ἀθανάτω
+āthanátō 		ἀθάνατοι
+āthánatoi 	ἀθάνατα
+āthánata
+Genitive 		ἀθανάτου
+āthanátou 	ἀθανάτου
+āthanátou 		ἀθανάτοιν
+āthanátoin 	ἀθανάτοιν
+āthanátoin 		ἀθανάτων
+āthanátōn 	ἀθανάτων
+āthanátōn
+Dative 		ἀθανάτῳ
+āthanátōi 	ἀθανάτῳ
+āthanátōi 		ἀθανάτοιν
+āthanátoin 	ἀθανάτοιν
+āthanátoin 		ἀθανάτοις
+āthanátois 	ἀθανάτοις
+āthanátois
+Accusative 		ἀθάνατον
+āthánaton 	ἀθάνατον
+āthánaton 		ἀθανάτω
+āthanátō 	ἀθανάτω
+āthanátō 		ἀθανάτους
+āthanátous 	ἀθάνατα
+āthánata
+Vocative 		ἀθάνατε
+āthánate 	ἀθάνατον
+āthánaton 		ἀθανάτω
+āthanátō 	ἀθανάτω
+āthanátō 		ἀθάνατοι
+āthánatoi 	ἀθάνατα
+āthánata
+Derived forms 		Adverb 		Comparative 		Superlative
+	ἀθανάτως
+āthanátōs 		ἀθανατώτερος
+āthanatṓteros 		ἀθανατώτατος
+āthanatṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+hide ▲Second declension of ἀθάνατος; ἀθάνατον (Epic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		ἀθάνατος
+āthánatos 	ἀθάνατον
+āthánaton 		ἀθανάτω
+āthanátō 	ἀθανάτω
+āthanátō 		ἀθάνατοι
+āthánatoi 	ἀθάνατα
+āthánata
+Genitive 		ἀθανάτου / ἀθανατοῖο / ἀθανάτοιο / ἀθανατόο / ἀθανάτοο
+āthanátou / āthanatoîo / āthanátoio / āthanatóo / āthanátoo 	ἀθανάτου / ἀθανατοῖο / ἀθανάτοιο / ἀθανατόο / ἀθανάτοο
+āthanátou / āthanatoîo / āthanátoio / āthanatóo / āthanátoo 		ἀθανάτοιιν
+āthanátoiin 	ἀθανάτοιιν
+āthanátoiin 		ἀθανάτων
+āthanátōn 	ἀθανάτων
+āthanátōn
+Dative 		ἀθανάτῳ
+āthanátōi 	ἀθανάτῳ
+āthanátōi 		ἀθανάτοιιν
+āthanátoiin 	ἀθανάτοιιν
+āthanátoiin 		ἀθανάτοισι(ν) / ἀθανάτοις
+āthanátoisi(n) / āthanátois 	ἀθανάτοισι(ν) / ἀθανάτοις
+āthanátoisi(n) / āthanátois
+Accusative 		ἀθάνατον
+āthánaton 	ἀθάνατον
+āthánaton 		ἀθανάτω
+āthanátō 	ἀθανάτω
+āthanátō 		ἀθανάτους
+āthanátous 	ἀθάνατα
+āthánata
+Vocative 		ἀθάνατε
+āthánate 	ἀθάνατον
+āthánaton 		ἀθανάτω
+āthanátō 	ἀθανάτω
+āthanátō 		ἀθάνατοι
+āthánatoi 	ἀθάνατα
+āthánata
+Derived forms 		Adverb 		Comparative 		Superlative
+	ἀθανάτως
+āthanátōs 		ἀθανατώτερος
+āthanatṓteros 		ἀθανατώτατος
+āthanatṓtatos
+Notes: 		Dialects other than Attic are not well attested. Some forms may be based on conjecture. Use with caution.
+
+
+#= Adjective
+
+αἰθαλός • (aithalós) m, f (neuter αἰθαλόν); second declension
+
+    Alternative form of αἴθαλος (aíthalos)
+
+Declension
+hide ▲Second declension of αἰθαλός; αἰθαλόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		αἰθαλός
+aithalós 	αἰθαλόν
+aithalón 		αἰθαλώ
+aithalṓ 	αἰθαλώ
+aithalṓ 		αἰθαλοί
+aithaloí 	αἰθαλά
+aithalá
+Genitive 		αἰθαλοῦ
+aithaloû 	αἰθαλοῦ
+aithaloû 		αἰθαλοῖν
+aithaloîn 	αἰθαλοῖν
+aithaloîn 		αἰθαλῶν
+aithalôn 	αἰθαλῶν
+aithalôn
+Dative 		αἰθαλῷ
+aithalôi 	αἰθαλῷ
+aithalôi 		αἰθαλοῖν
+aithaloîn 	αἰθαλοῖν
+aithaloîn 		αἰθαλοῖς
+aithaloîs 	αἰθαλοῖς
+aithaloîs
+Accusative 		αἰθαλόν
+aithalón 	αἰθαλόν
+aithalón 		αἰθαλώ
+aithalṓ 	αἰθαλώ
+aithalṓ 		αἰθαλούς
+aithaloús 	αἰθαλά
+aithalá
+Vocative 		αἰθαλέ
+aithalé 	αἰθαλόν
+aithalón 		αἰθαλώ
+aithalṓ 	αἰθαλώ
+aithalṓ 		αἰθαλοί
+aithaloí 	αἰθαλά
+aithalá
+Derived forms 		Adverb 		Comparative 		Superlative
+	αἰθαλῶς
+aithalôs 		αἰθαλώτερος
+aithalṓteros 		αἰθαλώτατος
+aithalṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+αἴθαλος • (aíthalos) m, f (neuter αἴθαλον); second declension
+
+    burnt-coloured, dark brown, dusky, pitchy, blackish, dark
+
+Declension
+hide ▲Second declension of αἴθαλος; αἴθαλον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		αἴθαλος
+aíthalos 	αἴθαλον
+aíthalon 		αἰθάλω
+aithálō 	αἰθάλω
+aithálō 		αἴθαλοι
+aíthaloi 	αἴθαλα
+aíthala
+Genitive 		αἰθάλου
+aithálou 	αἰθάλου
+aithálou 		αἰθάλοιν
+aitháloin 	αἰθάλοιν
+aitháloin 		αἰθάλων
+aithálōn 	αἰθάλων
+aithálōn
+Dative 		αἰθάλῳ
+aithálōi 	αἰθάλῳ
+aithálōi 		αἰθάλοιν
+aitháloin 	αἰθάλοιν
+aitháloin 		αἰθάλοις
+aithálois 	αἰθάλοις
+aithálois
+Accusative 		αἴθαλον
+aíthalon 	αἴθαλον
+aíthalon 		αἰθάλω
+aithálō 	αἰθάλω
+aithálō 		αἰθάλους
+aithálous 	αἴθαλα
+aíthala
+Vocative 		αἴθαλε
+aíthale 	αἴθαλον
+aíthalon 		αἰθάλω
+aithálō 	αἰθάλω
+aithálō 		αἴθαλοι
+aíthaloi 	αἴθαλα
+aíthala
+Derived forms 		Adverb 		Comparative 		Superlative
+	αἰθάλως
+aithálōs 		αἰθαλώτερος
+aithalṓteros 		αἰθαλώτατος
+aithalṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+αἰχμάλωτος • (aikhmálōtos) m, f (neuter αἰχμάλωτον); second declension (Attic, Ionic, Doric)
+
+    captured, taken prisoner in war
+
+Declension
+hide ▲Second declension of αἰχμάλωτος; αἰχμάλωτον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		αἰχμάλωτος
+aikhmálōtos 	αἰχμάλωτον
+aikhmálōton 		αἰχμαλώτω
+aikhmalṓtō 	αἰχμαλώτω
+aikhmalṓtō 		αἰχμάλωτοι
+aikhmálōtoi 	αἰχμάλωτα
+aikhmálōta
+Genitive 		αἰχμαλώτου
+aikhmalṓtou 	αἰχμαλώτου
+aikhmalṓtou 		αἰχμαλώτοιν
+aikhmalṓtoin 	αἰχμαλώτοιν
+aikhmalṓtoin 		αἰχμαλώτων
+aikhmalṓtōn 	αἰχμαλώτων
+aikhmalṓtōn
+Dative 		αἰχμαλώτῳ
+aikhmalṓtōi 	αἰχμαλώτῳ
+aikhmalṓtōi 		αἰχμαλώτοιν
+aikhmalṓtoin 	αἰχμαλώτοιν
+aikhmalṓtoin 		αἰχμαλώτοις
+aikhmalṓtois 	αἰχμαλώτοις
+aikhmalṓtois
+Accusative 		αἰχμάλωτον
+aikhmálōton 	αἰχμάλωτον
+aikhmálōton 		αἰχμαλώτω
+aikhmalṓtō 	αἰχμαλώτω
+aikhmalṓtō 		αἰχμαλώτους
+aikhmalṓtous 	αἰχμάλωτα
+aikhmálōta
+Vocative 		αἰχμάλωτε
+aikhmálōte 	αἰχμάλωτον
+aikhmálōton 		αἰχμαλώτω
+aikhmalṓtō 	αἰχμαλώτω
+aikhmalṓtō 		αἰχμάλωτοι
+aikhmálōtoi 	αἰχμάλωτα
+aikhmálōta
+Derived forms 		Adverb 		Comparative 		Superlative
+	— 		— 		αἰχμαλωτότατος
+aikhmalōtótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+ἀλαζών • (alāzṓn) m, f (neuter ἀλαζών); third declension
+
+    boastful, pretentious
+
+Inflection
+hide ▲Third declension of ἀλαζών; ἀλαζόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		ἀλαζών
+alāzṓn 	ἀλαζόν
+alāzón 		ἀλαζόνε
+alāzóne 	ἀλαζόνε
+alāzóne 		ἀλαζόνες
+alāzónes 	ἀλαζόνα
+alāzóna
+Genitive 		ἀλαζόνος
+alāzónos 	ἀλαζόνος
+alāzónos 		ἀλαζόνοιν
+alāzónoin 	ἀλαζόνοιν
+alāzónoin 		ἀλαζόνων
+alāzónōn 	ἀλαζόνων
+alāzónōn
+Dative 		ἀλαζόνι
+alāzóni 	ἀλαζόνι
+alāzóni 		ἀλαζόνοιν
+alāzónoin 	ἀλαζόνοιν
+alāzónoin 		ἀλαζόσι(ν)
+alāzósi(n) 	ἀλαζόσι(ν)
+alāzósi(n)
+Accusative 		ἀλαζόνα
+alāzóna 	ἀλαζόν
+alāzón 		ἀλαζόνε
+alāzóne 	ἀλαζόνε
+alāzóne 		ἀλαζόνας
+alāzónas 	ἀλαζόνα
+alāzóna
+Vocative 		ἀλαζών
+alāzṓn 	ἀλαζόν
+alāzón 		ἀλαζόνε
+alāzóne 	ἀλαζόνε
+alāzóne 		ἀλαζόνες
+alāzónes 	ἀλαζόνα
+alāzóna
+Derived forms 		Adverb 		Comparative 		Superlative
+	ἀλαζόνως
+alāzónōs 		ἀλαζονέστερος
+alāzonésteros 		ἀλαζονέστατος
+alāzonéstatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+ἁμαρτωλός • (hamartōlós) m, f (neuter ἁμαρτωλόν); second declension
+
+    erroneous
+
+Inflection
+hide ▲Second declension of ἁμαρτωλός; ἁμαρτωλόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		ἁμαρτωλός
+hamartōlós 	ἁμαρτωλόν
+hamartōlón 		ἁμαρτωλώ
+hamartōlṓ 	ἁμαρτωλώ
+hamartōlṓ 		ἁμαρτωλοί
+hamartōloí 	ἁμαρτωλά
+hamartōlá
+Genitive 		ἁμαρτωλοῦ
+hamartōloû 	ἁμαρτωλοῦ
+hamartōloû 		ἁμαρτωλοῖν
+hamartōloîn 	ἁμαρτωλοῖν
+hamartōloîn 		ἁμαρτωλῶν
+hamartōlôn 	ἁμαρτωλῶν
+hamartōlôn
+Dative 		ἁμαρτωλῷ
+hamartōlôi 	ἁμαρτωλῷ
+hamartōlôi 		ἁμαρτωλοῖν
+hamartōloîn 	ἁμαρτωλοῖν
+hamartōloîn 		ἁμαρτωλοῖς
+hamartōloîs 	ἁμαρτωλοῖς
+hamartōloîs
+Accusative 		ἁμαρτωλόν
+hamartōlón 	ἁμαρτωλόν
+hamartōlón 		ἁμαρτωλώ
+hamartōlṓ 	ἁμαρτωλώ
+hamartōlṓ 		ἁμαρτωλούς
+hamartōloús 	ἁμαρτωλά
+hamartōlá
+Vocative 		ἁμαρτωλέ
+hamartōlé 	ἁμαρτωλόν
+hamartōlón 		ἁμαρτωλώ
+hamartōlṓ 	ἁμαρτωλώ
+hamartōlṓ 		ἁμαρτωλοί
+hamartōloí 	ἁμαρτωλά
+hamartōlá
+Derived forms 		Adverb 		Comparative 		Superlative
+	ἁμαρτωλῶς
+hamartōlôs 		ἁμαρτωλότερος
+hamartōlóteros 		ἁμαρτωλότατος
+hamartōlótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+ἀμέθυστος • (améthustos) m, f (neuter ἀμέθυστον); second declension
+
+    (passive sense) not drunken, without drunkenness, sober
+
+        Synonyms: νηφάλιος (nēphálios)
+
+    (active sense) not intoxicating
+
+Declension
+hide ▲Second declension of ἀμέθυστος; ἀμέθυστον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		ἀμέθυστος
+améthustos 	ἀμέθυστον
+améthuston 		ἀμεθύστω
+amethústō 	ἀμεθύστω
+amethústō 		ἀμέθυστοι
+améthustoi 	ἀμέθυστα
+améthusta
+Genitive 		ἀμεθύστου
+amethústou 	ἀμεθύστου
+amethústou 		ἀμεθύστοιν
+amethústoin 	ἀμεθύστοιν
+amethústoin 		ἀμεθύστων
+amethústōn 	ἀμεθύστων
+amethústōn
+Dative 		ἀμεθύστῳ
+amethústōi 	ἀμεθύστῳ
+amethústōi 		ἀμεθύστοιν
+amethústoin 	ἀμεθύστοιν
+amethústoin 		ἀμεθύστοις
+amethústois 	ἀμεθύστοις
+amethústois
+Accusative 		ἀμέθυστον
+améthuston 	ἀμέθυστον
+améthuston 		ἀμεθύστω
+amethústō 	ἀμεθύστω
+amethústō 		ἀμεθύστους
+amethústous 	ἀμέθυστα
+améthusta
+Vocative 		ἀμέθυστε
+améthuste 	ἀμέθυστον
+améthuston 		ἀμεθύστω
+amethústō 	ἀμεθύστω
+amethústō 		ἀμέθυστοι
+améthustoi 	ἀμέθυστα
+améthusta
+Derived forms 		Adverb 		Comparative 		Superlative
+	ἀμεθύστως
+amethústōs 		ἀμεθυστότερος
+amethustóteros 		ἀμεθυστότατος
+amethustótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+ἀμφίβραχυς • (amphíbrakhus) m (feminine ἀμφιβράχεια, neuter ἀμφίβραχυ); first/third declension
+
+    (poetry) short on both ends
+
+Inflection
+hide ▲First and third declension of ἀμφίβραχυς; ἀμφιβράχεια; ἀμφίβραχυ (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		ἀμφίβραχυς
+amphíbrakhus 	ἀμφιβράχεια
+amphibrákheia 	ἀμφίβραχυ
+amphíbrakhu 		ἀμφιβράχεε
+amphibrákhee 	ἀμφιβραχεία
+amphibrakheíā 	ἀμφιβράχεε
+amphibrákhee 		ἀμφιβράχεις
+amphibrákheis 	ἀμφιβράχειαι
+amphibrákheiai 	ἀμφιβράχη / ἀμφιβράχεα
+amphibrákhē / amphibrákhea
+Genitive 		ἀμφιβραχέως
+amphibrakhéōs 	ἀμφιβραχείας
+amphibrakheíās 	ἀμφιβραχέως
+amphibrakhéōs 		ἀμφιβραχέοιν
+amphibrakhéoin 	ἀμφιβραχείαιν
+amphibrakheíain 	ἀμφιβραχέοιν
+amphibrakhéoin 		ἀμφιβραχέων
+amphibrakhéōn 	ἀμφιβραχειῶν
+amphibrakheiôn 	ἀμφιβραχέων
+amphibrakhéōn
+Dative 		ἀμφιβράχει
+amphibrákhei 	ἀμφιβραχείᾳ
+amphibrakheíāi 	ἀμφιβράχει
+amphibrákhei 		ἀμφιβραχέοιν
+amphibrakhéoin 	ἀμφιβραχείαιν
+amphibrakheíain 	ἀμφιβραχέοιν
+amphibrakhéoin 		ἀμφιβράχεσι(ν)
+amphibrákhesi(n) 	ἀμφιβραχείαις
+amphibrakheíais 	ἀμφιβράχεσι(ν)
+amphibrákhesi(n)
+Accusative 		ἀμφίβραχυν
+amphíbrakhun 	ἀμφιβράχειαν
+amphibrákheian 	ἀμφίβραχυ
+amphíbrakhu 		ἀμφιβράχεε
+amphibrákhee 	ἀμφιβραχεία
+amphibrakheíā 	ἀμφιβράχεε
+amphibrákhee 		ἀμφιβράχεις
+amphibrákheis 	ἀμφιβραχείας
+amphibrakheíās 	ἀμφιβράχη / ἀμφιβράχεα
+amphibrákhē / amphibrákhea
+Vocative 		ἀμφίβραχυ
+amphíbrakhu 	ἀμφιβράχεια
+amphibrákheia 	ἀμφίβραχυ
+amphíbrakhu 		ἀμφιβράχεε
+amphibrákhee 	ἀμφιβραχεία
+amphibrakheíā 	ἀμφιβράχεε
+amphibrákhee 		ἀμφιβράχεις
+amphibrákheis 	ἀμφιβράχειαι
+amphibrákheiai 	ἀμφιβράχη / ἀμφιβράχεα
+amphibrákhē / amphibrákhea
+Derived forms 		Adverb 		Comparative 		Superlative
+	ἀμφιβραχέως
+amphibrakhéōs 		ἀμφιβραχύτερος
+amphibrakhúteros 		ἀμφιβραχύτατος
+amphibrakhútatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+ἀντίπαις • (antípais) m, f (neuter ἀντίπαις); third declension
+
+    like a child
+    no longer a child
+
+Declension
+hide ▲Third declension of ἀντίπαις; ἀντίπαι (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		ἀντίπαις
+antípais 	ἀντίπαι
+antípai 		ἀντίπαιδε
+antípaide 	ἀντίπαιδε
+antípaide 		ἀντίπαιδες
+antípaides 	ἀντίπαιδα
+antípaida
+Genitive 		ἀντίπαιδος
+antípaidos 	ἀντίπαιδος
+antípaidos 		ἀντιπαίδοιν
+antipaídoin 	ἀντιπαίδοιν
+antipaídoin 		ἀντιπαίδων
+antipaídōn 	ἀντιπαίδων
+antipaídōn
+Dative 		ἀντίπαιδι
+antípaidi 	ἀντίπαιδι
+antípaidi 		ἀντιπαίδοιν
+antipaídoin 	ἀντιπαίδοιν
+antipaídoin 		ἀντίπαισι(ν)
+antípaisi(n) 	ἀντίπαισι(ν)
+antípaisi(n)
+Accusative 		ἀντίπαιδα
+antípaida 	ἀντίπαι
+antípai 		ἀντίπαιδε
+antípaide 	ἀντίπαιδε
+antípaide 		ἀντίπαιδας
+antípaidas 	ἀντίπαιδα
+antípaida
+Vocative 		ἀντίπαις
+antípais 	ἀντίπαι
+antípai 		ἀντίπαιδε
+antípaide 	ἀντίπαιδε
+antípaide 		ἀντίπαιδες
+antípaides 	ἀντίπαιδα
+antípaida
+Derived forms 		Adverb 		Comparative 		Superlative
+	ἀντιπαίδως
+antipaídōs 		— 		—
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+ἀοιδός • (aoidós) m (feminine ἀοιδή, neuter ἀοιδόν); first/second declension
+
+    musical
+
+Declension
+hide ▲First and second declension of ἀοιδός; ἀοιδή; ἀοιδόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		ἀοιδός
+aoidós 	ἀοιδή
+aoidḗ 	ἀοιδόν
+aoidón 		ἀοιδώ
+aoidṓ 	ἀοιδά
+aoidā́ 	ἀοιδώ
+aoidṓ 		ἀοιδοί
+aoidoí 	ἀοιδαί
+aoidaí 	ἀοιδά
+aoidá
+Genitive 		ἀοιδοῦ
+aoidoû 	ἀοιδῆς
+aoidês 	ἀοιδοῦ
+aoidoû 		ἀοιδοῖν
+aoidoîn 	ἀοιδαῖν
+aoidaîn 	ἀοιδοῖν
+aoidoîn 		ἀοιδῶν
+aoidôn 	ἀοιδῶν
+aoidôn 	ἀοιδῶν
+aoidôn
+Dative 		ἀοιδῷ
+aoidôi 	ἀοιδῇ
+aoidêi 	ἀοιδῷ
+aoidôi 		ἀοιδοῖν
+aoidoîn 	ἀοιδαῖν
+aoidaîn 	ἀοιδοῖν
+aoidoîn 		ἀοιδοῖς
+aoidoîs 	ἀοιδαῖς
+aoidaîs 	ἀοιδοῖς
+aoidoîs
+Accusative 		ἀοιδόν
+aoidón 	ἀοιδήν
+aoidḗn 	ἀοιδόν
+aoidón 		ἀοιδώ
+aoidṓ 	ἀοιδά
+aoidā́ 	ἀοιδώ
+aoidṓ 		ἀοιδούς
+aoidoús 	ἀοιδάς
+aoidā́s 	ἀοιδά
+aoidá
+Vocative 		ἀοιδέ
+aoidé 	ἀοιδή
+aoidḗ 	ἀοιδόν
+aoidón 		ἀοιδώ
+aoidṓ 	ἀοιδά
+aoidā́ 	ἀοιδώ
+aoidṓ 		ἀοιδοί
+aoidoí 	ἀοιδαί
+aoidaí 	ἀοιδά
+aoidá
+Derived forms 		Adverb 		Comparative 		Superlative
+	ἀοιδῶς
+aoidôs 		ἀοιδότερος
+aoidóteros 		ἀοιδότατος
+aoidótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+ἄποικος • (ápoikos) m, f (neuter ἄποικον); second declension (rare)
+
+    away from home, abroad (sometimes followed by genitive)
+
+Declension
+hide ▲Second declension of ἄποικος; ἄποικον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		ἄποικος
+ápoikos 	ἄποικον
+ápoikon 		ἀποίκω
+apoíkō 	ἀποίκω
+apoíkō 		ἄποικοι
+ápoikoi 	ἄποικα
+ápoika
+Genitive 		ἀποίκου
+apoíkou 	ἀποίκου
+apoíkou 		ἀποίκοιν
+apoíkoin 	ἀποίκοιν
+apoíkoin 		ἀποίκων
+apoíkōn 	ἀποίκων
+apoíkōn
+Dative 		ἀποίκῳ
+apoíkōi 	ἀποίκῳ
+apoíkōi 		ἀποίκοιν
+apoíkoin 	ἀποίκοιν
+apoíkoin 		ἀποίκοις
+apoíkois 	ἀποίκοις
+apoíkois
+Accusative 		ἄποικον
+ápoikon 	ἄποικον
+ápoikon 		ἀποίκω
+apoíkō 	ἀποίκω
+apoíkō 		ἀποίκους
+apoíkous 	ἄποικα
+ápoika
+Vocative 		ἄποικε
+ápoike 	ἄποικον
+ápoikon 		ἀποίκω
+apoíkō 	ἀποίκω
+apoíkō 		ἄποικοι
+ápoikoi 	ἄποικα
+ápoika
+Derived forms 		Adverb 		Comparative 		Superlative
+	ἀποίκως
+apoíkōs 		ἀποικότερος
+apoikóteros 		ἀποικότατος
+apoikótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+Ᾰ̓ργεῖος • (Argeîos) m (feminine Ᾰ̓ργεία, neuter Ᾰ̓ργεῖον); first/second declension
+
+    Argive
+
+Inflection
+hide ▲First and second declension of Ᾰ̓ργεῖος; Ᾰ̓ργεία; Ᾰ̓ργεῖον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		Ᾰ̓ργεῖος
+Argeîos 	Ᾰ̓ργεία
+Argeíā 	Ᾰ̓ργεῖον
+Argeîon 		Ᾰ̓ργείω
+Argeíō 	Ᾰ̓ργεία
+Argeíā 	Ᾰ̓ργείω
+Argeíō 		Ᾰ̓ργεῖοι
+Argeîoi 	Ᾰ̓ργεῖαι
+Argeîai 	Ᾰ̓ργεῖα
+Argeîa
+Genitive 		Ᾰ̓ργείου
+Argeíou 	Ᾰ̓ργείας
+Argeíās 	Ᾰ̓ργείου
+Argeíou 		Ᾰ̓ργείοιν
+Argeíoin 	Ᾰ̓ργείαιν
+Argeíain 	Ᾰ̓ργείοιν
+Argeíoin 		Ᾰ̓ργείων
+Argeíōn 	Ᾰ̓ργείων
+Argeíōn 	Ᾰ̓ργείων
+Argeíōn
+Dative 		Ᾰ̓ργείῳ
+Argeíōi 	Ᾰ̓ργείᾳ
+Argeíāi 	Ᾰ̓ργείῳ
+Argeíōi 		Ᾰ̓ργείοιν
+Argeíoin 	Ᾰ̓ργείαιν
+Argeíain 	Ᾰ̓ργείοιν
+Argeíoin 		Ᾰ̓ργείοις
+Argeíois 	Ᾰ̓ργείαις
+Argeíais 	Ᾰ̓ργείοις
+Argeíois
+Accusative 		Ᾰ̓ργεῖον
+Argeîon 	Ᾰ̓ργείαν
+Argeíān 	Ᾰ̓ργεῖον
+Argeîon 		Ᾰ̓ργείω
+Argeíō 	Ᾰ̓ργεία
+Argeíā 	Ᾰ̓ργείω
+Argeíō 		Ᾰ̓ργείους
+Argeíous 	Ᾰ̓ργείας
+Argeíās 	Ᾰ̓ργεῖα
+Argeîa
+Vocative 		Ᾰ̓ργεῖε
+Argeîe 	Ᾰ̓ργεία
+Argeíā 	Ᾰ̓ργεῖον
+Argeîon 		Ᾰ̓ργείω
+Argeíō 	Ᾰ̓ργεία
+Argeíā 	Ᾰ̓ργείω
+Argeíō 		Ᾰ̓ργεῖοι
+Argeîoi 	Ᾰ̓ργεῖαι
+Argeîai 	Ᾰ̓ργεῖα
+Argeîa
+Derived forms 		Adverb 		Comparative 		Superlative
+	Ᾰ̓ργείως
+Argeíōs 		Ᾰ̓ργειότερος
+Argeióteros 		Ᾰ̓ργειότατος
+Argeiótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+Ἀχαιός • (Akhaiós) m (feminine Ἀχαιά, neuter Ἀχαιόν); first/second declension
+
+    Achaean, from the region of Achaea in Greece.
+    (Homeric) Greek
+
+Inflection
+hide ▲First and second declension of Ἀχαιός; Ἀχαιά; Ἀχαιόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		Ἀχαιός
+Akhaiós 	Ἀχαιά
+Akhaiā́ 	Ἀχαιόν
+Akhaión 		Ἀχαιώ
+Akhaiṓ 	Ἀχαιά
+Akhaiā́ 	Ἀχαιώ
+Akhaiṓ 		Ἀχαιοί
+Akhaioí 	Ἀχαιαί
+Akhaiaí 	Ἀχαιά
+Akhaiá
+Genitive 		Ἀχαιοῦ
+Akhaioû 	Ἀχαιᾶς
+Akhaiâs 	Ἀχαιοῦ
+Akhaioû 		Ἀχαιοῖν
+Akhaioîn 	Ἀχαιαῖν
+Akhaiaîn 	Ἀχαιοῖν
+Akhaioîn 		Ἀχαιῶν
+Akhaiôn 	Ἀχαιών
+Akhaiṓn 	Ἀχαιῶν
+Akhaiôn
+Dative 		Ἀχαιῷ
+Akhaiôi 	Ἀχαιᾷ
+Akhaiâi 	Ἀχαιῷ
+Akhaiôi 		Ἀχαιοῖν
+Akhaioîn 	Ἀχαιαῖν
+Akhaiaîn 	Ἀχαιοῖν
+Akhaioîn 		Ἀχαιοῖς
+Akhaioîs 	Ἀχαιαῖς
+Akhaiaîs 	Ἀχαιοῖς
+Akhaioîs
+Accusative 		Ἀχαιόν
+Akhaión 	Ἀχαιάν
+Akhaiā́n 	Ἀχαιόν
+Akhaión 		Ἀχαιώ
+Akhaiṓ 	Ἀχαιά
+Akhaiā́ 	Ἀχαιώ
+Akhaiṓ 		Ἀχαιούς
+Akhaioús 	Ἀχαιάς
+Akhaiā́s 	Ἀχαιά
+Akhaiá
+Vocative 		Ἀχαιέ
+Akhaié 	Ἀχαιά
+Akhaiā́ 	Ἀχαιόν
+Akhaión 		Ἀχαιώ
+Akhaiṓ 	Ἀχαιά
+Akhaiā́ 	Ἀχαιώ
+Akhaiṓ 		Ἀχαιοί
+Akhaioí 	Ἀχαιαί
+Akhaiaí 	Ἀχαιά
+Akhaiá
+Derived forms 		Adverb 		Comparative 		Superlative
+	Ἀχαιῶς
+Akhaiôs 		Ἀχαιότερος
+Akhaióteros 		Ἀχαιότατος
+Akhaiótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+βάσκανος • (báskanos) m, f (neuter βάσκανον); second declension
+
+    slanderous, envious, malignant
+
+Inflection
+hide ▲Second declension of βάσκανος; βάσκανον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		βάσκανος
+báskanos 	βάσκανον
+báskanon 		βασκάνω
+baskánō 	βασκάνω
+baskánō 		βάσκανοι
+báskanoi 	βάσκανα
+báskana
+Genitive 		βασκάνου
+baskánou 	βασκάνου
+baskánou 		βασκάνοιν
+baskánoin 	βασκάνοιν
+baskánoin 		βασκάνων
+baskánōn 	βασκάνων
+baskánōn
+Dative 		βασκάνῳ
+baskánōi 	βασκάνῳ
+baskánōi 		βασκάνοιν
+baskánoin 	βασκάνοιν
+baskánoin 		βασκάνοις
+baskánois 	βασκάνοις
+baskánois
+Accusative 		βάσκανον
+báskanon 	βάσκανον
+báskanon 		βασκάνω
+baskánō 	βασκάνω
+baskánō 		βασκάνους
+baskánous 	βάσκανα
+báskana
+Vocative 		βάσκανε
+báskane 	βάσκανον
+báskanon 		βασκάνω
+baskánō 	βασκάνω
+baskánō 		βάσκανοι
+báskanoi 	βάσκανα
+báskana
+Derived forms 		Adverb 		Comparative 		Superlative
+	βασκάνως
+baskánōs 		βασκανώτερος
+baskanṓteros 		βασκανώτατος
+baskanṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+βραχίων • (brakhíōn) m, f (neuter βραχίον); third declension
+
+    comparative degree of βραχύς (brakhús): shorter
+
+Declension
+hide ▲Third declension of βραχίων; βραχίον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		βραχίων
+brakhíōn 	βραχίον
+brakhíon 		βραχίονε
+brakhíone 	βραχίονε
+brakhíone 		βραχίονες / βραχίους
+brakhíones / brakhíous 	βραχίονα / βραχίω
+brakhíona / brakhíō
+Genitive 		βραχίονος
+brakhíonos 	βραχίονος
+brakhíonos 		βραχιόνοιν
+brakhiónoin 	βραχιόνοιν
+brakhiónoin 		βραχιόνων
+brakhiónōn 	βραχιόνων
+brakhiónōn
+Dative 		βραχίονι
+brakhíoni 	βραχίονι
+brakhíoni 		βραχιόνοιν
+brakhiónoin 	βραχιόνοιν
+brakhiónoin 		βραχίοσι(ν)
+brakhíosi(n) 	βραχίοσι(ν)
+brakhíosi(n)
+Accusative 		βραχίονα / βραχίω
+brakhíona / brakhíō 	βραχίον
+brakhíon 		βραχίονε
+brakhíone 	βραχίονε
+brakhíone 		βραχίονας / βραχίους
+brakhíonas / brakhíous 	βραχίονα / βραχίω
+brakhíona / brakhíō
+Vocative 		βραχίον
+brakhíon 	βραχίον
+brakhíon 		βραχίονε
+brakhíone 	βραχίονε
+brakhíone 		βραχίονες / βραχίους
+brakhíones / brakhíous 	βραχίονα / βραχίω
+brakhíona / brakhíō
+Derived forms 		Adverb 		Comparative 		Superlative
+	βραχιόνως
+brakhiónōs 		— 		—
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+γεωργός • (geōrgós) m, f (neuter γεωργόν); second declension (Attic, Ionic)
+
+    tilling the ground
+    fertilizing
+
+Declension
+hide ▲Second declension of γεωργός; γεωργόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		γεωργός
+geōrgós 	γεωργόν
+geōrgón 		γεωργώ
+geōrgṓ 	γεωργώ
+geōrgṓ 		γεωργοί
+geōrgoí 	γεωργά
+geōrgá
+Genitive 		γεωργοῦ
+geōrgoû 	γεωργοῦ
+geōrgoû 		γεωργοῖν
+geōrgoîn 	γεωργοῖν
+geōrgoîn 		γεωργῶν
+geōrgôn 	γεωργῶν
+geōrgôn
+Dative 		γεωργῷ
+geōrgôi 	γεωργῷ
+geōrgôi 		γεωργοῖν
+geōrgoîn 	γεωργοῖν
+geōrgoîn 		γεωργοῖς
+geōrgoîs 	γεωργοῖς
+geōrgoîs
+Accusative 		γεωργόν
+geōrgón 	γεωργόν
+geōrgón 		γεωργώ
+geōrgṓ 	γεωργώ
+geōrgṓ 		γεωργούς
+geōrgoús 	γεωργά
+geōrgá
+Vocative 		γεωργέ
+geōrgé 	γεωργόν
+geōrgón 		γεωργώ
+geōrgṓ 	γεωργώ
+geōrgṓ 		γεωργοί
+geōrgoí 	γεωργά
+geōrgá
+Derived forms 		Adverb 		Comparative 		Superlative
+	γεωργῶς
+geōrgôs 		γεωργότερος
+geōrgóteros 		γεωργότατος
+geōrgótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+Γραικός • (Graikós) m (feminine Γραική, neuter Γραικόν); first/second declension
+
+    Greek
+
+Declension
+hide ▲First and second declension of Γραικός; Γραική; Γραικόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		Γραικός
+Graikós 	Γραική
+Graikḗ 	Γραικόν
+Graikón 		Γραικώ
+Graikṓ 	Γραικά
+Graikā́ 	Γραικώ
+Graikṓ 		Γραικοί
+Graikoí 	Γραικαί
+Graikaí 	Γραικά
+Graiká
+Genitive 		Γραικοῦ
+Graikoû 	Γραικῆς
+Graikês 	Γραικοῦ
+Graikoû 		Γραικοῖν
+Graikoîn 	Γραικαῖν
+Graikaîn 	Γραικοῖν
+Graikoîn 		Γραικῶν
+Graikôn 	Γραικῶν
+Graikôn 	Γραικῶν
+Graikôn
+Dative 		Γραικῷ
+Graikôi 	Γραικῇ
+Graikêi 	Γραικῷ
+Graikôi 		Γραικοῖν
+Graikoîn 	Γραικαῖν
+Graikaîn 	Γραικοῖν
+Graikoîn 		Γραικοῖς
+Graikoîs 	Γραικαῖς
+Graikaîs 	Γραικοῖς
+Graikoîs
+Accusative 		Γραικόν
+Graikón 	Γραικήν
+Graikḗn 	Γραικόν
+Graikón 		Γραικώ
+Graikṓ 	Γραικά
+Graikā́ 	Γραικώ
+Graikṓ 		Γραικούς
+Graikoús 	Γραικάς
+Graikā́s 	Γραικά
+Graiká
+Vocative 		Γραικέ
+Graiké 	Γραική
+Graikḗ 	Γραικόν
+Graikón 		Γραικώ
+Graikṓ 	Γραικά
+Graikā́ 	Γραικώ
+Graikṓ 		Γραικοί
+Graikoí 	Γραικαί
+Graikaí 	Γραικά
+Graiká
+Derived forms 		Adverb 		Comparative 		Superlative
+	Γραικῶς
+Graikôs 		Γραικότερος
+Graikóteros 		Γραικότατος
+Graikótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+γραμματικός • (grammatikós) m (feminine γραμματική, neuter γραμματικόν); first/second declension
+
+    knowing one’s letters, of a good scholar
+    (in the phrase γραμματικὸν ἔκπωμα) a cup engraved with the alphabet or an inscription
+    concerned with textual criticism
+    (in the phrase γραμματικὴ τέχνη) the grammatical art or craft, grammar
+
+Inflection
+hide ▲First and second declension of γραμματικός; γραμματική; γραμματικόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		γραμματικός
+grammatikós 	γραμματική
+grammatikḗ 	γραμματικόν
+grammatikón 		γραμματικώ
+grammatikṓ 	γραμματικά
+grammatikā́ 	γραμματικώ
+grammatikṓ 		γραμματικοί
+grammatikoí 	γραμματικαί
+grammatikaí 	γραμματικά
+grammatiká
+Genitive 		γραμματικοῦ
+grammatikoû 	γραμματικῆς
+grammatikês 	γραμματικοῦ
+grammatikoû 		γραμματικοῖν
+grammatikoîn 	γραμματικαῖν
+grammatikaîn 	γραμματικοῖν
+grammatikoîn 		γραμματικῶν
+grammatikôn 	γραμματικῶν
+grammatikôn 	γραμματικῶν
+grammatikôn
+Dative 		γραμματικῷ
+grammatikôi 	γραμματικῇ
+grammatikêi 	γραμματικῷ
+grammatikôi 		γραμματικοῖν
+grammatikoîn 	γραμματικαῖν
+grammatikaîn 	γραμματικοῖν
+grammatikoîn 		γραμματικοῖς
+grammatikoîs 	γραμματικαῖς
+grammatikaîs 	γραμματικοῖς
+grammatikoîs
+Accusative 		γραμματικόν
+grammatikón 	γραμματικήν
+grammatikḗn 	γραμματικόν
+grammatikón 		γραμματικώ
+grammatikṓ 	γραμματικά
+grammatikā́ 	γραμματικώ
+grammatikṓ 		γραμματικούς
+grammatikoús 	γραμματικάς
+grammatikā́s 	γραμματικά
+grammatiká
+Vocative 		γραμματικέ
+grammatiké 	γραμματική
+grammatikḗ 	γραμματικόν
+grammatikón 		γραμματικώ
+grammatikṓ 	γραμματικά
+grammatikā́ 	γραμματικώ
+grammatikṓ 		γραμματικοί
+grammatikoí 	γραμματικαί
+grammatikaí 	γραμματικά
+grammatiká
+Derived forms 		Adverb 		Comparative 		Superlative
+	γραμματικῶς
+grammatikôs 		γραμματικώτερος
+grammatikṓteros 		γραμματικώτατος
+grammatikṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+διάβολος • (diábolos) m, f (neuter διάβολον); second declension
+
+    slanderous; libellous
+
+Inflection
+hide ▲Second declension of διάβολος; διάβολον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		διάβολος
+diábolos 	διάβολον
+diábolon 		διαβόλω
+diabólō 	διαβόλω
+diabólō 		διάβολοι
+diáboloi 	διάβολα
+diábola
+Genitive 		διαβόλου
+diabólou 	διαβόλου
+diabólou 		διαβόλοιν
+diabóloin 	διαβόλοιν
+diabóloin 		διαβόλων
+diabólōn 	διαβόλων
+diabólōn
+Dative 		διαβόλῳ
+diabólōi 	διαβόλῳ
+diabólōi 		διαβόλοιν
+diabóloin 	διαβόλοιν
+diabóloin 		διαβόλοις
+diabólois 	διαβόλοις
+diabólois
+Accusative 		διάβολον
+diábolon 	διάβολον
+diábolon 		διαβόλω
+diabólō 	διαβόλω
+diabólō 		διαβόλους
+diabólous 	διάβολα
+diábola
+Vocative 		διάβολε
+diábole 	διάβολον
+diábolon 		διαβόλω
+diabólō 	διαβόλω
+diabólō 		διάβολοι
+diáboloi 	διάβολα
+diábola
+Derived forms 		Adverb 		Comparative 		Superlative
+	διαβόλως
+diabólōs 		διαβολώτερος
+diabolṓteros 		διαβολώτατος
+diabolṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+#= Adjective
+
+δίφθογγος • (díphthongos) m, f (neuter δίφθογγον); second declension
+
+    with two sounds
+
+Inflection
+hide ▲Second declension of δίφθογγος; δίφθογγον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		δίφθογγος
+díphthongos 	δίφθογγον
+díphthongon 		διφθόγγω
+diphthóngō 	διφθόγγω
+diphthóngō 		δίφθογγοι
+díphthongoi 	δίφθογγα
+díphthonga
+Genitive 		διφθόγγου
+diphthóngou 	διφθόγγου
+diphthóngou 		διφθόγγοιν
+diphthóngoin 	διφθόγγοιν
+diphthóngoin 		διφθόγγων
+diphthóngōn 	διφθόγγων
+diphthóngōn
+Dative 		διφθόγγῳ
+diphthóngōi 	διφθόγγῳ
+diphthóngōi 		διφθόγγοιν
+diphthóngoin 	διφθόγγοιν
+diphthóngoin 		διφθόγγοις
+diphthóngois 	διφθόγγοις
+diphthóngois
+Accusative 		δίφθογγον
+díphthongon 	δίφθογγον
+díphthongon 		διφθόγγω
+diphthóngō 	διφθόγγω
+diphthóngō 		διφθόγγους
+diphthóngous 	δίφθογγα
+díphthonga
+Vocative 		δίφθογγε
+díphthonge 	δίφθογγον
+díphthongon 		διφθόγγω
+diphthóngō 	διφθόγγω
+diphthóngō 		δίφθογγοι
+díphthongoi 	δίφθογγα
+díphthonga
+Derived forms 		Adverb 		Comparative 		Superlative
+	διφθόγγως
+diphthóngōs 		διφθογγότερος
+diphthongóteros 		διφθογγότατος
+diphthongótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+δοῦλος • (doûlos) m (feminine δούλη, neuter δοῦλον); first/second declension (Attic, Ionic)
+
+    slavish, servile, subject
+
+Inflection
+hide ▲First and second declension of δοῦλος; δούλη; δοῦλον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		δοῦλος
+doûlos 	δούλη
+doúlē 	δοῦλον
+doûlon 		δούλω
+doúlō 	δούλα
+doúlā 	δούλω
+doúlō 		δοῦλοι
+doûloi 	δοῦλαι
+doûlai 	δοῦλα
+doûla
+Genitive 		δούλου
+doúlou 	δούλης
+doúlēs 	δούλου
+doúlou 		δούλοιν
+doúloin 	δούλαιν
+doúlain 	δούλοιν
+doúloin 		δούλων
+doúlōn 	δούλων
+doúlōn 	δούλων
+doúlōn
+Dative 		δούλῳ
+doúlōi 	δούλῃ
+doúlēi 	δούλῳ
+doúlōi 		δούλοιν
+doúloin 	δούλαιν
+doúlain 	δούλοιν
+doúloin 		δούλοις
+doúlois 	δούλαις
+doúlais 	δούλοις
+doúlois
+Accusative 		δοῦλον
+doûlon 	δούλην
+doúlēn 	δοῦλον
+doûlon 		δούλω
+doúlō 	δούλα
+doúlā 	δούλω
+doúlō 		δούλους
+doúlous 	δούλας
+doúlās 	δοῦλα
+doûla
+Vocative 		δοῦλε
+doûle 	δούλη
+doúlē 	δοῦλον
+doûlon 		δούλω
+doúlō 	δούλα
+doúlā 	δούλω
+doúlō 		δοῦλοι
+doûloi 	δοῦλαι
+doûlai 	δοῦλα
+doûla
+Derived forms 		Adverb 		Comparative 		Superlative
+	δούλως
+doúlōs 		δουλότερος
+doulóteros 		δουλότατος
+doulótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+Ἑβραῖος • (Hebraîos) m (feminine Ἑβραία, neuter Ἑβραῖον); first/second declension
+
+    Hebrew, Israelite
+
+Inflection
+hide ▲First and second declension of Ἑβραῖος; Ἑβραία; Ἑβραῖον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		Ἑβραῖος
+Hebraîos 	Ἑβραία
+Hebraíā 	Ἑβραῖον
+Hebraîon 		Ἑβραίω
+Hebraíō 	Ἑβραία
+Hebraíā 	Ἑβραίω
+Hebraíō 		Ἑβραῖοι
+Hebraîoi 	Ἑβραῖαι
+Hebraîai 	Ἑβραῖα
+Hebraîa
+Genitive 		Ἑβραίου
+Hebraíou 	Ἑβραίας
+Hebraíās 	Ἑβραίου
+Hebraíou 		Ἑβραίοιν
+Hebraíoin 	Ἑβραίαιν
+Hebraíain 	Ἑβραίοιν
+Hebraíoin 		Ἑβραίων
+Hebraíōn 	Ἑβραίων
+Hebraíōn 	Ἑβραίων
+Hebraíōn
+Dative 		Ἑβραίῳ
+Hebraíōi 	Ἑβραίᾳ
+Hebraíāi 	Ἑβραίῳ
+Hebraíōi 		Ἑβραίοιν
+Hebraíoin 	Ἑβραίαιν
+Hebraíain 	Ἑβραίοιν
+Hebraíoin 		Ἑβραίοις
+Hebraíois 	Ἑβραίαις
+Hebraíais 	Ἑβραίοις
+Hebraíois
+Accusative 		Ἑβραῖον
+Hebraîon 	Ἑβραίαν
+Hebraíān 	Ἑβραῖον
+Hebraîon 		Ἑβραίω
+Hebraíō 	Ἑβραία
+Hebraíā 	Ἑβραίω
+Hebraíō 		Ἑβραίους
+Hebraíous 	Ἑβραίας
+Hebraíās 	Ἑβραῖα
+Hebraîa
+Vocative 		Ἑβραῖε
+Hebraîe 	Ἑβραία
+Hebraíā 	Ἑβραῖον
+Hebraîon 		Ἑβραίω
+Hebraíō 	Ἑβραία
+Hebraíā 	Ἑβραίω
+Hebraíō 		Ἑβραῖοι
+Hebraîoi 	Ἑβραῖαι
+Hebraîai 	Ἑβραῖα
+Hebraîa
+Derived forms 		Adverb 		Comparative 		Superlative
+	Ἑβραίως
+Hebraíōs 		Ἑβραιότερος
+Hebraióteros 		Ἑβραιότατος
+Hebraiótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+ἐγκέφαλος • (enképhalos) m, f (neuter ἐγκέφαλον); second declension
+
+    inside the head
+
+Inflection
+hide ▲Second declension of ἐγκέφαλος; ἐγκέφαλον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		ἐγκέφαλος
+enképhalos 	ἐγκέφαλον
+enképhalon 		ἐγκεφάλω
+enkephálō 	ἐγκεφάλω
+enkephálō 		ἐγκέφαλοι
+enképhaloi 	ἐγκέφαλα
+enképhala
+Genitive 		ἐγκεφάλου
+enkephálou 	ἐγκεφάλου
+enkephálou 		ἐγκεφάλοιν
+enkepháloin 	ἐγκεφάλοιν
+enkepháloin 		ἐγκεφάλων
+enkephálōn 	ἐγκεφάλων
+enkephálōn
+Dative 		ἐγκεφάλῳ
+enkephálōi 	ἐγκεφάλῳ
+enkephálōi 		ἐγκεφάλοιν
+enkepháloin 	ἐγκεφάλοιν
+enkepháloin 		ἐγκεφάλοις
+enkephálois 	ἐγκεφάλοις
+enkephálois
+Accusative 		ἐγκέφαλον
+enképhalon 	ἐγκέφαλον
+enképhalon 		ἐγκεφάλω
+enkephálō 	ἐγκεφάλω
+enkephálō 		ἐγκεφάλους
+enkephálous 	ἐγκέφαλα
+enképhala
+Vocative 		ἐγκέφαλε
+enképhale 	ἐγκέφαλον
+enképhalon 		ἐγκεφάλω
+enkephálō 	ἐγκεφάλω
+enkephálō 		ἐγκέφαλοι
+enképhaloi 	ἐγκέφαλα
+enképhala
+Derived forms 		Adverb 		Comparative 		Superlative
+	ἐγκεφάλως
+enkephálōs 		ἐγκεφαλώτερος
+enkephalṓteros 		ἐγκεφαλώτατος
+enkephalṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+ἐπιτήδειος • (epitḗdeios) m (feminine ἐπιτηδεία, neuter ἐπιτήδειον); first/second declension (Attic, Koine)
+
+    fit, suitable
+
+Inflection
+hide ▲First and second declension of ἐπιτήδειος; ἐπιτηδεία; ἐπιτήδειον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		ἐπιτήδειος
+epitḗdeios 	ἐπιτηδεία
+epitēdeíā 	ἐπιτήδειον
+epitḗdeion 		ἐπιτηδείω
+epitēdeíō 	ἐπιτηδεία
+epitēdeíā 	ἐπιτηδείω
+epitēdeíō 		ἐπιτήδειοι
+epitḗdeioi 	ἐπιτήδειαι
+epitḗdeiai 	ἐπιτήδεια
+epitḗdeia
+Genitive 		ἐπιτηδείου
+epitēdeíou 	ἐπιτηδείας
+epitēdeíās 	ἐπιτηδείου
+epitēdeíou 		ἐπιτηδείοιν
+epitēdeíoin 	ἐπιτηδείαιν
+epitēdeíain 	ἐπιτηδείοιν
+epitēdeíoin 		ἐπιτηδείων
+epitēdeíōn 	ἐπιτηδείων
+epitēdeíōn 	ἐπιτηδείων
+epitēdeíōn
+Dative 		ἐπιτηδείῳ
+epitēdeíōi 	ἐπιτηδείᾳ
+epitēdeíāi 	ἐπιτηδείῳ
+epitēdeíōi 		ἐπιτηδείοιν
+epitēdeíoin 	ἐπιτηδείαιν
+epitēdeíain 	ἐπιτηδείοιν
+epitēdeíoin 		ἐπιτηδείοις
+epitēdeíois 	ἐπιτηδείαις
+epitēdeíais 	ἐπιτηδείοις
+epitēdeíois
+Accusative 		ἐπιτήδειον
+epitḗdeion 	ἐπιτηδείαν
+epitēdeíān 	ἐπιτήδειον
+epitḗdeion 		ἐπιτηδείω
+epitēdeíō 	ἐπιτηδεία
+epitēdeíā 	ἐπιτηδείω
+epitēdeíō 		ἐπιτηδείους
+epitēdeíous 	ἐπιτηδείας
+epitēdeíās 	ἐπιτήδεια
+epitḗdeia
+Vocative 		ἐπιτήδειε
+epitḗdeie 	ἐπιτηδεία
+epitēdeíā 	ἐπιτήδειον
+epitḗdeion 		ἐπιτηδείω
+epitēdeíō 	ἐπιτηδεία
+epitēdeíā 	ἐπιτηδείω
+epitēdeíō 		ἐπιτήδειοι
+epitḗdeioi 	ἐπιτήδειαι
+epitḗdeiai 	ἐπιτήδεια
+epitḗdeia
+Derived forms 		Adverb 		Comparative 		Superlative
+	ἐπιτηδείως
+epitēdeíōs 		ἐπιτηδειότερος
+epitēdeióteros 		ἐπιτηδειότατος
+epitēdeiótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+ἐτυμόλογος • (etumólogos) m, f (neuter ἐτυμόλογον); second declension
+
+    studying etymology
+
+Declension
+hide ▲Second declension of ἐτυμόλογος; ἐτυμόλογον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		ἐτυμόλογος
+etumólogos 	ἐτυμόλογον
+etumólogon 		ἐτυμολόγω
+etumológō 	ἐτυμολόγω
+etumológō 		ἐτυμόλογοι
+etumólogoi 	ἐτυμόλογα
+etumóloga
+Genitive 		ἐτυμολόγου
+etumológou 	ἐτυμολόγου
+etumológou 		ἐτυμολόγοιν
+etumológoin 	ἐτυμολόγοιν
+etumológoin 		ἐτυμολόγων
+etumológōn 	ἐτυμολόγων
+etumológōn
+Dative 		ἐτυμολόγῳ
+etumológōi 	ἐτυμολόγῳ
+etumológōi 		ἐτυμολόγοιν
+etumológoin 	ἐτυμολόγοιν
+etumológoin 		ἐτυμολόγοις
+etumológois 	ἐτυμολόγοις
+etumológois
+Accusative 		ἐτυμόλογον
+etumólogon 	ἐτυμόλογον
+etumólogon 		ἐτυμολόγω
+etumológō 	ἐτυμολόγω
+etumológō 		ἐτυμολόγους
+etumológous 	ἐτυμόλογα
+etumóloga
+Vocative 		ἐτυμόλογε
+etumóloge 	ἐτυμόλογον
+etumólogon 		ἐτυμολόγω
+etumológō 	ἐτυμολόγω
+etumológō 		ἐτυμόλογοι
+etumólogoi 	ἐτυμόλογα
+etumóloga
+Derived forms 		Adverb 		Comparative 		Superlative
+	ἐτυμολόγως
+etumológōs 		ἐτυμολογώτερος
+etumologṓteros 		ἐτυμολογώτατος
+etumologṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+εὐώνυμος • (euṓnumos) m, f (neuter εὐώνυμον); second declension
+
+    of good name, honored
+    having an auspicious name; fortunate, prosperous
+    (euphemistic)
+        on the left side
+        ominous, ill-boding
+
+            Synonyms: ἀριστερός (aristerós)
+            Antonyms: δεξιός (dexiós)
+
+    (astronomy) southern, southerly
+
+Inflection
+hide ▲Second declension of εὐώνυμος; εὐώνυμον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		εὐώνυμος
+euṓnumos 	εὐώνυμον
+euṓnumon 		εὐωνύμω
+euōnúmō 	εὐωνύμω
+euōnúmō 		εὐώνυμοι
+euṓnumoi 	εὐώνυμα
+euṓnuma
+Genitive 		εὐωνύμου
+euōnúmou 	εὐωνύμου
+euōnúmou 		εὐωνύμοιν
+euōnúmoin 	εὐωνύμοιν
+euōnúmoin 		εὐωνύμων
+euōnúmōn 	εὐωνύμων
+euōnúmōn
+Dative 		εὐωνύμῳ
+euōnúmōi 	εὐωνύμῳ
+euōnúmōi 		εὐωνύμοιν
+euōnúmoin 	εὐωνύμοιν
+euōnúmoin 		εὐωνύμοις
+euōnúmois 	εὐωνύμοις
+euōnúmois
+Accusative 		εὐώνυμον
+euṓnumon 	εὐώνυμον
+euṓnumon 		εὐωνύμω
+euōnúmō 	εὐωνύμω
+euōnúmō 		εὐωνύμους
+euōnúmous 	εὐώνυμα
+euṓnuma
+Vocative 		εὐώνυμε
+euṓnume 	εὐώνυμον
+euṓnumon 		εὐωνύμω
+euōnúmō 	εὐωνύμω
+euōnúmō 		εὐώνυμοι
+euṓnumoi 	εὐώνυμα
+euṓnuma
+Derived forms 		Adverb 		Comparative 		Superlative
+	εὐωνύμως
+euōnúmōs 		εὐωνυμώτερος
+euōnumṓteros 		εὐωνυμώτατος
+euōnumṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+θερμός • (thermós) m (feminine θερμή, neuter θερμόν); first/second declension
+
+    warm, hot, boiling, glowing
+    hotheaded, hasty, rash, headstrong
+    eager, active, fresh
+
+Declension
+hide ▲First and second declension of θερμός; θερμή; θερμόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		θερμός
+thermós 	θερμή
+thermḗ 	θερμόν
+thermón 		θερμώ
+thermṓ 	θερμά
+thermā́ 	θερμώ
+thermṓ 		θερμοί
+thermoí 	θερμαί
+thermaí 	θερμά
+thermá
+Genitive 		θερμοῦ
+thermoû 	θερμῆς
+thermês 	θερμοῦ
+thermoû 		θερμοῖν
+thermoîn 	θερμαῖν
+thermaîn 	θερμοῖν
+thermoîn 		θερμῶν
+thermôn 	θερμῶν
+thermôn 	θερμῶν
+thermôn
+Dative 		θερμῷ
+thermôi 	θερμῇ
+thermêi 	θερμῷ
+thermôi 		θερμοῖν
+thermoîn 	θερμαῖν
+thermaîn 	θερμοῖν
+thermoîn 		θερμοῖς
+thermoîs 	θερμαῖς
+thermaîs 	θερμοῖς
+thermoîs
+Accusative 		θερμόν
+thermón 	θερμήν
+thermḗn 	θερμόν
+thermón 		θερμώ
+thermṓ 	θερμά
+thermā́ 	θερμώ
+thermṓ 		θερμούς
+thermoús 	θερμάς
+thermā́s 	θερμά
+thermá
+Vocative 		θερμέ
+thermé 	θερμή
+thermḗ 	θερμόν
+thermón 		θερμώ
+thermṓ 	θερμά
+thermā́ 	θερμώ
+thermṓ 		θερμοί
+thermoí 	θερμαί
+thermaí 	θερμά
+thermá
+Derived forms 		Adverb 		Comparative 		Superlative
+	θερμῶς
+thermôs 		θερμότερος
+thermóteros 		θερμότατος
+thermótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+hide ▲Second declension of θερμός; θερμόν (Poetic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		θερμός
+thermós 	θερμόν
+thermón 		θερμώ
+thermṓ 	θερμώ
+thermṓ 		θερμοί
+thermoí 	θερμά
+thermá
+Genitive 		θερμοῦ
+thermoû 	θερμοῦ
+thermoû 		θερμοῖν
+thermoîn 	θερμοῖν
+thermoîn 		θερμῶν
+thermôn 	θερμῶν
+thermôn
+Dative 		θερμῷ
+thermôi 	θερμῷ
+thermôi 		θερμοῖν
+thermoîn 	θερμοῖν
+thermoîn 		θερμοῖς
+thermoîs 	θερμοῖς
+thermoîs
+Accusative 		θερμόν
+thermón 	θερμόν
+thermón 		θερμώ
+thermṓ 	θερμώ
+thermṓ 		θερμούς
+thermoús 	θερμά
+thermá
+Vocative 		θερμέ
+thermé 	θερμόν
+thermón 		θερμώ
+thermṓ 	θερμώ
+thermṓ 		θερμοί
+thermoí 	θερμά
+thermá
+Derived forms 		Adverb 		Comparative 		Superlative
+	θερμῶς
+thermôs 		θερμότερος
+thermóteros 		θερμότατος
+thermótatos
+Notes: 		Dialects other than Attic are not well attested. Some forms may be based on conjecture. Use with caution.
+
+
+
+#= Adjective
+
+ἰχθύβολος • (ikhthúbolos) m, f (neuter ἰχθύβολον); second declension
+
+    (for) striking fish, catching fish
+    speared fish
+
+
+
+#= Adjective
+
+κεστός • (kestós) m (feminine κεστή, neuter κεστόν); first/second declension
+
+    stitched, embroidered
+
+Inflection
+hide ▲First and second declension of κεστός; κεστή; κεστόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		κεστός
+kestós 	κεστή
+kestḗ 	κεστόν
+kestón 		κεστώ
+kestṓ 	κεστά
+kestā́ 	κεστώ
+kestṓ 		κεστοί
+kestoí 	κεσταί
+kestaí 	κεστά
+kestá
+Genitive 		κεστοῦ
+kestoû 	κεστῆς
+kestês 	κεστοῦ
+kestoû 		κεστοῖν
+kestoîn 	κεσταῖν
+kestaîn 	κεστοῖν
+kestoîn 		κεστῶν
+kestôn 	κεστῶν
+kestôn 	κεστῶν
+kestôn
+Dative 		κεστῷ
+kestôi 	κεστῇ
+kestêi 	κεστῷ
+kestôi 		κεστοῖν
+kestoîn 	κεσταῖν
+kestaîn 	κεστοῖν
+kestoîn 		κεστοῖς
+kestoîs 	κεσταῖς
+kestaîs 	κεστοῖς
+kestoîs
+Accusative 		κεστόν
+kestón 	κεστήν
+kestḗn 	κεστόν
+kestón 		κεστώ
+kestṓ 	κεστά
+kestā́ 	κεστώ
+kestṓ 		κεστούς
+kestoús 	κεστάς
+kestā́s 	κεστά
+kestá
+Vocative 		κεστέ
+kesté 	κεστή
+kestḗ 	κεστόν
+kestón 		κεστώ
+kestṓ 	κεστά
+kestā́ 	κεστώ
+kestṓ 		κεστοί
+kestoí 	κεσταί
+kestaí 	κεστά
+kestá
+Derived forms 		Adverb 		Comparative 		Superlative
+	κεστῶς
+kestôs 		κεστότερος
+kestóteros 		κεστότατος
+kestótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+κληρικός • (klērikós) m (feminine κληρική, neuter κληρικόν); first/second declension
+
+    of or pertaining to clergy; clerical
+
+Inflection
+hide ▲First and second declension of κληρικός; κληρική; κληρικόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		κληρικός
+klērikós 	κληρική
+klērikḗ 	κληρικόν
+klērikón 		κληρικώ
+klērikṓ 	κληρικά
+klērikā́ 	κληρικώ
+klērikṓ 		κληρικοί
+klērikoí 	κληρικαί
+klērikaí 	κληρικά
+klēriká
+Genitive 		κληρικοῦ
+klērikoû 	κληρικῆς
+klērikês 	κληρικοῦ
+klērikoû 		κληρικοῖν
+klērikoîn 	κληρικαῖν
+klērikaîn 	κληρικοῖν
+klērikoîn 		κληρικῶν
+klērikôn 	κληρικῶν
+klērikôn 	κληρικῶν
+klērikôn
+Dative 		κληρικῷ
+klērikôi 	κληρικῇ
+klērikêi 	κληρικῷ
+klērikôi 		κληρικοῖν
+klērikoîn 	κληρικαῖν
+klērikaîn 	κληρικοῖν
+klērikoîn 		κληρικοῖς
+klērikoîs 	κληρικαῖς
+klērikaîs 	κληρικοῖς
+klērikoîs
+Accusative 		κληρικόν
+klērikón 	κληρικήν
+klērikḗn 	κληρικόν
+klērikón 		κληρικώ
+klērikṓ 	κληρικά
+klērikā́ 	κληρικώ
+klērikṓ 		κληρικούς
+klērikoús 	κληρικάς
+klērikā́s 	κληρικά
+klēriká
+Vocative 		κληρικέ
+klēriké 	κληρική
+klērikḗ 	κληρικόν
+klērikón 		κληρικώ
+klērikṓ 	κληρικά
+klērikā́ 	κληρικώ
+klērikṓ 		κληρικοί
+klērikoí 	κληρικαί
+klērikaí 	κληρικά
+klēriká
+Derived forms 		Adverb 		Comparative 		Superlative
+	κληρικῶς
+klērikôs 		κληρικώτερος
+klērikṓteros 		κληρικώτατος
+klērikṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+κύριος • (kū́rios) m (feminine κυρία, neuter κύριον); first/second declension
+
+    (of people): ruling, governing, having power
+    (of things): decisive, critical, authorized, valid, legal, entitled
+    (of times): fixed, set, appointed
+    (of language): literal
+    main, major, primary, principal
+
+Declension
+hide ▲First and second declension of κύριος; κυρία; κύριον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		κύριος
+kū́rios 	κυρία
+kūríā 	κύριον
+kū́rion 		κυρίω
+kūríō 	κυρία
+kūríā 	κυρίω
+kūríō 		κύριοι
+kū́rioi 	κύριαι
+kū́riai 	κύρια
+kū́ria
+Genitive 		κυρίου
+kūríou 	κυρίας
+kūríās 	κυρίου
+kūríou 		κυρίοιν
+kūríoin 	κυρίαιν
+kūríain 	κυρίοιν
+kūríoin 		κυρίων
+kūríōn 	κυρίων
+kūríōn 	κυρίων
+kūríōn
+Dative 		κυρίῳ
+kūríōi 	κυρίᾳ
+kūríāi 	κυρίῳ
+kūríōi 		κυρίοιν
+kūríoin 	κυρίαιν
+kūríain 	κυρίοιν
+kūríoin 		κυρίοις
+kūríois 	κυρίαις
+kūríais 	κυρίοις
+kūríois
+Accusative 		κύριον
+kū́rion 	κυρίαν
+kūríān 	κύριον
+kū́rion 		κυρίω
+kūríō 	κυρία
+kūríā 	κυρίω
+kūríō 		κυρίους
+kūríous 	κυρίας
+kūríās 	κύρια
+kū́ria
+Vocative 		κύριε
+kū́rie 	κυρία
+kūríā 	κύριον
+kū́rion 		κυρίω
+kūríō 	κυρία
+kūríā 	κυρίω
+kūríō 		κύριοι
+kū́rioi 	κύριαι
+kū́riai 	κύρια
+kū́ria
+Derived forms 		Adverb 		Comparative 		Superlative
+	κυρίως
+kūríōs 		κυριώτερος
+kūriṓteros 		κυριώτατος
+kūriṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+λαιός • (laiós) m (feminine λαιά, neuter λαιόν); first/second declension
+
+    left (opposite of right)
+    awkward
+
+Inflection
+hide ▲First and second declension of λαιός; λαιά; λαιόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		λαιός
+laiós 	λαιά
+laiā́ 	λαιόν
+laión 		λαιώ
+laiṓ 	λαιά
+laiā́ 	λαιώ
+laiṓ 		λαιοί
+laioí 	λαιαί
+laiaí 	λαιά
+laiá
+Genitive 		λαιοῦ
+laioû 	λαιᾶς
+laiâs 	λαιοῦ
+laioû 		λαιοῖν
+laioîn 	λαιαῖν
+laiaîn 	λαιοῖν
+laioîn 		λαιῶν
+laiôn 	λαιών
+laiṓn 	λαιῶν
+laiôn
+Dative 		λαιῷ
+laiôi 	λαιᾷ
+laiâi 	λαιῷ
+laiôi 		λαιοῖν
+laioîn 	λαιαῖν
+laiaîn 	λαιοῖν
+laioîn 		λαιοῖς
+laioîs 	λαιαῖς
+laiaîs 	λαιοῖς
+laioîs
+Accusative 		λαιόν
+laión 	λαιάν
+laiā́n 	λαιόν
+laión 		λαιώ
+laiṓ 	λαιά
+laiā́ 	λαιώ
+laiṓ 		λαιούς
+laioús 	λαιάς
+laiā́s 	λαιά
+laiá
+Vocative 		λαιέ
+laié 	λαιά
+laiā́ 	λαιόν
+laión 		λαιώ
+laiṓ 	λαιά
+laiā́ 	λαιώ
+laiṓ 		λαιοί
+laioí 	λαιαί
+laiaí 	λαιά
+laiá
+Derived forms 		Adverb 		Comparative 		Superlative
+	λαιῶς
+laiôs 		λαιότερος
+laióteros 		λαιότατος
+laiótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+Λατῖνος • (Latînos) m (feminine Λατίνη, neuter Λατῖνον); first/second declension
+
+    Latin
+
+Inflection
+hide ▲First and second declension of Λατῖνος; Λατίνη; Λατῖνον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		Λατῖνος
+Latînos 	Λατίνη
+Latī́nē 	Λατῖνον
+Latînon 		Λατίνω
+Latī́nō 	Λατίνα
+Latī́nā 	Λατίνω
+Latī́nō 		Λατῖνοι
+Latînoi 	Λατῖναι
+Latînai 	Λατῖνα
+Latîna
+Genitive 		Λατίνου
+Latī́nou 	Λατίνης
+Latī́nēs 	Λατίνου
+Latī́nou 		Λατίνοιν
+Latī́noin 	Λατίναιν
+Latī́nain 	Λατίνοιν
+Latī́noin 		Λατίνων
+Latī́nōn 	Λατίνων
+Latī́nōn 	Λατίνων
+Latī́nōn
+Dative 		Λατίνῳ
+Latī́nōi 	Λατίνῃ
+Latī́nēi 	Λατίνῳ
+Latī́nōi 		Λατίνοιν
+Latī́noin 	Λατίναιν
+Latī́nain 	Λατίνοιν
+Latī́noin 		Λατίνοις
+Latī́nois 	Λατίναις
+Latī́nais 	Λατίνοις
+Latī́nois
+Accusative 		Λατῖνον
+Latînon 	Λατίνην
+Latī́nēn 	Λατῖνον
+Latînon 		Λατίνω
+Latī́nō 	Λατίνα
+Latī́nā 	Λατίνω
+Latī́nō 		Λατίνους
+Latī́nous 	Λατίνας
+Latī́nās 	Λατῖνα
+Latîna
+Vocative 		Λατῖνε
+Latîne 	Λατίνη
+Latī́nē 	Λατῖνον
+Latînon 		Λατίνω
+Latī́nō 	Λατίνα
+Latī́nā 	Λατίνω
+Latī́nō 		Λατῖνοι
+Latînoi 	Λατῖναι
+Latînai 	Λατῖνα
+Latîna
+Derived forms 		Adverb 		Comparative 		Superlative
+	Λατίνως
+Latī́nōs 		Λατινότερος
+Latīnóteros 		Λατινότατος
+Latīnótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+λυρικός • (lurikós) m (feminine λυρική, neuter λυρικόν); first/second declension
+
+    Of or pertaining to the lyre.
+
+Inflection
+hide ▲First and second declension of λυρικός; λυρική; λυρικόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		λυρικός
+lurikós 	λυρική
+lurikḗ 	λυρικόν
+lurikón 		λυρικώ
+lurikṓ 	λυρικά
+lurikā́ 	λυρικώ
+lurikṓ 		λυρικοί
+lurikoí 	λυρικαί
+lurikaí 	λυρικά
+luriká
+Genitive 		λυρικοῦ
+lurikoû 	λυρικῆς
+lurikês 	λυρικοῦ
+lurikoû 		λυρικοῖν
+lurikoîn 	λυρικαῖν
+lurikaîn 	λυρικοῖν
+lurikoîn 		λυρικῶν
+lurikôn 	λυρικῶν
+lurikôn 	λυρικῶν
+lurikôn
+Dative 		λυρικῷ
+lurikôi 	λυρικῇ
+lurikêi 	λυρικῷ
+lurikôi 		λυρικοῖν
+lurikoîn 	λυρικαῖν
+lurikaîn 	λυρικοῖν
+lurikoîn 		λυρικοῖς
+lurikoîs 	λυρικαῖς
+lurikaîs 	λυρικοῖς
+lurikoîs
+Accusative 		λυρικόν
+lurikón 	λυρικήν
+lurikḗn 	λυρικόν
+lurikón 		λυρικώ
+lurikṓ 	λυρικά
+lurikā́ 	λυρικώ
+lurikṓ 		λυρικούς
+lurikoús 	λυρικάς
+lurikā́s 	λυρικά
+luriká
+Vocative 		λυρικέ
+luriké 	λυρική
+lurikḗ 	λυρικόν
+lurikón 		λυρικώ
+lurikṓ 	λυρικά
+lurikā́ 	λυρικώ
+lurikṓ 		λυρικοί
+lurikoí 	λυρικαί
+lurikaí 	λυρικά
+luriká
+Derived forms 		Adverb 		Comparative 		Superlative
+	λυρικῶς
+lurikôs 		λυρικώτερος
+lurikṓteros 		λυρικώτατος
+lurikṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+μαθηματικός • (mathēmatikós) m (feminine μαθηματική, neuter μαθηματικόν); first/second declension
+
+    scientific, esp. mathematical
+        (substantive) mathematics
+    astronomical
+    astrological
+
+Declension
+hide ▲First and second declension of μαθηματικός; μαθηματική; μαθηματικόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		μαθηματικός
+mathēmatikós 	μαθηματική
+mathēmatikḗ 	μαθηματικόν
+mathēmatikón 		μαθηματικώ
+mathēmatikṓ 	μαθηματικά
+mathēmatikā́ 	μαθηματικώ
+mathēmatikṓ 		μαθηματικοί
+mathēmatikoí 	μαθηματικαί
+mathēmatikaí 	μαθηματικά
+mathēmatiká
+Genitive 		μαθηματικοῦ
+mathēmatikoû 	μαθηματικῆς
+mathēmatikês 	μαθηματικοῦ
+mathēmatikoû 		μαθηματικοῖν
+mathēmatikoîn 	μαθηματικαῖν
+mathēmatikaîn 	μαθηματικοῖν
+mathēmatikoîn 		μαθηματικῶν
+mathēmatikôn 	μαθηματικῶν
+mathēmatikôn 	μαθηματικῶν
+mathēmatikôn
+Dative 		μαθηματικῷ
+mathēmatikôi 	μαθηματικῇ
+mathēmatikêi 	μαθηματικῷ
+mathēmatikôi 		μαθηματικοῖν
+mathēmatikoîn 	μαθηματικαῖν
+mathēmatikaîn 	μαθηματικοῖν
+mathēmatikoîn 		μαθηματικοῖς
+mathēmatikoîs 	μαθηματικαῖς
+mathēmatikaîs 	μαθηματικοῖς
+mathēmatikoîs
+Accusative 		μαθηματικόν
+mathēmatikón 	μαθηματικήν
+mathēmatikḗn 	μαθηματικόν
+mathēmatikón 		μαθηματικώ
+mathēmatikṓ 	μαθηματικά
+mathēmatikā́ 	μαθηματικώ
+mathēmatikṓ 		μαθηματικούς
+mathēmatikoús 	μαθηματικάς
+mathēmatikā́s 	μαθηματικά
+mathēmatiká
+Vocative 		μαθηματικέ
+mathēmatiké 	μαθηματική
+mathēmatikḗ 	μαθηματικόν
+mathēmatikón 		μαθηματικώ
+mathēmatikṓ 	μαθηματικά
+mathēmatikā́ 	μαθηματικώ
+mathēmatikṓ 		μαθηματικοί
+mathēmatikoí 	μαθηματικαί
+mathēmatikaí 	μαθηματικά
+mathēmatiká
+Derived forms 		Adverb 		Comparative 		Superlative
+	μαθηματικῶς
+mathēmatikôs 		μαθηματικώτερος
+mathēmatikṓteros 		μαθηματικώτατος
+mathēmatikṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+μαλακός • (malakós) m (feminine μαλακή, neuter μαλακόν); first/second declension
+
+    soft
+    gentle
+        light, mild
+    (of persons, modes of life) soft, mild, gentle
+        (in a bad sense) soft, yielding, remiss
+            faint-hearted, effeminate, cowardly
+            incapable of bearing pain
+            (of music) soft, effeminate
+            (of reasoning) weak, loose
+    effeminate
+
+Inflection
+hide ▲First and second declension of μαλακός; μαλακή; μαλακόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		μαλακός
+malakós 	μαλακή
+malakḗ 	μαλακόν
+malakón 		μαλακώ
+malakṓ 	μαλακά
+malakā́ 	μαλακώ
+malakṓ 		μαλακοί
+malakoí 	μαλακαί
+malakaí 	μαλακά
+malaká
+Genitive 		μαλακοῦ
+malakoû 	μαλακῆς
+malakês 	μαλακοῦ
+malakoû 		μαλακοῖν
+malakoîn 	μαλακαῖν
+malakaîn 	μαλακοῖν
+malakoîn 		μαλακῶν
+malakôn 	μαλακῶν
+malakôn 	μαλακῶν
+malakôn
+Dative 		μαλακῷ
+malakôi 	μαλακῇ
+malakêi 	μαλακῷ
+malakôi 		μαλακοῖν
+malakoîn 	μαλακαῖν
+malakaîn 	μαλακοῖν
+malakoîn 		μαλακοῖς
+malakoîs 	μαλακαῖς
+malakaîs 	μαλακοῖς
+malakoîs
+Accusative 		μαλακόν
+malakón 	μαλακήν
+malakḗn 	μαλακόν
+malakón 		μαλακώ
+malakṓ 	μαλακά
+malakā́ 	μαλακώ
+malakṓ 		μαλακούς
+malakoús 	μαλακάς
+malakā́s 	μαλακά
+malaká
+Vocative 		μαλακέ
+malaké 	μαλακή
+malakḗ 	μαλακόν
+malakón 		μαλακώ
+malakṓ 	μαλακά
+malakā́ 	μαλακώ
+malakṓ 		μαλακοί
+malakoí 	μαλακαί
+malakaí 	μαλακά
+malaká
+Derived forms 		Adverb 		Comparative 		Superlative
+	μαλακῶς
+malakôs 		μαλακότερος
+malakóteros 		μαλακότατος
+malakótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+μαστιγοφόρος • (mastīgophóros) m, f (neuter μαστιγοφόρον); second declension
+
+    scourge-bearing
+        an epithet of Ajax
+
+Declension
+hide ▲Second declension of μαστιγοφόρος; μαστιγοφόρον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		μαστιγοφόρος
+mastīgophóros 	μαστιγοφόρον
+mastīgophóron 		μαστιγοφόρω
+mastīgophórō 	μαστιγοφόρω
+mastīgophórō 		μαστιγοφόροι
+mastīgophóroi 	μαστιγοφόρα
+mastīgophóra
+Genitive 		μαστιγοφόρου
+mastīgophórou 	μαστιγοφόρου
+mastīgophórou 		μαστιγοφόροιν
+mastīgophóroin 	μαστιγοφόροιν
+mastīgophóroin 		μαστιγοφόρων
+mastīgophórōn 	μαστιγοφόρων
+mastīgophórōn
+Dative 		μαστιγοφόρῳ
+mastīgophórōi 	μαστιγοφόρῳ
+mastīgophórōi 		μαστιγοφόροιν
+mastīgophóroin 	μαστιγοφόροιν
+mastīgophóroin 		μαστιγοφόροις
+mastīgophórois 	μαστιγοφόροις
+mastīgophórois
+Accusative 		μαστιγοφόρον
+mastīgophóron 	μαστιγοφόρον
+mastīgophóron 		μαστιγοφόρω
+mastīgophórō 	μαστιγοφόρω
+mastīgophórō 		μαστιγοφόρους
+mastīgophórous 	μαστιγοφόρα
+mastīgophóra
+Vocative 		μαστιγοφόρε
+mastīgophóre 	μαστιγοφόρον
+mastīgophóron 		μαστιγοφόρω
+mastīgophórō 	μαστιγοφόρω
+mastīgophórō 		μαστιγοφόροι
+mastīgophóroi 	μαστιγοφόρα
+mastīgophóra
+Derived forms 		Adverb 		Comparative 		Superlative
+	— 		— 		μαστιγοφορώτατος
+mastīgophorṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+ναζειραῖος • (nāzeiraîos) m (feminine ναζειραία, neuter ναζειραῖον); first/second declension
+
+    (Koine, biblical) consecrated in the Nazarite vows
+
+Declension
+hide ▲First and second declension of ναζειραῖος; ναζειραία; ναζειραῖον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		ναζειραῖος
+nāzeiraîos 	ναζειραία
+nāzeiraíā 	ναζειραῖον
+nāzeiraîon 		ναζειραίω
+nāzeiraíō 	ναζειραία
+nāzeiraíā 	ναζειραίω
+nāzeiraíō 		ναζειραῖοι
+nāzeiraîoi 	ναζειραῖαι
+nāzeiraîai 	ναζειραῖα
+nāzeiraîa
+Genitive 		ναζειραίου
+nāzeiraíou 	ναζειραίας
+nāzeiraíās 	ναζειραίου
+nāzeiraíou 		ναζειραίοιν
+nāzeiraíoin 	ναζειραίαιν
+nāzeiraíain 	ναζειραίοιν
+nāzeiraíoin 		ναζειραίων
+nāzeiraíōn 	ναζειραίων
+nāzeiraíōn 	ναζειραίων
+nāzeiraíōn
+Dative 		ναζειραίῳ
+nāzeiraíōi 	ναζειραίᾳ
+nāzeiraíāi 	ναζειραίῳ
+nāzeiraíōi 		ναζειραίοιν
+nāzeiraíoin 	ναζειραίαιν
+nāzeiraíain 	ναζειραίοιν
+nāzeiraíoin 		ναζειραίοις
+nāzeiraíois 	ναζειραίαις
+nāzeiraíais 	ναζειραίοις
+nāzeiraíois
+Accusative 		ναζειραῖον
+nāzeiraîon 	ναζειραίαν
+nāzeiraíān 	ναζειραῖον
+nāzeiraîon 		ναζειραίω
+nāzeiraíō 	ναζειραία
+nāzeiraíā 	ναζειραίω
+nāzeiraíō 		ναζειραίους
+nāzeiraíous 	ναζειραίας
+nāzeiraíās 	ναζειραῖα
+nāzeiraîa
+Vocative 		ναζειραῖε
+nāzeiraîe 	ναζειραία
+nāzeiraíā 	ναζειραῖον
+nāzeiraîon 		ναζειραίω
+nāzeiraíō 	ναζειραία
+nāzeiraíā 	ναζειραίω
+nāzeiraíō 		ναζειραῖοι
+nāzeiraîoi 	ναζειραῖαι
+nāzeiraîai 	ναζειραῖα
+nāzeiraîa
+Derived forms 		Adverb 		Comparative 		Superlative
+	ναζειραίως
+nāzeiraíōs 		ναζειραιότερος
+nāzeiraióteros 		ναζειραιότατος
+nāzeiraiótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+ναζιραῖος • (naziraîos) m (feminine ναζιραία, neuter ναζιραῖον); first/second declension
+
+    (Koine, biblical) consecrated in the Nazarite vows
+
+Declension
+hide ▲First and second declension of ναζιραῖος; ναζιραία; ναζιραῖον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		ναζιραῖος
+naziraîos 	ναζιραία
+naziraíā 	ναζιραῖον
+naziraîon 		ναζιραίω
+naziraíō 	ναζιραία
+naziraíā 	ναζιραίω
+naziraíō 		ναζιραῖοι
+naziraîoi 	ναζιραῖαι
+naziraîai 	ναζιραῖα
+naziraîa
+Genitive 		ναζιραίου
+naziraíou 	ναζιραίας
+naziraíās 	ναζιραίου
+naziraíou 		ναζιραίοιν
+naziraíoin 	ναζιραίαιν
+naziraíain 	ναζιραίοιν
+naziraíoin 		ναζιραίων
+naziraíōn 	ναζιραίων
+naziraíōn 	ναζιραίων
+naziraíōn
+Dative 		ναζιραίῳ
+naziraíōi 	ναζιραίᾳ
+naziraíāi 	ναζιραίῳ
+naziraíōi 		ναζιραίοιν
+naziraíoin 	ναζιραίαιν
+naziraíain 	ναζιραίοιν
+naziraíoin 		ναζιραίοις
+naziraíois 	ναζιραίαις
+naziraíais 	ναζιραίοις
+naziraíois
+Accusative 		ναζιραῖον
+naziraîon 	ναζιραίαν
+naziraíān 	ναζιραῖον
+naziraîon 		ναζιραίω
+naziraíō 	ναζιραία
+naziraíā 	ναζιραίω
+naziraíō 		ναζιραίους
+naziraíous 	ναζιραίας
+naziraíās 	ναζιραῖα
+naziraîa
+Vocative 		ναζιραῖε
+naziraîe 	ναζιραία
+naziraíā 	ναζιραῖον
+naziraîon 		ναζιραίω
+naziraíō 	ναζιραία
+naziraíā 	ναζιραίω
+naziraíō 		ναζιραῖοι
+naziraîoi 	ναζιραῖαι
+naziraîai 	ναζιραῖα
+naziraîa
+Derived forms 		Adverb 		Comparative 		Superlative
+	ναζιραίως
+naziraíōs 		ναζιραιότερος
+naziraióteros 		ναζιραιότατος
+naziraiótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+#= Adjective
+
+ναζιραῖος • (naziraîos) m (feminine ναζιραία, neuter ναζιραῖον); first/second declension
+
+    (Koine, biblical) consecrated in the Nazarite vows
+
+Declension
+hide ▲First and second declension of ναζιραῖος; ναζιραία; ναζιραῖον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		ναζιραῖος
+naziraîos 	ναζιραία
+naziraíā 	ναζιραῖον
+naziraîon 		ναζιραίω
+naziraíō 	ναζιραία
+naziraíā 	ναζιραίω
+naziraíō 		ναζιραῖοι
+naziraîoi 	ναζιραῖαι
+naziraîai 	ναζιραῖα
+naziraîa
+Genitive 		ναζιραίου
+naziraíou 	ναζιραίας
+naziraíās 	ναζιραίου
+naziraíou 		ναζιραίοιν
+naziraíoin 	ναζιραίαιν
+naziraíain 	ναζιραίοιν
+naziraíoin 		ναζιραίων
+naziraíōn 	ναζιραίων
+naziraíōn 	ναζιραίων
+naziraíōn
+Dative 		ναζιραίῳ
+naziraíōi 	ναζιραίᾳ
+naziraíāi 	ναζιραίῳ
+naziraíōi 		ναζιραίοιν
+naziraíoin 	ναζιραίαιν
+naziraíain 	ναζιραίοιν
+naziraíoin 		ναζιραίοις
+naziraíois 	ναζιραίαις
+naziraíais 	ναζιραίοις
+naziraíois
+Accusative 		ναζιραῖον
+naziraîon 	ναζιραίαν
+naziraíān 	ναζιραῖον
+naziraîon 		ναζιραίω
+naziraíō 	ναζιραία
+naziraíā 	ναζιραίω
+naziraíō 		ναζιραίους
+naziraíous 	ναζιραίας
+naziraíās 	ναζιραῖα
+naziraîa
+Vocative 		ναζιραῖε
+naziraîe 	ναζιραία
+naziraíā 	ναζιραῖον
+naziraîon 		ναζιραίω
+naziraíō 	ναζιραία
+naziraíā 	ναζιραίω
+naziraíō 		ναζιραῖοι
+naziraîoi 	ναζιραῖαι
+naziraîai 	ναζιραῖα
+naziraîa
+Derived forms 		Adverb 		Comparative 		Superlative
+	ναζιραίως
+naziraíōs 		ναζιραιότερος
+naziraióteros 		ναζιραιότατος
+naziraiótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+νεκρός • (nekrós) m (feminine νεκρά, neuter νεκρόν); first/second declension
+
+    dead
+
+Inflection
+hide ▲First and second declension of νεκρός; νεκρά; νεκρόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		νεκρός
+nekrós 	νεκρά
+nekrā́ 	νεκρόν
+nekrón 		νεκρώ
+nekrṓ 	νεκρά
+nekrā́ 	νεκρώ
+nekrṓ 		νεκροί
+nekroí 	νεκραί
+nekraí 	νεκρά
+nekrá
+Genitive 		νεκροῦ
+nekroû 	νεκρᾶς
+nekrâs 	νεκροῦ
+nekroû 		νεκροῖν
+nekroîn 	νεκραῖν
+nekraîn 	νεκροῖν
+nekroîn 		νεκρῶν
+nekrôn 	νεκρών
+nekrṓn 	νεκρῶν
+nekrôn
+Dative 		νεκρῷ
+nekrôi 	νεκρᾷ
+nekrâi 	νεκρῷ
+nekrôi 		νεκροῖν
+nekroîn 	νεκραῖν
+nekraîn 	νεκροῖν
+nekroîn 		νεκροῖς
+nekroîs 	νεκραῖς
+nekraîs 	νεκροῖς
+nekroîs
+Accusative 		νεκρόν
+nekrón 	νεκράν
+nekrā́n 	νεκρόν
+nekrón 		νεκρώ
+nekrṓ 	νεκρά
+nekrā́ 	νεκρώ
+nekrṓ 		νεκρούς
+nekroús 	νεκράς
+nekrā́s 	νεκρά
+nekrá
+Vocative 		νεκρέ
+nekré 	νεκρά
+nekrā́ 	νεκρόν
+nekrón 		νεκρώ
+nekrṓ 	νεκρά
+nekrā́ 	νεκρώ
+nekrṓ 		νεκροί
+nekroí 	νεκραί
+nekraí 	νεκρά
+nekrá
+Derived forms 		Adverb 		Comparative 		Superlative
+	νεκρῶς
+nekrôs 		νεκρότερος
+nekróteros 		νεκρότατος
+nekrótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+νόθος • (nóthos) m (feminine νόθη, neuter νόθον); first/second declension or
+νόθος • (nóthos) m, f (neuter νόθον); second declension
+
+    bastard, baseborn (born of a slave or concubine)
+        (of animals) crossbred
+    (generally, of persons and things) spurious, counterfeit, supposititious
+        (of literary works) spurious
+
+Declension
+hide ▲First and second declension of νόθος; νόθη; νόθον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		νόθος
+nóthos 	νόθη
+nóthē 	νόθον
+nóthon 		νόθω
+nóthō 	νόθα
+nóthā 	νόθω
+nóthō 		νόθοι
+nóthoi 	νόθαι
+nóthai 	νόθα
+nótha
+Genitive 		νόθου
+nóthou 	νόθης
+nóthēs 	νόθου
+nóthou 		νόθοιν
+nóthoin 	νόθαιν
+nóthain 	νόθοιν
+nóthoin 		νόθων
+nóthōn 	νόθων
+nóthōn 	νόθων
+nóthōn
+Dative 		νόθῳ
+nóthōi 	νόθῃ
+nóthēi 	νόθῳ
+nóthōi 		νόθοιν
+nóthoin 	νόθαιν
+nóthain 	νόθοιν
+nóthoin 		νόθοις
+nóthois 	νόθαις
+nóthais 	νόθοις
+nóthois
+Accusative 		νόθον
+nóthon 	νόθην
+nóthēn 	νόθον
+nóthon 		νόθω
+nóthō 	νόθα
+nóthā 	νόθω
+nóthō 		νόθους
+nóthous 	νόθας
+nóthās 	νόθα
+nótha
+Vocative 		νόθε
+nóthe 	νόθη
+nóthē 	νόθον
+nóthon 		νόθω
+nóthō 	νόθα
+nóthā 	νόθω
+nóthō 		νόθοι
+nóthoi 	νόθαι
+nóthai 	νόθα
+nótha
+Derived forms 		Adverb 		Comparative 		Superlative
+	νόθως
+nóthōs 		νοθώτερος
+nothṓteros 		νοθώτατος
+nothṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+hide ▲Second declension of νόθος; νόθον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		νόθος
+nóthos 	νόθον
+nóthon 		νόθω
+nóthō 	νόθω
+nóthō 		νόθοι
+nóthoi 	νόθα
+nótha
+Genitive 		νόθου
+nóthou 	νόθου
+nóthou 		νόθοιν
+nóthoin 	νόθοιν
+nóthoin 		νόθων
+nóthōn 	νόθων
+nóthōn
+Dative 		νόθῳ
+nóthōi 	νόθῳ
+nóthōi 		νόθοιν
+nóthoin 	νόθοιν
+nóthoin 		νόθοις
+nóthois 	νόθοις
+nóthois
+Accusative 		νόθον
+nóthon 	νόθον
+nóthon 		νόθω
+nóthō 	νόθω
+nóthō 		νόθους
+nóthous 	νόθα
+nótha
+Vocative 		νόθε
+nóthe 	νόθον
+nóthon 		νόθω
+nóthō 	νόθω
+nóthō 		νόθοι
+nóthoi 	νόθα
+nótha
+Derived forms 		Adverb 		Comparative 		Superlative
+	νόθως
+nóthōs 		νοθώτερος
+nothṓteros 		νοθώτατος
+nothṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+ξεῖνος • (xeînos) m (feminine ξείνη, neuter ξεῖνον); first/second declension
+
+    Epic and Ionic form of ξένος (xénos)
+
+Declension
+hide ▲First and second declension of ξεῖνος; ξείνη; ξεῖνον (Epic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		ξεῖνος
+xeînos 	ξείνη
+xeínē 	ξεῖνον
+xeînon 		ξείνω
+xeínō 	ξείνα
+xeínā 	ξείνω
+xeínō 		ξεῖνοι
+xeînoi 	ξεῖναι
+xeînai 	ξεῖνα
+xeîna
+Genitive 		ξείνου / ξεινοῖο / ξείνοιο / ξεινόο / ξείνοο
+xeínou / xeinoîo / xeínoio / xeinóo / xeínoo 	ξείνης
+xeínēs 	ξείνου / ξεινοῖο / ξείνοιο / ξεινόο / ξείνοο
+xeínou / xeinoîo / xeínoio / xeinóo / xeínoo 		ξείνοιιν
+xeínoiin 	ξείναιν / ξείναιιν / ξείνῃιν
+xeínain / xeínaiin / xeínēiin 	ξείνοιιν
+xeínoiin 		ξείνων
+xeínōn 	ξεινάων / ξεινέ͜ων / ξεινῶν
+xeinā́ōn / xeiné͜ōn / xeinôn 	ξείνων
+xeínōn
+Dative 		ξείνῳ
+xeínōi 	ξείνῃ
+xeínēi 	ξείνῳ
+xeínōi 		ξείνοιιν
+xeínoiin 	ξείναιν / ξείναιιν / ξείνῃιν
+xeínain / xeínaiin / xeínēiin 	ξείνοιιν
+xeínoiin 		ξείνοισι(ν) / ξείνοις
+xeínoisi(n) / xeínois 	ξείνῃσι(ν) / ξείνῃς / ξείναις
+xeínēisi(n) / xeínēis / xeínais 	ξείνοισι(ν) / ξείνοις
+xeínoisi(n) / xeínois
+Accusative 		ξεῖνον
+xeînon 	ξείνην
+xeínēn 	ξεῖνον
+xeînon 		ξείνω
+xeínō 	ξείνα
+xeínā 	ξείνω
+xeínō 		ξείνους
+xeínous 	ξείνας
+xeínās 	ξεῖνα
+xeîna
+Vocative 		ξεῖνε
+xeîne 	ξείνη
+xeínē 	ξεῖνον
+xeînon 		ξείνω
+xeínō 	ξείνα
+xeínā 	ξείνω
+xeínō 		ξεῖνοι
+xeînoi 	ξεῖναι
+xeînai 	ξεῖνα
+xeîna
+Derived forms 		Adverb 		Comparative 		Superlative
+	ξείνως
+xeínōs 		ξεινότερος
+xeinóteros 		ξεινότατος
+xeinótatos
+Notes: 		Dialects other than Attic are not well attested. Some forms may be based on conjecture. Use with caution.
+hide ▲First and second declension of ξεῖνος; ξείνη; ξεῖνον (Ionic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		ξεῖνος
+xeînos 	ξείνη
+xeínē 	ξεῖνον
+xeînon 		ξείνω
+xeínō 	ξείνα
+xeínā 	ξείνω
+xeínō 		ξεῖνοι
+xeînoi 	ξεῖναι
+xeînai 	ξεῖνα
+xeîna
+Genitive 		ξείνου
+xeínou 	ξείνης
+xeínēs 	ξείνου
+xeínou 		ξείνοιν
+xeínoin 	ξείναιν
+xeínain 	ξείνοιν
+xeínoin 		ξείνων
+xeínōn 	ξεινέων / ξεινῶν
+xeinéōn / xeinôn 	ξείνων
+xeínōn
+Dative 		ξείνῳ
+xeínōi 	ξείνῃ
+xeínēi 	ξείνῳ
+xeínōi 		ξείνοιν
+xeínoin 	ξείναιν
+xeínain 	ξείνοιν
+xeínoin 		ξείνοις
+xeínois 	ξείναις
+xeínais 	ξείνοις
+xeínois
+Accusative 		ξεῖνον
+xeînon 	ξείνην
+xeínēn 	ξεῖνον
+xeînon 		ξείνω
+xeínō 	ξείνα
+xeínā 	ξείνω
+xeínō 		ξείνους
+xeínous 	ξείνας
+xeínās 	ξεῖνα
+xeîna
+Vocative 		ξεῖνε
+xeîne 	ξείνη
+xeínē 	ξεῖνον
+xeînon 		ξείνω
+xeínō 	ξείνα
+xeínā 	ξείνω
+xeínō 		ξεῖνοι
+xeînoi 	ξεῖναι
+xeînai 	ξεῖνα
+xeîna
+Derived forms 		Adverb 		Comparative 		Superlative
+	ξείνως
+xeínōs 		ξεινότερος
+xeinóteros 		ξεινότατος
+xeinótatos
+Notes: 		Dialects other than Attic are not well attested. Some forms may be based on conjecture. Use with caution.
+
+
+
+#= Adjective
+
+ξένος • (xénos) m (feminine ξένη, neuter ξένον); first/second declension
+
+    foreign
+    strange, unusual
+
+Declension
+hide ▲First and second declension of ξένος; ξένη; ξένον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		ξένος
+xénos 	ξένη
+xénē 	ξένον
+xénon 		ξένω
+xénō 	ξένα
+xénā 	ξένω
+xénō 		ξένοι
+xénoi 	ξέναι
+xénai 	ξένα
+xéna
+Genitive 		ξένου
+xénou 	ξένης
+xénēs 	ξένου
+xénou 		ξένοιν
+xénoin 	ξέναιν
+xénain 	ξένοιν
+xénoin 		ξένων
+xénōn 	ξένων
+xénōn 	ξένων
+xénōn
+Dative 		ξένῳ
+xénōi 	ξένῃ
+xénēi 	ξένῳ
+xénōi 		ξένοιν
+xénoin 	ξέναιν
+xénain 	ξένοιν
+xénoin 		ξένοις
+xénois 	ξέναις
+xénais 	ξένοις
+xénois
+Accusative 		ξένον
+xénon 	ξένην
+xénēn 	ξένον
+xénon 		ξένω
+xénō 	ξένα
+xénā 	ξένω
+xénō 		ξένους
+xénous 	ξένας
+xénās 	ξένα
+xéna
+Vocative 		ξένε
+xéne 	ξένη
+xénē 	ξένον
+xénon 		ξένω
+xénō 	ξένα
+xénā 	ξένω
+xénō 		ξένοι
+xénoi 	ξέναι
+xénai 	ξένα
+xéna
+Derived forms 		Adverb 		Comparative 		Superlative
+	ξένως
+xénōs 		ξενώτερος
+xenṓteros 		ξενώτατος
+xenṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+ὀκτάπους • (oktápous) m, f (neuter ὀκτάπουν); third declension
+
+    eight-footed
+
+Inflection
+hide ▲Third declension of ὀκτάπους; ὀκτάπουν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		ὀκτάπους
+oktápous 	ὀκτάπουν
+oktápoun 		ὀκτάποδε
+oktápode 	ὀκτάποδε
+oktápode 		ὀκτάποδες
+oktápodes 	ὀκτάποδα
+oktápoda
+Genitive 		ὀκτάποδος
+oktápodos 	ὀκτάποδος
+oktápodos 		ὀκταπόδοιν
+oktapódoin 	ὀκταπόδοιν
+oktapódoin 		ὀκταπόδων
+oktapódōn 	ὀκταπόδων
+oktapódōn
+Dative 		ὀκτάποδι
+oktápodi 	ὀκτάποδι
+oktápodi 		ὀκταπόδοιν
+oktapódoin 	ὀκταπόδοιν
+oktapódoin 		ὀκτάποσι(ν)
+oktáposi(n) 	ὀκτάποσι(ν)
+oktáposi(n)
+Accusative 		ὀκτάποδα
+oktápoda 	ὀκτάπουν
+oktápoun 		ὀκτάποδε
+oktápode 	ὀκτάποδε
+oktápode 		ὀκτάποδας
+oktápodas 	ὀκτάποδα
+oktápoda
+Vocative 		ὀκτάπους
+oktápous 	ὀκτάπουν
+oktápoun 		ὀκτάποδε
+oktápode 	ὀκτάποδε
+oktápode 		ὀκτάποδες
+oktápodes 	ὀκτάποδα
+oktápoda
+Derived forms 		Adverb 		Comparative 		Superlative
+	ὀκταπόδως
+oktapódōs 		— 		—
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+ὀκτώπους • (oktṓpous) m, f (neuter ὀκτώπουν); third declension
+
+    eight-footed
+
+Inflection
+hide ▲Third declension of ὀκτώπους; ὀκτώπουν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		ὀκτώπους
+oktṓpous 	ὀκτώπουν
+oktṓpoun 		ὀκτώποδε
+oktṓpode 	ὀκτώποδε
+oktṓpode 		ὀκτώποδες
+oktṓpodes 	ὀκτώποδα
+oktṓpoda
+Genitive 		ὀκτώποδος
+oktṓpodos 	ὀκτώποδος
+oktṓpodos 		ὀκτωπόδοιν
+oktōpódoin 	ὀκτωπόδοιν
+oktōpódoin 		ὀκτωπόδων
+oktōpódōn 	ὀκτωπόδων
+oktōpódōn
+Dative 		ὀκτώποδι
+oktṓpodi 	ὀκτώποδι
+oktṓpodi 		ὀκτωπόδοιν
+oktōpódoin 	ὀκτωπόδοιν
+oktōpódoin 		ὀκτώποσι(ν)
+oktṓposi(n) 	ὀκτώποσι(ν)
+oktṓposi(n)
+Accusative 		ὀκτώποδα
+oktṓpoda 	ὀκτώπουν
+oktṓpoun 		ὀκτώποδε
+oktṓpode 	ὀκτώποδε
+oktṓpode 		ὀκτώποδας
+oktṓpodas 	ὀκτώποδα
+oktṓpoda
+Vocative 		ὀκτώπους
+oktṓpous 	ὀκτώπουν
+oktṓpoun 		ὀκτώποδε
+oktṓpode 	ὀκτώποδε
+oktṓpode 		ὀκτώποδες
+oktṓpodes 	ὀκτώποδα
+oktṓpoda
+Derived forms 		Adverb 		Comparative 		Superlative
+	ὀκτωπόδως
+oktōpódōs 		— 		—
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+ὅσιος • (hósios) m (feminine ὁσία, neuter ὅσιον); first/second declension
+
+    pious, hallowed, sanctioned by the gods, (as opposed to δίκαιος "sanctioned by human law")
+    of things which are allowed by divine law but not sacred: profane (as opposed to ἱερός "sacred to the gods")
+    of persons: pious, devout, sinless
+
+Inflection
+hide ▲First and second declension of ὅσιος; ὁσία; ὅσιον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		ὅσιος
+hósios 	ὁσία
+hosíā 	ὅσιον
+hósion 		ὁσίω
+hosíō 	ὁσία
+hosíā 	ὁσίω
+hosíō 		ὅσιοι
+hósioi 	ὅσιαι
+hósiai 	ὅσια
+hósia
+Genitive 		ὁσίου
+hosíou 	ὁσίας
+hosíās 	ὁσίου
+hosíou 		ὁσίοιν
+hosíoin 	ὁσίαιν
+hosíain 	ὁσίοιν
+hosíoin 		ὁσίων
+hosíōn 	ὁσίων
+hosíōn 	ὁσίων
+hosíōn
+Dative 		ὁσίῳ
+hosíōi 	ὁσίᾳ
+hosíāi 	ὁσίῳ
+hosíōi 		ὁσίοιν
+hosíoin 	ὁσίαιν
+hosíain 	ὁσίοιν
+hosíoin 		ὁσίοις
+hosíois 	ὁσίαις
+hosíais 	ὁσίοις
+hosíois
+Accusative 		ὅσιον
+hósion 	ὁσίαν
+hosíān 	ὅσιον
+hósion 		ὁσίω
+hosíō 	ὁσία
+hosíā 	ὁσίω
+hosíō 		ὁσίους
+hosíous 	ὁσίας
+hosíās 	ὅσια
+hósia
+Vocative 		ὅσιε
+hósie 	ὁσία
+hosíā 	ὅσιον
+hósion 		ὁσίω
+hosíō 	ὁσία
+hosíā 	ὁσίω
+hosíō 		ὅσιοι
+hósioi 	ὅσιαι
+hósiai 	ὅσια
+hósia
+Derived forms 		Adverb 		Comparative 		Superlative
+	ὁσίως
+hosíōs 		ὁσιότερος
+hosióteros 		ὁσιότατος
+hosiótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+παρθένος • (parthénos) m, f (neuter παρθένον); second declension
+
+    maidenly
+    chaste
+
+Inflection
+hide ▲Second declension of παρθένος; παρθένον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		παρθένος
+parthénos 	παρθένον
+parthénon 		παρθένω
+parthénō 	παρθένω
+parthénō 		παρθένοι
+parthénoi 	παρθένα
+parthéna
+Genitive 		παρθένου
+parthénou 	παρθένου
+parthénou 		παρθένοιν
+parthénoin 	παρθένοιν
+parthénoin 		παρθένων
+parthénōn 	παρθένων
+parthénōn
+Dative 		παρθένῳ
+parthénōi 	παρθένῳ
+parthénōi 		παρθένοιν
+parthénoin 	παρθένοιν
+parthénoin 		παρθένοις
+parthénois 	παρθένοις
+parthénois
+Accusative 		παρθένον
+parthénon 	παρθένον
+parthénon 		παρθένω
+parthénō 	παρθένω
+parthénō 		παρθένους
+parthénous 	παρθένα
+parthéna
+Vocative 		παρθένε
+parthéne 	παρθένον
+parthénon 		παρθένω
+parthénō 	παρθένω
+parthénō 		παρθένοι
+parthénoi 	παρθένα
+parthéna
+Derived forms 		Adverb 		Comparative 		Superlative
+	παρθένως
+parthénōs 		παρθενώτερος
+parthenṓteros 		παρθενώτατος
+parthenṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+πεντάφυλλος • (pentáphullos) m, f (neuter πεντάφυλλον); second declension
+
+    (Byzantine) five-leaved
+
+Declension
+hide ▲Second declension of πεντάφυλλος; πεντάφυλλον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		πεντάφυλλος
+pentáphullos 	πεντάφυλλον
+pentáphullon 		πενταφύλλω
+pentaphúllō 	πενταφύλλω
+pentaphúllō 		πεντάφυλλοι
+pentáphulloi 	πεντάφυλλα
+pentáphulla
+Genitive 		πενταφύλλου
+pentaphúllou 	πενταφύλλου
+pentaphúllou 		πενταφύλλοιν
+pentaphúlloin 	πενταφύλλοιν
+pentaphúlloin 		πενταφύλλων
+pentaphúllōn 	πενταφύλλων
+pentaphúllōn
+Dative 		πενταφύλλῳ
+pentaphúllōi 	πενταφύλλῳ
+pentaphúllōi 		πενταφύλλοιν
+pentaphúlloin 	πενταφύλλοιν
+pentaphúlloin 		πενταφύλλοις
+pentaphúllois 	πενταφύλλοις
+pentaphúllois
+Accusative 		πεντάφυλλον
+pentáphullon 	πεντάφυλλον
+pentáphullon 		πενταφύλλω
+pentaphúllō 	πενταφύλλω
+pentaphúllō 		πενταφύλλους
+pentaphúllous 	πεντάφυλλα
+pentáphulla
+Vocative 		πεντάφυλλε
+pentáphulle 	πεντάφυλλον
+pentáphullon 		πενταφύλλω
+pentaphúllō 	πενταφύλλω
+pentaphúllō 		πεντάφυλλοι
+pentáphulloi 	πεντάφυλλα
+pentáphulla
+Derived forms 		Adverb 		Comparative 		Superlative
+	πενταφύλλως
+pentaphúllōs 		πενταφυλλότερος
+pentaphullóteros 		πενταφυλλότατος
+pentaphullótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+πολιός • (poliós) m (feminine πολιά, neuter πολιόν); first/second declension
+πολιός • (poliós) m, f (neuter πολιόν); second declension
+
+    grey, grizzled, grizzly
+        (most frequently, of human hair) grey from age
+        an old man’s or old woman’s
+            (figuratively) hoary, venerable
+    bright, clear, serene
+
+Declension
+hide ▲First and second declension of πολιός; πολιά; πολιόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		πολιός
+poliós 	πολιά
+poliā́ 	πολιόν
+polión 		πολιώ
+poliṓ 	πολιά
+poliā́ 	πολιώ
+poliṓ 		πολιοί
+polioí 	πολιαί
+poliaí 	πολιά
+poliá
+Genitive 		πολιοῦ
+polioû 	πολιᾶς
+poliâs 	πολιοῦ
+polioû 		πολιοῖν
+polioîn 	πολιαῖν
+poliaîn 	πολιοῖν
+polioîn 		πολιῶν
+poliôn 	πολιών
+poliṓn 	πολιῶν
+poliôn
+Dative 		πολιῷ
+poliôi 	πολιᾷ
+poliâi 	πολιῷ
+poliôi 		πολιοῖν
+polioîn 	πολιαῖν
+poliaîn 	πολιοῖν
+polioîn 		πολιοῖς
+polioîs 	πολιαῖς
+poliaîs 	πολιοῖς
+polioîs
+Accusative 		πολιόν
+polión 	πολιάν
+poliā́n 	πολιόν
+polión 		πολιώ
+poliṓ 	πολιά
+poliā́ 	πολιώ
+poliṓ 		πολιούς
+polioús 	πολιάς
+poliā́s 	πολιά
+poliá
+Vocative 		πολιέ
+polié 	πολιά
+poliā́ 	πολιόν
+polión 		πολιώ
+poliṓ 	πολιά
+poliā́ 	πολιώ
+poliṓ 		πολιοί
+polioí 	πολιαί
+poliaí 	πολιά
+poliá
+Derived forms 		Adverb 		Comparative 		Superlative
+	πολιῶς
+poliôs 		πολιώτερος
+poliṓteros 		πολιώτατος
+poliṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+hide ▲Second declension of πολιός; πολιόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		πολιός
+poliós 	πολιόν
+polión 		πολιώ
+poliṓ 	πολιώ
+poliṓ 		πολιοί
+polioí 	πολιά
+poliá
+Genitive 		πολιοῦ
+polioû 	πολιοῦ
+polioû 		πολιοῖν
+polioîn 	πολιοῖν
+polioîn 		πολιῶν
+poliôn 	πολιῶν
+poliôn
+Dative 		πολιῷ
+poliôi 	πολιῷ
+poliôi 		πολιοῖν
+polioîn 	πολιοῖν
+polioîn 		πολιοῖς
+polioîs 	πολιοῖς
+polioîs
+Accusative 		πολιόν
+polión 	πολιόν
+polión 		πολιώ
+poliṓ 	πολιώ
+poliṓ 		πολιούς
+polioús 	πολιά
+poliá
+Vocative 		πολιέ
+polié 	πολιόν
+polión 		πολιώ
+poliṓ 	πολιώ
+poliṓ 		πολιοί
+polioí 	πολιά
+poliá
+Derived forms 		Adverb 		Comparative 		Superlative
+	πολιῶς
+poliôs 		πολιώτερος
+poliṓteros 		πολιώτατος
+poliṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+πρέσβυς • (présbus) m (feminine πρέσβεια, neuter πρέσβυ); first/third declension
+
+    elderly, aged
+
+Declension
+hide ▲First and third declension of πρέσβυς; πρέσβεια; πρέσβυ (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		πρέσβυς
+présbus 	πρέσβεια
+présbeia 	πρέσβυ
+présbu 		πρέσβεε
+présbee 	πρεσβεία
+presbeíā 	πρέσβεε
+présbee 		πρέσβεις
+présbeis 	πρέσβειαι
+présbeiai 	πρέσβη / πρέσβεα
+présbē / présbea
+Genitive 		πρεσβέως
+presbéōs 	πρεσβείας
+presbeíās 	πρεσβέως
+presbéōs 		πρεσβέοιν
+presbéoin 	πρεσβείαιν
+presbeíain 	πρεσβέοιν
+presbéoin 		πρεσβέων
+presbéōn 	πρεσβειῶν
+presbeiôn 	πρεσβέων
+presbéōn
+Dative 		πρέσβει
+présbei 	πρεσβείᾳ
+presbeíāi 	πρέσβει
+présbei 		πρεσβέοιν
+presbéoin 	πρεσβείαιν
+presbeíain 	πρεσβέοιν
+presbéoin 		πρέσβεσι(ν)
+présbesi(n) 	πρεσβείαις
+presbeíais 	πρέσβεσι(ν)
+présbesi(n)
+Accusative 		πρέσβυν
+présbun 	πρέσβειαν
+présbeian 	πρέσβυ
+présbu 		πρέσβεε
+présbee 	πρεσβεία
+presbeíā 	πρέσβεε
+présbee 		πρέσβεις
+présbeis 	πρεσβείας
+presbeíās 	πρέσβη / πρέσβεα
+présbē / présbea
+Vocative 		πρέσβυ
+présbu 	πρέσβεια
+présbeia 	πρέσβυ
+présbu 		πρέσβεε
+présbee 	πρεσβεία
+presbeíā 	πρέσβεε
+présbee 		πρέσβεις
+présbeis 	πρέσβειαι
+présbeiai 	πρέσβη / πρέσβεα
+présbē / présbea
+Derived forms 		Adverb 		Comparative 		Superlative
+	πρεσβέως
+presbéōs 		πρεσβύτερος
+presbúteros 		πρεσβύτατος
+presbútatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+πρεσβύτερος • (presbúteros) m (feminine πρεσβυτέρα, neuter πρεσβύτερον); first/second declension
+
+    older of two people
+    advanced in life, senior
+
+Declension
+hide ▲First and second declension of πρεσβύτερος; πρεσβυτέρα; πρεσβύτερον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		πρεσβύτερος
+presbúteros 	πρεσβυτέρα
+presbutérā 	πρεσβύτερον
+presbúteron 		πρεσβυτέρω
+presbutérō 	πρεσβυτέρα
+presbutérā 	πρεσβυτέρω
+presbutérō 		πρεσβύτεροι
+presbúteroi 	πρεσβύτεραι
+presbúterai 	πρεσβύτερα
+presbútera
+Genitive 		πρεσβυτέρου
+presbutérou 	πρεσβυτέρας
+presbutérās 	πρεσβυτέρου
+presbutérou 		πρεσβυτέροιν
+presbutéroin 	πρεσβυτέραιν
+presbutérain 	πρεσβυτέροιν
+presbutéroin 		πρεσβυτέρων
+presbutérōn 	πρεσβυτέρων
+presbutérōn 	πρεσβυτέρων
+presbutérōn
+Dative 		πρεσβυτέρῳ
+presbutérōi 	πρεσβυτέρᾳ
+presbutérāi 	πρεσβυτέρῳ
+presbutérōi 		πρεσβυτέροιν
+presbutéroin 	πρεσβυτέραιν
+presbutérain 	πρεσβυτέροιν
+presbutéroin 		πρεσβυτέροις
+presbutérois 	πρεσβυτέραις
+presbutérais 	πρεσβυτέροις
+presbutérois
+Accusative 		πρεσβύτερον
+presbúteron 	πρεσβυτέραν
+presbutérān 	πρεσβύτερον
+presbúteron 		πρεσβυτέρω
+presbutérō 	πρεσβυτέρα
+presbutérā 	πρεσβυτέρω
+presbutérō 		πρεσβυτέρους
+presbutérous 	πρεσβυτέρας
+presbutérās 	πρεσβύτερα
+presbútera
+Vocative 		πρεσβύτερε
+presbútere 	πρεσβυτέρα
+presbutérā 	πρεσβύτερον
+presbúteron 		πρεσβυτέρω
+presbutérō 	πρεσβυτέρα
+presbutérā 	πρεσβυτέρω
+presbutérō 		πρεσβύτεροι
+presbúteroi 	πρεσβύτεραι
+presbúterai 	πρεσβύτερα
+presbútera
+Derived forms 		Adverb 		Comparative 		Superlative
+	πρεσβύτερον
+presbúteron 		(πρεσβύτερος)
+(presbúteros) 		(πρεσβύτερος)
+(presbúteros)
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+πτωχός • (ptōkhós) m (feminine πτωχή, neuter πτωχόν); first/second declension
+
+    poor, beggarly
+
+        Synonyms: πένης (pénēs)
+
+Inflection
+hide ▲First and second declension of πτωχός; πτωχή; πτωχόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		πτωχός
+ptōkhós 	πτωχή
+ptōkhḗ 	πτωχόν
+ptōkhón 		πτωχώ
+ptōkhṓ 	πτωχά
+ptōkhā́ 	πτωχώ
+ptōkhṓ 		πτωχοί
+ptōkhoí 	πτωχαί
+ptōkhaí 	πτωχά
+ptōkhá
+Genitive 		πτωχοῦ
+ptōkhoû 	πτωχῆς
+ptōkhês 	πτωχοῦ
+ptōkhoû 		πτωχοῖν
+ptōkhoîn 	πτωχαῖν
+ptōkhaîn 	πτωχοῖν
+ptōkhoîn 		πτωχῶν
+ptōkhôn 	πτωχῶν
+ptōkhôn 	πτωχῶν
+ptōkhôn
+Dative 		πτωχῷ
+ptōkhôi 	πτωχῇ
+ptōkhêi 	πτωχῷ
+ptōkhôi 		πτωχοῖν
+ptōkhoîn 	πτωχαῖν
+ptōkhaîn 	πτωχοῖν
+ptōkhoîn 		πτωχοῖς
+ptōkhoîs 	πτωχαῖς
+ptōkhaîs 	πτωχοῖς
+ptōkhoîs
+Accusative 		πτωχόν
+ptōkhón 	πτωχήν
+ptōkhḗn 	πτωχόν
+ptōkhón 		πτωχώ
+ptōkhṓ 	πτωχά
+ptōkhā́ 	πτωχώ
+ptōkhṓ 		πτωχούς
+ptōkhoús 	πτωχάς
+ptōkhā́s 	πτωχά
+ptōkhá
+Vocative 		πτωχέ
+ptōkhé 	πτωχή
+ptōkhḗ 	πτωχόν
+ptōkhón 		πτωχώ
+ptōkhṓ 	πτωχά
+ptōkhā́ 	πτωχώ
+ptōkhṓ 		πτωχοί
+ptōkhoí 	πτωχαί
+ptōkhaí 	πτωχά
+ptōkhá
+Derived forms 		Adverb 		Comparative 		Superlative
+	πτωχῶς
+ptōkhôs 		πτωχότερος
+ptōkhóteros 		πτωχότατος
+ptōkhótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+Ῥωμαῖος • (Rhōmaîos) m (feminine Ῥωμαία, neuter Ῥωμαῖον); first/second declension
+
+    Roman
+
+Inflection
+hide ▲First and second declension of Ῥωμαῖος; Ῥωμαία; Ῥωμαῖον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		Ῥωμαῖος
+Rhōmaîos 	Ῥωμαία
+Rhōmaíā 	Ῥωμαῖον
+Rhōmaîon 		Ῥωμαίω
+Rhōmaíō 	Ῥωμαία
+Rhōmaíā 	Ῥωμαίω
+Rhōmaíō 		Ῥωμαῖοι
+Rhōmaîoi 	Ῥωμαῖαι
+Rhōmaîai 	Ῥωμαῖα
+Rhōmaîa
+Genitive 		Ῥωμαίου
+Rhōmaíou 	Ῥωμαίας
+Rhōmaíās 	Ῥωμαίου
+Rhōmaíou 		Ῥωμαίοιν
+Rhōmaíoin 	Ῥωμαίαιν
+Rhōmaíain 	Ῥωμαίοιν
+Rhōmaíoin 		Ῥωμαίων
+Rhōmaíōn 	Ῥωμαίων
+Rhōmaíōn 	Ῥωμαίων
+Rhōmaíōn
+Dative 		Ῥωμαίῳ
+Rhōmaíōi 	Ῥωμαίᾳ
+Rhōmaíāi 	Ῥωμαίῳ
+Rhōmaíōi 		Ῥωμαίοιν
+Rhōmaíoin 	Ῥωμαίαιν
+Rhōmaíain 	Ῥωμαίοιν
+Rhōmaíoin 		Ῥωμαίοις
+Rhōmaíois 	Ῥωμαίαις
+Rhōmaíais 	Ῥωμαίοις
+Rhōmaíois
+Accusative 		Ῥωμαῖον
+Rhōmaîon 	Ῥωμαίαν
+Rhōmaíān 	Ῥωμαῖον
+Rhōmaîon 		Ῥωμαίω
+Rhōmaíō 	Ῥωμαία
+Rhōmaíā 	Ῥωμαίω
+Rhōmaíō 		Ῥωμαίους
+Rhōmaíous 	Ῥωμαίας
+Rhōmaíās 	Ῥωμαῖα
+Rhōmaîa
+Vocative 		Ῥωμαῖε
+Rhōmaîe 	Ῥωμαία
+Rhōmaíā 	Ῥωμαῖον
+Rhōmaîon 		Ῥωμαίω
+Rhōmaíō 	Ῥωμαία
+Rhōmaíā 	Ῥωμαίω
+Rhōmaíō 		Ῥωμαῖοι
+Rhōmaîoi 	Ῥωμαῖαι
+Rhōmaîai 	Ῥωμαῖα
+Rhōmaîa
+Derived forms 		Adverb 		Comparative 		Superlative
+	Ῥωμαίως
+Rhōmaíōs 		Ῥωμαιότερος
+Rhōmaióteros 		Ῥωμαιότατος
+Rhōmaiótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+σαρκοφάγος • (sarkophágos) m, f (neuter σαρκοφάγον); second declension
+
+    flesh-eating, carnivorous
+
+        Synonyms: σαρκοβόρος (sarkobóros)
+
+Declension
+hide ▲Second declension of σαρκοφάγος; σαρκοφάγον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		σαρκοφάγος
+sarkophágos 	σαρκοφάγον
+sarkophágon 		σαρκοφάγω
+sarkophágō 	σαρκοφάγω
+sarkophágō 		σαρκοφάγοι
+sarkophágoi 	σαρκοφάγα
+sarkophága
+Genitive 		σαρκοφάγου
+sarkophágou 	σαρκοφάγου
+sarkophágou 		σαρκοφάγοιν
+sarkophágoin 	σαρκοφάγοιν
+sarkophágoin 		σαρκοφάγων
+sarkophágōn 	σαρκοφάγων
+sarkophágōn
+Dative 		σαρκοφάγῳ
+sarkophágōi 	σαρκοφάγῳ
+sarkophágōi 		σαρκοφάγοιν
+sarkophágoin 	σαρκοφάγοιν
+sarkophágoin 		σαρκοφάγοις
+sarkophágois 	σαρκοφάγοις
+sarkophágois
+Accusative 		σαρκοφάγον
+sarkophágon 	σαρκοφάγον
+sarkophágon 		σαρκοφάγω
+sarkophágō 	σαρκοφάγω
+sarkophágō 		σαρκοφάγους
+sarkophágous 	σαρκοφάγα
+sarkophága
+Vocative 		σαρκοφάγε
+sarkopháge 	σαρκοφάγον
+sarkophágon 		σαρκοφάγω
+sarkophágō 	σαρκοφάγω
+sarkophágō 		σαρκοφάγοι
+sarkophágoi 	σαρκοφάγα
+sarkophága
+Derived forms 		Adverb 		Comparative 		Superlative
+	σαρκοφάγως
+sarkophágōs 		σαρκοφαγώτερος
+sarkophagṓteros 		σαρκοφαγώτατος
+sarkophagṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+σύνεδρος • (súnedros) m, f (neuter σύνεδρον); second declension
+
+    (of persons) sitting in council with
+    (of birds) sitting together, friendly
+
+Declension
+hide ▲Second declension of σύνεδρος; σύνεδρον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		σύνεδρος
+súnedros 	σύνεδρον
+súnedron 		συνέδρω
+sunédrō 	συνέδρω
+sunédrō 		σύνεδροι
+súnedroi 	σύνεδρα
+súnedra
+Genitive 		συνέδρου
+sunédrou 	συνέδρου
+sunédrou 		συνέδροιν
+sunédroin 	συνέδροιν
+sunédroin 		συνέδρων
+sunédrōn 	συνέδρων
+sunédrōn
+Dative 		συνέδρῳ
+sunédrōi 	συνέδρῳ
+sunédrōi 		συνέδροιν
+sunédroin 	συνέδροιν
+sunédroin 		συνέδροις
+sunédrois 	συνέδροις
+sunédrois
+Accusative 		σύνεδρον
+súnedron 	σύνεδρον
+súnedron 		συνέδρω
+sunédrō 	συνέδρω
+sunédrō 		συνέδρους
+sunédrous 	σύνεδρα
+súnedra
+Vocative 		σύνεδρε
+súnedre 	σύνεδρον
+súnedron 		συνέδρω
+sunédrō 	συνέδρω
+sunédrō 		σύνεδροι
+súnedroi 	σύνεδρα
+súnedra
+Derived forms 		Adverb 		Comparative 		Superlative
+	συνέδρως
+sunédrōs 		συνεδρότερος
+sunedróteros 		συνεδρότατος
+sunedrótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+συνήορος • (sunḗoros) m, f (neuter συνήορον); second declension
+
+    wedded to
+    linked with
+    in communion with
+
+Inflection
+hide ▲Second declension of συνήορος; συνήορον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		συνήορος
+sunḗoros 	συνήορον
+sunḗoron 		συνηόρω
+sunēórō 	συνηόρω
+sunēórō 		συνήοροι
+sunḗoroi 	συνήορα
+sunḗora
+Genitive 		συνηόρου
+sunēórou 	συνηόρου
+sunēórou 		συνηόροιν
+sunēóroin 	συνηόροιν
+sunēóroin 		συνηόρων
+sunēórōn 	συνηόρων
+sunēórōn
+Dative 		συνηόρῳ
+sunēórōi 	συνηόρῳ
+sunēórōi 		συνηόροιν
+sunēóroin 	συνηόροιν
+sunēóroin 		συνηόροις
+sunēórois 	συνηόροις
+sunēórois
+Accusative 		συνήορον
+sunḗoron 	συνήορον
+sunḗoron 		συνηόρω
+sunēórō 	συνηόρω
+sunēórō 		συνηόρους
+sunēórous 	συνήορα
+sunḗora
+Vocative 		συνήορε
+sunḗore 	συνήορον
+sunḗoron 		συνηόρω
+sunēórō 	συνηόρω
+sunēórō 		συνήοροι
+sunḗoroi 	συνήορα
+sunḗora
+Derived forms 		Adverb 		Comparative 		Superlative
+	συνηόρως
+sunēórōs 		συνηορώτερος
+sunēorṓteros 		συνηορώτατος
+sunēorṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+Τάφιος • (Táphios) m (feminine Ταφία, neuter Τάφιον); first/second declension
+
+    Of Taphus
+
+Inflection
+hide ▲First and second declension of Τάφιος; Ταφία; Τάφιον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		Τάφιος
+Táphios 	Ταφία
+Taphíā 	Τάφιον
+Táphion 		Ταφίω
+Taphíō 	Ταφία
+Taphíā 	Ταφίω
+Taphíō 		Τάφιοι
+Táphioi 	Τάφιαι
+Táphiai 	Τάφια
+Táphia
+Genitive 		Ταφίου
+Taphíou 	Ταφίας
+Taphíās 	Ταφίου
+Taphíou 		Ταφίοιν
+Taphíoin 	Ταφίαιν
+Taphíain 	Ταφίοιν
+Taphíoin 		Ταφίων
+Taphíōn 	Ταφίων
+Taphíōn 	Ταφίων
+Taphíōn
+Dative 		Ταφίῳ
+Taphíōi 	Ταφίᾳ
+Taphíāi 	Ταφίῳ
+Taphíōi 		Ταφίοιν
+Taphíoin 	Ταφίαιν
+Taphíain 	Ταφίοιν
+Taphíoin 		Ταφίοις
+Taphíois 	Ταφίαις
+Taphíais 	Ταφίοις
+Taphíois
+Accusative 		Τάφιον
+Táphion 	Ταφίαν
+Taphíān 	Τάφιον
+Táphion 		Ταφίω
+Taphíō 	Ταφία
+Taphíā 	Ταφίω
+Taphíō 		Ταφίους
+Taphíous 	Ταφίας
+Taphíās 	Τάφια
+Táphia
+Vocative 		Τάφιε
+Táphie 	Ταφία
+Taphíā 	Τάφιον
+Táphion 		Ταφίω
+Taphíō 	Ταφία
+Taphíā 	Ταφίω
+Taphíō 		Τάφιοι
+Táphioi 	Τάφιαι
+Táphiai 	Τάφια
+Táphia
+Derived forms 		Adverb 		Comparative 		Superlative
+	Ταφίως
+Taphíōs 		Ταφιώτερος
+Taphiṓteros 		Ταφιώτατος
+Taphiṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+τραγανός • (traganós) m (feminine τραγανή, neuter τραγανόν); first/second declension
+
+    crunchy, cartilaginous
+
+Inflection
+hide ▲First and second declension of τραγανός; τραγανή; τραγανόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		τραγανός
+traganós 	τραγανή
+traganḗ 	τραγανόν
+traganón 		τραγανώ
+traganṓ 	τραγανά
+traganā́ 	τραγανώ
+traganṓ 		τραγανοί
+traganoí 	τραγαναί
+traganaí 	τραγανά
+traganá
+Genitive 		τραγανοῦ
+traganoû 	τραγανῆς
+traganês 	τραγανοῦ
+traganoû 		τραγανοῖν
+traganoîn 	τραγαναῖν
+traganaîn 	τραγανοῖν
+traganoîn 		τραγανῶν
+traganôn 	τραγανῶν
+traganôn 	τραγανῶν
+traganôn
+Dative 		τραγανῷ
+traganôi 	τραγανῇ
+traganêi 	τραγανῷ
+traganôi 		τραγανοῖν
+traganoîn 	τραγαναῖν
+traganaîn 	τραγανοῖν
+traganoîn 		τραγανοῖς
+traganoîs 	τραγαναῖς
+traganaîs 	τραγανοῖς
+traganoîs
+Accusative 		τραγανόν
+traganón 	τραγανήν
+traganḗn 	τραγανόν
+traganón 		τραγανώ
+traganṓ 	τραγανά
+traganā́ 	τραγανώ
+traganṓ 		τραγανούς
+traganoús 	τραγανάς
+traganā́s 	τραγανά
+traganá
+Vocative 		τραγανέ
+tragané 	τραγανή
+traganḗ 	τραγανόν
+traganón 		τραγανώ
+traganṓ 	τραγανά
+traganā́ 	τραγανώ
+traganṓ 		τραγανοί
+traganoí 	τραγαναί
+traganaí 	τραγανά
+traganá
+Derived forms 		Adverb 		Comparative 		Superlative
+	τραγανῶς
+traganôs 		τραγανώτερος
+traganṓteros 		τραγανώτατος
+traganṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+Τραπεζούντιος • (Trapezoúntios) m (feminine Τραπεζουντία, neuter Τραπεζούντιον); first/second declension
+
+    Trapezuntine (of Trebizond)
+
+Declension
+hide ▲First and second declension of Τραπεζούντιος; Τραπεζουντία; Τραπεζούντιον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		Τραπεζούντιος
+Trapezoúntios 	Τραπεζουντία
+Trapezountíā 	Τραπεζούντιον
+Trapezoúntion 		Τραπεζουντίω
+Trapezountíō 	Τραπεζουντία
+Trapezountíā 	Τραπεζουντίω
+Trapezountíō 		Τραπεζούντιοι
+Trapezoúntioi 	Τραπεζούντιαι
+Trapezoúntiai 	Τραπεζούντια
+Trapezoúntia
+Genitive 		Τραπεζουντίου
+Trapezountíou 	Τραπεζουντίας
+Trapezountíās 	Τραπεζουντίου
+Trapezountíou 		Τραπεζουντίοιν
+Trapezountíoin 	Τραπεζουντίαιν
+Trapezountíain 	Τραπεζουντίοιν
+Trapezountíoin 		Τραπεζουντίων
+Trapezountíōn 	Τραπεζουντίων
+Trapezountíōn 	Τραπεζουντίων
+Trapezountíōn
+Dative 		Τραπεζουντίῳ
+Trapezountíōi 	Τραπεζουντίᾳ
+Trapezountíāi 	Τραπεζουντίῳ
+Trapezountíōi 		Τραπεζουντίοιν
+Trapezountíoin 	Τραπεζουντίαιν
+Trapezountíain 	Τραπεζουντίοιν
+Trapezountíoin 		Τραπεζουντίοις
+Trapezountíois 	Τραπεζουντίαις
+Trapezountíais 	Τραπεζουντίοις
+Trapezountíois
+Accusative 		Τραπεζούντιον
+Trapezoúntion 	Τραπεζουντίαν
+Trapezountíān 	Τραπεζούντιον
+Trapezoúntion 		Τραπεζουντίω
+Trapezountíō 	Τραπεζουντία
+Trapezountíā 	Τραπεζουντίω
+Trapezountíō 		Τραπεζουντίους
+Trapezountíous 	Τραπεζουντίας
+Trapezountíās 	Τραπεζούντια
+Trapezoúntia
+Vocative 		Τραπεζούντιε
+Trapezoúntie 	Τραπεζουντία
+Trapezountíā 	Τραπεζούντιον
+Trapezoúntion 		Τραπεζουντίω
+Trapezountíō 	Τραπεζουντία
+Trapezountíā 	Τραπεζουντίω
+Trapezountíō 		Τραπεζούντιοι
+Trapezoúntioi 	Τραπεζούντιαι
+Trapezoúntiai 	Τραπεζούντια
+Trapezoúntia
+Derived forms 		Adverb 		Comparative 		Superlative
+	Τραπεζουντίως
+Trapezountíōs 		Τραπεζουντιώτερος
+Trapezountiṓteros 		Τραπεζουντιώτατος
+Trapezountiṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+τριήρης • (triḗrēs) m, f (neuter τριῆρες); third declension
+
+    having three storeys
+
+        Synonyms: τριώροφος (triṓrophos)
+
+Declension
+hide ▲Third declension of τριήρης; τριῆρες (contracted, Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		τριήρης
+triḗrēs 	τριῆρες
+triêres 		τριήρει
+triḗrei 	τριήρει
+triḗrei 		τριήρεις
+triḗreis 	τριήρη
+triḗrē
+Genitive 		τριήρους
+triḗrous 	τριήρους
+triḗrous 		τριήροιν
+triḗroin 	τριήροιν
+triḗroin 		τριήρων
+triḗrōn 	τριήρων
+triḗrōn
+Dative 		τριήρει
+triḗrei 	τριήρει
+triḗrei 		τριήροιν
+triḗroin 	τριήροιν
+triḗroin 		τριήρεσι(ν)
+triḗresi(n) 	τριήρεσι(ν)
+triḗresi(n)
+Accusative 		τριήρη
+triḗrē 	τριῆρες
+triêres 		τριήρει
+triḗrei 	τριήρει
+triḗrei 		τριήρεις
+triḗreis 	τριήρη
+triḗrē
+Vocative 		τριῆρες
+triêres 	τριῆρες
+triêres 		τριήρει
+triḗrei 	τριήρει
+triḗrei 		τριήρεις
+triḗreis 	τριήρη
+triḗrē
+Derived forms 		Adverb 		Comparative 		Superlative
+	τριήρως
+triḗrōs 		τριηρέστερος
+triērésteros 		τριηρέστατος
+triēréstatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+hide ▲Third declension of τριήρης; τριῆρες (uncontracted, Ionic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		τριήρης
+triḗrēs 	τριῆρες
+triêres 		τριήρει / τριήρεε
+triḗrei / triḗree 	τριήρει / τριήρεε
+triḗrei / triḗree 		τριήρεις / τριήρεες
+triḗreis / triḗrees 	τριήρεα
+triḗrea
+Genitive 		τριήρεος / τριήρευς
+triḗreos / triḗreus 	τριήρεος / τριήρευς
+triḗreos / triḗreus 		τριηρέοιν
+triēréoin 	τριηρέοιν
+triēréoin 		τριηρέων
+triēréōn 	τριηρέων
+triēréōn
+Dative 		τριήρει / τριήρεϊ
+triḗrei / triḗreï 	τριήρει / τριήρεϊ
+triḗrei / triḗreï 		τριηρέοιν
+triēréoin 	τριηρέοιν
+triēréoin 		τριήρεσι(ν)
+triḗresi(n) 	τριήρεσι(ν)
+triḗresi(n)
+Accusative 		τριήρεα
+triḗrea 	τριῆρες
+triêres 		τριήρει / τριήρεε
+triḗrei / triḗree 	τριήρει / τριήρεε
+triḗrei / triḗree 		τριήρεας
+triḗreas 	τριήρεα
+triḗrea
+Vocative 		τριῆρες
+triêres 	τριῆρες
+triêres 		τριήρει / τριήρεε
+triḗrei / triḗree 	τριήρει / τριήρεε
+triḗrei / triḗree 		τριήρεις / τριήρεες
+triḗreis / triḗrees 	τριήρεα
+triḗrea
+Derived forms 		Adverb 		Comparative 		Superlative
+	τριηρέως
+triēréōs 		τριηρέστερος
+triērésteros 		τριηρέστατος
+triēréstatos
+Notes: 		Dialects other than Attic are not well attested. Some forms may be based on conjecture. Use with caution.
+
+
+
+#= Adjective
+
+τρίπους • (trípous) m, f (neuter τρίπουν); third declension
+
+    measuring three feet
+    walking on three feet
+    (of furniture) having three feet
+
+Declension
+hide ▲Third declension of τρίπους; τρίπουν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		τρίπους
+trípous 	τρίπουν
+trípoun 		τρίποδε
+trípode 	τρίποδε
+trípode 		τρίποδες
+trípodes 	τρίποδα
+trípoda
+Genitive 		τρίποδος
+trípodos 	τρίποδος
+trípodos 		τριπόδοιν
+tripódoin 	τριπόδοιν
+tripódoin 		τριπόδων
+tripódōn 	τριπόδων
+tripódōn
+Dative 		τρίποδι
+trípodi 	τρίποδι
+trípodi 		τριπόδοιν
+tripódoin 	τριπόδοιν
+tripódoin 		τρίποσι(ν)
+tríposi(n) 	τρίποσι(ν)
+tríposi(n)
+Accusative 		τρίποδα
+trípoda 	τρίπουν
+trípoun 		τρίποδε
+trípode 	τρίποδε
+trípode 		τρίποδας
+trípodas 	τρίποδα
+trípoda
+Vocative 		τρίπους
+trípous 	τρίπουν
+trípoun 		τρίποδε
+trípode 	τρίποδε
+trípode 		τρίποδες
+trípodes 	τρίποδα
+trípoda
+Derived forms 		Adverb 		Comparative 		Superlative
+	τριπόδως
+tripódōs 		— 		—
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+τρίφθογγος • (tríphthongos) m, f (neuter τρίφθογγον); second declension
+
+    having three voices
+
+Declension
+hide ▲Second declension of τρίφθογγος; τρίφθογγον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		τρίφθογγος
+tríphthongos 	τρίφθογγον
+tríphthongon 		τριφθόγγω
+triphthóngō 	τριφθόγγω
+triphthóngō 		τρίφθογγοι
+tríphthongoi 	τρίφθογγα
+tríphthonga
+Genitive 		τριφθόγγου
+triphthóngou 	τριφθόγγου
+triphthóngou 		τριφθόγγοιν
+triphthóngoin 	τριφθόγγοιν
+triphthóngoin 		τριφθόγγων
+triphthóngōn 	τριφθόγγων
+triphthóngōn
+Dative 		τριφθόγγῳ
+triphthóngōi 	τριφθόγγῳ
+triphthóngōi 		τριφθόγγοιν
+triphthóngoin 	τριφθόγγοιν
+triphthóngoin 		τριφθόγγοις
+triphthóngois 	τριφθόγγοις
+triphthóngois
+Accusative 		τρίφθογγον
+tríphthongon 	τρίφθογγον
+tríphthongon 		τριφθόγγω
+triphthóngō 	τριφθόγγω
+triphthóngō 		τριφθόγγους
+triphthóngous 	τρίφθογγα
+tríphthonga
+Vocative 		τρίφθογγε
+tríphthonge 	τρίφθογγον
+tríphthongon 		τριφθόγγω
+triphthóngō 	τριφθόγγω
+triphthóngō 		τρίφθογγοι
+tríphthongoi 	τρίφθογγα
+tríphthonga
+Derived forms 		Adverb 		Comparative 		Superlative
+	τριφθόγγως
+triphthóngōs 		τριφθογγότερος
+triphthongóteros 		τριφθογγότατος
+triphthongótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+τύραννος • (túrannos) m, f (neuter τύραννον); second declension
+
+    kingly, royal, regal
+    imperious, despotic
+
+Inflection
+hide ▲Second declension of τύραννος; τύραννον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		τύραννος
+túrannos 	τύραννον
+túrannon 		τυράννω
+turánnō 	τυράννω
+turánnō 		τύραννοι
+túrannoi 	τύραννα
+túranna
+Genitive 		τυράννου
+turánnou 	τυράννου
+turánnou 		τυράννοιν
+turánnoin 	τυράννοιν
+turánnoin 		τυράννων
+turánnōn 	τυράννων
+turánnōn
+Dative 		τυράννῳ
+turánnōi 	τυράννῳ
+turánnōi 		τυράννοιν
+turánnoin 	τυράννοιν
+turánnoin 		τυράννοις
+turánnois 	τυράννοις
+turánnois
+Accusative 		τύραννον
+túrannon 	τύραννον
+túrannon 		τυράννω
+turánnō 	τυράννω
+turánnō 		τυράννους
+turánnous 	τύραννα
+túranna
+Vocative 		τύραννε
+túranne 	τύραννον
+túrannon 		τυράννω
+turánnō 	τυράννω
+turánnō 		τύραννοι
+túrannoi 	τύραννα
+túranna
+Derived forms 		Adverb 		Comparative 		Superlative
+	τυράννως
+turánnōs 		τυραννότερος
+turannóteros 		τυραννότατος
+turannótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+ὕπατος • (húpatos) m (feminine ὑπάτη, neuter ὕπατον); first/second declension
+ὕπατος • (húpatos) m, f (neuter ὕπατον); second declension
+
+    highest, uppermost
+        (of place) at the very top, lowest, furthest
+        (of time) last
+        (of quality) highest, best
+
+Declension
+hide ▲First and second declension of ὕπατος; ὑπάτη; ὕπατον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		ὕπατος
+húpatos 	ὑπάτη
+hupátē 	ὕπατον
+húpaton 		ὑπάτω
+hupátō 	ὑπάτα
+hupátā 	ὑπάτω
+hupátō 		ὕπατοι
+húpatoi 	ὕπαται
+húpatai 	ὕπατα
+húpata
+Genitive 		ὑπάτου
+hupátou 	ὑπάτης
+hupátēs 	ὑπάτου
+hupátou 		ὑπάτοιν
+hupátoin 	ὑπάταιν
+hupátain 	ὑπάτοιν
+hupátoin 		ὑπάτων
+hupátōn 	ὑπάτων
+hupátōn 	ὑπάτων
+hupátōn
+Dative 		ὑπάτῳ
+hupátōi 	ὑπάτῃ
+hupátēi 	ὑπάτῳ
+hupátōi 		ὑπάτοιν
+hupátoin 	ὑπάταιν
+hupátain 	ὑπάτοιν
+hupátoin 		ὑπάτοις
+hupátois 	ὑπάταις
+hupátais 	ὑπάτοις
+hupátois
+Accusative 		ὕπατον
+húpaton 	ὑπάτην
+hupátēn 	ὕπατον
+húpaton 		ὑπάτω
+hupátō 	ὑπάτα
+hupátā 	ὑπάτω
+hupátō 		ὑπάτους
+hupátous 	ὑπάτας
+hupátās 	ὕπατα
+húpata
+Vocative 		ὕπατε
+húpate 	ὑπάτη
+hupátē 	ὕπατον
+húpaton 		ὑπάτω
+hupátō 	ὑπάτα
+hupátā 	ὑπάτω
+hupátō 		ὕπατοι
+húpatoi 	ὕπαται
+húpatai 	ὕπατα
+húpata
+Derived forms 		Adverb 		Comparative 		Superlative
+	— 		— 		ὑπατώτατος
+hupatṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+hide ▲Second declension of ὕπατος; ὕπατον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		ὕπατος
+húpatos 	ὕπατον
+húpaton 		ὑπάτω
+hupátō 	ὑπάτω
+hupátō 		ὕπατοι
+húpatoi 	ὕπατα
+húpata
+Genitive 		ὑπάτου
+hupátou 	ὑπάτου
+hupátou 		ὑπάτοιν
+hupátoin 	ὑπάτοιν
+hupátoin 		ὑπάτων
+hupátōn 	ὑπάτων
+hupátōn
+Dative 		ὑπάτῳ
+hupátōi 	ὑπάτῳ
+hupátōi 		ὑπάτοιν
+hupátoin 	ὑπάτοιν
+hupátoin 		ὑπάτοις
+hupátois 	ὑπάτοις
+hupátois
+Accusative 		ὕπατον
+húpaton 	ὕπατον
+húpaton 		ὑπάτω
+hupátō 	ὑπάτω
+hupátō 		ὑπάτους
+hupátous 	ὕπατα
+húpata
+Vocative 		ὕπατε
+húpate 	ὕπατον
+húpaton 		ὑπάτω
+hupátō 	ὑπάτω
+hupátō 		ὕπατοι
+húpatoi 	ὕπατα
+húpata
+Derived forms 		Adverb 		Comparative 		Superlative
+	— 		— 		ὑπατώτατος
+hupatṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+φίλος • (phílos) m (feminine φίλη, neuter φίλον); first/second declension
+
+    That which is loved or important: beloved, dear
+    (less commonly): loving, friendly
+
+Inflection
+hide ▲First and second declension of φίλος; φίλη; φίλον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		φίλος
+phílos 	φίλη
+phílē 	φίλον
+phílon 		φίλω
+phílō 	φίλα
+phílā 	φίλω
+phílō 		φίλοι
+phíloi 	φίλαι
+phílai 	φίλα
+phíla
+Genitive 		φίλου
+phílou 	φίλης
+phílēs 	φίλου
+phílou 		φίλοιν
+phíloin 	φίλαιν
+phílain 	φίλοιν
+phíloin 		φίλων
+phílōn 	φίλων
+phílōn 	φίλων
+phílōn
+Dative 		φίλῳ
+phílōi 	φίλῃ
+phílēi 	φίλῳ
+phílōi 		φίλοιν
+phíloin 	φίλαιν
+phílain 	φίλοιν
+phíloin 		φίλοις
+phílois 	φίλαις
+phílais 	φίλοις
+phílois
+Accusative 		φίλον
+phílon 	φίλην
+phílēn 	φίλον
+phílon 		φίλω
+phílō 	φίλα
+phílā 	φίλω
+phílō 		φίλους
+phílous 	φίλας
+phílās 	φίλα
+phíla
+Vocative 		φίλε
+phíle 	φίλη
+phílē 	φίλον
+phílon 		φίλω
+phílō 	φίλα
+phílā 	φίλω
+phílō 		φίλοι
+phíloi 	φίλαι
+phílai 	φίλα
+phíla
+Derived forms 		Adverb 		Comparative 		Superlative
+	φίλως
+phílōs 		φιλώτερος
+philṓteros 		φιλώτατος
+philṓtatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+χερσαῖος • (khersaîos) m (feminine χερσαία, neuter χερσαῖον); first/second declension
+χερσαῖος • (khersaîos) m, f (neuter χερσαῖον); second declension
+
+    from or of dry land, living or found on dry land
+        (of landsmen)
+        inland
+        (of voyages) traveling by land
+        (military, of ground forces)
+
+Declension
+hide ▲First and second declension of χερσαῖος; χερσαία; χερσαῖον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		χερσαῖος
+khersaîos 	χερσαία
+khersaíā 	χερσαῖον
+khersaîon 		χερσαίω
+khersaíō 	χερσαία
+khersaíā 	χερσαίω
+khersaíō 		χερσαῖοι
+khersaîoi 	χερσαῖαι
+khersaîai 	χερσαῖα
+khersaîa
+Genitive 		χερσαίου
+khersaíou 	χερσαίας
+khersaíās 	χερσαίου
+khersaíou 		χερσαίοιν
+khersaíoin 	χερσαίαιν
+khersaíain 	χερσαίοιν
+khersaíoin 		χερσαίων
+khersaíōn 	χερσαίων
+khersaíōn 	χερσαίων
+khersaíōn
+Dative 		χερσαίῳ
+khersaíōi 	χερσαίᾳ
+khersaíāi 	χερσαίῳ
+khersaíōi 		χερσαίοιν
+khersaíoin 	χερσαίαιν
+khersaíain 	χερσαίοιν
+khersaíoin 		χερσαίοις
+khersaíois 	χερσαίαις
+khersaíais 	χερσαίοις
+khersaíois
+Accusative 		χερσαῖον
+khersaîon 	χερσαίαν
+khersaíān 	χερσαῖον
+khersaîon 		χερσαίω
+khersaíō 	χερσαία
+khersaíā 	χερσαίω
+khersaíō 		χερσαίους
+khersaíous 	χερσαίας
+khersaíās 	χερσαῖα
+khersaîa
+Vocative 		χερσαῖε
+khersaîe 	χερσαία
+khersaíā 	χερσαῖον
+khersaîon 		χερσαίω
+khersaíō 	χερσαία
+khersaíā 	χερσαίω
+khersaíō 		χερσαῖοι
+khersaîoi 	χερσαῖαι
+khersaîai 	χερσαῖα
+khersaîa
+Derived forms 		Adverb 		Comparative 		Superlative
+	χερσαίως
+khersaíōs 		χερσαιότερος
+khersaióteros 		χερσαιότατος
+khersaiótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+hide ▲Second declension of χερσαῖος; χερσαῖον (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter 		Masculine / Feminine 	Neuter
+Nominative 		χερσαῖος
+khersaîos 	χερσαῖον
+khersaîon 		χερσαίω
+khersaíō 	χερσαίω
+khersaíō 		χερσαῖοι
+khersaîoi 	χερσαῖα
+khersaîa
+Genitive 		χερσαίου
+khersaíou 	χερσαίου
+khersaíou 		χερσαίοιν
+khersaíoin 	χερσαίοιν
+khersaíoin 		χερσαίων
+khersaíōn 	χερσαίων
+khersaíōn
+Dative 		χερσαίῳ
+khersaíōi 	χερσαίῳ
+khersaíōi 		χερσαίοιν
+khersaíoin 	χερσαίοιν
+khersaíoin 		χερσαίοις
+khersaíois 	χερσαίοις
+khersaíois
+Accusative 		χερσαῖον
+khersaîon 	χερσαῖον
+khersaîon 		χερσαίω
+khersaíō 	χερσαίω
+khersaíō 		χερσαίους
+khersaíous 	χερσαῖα
+khersaîa
+Vocative 		χερσαῖε
+khersaîe 	χερσαῖον
+khersaîon 		χερσαίω
+khersaíō 	χερσαίω
+khersaíō 		χερσαῖοι
+khersaîoi 	χερσαῖα
+khersaîa
+Derived forms 		Adverb 		Comparative 		Superlative
+	χερσαίως
+khersaíōs 		χερσαιότερος
+khersaióteros 		χερσαιότατος
+khersaiótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+
+
+#= Adjective
+
+χριστός • (khrīstós) m (feminine χριστή, neuter χριστόν); first/second declension
+
+    to be rubbed on, used as ointment or salve
+    (biblical, in the Septuagint) describing someone who was ceremonially anointed
+
+Inflection
+hide ▲First and second declension of χριστός; χριστή; χριστόν (Attic)
+Number 		Singular 		Dual 		Plural
+Case/Gender 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter 		Masculine 	Feminine 	Neuter
+Nominative 		χριστός
+khrīstós 	χριστή
+khrīstḗ 	χριστόν
+khrīstón 		χριστώ
+khrīstṓ 	χριστά
+khrīstā́ 	χριστώ
+khrīstṓ 		χριστοί
+khrīstoí 	χρισταί
+khrīstaí 	χριστά
+khrīstá
+Genitive 		χριστοῦ
+khrīstoû 	χριστῆς
+khrīstês 	χριστοῦ
+khrīstoû 		χριστοῖν
+khrīstoîn 	χρισταῖν
+khrīstaîn 	χριστοῖν
+khrīstoîn 		χριστῶν
+khrīstôn 	χριστῶν
+khrīstôn 	χριστῶν
+khrīstôn
+Dative 		χριστῷ
+khrīstôi 	χριστῇ
+khrīstêi 	χριστῷ
+khrīstôi 		χριστοῖν
+khrīstoîn 	χρισταῖν
+khrīstaîn 	χριστοῖν
+khrīstoîn 		χριστοῖς
+khrīstoîs 	χρισταῖς
+khrīstaîs 	χριστοῖς
+khrīstoîs
+Accusative 		χριστόν
+khrīstón 	χριστήν
+khrīstḗn 	χριστόν
+khrīstón 		χριστώ
+khrīstṓ 	χριστά
+khrīstā́ 	χριστώ
+khrīstṓ 		χριστούς
+khrīstoús 	χριστάς
+khrīstā́s 	χριστά
+khrīstá
+Vocative 		χριστέ
+khrīsté 	χριστή
+khrīstḗ 	χριστόν
+khrīstón 		χριστώ
+khrīstṓ 	χριστά
+khrīstā́ 	χριστώ
+khrīstṓ 		χριστοί
+khrīstoí 	χρισταί
+khrīstaí 	χριστά
+khrīstá
+Derived forms 		Adverb 		Comparative 		Superlative
+	χριστῶς
+khrīstôs 		χριστότερος
+khrīstóteros 		χριστότατος
+khrīstótatos
+Notes: 		This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+#= ἅγιος • (hágios) m (feminine ἁγία, neuter ἅγιον); first/second declension
+
+    devoted to the gods
+    of things: sacred, holy
+    of people: holy, pious, pure
+    accursed
+
+Declension
+First and second declension of ἅγιος; ἁγία; ἅγιον (Attic)
+Number  |  | Singular  |  | Dual  |  | Plural
+Case/Gender  |  | Masculine  | Feminine  | Neuter  |  | Masculine  | Feminine  | Neuter  |  | Masculine  | Feminine  | Neuter
+Nominative  |  | ἅγιος
+hágios  | ἁγία
+hagíā  | ἅγιον
+hágion  |  | ἁγίω
+hagíō  | ἁγία
+hagíā  | ἁγίω
+hagíō  |  | ἅγιοι, hágioi  | ἅγιαι, hágiai  | ἅγια, hágia
+Genitive  |  | ἁγίου
+hagíou  | ἁγίας
+hagíās  | ἁγίου
+hagíou  |  | ἁγίοιν
+hagíoin  | ἁγίαιν
+hagíain  | ἁγίοιν
+hagíoin  |  | ἁγίων
+hagíōn  | ἁγίων
+hagíōn  | ἁγίων
+hagíōn
+Dative  |  | ἁγίῳ
+hagíōi  | ἁγίᾳ
+hagíāi  | ἁγίῳ
+hagíōi  |  | ἁγίοιν
+hagíoin  | ἁγίαιν
+hagíain  | ἁγίοιν
+hagíoin  |  | ἁγίοις
+hagíois  | ἁγίαις
+hagíais  | ἁγίοις
+hagíois
+Accusative  |  | ἅγιον
+hágion  | ἁγίαν
+hagíān  | ἅγιον
+hágion  |  | ἁγίω
+hagíō  | ἁγία
+hagíā  | ἁγίω
+hagíō  |  | ἁγίους
+hagíous  | ἁγίας
+hagíās  | ἅγια
+hágia
+Vocative  |  | ἅγιε
+hágie  | ἁγία
+hagíā  | ἅγιον
+hágion  |  | ἁγίω
+hagíō  | ἁγία
+hagíā  | ἁγίω
+hagíō  |  | ἅγιοι
+hágioi  | ἅγιαι
+hágiai  | ἅγια
+hágia
+Derived forms  |  | Adverb  |  | Comparative  |  | Superlative
+ | ἁγίως
+hagíōs  |  | ἁγιώτερος
+hagiṓteros  |  | ἁγιώτατος
+hagiṓtatos
+Notes:  |  | This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+#= ἀδελφός • (adelphós) m (feminine ἀδελφή, neuter ἀδελφόν); first/second declension (Attic)
+
+    brotherly or sisterly
+    double
+    closely related, akin
+
+Declension
+First and second declension of ἀδελφός; ἀδελφή; ἀδελφόν (Attic)
+Number  |  | Singular  |  | Dual  |  | Plural
+Case/Gender  |  | Masculine  | Feminine  | Neuter  |  | Masculine  | Feminine  | Neuter  |  | Masculine  | Feminine  | Neuter
+Nominative  |  | ἀδελφός
+adelphós  | ἀδελφή
+adelphḗ  | ἀδελφόν
+adelphón  |  | ἀδελφώ
+adelphṓ  | ἀδελφά
+adelphā́  | ἀδελφώ
+adelphṓ  |  | ἀδελφοί, adelphoí  | ἀδελφαί, adelphaí  | ἀδελφά, adelphá
+Genitive  |  | ἀδελφοῦ
+adelphoû  | ἀδελφῆς
+adelphês  | ἀδελφοῦ
+adelphoû  |  | ἀδελφοῖν
+adelphoîn  | ἀδελφαῖν
+adelphaîn  | ἀδελφοῖν
+adelphoîn  |  | ἀδελφῶν
+adelphôn  | ἀδελφῶν
+adelphôn  | ἀδελφῶν
+adelphôn
+Dative  |  | ἀδελφῷ
+adelphôi  | ἀδελφῇ
+adelphêi  | ἀδελφῷ
+adelphôi  |  | ἀδελφοῖν
+adelphoîn  | ἀδελφαῖν
+adelphaîn  | ἀδελφοῖν
+adelphoîn  |  | ἀδελφοῖς
+adelphoîs  | ἀδελφαῖς
+adelphaîs  | ἀδελφοῖς
+adelphoîs
+Accusative  |  | ἀδελφόν
+adelphón  | ἀδελφήν
+adelphḗn  | ἀδελφόν
+adelphón  |  | ἀδελφώ
+adelphṓ  | ἀδελφά
+adelphā́  | ἀδελφώ
+adelphṓ  |  | ἀδελφούς
+adelphoús  | ἀδελφάς
+adelphā́s  | ἀδελφά
+adelphá
+Vocative  |  | ἀδελφέ
+adelphé  | ἀδελφή
+adelphḗ  | ἀδελφόν
+adelphón  |  | ἀδελφώ
+adelphṓ  | ἀδελφά
+adelphā́  | ἀδελφώ
+adelphṓ  |  | ἀδελφοί
+adelphoí  | ἀδελφαί
+adelphaí  | ἀδελφά
+adelphá
+Derived forms  |  | Adverb  |  | Comparative  |  | Superlative
+ | ἀδελφῶς
+adelphôs  |  | ἀδελφότερος
+adelphóteros  |  | ἀδελφότατος
+adelphótatos
+Notes:  |  | This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+#= ἄπειρος • (ápeiros) m, f (neuter ἄπειρον); second declension
+
+    without trial or experience, not used to, ignorant of, unacquainted with
+        (absolute) inexperienced, ignorant
+
+Inflection
+Second declension of ἄπειρος; ἄπειρον (Attic)
+Number  |  | Singular  |  | Dual  |  | Plural
+Case/Gender  |  | Masculine / Feminine  | Neuter  |  | Masculine / Feminine  | Neuter  |  | Masculine / Feminine  | Neuter
+Nominative  |  | ἄπειρος
+ápeiros  | ἄπειρον
+ápeiron  |  | ἀπείρω
+apeírō  | ἀπείρω, apeírō  |  | ἄπειροι, ápeiroi  | ἄπειρα, ápeira
+Genitive  |  | ἀπείρου
+apeírou  | ἀπείρου
+apeírou  |  | ἀπείροιν
+apeíroin  | ἀπείροιν
+apeíroin  |  | ἀπείρων
+apeírōn  | ἀπείρων
+apeírōn
+Dative  |  | ἀπείρῳ
+apeírōi  | ἀπείρῳ
+apeírōi  |  | ἀπείροιν
+apeíroin  | ἀπείροιν
+apeíroin  |  | ἀπείροις
+apeírois  | ἀπείροις
+apeírois
+Accusative  |  | ἄπειρον
+ápeiron  | ἄπειρον
+ápeiron  |  | ἀπείρω
+apeírō  | ἀπείρω
+apeírō  |  | ἀπείρους
+apeírous  | ἄπειρα
+ápeira
+Vocative  |  | ἄπειρε
+ápeire  | ἄπειρον
+ápeiron  |  | ἀπείρω
+apeírō  | ἀπείρω
+apeírō  |  | ἄπειροι
+ápeiroi  | ἄπειρα
+ápeira
+Derived forms  |  | Adverb  |  | Comparative  |  | Superlative
+ | ἀπείρως
+apeírōs  |  | ἀπειρότερος
+apeiróteros  |  | ἀπειρότατος
+apeirótatos
+Notes:  |  | This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+#= θεῖος • (theîos) m (feminine θεία, neuter θεῖον); first/second declension
+
+    Of or from the gods or God, divine
+    (religion) Belonging or sacred to a god, holy
+    Superhuman (used of heroic figures)
+    Imperial
+
+Inflection
+First and second declension of θεῖος; θεία; θεῖον (Attic)
+Number  |  | Singular  |  | Dual  |  | Plural
+Case/Gender  |  | Masculine  | Feminine  | Neuter  |  | Masculine  | Feminine  | Neuter  |  | Masculine  | Feminine  | Neuter
+Nominative  |  | θεῖος
+theîos  | θεία
+theíā  | θεῖον
+theîon  |  | θείω
+theíō  | θεία
+theíā  | θείω
+theíō  |  | θεῖοι
+theîoi  | θεῖαι
+theîai  | θεῖα
+theîa
+Genitive  |  | θείου
+theíou  | θείας
+theíās  | θείου
+theíou  |  | θείοιν
+theíoin  | θείαιν
+theíain  | θείοιν
+theíoin  |  | θείων
+theíōn  | θείων
+theíōn  | θείων
+theíōn
+Dative  |  | θείῳ
+theíōi  | θείᾳ
+theíāi  | θείῳ
+theíōi  |  | θείοιν
+theíoin  | θείαιν
+theíain  | θείοιν
+theíoin  |  | θείοις
+theíois  | θείαις
+theíais  | θείοις
+theíois
+Accusative  |  | θεῖον
+theîon  | θείαν
+theíān  | θεῖον
+theîon  |  | θείω
+theíō  | θεία
+theíā  | θείω
+theíō  |  | θείους
+theíous  | θείας
+theíās  | θεῖα
+theîa
+Vocative  |  | θεῖε
+theîe  | θεία
+theíā  | θεῖον
+theîon  |  | θείω
+theíō  | θεία
+theíā  | θείω
+theíō  |  | θεῖοι
+theîoi  | θεῖαι
+theîai  | θεῖα
+theîa
+Derived forms  |  | Adverb  |  | Comparative  |  | Superlative
+ | θείως
+theíōs  |  | θειότερος
+theióteros  |  | θειότατος
+theiótatos
+Notes:  |  | This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+First and second declension of θεῖος; θείη; θεῖον (Epic)
+Number  |  | Singular  |  | Dual  |  | Plural
+Case/Gender  |  | Masculine  | Feminine  | Neuter  |  | Masculine  | Feminine  | Neuter  |  | Masculine  | Feminine  | Neuter
+Nominative  |  | θεῖος
+theîos  | θείη
+theíē  | θεῖον
+theîon  |  | θείω
+theíō  | θεία
+theíā  | θείω
+theíō  |  | θεῖοι
+theîoi  | θεῖαι
+theîai  | θεῖα
+theîa
+Genitive  |  | θείου / θειοῖο / θείοιο / θειόο / θείοο
+theíou / theioîo / theíoio / theióo / theíoo  | θείης
+theíēs  | θείου / θειοῖο / θείοιο / θειόο / θείοο
+theíou / theioîo / theíoio / theióo / theíoo  |  | θείοιιν
+theíoiin  | θείαι(ι)ν / θείῃιν
+theíai(i)n / theíēiin  | θείοιιν
+theíoiin  |  | θείων
+theíōn  | θειάων / θειέ͜ων / θειῶν
+theiā́ōn / theié͜ōn / theiôn  | θείων
+theíōn
+Dative  |  | θείῳ
+theíōi  | θείῃ
+theíēi  | θείῳ
+theíōi  |  | θείοιιν
+theíoiin  | θείαι(ι)ν / θείῃιν
+theíai(i)n / theíēiin  | θείοιιν
+theíoiin  |  | θείοισι(ν) / θείοις
+theíoisi(n) / theíois  | θείῃσι(ν) / θείῃς / θείαις
+theíēisi(n) / theíēis / theíais  | θείοισι(ν) / θείοις
+theíoisi(n) / theíois
+Accusative  |  | θεῖον
+theîon  | θείην
+theíēn  | θεῖον
+theîon  |  | θείω
+theíō  | θεία
+theíā  | θείω
+theíō  |  | θείους
+theíous  | θείας
+theíās  | θεῖα
+theîa
+Vocative  |  | θεῖε
+theîe  | θείη
+theíē  | θεῖον
+theîon  |  | θείω
+theíō  | θεία
+theíā  | θείω
+theíō  |  | θεῖοι
+theîoi  | θεῖαι
+theîai  | θεῖα
+theîa
+Derived forms  |  | Adverb  |  | Comparative  |  | Superlative
+ | θείως
+theíōs  |  | θειότερος
+theióteros  |  | θειότατος
+theiótatos
+Notes:  |  | Dialects other than Attic are not well attested. Some forms may be based on conjecture. Use with caution.
+
+#= ἱστορικός • (historikós) m (feminine ἱστορική, neuter ἱστορικόν); first/second declension
+
+    exact, precise, scientific
+    belonging or pertaining to history
+
+Inflection
+First and second declension of ἱστορικός; ἱστορική; ἱστορικόν (Attic)
+Number  |  | Singular  |  | Dual  |  | Plural
+Case/Gender  |  | Masculine  | Feminine  | Neuter  |  | Masculine  | Feminine  | Neuter  |  | Masculine  | Feminine  | Neuter
+Nominative  |  | ἱστορικός
+historikós  | ἱστορική
+historikḗ  | ἱστορικόν
+historikón  |  | ἱστορικώ
+historikṓ  | ἱστορικά
+historikā́  | ἱστορικώ
+historikṓ  |  | ἱστορικοί
+historikoí  | ἱστορικαί
+historikaí  | ἱστορικά
+historiká
+Genitive  |  | ἱστορικοῦ
+historikoû  | ἱστορικῆς
+historikês  | ἱστορικοῦ
+historikoû  |  | ἱστορικοῖν
+historikoîn  | ἱστορικαῖν
+historikaîn  | ἱστορικοῖν
+historikoîn  |  | ἱστορικῶν
+historikôn  | ἱστορικῶν
+historikôn  | ἱστορικῶν
+historikôn
+Dative  |  | ἱστορικῷ
+historikôi  | ἱστορικῇ
+historikêi  | ἱστορικῷ
+historikôi  |  | ἱστορικοῖν
+historikoîn  | ἱστορικαῖν
+historikaîn  | ἱστορικοῖν
+historikoîn  |  | ἱστορικοῖς
+historikoîs  | ἱστορικαῖς
+historikaîs  | ἱστορικοῖς
+historikoîs
+Accusative  |  | ἱστορικόν
+historikón  | ἱστορικήν
+historikḗn  | ἱστορικόν
+historikón  |  | ἱστορικώ
+historikṓ  | ἱστορικά
+historikā́  | ἱστορικώ
+historikṓ  |  | ἱστορικούς
+historikoús  | ἱστορικάς
+historikā́s  | ἱστορικά
+historiká
+Vocative  |  | ἱστορικέ
+historiké  | ἱστορική
+historikḗ  | ἱστορικόν
+historikón  |  | ἱστορικώ
+historikṓ  | ἱστορικά
+historikā́  | ἱστορικώ
+historikṓ  |  | ἱστορικοί
+historikoí  | ἱστορικαί
+historikaí  | ἱστορικά
+historiká
+Derived forms  |  | Adverb  |  | Comparative  |  | Superlative
+ | ἱστορικῶς
+historikôs  |  | ἱστορικώτερος
+historikṓteros  |  | ἱστορικώτατος
+historikṓtatos
+Notes:  |  | This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+#= κάτοικος • (kátoikos) m (feminine κατοίκη, neuter κάτοικον); first/second declension
+
+    (Byzantine) in the house, indoors
+    (Byzantine) inhabiting
+
+Declension
+First and second declension of κάτοικος; κατοίκη; κάτοικον (Attic)
+Number  |  | Singular  |  | Dual  |  | Plural
+Case/Gender  |  | Masculine  | Feminine  | Neuter  |  | Masculine  | Feminine  | Neuter  |  | Masculine  | Feminine  | Neuter
+Nominative  |  | κάτοικος
+kátoikos  | κατοίκη
+katoíkē  | κάτοικον
+kátoikon  |  | κατοίκω
+katoíkō  | κατοίκα
+katoíkā  | κατοίκω
+katoíkō  |  | κάτοικοι
+kátoikoi  | κάτοικαι
+kátoikai  | κάτοικα
+kátoika
+Genitive  |  | κατοίκου
+katoíkou  | κατοίκης
+katoíkēs  | κατοίκου
+katoíkou  |  | κατοίκοιν
+katoíkoin  | κατοίκαιν
+katoíkain  | κατοίκοιν
+katoíkoin  |  | κατοίκων
+katoíkōn  | κατοίκων
+katoíkōn  | κατοίκων
+katoíkōn
+Dative  |  | κατοίκῳ
+katoíkōi  | κατοίκῃ
+katoíkēi  | κατοίκῳ
+katoíkōi  |  | κατοίκοιν
+katoíkoin  | κατοίκαιν
+katoíkain  | κατοίκοιν
+katoíkoin  |  | κατοίκοις
+katoíkois  | κατοίκαις
+katoíkais  | κατοίκοις
+katoíkois
+Accusative  |  | κάτοικον
+kátoikon  | κατοίκην
+katoíkēn  | κάτοικον
+kátoikon  |  | κατοίκω
+katoíkō  | κατοίκα
+katoíkā  | κατοίκω
+katoíkō  |  | κατοίκους
+katoíkous  | κατοίκας
+katoíkās  | κάτοικα
+kátoika
+Vocative  |  | κάτοικε
+kátoike  | κατοίκη
+katoíkē  | κάτοικον
+kátoikon  |  | κατοίκω
+katoíkō  | κατοίκα
+katoíkā  | κατοίκω
+katoíkō  |  | κάτοικοι
+kátoikoi  | κάτοικαι
+kátoikai  | κάτοικα
+kátoika
+Derived forms  |  | Adverb  |  | Comparative  |  | Superlative
+ | κατοίκως
+katoíkōs  |  | κατοικότερος
+katoikóteros  |  | κατοικότατος
+katoikótatos
+Notes:  |  | This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
+
+#= μάγος • (mágos) m, f (neuter μάγον); second declension
+
+    magical
+
+Declension
+Second declension of μάγος; μάγον (Attic)
+Number  |  | Singular  |  | Dual  |  | Plural
+Case/Gender  |  | Masculine / Feminine  | Neuter  |  | Masculine / Feminine  | Neuter  |  | Masculine / Feminine  | Neuter
+Nominative  |  | μάγος
+mágos  | μάγον
+mágon  |  | μάγω
+mágō  | μάγω
+mágō  |  | μάγοι
+mágoi  | μάγα
+mága
+Genitive  |  | μάγου
+mágou  | μάγου
+mágou  |  | μάγοιν
+mágoin  | μάγοιν
+mágoin  |  | μάγων
+mágōn  | μάγων
+mágōn
+Dative  |  | μάγῳ
+mágōi  | μάγῳ
+mágōi  |  | μάγοιν
+mágoin  | μάγοιν
+mágoin  |  | μάγοις
+mágois  | μάγοις
+mágois
+Accusative  |  | μάγον
+mágon  | μάγον
+mágon  |  | μάγω
+mágō  | μάγω
+mágō  |  | μάγους
+mágous  | μάγα
+mága
+Vocative  |  | μάγε
+máge  | μάγον
+mágon  |  | μάγω
+mágō  | μάγω
+mágō  |  | μάγοι
+mágoi  | μάγα
+mága
+Derived forms  |  | Adverb  |  | Comparative  |  | Superlative
+ | μάγως
+mágōs  |  | μαγώτερος
+magṓteros  |  | μαγώτατος
+magṓtatos
+Notes:  |  | This table gives Attic inflectional endings. For declension in other dialects, see Appendix:Ancient Greek dialectal declension.
