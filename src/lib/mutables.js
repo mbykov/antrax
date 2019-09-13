@@ -3,8 +3,6 @@ import _ from 'lodash'
 import { verbkeys } from './verb-reg-keys'
 import { namekeys } from './name-reg-keys'
 const d = require('debug')('app')
-// import {oxia, comb, plain} from 'orthos'
-// import {oxia, comb, plain} from '../../../../greek/orthos'
 
 let log = console.log
 

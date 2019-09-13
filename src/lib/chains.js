@@ -1,7 +1,8 @@
 //
 
 import _ from 'lodash'
-import {oxia, comb, plain, strip} from '../../../../greek/orthos'
+import {oxia, comb, plain, strip} from 'orthos'
+// import {oxia, comb, plain, strip} from '../../../../greek/orthos'
 import { parseVerb, parseName, parsePart } from './mutables'
 let log = console.log
 const d = require('debug')('app')
@@ -230,7 +231,7 @@ export function makeChains (sgms, dicts, flexes, compound, only) {
   // TRIPLES: COMPOUND WITH CONNECTOR
   triples.forEach(segs => {
     let connector
-    let conseg = plain(segs[1])
+    let conseg = strip(segs[1])
     if (conseg.length == 1 && vowels.includes(conseg)) connector = conseg
     if (!connector) return
     // log('________________________________triples:', segs, 'conn:', connector)
@@ -254,7 +255,7 @@ export function makeChains (sgms, dicts, flexes, compound, only) {
     // log('__triples mainseg__:', segs, mainseg, 'maindicts:', maindicts.length, '_cdicts_:', cdicts.length)
 
     // compound with vowel in a middle:
-    let firstsec = { seg: firstseg, dicts: firstdicts, stem: firstseg, triples: true, type: 'comp-connector' }
+    let firstsec = { seg: firstseg, dicts: firstdicts, stem: firstseg, triples: true, type: 'comp-connector', stem: firstseg }
     let connsec = { seg: conseg, connector: connector, dicts: [] }
     let commonseg = [mainseg, flexseg].join('')
     let secsec = { seg: commonseg, dicts: cdicts, cogns: maindicts, stem: mainseg, flex: flexseg }

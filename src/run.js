@@ -35,7 +35,7 @@ dnames = ['wkt']
 // dnames = ['dvr']
 // dnames = ['wkt', 'local']
 // dnames = ['wkt', 'lsj', 'dvr', 'local', 'souda']
-// dnames = ['wkt', 'lsj', 'terms']
+dnames = ['wkt', 'lsj', 'terms']
 // dnames = ['souda']
 
 if (wordform == 'install') {

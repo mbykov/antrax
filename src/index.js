@@ -6,8 +6,8 @@ import { makeChains } from './lib/chains'
 import { accents, vowels, aspirations, coronis, corvowels, stressed } from './lib/utils'
 import util from 'util'
 const path = require('path')
-// import {oxia, comb, plain} from 'orthos'
-import {oxia, comb, plain, strip} from '../../../greek/orthos'
+import {oxia, comb, plain, strip} from 'orthos'
+// import {oxia, comb, plain, strip} from '../../../greek/orthos'
 
 let log = console.log
 const d = require('debug')('app')

@@ -1,9 +1,9 @@
 {
-  "name": "loigos",
+  "version": "0.9.10",
+  "name": "antrax",
   "description": "simple practical ancient greek analizer for Morpheus-Greek",
-  "version": "0.9.0",
   "Author": "Michael Bykov <m.bykov@gmail.com>",
-  "copyright": "© 2018, Michael Bykov",
+  "copyright": "© 2017-2019, Michael Bykov",
   "license": "GPL-3.0",
   "homepage": "http://diglossa.org/greek",
   "main": "./dist/index.js",
