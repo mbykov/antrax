@@ -13,8 +13,6 @@ let log = console.log
 const d = require('debug')('app')
 
 export function checkConnection (upath, dnames) {
-  // if (!upath)  upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
-  // log('________index: check connection', dnames)
   setDBs(upath, dnames)
 }
 
@@ -116,32 +114,12 @@ export function antrax (wf, compound, only) {
     d('bests =>', bests.length)
     if (bests.length) chains = bests
 
-    // или strong - после refine?
-    // if (strong) {
-    //   let simples = _.filter(chains, chain=> { return chain.length == 1 })
-    //   let pwfs = simples.map(chain=> { return chain[0].dicts.map(dict=> { return dict.plain }) })
-    //   pwfs = _.uniq(_.flattenDeep(pwfs))
-    //   let fpwfs = pwfs[0]
-    //   let cognates = segdicts[fpwfs]
-    //   if (!cognates) return
-    //   let cnames = _.filter(cognates, dict=> { return dict.name })
-    //   let cverbs = _.filter(cognates, dict=> { return dict.verb && dict.time == 'pres' })
-    //   cognates = cnames.concat(cverbs)
-    //   if (cognates.length > 1) return {cognates: cognates}
-    //   else return
-    // }
-    // let result = { chains: chains, terms: terms }
-    // return result
-    // log('CHAINS', chains[0])
-
     // refine results (i.e. verbs only) with changed stems:
     let chaindicts = _.flatten(chains.map(chain=> { return _.flatten(chain.map(sec=> { return sec.dicts })) }))
     // chaindicts.forEach(dict=> { delete dict.keys, delete dict.trns })
     chaindicts.forEach(dict=> { delete dict.keys })
-    // log('___chainDicts', chaindicts)
     let wktverbs = _.filter(chaindicts, dict=> { return dict.verb && dict.dname == 'wkt' })
     let wktplains = wktverbs.map(dict=> { return dict.plain })
-    // log('___wktRDicts', wktplains)
     return queryDBs(wktplains)
       .then(res=>{
         let refined = _.flatten(res)
@@ -167,16 +145,6 @@ export function antrax (wf, compound, only) {
             sec.dicts = secwkts
           })
         })
-
-        // это если possible в name, а есть точный verb - нет примера, где это нужно
-        // chains.forEach(chain=> {
-        //   chain.forEach(sec=> {
-        //     let exacts = _.filter(sec.dicts, dict=> { return !dict.possible })
-        //     log('_____________sec.seg', sec.seg, exacts.length)
-        //     if (!exacts.length) return
-        //     sec.dicts = exacts
-        //   })
-        // })
 
         // terms дает много очень лишнего в chains, так нельзя, но как можно? напр., артикль τῶν дает τ, и пиздец
         // нужен пример, почему нельзя только terms - например, ἦσαν

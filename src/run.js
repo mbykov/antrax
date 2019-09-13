@@ -27,7 +27,7 @@ else only = thirdarg
 console.time("queryTime");
 
 // flex, comp - already run
-let upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
+let upath = path.resolve(process.env.HOME, '.config/Biblos.js (development)')
 let apath = '/home/michael/a/atemplate'
 let dnames
 dnames = ['wkt']
