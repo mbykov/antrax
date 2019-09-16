@@ -35,21 +35,29 @@ function checkCfg(apath, upath, dnames) {
   return Promise.all(dnames.map(function(dname) {
     let dbpath = [pouchpath, dname].join('/')
     let remoteDB = new PouchDB(dbpath) // проверить skip_setup
-    // здесь нужно делать два запроса, второй - про size, т.е. db.info()
-    return remoteDB.get('description')
-      .then(descr=> {
-        descr.dname = dname
-        return descr
+    // return remoteDB.get('description')
+    //   .then(descr=> {
+    //     descr.dname = dname
+    //     return descr
+    //   })
+    //   .catch(err=> {
+    //     if (err.reason == 'missing') return
+    //     log('CFG-ERR:', err.reason)
+    //   })
+    return remoteDB.info()
+      .then(info=> {
+        info.dname = dname
+        return info
       })
       .catch(err=> {
         if (err.reason == 'missing') return
         log('CFG-ERR:', err.reason)
       })
   }))
-    .then(descrs=> {
-      let cfg = _.compact(descrs)
-      cfg = _.filter(cfg, dict=> { return dict.dname != 'flex' })
-      cfg.forEach((dict, idx)=> { dict.idx = idx, dict.active = true, dict.sync = true, dict.size = 0 })
+    .then(infos=> {
+      infos = _.compact(infos)
+      infos = _.filter(infos, dict=> { return dict.dname != 'flex' })
+      let cfg = infos.map((dict, idx)=> { return {dname: dict.dname, idx: dict.idx, active: true, sync: true, size: dict.doc_count, langs: '', info: '' } } )
       log('--init-cfg--', cfg)
       return cfg
     })
