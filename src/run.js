@@ -1,10 +1,10 @@
 // simple runner for src/antrax
 
 import _ from 'lodash'
-import { antrax, checkConnection, readDictionary } from './index'
+import { antrax, getCfg, checkConnection, readDictionary } from './index'
 import { installDBs } from './lib/pouch'
 import { setDBs } from './lib/pouch'
-import { getCfg } from './lib/pouch'
+// import { getCfg } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import {accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs} from './lib/utils'
 const d = require('debug')('app')
@@ -35,7 +35,7 @@ dnames = ['wkt']
 // dnames = ['dvr']
 // dnames = ['wkt', 'local']
 // dnames = ['wkt', 'lsj', 'dvr', 'local', 'souda']
-dnames = ['wkt', 'lsj', 'terms']
+// dnames = ['wkt', 'lsj', 'terms']
 // dnames = ['souda']
 
 if (wordform == 'install') {

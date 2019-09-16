@@ -1,7 +1,7 @@
 //
 
 import _ from 'lodash'
-let copydir = require('copy-dir')
+// let copydir = require('copy-dir')
 let path = require('path')
 const fse = require('fs-extra');
 const PouchDB = require('pouchdb')
@@ -21,9 +21,7 @@ let db_flex
 let db_terms
 let db_comp
 
-// я так понимаю, тут работа с cfg - всегда инициализация, так?
-
-export function getCfg (apath, upath) {
+export function createCfg (apath, upath) {
   let pouchpath = path.resolve(upath, 'pouch')
   fse.ensureDirSync(pouchpath)
   let dnames = fse.readdirSync(pouchpath)
@@ -32,6 +30,7 @@ export function getCfg (apath, upath) {
 }
 
 function checkCfg(apath, upath, dnames) {
+  log('--init-dnames--', dnames)
   let pouchpath = path.resolve(upath, 'pouch')
   return Promise.all(dnames.map(function(dname) {
     let dbpath = [pouchpath, dname].join('/')
@@ -51,7 +50,7 @@ function checkCfg(apath, upath, dnames) {
       let cfg = _.compact(descrs)
       cfg = _.filter(cfg, dict=> { return dict.dname != 'flex' })
       cfg.forEach((dict, idx)=> { dict.idx = idx, dict.active = true, dict.sync = true, dict.size = 0 })
-      // log('--init-cfg--', cfg)
+      log('--init-cfg--', cfg)
       return cfg
     })
 }
@@ -77,6 +76,21 @@ export function setDBs (upath, dnames) {
 export function installDBs (apath, upath) {
   let srcpath = path.resolve(apath, 'src/dumps')
   let pouchpath = path.resolve(upath, 'pouch')
+
+  try {
+    // fse.mkdirSync(pouchpath, 700)
+    let cnames = fse.readdirSync(srcpath)
+    cnames.forEach(cname=> {
+      let dpath = path.resolve(upath, 'pouch', cname)
+      try {
+        fse.mkdirSync(dpath, 0o777)
+      } catch (err) {
+        log('__ERR', err)
+      }
+    })
+  } catch (err) {
+    log('__ERR', err)
+  }
   try {
     fse.ensureDirSync(pouchpath)
     fse.copySync(srcpath, pouchpath, {

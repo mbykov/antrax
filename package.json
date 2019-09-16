@@ -1,5 +1,5 @@
 {
-  "version": "0.9.10",
+  "version": "0.9.15",
   "name": "antrax",
   "description": "simple practical ancient greek analizer for Morpheus-Greek",
   "Author": "Michael Bykov <m.bykov@gmail.com>",
@@ -43,7 +43,7 @@
   "dependencies": {
     "babel-register": "^6.26.0",
     "copy-dir": "^0.3.0",
-    "fs-extra": "^7.0.1",
+    "fs-extra": "^8.1.0",
     "lodash": "^4.17.11",
     "orthos": "^0.6.3",
     "pouchdb": "^7.0.0",

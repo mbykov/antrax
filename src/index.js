@@ -1,6 +1,6 @@
 //
 import _ from 'lodash'
-import { getComp, getTerms, getFlex, queryDBs, setDBs, installDBs, updateDB, readDB, delDB } from './lib/pouch'
+import { createCfg, getTerms, getFlex, queryDBs, setDBs, installDBs, updateDB, readDB, delDB } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import { makeChains } from './lib/chains'
 import { accents, vowels, aspirations, coronis, corvowels, stressed } from './lib/utils'
@@ -17,12 +17,9 @@ export function checkConnection (upath, dnames) {
 }
 
 // dictCsv.js
-export function readDictionary (upath, dname) {
-  return readDB(upath, dname)
-}
-
-export function installDefaults (apath, upath) { return installDBs(apath, upath) }
-
+export function getCfg (upath, dname) { return createCfg(upath, dname) }
+export function readDictionary (upath, dname) { return readDB(upath, dname) }
+// export function installDefaults (apath, upath) { return installDBs(apath, upath) }
 export function delDictionary (upath, dname) { return delDB(upath, dname) }
 
 // nav.js, i.e. remote пока
