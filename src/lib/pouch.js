@@ -30,7 +30,7 @@ export function createCfg (apath, upath) {
 }
 
 function checkCfg(apath, upath, dnames) {
-  log('--init-dnames--', dnames)
+  // log('--init-dnames--', dnames)
   let pouchpath = path.resolve(upath, 'pouch')
   return Promise.all(dnames.map(function(dname) {
     let dbpath = [pouchpath, dname].join('/')
@@ -58,7 +58,7 @@ function checkCfg(apath, upath, dnames) {
       infos = _.compact(infos)
       infos = _.filter(infos, dict=> { return dict.dname != 'flex' })
       let cfg = infos.map((dict, idx)=> { return {dname: dict.dname, idx: dict.idx, active: true, sync: true, size: dict.doc_count, langs: '', info: '' } } )
-      log('--init-cfg--', cfg)
+      // log('--init-cfg--', cfg)
       return cfg
     })
 }
