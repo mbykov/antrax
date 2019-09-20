@@ -34,7 +34,7 @@ dnames = ['wkt']
 // dnames = ['lsj']
 // dnames = ['dvr']
 // dnames = ['wkt', 'local']
-// dnames = ['wkt', 'lsj', 'dvr', 'local', 'souda']
+dnames = ['wkt', 'lsj', 'dvr', 'local', 'souda']
 // dnames = ['wkt', 'lsj', 'terms']
 // dnames = ['souda']
 

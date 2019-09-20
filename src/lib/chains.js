@@ -345,7 +345,7 @@ export function makeChains (sgms, dicts, flexes, compound, only) {
 }
 
 function makeDictFlex (dicts, flexes, only) {
-  let names = _.filter(dicts, dict => { return dict.name })
+  let names = _.filter(dicts, dict => { return dict.name && !dict.verb }) // errs in some dicts
   let nflexes = _.filter(flexes, flex => { return flex.name })
   let verbs = _.filter(dicts, dict => { return dict.verb })
   let vflexes = _.filter(flexes, flex => { return flex.verb })
