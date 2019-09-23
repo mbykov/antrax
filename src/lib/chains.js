@@ -317,7 +317,7 @@ export function makeChains (sgms, dicts, flexes, compound, only) {
 
     let augseg = strip(segs[2])
     if (!augplains.includes(augseg)) return
-    log('____quads pref-verb augseg:', prefseg, prefseg2, augseg)
+    // log('____quads pref-verb augseg:', prefseg, prefseg2, augseg)
 
     let mainseg = plain(segs[3])
     let maindicts = _.filter(muts, dict=> { return dict.aug && strip(dict.aug) == augseg && dict.plain == mainseg } )
