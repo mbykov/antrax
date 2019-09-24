@@ -1,7 +1,6 @@
 //
 
 import _ from 'lodash'
-// let copydir = require('copy-dir')
 let path = require('path')
 const fse = require('fs-extra');
 const PouchDB = require('pouchdb')
@@ -82,7 +81,7 @@ export function setDBs (upath, dnames) {
 }
 
 export function installDBs (apath, upath) {
-  let srcpath = path.resolve(apath, 'src/dumps')
+  let srcpath = path.join(apath, 'pouch').replace('app.asar', 'app.asar.unpacked')
   let pouchpath = path.resolve(upath, 'pouch')
 
   try {

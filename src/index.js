@@ -12,14 +12,9 @@ import {oxia, comb, plain, strip} from 'orthos'
 let log = console.log
 const d = require('debug')('app')
 
-export function checkConnection (upath, dnames) {
-  setDBs(upath, dnames)
-}
-
-// dictCsv.js
+export function checkConnection (upath, dnames) {  setDBs(upath, dnames) }
 export function getCfg (upath, dname) { return createCfg(upath, dname) }
 export function readDictionary (upath, dname) { return readDB(upath, dname) }
-// export function installDefaults (apath, upath) { return installDBs(apath, upath) }
 export function delDictionary (upath, dname) { return delDB(upath, dname) }
 
 // nav.js, i.e. remote пока
