@@ -37,23 +37,28 @@ dnames = ['wkt', 'lsj', 'dvr', 'local', 'souda']
 // dnames = ['souda']
 
 if (wordform == 'install') {
-  getCfg(apath, upath)
-    .then(cfg=> {
-      let dnames = cfg.map(dict=> { return dict.dname })
-      log('getCfg dnames:', dnames)
-      // checkConnection(upath, dnames)
-      wordform  = 'ἀλλότριος'
-      antrax(wordform, compound, only)
-        .then(res => {
-          if (!res) return log('no result')
-          print (res)
-          // log('INSTALL CFG', cfg)
-          console.timeEnd("queryTime");
-        }).catch(function (err) {
-          console.log('ANTRAX-ERR', err)
-        })
+  let cfg = getCfg(apath, upath)
+  let dnames = cfg.map(dict=> { return dict.dname })
+  log('___install dnames', dnames)
+  // setDBs(upath, dnames)
 
-    })
+  // getCfg(apath, upath)
+  //   .then(cfg=> {
+  //     let dnames = cfg.map(dict=> { return dict.dname })
+  //     log('getCfg dnames:', dnames)
+  //     // checkConnection(upath, dnames)
+  //     wordform  = 'ἀλλότριος'
+  //     antrax(wordform, compound, only)
+  //       .then(res => {
+  //         if (!res) return log('no result')
+  //         print (res)
+  //         // log('INSTALL CFG', cfg)
+  //         console.timeEnd("queryTime");
+  //       }).catch(function (err) {
+  //         console.log('ANTRAX-ERR', err)
+  //       })
+  //   })
+
 } else {
   log('=DNAMES=', dnames)
   setDBs(upath, dnames)

@@ -25,7 +25,13 @@ export function createCfg (apath, upath) {
   fse.ensureDirSync(pouchpath)
   let dnames = fse.readdirSync(pouchpath)
   if (!dnames.length) dnames = installDBs(apath, upath)
-  return checkCfg(apath, upath, dnames)
+  // return checkCfg(apath, upath, dnames)
+  return initCfg(dnames)
+}
+
+function initCfg(dnames) {
+  let cfg = dnames.map((dname, idx)=> { return {dname: dname, idx: idx, active: true, sync: true, size: 0, langs: '', info: '' } } )
+  return cfg
 }
 
 function checkCfg(apath, upath, dnames) {
@@ -36,7 +42,7 @@ function checkCfg(apath, upath, dnames) {
     let pouch = new PouchDB(dbpath) // проверить skip_setup
     return pouch.info()
       .then(info=> {
-        // pouch.close().then(function() {        })
+        // pouch.close() //.then(function() {        })
         info.dname = dname
         return info
       })
@@ -49,8 +55,8 @@ function checkCfg(apath, upath, dnames) {
       infos = _.compact(infos)
       infos = _.filter(infos, dict=> { return dict.dname != 'flex' })
       let cfg = infos.map((dict, idx)=> { return {dname: dict.dname, idx: dict.idx, active: true, sync: true, size: dict.doc_count, langs: '', info: '' } } )
-      log('--init-cfg--', cfg.length)
       setDBs(upath, dnames)
+      log('--init-cfg--', cfg.length)
       return cfg
     })
 }
@@ -84,14 +90,12 @@ function installDBs (apath, upath) {
     let dnames = fse.readdirSync(pouchpath)
     log('--install-dbs-dnames--', dnames)
     return dnames
-    // return checkCfg(apath, upath, dnames)
   } catch (err) {
     log('ERR copying default DBs', err)
   }
 }
 
 export function queryDBs (keys) {
-  // let dnames = dbs.map(db=> { return db.dname})
   return Promise.all(dbs.map(function (db) {
     return db.allDocs({
       keys: keys,
@@ -104,7 +108,7 @@ export function queryDBs (keys) {
         docs.forEach(doc => { doc.dname = db.dname })
         return docs
       }).catch(function (err) {
-        console.log('ERR GET DBs', err)
+        console.log('ERR queryDBs', err)
       })
   }))
 }
