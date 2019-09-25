@@ -1,6 +1,6 @@
 //
 import _ from 'lodash'
-import { createCfg, getTerms, getFlex, queryDBs, setDBs, installDBs, updateDB, readDB, delDB } from './lib/pouch'
+import { createCfg, getTerms, getFlex, queryDBs, setDBs, updateDB, readDB, delDB } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import { makeChains } from './lib/chains'
 import { accents, vowels, aspirations, coronis, corvowels, stressed } from './lib/utils'

@@ -2,9 +2,7 @@
 
 import _ from 'lodash'
 import { antrax, getCfg, checkConnection, readDictionary } from './index'
-import { installDBs } from './lib/pouch'
 import { setDBs } from './lib/pouch'
-// import { getCfg } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import {accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs} from './lib/utils'
 const d = require('debug')('app')
@@ -39,8 +37,6 @@ dnames = ['wkt', 'lsj', 'dvr', 'local', 'souda']
 // dnames = ['souda']
 
 if (wordform == 'install') {
-  // installDefaults(apath, upath)
-  // installDBs(apath, upath)
   getCfg(apath, upath)
     .then(cfg=> {
       let dnames = cfg.map(dict=> { return dict.dname })

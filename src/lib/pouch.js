@@ -80,7 +80,7 @@ export function setDBs (upath, dnames) {
   db_terms = new PouchDB(termpath)
 }
 
-export function installDBs (apath, upath) {
+function installDBs (apath, upath) {
   let srcpath = path.join(apath, 'pouch').replace('app.asar', 'app.asar.unpacked')
   let pouchpath = path.resolve(upath, 'pouch')
 
