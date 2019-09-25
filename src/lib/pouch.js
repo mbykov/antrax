@@ -33,9 +33,10 @@ function checkCfg(apath, upath, dnames) {
   let pouchpath = path.resolve(upath, 'pouch')
   return Promise.all(dnames.map(function(dname) {
     let dbpath = [pouchpath, dname].join('/')
-    let remoteDB = new PouchDB(dbpath) // проверить skip_setup
-    return remoteDB.info()
+    let pouch = new PouchDB(dbpath) // проверить skip_setup
+    return pouch.info()
       .then(info=> {
+        pouch.close() // windows, fuck it
         info.dname = dname
         return info
       })
@@ -90,14 +91,14 @@ function installDBs (apath, upath) {
 }
 
 export function queryDBs (keys) {
-  let dnames = dbs.map(db=> { return db.dname})
+  // let dnames = dbs.map(db=> { return db.dname})
   return Promise.all(dbs.map(function (db) {
     return db.allDocs({
       keys: keys,
       include_docs: true
     })
       .then(function (res) {
-        if (!res || !res.rows) throw new Error('no dbn result')
+        if (!res || !res.rows) throw new Error('no query dbs result')
         let rdocs = _.compact(res.rows.map(row => { return row.doc }))
         let docs = _.flatten(_.compact(rdocs.map(rdoc => { return rdoc.docs })))
         docs.forEach(doc => { doc.dname = db.dname })
