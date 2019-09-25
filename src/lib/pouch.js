@@ -34,15 +34,6 @@ function checkCfg(apath, upath, dnames) {
   return Promise.all(dnames.map(function(dname) {
     let dbpath = [pouchpath, dname].join('/')
     let remoteDB = new PouchDB(dbpath) // проверить skip_setup
-    // return remoteDB.get('description')
-    //   .then(descr=> {
-    //     descr.dname = dname
-    //     return descr
-    //   })
-    //   .catch(err=> {
-    //     if (err.reason == 'missing') return
-    //     log('CFG-ERR:', err.reason)
-    //   })
     return remoteDB.info()
       .then(info=> {
         info.dname = dname
@@ -54,6 +45,7 @@ function checkCfg(apath, upath, dnames) {
       })
   }))
     .then(infos=> {
+      setDBs (upath, dnames)
       infos = _.compact(infos)
       infos = _.filter(infos, dict=> { return dict.dname != 'flex' })
       let cfg = infos.map((dict, idx)=> { return {dname: dict.dname, idx: dict.idx, active: true, sync: true, size: dict.doc_count, langs: '', info: '' } } )
@@ -90,9 +82,7 @@ function installDBs (apath, upath) {
       overwrite: true
     })
     let dnames = fse.readdirSync(pouchpath)
-    return checkCfg(apath, upath, dnames)
-    // cfg.forEach((dict, idx)=> { dict.idx = idx })
-    // return cfg
+    checkCfg(apath, upath, dnames)
   } catch (err) {
     log('ERR copying default DBs', err)
   }

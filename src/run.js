@@ -55,7 +55,6 @@ if (wordform == 'install') {
     })
 } else {
   log('=DNAMES=', dnames)
-  // checkConnection(upath, dnames)
   setDBs(upath, dnames)
 
   antrax(wordform, compound, only)
