@@ -12,10 +12,10 @@ import {oxia, comb, plain, strip} from 'orthos'
 let log = console.log
 const d = require('debug')('app')
 
-export function checkConnection (upath, dnames) { return setDBs(upath, dnames) }
-export function getCfg (upath, dname) { return createCfg(upath, dname) }
-export function readDictionary (upath, dname) { return readDB(upath, dname) }
-export function delDictionary (upath, dname) { return delDB(upath, dname) }
+export function checkConnection (upath, dnames) { setDBs(upath, dnames) }
+export function getCfg (apath, upath) { createCfg(apath, upath) }
+export function readDictionary (upath, dname) { readDB(upath, dname) }
+export function delDictionary (upath, dname) { delDB(upath, dname) }
 
 // nav.js, i.e. remote пока
 export function updateCurrent (upath, docs) {

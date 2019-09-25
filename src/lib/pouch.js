@@ -29,7 +29,7 @@ export function createCfg (apath, upath) {
 }
 
 function checkCfg(apath, upath, dnames) {
-  // log('--init-dnames--', dnames)
+  log('--checkCfg--init-dnames--', dnames)
   let pouchpath = path.resolve(upath, 'pouch')
   return Promise.all(dnames.map(function(dname) {
     let dbpath = [pouchpath, dname].join('/')
@@ -49,12 +49,13 @@ function checkCfg(apath, upath, dnames) {
       infos = _.compact(infos)
       infos = _.filter(infos, dict=> { return dict.dname != 'flex' })
       let cfg = infos.map((dict, idx)=> { return {dname: dict.dname, idx: dict.idx, active: true, sync: true, size: dict.doc_count, langs: '', info: '' } } )
-      // log('--init-cfg--', cfg)
+      log('--init-cfg--', cfg)
       return cfg
     })
 }
 
 export function setDBs (upath, dnames) {
+  log('--setDBs--', dnames)
   dbs = []
   dnames.forEach((dn, idx) => {
     if (dn == 'flex') return
@@ -62,7 +63,6 @@ export function setDBs (upath, dnames) {
     let dpath = path.resolve(upath, 'pouch', dn)
     let pouch = new PouchDB(dpath)
     pouch.dname = dn
-    // pouch.weight = idx
     dbs.push(pouch)
   })
 
@@ -99,7 +99,7 @@ export function queryDBs (keys) {
         if (!res || !res.rows) throw new Error('no dbn result')
         let rdocs = _.compact(res.rows.map(row => { return row.doc }))
         let docs = _.flatten(_.compact(rdocs.map(rdoc => { return rdoc.docs })))
-        docs.forEach(doc => { doc.dname = db.dname }) // , doc.weight = db.weight
+        docs.forEach(doc => { doc.dname = db.dname })
         return docs
       }).catch(function (err) {
         console.log('ERR GET DBs', err)
@@ -126,7 +126,7 @@ export function getTerms (wfs) {
     .then(function(res) {
       let rdocs = _.compact(res.rows.map(row => { return row.doc }))
       let docs = _.flatten(rdocs.map(rdoc => { return rdoc.docs }))
-      docs.forEach(doc => { doc.dname = 'terms' }) // , doc.weight = 0
+      docs.forEach(doc => { doc.dname = 'terms' })
       return docs
     })
 }
@@ -148,7 +148,6 @@ function createLocal(upath, docs) {
   let dpath = path.resolve(upath, 'pouch', local)
   let pouch = new PouchDB(dpath)
   pouch.dname = local
-  // pouch.weight = 0
   dbs.unshift(pouch)
   pouch.bulkDocs(docs)
     .then(res=> {
