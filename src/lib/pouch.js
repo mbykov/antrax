@@ -45,7 +45,7 @@ function checkCfg(apath, upath, dnames) {
       })
   }))
     .then(infos=> {
-      // setDBs (upath, dnames)
+      setDBs (upath, dnames)
       infos = _.compact(infos)
       infos = _.filter(infos, dict=> { return dict.dname != 'flex' })
       let cfg = infos.map((dict, idx)=> { return {dname: dict.dname, idx: dict.idx, active: true, sync: true, size: dict.doc_count, langs: '', info: '' } } )

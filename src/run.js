@@ -46,7 +46,7 @@ if (wordform == 'install') {
         .then(res => {
           if (!res) return log('no result')
           print (res)
-          log('INSTALL CFG', cfg)
+          // log('INSTALL CFG', cfg)
           console.timeEnd("queryTime");
         }).catch(function (err) {
           console.log('ANTRAX-ERR', err)
