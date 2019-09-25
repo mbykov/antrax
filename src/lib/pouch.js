@@ -84,20 +84,20 @@ export function installDBs (apath, upath) {
   let srcpath = path.join(apath, 'pouch').replace('app.asar', 'app.asar.unpacked')
   let pouchpath = path.resolve(upath, 'pouch')
 
-  try {
-    // fse.mkdirSync(pouchpath, 700)
-    let cnames = fse.readdirSync(srcpath)
-    cnames.forEach(cname=> {
-      let dpath = path.resolve(upath, 'pouch', cname)
-      try {
-        fse.mkdirSync(dpath, 0o777)
-      } catch (err) {
-        log('__ERR', err)
-      }
-    })
-  } catch (err) {
-    log('__ERR', err)
-  }
+  // try {
+  //   // fse.mkdirSync(pouchpath, 700)
+  //   let cnames = fse.readdirSync(srcpath)
+  //   cnames.forEach(cname=> {
+  //     let dpath = path.resolve(upath, 'pouch', cname)
+  //     try {
+  //       fse.mkdirSync(dpath, 0o777)
+  //     } catch (err) {
+  //       log('__ERR', err)
+  //     }
+  //   })
+  // } catch (err) {
+  //   log('__ERR', err)
+  // }
   try {
     fse.ensureDirSync(pouchpath)
     fse.copySync(srcpath, pouchpath, {
