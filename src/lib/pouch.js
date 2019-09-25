@@ -24,8 +24,8 @@ export function createCfg (apath, upath) {
   let pouchpath = path.resolve(upath, 'pouch')
   fse.ensureDirSync(pouchpath)
   let dnames = fse.readdirSync(pouchpath)
-  if (!dnames.length) return installDBs(apath, upath)
-  else return checkCfg(apath, upath, dnames)
+  if (!dnames.length) dnames = installDBs(apath, upath)
+  return checkCfg(apath, upath, dnames)
 }
 
 function checkCfg(apath, upath, dnames) {
@@ -45,7 +45,7 @@ function checkCfg(apath, upath, dnames) {
       })
   }))
     .then(infos=> {
-      setDBs (upath, dnames)
+      // setDBs (upath, dnames)
       infos = _.compact(infos)
       infos = _.filter(infos, dict=> { return dict.dname != 'flex' })
       let cfg = infos.map((dict, idx)=> { return {dname: dict.dname, idx: dict.idx, active: true, sync: true, size: dict.doc_count, langs: '', info: '' } } )
@@ -58,8 +58,7 @@ export function setDBs (upath, dnames) {
   log('--setDBs--', dnames)
   dbs = []
   dnames.forEach((dn, idx) => {
-    if (dn == 'flex') return
-    if (dn == 'terms') return
+    if (dn == 'flex' || dn == 'terms') return
     let dpath = path.resolve(upath, 'pouch', dn)
     let pouch = new PouchDB(dpath)
     pouch.dname = dn
@@ -82,7 +81,9 @@ function installDBs (apath, upath) {
       overwrite: true
     })
     let dnames = fse.readdirSync(pouchpath)
-    checkCfg(apath, upath, dnames)
+    log('--install-dbs-dnames--', dnames)
+    return dnames
+    // return checkCfg(apath, upath, dnames)
   } catch (err) {
     log('ERR copying default DBs', err)
   }

@@ -13,7 +13,7 @@ let log = console.log
 const d = require('debug')('app')
 
 export function checkConnection (upath, dnames) { setDBs(upath, dnames) }
-export function getCfg (apath, upath) { createCfg(apath, upath) }
+export function getCfg (apath, upath) { return createCfg(apath, upath) }
 export function readDictionary (upath, dname) { readDB(upath, dname) }
 export function delDictionary (upath, dname) { delDB(upath, dname) }
 
