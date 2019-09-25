@@ -36,7 +36,7 @@ function checkCfg(apath, upath, dnames) {
     let pouch = new PouchDB(dbpath) // проверить skip_setup
     return pouch.info()
       .then(info=> {
-        pouch.close() // windows, fuck it
+        // pouch.close().then(function() {        })
         info.dname = dname
         return info
       })
@@ -50,7 +50,7 @@ function checkCfg(apath, upath, dnames) {
       infos = _.filter(infos, dict=> { return dict.dname != 'flex' })
       let cfg = infos.map((dict, idx)=> { return {dname: dict.dname, idx: dict.idx, active: true, sync: true, size: dict.doc_count, langs: '', info: '' } } )
       log('--init-cfg--', cfg.length)
-      // setDBs (upath, dnames) // can nor be here - must be second call
+      setDBs (upath, dnames)
       return cfg
     })
 }

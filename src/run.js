@@ -41,7 +41,7 @@ if (wordform == 'install') {
     .then(cfg=> {
       let dnames = cfg.map(dict=> { return dict.dname })
       log('getCfg dnames:', dnames)
-      checkConnection(upath, dnames)
+      // checkConnection(upath, dnames)
       wordform  = 'ἀλλότριος'
       antrax(wordform, compound, only)
         .then(res => {
