@@ -47,7 +47,7 @@ if (wordform == 'install') {
   setDBs(upath, dnames)
   createCfgInfos(upath)
     .then(infos=> {
-      log('___db-infos', infos)
+      log('___db-infos', infos, '\n total dbs:', infos.length)
     })
 } else {
   log('=DNAMES=', dnames)

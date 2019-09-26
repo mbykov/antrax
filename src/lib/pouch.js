@@ -23,23 +23,26 @@ let db_comp
 export function createCfg (apath, upath) {
   let pouchpath = path.resolve(upath, 'pouch')
   fse.ensureDirSync(pouchpath)
-  let dnames = fse.readdirSync(pouchpath)
+  let dnames = allDBnames(upath)
   if (!dnames.length) dnames = installDBs(apath, upath)
-  // return checkCfg(apath, upath, dnames)
   return initCfg(dnames)
 }
 
-function initCfg(dnames) {
+function allDBnames(upath) {
+  let pouchpath = path.resolve(upath, 'pouch')
+  let dnames = fse.readdirSync(pouchpath)
   dnames = _.filter(dnames, dname=> { return dname != 'flex' })
-  // let cfg = dnames.map((dname, idx)=> { return {dname: dname, idx: idx, active: true, sync: false, size: 0, langs: '', info: '' } } )
+  return dnames
+}
+
+function initCfg(dnames) {
   let cfg = dnames.map((dname, idx)=> { return {dname: dname, idx: idx, active: true, sync: false } } )
   return cfg
 }
 
 export function createCfgInfos (upath) {
-  let dnames = dbs.map(dname=> { return dname.dname })
-  // log('cfg-infos-DBS', dbs.length, dnames)
-  dnames.push('terms')
+  let dnames = allDBnames(upath)
+  // log('cfg-infos-DBS', dnames)
   return Promise.all(dnames.map(function(dname) {
     let dbpath = path.resolve(upath, 'pouch', dname)
     let pouch = new PouchDB(dbpath, {skip_setup: true})
@@ -48,10 +51,18 @@ export function createCfgInfos (upath) {
         .then(info=> {
           info.dname = dname
           return info
+        })
+        .catch(err=> {
+          if (err.reason == 'missing') return
+          log('catch info ERR', err)
         }),
       pouch.get('description')
         .then(descr=> {
           return descr
+        })
+        .catch(err=> {
+          if (err.reason == 'missing') return
+          log('catch descr ERR', err)
         })
     ])
   }))
@@ -59,8 +70,10 @@ export function createCfgInfos (upath) {
       let infos = []
       dnames.forEach((dname, idx)=> {
         let idescr = infodescrs[idx]
+        if (!idescr) return
         let info = idescr[0]
         let descr = idescr[1]
+        if (!info || !descr) return
         let dbinfo = { dname: dname, name: descr.name, size: info.doc_count, langs: descr.langs, source: descr.source }
         infos.push(dbinfo)
       })
