@@ -55,6 +55,7 @@ export function createCfgInfos (upath) {
         })
         .catch(err=> {
           if (err.reason == 'missing') return
+          else log('catch info ERR', err.reason)
           log('catch info ERR', err)
         }),
       pouch.get('description')
@@ -63,6 +64,7 @@ export function createCfgInfos (upath) {
         })
         .catch(err=> {
           if (err.reason == 'missing') return
+          else log('catch descr ERR', err.reason)
           log('catch descr ERR', err)
         })
     ])
