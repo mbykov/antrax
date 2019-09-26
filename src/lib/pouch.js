@@ -55,16 +55,16 @@ export function createCfgInfos (upath) {
         })
         .catch(err=> {
           if (err.reason == 'missing') return
-          else log('catch info ERR', err.reason)
           log('catch info ERR', err)
         }),
       pouch.get('description')
         .then(descr=> {
+          log('______descr', descr)
+          if (!descr) descr = { name: dname, langs: 'grc', size: 0 }
           return descr
         })
         .catch(err=> {
           if (err.reason == 'missing') return
-          else log('catch descr ERR', err.reason)
           log('catch descr ERR', err)
         })
     ])
