@@ -42,6 +42,8 @@ function initCfg(dnames) {
 
 export function createCfgInfos (upath) {
   let dnames = allDBnames(upath)
+  log('--cfg-infos-upath--', upath)
+  log('--cfg-infos-dnames--', dnames)
   return Promise.all(dnames.map(function(dname) {
     let dbpath = path.resolve(upath, 'pouch', dname)
     let pouch = new PouchDB(dbpath, {skip_setup: true})
@@ -67,6 +69,7 @@ export function createCfgInfos (upath) {
   }))
     .then(infodescrs=> {
       let infos = []
+      log('--cfg-infos-infodescrs--', infodescrs)
       dnames.forEach((dname, idx)=> {
         let idescr = infodescrs[idx]
         if (!idescr) return
