@@ -42,13 +42,10 @@ function initCfg(dnames) {
 
 export function createCfgInfos (upath) {
   let dnames = allDBnames(upath)
-  log('--cfg-infos-upath--', upath)
-  log('--cfg-infos-dnames--', dnames)
-  let infos = []
+  // log('--cfg-infos-dnames--', dnames)
   return Promise.all(dnames.map(function(dname) {
     let dbpath = path.resolve(upath, 'pouch', dname)
     let pouch = new PouchDB(dbpath, {skip_setup: true})
-    log('______info', dname, dbpath)
     return Promise.all([
       pouch.info()
         .then(info=> {
@@ -61,28 +58,26 @@ export function createCfgInfos (upath) {
         }),
       pouch.get('description')
         .then(descr=> {
-          log('______descr', descr)
-          if (!descr) descr = { name: dname, langs: 'grc', size: 0 }
           return descr
         })
         .catch(err=> {
-          // if (err.reason == 'missing') return
-          let errdescr = { name: dname, langs: 'grc', size: 0, fake: true }
-          infos.push(errdescr)
+          if (err.reason == 'missing') return
           log('catch descr ERR', err)
         })
     ])
   }))
     .then(infodescrs=> {
-      // let infos = []
-      log('--cfg-infos-infodescrs--', infodescrs)
+      let infos = []
+      // log('--cfg-infos-infodescrs--', infodescrs)
       dnames.forEach((dname, idx)=> {
-        let idescr = infodescrs[idx]
-        if (!idescr) return
-        let info = idescr[0]
-        let descr = idescr[1]
-        if (!info || !descr) return
-        let dbinfo = { dname: dname, name: descr.name, size: info.doc_count, langs: descr.langs, source: descr.source }
+        let infodescr = infodescrs[idx]
+        if (!infodescr) return
+        let info = infodescr[0]
+        let descr = infodescr[1]
+        if (!info) return
+        if (!descr) descr = { name: dname, langs: 'grc' }
+        let dbinfo = { dname: dname, name: descr.name, size: info.doc_count, langs: descr.langs } // , source: descr.source
+        if (!descr) dbinfo.fake = true
         infos.push(dbinfo)
       })
       return infos
