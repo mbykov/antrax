@@ -1,6 +1,6 @@
 //
 import _ from 'lodash'
-import { createCfg, getTerms, getFlex, queryDBs, setDBs, updateDB, readDB, delDB } from './lib/pouch'
+import { createCfg, createCfgInfos, getTerms, getFlex, queryDBs, setDBs, updateDB, readDB, delDB } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import { makeChains } from './lib/chains'
 import { accents, vowels, aspirations, coronis, corvowels, stressed } from './lib/utils'
@@ -12,10 +12,11 @@ import {oxia, comb, plain, strip} from 'orthos'
 let log = console.log
 const d = require('debug')('app')
 
-export function checkConnection (upath, dnames) { setDBs(upath, dnames) }
-export function getCfg (apath, upath) { return createCfg(apath, upath) }
-export function readDictionary (upath, dname) { readDB(upath, dname) }
-export function delDictionary (upath, dname) { delDB(upath, dname) }
+export function checkConnection(upath, dnames) { setDBs(upath, dnames) }
+export function getCfg(apath, upath) { return createCfg(apath, upath) }
+export function getCfgInfos(upath) { return createCfgInfos(upath) }
+export function readDictionary(upath, dname) { readDB(upath, dname) }
+export function delDictionary(upath, dname) { delDB(upath, dname) }
 
 // nav.js, i.e. remote пока
 export function updateCurrent (upath, docs) {

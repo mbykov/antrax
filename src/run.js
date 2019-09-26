@@ -2,6 +2,7 @@
 
 import _ from 'lodash'
 import { antrax, getCfg, checkConnection, readDictionary } from './index'
+import { createCfgInfos } from './lib/pouch'
 import { setDBs } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import {accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs} from './lib/utils'
@@ -40,25 +41,14 @@ if (wordform == 'install') {
   let cfg = getCfg(apath, upath)
   let dnames = cfg.map(dict=> { return dict.dname })
   log('___install dnames', dnames)
-  // setDBs(upath, dnames)
-
-  // getCfg(apath, upath)
-  //   .then(cfg=> {
-  //     let dnames = cfg.map(dict=> { return dict.dname })
-  //     log('getCfg dnames:', dnames)
-  //     // checkConnection(upath, dnames)
-  //     wordform  = 'ἀλλότριος'
-  //     antrax(wordform, compound, only)
-  //       .then(res => {
-  //         if (!res) return log('no result')
-  //         print (res)
-  //         // log('INSTALL CFG', cfg)
-  //         console.timeEnd("queryTime");
-  //       }).catch(function (err) {
-  //         console.log('ANTRAX-ERR', err)
-  //       })
-  //   })
-
+} else if (wordform == 'infos') {
+  let cfg = getCfg(apath, upath)
+  let dnames = cfg.map(dict=> { return dict.dname })
+  setDBs(upath, dnames)
+  createCfgInfos(upath)
+    .then(infos=> {
+      log('___db-infos', infos)
+    })
 } else {
   log('=DNAMES=', dnames)
   setDBs(upath, dnames)

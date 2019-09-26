@@ -30,39 +30,46 @@ export function createCfg (apath, upath) {
 }
 
 function initCfg(dnames) {
-  let cfg = dnames.map((dname, idx)=> { return {dname: dname, idx: idx, active: true, sync: true, size: 0, langs: '', info: '' } } )
+  dnames = _.filter(dnames, dname=> { return dname != 'flex' })
+  // let cfg = dnames.map((dname, idx)=> { return {dname: dname, idx: idx, active: true, sync: false, size: 0, langs: '', info: '' } } )
+  let cfg = dnames.map((dname, idx)=> { return {dname: dname, idx: idx, active: true, sync: false } } )
   return cfg
 }
 
-function checkCfg(apath, upath, dnames) {
-  log('--checkCfg--init-dnames--', dnames)
-  let pouchpath = path.resolve(upath, 'pouch')
+export function createCfgInfos (upath) {
+  let dnames = dbs.map(dname=> { return dname.dname })
+  // log('cfg-infos-DBS', dbs.length, dnames)
+  dnames.push('terms')
   return Promise.all(dnames.map(function(dname) {
-    let dbpath = [pouchpath, dname].join('/')
-    let pouch = new PouchDB(dbpath) // проверить skip_setup
-    return pouch.info()
-      .then(info=> {
-        // pouch.close() //.then(function() {        })
-        info.dname = dname
-        return info
-      })
-      .catch(err=> {
-        if (err.reason == 'missing') return
-        log('CFG-ERR:', err.reason)
-      })
+    let dbpath = path.resolve(upath, 'pouch', dname)
+    let pouch = new PouchDB(dbpath, {skip_setup: true})
+    return Promise.all([
+      pouch.info()
+        .then(info=> {
+          info.dname = dname
+          return info
+        }),
+      pouch.get('description')
+        .then(descr=> {
+          return descr
+        })
+    ])
   }))
-    .then(infos=> {
-      infos = _.compact(infos)
-      infos = _.filter(infos, dict=> { return dict.dname != 'flex' })
-      let cfg = infos.map((dict, idx)=> { return {dname: dict.dname, idx: dict.idx, active: true, sync: true, size: dict.doc_count, langs: '', info: '' } } )
-      setDBs(upath, dnames)
-      log('--init-cfg--', cfg.length)
-      return cfg
+    .then(infodescrs=> {
+      let infos = []
+      dnames.forEach((dname, idx)=> {
+        let idescr = infodescrs[idx]
+        let info = idescr[0]
+        let descr = idescr[1]
+        let dbinfo = { dname: dname, name: descr.name, size: info.doc_count, langs: descr.langs, source: descr.source }
+        infos.push(dbinfo)
+      })
+      return infos
     })
 }
 
 export function setDBs (upath, dnames) {
-  log('--setDBs--', dnames)
+  // log('--setDBs--', dnames)
   dbs = []
   dnames.forEach((dn, idx) => {
     if (dn == 'flex' || dn == 'terms') return
@@ -88,7 +95,7 @@ function installDBs (apath, upath) {
       overwrite: true
     })
     let dnames = fse.readdirSync(pouchpath)
-    log('--install-dbs-dnames--', dnames)
+    // log('--install-dbs-dnames--', dnames)
     return dnames
   } catch (err) {
     log('ERR copying default DBs', err)
@@ -236,5 +243,30 @@ function determineKey(rdocs) {
       }
     })
   })
-
 }
+
+// function checkCfg(apath, upath, dnames) {
+//   // log('--checkCfg--init-dnames--', dnames)
+//   let pouchpath = path.resolve(upath, 'pouch')
+//   return Promise.all(dnames.map(function(dname) {
+//     let dbpath = [pouchpath, dname].join('/')
+//     let pouch = new PouchDB(dbpath) // проверить skip_setup
+//     return pouch.info()
+//       .then(info=> {
+//         info.dname = dname
+//         return info
+//       })
+//       .catch(err=> {
+//         if (err.reason == 'missing') return
+//         log('CFG-ERR:', err.reason)
+//       })
+//   }))
+//     .then(infos=> {
+//       infos = _.compact(infos)
+//       infos = _.filter(infos, dict=> { return dict.dname != 'flex' })
+//       let cfg = infos.map((dict, idx)=> { return {dname: dict.dname, idx: dict.idx, active: true, sync: false, size: dict.doc_count, langs: '', info: '' } } )
+//       setDBs(upath, dnames)
+//       log('--init-cfg--', cfg.length)
+//       return cfg
+//     })
+// }
