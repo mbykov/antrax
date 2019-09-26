@@ -261,28 +261,10 @@ function determineKey(rdocs) {
   })
 }
 
-// function checkCfg(apath, upath, dnames) {
-//   // log('--checkCfg--init-dnames--', dnames)
-//   let pouchpath = path.resolve(upath, 'pouch')
-//   return Promise.all(dnames.map(function(dname) {
-//     let dbpath = [pouchpath, dname].join('/')
-//     let pouch = new PouchDB(dbpath) // проверить skip_setup
-//     return pouch.info()
-//       .then(info=> {
-//         info.dname = dname
-//         return info
-//       })
-//       .catch(err=> {
-//         if (err.reason == 'missing') return
-//         log('CFG-ERR:', err.reason)
-//       })
-//   }))
-//     .then(infos=> {
-//       infos = _.compact(infos)
-//       infos = _.filter(infos, dict=> { return dict.dname != 'flex' })
-//       let cfg = infos.map((dict, idx)=> { return {dname: dict.dname, idx: dict.idx, active: true, sync: false, size: dict.doc_count, langs: '', info: '' } } )
-//       setDBs(upath, dnames)
-//       log('--init-cfg--', cfg.length)
-//       return cfg
-//     })
-// }
+export function getLSJ(str) {
+  let lsj = _.find(dbs, db=> { return db.dname == 'lsj' })
+  lsj.get('description')
+    .then(descr=> {
+      return descr
+    })
+}
