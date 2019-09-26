@@ -42,7 +42,6 @@ function initCfg(dnames) {
 
 export function createCfgInfos (upath) {
   let dnames = allDBnames(upath)
-  // log('cfg-infos-DBS', dnames)
   return Promise.all(dnames.map(function(dname) {
     let dbpath = path.resolve(upath, 'pouch', dname)
     let pouch = new PouchDB(dbpath, {skip_setup: true})
