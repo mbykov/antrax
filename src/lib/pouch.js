@@ -44,9 +44,11 @@ export function createCfgInfos (upath) {
   let dnames = allDBnames(upath)
   log('--cfg-infos-upath--', upath)
   log('--cfg-infos-dnames--', dnames)
+  let infos = []
   return Promise.all(dnames.map(function(dname) {
     let dbpath = path.resolve(upath, 'pouch', dname)
     let pouch = new PouchDB(dbpath, {skip_setup: true})
+    log('______info', dname, dbpath)
     return Promise.all([
       pouch.info()
         .then(info=> {
@@ -64,13 +66,15 @@ export function createCfgInfos (upath) {
           return descr
         })
         .catch(err=> {
-          if (err.reason == 'missing') return
+          // if (err.reason == 'missing') return
+          let errdescr = { name: dname, langs: 'grc', size: 0, fake: true }
+          infos.push(errdescr)
           log('catch descr ERR', err)
         })
     ])
   }))
     .then(infodescrs=> {
-      let infos = []
+      // let infos = []
       log('--cfg-infos-infodescrs--', infodescrs)
       dnames.forEach((dname, idx)=> {
         let idescr = infodescrs[idx]
