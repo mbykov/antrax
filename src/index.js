@@ -18,6 +18,8 @@ export function getCfgInfos(upath) { return createCfgInfos(upath) }
 export function readDictionary(upath, dname) { readDB(upath, dname) }
 export function delDictionary(upath, dname) { delDB(upath, dname) }
 
+export function qDBs() { queryDBs() }
+
 // nav.js, i.e. remote пока
 export function updateCurrent (upath, docs) {
   let dname = 'local'
