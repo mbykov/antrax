@@ -4,7 +4,14 @@ import _ from 'lodash'
 let path = require('path')
 const fse = require('fs-extra');
 const PouchDB = require('pouchdb')
-PouchDB.plugin(require('pouchdb-load'))
+// PouchDB.plugin(require('pouchdb-load'))
+
+// STREAM
+var replicationStream = require('pouchdb-replication-stream');
+var MemoryStream = require('memorystream');
+PouchDB.plugin(replicationStream.plugin);
+PouchDB.adapter('writableStream', replicationStream.adapters.writableStream);
+var stream = new MemoryStream();
 
 import { verbkeys } from './verb-reg-keys'
 import { namekeys } from './name-reg-keys'
@@ -30,27 +37,28 @@ export function initialReplication(upath, cfg) {
   fse.ensureDirSync(pouchpath)
   let dnames = cfg.map(db=> { return db.dname })
   log('_________________________initialReplication', dnames)
-  dnames = ['terms', 'wkt', 'flex', 'lsj']
+  dnames = ['terms', 'wkt', 'flex']
 
   return Promise.all(dnames.map(function(dname) {
-    let dumppath = [dumphost, 'dumps-grc', dname].join('/')
-    dumppath = [dumppath , 'dump'].join('.')
-    // log('_________________________dumppath', dumppath)
-    let dpath = path.resolve(upath, 'pouch', dname)
-    let pouch = new PouchDB(dpath)
-    return pouch.load(dumppath)
-      .then(cfg=>{
-        // return pouch.replicate.from('http://mysite.com/mydb');
-        pouch.info()
-          .then(info=> {
-            log('____db-info', dname, info.doc_count)
-          })
-        return dname
-      })
-      .catch(function (err) {
-        log('ERR-initialReplication', err.message)
-        return []
-      })
+    return loadDump (upath, dname)
+    // let dumppath = [dumphost, 'dumps-grc', dname].join('/')
+    // dumppath = [dumppath , 'dump'].join('.')
+    // // log('_________________________dumppath', dumppath)
+    // let dpath = path.resolve(upath, 'pouch', dname)
+    // let pouch = new PouchDB(dpath)
+    // return pouch.load(dumppath)
+    //   .then(cfg=>{
+    //     // return pouch.replicate.from('http://mysite.com/mydb');
+    //     pouch.info()
+    //       .then(info=> {
+    //         log('____db-info', dname, info.doc_count)
+    //       })
+    //     return dname
+    //   })
+    //   .catch(function (err) {
+    //     log('ERR-initialReplication', err.message)
+    //     return []
+    //   })
   }))
     .then(installed=>{
       cfg.forEach(dict=> {
@@ -62,21 +70,70 @@ export function initialReplication(upath, cfg) {
       log('ERR-initialReplication')
       return []
     })
+}
 
-  return Promise.resolve(cfg)
-  // return rp(options)
-  //   .then(function (rdnames) {
-  //     rdnames = _.filter(rdnames, dict=> { return dict[0] != '_' })
-  //     rdnames = _.intersection(rdnames, greekONLY)
-  //     return remoteCfg(rdnames)
-  //       .then(cfg=>{
-  //         return cfg
-  //       })
-  //   })
-  //   .catch(function (err) {
-  //     log('ERR-request')
-  //     return []
-  //   })
+function loadDump (upath, dname) {
+  let dumppath = [dumphost, 'dumps-grc', dname].join('/')
+  dumppath = [dumppath , 'dump'].join('.')
+  // log('_________________________dumppath', dumppath)
+  let dpath = path.resolve(upath, 'pouch', dname)
+  // log('_________________________dpath', dpath)
+  let pouch = new PouchDB(dpath)
+  return pouch.load(dumppath)
+    .then(cfg=>{
+      // return pouch.replicate.from('http://mysite.com/mydb');
+      pouch.info()
+        .then(info=> {
+          log('____db-info', dname, info)
+        })
+      return dname
+    })
+    .catch(function (err) {
+      log('ERR-loadDump', err.message)
+      return
+    })
+}
+
+export function cloneDB (upath, cfg, dname) {
+  log('__cloneDB', dname)
+  return loadDump (upath, dname)
+    .then(cfg=>{
+      return dname
+    })
+    .catch(function (err) {
+      log('ERR-initialReplication', err.message)
+      return []
+    })
+}
+
+export function streamDB (upath, dname) {
+  log('__streamDB', dname)
+  let dpath = path.resolve(upath, 'pouch', dname)
+  // log('_________________________dpath', dpath)
+  let pouch = new PouchDB(dpath)
+  let source = new PouchDB('http://diglossa.org:5984/terms');
+
+  let size = 1
+  stream.on('data', function(chunk) {
+    size += chunk.toString().length
+    log('_____DUMPED:', size)
+  })
+
+  return Promise.all([
+    source.dump(stream),
+    pouch.load(stream)
+  ])
+  // это убрать?
+    .then(function () {
+      console.log('Hooray the stream replication is complete!');
+      pouch.info()
+        .then(info=> {
+          log('____db-info', dname, info)
+        })
+    }).catch(function (err) {
+      console.log('oh no an error', err.message);
+    })
+
 }
 
 export function get_Cfg (apath, upath) {

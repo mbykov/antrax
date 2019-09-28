@@ -3,10 +3,11 @@
 import _ from 'lodash'
 import { antrax } from './index'
 import { getCfg, getCfgInfos, readCfg } from './lib/pouch'
-import { checkConnection, initialReplication } from './lib/pouch'
+import { checkConnection, initialReplication, cloneDB, streamDB } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import {accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs} from './lib/utils'
 const d = require('debug')('app')
+const fse = require('fs-extra');
 
 let util = require('util');
 const path = require('path')
@@ -38,20 +39,37 @@ dnames = ['wkt', 'lsj', 'dvr', 'local', 'souda', 'terms']
 // dnames = ['wkt', 'lsj', 'terms']
 // dnames = ['souda']
 
+let cfg = [{dname: 'terms'}, {dname: 'flex'}, {dname: 'wkt'}, {dname: 'lsj'}, {dname: 'dvr'}, {dname: 'souda'} ]
 if (wordform == 'install') {
-  let cfg = [{dname: 'terms'}, {dname: 'flex'}, {dname: 'wkt'}, {dname: 'lsj'}, {dname: 'dvr'}, {dname: 'souda'} ]
   initialReplication(upath, cfg)
-      .then(cfg=>{
-        log('___run-cfg', cfg)
-      })
-  // getCfg(apath, upath)
-  //     .then(cfg=>{
-  //       let dnames = cfg.map(dict=> { return dict.dname })
-  //       log('___cfg-dnames', dnames)
-  //     })
+    .then(cfg=>{ log('___run-cfg', cfg) })
+    .catch(err=>{ log('ERR-initialReplication', err.message) })
+} else if (wordform == 'stream') {
+  // yarn start stream &> /dev/null
+  streamDB(upath, 'terms')
+    .then(function () {
+      console.log('Hooray the stream replication is complete!');
+    }).catch(function (err) {
+      console.log('oh no an error', err.message);
+    })
+
+
+
+
+} else if (wordform == 'clone') {
+  // беру резмер db из cfg и проверяю размер файла периодически. Ну очень криво, но...
+  let dname = 'terms'
+  let termdb = _.find(cfg, db=> { return db.dname == dname})
+  let timerId = setInterval(() => log('--------------tick'), 1000);
+  // setTimeout(() => { clearInterval(timerId); log('-----------------stop'); }, 10000);
+  // var stats = fse.statSync("myfile.txt")
+  // var fileSizeInBytes = stats["size"]
+  cloneDB(upath, cfg, dname)
+    .then(res=>{ log('___run-clone', res), clearInterval(timerId) })
+    .catch(err=>{ log('ERR-cloneDB', err.message) })
 } else if (wordform == 'cfg') {
-  let cfg = readCfg(apath)
-  log('__cfg', cfg, cfg.length)
+  // let cfg = readCfg(apath)
+  // log('__cfg', cfg, cfg.length)
 } else if (wordform == 'infos') {
   // let cfg = getCfg(apath, upath)
   // let dnames = cfg.map(dict=> { return dict.dname })
