@@ -1,9 +1,9 @@
 // simple runner for src/antrax
 
 import _ from 'lodash'
-import { antrax, getCfg, checkConnection, readDictionary } from './index'
-import { createCfgInfos, readCfg } from './lib/pouch'
-import { setDBs } from './lib/pouch'
+import { antrax } from './index'
+import { getCfg, getCfgInfos, readCfg } from './lib/pouch'
+import { checkConnection, initialReplication } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import {accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs} from './lib/utils'
 const d = require('debug')('app')
@@ -39,25 +39,30 @@ dnames = ['wkt', 'lsj', 'dvr', 'local', 'souda', 'terms']
 // dnames = ['souda']
 
 if (wordform == 'install') {
-  getCfg(apath, upath)
+  let cfg = [{dname: 'terms'}, {dname: 'flex'}, {dname: 'wkt'}, {dname: 'lsj'}, {dname: 'dvr'}, {dname: 'souda'} ]
+  initialReplication(upath, cfg)
       .then(cfg=>{
-        let dnames = cfg.map(dict=> { return dict.dname })
-        log('___cfg-dnames', dnames)
+        log('___run-cfg', cfg)
       })
+  // getCfg(apath, upath)
+  //     .then(cfg=>{
+  //       let dnames = cfg.map(dict=> { return dict.dname })
+  //       log('___cfg-dnames', dnames)
+  //     })
 } else if (wordform == 'cfg') {
   let cfg = readCfg(apath)
   log('__cfg', cfg, cfg.length)
 } else if (wordform == 'infos') {
   // let cfg = getCfg(apath, upath)
   // let dnames = cfg.map(dict=> { return dict.dname })
-  // setDBs(upath, dnames)
-  createCfgInfos(upath)
+  // checkConnection, (upath, dnames)
+  getCfgInfos(upath)
     .then(infos=> {
       log('___db-infos', infos, '\n total dbs:', infos.length)
     })
 } else {
   log('=DNAMES=', dnames)
-  setDBs(upath, dnames)
+  checkConnection, (upath, dnames)
 
   antrax(wordform, compound, only)
     .then(res => {

@@ -13,15 +13,73 @@ const vkeys = _.values(verbkeys)
 import {oxia, comb, plain} from 'orthos'
 // import {oxia, comb, plain} from '../../../../greek/orthos'
 
-const log = console.log
-const actives = ['flex', 'terms', 'wkt', 'lsj']
-let dbs = []
+const request = require('request')
+const rp = require('request-promise')
 
-export function initialReplication() {
-  log('_________________________initialReplication')
+const log = console.log
+let dbs = []
+const actives = ['flex', 'terms', 'wkt', 'lsj']
+const rpopts = {
+  "uri": 'http://diglossa.org:5984/',
+  json: true
+}
+const dumphost = 'http://diglossa.org'
+
+export function initialReplication(upath, cfg) {
+  let pouchpath = path.resolve(upath, 'pouch')
+  fse.ensureDirSync(pouchpath)
+  let dnames = cfg.map(db=> { return db.dname })
+  log('_________________________initialReplication', dnames)
+  dnames = ['terms', 'wkt', 'flex', 'lsj']
+
+  return Promise.all(dnames.map(function(dname) {
+    let dumppath = [dumphost, 'dumps-grc', dname].join('/')
+    dumppath = [dumppath , 'dump'].join('.')
+    // log('_________________________dumppath', dumppath)
+    let dpath = path.resolve(upath, 'pouch', dname)
+    let pouch = new PouchDB(dpath)
+    return pouch.load(dumppath)
+      .then(cfg=>{
+        // return pouch.replicate.from('http://mysite.com/mydb');
+        pouch.info()
+          .then(info=> {
+            log('____db-info', dname, info.doc_count)
+          })
+        return dname
+      })
+      .catch(function (err) {
+        log('ERR-initialReplication', err.message)
+        return []
+      })
+  }))
+    .then(installed=>{
+      cfg.forEach(dict=> {
+        if (installed.includes(dict.dname)) dict.active = true, dict.sync = true
+      })
+      return cfg
+    })
+    .catch(function (err) {
+      log('ERR-initialReplication')
+      return []
+    })
+
+  return Promise.resolve(cfg)
+  // return rp(options)
+  //   .then(function (rdnames) {
+  //     rdnames = _.filter(rdnames, dict=> { return dict[0] != '_' })
+  //     rdnames = _.intersection(rdnames, greekONLY)
+  //     return remoteCfg(rdnames)
+  //       .then(cfg=>{
+  //         return cfg
+  //       })
+  //   })
+  //   .catch(function (err) {
+  //     log('ERR-request')
+  //     return []
+  //   })
 }
 
-export function createCfg (apath, upath) {
+export function get_Cfg (apath, upath) {
   let pouchpath = path.resolve(upath, 'pouch')
   fse.ensureDirSync(pouchpath)
   let dnames = allDBnames(upath)
@@ -41,7 +99,7 @@ function initCfg(dnames) {
   return cfg
 }
 
-export function createCfgInfos (upath) {
+export function getCfgInfos (upath) {
   let dnames = allDBnames(upath)
   log('--cfg-infos-dnames--', dnames)
   return Promise.all(dnames.map(function(dname) {
@@ -85,7 +143,7 @@ export function createCfgInfos (upath) {
     })
 }
 
-export function setDBs (upath, dnames) {
+export function checkConnection (upath, dnames) {
   log('--setDBs--', dnames)
   dnames.push('flex')
   dbs = []
@@ -96,10 +154,6 @@ export function setDBs (upath, dnames) {
     pouch.dname = dn
     dbs.push(pouch)
   })
-  // let flexpath = path.resolve(upath, 'pouch', 'flex')
-  // db_flex = new PouchDB(flexpath)
-  // let termpath = path.resolve(upath, 'pouch', 'terms')
-  // db_terms = new PouchDB(termpath)
 }
 
 export function readCfg(apath) {
@@ -119,7 +173,7 @@ export function readCfg(apath) {
   return cfg
 }
 
-function installDBs (apath, upath) {
+function install_DBs (apath, upath) {
   let srcpath = path.join(apath, 'dumps').replace('app.asar', 'app.asar.unpacked')
   let pouchpath = path.resolve(upath, 'pouch')
   let cfg = readCfg(apath)
@@ -238,7 +292,7 @@ function createLocal(upath, docs) {
     })
 }
 
-export function readDB(upath, dname) {
+export function readDictionary(upath, dname) {
   let local = setLocalDB(upath, dname)
   return local.allDocs({ include_docs: true, startkey: 'α', endkey: 'ω\ufff0'  })
     .then(res=> {
@@ -247,9 +301,9 @@ export function readDB(upath, dname) {
     })
 }
 
-export function updateDB(upath, dname, newdocs) {
+export function updateCurrent(upath, dname, newdocs) {
   determineKey(newdocs)
-  return readDB(upath, dname)
+  return readDictionary(upath, dname)
     .then(olddocs=> {
       // log('UPDATE old LOCAL:', olddocs)
       // log('UPDATE new LOCA:L', newdocs)
@@ -283,7 +337,7 @@ function setLocalDB(upath, dname) {
   return local
 }
 
-export function delDB(upath, dname) {
+export function delDictionary(upath, dname) {
   let local = setLocalDB(upath, dname)
   return local.destroy().then(function (response) {
     return true
