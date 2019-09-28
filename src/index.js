@@ -14,10 +14,12 @@ const d = require('debug')('app')
 
 export function checkConnection(upath, dnames) { setDBs(upath, dnames) }
 export function getCfg(apath, upath) { return createCfg(apath, upath) }
+// export function initialReplication(upath) { return createCfg(upath) }
 export function getCfgInfos(upath) { return createCfgInfos(upath) }
 export function readDictionary(upath, dname) { readDB(upath, dname) }
 export function delDictionary(upath, dname) { delDB(upath, dname) }
-export function getDescr() { return getLSJ() }
+
+
 
 // nav.js, i.e. remote пока
 export function updateCurrent (upath, docs) {

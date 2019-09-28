@@ -2,7 +2,7 @@
 
 import _ from 'lodash'
 import { antrax, getCfg, checkConnection, readDictionary } from './index'
-import { createCfgInfos } from './lib/pouch'
+import { createCfgInfos, readCfg } from './lib/pouch'
 import { setDBs } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import {accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs} from './lib/utils'
@@ -27,24 +27,30 @@ console.time("queryTime");
 
 // flex, comp - already run
 let upath = path.resolve(process.env.HOME, '.config/Biblos.js (development)')
+// let upath = path.resolve(process.env.HOME, '.config/Biblos-devel.js')
 let apath = '/home/michael/a/atemplate'
 let dnames
 dnames = ['wkt']
 // dnames = ['lsj']
 // dnames = ['dvr']
 // dnames = ['wkt', 'local']
-dnames = ['wkt', 'lsj', 'dvr', 'local', 'souda']
+dnames = ['wkt', 'lsj', 'dvr', 'local', 'souda', 'terms']
 // dnames = ['wkt', 'lsj', 'terms']
 // dnames = ['souda']
 
 if (wordform == 'install') {
-  let cfg = getCfg(apath, upath)
-  let dnames = cfg.map(dict=> { return dict.dname })
-  log('___install dnames', dnames)
+  getCfg(apath, upath)
+      .then(cfg=>{
+        let dnames = cfg.map(dict=> { return dict.dname })
+        log('___cfg-dnames', dnames)
+      })
+} else if (wordform == 'cfg') {
+  let cfg = readCfg(apath)
+  log('__cfg', cfg, cfg.length)
 } else if (wordform == 'infos') {
-  let cfg = getCfg(apath, upath)
-  let dnames = cfg.map(dict=> { return dict.dname })
-  setDBs(upath, dnames)
+  // let cfg = getCfg(apath, upath)
+  // let dnames = cfg.map(dict=> { return dict.dname })
+  // setDBs(upath, dnames)
   createCfgInfos(upath)
     .then(infos=> {
       log('___db-infos', infos, '\n total dbs:', infos.length)

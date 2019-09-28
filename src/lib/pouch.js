@@ -4,28 +4,29 @@ import _ from 'lodash'
 let path = require('path')
 const fse = require('fs-extra');
 const PouchDB = require('pouchdb')
+PouchDB.plugin(require('pouchdb-load'))
 
 import { verbkeys } from './verb-reg-keys'
 import { namekeys } from './name-reg-keys'
 const nkeys = _.values(namekeys)
 const vkeys = _.values(verbkeys)
-
 import {oxia, comb, plain} from 'orthos'
 // import {oxia, comb, plain} from '../../../../greek/orthos'
 
 const log = console.log
-
+const actives = ['flex', 'terms', 'wkt', 'lsj']
 let dbs = []
-let db_flex
-let db_terms
-let db_comp
+
+export function initialReplication() {
+  log('_________________________initialReplication')
+}
 
 export function createCfg (apath, upath) {
   let pouchpath = path.resolve(upath, 'pouch')
   fse.ensureDirSync(pouchpath)
   let dnames = allDBnames(upath)
-  if (!dnames.length) dnames = installDBs(apath, upath)
-  return initCfg(dnames)
+  if (!dnames.length) return installDBs(apath, upath)
+  return Promise.resolve(initCfg(dnames))
 }
 
 function allDBnames(upath) {
@@ -42,7 +43,7 @@ function initCfg(dnames) {
 
 export function createCfgInfos (upath) {
   let dnames = allDBnames(upath)
-  // log('--cfg-infos-dnames--', dnames)
+  log('--cfg-infos-dnames--', dnames)
   return Promise.all(dnames.map(function(dname) {
     let dbpath = path.resolve(upath, 'pouch', dname)
     let pouch = new PouchDB(dbpath, {skip_setup: true})
@@ -85,23 +86,74 @@ export function createCfgInfos (upath) {
 }
 
 export function setDBs (upath, dnames) {
-  // log('--setDBs--', dnames)
+  log('--setDBs--', dnames)
+  dnames.push('flex')
   dbs = []
   dnames.forEach((dn, idx) => {
-    if (dn == 'flex' || dn == 'terms') return
+    // if (dn == 'flex' || dn == 'terms') return
     let dpath = path.resolve(upath, 'pouch', dn)
     let pouch = new PouchDB(dpath)
     pouch.dname = dn
     dbs.push(pouch)
   })
+  // let flexpath = path.resolve(upath, 'pouch', 'flex')
+  // db_flex = new PouchDB(flexpath)
+  // let termpath = path.resolve(upath, 'pouch', 'terms')
+  // db_terms = new PouchDB(termpath)
+}
 
-  let flexpath = path.resolve(upath, 'pouch', 'flex')
-  db_flex = new PouchDB(flexpath)
-  let termpath = path.resolve(upath, 'pouch', 'terms')
-  db_terms = new PouchDB(termpath)
+export function readCfg(apath) {
+  let cfg = []
+  let srcpath = path.join(apath, 'dumps').replace('app.asar', 'app.asar.unpacked')
+  let filenames = fse.readdirSync(srcpath)
+  let descrnames = _.filter(filenames, fn=> { return fn.split('.')[1] == 'json'})
+  descrnames = _.filter(descrnames, dname=> { return dname != 'flex.json'} )
+  descrnames.forEach(descrname=>{
+    let dpath = path.resolve(srcpath, descrname)
+    let dname = descrname.replace('.json', '')
+    if (dname == 'flex') return
+    let descr = fse.readJsonSync(dpath)
+    if (actives.includes(dname)) descr.active = true, descr.sync = true
+    cfg.push(descr)
+  })
+  return cfg
 }
 
 function installDBs (apath, upath) {
+  let srcpath = path.join(apath, 'dumps').replace('app.asar', 'app.asar.unpacked')
+  let pouchpath = path.resolve(upath, 'pouch')
+  let cfg = readCfg(apath)
+
+  fse.emptyDirSync(pouchpath)
+  let filenames = fse.readdirSync(srcpath)
+  let dumpnames = _.filter(filenames, fn=> { return fn.split('.')[1] == 'dump'})
+  // let descrnames = _.filter(filenames, fn=> { return fn.split('.')[1] == 'json'})
+  log('_________dumpnames', dumpnames)
+
+  return Promise.all(dumpnames.map(function (dumpname) {
+    let dname = dumpname.split('.')[0]
+    let dpath = path.resolve(upath, 'pouch', dname)
+    log('__ DNAME', dumpname, dname, dpath)
+    let pouch = new PouchDB(dpath)
+    pouch.dname = dname
+    dbs.push(pouch)
+
+    if (!actives.includes(dname)) return
+    let dumppath = path.resolve(srcpath, dumpname)
+    let dumpstr = fse.readFileSync(dumppath, 'utf8')
+    log('__loading string...', dumpname, dumppath, dumpstr.length)
+    return pouch.load(dumpstr)
+  })).then(function () {
+    let dnames = dbs.map(db=> { return db.dname })
+    log('_____dump done loading, dnames:', dnames)
+    let cfg = initCfg(dnames)
+    return cfg
+  }).catch(function (err) {
+    log('_____dump ERR', err)
+  })
+}
+
+function installDBs_copy (apath, upath) {
   let srcpath = path.join(apath, 'pouch').replace('app.asar', 'app.asar.unpacked')
   let pouchpath = path.resolve(upath, 'pouch')
 
@@ -137,6 +189,7 @@ export function queryDBs (keys) {
 }
 
 export function getFlex (keys) {
+  let db_flex = _.find(dbs, db=> { return db.dname == 'flex' })
   return db_flex.allDocs({keys: keys, include_docs: true})
     .then(function(res) {
       let rdocs = _.compact(res.rows.map(row => { return row.doc }))
@@ -151,6 +204,7 @@ export function getFlex (keys) {
 }
 
 export function getTerms (wfs) {
+  let db_terms = _.find(dbs, db=> { return db.dname == 'terms' })
   return db_terms.allDocs({keys: wfs, include_docs: true})
     .then(function(res) {
       let rdocs = _.compact(res.rows.map(row => { return row.doc }))
@@ -262,8 +316,8 @@ function determineKey(rdocs) {
 }
 
 export function getLSJ(str) {
-  let lsj = _.find(dbs, db=> { return db.dname == 'lsj' })
-  lsj.get('description')
+  let lsj = _.find(dbs, db=> { return db.dname == str })
+  return lsj.get('description')
     .then(descr=> {
       return descr
     })
