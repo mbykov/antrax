@@ -52,11 +52,7 @@ if (wordform == 'install') {
     }).catch(function (err) {
       console.log('oh no an error', err.message);
     })
-
-
-
-
-} else if (wordform == 'clone') {
+} else if (wordform == 'clone_') {
   // беру резмер db из cfg и проверяю размер файла периодически. Ну очень криво, но...
   let dname = 'terms'
   let termdb = _.find(cfg, db=> { return db.dname == dname})

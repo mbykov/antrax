@@ -7,11 +7,11 @@ const PouchDB = require('pouchdb')
 // PouchDB.plugin(require('pouchdb-load'))
 
 // STREAM
-var replicationStream = require('pouchdb-replication-stream');
-var MemoryStream = require('memorystream');
+let replicationStream = require('pouchdb-replication-stream');
 PouchDB.plugin(replicationStream.plugin);
 PouchDB.adapter('writableStream', replicationStream.adapters.writableStream);
-var stream = new MemoryStream();
+let MemoryStream = require('memorystream');
+let stream = new MemoryStream();
 
 import { verbkeys } from './verb-reg-keys'
 import { namekeys } from './name-reg-keys'
@@ -41,24 +41,6 @@ export function initialReplication(upath, cfg) {
 
   return Promise.all(dnames.map(function(dname) {
     return loadDump (upath, dname)
-    // let dumppath = [dumphost, 'dumps-grc', dname].join('/')
-    // dumppath = [dumppath , 'dump'].join('.')
-    // // log('_________________________dumppath', dumppath)
-    // let dpath = path.resolve(upath, 'pouch', dname)
-    // let pouch = new PouchDB(dpath)
-    // return pouch.load(dumppath)
-    //   .then(cfg=>{
-    //     // return pouch.replicate.from('http://mysite.com/mydb');
-    //     pouch.info()
-    //       .then(info=> {
-    //         log('____db-info', dname, info.doc_count)
-    //       })
-    //     return dname
-    //   })
-    //   .catch(function (err) {
-    //     log('ERR-initialReplication', err.message)
-    //     return []
-    //   })
   }))
     .then(installed=>{
       cfg.forEach(dict=> {
@@ -106,34 +88,44 @@ export function cloneDB (upath, cfg, dname) {
     })
 }
 
-export function streamDB (upath, dname) {
+/*
+  stream работает - перенести size в biblos. Общий размер брать из числа документов, с коэфф. пропорциональности,
+  должно сработать если этот stream б.м. одинаковые чанки генерит, chunk ~ сколько-то docs
+  попробовать cheerio?
+  убрать старый код - getCFg и потомков
+  - отработать добавление нового словаря - должен отобразиться
+  - и пакеты
+  - локальный словарь проверить
+*/
+
+export function streamDB (upath, dname, stream) {
   log('__streamDB', dname)
   let dpath = path.resolve(upath, 'pouch', dname)
   // log('_________________________dpath', dpath)
   let pouch = new PouchDB(dpath)
   let source = new PouchDB('http://diglossa.org:5984/terms');
 
-  let size = 1
-  stream.on('data', function(chunk) {
-    size += chunk.toString().length
-    log('_____DUMPED:', size)
-  })
+  // let size = 1
+  // stream.on('data', function(chunk) {
+  //   size += chunk.toString().length
+  //   log('_____DUMPED:', size)
+  // })
 
   return Promise.all([
     source.dump(stream),
     pouch.load(stream)
   ])
   // это убрать?
-    .then(function () {
-      console.log('Hooray the stream replication is complete!');
-      pouch.info()
-        .then(info=> {
-          log('____db-info', dname, info)
-        })
-    }).catch(function (err) {
-      console.log('oh no an error', err.message);
-    })
-
+    // .then(function () {
+    //   console.log('Hooray the stream replication is complete!');
+    //   pouch.info()
+    //     .then(info=> {
+    //       log('____db-info', dname, info)
+    //     })
+    // })
+    // .catch(function (err) {
+    //   console.log('oh no an error', err.message);
+    // })
 }
 
 export function get_Cfg (apath, upath) {
