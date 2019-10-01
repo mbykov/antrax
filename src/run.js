@@ -2,8 +2,8 @@
 
 import _ from 'lodash'
 import { antrax } from './index'
-import { getCfg, getCfgInfos, readCfg } from './lib/pouch'
-import { checkConnection, initialReplication, cloneDB, streamDB } from './lib/pouch'
+// import { getCfg, getCfgInfos, readCfg } from './lib/pouch'
+import { checkConnection, initialReplication, cloneDB, streamDB, getDB } from './lib/pouch'
 import { segmenter } from './lib/segmenter'
 import {accents as ac, tense, voice, mood, vowels, weaks, affixes, apiaugs, augs, eaug, augmods, apicompats, contrs} from './lib/utils'
 const d = require('debug')('app')
@@ -14,6 +14,9 @@ const path = require('path')
 let log = console.log
 let env = process.env.NODE_ENV
 // let all = {startkey: 'α', endkey: 'ῳ'}
+
+let MemoryStream = require('memorystream');
+let stream = new MemoryStream()
 
 let only, printf
 let compound = false
@@ -35,48 +38,42 @@ dnames = ['wkt']
 // dnames = ['lsj']
 // dnames = ['dvr']
 // dnames = ['wkt', 'local']
-dnames = ['wkt', 'lsj', 'dvr', 'local', 'souda', 'terms']
+// dnames = ['wkt', 'lsj', 'dvr', 'local', 'souda', 'terms']
+dnames = ['wkt', 'lsj', 'dvr', 'souda', 'terms']
 // dnames = ['wkt', 'lsj', 'terms']
 // dnames = ['souda']
 
 let cfg = [{dname: 'terms'}, {dname: 'flex'}, {dname: 'wkt'}, {dname: 'lsj'}, {dname: 'dvr'}, {dname: 'souda'} ]
 if (wordform == 'install') {
+  console.log('installing start');
   initialReplication(upath, cfg)
     .then(cfg=>{ log('___run-cfg', cfg) })
     .catch(err=>{ log('ERR-initialReplication', err.message) })
 } else if (wordform == 'stream') {
   // yarn start stream &> /dev/null
-  streamDB(upath, 'terms')
-    .then(function () {
+  let dname = 'wkt'
+  let batch_size = 500
+  streamDB(upath, dname, stream, batch_size)
+    .then(function (res) {
       console.log('Hooray the stream replication is complete!');
+      log('____streamed', res)
     }).catch(function (err) {
       console.log('oh no an error', err.message);
     })
-} else if (wordform == 'clone_') {
-  // беру резмер db из cfg и проверяю размер файла периодически. Ну очень криво, но...
-  let dname = 'terms'
-  let termdb = _.find(cfg, db=> { return db.dname == dname})
-  let timerId = setInterval(() => log('--------------tick'), 1000);
-  // setTimeout(() => { clearInterval(timerId); log('-----------------stop'); }, 10000);
-  // var stats = fse.statSync("myfile.txt")
-  // var fileSizeInBytes = stats["size"]
-  cloneDB(upath, cfg, dname)
-    .then(res=>{ log('___run-clone', res), clearInterval(timerId) })
-    .catch(err=>{ log('ERR-cloneDB', err.message) })
-} else if (wordform == 'cfg') {
-  // let cfg = readCfg(apath)
-  // log('__cfg', cfg, cfg.length)
-} else if (wordform == 'infos') {
-  // let cfg = getCfg(apath, upath)
-  // let dnames = cfg.map(dict=> { return dict.dname })
-  // checkConnection, (upath, dnames)
-  getCfgInfos(upath)
-    .then(infos=> {
-      log('___db-infos', infos, '\n total dbs:', infos.length)
+} else if (wordform == 'get') {
+  let wf = 'βιβλι'
+  let dname = 'wkt'
+  checkConnection(upath, dnames)
+  getDB(wf, dname)
+    .then(function(res) {
+      log('getDB', wf, res)
+    })
+    .catch(err=> {
+      log('ERR get db', err)
     })
 } else {
   log('=DNAMES=', dnames)
-  checkConnection, (upath, dnames)
+  checkConnection(upath, dnames)
 
   antrax(wordform, compound, only)
     .then(res => {
@@ -115,3 +112,27 @@ function print (res) {
 function insp (o) {
   console.log(util.inspect(o, false, null, true));
 }
+
+
+// } else if (wordform == 'clone_') {
+//   // // беру резмер db из cfg и проверяю размер файла периодически. Ну очень криво, но...
+//   // let dname = 'terms'
+//   // let termdb = _.find(cfg, db=> { return db.dname == dname})
+//   // let timerId = setInterval(() => log('--------------tick'), 1000);
+//   // // setTimeout(() => { clearInterval(timerId); log('-----------------stop'); }, 10000);
+//   // // var stats = fse.statSync("myfile.txt")
+//   // // var fileSizeInBytes = stats["size"]
+//   // cloneDB(upath, cfg, dname)
+//   //   .then(res=>{ log('___run-clone', res), clearInterval(timerId) })
+//   //   .catch(err=>{ log('ERR-cloneDB', err.message) })
+// } else if (wordform == 'cfg') {
+//   // let cfg = readCfg(apath)
+//   // log('__cfg', cfg, cfg.length)
+// } else if (wordform == 'infos') {
+//   // let cfg = getCfg(apath, upath)
+//   // let dnames = cfg.map(dict=> { return dict.dname })
+//   // checkConnection, (upath, dnames)
+//   getCfgInfos(upath)
+//     .then(infos=> {
+//       log('___db-infos', infos, '\n total dbs:', infos.length)
+//     })

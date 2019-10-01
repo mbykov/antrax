@@ -11,7 +11,6 @@ let replicationStream = require('pouchdb-replication-stream');
 PouchDB.plugin(replicationStream.plugin);
 PouchDB.adapter('writableStream', replicationStream.adapters.writableStream);
 let MemoryStream = require('memorystream');
-let stream = new MemoryStream();
 
 import { verbkeys } from './verb-reg-keys'
 import { namekeys } from './name-reg-keys'
@@ -26,23 +25,36 @@ const rp = require('request-promise')
 const log = console.log
 let dbs = []
 const actives = ['flex', 'terms', 'wkt', 'lsj']
-const rpopts = {
-  "uri": 'http://diglossa.org:5984/',
+
+const opts = {
+  "host": 'http://diglossa.org:5984',
   json: true
 }
-const dumphost = 'http://diglossa.org'
 
 export function initialReplication(upath, cfg) {
   let pouchpath = path.resolve(upath, 'pouch')
-  fse.ensureDirSync(pouchpath)
+  // fse.ensureDirSync(pouchpath)
+  fse.emptyDirSync(pouchpath)
+  log('_________________________initialReplication', cfg)
   let dnames = cfg.map(db=> { return db.dname })
   log('_________________________initialReplication', dnames)
   dnames = ['terms', 'wkt', 'flex']
+  let batch_size = 500
 
   return Promise.all(dnames.map(function(dname) {
-    return loadDump (upath, dname)
+    // log('_________________________before streamDB-dname', dname)
+    let stream = new MemoryStream();
+    return streamDB(upath, dname, stream, batch_size)
+      // .then(res=> {
+      //   log('______________ init repl res____', dname, res)
+      //   return dname
+      // })
+      // .catch(function (err) {
+      //   log('______________ init repl res____', dname, err)
+      // })
   }))
     .then(installed=>{
+      log('_________________________installed', installed)
       cfg.forEach(dict=> {
         if (installed.includes(dict.dname)) dict.active = true, dict.sync = true
       })
@@ -50,150 +62,54 @@ export function initialReplication(upath, cfg) {
     })
     .catch(function (err) {
       log('ERR-initialReplication')
+      dbs = []
       return []
     })
 }
 
-function loadDump (upath, dname) {
-  let dumppath = [dumphost, 'dumps-grc', dname].join('/')
-  dumppath = [dumppath , 'dump'].join('.')
-  // log('_________________________dumppath', dumppath)
+export function streamDB (upath, dname, stream, batch_size) {
   let dpath = path.resolve(upath, 'pouch', dname)
-  // log('_________________________dpath', dpath)
   let pouch = new PouchDB(dpath)
-  return pouch.load(dumppath)
-    .then(cfg=>{
-      // return pouch.replicate.from('http://mysite.com/mydb');
-      pouch.info()
-        .then(info=> {
-          log('____db-info', dname, info)
-        })
-      return dname
-    })
-    .catch(function (err) {
-      log('ERR-loadDump', err.message)
-      return
-    })
-}
+  pouch.dname = dname
+  dbs.push(pouch)
 
-export function cloneDB (upath, cfg, dname) {
-  log('__cloneDB', dname)
-  return loadDump (upath, dname)
-    .then(cfg=>{
-      return dname
-    })
-    .catch(function (err) {
-      log('ERR-initialReplication', err.message)
-      return []
-    })
-}
-
-/*
-  stream работает - перенести size в biblos. Общий размер брать из числа документов, с коэфф. пропорциональности,
-  должно сработать если этот stream б.м. одинаковые чанки генерит, chunk ~ сколько-то docs
-  попробовать cheerio?
-  убрать старый код - getCFg и потомков
-  - отработать добавление нового словаря - должен отобразиться
-  - и пакеты
-  - локальный словарь проверить
-*/
-
-export function streamDB (upath, dname, stream) {
-  log('__streamDB', dname)
-  let dpath = path.resolve(upath, 'pouch', dname)
-  // log('_________________________dpath', dpath)
-  let pouch = new PouchDB(dpath)
-  let source = new PouchDB('http://diglossa.org:5984/terms');
-
-  // let size = 1
-  // stream.on('data', function(chunk) {
-  //   size += chunk.toString().length
-  //   log('_____DUMPED:', size)
-  // })
+  let spath = [opts.host, dname].join('/')
+  let source = new PouchDB(spath, {skip_setup: true});
+  // log('_________________________streamDB dname____', dname, dpath, spath)
 
   return Promise.all([
-    source.dump(stream),
+    source.dump(stream, {
+      batch_size: batch_size,
+      // live: true,
+      retry: true
+    }),
     pouch.load(stream)
   ])
-  // это убрать?
-    // .then(function () {
-    //   console.log('Hooray the stream replication is complete!');
-    //   pouch.info()
-    //     .then(info=> {
-    //       log('____db-info', dname, info)
-    //     })
-    // })
-    // .catch(function (err) {
-    //   console.log('oh no an error', err.message);
-    // })
-}
-
-export function get_Cfg (apath, upath) {
-  let pouchpath = path.resolve(upath, 'pouch')
-  fse.ensureDirSync(pouchpath)
-  let dnames = allDBnames(upath)
-  if (!dnames.length) return installDBs(apath, upath)
-  return Promise.resolve(initCfg(dnames))
-}
-
-function allDBnames(upath) {
-  let pouchpath = path.resolve(upath, 'pouch')
-  let dnames = fse.readdirSync(pouchpath)
-  dnames = _.filter(dnames, dname=> { return dname != 'flex' })
-  return dnames
-}
-
-function initCfg(dnames) {
-  let cfg = dnames.map((dname, idx)=> { return {dname: dname, idx: idx, active: true, sync: false } } )
-  return cfg
-}
-
-export function getCfgInfos (upath) {
-  let dnames = allDBnames(upath)
-  log('--cfg-infos-dnames--', dnames)
-  return Promise.all(dnames.map(function(dname) {
-    let dbpath = path.resolve(upath, 'pouch', dname)
-    let pouch = new PouchDB(dbpath, {skip_setup: true})
-    return Promise.all([
-      pouch.info()
-        .then(info=> {
-          info.dname = dname
-          return info
-        })
-        .catch(err=> {
-          if (err.reason == 'missing') return
-          log('catch info ERR', err)
-        }),
-      pouch.get('description')
-        .then(descr=> {
-          return descr
-        })
-        .catch(err=> {
-          if (err.reason == 'missing') return
-          log('catch descr ERR', err)
-        })
-    ])
-  }))
-    .then(infodescrs=> {
-      let infos = []
-      // log('--cfg-infos-infodescrs--', infodescrs)
-      dnames.forEach((dname, idx)=> {
-        let infodescr = infodescrs[idx]
-        if (!infodescr) return
-        let info = infodescr[0]
-        let descr = infodescr[1]
-        if (!info) return
-        if (!descr) descr = { name: dname, langs: 'grc' }
-        let dbinfo = { dname: dname, name: descr.name, size: info.doc_count, langs: descr.langs } // , source: descr.source
-        if (!descr) dbinfo.fake = true
-        infos.push(dbinfo)
-      })
-      return infos
+    .then(res=> {
+      log('______________ load res____', dname, res)
+      return dname
+    })
+    .catch(err=> {
+      log('ERR: stream dump err', dname, err)
+      // return
     })
 }
 
+// function allDBnames(upath) {
+//   let pouchpath = path.resolve(upath, 'pouch')
+//   let dnames = fse.readdirSync(pouchpath)
+//   dnames = _.filter(dnames, dname=> { return dname != 'flex' })
+//   return dnames
+// }
+
+// function initCfg(dnames) {
+//   let cfg = dnames.map((dname, idx)=> { return {dname: dname, idx: idx, active: true, sync: false } } )
+//   return cfg
+// }
+
+
 export function checkConnection (upath, dnames) {
-  log('--setDBs--', dnames)
+  // log('--setDBs--', dnames)
   dnames.push('flex')
   dbs = []
   dnames.forEach((dn, idx) => {
@@ -205,73 +121,6 @@ export function checkConnection (upath, dnames) {
   })
 }
 
-export function readCfg(apath) {
-  let cfg = []
-  let srcpath = path.join(apath, 'dumps').replace('app.asar', 'app.asar.unpacked')
-  let filenames = fse.readdirSync(srcpath)
-  let descrnames = _.filter(filenames, fn=> { return fn.split('.')[1] == 'json'})
-  descrnames = _.filter(descrnames, dname=> { return dname != 'flex.json'} )
-  descrnames.forEach(descrname=>{
-    let dpath = path.resolve(srcpath, descrname)
-    let dname = descrname.replace('.json', '')
-    if (dname == 'flex') return
-    let descr = fse.readJsonSync(dpath)
-    if (actives.includes(dname)) descr.active = true, descr.sync = true
-    cfg.push(descr)
-  })
-  return cfg
-}
-
-function install_DBs (apath, upath) {
-  let srcpath = path.join(apath, 'dumps').replace('app.asar', 'app.asar.unpacked')
-  let pouchpath = path.resolve(upath, 'pouch')
-  let cfg = readCfg(apath)
-
-  fse.emptyDirSync(pouchpath)
-  let filenames = fse.readdirSync(srcpath)
-  let dumpnames = _.filter(filenames, fn=> { return fn.split('.')[1] == 'dump'})
-  // let descrnames = _.filter(filenames, fn=> { return fn.split('.')[1] == 'json'})
-  log('_________dumpnames', dumpnames)
-
-  return Promise.all(dumpnames.map(function (dumpname) {
-    let dname = dumpname.split('.')[0]
-    let dpath = path.resolve(upath, 'pouch', dname)
-    log('__ DNAME', dumpname, dname, dpath)
-    let pouch = new PouchDB(dpath)
-    pouch.dname = dname
-    dbs.push(pouch)
-
-    if (!actives.includes(dname)) return
-    let dumppath = path.resolve(srcpath, dumpname)
-    let dumpstr = fse.readFileSync(dumppath, 'utf8')
-    log('__loading string...', dumpname, dumppath, dumpstr.length)
-    return pouch.load(dumpstr)
-  })).then(function () {
-    let dnames = dbs.map(db=> { return db.dname })
-    log('_____dump done loading, dnames:', dnames)
-    let cfg = initCfg(dnames)
-    return cfg
-  }).catch(function (err) {
-    log('_____dump ERR', err)
-  })
-}
-
-function installDBs_copy (apath, upath) {
-  let srcpath = path.join(apath, 'pouch').replace('app.asar', 'app.asar.unpacked')
-  let pouchpath = path.resolve(upath, 'pouch')
-
-  try {
-    fse.ensureDirSync(pouchpath)
-    fse.copySync(srcpath, pouchpath, {
-      overwrite: true
-    })
-    let dnames = fse.readdirSync(pouchpath)
-    // log('--install-dbs-dnames--', dnames)
-    return dnames
-  } catch (err) {
-    log('ERR copying default DBs', err)
-  }
-}
 
 export function queryDBs (keys) {
   return Promise.all(dbs.map(function (db) {
@@ -293,6 +142,7 @@ export function queryDBs (keys) {
 
 export function getFlex (keys) {
   let db_flex = _.find(dbs, db=> { return db.dname == 'flex' })
+  if (!db_flex) return Promise.resolve([])
   return db_flex.allDocs({keys: keys, include_docs: true})
     .then(function(res) {
       let rdocs = _.compact(res.rows.map(row => { return row.doc }))
@@ -307,7 +157,9 @@ export function getFlex (keys) {
 }
 
 export function getTerms (wfs) {
+  let dnames = dbs.map(db=> { return db.dname })
   let db_terms = _.find(dbs, db=> { return db.dname == 'terms' })
+  if (!db_terms) return Promise.resolve([])
   return db_terms.allDocs({keys: wfs, include_docs: true})
     .then(function(res) {
       let rdocs = _.compact(res.rows.map(row => { return row.doc }))
@@ -315,6 +167,11 @@ export function getTerms (wfs) {
       docs.forEach(doc => { doc.dname = 'terms' })
       return docs
     })
+}
+
+export function getDB (wf, dname) {
+  let db = _.find(dbs, db=> { return db.dname == dname })
+  return db.get(wf)
 }
 
 export function createDB (upath, docs) {
@@ -418,10 +275,162 @@ function determineKey(rdocs) {
   })
 }
 
-export function getLSJ(str) {
-  let lsj = _.find(dbs, db=> { return db.dname == str })
-  return lsj.get('description')
-    .then(descr=> {
-      return descr
-    })
-}
+// export function getLSJ(str) {
+//   let lsj = _.find(dbs, db=> { return db.dname == str })
+//   return lsj.get('description')
+//     .then(descr=> {
+//       return descr
+//     })
+// }
+
+// export function cloneDB (upath, cfg, dname) {
+//   log('__cloneDB', dname)
+//   return loadDump (upath, dname)
+//     .then(cfg=>{
+//       return dname
+//     })
+//     .catch(function (err) {
+//       log('ERR-initialReplication', err.message)
+//       return []
+//     })
+// }
+
+// function loadDump (upath, dname, stream, batch_size) {
+//   let dpath = path.resolve(upath, 'pouch', dname)
+//   // log('_________________________dpath', dpath)
+//   let pouch = new PouchDB(dpath)
+//   return streamDB (upath, dname, stream, batch_size)
+//   // return pouch.load(dumppath)
+//     .then(cfg=>{
+//       // return pouch.replicate.from('http://mysite.com/mydb');
+//       pouch.info()
+//         .then(info=> {
+//           log('____db-info', dname, info)
+//         })
+//       return dname
+//     })
+//     .catch(function (err) {
+//       log('ERR-loadDump', err.message)
+//       return
+//     })
+// }
+
+// export function get_Cfg (apath, upath) {
+//   let pouchpath = path.resolve(upath, 'pouch')
+//   fse.ensureDirSync(pouchpath)
+//   let dnames = allDBnames(upath)
+//   if (!dnames.length) return installDBs(apath, upath)
+//   return Promise.resolve(initCfg(dnames))
+// }
+
+// export function readCfg(apath) {
+//   let cfg = []
+//   let srcpath = path.join(apath, 'dumps').replace('app.asar', 'app.asar.unpacked')
+//   let filenames = fse.readdirSync(srcpath)
+//   let descrnames = _.filter(filenames, fn=> { return fn.split('.')[1] == 'json'})
+//   descrnames = _.filter(descrnames, dname=> { return dname != 'flex.json'} )
+//   descrnames.forEach(descrname=>{
+//     let dpath = path.resolve(srcpath, descrname)
+//     let dname = descrname.replace('.json', '')
+//     if (dname == 'flex') return
+//     let descr = fse.readJsonSync(dpath)
+//     if (actives.includes(dname)) descr.active = true, descr.sync = true
+//     cfg.push(descr)
+//   })
+//   return cfg
+// }
+
+// function install_DBs (apath, upath) {
+//   let srcpath = path.join(apath, 'dumps').replace('app.asar', 'app.asar.unpacked')
+//   let pouchpath = path.resolve(upath, 'pouch')
+//   let cfg = readCfg(apath)
+
+//   fse.emptyDirSync(pouchpath)
+//   let filenames = fse.readdirSync(srcpath)
+//   let dumpnames = _.filter(filenames, fn=> { return fn.split('.')[1] == 'dump'})
+//   // let descrnames = _.filter(filenames, fn=> { return fn.split('.')[1] == 'json'})
+//   log('_________dumpnames', dumpnames)
+
+//   return Promise.all(dumpnames.map(function (dumpname) {
+//     let dname = dumpname.split('.')[0]
+//     let dpath = path.resolve(upath, 'pouch', dname)
+//     log('__ DNAME', dumpname, dname, dpath)
+//     let pouch = new PouchDB(dpath)
+//     pouch.dname = dname
+//     dbs.push(pouch)
+
+//     if (!actives.includes(dname)) return
+//     let dumppath = path.resolve(srcpath, dumpname)
+//     let dumpstr = fse.readFileSync(dumppath, 'utf8')
+//     log('__loading string...', dumpname, dumppath, dumpstr.length)
+//     return pouch.load(dumpstr)
+//   })).then(function () {
+//     let dnames = dbs.map(db=> { return db.dname })
+//     log('_____dump done loading, dnames:', dnames)
+//     let cfg = initCfg(dnames)
+//     return cfg
+//   }).catch(function (err) {
+//     log('_____dump ERR', err)
+//   })
+// }
+
+// function installDBs_copy (apath, upath) {
+//   let srcpath = path.join(apath, 'pouch').replace('app.asar', 'app.asar.unpacked')
+//   let pouchpath = path.resolve(upath, 'pouch')
+
+//   try {
+//     fse.ensureDirSync(pouchpath)
+//     fse.copySync(srcpath, pouchpath, {
+//       overwrite: true
+//     })
+//     let dnames = fse.readdirSync(pouchpath)
+//     // log('--install-dbs-dnames--', dnames)
+//     return dnames
+//   } catch (err) {
+//     log('ERR copying default DBs', err)
+//   }
+// }
+
+// export function getCfgInfos (upath) {
+//   let dnames = allDBnames(upath)
+//   log('--cfg-infos-dnames--', dnames)
+//   return Promise.all(dnames.map(function(dname) {
+//     let dbpath = path.resolve(upath, 'pouch', dname)
+//     let pouch = new PouchDB(dbpath, {skip_setup: true})
+//     return Promise.all([
+//       pouch.info()
+//         .then(info=> {
+//           info.dname = dname
+//           return info
+//         })
+//         .catch(err=> {
+//           if (err.reason == 'missing') return
+//           log('catch info ERR', err)
+//         }),
+//       pouch.get('description')
+//         .then(descr=> {
+//           return descr
+//         })
+//         .catch(err=> {
+//           if (err.reason == 'missing') return
+//           log('catch descr ERR', err)
+//         })
+//     ])
+//   }))
+//     .then(infodescrs=> {
+//       let infos = []
+//       // log('--cfg-infos-infodescrs--', infodescrs)
+//       dnames.forEach((dname, idx)=> {
+//         let infodescr = infodescrs[idx]
+//         if (!infodescr) return
+//         let info = infodescr[0]
+//         let descr = infodescr[1]
+//         if (!info) return
+//         if (!descr) descr = { name: dname, langs: 'grc' }
+//         let dbinfo = { dname: dname, name: descr.name, size: info.doc_count, langs: descr.langs } // , source: descr.source
+//         if (!descr) dbinfo.fake = true
+//         infos.push(dbinfo)
+//       })
+//       return infos
+//     })
+// }
