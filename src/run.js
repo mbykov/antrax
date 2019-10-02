@@ -16,7 +16,6 @@ let env = process.env.NODE_ENV
 // let all = {startkey: 'α', endkey: 'ῳ'}
 
 let MemoryStream = require('memorystream');
-let stream = new MemoryStream()
 
 let only, printf
 let compound = false
@@ -45,14 +44,16 @@ dnames = ['wkt', 'lsj', 'dvr', 'souda', 'terms']
 
 let cfg = [{dname: 'terms'}, {dname: 'flex'}, {dname: 'wkt'}, {dname: 'lsj'}, {dname: 'dvr'}, {dname: 'souda'} ]
 if (wordform == 'install') {
-  console.log('installing start');
-  initialReplication(upath, cfg)
+  log('____default installing start');
+  let batch_size = 500
+  initialReplication(upath, cfg, batch_size)
     .then(cfg=>{ log('___run-cfg', cfg) })
-    .catch(err=>{ log('ERR-initialReplication', err.message) })
+    .catch(err=>{ log('ERR-initReplication', err.message) })
 } else if (wordform == 'stream') {
   // yarn start stream &> /dev/null
-  let dname = 'wkt'
+  let dname = 'terms'
   let batch_size = 500
+  let stream = new MemoryStream()
   streamDB(upath, dname, stream, batch_size)
     .then(function (res) {
       console.log('Hooray the stream replication is complete!');

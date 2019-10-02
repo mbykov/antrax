@@ -4,7 +4,6 @@ import _ from 'lodash'
 let path = require('path')
 const fse = require('fs-extra');
 const PouchDB = require('pouchdb')
-// PouchDB.plugin(require('pouchdb-load'))
 
 // STREAM
 let replicationStream = require('pouchdb-replication-stream');
@@ -31,37 +30,31 @@ const opts = {
   json: true
 }
 
-export function initialReplication(upath, cfg) {
+export function initialReplication(upath, cfg, batch_size) {
+  cfg = [{dname: 'terms'}, {dname: 'flex'}, {dname: 'wkt'}, {dname: 'lsj'}, {dname: 'dvr'}, {dname: 'souda'} ]
   let pouchpath = path.resolve(upath, 'pouch')
-  // fse.ensureDirSync(pouchpath)
   fse.emptyDirSync(pouchpath)
-  log('_________________________initialReplication', cfg)
   let dnames = cfg.map(db=> { return db.dname })
-  log('_________________________initialReplication', dnames)
+  log('_________________________initReplication', cfg, dnames)
+  log('_________________________initReplication', upath, pouchpath, batch_size)
   dnames = ['terms', 'wkt', 'flex']
-  let batch_size = 500
 
   return Promise.all(dnames.map(function(dname) {
-    // log('_________________________before streamDB-dname', dname)
-    let stream = new MemoryStream();
+    let stream = new MemoryStream()
     return streamDB(upath, dname, stream, batch_size)
-      // .then(res=> {
-      //   log('______________ init repl res____', dname, res)
-      //   return dname
-      // })
-      // .catch(function (err) {
-      //   log('______________ init repl res____', dname, err)
-      // })
   }))
     .then(installed=>{
       log('_________________________installed', installed)
-      cfg.forEach(dict=> {
-        if (installed.includes(dict.dname)) dict.active = true, dict.sync = true
+      cfg.forEach((dict, idx)=> {
+        if (installed.includes(dict.dname)) dict.active = true, dict.sync = true, dict.idx = idx
+        else dict.idx = 100 + idx
       })
+      cfg = _.sortBy(cfg, 'idx')
+      cfg = cfg.forEach((dict, idx)=> { dict.idx = idx})
       return cfg
     })
     .catch(function (err) {
-      log('ERR-initialReplication')
+      log('ERR-initReplication')
       dbs = []
       return []
     })
@@ -71,22 +64,31 @@ export function streamDB (upath, dname, stream, batch_size) {
   let dpath = path.resolve(upath, 'pouch', dname)
   let pouch = new PouchDB(dpath)
   pouch.dname = dname
-  dbs.push(pouch)
 
   let spath = [opts.host, dname].join('/')
   let source = new PouchDB(spath, {skip_setup: true});
-  // log('_________________________streamDB dname____', dname, dpath, spath)
+  log('___streamDB dname____', dname)
+  log('___dpath____', dpath)
+  log('___spath____', spath)
 
+  // return pouch.info()
   return Promise.all([
     source.dump(stream, {
       batch_size: batch_size,
       // live: true,
       retry: true
-    }),
+    })
+      .catch(err=> {
+        log('ERR: DUMP', dname, spath, err)
+      }),
     pouch.load(stream)
+      .catch(err=> {
+        log('ERR: LOAD', dname, dpath, err)
+      })
   ])
     .then(res=> {
       log('______________ load res____', dname, res)
+      dbs.push(pouch)
       return dname
     })
     .catch(err=> {
@@ -94,19 +96,6 @@ export function streamDB (upath, dname, stream, batch_size) {
       // return
     })
 }
-
-// function allDBnames(upath) {
-//   let pouchpath = path.resolve(upath, 'pouch')
-//   let dnames = fse.readdirSync(pouchpath)
-//   dnames = _.filter(dnames, dname=> { return dname != 'flex' })
-//   return dnames
-// }
-
-// function initCfg(dnames) {
-//   let cfg = dnames.map((dname, idx)=> { return {dname: dname, idx: idx, active: true, sync: false } } )
-//   return cfg
-// }
-
 
 export function checkConnection (upath, dnames) {
   // log('--setDBs--', dnames)
@@ -290,7 +279,7 @@ function determineKey(rdocs) {
 //       return dname
 //     })
 //     .catch(function (err) {
-//       log('ERR-initialReplication', err.message)
+//       log('ERR-initReplication', err.message)
 //       return []
 //     })
 // }
@@ -433,4 +422,16 @@ function determineKey(rdocs) {
 //       })
 //       return infos
 //     })
+// }
+
+// function allDBnames(upath) {
+//   let pouchpath = path.resolve(upath, 'pouch')
+//   let dnames = fse.readdirSync(pouchpath)
+//   dnames = _.filter(dnames, dname=> { return dname != 'flex' })
+//   return dnames
+// }
+
+// function initCfg(dnames) {
+//   let cfg = dnames.map((dname, idx)=> { return {dname: dname, idx: idx, active: true, sync: false } } )
+//   return cfg
 // }
