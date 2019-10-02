@@ -38,19 +38,21 @@ export function initialReplication(upath, cfg, batch_size) {
   log('_________________________initReplication', cfg, dnames)
   log('_________________________initReplication', upath, pouchpath, batch_size)
   dnames = ['terms', 'wkt', 'flex']
+  dbs = []
 
   return Promise.all(dnames.map(function(dname) {
     let stream = new MemoryStream()
     return streamDB(upath, dname, stream, batch_size)
   }))
     .then(installed=>{
-      log('_________________________installed', installed)
+      log('_________________________installed', installed, cfg)
       cfg.forEach((dict, idx)=> {
         if (installed.includes(dict.dname)) dict.active = true, dict.sync = true, dict.idx = idx
         else dict.idx = 100 + idx
       })
       cfg = _.sortBy(cfg, 'idx')
-      cfg = cfg.forEach((dict, idx)=> { dict.idx = idx})
+      cfg.forEach((dict, idx)=> { dict.idx = idx})
+      log('_________________________initial-cfg-before-return', cfg)
       return cfg
     })
     .catch(function (err) {
@@ -63,7 +65,7 @@ export function initialReplication(upath, cfg, batch_size) {
 export function streamDB (upath, dname, stream, batch_size) {
   let dpath = path.resolve(upath, 'pouch', dname)
   let pouch = new PouchDB(dpath)
-  pouch.dname = dname
+  // pouch.dname = dname
 
   let spath = [opts.host, dname].join('/')
   let source = new PouchDB(spath, {skip_setup: true});
@@ -75,31 +77,32 @@ export function streamDB (upath, dname, stream, batch_size) {
   return Promise.all([
     source.dump(stream, {
       batch_size: batch_size,
-      // live: true,
+      live: true,
       retry: true
     })
       .catch(err=> {
-        log('ERR: DUMP', dname, spath, err)
+        log('ERR: DUMP', dname, spath, err.message)
       }),
     pouch.load(stream)
       .catch(err=> {
-        log('ERR: LOAD', dname, dpath, err)
+        log('ERR: LOAD', dname, dpath, err.message)
       })
   ])
     .then(res=> {
-      log('______________ load res____', dname, res)
-      dbs.push(pouch)
+      log('______________ stream res____', dname, res)
+      // dbs.push(pouch)
+      pouch.close()
       return dname
     })
     .catch(err=> {
-      log('ERR: stream dump err', dname, err)
+      log('ERR: stream dump err', dname, err.message)
       // return
     })
 }
 
 export function checkConnection (upath, dnames) {
   // log('--setDBs--', dnames)
-  dnames.push('flex')
+  // dnames.push('flex')
   dbs = []
   dnames.forEach((dn, idx) => {
     // if (dn == 'flex' || dn == 'terms') return

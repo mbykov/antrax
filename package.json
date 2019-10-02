@@ -1,5 +1,5 @@
 {
-  "version": "0.9.136",
+  "version": "0.9.137",
   "name": "antrax",
   "description": "simple practical ancient greek analizer for Biblos.js",
   "Author": "Michael Bykov <m.bykov@gmail.com>",
@@ -48,7 +48,6 @@
     "memorystream": "^0.3.1",
     "orthos": "^0.6.3",
     "pouchdb": "^7.0.0",
-    "pouchdb-load": "^1.4.6",
     "pouchdb-replication-stream": "^1.2.9",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
