@@ -31,7 +31,6 @@ const opts = {
 }
 
 export function initialReplication(upath, cfg, batch_size) {
-  cfg = [{dname: 'terms'}, {dname: 'flex'}, {dname: 'wkt'}, {dname: 'lsj'}, {dname: 'dvr'}, {dname: 'souda'} ]
   let pouchpath = path.resolve(upath, 'pouch')
   fse.emptyDirSync(pouchpath)
   let dnames = cfg.map(db=> { return db.dname })
@@ -45,7 +44,7 @@ export function initialReplication(upath, cfg, batch_size) {
     return streamDB(upath, dname, stream, batch_size)
   }))
     .then(installed=>{
-      log('_________________________installed', installed, cfg)
+      log('_________________________installed', installed)
       cfg.forEach((dict, idx)=> {
         if (installed.includes(dict.dname)) dict.active = true, dict.sync = true, dict.idx = idx
         else dict.idx = 100 + idx
