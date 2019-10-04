@@ -245,6 +245,7 @@ export function delDictionary(upath, dname) {
 }
 
 function determineKey(rdocs) {
+  log('_________determineKey', rdocs)
   rdocs.forEach(rdoc=> {
     rdoc.docs.forEach(doc=> {
       if (doc.key) return
