@@ -21,7 +21,6 @@ export function antrax (wf, compound, only) {
   let strong = false
   if (compound && compound == 'strong') strong = true, compound = false
   else if (compound) sgms = _.filter(sgms, sgm=> { return sgm.length > 2 })
-
   // sgms = _.filter(sgms, sgm=> { return sgm.length > 2 })
 
   // lasts - segments for flexes:
@@ -48,7 +47,6 @@ export function antrax (wf, compound, only) {
     getTerms(cwfs),
     queryDBs(plainsegs),
     getFlex(lasts)
-    // , getComp(plainsegs)
   ]).then(function (res) {
     let terms = _.flatten(res[0])
     let dicts = _.flatten(res[1])
@@ -71,9 +69,6 @@ export function antrax (wf, compound, only) {
     let dplains = _.uniq(dicts.map(dict => { return dict.plain}))
     d('dictplains---->', dplains.toString())
     d('dicts.size---->', dicts.length)
-    // let complains = _.uniq(comps.map(dict => { return dict.plain}))
-    // d('complains---->', complains.toString())
-    // d('complains.size---->', complains.length)
 
     let prefs = _.filter(dicts, dict => { return dict.pref})
     let pprefs = _.uniq(prefs.map(dict => { return dict.plain}))
@@ -84,6 +79,7 @@ export function antrax (wf, compound, only) {
 
     let kdicts = _.filter(dicts, dict => { return dict.plain == only })
     d('kdicts---->', kdicts.length)
+    d('flexes---->', flexes.length)
 
     d('singles:', sgms.length)
 
@@ -97,7 +93,7 @@ export function antrax (wf, compound, only) {
 
     // refine results (i.e. verbs only) with changed stems:
     let chaindicts = _.flatten(chains.map(chain=> { return _.flatten(chain.map(sec=> { return sec.dicts })) }))
-    // chaindicts.forEach(dict=> { delete dict.keys, delete dict.trns })
+
     chaindicts.forEach(dict=> { delete dict.keys })
     let wktverbs = _.filter(chaindicts, dict=> { return dict.verb && dict.dname == 'wkt' })
     let wktplains = wktverbs.map(dict=> { return dict.plain })
@@ -115,7 +111,6 @@ export function antrax (wf, compound, only) {
           fits.push(fit)
         })
 
-        // log('REFINED', refined.length)
         chains.forEach(chain=> {
           chain.forEach(sec=> {
             let secwkts = _.filter(sec.dicts, dict=> { return dict.verb && dict.dname == 'wkt' })
@@ -127,7 +122,7 @@ export function antrax (wf, compound, only) {
           })
         })
 
-        // terms дает много очень лишнего в chains, так нельзя, но как можно? напр., артикль τῶν дает τ, и пиздец
+        // terms дает много очень лишнего в chains, так нельзя, но как можно? напр., артикль τῶν дает τ, и ...
         // нужен пример, почему нельзя только terms - например, ἦσαν
         // но просто убрать это нельзя! см. τῶν
         // if (terms.length) chains = []

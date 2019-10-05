@@ -24,6 +24,7 @@ export function makeChains (sgms, dicts, flexes, compound, only) {
   d('SGMS', sgms.length)
 
   let singles = _.filter(sgms, segs=> { return segs.length == 2 })
+  d('SINGLES', singles.length)
   // log('__________________________________________make chain singles:', singles.length, 'muts:', muts.length)
 
   // simple w/o aug
@@ -61,6 +62,7 @@ export function makeChains (sgms, dicts, flexes, compound, only) {
   // return chains
 
   let doubles = _.filter(sgms, segs=> { return segs.length == 3 })
+  d('DOUBLES', doubles.length)
 
   // simple + aug
   doubles.forEach(segs => {

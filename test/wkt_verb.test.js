@@ -4,10 +4,10 @@
 let log = console.log
 import _ from 'lodash'
 import { antrax } from '../index'
-import { setDBs } from '../lib/pouch'
+import { checkConnection } from '../lib/pouch'
 // import { property } from 'jsverify'
-// import {comb, plain} from 'orthos'
-import {oxia, comb, plain} from '../../../../greek/orthos'
+import {comb, plain} from 'orthos'
+// import {oxia, comb, plain} from '../../../../greek/orthos'
 const assert = require('assert')
 const forEach = require('mocha-each')
 const fse = require('fs-extra')
@@ -29,10 +29,10 @@ process.prependListener("exit", (code) => {
 
 let upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
 let dnames = ['wkt']
-setDBs(upath, dnames)
+checkConnection(upath, dnames)
 
-// const testpath = path.resolve(__dirname, '../../test/wkt_verb.txt')
-const testpath = path.resolve('/home/michael/greek/antrax/test/wkt_verb.txt')
+const testpath = path.resolve(__dirname, '../../test/wkt_verb.txt')
+// const testpath = path.resolve('/home/michael/greek/antrax/test/wkt_verb.txt')
 const text = fse.readFileSync(testpath,'utf8')
 
 let param = process.argv.slice(2)[1]
@@ -97,7 +97,7 @@ pars.forEach(par => {
 
 })
 
-// tests = tests.slice(0, 20)
+// tests = tests.slice(0, 2)
 // console.log('T', tests)
 // tests = []
 
