@@ -47,7 +47,7 @@ if (wordform == 'install') {
     .catch(err=>{ log('ERR-initReplication', err.message) })
 } else if (wordform == 'stream') {
   // yarn start stream &> /dev/null
-  let dname = 'terms'
+  let dname = thirdarg
   let batch_size = 500
   let stream = new MemoryStream()
   streamDB(upath, dname, stream, batch_size)

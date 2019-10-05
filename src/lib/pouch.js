@@ -30,34 +30,36 @@ const opts = {
   json: true
 }
 
-export function initialReplication(upath, cfg, batch_size) {
-  let pouchpath = path.resolve(upath, 'pouch')
-  fse.emptyDirSync(pouchpath)
-  let dnames = cfg.map(db=> { return db.dname })
-  dnames = ['terms', 'wkt', 'flex']
-  dbs = []
+// export function initialReplication(upath, cfg, batch_size) {
+//   let pouchpath = path.resolve(upath, 'pouch')
+//   fse.emptyDirSync(pouchpath)
+//   let dnames = cfg.map(db=> { return db.dname })
+//   dnames = ['terms', 'wkt', 'flex']
+//   dbs = []
 
-  return Promise.all(dnames.map(function(dname) {
-    let stream = new MemoryStream()
-    return streamDB(upath, dname, stream, batch_size)
-  }))
-    .then(installed=>{
-      cfg.forEach((dict, idx)=> {
-        if (installed.includes(dict.dname)) dict.active = true, dict.sync = true, dict.idx = idx
-        else dict.idx = 100 + idx
-      })
-      cfg = _.sortBy(cfg, 'idx')
-      cfg.forEach((dict, idx)=> { dict.idx = idx})
-      return cfg
-    })
-    .catch(function (err) {
-      log('ERR-initReplication')
-      dbs = []
-      return []
-    })
-}
+//   return Promise.all(dnames.map(function(dname) {
+//     let stream = new MemoryStream()
+//     return streamDB(upath, dname, stream, batch_size)
+//   }))
+//     .then(installed=>{
+//       cfg.forEach((dict, idx)=> {
+//         if (installed.includes(dict.dname)) dict.active = true, dict.sync = true, dict.idx = idx
+//         else dict.idx = 100 + idx
+//       })
+//       cfg = _.sortBy(cfg, 'idx')
+//       cfg.forEach((dict, idx)=> { dict.idx = idx})
+//       return cfg
+//     })
+//     .catch(function (err) {
+//       log('ERR-initReplication')
+//       dbs = []
+//       return []
+//     })
+// }
 
 export function streamDB (upath, dname, stream, batch_size) {
+  let pouchpath = path.resolve(upath, 'pouch')
+  fse.ensureDirSync(pouchpath)
   let dpath = path.resolve(upath, 'pouch', dname)
   let pouch = new PouchDB(dpath)
   // pouch.dname = dname
@@ -85,10 +87,10 @@ export function streamDB (upath, dname, stream, batch_size) {
       pouch.close()
       return dname
     })
-    .catch(err=> {
-      log('ERR: stream dump err', dname, err.message)
-      // return
-    })
+    // .catch(err=> {
+    //   log('ERR: stream dump err', dname, err.message)
+    //   // return
+    // })
 }
 
 export function checkConnection (upath, dnames) {
