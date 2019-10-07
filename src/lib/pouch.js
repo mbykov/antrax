@@ -30,6 +30,12 @@ const opts = {
   json: true
 }
 
+export function ensureDBdir (upath) {
+  let pouchpath = path.resolve(upath, 'pouch')
+  fse.emptyDirSync(pouchpath)
+  dbs = []
+}
+
 export function streamDB (upath, dname, stream, batch_size) {
   let pouchpath = path.resolve(upath, 'pouch')
   fse.ensureDirSync(pouchpath)
