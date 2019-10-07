@@ -84,7 +84,7 @@ export function streamDB (upath, dname, stream, batch_size) {
   ])
     .then(res=> {
       // dbs.push(pouch)
-      pouch.close()
+      // pouch.close()
       return dname
     })
     // .catch(err=> {
@@ -95,13 +95,10 @@ export function streamDB (upath, dname, stream, batch_size) {
 
 export function checkConnection (upath, dnames) {
   dbs = []
-  dnames.push('flex'), dnames.push('terms')
-  dnames = _.uniq(dnames)
-  dnames.forEach((dn, idx) => {
-    // if (dn == 'flex' || dn == 'terms') return
-    let dpath = path.resolve(upath, 'pouch', dn)
+  dnames.forEach(dname => {
+    let dpath = path.resolve(upath, 'pouch', dname)
     let pouch = new PouchDB(dpath)
-    pouch.dname = dn
+    pouch.dname = dname
     dbs.push(pouch)
   })
 }
