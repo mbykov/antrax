@@ -41,7 +41,7 @@ export function streamDB (upath, dname, stream, batch_size) {
   fse.ensureDirSync(pouchpath)
   let dpath = path.resolve(upath, 'pouch', dname)
   let pouch = new PouchDB(dpath)
-  // pouch.dname = dname
+  pouch.dname = dname
 
   let spath = [opts.host, dname].join('/')
   let source = new PouchDB(spath, {skip_setup: true});
@@ -62,8 +62,8 @@ export function streamDB (upath, dname, stream, batch_size) {
       // })
   ])
     .then(res=> {
-      // dbs.push(pouch)
-      pouch.close()
+      dbs.push(pouch)
+      // pouch.close()
       return dname
     })
     // .catch(err=> {
