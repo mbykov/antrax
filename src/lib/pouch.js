@@ -40,6 +40,7 @@ export function streamDB (upath, dname, stream, batch_size) {
   let pouchpath = path.resolve(upath, 'pouch')
   fse.ensureDirSync(pouchpath)
   let dpath = path.resolve(upath, 'pouch', dname)
+  fse.emptyDirSync(dpath)
   let pouch = new PouchDB(dpath)
   pouch.dname = dname
 
