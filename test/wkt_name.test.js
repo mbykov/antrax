@@ -2,7 +2,7 @@
 
 let log = console.log
 import { antrax } from '../index'
-import { setDBs } from '../lib/pouch'
+import { checkConnection } from '../lib/pouch'
 import _ from 'lodash'
 
 const assert = require('assert')
@@ -24,12 +24,13 @@ process.prependListener("exit", (code) => {
   }
 })
 
-let upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
+// let upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
+let upath = path.resolve(process.env.HOME, '.config/Biblos.js')
 let dnames = ['wkt']
-setDBs(upath, dnames)
+checkConnection(upath, dnames)
 
-// const testpath = path.resolve(__dirname, '../../test/wkt_name.txt')
-const testpath = path.resolve('/home/michael/greek/antrax/test/wkt_name.txt')
+const testpath = path.resolve(__dirname, '../../test/wkt_name.txt')
+// const testpath = path.resolve('/home/michael/greek/antrax/test/wkt_name.txt')
 const text = fse.readFileSync(testpath,'utf8')
 
 let param = process.argv.slice(2)[1]

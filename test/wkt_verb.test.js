@@ -27,7 +27,8 @@ process.prependListener("exit", (code) => {
   }
 })
 
-let upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
+// let upath = path.resolve(process.env.HOME, '.config/MorpheusGreek (development)')
+let upath = path.resolve(process.env.HOME, '.config/Biblos.js')
 let dnames = ['wkt']
 checkConnection(upath, dnames)
 

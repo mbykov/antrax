@@ -75,6 +75,8 @@ export function streamDB (upath, dname, stream, batch_size) {
 
 export function checkConnection (upath, dnames) {
   dbs = []
+  dnames.push('flex')
+  dnames = _.uniq(dnames)
   dnames.forEach(dname => {
     let dpath = path.resolve(upath, 'pouch', dname)
     let pouch = new PouchDB(dpath)
@@ -82,7 +84,6 @@ export function checkConnection (upath, dnames) {
     dbs.push(pouch)
   })
 }
-
 
 export function queryDBs (keys) {
   let qdbs = _.filter(dbs, db=> { return db.dname != 'flex' && db.dname != 'terms' })

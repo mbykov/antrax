@@ -27,15 +27,15 @@ else only = thirdarg
 
 console.time("queryTime");
 
-// flex, comp - already run
 // let upath = path.resolve(process.env.HOME, '.config/Biblos.js (development)')
 let upath = path.resolve(process.env.HOME, '.config/Biblos.js')
-// let upath = path.resolve(process.env.HOME, '.config/Biblos-devel.js')
 let apath = '/home/michael/a/atemplate'
+
 let dnames
 dnames = ['wkt']
 // dnames = ['wkt', 'lsj', 'dvr', 'souda', 'terms']
-// dnames = ['wkt', 'lsj', 'terms']
+// dnames = ['wkt', 'dvr', 'terms']
+// dnames = ['wkt', 'terms']
 // dnames = ['souda']
 
 let cfg = [{dname: 'terms'}, {dname: 'flex'}, {dname: 'wkt'}, {dname: 'lsj'}, {dname: 'dvr'}, {dname: 'souda'} ]

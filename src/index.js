@@ -79,6 +79,8 @@ export function antrax (wf, compound, only) {
 
     let kdicts = _.filter(dicts, dict => { return dict.plain == only })
     d('kdicts---->', kdicts.length)
+    let rkdicts = kdicts.map(dict=> { return dict.rdict })
+    d('rkdicts---->', rkdicts)
     d('flexes---->', flexes.length)
 
     d('singles:', sgms.length)
@@ -126,6 +128,7 @@ export function antrax (wf, compound, only) {
         // нужен пример, почему нельзя только terms - например, ἦσαν
         // но просто убрать это нельзя! см. τῶν
         // if (terms.length) chains = []
+        terms = _.filter(terms, term=> { return term.rdict || (!term.rdict && term.pos == 'indecl') })
         let result = { chains: chains, terms: terms }
         if (chains.length && compound) result.compound = true
         return result
