@@ -32,6 +32,12 @@ const opts = {
 
 export function ensureDBdir (upath) {
   let pouchpath = path.resolve(upath, 'pouch')
+  fse.ensureDirSync(pouchpath)
+  dbs = []
+}
+
+export function emptyDBdir (upath) {
+  let pouchpath = path.resolve(upath, 'pouch')
   fse.emptyDirSync(pouchpath)
   dbs = []
 }
@@ -84,6 +90,8 @@ export function checkConnection (upath, dnames) {
     dbs.push(pouch)
   })
 }
+
+// 382, 7
 
 export function queryDBs (keys) {
   let qdbs = _.filter(dbs, db=> { return db.dname != 'flex' && db.dname != 'terms' })
